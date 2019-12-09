@@ -13,11 +13,6 @@
 // })]
 
 const dotenv = require('dotenv')
-const express = require('express')
-const app = express()
-
-const PORT = process.env.PORT || 80
-app.listen(PORT)
 
 if(process.env.NODE_ENV !== 'production') {
   dotenv.config()
