@@ -21,6 +21,7 @@
     "gatsby-source-filesystem": "^2.1.39",
     "gatsby-source-firestore": "^1.0.3",
     "gatsby-transformer-sharp": "^2.3.6",
+    "heroku": "^7.35.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
@@ -53,7 +54,7 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
-  "engines": { 
-    "node": "10" 
+  "engines": {
+    "node": "10"
   }
 }
