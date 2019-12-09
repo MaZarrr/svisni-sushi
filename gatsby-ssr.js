@@ -3,5 +3,6 @@
  *
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
+// "start": "npm run develop",
 
 // You can delete this file if you're not using it
