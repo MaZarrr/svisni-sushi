@@ -27,7 +27,7 @@ const SetySection = styled.section `
 ` 
 
 const sety = ({data: {allContentfulProduct}}) => {
-console.log(allContentfulProduct)
+// console.log(allContentfulProduct)
 
 return (
     <Layout>
@@ -64,8 +64,8 @@ export const query = graphql `
               slug
               name
               image {
-                  fluid(maxWidth: 800) {
-                      ...GatsbyContentfulFluid_tracedSVG
+                  fluid(maxWidth: 400) {
+                    ...GatsbyContentfulFluid_tracedSVG
                   }
               }
               }
