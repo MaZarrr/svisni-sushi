@@ -4,7 +4,7 @@ import SetyItem from '../components/SetyItem';
 
 
 const SetyTeamplate = ( props ) =>{ 
-  
+  console.log(props);
  return  (
     <SetyItem name={props.data.contentfulProduct.name}
      price={props.data.contentfulProduct.price}
