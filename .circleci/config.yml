@@ -49,8 +49,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: update yarn
-          command: 'yarn version --new-version 1.13.0'
+          name: update npm
+          command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -58,7 +58,7 @@ jobs:
           command: yarn install
       - run:
           name: Build
-          command: yarn run
+          command: npm run build
       - run:
           name: Deploy
           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
