@@ -45,7 +45,7 @@ version: 2
 jobs:
   build:
     docker: # run the steps with Docker
-      - image: circleci/node:8
+      - image: circleci/node:10
     steps:
       - checkout
       - run:
@@ -53,9 +53,7 @@ jobs:
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install node modules
-          command: npm install
+      - run: yarn install
       - run:
           name: Build
           command: npm run build
