@@ -77,7 +77,6 @@ workflows:
              branches:
                only:
                  - master
-                 - beta
      jobs:
        - test
 
