@@ -22,6 +22,6 @@
       "/sety/**": "pages/sety.js"
       },
     "https_only": true,
-    "error_page": "src/pages/404.js",
+    "error_page": "pages/404.js",
     "clean_urls": true
   }
