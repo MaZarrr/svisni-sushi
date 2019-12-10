@@ -71,12 +71,10 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - unit
-      - integration
+      - svisni-sushi
       - release:
           requires:
-            - unit
-            - integration
+            - svisni-sushi
 
 
 
