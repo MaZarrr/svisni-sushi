@@ -205,7 +205,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Build
-          command: gatsby build
+          command: yarn run build
       - run:
           name: Deploy
           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
