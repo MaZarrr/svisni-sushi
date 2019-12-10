@@ -48,12 +48,11 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - restore_cache:
-         keys:
-          - v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: update npm
           command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install node modules
           command: yarn install
@@ -69,10 +68,9 @@ jobs:
             - ./node_modules
 workflows:
   version: 2
-  build_and_test:
+  build-test-and-deploy:
     jobs:
       - build
-      - steps
 
 
 
