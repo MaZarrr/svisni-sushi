@@ -41,32 +41,32 @@
 
 
 
-version: 2
-jobs:
-  build:
-    docker: 
-        - image: circleci/node10
-    steps:
-      - checkout
-      - run:
-          name: Run Build Command
-          command: gatsby build
+# version: 2
+# jobs:
+#   build:
+#     docker: 
+#         - image: circleci/node10
+#     steps:
+#       - checkout
+#       - run:
+#           name: Run Build Command
+#           command: gatsby build
     
-    deploy:
-       docker:
-          - image: circleci/node10
-        steps:
-          - checkout
-          - run:
-              name: Run Deploy Command
-              command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+#     deploy:
+#        docker:
+#           - image: circleci/node10
+#         steps:
+#           - checkout
+#           - run:
+#               name: Run Deploy Command
+#               command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
    
-workflows:
-  version: 2
-  build-test-and-deploy:
-    jobs:
-      - build
-      - deploy
+# workflows:
+#   version: 2
+#   build-test-and-deploy:
+#     jobs:
+#       - build
+#       - deploy
 
 
 
@@ -194,37 +194,30 @@ workflows:
 
 
 
-# version: 2
-# jobs:
-#   build:
-#     docker: # run the steps with Docker
-#       - image: circleci/node:10
-#     steps:
-#       - checkout
-#       - run:
-#           name: update npm
-#           command: 'sudo npm install -g npm@latest'
-#       - restore_cache:
-#           key: dependency-cache-{{ checksum "package.json" }}
-#       - run:
-#           name: Install node modules
-#           command: yarn install
-#       - run:
-#           name: Build
-#           command: npm run build
-#       - run:
-#           name: Deploy
-#           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
-#       - run:
-#           name: Workflows
-#           command: 
-#       - save_cache:
-#           key: dependency-cache-{{ checksum "package.json" }}
-#           paths:
-#             - ./node_modules
-# workflows:
-#   version: 2
-#   build-test-and-deploy:
-#     jobs:
-#       steps:
-#         - 
+version: 2
+jobs:
+  build:
+    docker: # run the steps with Docker
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Build_command
+          command: gatsby build
+      - run:
+          name: Deploy_command
+          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      steps:
+        run:
+          - Build_command
+          - Deploy_command
