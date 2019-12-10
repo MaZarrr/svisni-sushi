@@ -45,7 +45,7 @@ version: 2
 jobs:
   build:
     docker: # run the steps with Docker
-        - image: circleci/node 10
+        - image: circleci/node10
     steps:
       - checkout
       - run:
@@ -54,7 +54,7 @@ jobs:
     
     deploy:
        docker: # run the steps with Docker
-        - image: circleci/node 10
+        - image: circleci/node10
         steps:
           - checkout
           name: Run Deploy Command
