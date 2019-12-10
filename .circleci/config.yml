@@ -68,13 +68,19 @@ jobs:
           paths:
             - ./node_modules
 workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - svisni-sushi
-      - release:
-          requires:
-            - svisni-sushi
+   version: 2
+   nightly:
+     triggers:
+       - schedule:
+           cron: "0 0 * * *"
+           filters:
+             branches:
+               only:
+                 - master
+                 - beta
+     jobs:
+       - test
+
 
 
 
