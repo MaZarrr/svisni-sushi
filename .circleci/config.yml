@@ -54,7 +54,7 @@ jobs:
     
     deploy:
        docker: # run the steps with Docker
-        - image: circleci/node10
+          - image: circleci/node10
         steps:
           - checkout
           - run:
