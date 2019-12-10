@@ -18,8 +18,15 @@
       }
     },
     "routes": {
-      "/*.html": "index.html",
-      "/sety/**": "pages/sety.js"
+      "/assets/*": "/assets/",
+      "/**": "index.html",
+      "/pages/**": "sety.js"
+      },
+      "redirects": {
+        "/old/gone/": {
+          "url": "/404",
+          "status": 404
+        }
       },
     "https_only": true,
     "error_page": "pages/404.js",
