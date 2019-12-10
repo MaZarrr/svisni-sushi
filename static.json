@@ -18,9 +18,10 @@
       }
     },
     "routes": {
-        "/**": "index.html"
+      "/*.html": "index.html",
+      "/sety/**": "pages/sety.js"
       },
     "https_only": true,
-    "error_page": "404.html",
-    "clean_urls": false
+    "error_page": "src/pages/404.js",
+    "clean_urls": true
   }
