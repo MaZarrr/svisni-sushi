@@ -46,7 +46,6 @@ jobs:
   build:
     docker: # run the steps with Docker
         - image: circleci/node
-      working_directory: ~/svisni-sushi
     steps:
       - checkout
       - run:
@@ -56,7 +55,6 @@ jobs:
     deploy:
        docker: # run the steps with Docker
         - image: circleci/node
-      working_directory: ~/svisni-sushi
         steps:
           - checkout
           name: Run Deploy Command
