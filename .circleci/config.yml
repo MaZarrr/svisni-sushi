@@ -341,12 +341,12 @@ version: 2
 jobs:
   build:
     docker: # run the steps with Docker
-      - image: circleci/node:10.17.0
+      - image: circleci/node:10
     steps:
       - checkout
       - run:
           name: update npm
-          command: npm install
+          command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
