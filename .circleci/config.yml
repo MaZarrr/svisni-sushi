@@ -182,9 +182,9 @@ jobs:
       # - run:
       #     name: update npm
       #     command: 'sudo npm install -g npm@latest'
-      - run:
-          name: Install node modules
-          command: yarn install
+      # - run:
+      #     name: Install node modules
+      #     command: yarn install
       - run:
           name: Build
           command: npm run build
