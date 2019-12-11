@@ -341,12 +341,12 @@ version: 2
 jobs:
   build:
     docker: # run the steps with Docker
-      - image: circleci/node:10
+      - image: circleci/node:10.17.0
     steps:
       - checkout
       - run:
           name: update npm
-          command: 'sudo npm install -g npm@latest'
+          command: npm install
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -357,7 +357,7 @@ jobs:
           command: npm run build
       - run:
           name: Deploy
-          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
