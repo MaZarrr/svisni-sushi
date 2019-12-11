@@ -134,30 +134,19 @@
 
 
 
-version: 2
-jobs:
-  build:
-   docker:  # run the steps with Docker
-      - image: circleci/node:10.17.0
+# version: 2
+# jobs:
+#   build:
+#    docker:  # run the steps with Docker
+#       - image: circleci/node:10.17.0
 
-    steps:
-      - checkout
-      - restore_cache:
-         keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-        run: 
-          - npm install
-        run: 
-         - npm test
-        run: |
-          git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
-        run: 
-          npm run build
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-
+#     steps:
+#       - checkout
+#       - run: npm install
+#       - run: npm test
+#       - run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+#       - run: npm run build
+      
      
         
   # deploy:
@@ -308,3 +297,45 @@ jobs:
 #           requires:
 #             - unit
 #             - integration
+
+
+
+# version: 2
+# jobs:
+#   build:
+#     docker: # run the steps with Docker
+#       - image: circleci/node:10.17.0
+#     steps:
+#       - checkout
+#       - run:
+#           name: update npm
+#           command: 'sudo npm install -g npm@latest'
+#       - restore_cache:
+#           key: dependency-cache-{{ checksum "package.json" }}
+#       - run:
+#           name: Install node modules
+#           command: yarn install
+#       - run:
+#           name: Build
+#           command: npm run build
+#       - run:
+#           name: Deploy
+#           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+#       - save_cache:
+#           key: dependency-cache-{{ checksum "package.json" }}
+#           paths:
+#             - ./node_modules
+
+version: 2
+jobs:
+  build:
+   docker:  # run the steps with Docker
+
+      - image: circleci/node:10.17.0
+
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+      - run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+      - run: npm run build
