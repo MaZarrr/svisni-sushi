@@ -139,17 +139,13 @@ jobs:
   build:
    docker:  # run the steps with Docker
       - image: circleci/node:10.17.0
-
     steps:
       - checkout
       - run: npm install
       - run: npm test
       - run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
       - run: npm run build
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+
      
         
   # deploy:
