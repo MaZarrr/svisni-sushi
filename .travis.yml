@@ -1,0 +1,36 @@
+language: node_js
+node_js:
+  - 10.17.0
+cache: yarn
+
+install:
+ - yarn install
+
+script:
+- yarn run build
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  on:
+    all_branches: true
+  
+  # skip-cleanup: true
+  # github-token: $GITHUB_TOKEN
+  # on:
+  #   branch: master
+  # api_key:
+  # secure: "cce95f9a-ba4a-4e14-99d6-aa0c13e32887"
+  # app: svisni-sushi
+  # run:
+  # - restart
+
+  # deploy:
+  # provider: heroku
+  # api_key:
+  # secure: "cce95f9a-ba4a-4e14-99d6-aa0c13e32887"
+  # app: svisni-sushi
+  # run:
+  # - restart
+
