@@ -173,7 +173,7 @@ version: 2
 jobs:
   build:
     docker: # run the steps with Docker
-      - image: circleci/heroku@1.0.0
+      - image: heroku/nodejs
     steps:
       - checkout
       - restore_cache:
