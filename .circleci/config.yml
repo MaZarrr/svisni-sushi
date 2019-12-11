@@ -179,9 +179,9 @@ jobs:
       - restore_cache:
          keys:
           - v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: update npm
-          command: 'sudo npm install -g npm@latest'
+      # - run:
+      #     name: update npm
+      #     command: 'sudo npm install -g npm@latest'
       - run:
           name: Install node modules
           command: yarn install
