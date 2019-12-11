@@ -137,7 +137,7 @@
 version: 2
 jobs:
   build:
-   docker: 
+   docker:  # run the steps with Docker
       - image: circleci/node:10
     steps:
       - checkout
@@ -145,7 +145,7 @@ jobs:
           name: Build
           command: npm run build
   deploy:
-    docker:
+    docker: # run the steps with Docker
       - image: buildpack-deps:trusty
     steps:
       - checkout
