@@ -1,7 +1,9 @@
 language: node_js
 node_js:
   - 10.17.0
-cache: yarn
+cache:
+  directories:
+  - node_modules
 
 install:
  - npm install
@@ -11,10 +13,37 @@ script:
 
 deploy:
   provider: heroku
+  skip-cleanup: true
   api_key:
-    secure: "cce95f9a-ba4a-4e14-99d6-aa0c13e32887"
+    secure: cce95f9a-ba4a-4e14-99d6-aa0c13e32887
+  local_dir: public
+  keep-history: true
   on:
-    all_branches: true
+    branch: master
+  before_script:
+    - "npm i -g gatsby"
+    - "npm i"
+  after_success:
+    - "npm run deploy"
+
+
+#     language: node_js
+# node_js:
+#   - 10.17.0
+# cache: yarn
+
+# install:
+#  - npm install
+
+# script:
+# - npm run build
+
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: "cce95f9a-ba4a-4e14-99d6-aa0c13e32887"
+#   on:
+#     all_branches: true
   
   # skip-cleanup: true
   # github-token: $GITHUB_TOKEN
