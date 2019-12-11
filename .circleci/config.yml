@@ -309,10 +309,7 @@ jobs:
       - checkout
       - run:
           name: install npm
-          command: 'sudo npm install -g npm@latest'
-      - run:
-          name: npm test
-          command: npm test
+          command: npm install
       - run:
           name: Deploy
           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
