@@ -4,10 +4,10 @@ node_js:
 cache: yarn
 
 install:
- - yarn install
+ - npm install
 
 script:
-- yarn run build
+- npm run build
 
 deploy:
   provider: heroku
