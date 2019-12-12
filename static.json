@@ -20,7 +20,7 @@
     "routes": {
       "/assets/*": "/assets/",
       "/**": "index.html",
-      "/pages/**": "sety.js"
+      "/pages/**": "/sety"
       },
       "redirects": {
         "/old/gone/": {
