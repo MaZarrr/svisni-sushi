@@ -13,12 +13,16 @@ script:
 
 deploy:
   provider: heroku
+  edge: true
   skip-cleanup: true
+  local_dir: public
+  keep-history: true
   api_key:
     secure: cce95f9a-ba4a-4e14-99d6-aa0c13e32887
   app: svisni
   on:
     branch: master
+  
 
 ###
   # local_dir: public
@@ -68,3 +72,19 @@ deploy:
   # run:
   # - restart
 
+# deploy:
+#   provider: heroku
+#   edge: true
+#   skip-cleanup: true
+#   local_dir: public
+#   keep-history: true
+#   api_key:
+#     secure: cce95f9a-ba4a-4e14-99d6-aa0c13e32887
+#   app: svisni
+#   on:
+#     branch: master
+#   before_script:
+#     - "npm i -g gatsby"
+#     - "npm i"
+#   after_success:
+#     - "npm run deploy"
