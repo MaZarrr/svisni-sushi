@@ -14,19 +14,18 @@ script:
 deploy:
   provider: heroku
   skip-cleanup: true
-  api_key: $HEROKU_API_KEY
-    # secure: cce95f9a-ba4a-4e14-99d6-aa0c13e32887
-  local_dir: public
-  keep-history: true
-  on:
-    branch: master
-  before_script:
-    - "npm i -g gatsby"
-    - "npm i"
-  after_success:
-    - "npm run deploy"
+  api_key:
+    secure: $HEROKU_API_KEY
+  # local_dir: public
+  # keep-history: true
+  # on:
+  #   branch: master
+  # before_script:
+  #   - "npm i -g gatsby"
+  #   - "npm i"
+  # after_success:
+  #   - "npm run deploy"
 
-    #
 
 #     language: node_js
 # node_js:
