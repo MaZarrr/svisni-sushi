@@ -16,6 +16,7 @@ deploy:
   skip-cleanup: true
   api_key:
     secure: cce95f9a-ba4a-4e14-99d6-aa0c13e32887
+  app: svisni
   on:
     branch: master
 
