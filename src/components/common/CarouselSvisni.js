@@ -4,7 +4,6 @@ import Imagess from '../../images/1-1.jpg'
 import Images from '../../images/3sets.jpg'
 import Imagesss from '../../images/3new.jpg'
 import styled from  'styled-components'
-import "../layout.css"
 
 
 const StyledCarousel = styled.div `

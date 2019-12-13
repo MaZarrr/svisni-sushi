@@ -3,15 +3,14 @@ import { graphql } from 'gatsby';
 import SetyItem from '../components/SetyItem';
 
 
-const SetyTeamplate = ( props ) =>{ 
-  console.log(props);
+const SetyTeamplate = ({data: {contentfulProduct}} ) =>{ 
+//   console.log(props);s
  return  (
-    <SetyItem name={props.data.contentfulProduct.name}
-     price={props.data.contentfulProduct.price}
-     description={props.data.contentfulProduct.description}
-     createdAt={props.data.contentfulProduct.createdAt}
-     image={props.data.contentfulProduct.image.fluid}
-    
+    <SetyItem name={contentfulProduct.name}
+        price={contentfulProduct.price}
+        description={contentfulProduct.description}
+        createdAt={contentfulProduct.createdAt}
+        image={contentfulProduct.image.fluid}
     > </SetyItem>
     
     )}

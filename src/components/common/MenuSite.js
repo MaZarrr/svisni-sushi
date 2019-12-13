@@ -8,8 +8,6 @@ import pizza from '../../images/pizza.png'
 import grilrols from '../../images/grilrols.png'
 import makirolls from '../../images/makirolls.png'
 import salat from '../../images/salat.png'
-// import Layout from "../../components/layout"
-import "../layout.css"
 
 const MenuSection = styled.section `
   margin: 0;
