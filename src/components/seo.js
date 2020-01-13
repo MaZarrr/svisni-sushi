@@ -4,7 +4,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-
+    // "travis-ci": "^2.2.0"
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
@@ -40,7 +40,13 @@ function SEO({ description, lang, meta, title }) {
           href: `https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css`,
           integrity: `sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T`,
           crossorigin: `anonymous`
-        }
+        },
+        {
+          href: `https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css`,
+          rel: `stylesheet`,
+          integrity: `sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN`,
+          crossorigin: `anonymous`
+        } 
       ]}
       script={[
         {
@@ -57,11 +63,16 @@ function SEO({ description, lang, meta, title }) {
           src: `https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js`,
           integrity: `sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM`,
           crossorigin: `anonymous`
-        },
-        {
-          src: `https://kit.fontawesome.com/65fafddc07.js`,
-          crossorigin: `anonymous`,
         }
+        // {
+        //   src: `https://use.fontawesome.com/c6a38329c6.js`,
+        // },
+        // {
+        //   type: `text/javascript`,
+        //   id: `amo_pixel_identifier_js`,
+        //   async: `async`,
+        //   src: `https://piper.amocrm.ru/pixel/js/identifier/pixel_identifier.js`
+        // } 
       ]}
       meta={[
         {
@@ -96,6 +107,10 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `viewport`,
+          content: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+        }
       ].concat(meta)}
     />
   )

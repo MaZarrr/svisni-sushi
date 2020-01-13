@@ -1,17 +1,14 @@
 import React from "react"
 import Carousel from 'react-bootstrap/Carousel';
-import Imagess from '../../images/1-1.jpg'
-import Images from '../../images/3sets.jpg'
-import Imagesss from '../../images/3new.jpg'
 import styled from  'styled-components'
-
+import { Link, graphql, useStaticQuery } from "gatsby"
+import Img from 'gatsby-image';
 
 const StyledCarousel = styled.div `
     margin: 0;
     padding: 0;
     width: 100%;
     z-index: 0;
-    /* box-sizing: border-box; */
 
     .carousel {
         margin: 0;
@@ -35,38 +32,50 @@ const CarouselBootstrap = styled(Carousel)`
     z-index: 0;
 `
 
-// const Item = styled(Carousel.Item) `
-//     margin: 0;
-//     padding: 0;
-//     height: 100px;
-// `
 
-const CarouselSvisni = () => (
+const CarouselSvisni = () => {
+
+  const data = useStaticQuery(graphql`
+  query {
+    akcii1: file(relativePath: { eq: "3new.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1200) {
+          ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+    akcii2: file(relativePath: { eq: "3sets.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1200) {
+          ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+    akcii3: file(relativePath: { eq: "3new.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1200) {
+          ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+  }
+`)
+
+return (
 <StyledCarousel>
 <CarouselBootstrap className="carousel">
   <Carousel.Item>
-    <img
-      className="d-block "
-      src={Images}
-      alt="First slide"
-    />
+  <Img fluid={data.akcii1.childImageSharp.fluid} /> 
   </Carousel.Item>
   <Carousel.Item>
-    <img
-      className="d-block "
-      src={Imagess}
-      alt="Third slide"
-    />
+    <Img fluid={data.akcii2.childImageSharp.fluid} />
+    
   </Carousel.Item>
   <Carousel.Item>
-    <img
-      className="d-block"
-      src={Imagesss}
-      alt="Third slide"
-    />
+    <Img fluid={data.akcii3.childImageSharp.fluid} />
   </Carousel.Item>
 </CarouselBootstrap>
 </StyledCarousel>
 )
-
+}
 export default CarouselSvisni

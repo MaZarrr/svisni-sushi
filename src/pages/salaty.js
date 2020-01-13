@@ -2,8 +2,6 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
-import MenuSite from './../components/common/MenuSite';
-
 
 const SalatySection = styled.section `
        .container {
@@ -28,7 +26,6 @@ const salaty = () => {
     return (
         <Layout>
         <SEO title="Салаты" />
-        <MenuSite />
         <SalatySection>
         <div className="container">
             <h1>Закуски</h1>

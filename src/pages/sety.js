@@ -1,143 +1,108 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import styled  from 'styled-components';
-import MenuSite from '../components/common/MenuSite';
 import { graphql, Link } from "gatsby";
-// import Img from 'gatsby-image';
+import { connect } from 'react-redux';
 import Img from 'gatsby-image';
+import { producSetsLoad, setAddedToCart } from "../actions";
 
+import "../components/sass/cart.css"
 
-const SetySection = styled.section `
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0 auto;
-    padding: 0;
-    width: 100vw;
-
-    .container {
-        margin: 50px auto 50px 50px;
-        padding: 0;
-        border-bottom: 1px solid grey;
-    }
-    .container h1 {
-        /* font-size: 5vw; */
-    }
-    header h2 {
-        font-size: 18px;
-        text-align: center;
-    }
-    .descript{
-        text-align: center;
-        font-size: 14px;
-        height: 45px;
-        /* max-height: 30px; */
-    }
-
-   a header h2 {
-       text-decoration: none;
-       list-style: none;
-       color: black;
-   }
-
-    ul.d {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: space-between;
-        /* position: relative; */
-        /* height: 100px; */
-    }
-    p b {
-        font-size: 22px;
-    }
-    li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    .conainer_product {
-        /* box-shadow: 0px 5px 20px -1px rgba(0, 0, 255, .2);
-        border-radius: 5px; */
-        width: 400px;
-        display: flex;
-        justify-content: center;
-        /* align-items: space-around; */
-        margin-bottom: 50px;
-    }
-    article {
-        display: flex;
-        justify-content: center;
-        /* min-height: 400px; */
-    }
-    .img_fluid {
-        width: 300px;
-        text-align: center;
-        margin: 0 auto;
-    }
-
-    .container_cart {
-        height: 150px;
-        margin: 0;
-        padding: 0;
-    }
-
-    @media screen and (max-width: 768px) {
+const Sety = ({data: {allContentfulProduct: {edges}}, 
+    producSetsLoad, 
+    setAddedToCart, product, location
+  }) => {
    
+    console.log(location);
+    
+    useEffect(() => {
+        const data = edges
+        console.log(data);
+        producSetsLoad(data); // action push to reduxStore
 
-}
-` 
-// const LayoutSection = styled(Layout) `
-//     background: red;
-// `
-
-const sety = ({data: {allContentfulProduct: {edges}}}) => {
-// console.log(edges)
+      }, [edges, producSetsLoad])
 
 return (
     <Layout>
     <SEO title="Сеты" />
-    <MenuSite />
-    <SetySection>
-    <div className="container"> 
-        <h1>Сеты</h1>
-    </div>
+    <section className="section_cart">
+        <div className="title"> 
+        <div className="title_item">
+            <h1>Сеты</h1>
+        </div>
+        <div className="line" />
+        </div>
+    <div className="conainer_product">
     {edges.map(({node: productSets}) => {
         const {id, name, slug, description, price, image: {fluid} } = productSets
         return (
-        <div key={id} className="conainer_product"> 
-            <article>
-                <div>
-                <Link to={`/sety/${slug}`}> 
+            <article key={id} className="cart_items">
+                <div className="cart">
+                    <Link to={`/sety/${slug}`}> 
                     <div className="img_fluid">
-                        <Img style={{maxWidth: 300, height: 300}}
+                        <Img style={{maxWidth: 250, height: 250}}
                         fluid={fluid}></Img>
                     </div>
-                <header>
-                    <h2>{name}</h2>
-                </header>
                 </Link>
-                <ul className="container_cart">
-                    <p className="descript">{description}</p>
-                <ul className="d">
-                    <p><b>{price}</b> РУБ.</p>
-                    <button className="btn btn-success"><i class="fas fa-shopping-cart"></i></button>
-                </ul>
-                </ul>
+                <div className="head_carts">
+                    <header className="head_cart">
+                        <h2>{name}</h2>
+                        <b><span>300 гр</span></b>
+                    </header>
                 </div>
-            </article>
-        </div>
-    )})}
-  
-    </SetySection>
-    </Layout>
-    )
+                    <div className="descript_products">
+                        <p className="descript">{description}</p>
+                    </div>
+                    
+                    <div className="head_count">
+                    <p className="count_product">8 шт</p>
+                    </div>
+
+                    <div className="cart_added">
+                        <p><b>{price} ₽</b></p>
+                        <button 
+                        onClick={() => setAddedToCart(id)}
+                        className="btn btn-success"><i class="fa fa-shopping-basket"></i></button>
+                    </div>
+                    </div>
+                </article> 
+                )})}
+                </div>
+                </section>
+                </Layout>
+                )
 }
 
-export default sety
+const mapStateToProps = ({ setList: {product} }) => {
+    return {product};
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+    producSetsLoad: (newProduct) => {
+        dispatch(producSetsLoad(newProduct))
+    },
+    // productRequested: (loading) => {
+    //     dispatch(productRequested(loading))
+    // },
+    setAddedToCart: (id) => {
+        dispatch(setAddedToCart(id))
+        }
+    }  
+};
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Sety)
 
-export const query = graphql `
+//     const mapDispatchToProps = {
+//     producSetsLoad,
+//     productRequested,
+//     onAddedToCart: (id) => {
+//         console.log('Added to cart', id)
+//     }
+//   };
+  
+
+export const querySets = graphql `
     {
         allContentfulProduct {
           edges {

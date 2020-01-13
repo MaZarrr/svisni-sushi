@@ -2,11 +2,10 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
-import MenuSite from './../components/common/MenuSite';
 
 const Kontakty = styled.section `
     .container {
-        margin: 8vmax 0 0 3vw;
+        margin: 20px 0 0 20px;
         padding: 0;
     }
  
@@ -27,7 +26,6 @@ return (
     <>
     <SEO title="Адрес и контакты" />
     <Layout>
-    <MenuSite />
     <Kontakty>
     <div className="container">
         <h1>Адрес и контакты</h1>

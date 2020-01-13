@@ -2,14 +2,10 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
-import MenuSite from './../components/common/MenuSite';
-
 
 const Delivery = styled.section `
-    height: 130vh;
-    
     .container {
-        margin: 8vmax 0 0 3vw;
+        margin: 20px 0 0 20px;
         padding: 0;
         width: 90%;
     }
@@ -33,14 +29,13 @@ return (
     <SEO title="Доставка и оплата" />
     <Layout>
     <Delivery>
-    <MenuSite />
     <div className="container">
     <article>
         <header>
             <h1>Доставка и оплата</h1>
         </header>
         <div>
-            <p class="text">
+            <p className="text">
             <b>Доставка осуществляется курьерами, которые доставят Ваш заказ в удобное для Вас место и время. </b> <br/>
             <b>Условия заказа и доставки: </b> 
             <br></br>

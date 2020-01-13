@@ -1,0 +1,114 @@
+.navbar-nav
+    margin-right: 50px
+    // width: 100%
+    // display: flex
+    // justify-content: space-around
+
+.icon_start
+    width: 100px
+
+.fa-clock-o
+    // background-color: #303032
+    color: orange
+    width: 30px
+    height: 30px
+    border-radius: 50%
+    text-align: center
+    padding-top: 2.5px
+    margin-right: 5px
+.nav-item
+    font-size: 13px
+    text-decoration: none
+    min-width: 70px
+    list-style: none
+    margin: 0 10px 0 0 
+    padding: 0
+    border-radius: 5px
+    @media screen and (max-width: 1080px) 
+        margin: auto 0 auto 0
+        font-size: 12px
+
+
+.nav-link:focus
+    border-left: 4px solid #F99C9C
+    border-radius: 10px
+
+.nav-link
+    text-transform: uppercase
+
+.activeе  
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05)
+
+.active  
+    min-width: 100px
+    border-top: 1px solid #F99C9C
+    border-bottom: 1px solid #F99C9C
+    border-left: 4px solid #F99C9C
+    box-sizing: border-box
+    border-radius: 10px
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05)
+
+.info_xs
+    @media screen and (max-width: 992px) 
+        display: none
+
+.info_xl
+    li
+        font-size: 13px
+        margin-top: 5px
+        max-width: 370px
+    @media screen and (min-width: 992px) 
+        display: none
+
+.dotted
+    border-bottom: 2px dotted #F99C9C
+
+.company
+    margin: 0
+    padding: 0
+    min-width: 230px
+    &_phone
+        font-size: 14px
+    &_adress
+        border-bottom: 2px dotted #F99C9C
+        font-size: 13px
+    
+.head
+    &_item
+    &_social
+        display: flex
+    &_social_img
+        max-width: 30px
+        &:hover
+            transition: 0.05s
+            transform: scale(1.1)
+
+.head_social_md
+    margin-left: 30px
+    position: absolute
+    right: 5vw
+    @media screen and (max-width: 992px) 
+        display: none
+    @media screen and (max-width: 1080px) 
+        right: 0vw
+    @media screen and (max-width: 1280px) 
+        right: 1vw
+
+.nav_item_phone
+    padding: 0
+    font-size: 14px
+    margin: auto 30px auto 0
+    text-transform: uppercase
+    @media screen and (max-width: 1080px) 
+        margin: auto 10px auto 0
+        font-size: 8px
+
+.info_content
+    display: flex
+    margin: 0
+    padding: 0
+
+@media screen and (min-width: 992px) 
+    .company_media
+        display: none
+

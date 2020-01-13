@@ -8,6 +8,7 @@ import pizza from '../../images/pizza.png'
 import grilrols from '../../images/grilrols.png'
 import makirolls from '../../images/makirolls.png'
 import salat from '../../images/salat.png'
+// import withProductService from './../hoc/with-product-service';
 
 const MenuSection = styled.section `
   margin: 0;
@@ -80,7 +81,8 @@ const MenuSection = styled.section `
   }
 `
 
-const MenuSite = () => (
+const MenuSite = () => {
+  return (
     <MenuSection>
     <div className="navigation clearfix" >
     <nav>
@@ -137,7 +139,7 @@ const MenuSite = () => (
     </nav>
     </div>
     </MenuSection>
-)
+)}
 
 export default MenuSite
 
@@ -152,6 +154,7 @@ export default MenuSite
 // import makirolls from '../../images/makirolls.png'
 // import salat from '../../images/salat.png'
 // // import Layout from "../../components/layout"
+
 
 
 // const MenuSection = styled.section `

@@ -2,14 +2,12 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
-import MenuSite from './../components/common/MenuSite';
 import {Link}  from 'gatsby';
 
 
 const Onas = styled.section `
-    /* height: 130vh; */
     .container {
-        margin: 8vmax 0 0 3vw;
+        margin: 20px 0 0 20px;
         padding: 0;
         width: 90%;
     }
@@ -41,14 +39,13 @@ return (
     <>
     <SEO title="О нас" />
     <Layout>
-    <MenuSite />
     <Onas>
     <div className="container">
     <article>
         <header>
             <h1>О нас</h1>
         </header>
-		<div class="text">
+		<div className="text">
             <img src="" alt="Свисни Суши Бар" />
             <p>
             <br></br>

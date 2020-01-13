@@ -2,8 +2,6 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
-import MenuSite from './../components/common/MenuSite';
-
 
 const KlassicheskieRollySection = styled.section `
     .container {
@@ -28,7 +26,6 @@ const klassicheskieRolly = () => {
     return (
         <Layout>
         <SEO title="Классические роллы" />
-        <MenuSite />
         <KlassicheskieRollySection>
         <div className="container">
             <h1>Классические роллы</h1>
