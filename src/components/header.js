@@ -25,8 +25,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Imgs from '../components/image';
 import Img  from 'gatsby-image';
 
-const HeaderStyled = styled.header `
-  `
 const HeaderContent = styled.div `
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 700;
@@ -141,8 +139,6 @@ query {
 }
 `)
 
-console.log(props)
-
 const links = [ 
   {
     name: 'Акции', 
@@ -176,7 +172,7 @@ const links = [
 return (
   <>
 
-   <HeaderStyled>
+  <header>
     <HeaderContent>
     
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -295,7 +291,7 @@ return (
 
   </HeaderContent>
   
-  </HeaderStyled> 
+  </header> 
   
   <AppBarStyle position="sticky" color="default" >
   <Tabs
@@ -377,9 +373,8 @@ return (
     </Link>
   </KorzinaItem>
 
- 
-  </>
-)
+</>
+  )
 }
 
 Header.propTypes = {

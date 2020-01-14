@@ -1,10 +1,3 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-    // "travis-ci": "^2.2.0"
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
@@ -64,15 +57,6 @@ function SEO({ description, lang, meta, title }) {
           integrity: `sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM`,
           crossorigin: `anonymous`
         }
-        // {
-        //   src: `https://use.fontawesome.com/c6a38329c6.js`,
-        // },
-        // {
-        //   type: `text/javascript`,
-        //   id: `amo_pixel_identifier_js`,
-        //   async: `async`,
-        //   src: `https://piper.amocrm.ru/pixel/js/identifier/pixel_identifier.js`
-        // } 
       ]}
       meta={[
         {

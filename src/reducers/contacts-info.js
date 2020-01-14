@@ -15,8 +15,6 @@ const contactUser = (state, action) => {
 
     switch (action.type) {
 
-        // const {nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword} = state
-
         case 'SET_USER_NAME':
             return {
                 nameUser: action.payload,
@@ -51,63 +49,61 @@ const contactUser = (state, action) => {
                     levelNumber: state.contacts.levelNumber,
                     doorPassword: state.contacts.doorPassword
                 };
-                case 'SET_USER_ADRESS':
-                    return {
-                        nameUser: state.contacts.nameUser,
-                        phoneUser: state.contacts.phoneUser,
-                        deliverySity: state.contacts.deliverySity,
-                        deliveryAdress: action.payload,
-                        homeNumber: state.contacts.homeNumber,
-                        entranceNumber: state.contacts.entranceNumber,
-                        levelNumber: state.contacts.levelNumber,
-                        doorPassword: state.contacts.doorPassword
+            case 'SET_USER_ADRESS':
+                return {
+                    nameUser: state.contacts.nameUser,
+                    phoneUser: state.contacts.phoneUser,
+                    deliverySity: state.contacts.deliverySity,
+                    deliveryAdress: action.payload,
+                    homeNumber: state.contacts.homeNumber,
+                    entranceNumber: state.contacts.entranceNumber,
+                    levelNumber: state.contacts.levelNumber,
+                    doorPassword: state.contacts.doorPassword
                     };
-                    case 'SET_USER_HOME':
-                        return {
-                            nameUser: state.contacts.nameUser,
-                            phoneUser: state.contacts.phoneUser,
-                            deliverySity: state.contacts.deliverySity,
-                            deliveryAdress: state.contacts.deliveryAdress,
-                            homeNumber: action.payload,
-                            entranceNumber: state.contacts.entranceNumber,
-                            levelNumber: state.contacts.levelNumber,
-                            doorPassword: state.contacts.doorPassword
-                        };
-                        case 'SET_USER_ENTRANCE':
-                            return {
-                                nameUser: state.contacts.nameUser,
-                                phoneUser: state.contacts.phoneUser,
-                                deliverySity: state.contacts.deliverySity,
-                                deliveryAdress: state.contacts.deliveryAdress,
-                                homeNumber: state.contacts.homeNumber,
-                                entranceNumber: action.payload,
-                                levelNumber: state.contacts.levelNumber,
-                                doorPassword: state.contacts.doorPassword
-                            };
-                            case 'SET_USER_LEVEL':
-                                return {
-                                    nameUser: state.contacts.nameUser,
-                                    phoneUser: state.contacts.phoneUser,
-                                    deliverySity: state.contacts.deliverySity,
-                                    deliveryAdress: state.contacts.deliveryAdress,
-                                    homeNumber: state.contacts.homeNumber,
-                                    entranceNumber:  state.contacts.entranceNumber,
-                                    levelNumber: action.payload,
-                                    doorPassword: state.contacts.doorPassword
-                                };
-                                case 'SET_USER_DOOR_PASS':
-                                    return {
-                                        nameUser: state.contacts.nameUser,
-                                        phoneUser: state.contacts.phoneUser,
-                                        deliverySity: state.contacts.deliverySity,
-                                        deliveryAdress: state.contacts.deliveryAdress,
-                                        homeNumber: state.contacts.homeNumber,
-                                        entranceNumber: state.contacts.entranceNumber,
-                                        levelNumber: state.contacts.levelNumber,
-                                        doorPassword: action.payload
-                                    };
-
-
+            case 'SET_USER_HOME':
+                return {
+                    nameUser: state.contacts.nameUser,
+                    phoneUser: state.contacts.phoneUser,
+                    deliverySity: state.contacts.deliverySity,
+                    deliveryAdress: state.contacts.deliveryAdress,
+                    homeNumber: action.payload,
+                    entranceNumber: state.contacts.entranceNumber,
+                    levelNumber: state.contacts.levelNumber,
+                    doorPassword: state.contacts.doorPassword
+                };
+            case 'SET_USER_ENTRANCE':
+                return {
+                    nameUser: state.contacts.nameUser,
+                    phoneUser: state.contacts.phoneUser,
+                    deliverySity: state.contacts.deliverySity,
+                    deliveryAdress: state.contacts.deliveryAdress,
+                    homeNumber: state.contacts.homeNumber,
+                    entranceNumber: action.payload,
+                    levelNumber: state.contacts.levelNumber,
+                    doorPassword: state.contacts.doorPassword
+                };
+            case 'SET_USER_LEVEL':
+                return {
+                    nameUser: state.contacts.nameUser,
+                    phoneUser: state.contacts.phoneUser,
+                    deliverySity: state.contacts.deliverySity,
+                    deliveryAdress: state.contacts.deliveryAdress,
+                    homeNumber: state.contacts.homeNumber,
+                    entranceNumber:  state.contacts.entranceNumber,
+                    levelNumber: action.payload,
+                    doorPassword: state.contacts.doorPassword
+                };
+            case 'SET_USER_DOOR_PASS':
+                return {
+                    nameUser: state.contacts.nameUser,
+                    phoneUser: state.contacts.phoneUser,
+                    deliverySity: state.contacts.deliverySity,
+                    deliveryAdress: state.contacts.deliveryAdress,
+                    homeNumber: state.contacts.homeNumber,
+                    entranceNumber: state.contacts.entranceNumber,
+                    levelNumber: state.contacts.levelNumber,
+                    doorPassword: action.payload
+                };
 
         default:
             return state.contacts

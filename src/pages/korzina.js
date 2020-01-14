@@ -609,7 +609,7 @@ export const querySets = graphql `
               description
               image {
                   fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid_tracedSVG
+                    ...GatsbyContentfulFluid
                   }
               }
               }
@@ -626,7 +626,7 @@ export const querySets = graphql `
               priceIn33cm
               image {
                   fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid_tracedSVG
+                    ...GatsbyContentfulFluid
                   }
               }
               }

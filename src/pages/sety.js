@@ -17,7 +17,6 @@ const Sety = ({data: {allContentfulProduct: {edges}},
     
     useEffect(() => {
         const data = edges
-        console.log(data);
         producSetsLoad(data); // action push to reduxStore
 
       }, [edges, producSetsLoad])
@@ -93,15 +92,6 @@ const mapStateToProps = ({ setList: {product} }) => {
   
 export default connect(mapStateToProps, mapDispatchToProps)(Sety)
 
-//     const mapDispatchToProps = {
-//     producSetsLoad,
-//     productRequested,
-//     onAddedToCart: (id) => {
-//         console.log('Added to cart', id)
-//     }
-//   };
-  
-
 export const querySets = graphql `
     {
         allContentfulProduct {
@@ -114,7 +104,7 @@ export const querySets = graphql `
               description
               image {
                   fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid_tracedSVG
+                    ...GatsbyContentfulFluid
                   }
               }
               }

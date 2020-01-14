@@ -10,11 +10,9 @@ import "../components/sass/cart.css"
 
 const Napitki = ({data: {allContentfulProduct: {edges}}, 
     producSetsLoad, 
-    setAddedToCart, product, location
+    setAddedToCart, location
   }) => {
    
-    console.log(location);
-    
     useEffect(() => {
         const data = edges
         console.log(data);
@@ -102,7 +100,7 @@ export const querySets = graphql `
               description
               image {
                   fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid_tracedSVG
+                    ...GatsbyContentfulFluid
                   }
               }
               }

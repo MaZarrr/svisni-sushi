@@ -1,12 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import SetyItem from '../components/SetyItem';
-// import PizzaItem from '../components/PizzaItem';
-// import { connect } from 'react-redux';
-// import {withProductService} from './../components/hoc';
 
-    const SetyTeamplate = ({
-        data: {contentfulProduct}}) => { 
+const SetyTeamplate = ({
+    data: {contentfulProduct}}) => { 
 
  return  (
      <>
@@ -19,22 +16,7 @@ import SetyItem from '../components/SetyItem';
     </>
     )}
 
-    // const mapStateToProps = ({product}) => {
-    //     return {product};
-    // }
-    // const mapDispatchToProps = (dispath) => {
-    //     return {
-    //     productLoaded: (newProduct) => {
-    //         dispath({
-    //             type: 'PRODUCT_LOADED',
-    //             payload: newProduct
-    //         })
-    //     }
-    //     };
-    // }
-
 export default SetyTeamplate
-// export default connect(mapStateToProps, mapDispatchToProps)(SetyTeamplate)
 
 export const query = graphql ` 
     query ($slug: String!) {
