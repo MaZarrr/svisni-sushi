@@ -68,9 +68,5 @@ return (
 
 export default dostavkaioplata
 
-
-
-
-
-//         
+      
 

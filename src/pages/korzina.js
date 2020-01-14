@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react"
+import React, {useState, useEffect} from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { connect } from 'react-redux';
@@ -22,9 +22,6 @@ const RadioWrapper = styled.div `
  background-color: whitesmoke;
 `
 const Radio = styled.input `
-  /* appearance: none;
-  position: absolute; */
-
   .radio_label {
     padding-left: 25px;
     font-size: 1rem;
@@ -323,8 +320,8 @@ return (
 { items.length !== 0 ?
      <form  
         method="POST"
-        onSubmit={handleSubmit}>
-        {/* // action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"> */}
+        onSubmit={handleSubmit}
+        action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca">
           <SectionInfo>    
           <h4>Контактные данные</h4>  
             <div className="section-contacts">
@@ -400,9 +397,6 @@ return (
 
             { payment === "Оплата наличными" &&
             <div className="conatiner-info">
-            {/* <Button onClick={handleOpen}>
-              С какой суммы сдача?
-            </Button> */}
               <InputLabel id="demo-controlled-open-select-label">С какой суммы сдача?</InputLabel>
               <Select
                 labelId="demo-controlled-open-select-label"
@@ -643,156 +637,6 @@ export const querySets = graphql `
     `
 
 
-
-
-
-
-
-
-// <p>Оплата</p> 
-// 										<div className="payment-form">
-//                       <span>Форма оплаты</span>
-// 											<input className="delivery-date-select" type="checkbox" data-select="2" name="Оплата"></input>
-//                       </div>
-// 											<div className="span">
-//                         <span>-- Выбери способ</span>
-// 												<div className="select-date-tab1 select-date" data-select="2">
-// 													<ul>
-//                           <li>
-// 															<label>
-//                                 <p>Наличный расчет</p>
-// 																<input type="radio" name="Оплата" value="cash"></input>
-// 															</label>
-// 														</li>
-
-// 															<li>
-// 																<label>
-//                                  <p>Онлайн</p>
-// 																	<input type="radio" name="Оплата" value="yandex"></input>
-// 																</label>
-// 															</li>
-		
-// 													</ul>
-
-
-
-// {/* <div className="label3">
-// <label>
-//   <p>У меня ровная сумма</p>  
-//   <input className="no-short-change" name="money" type="checkbox" value="0"></input>
-// </label>
-// </div> */}
-
-                    //     {/* <p>С какой суммы сдача?</p> 
-                    //   <label>
-										// 	<input className="delivery-date-select" type="checkbox" data-select="3" name="Сдача"></input>
-										// 	<div className="span">
-                    //     <span>-- Выбери сумму</span>
-										// 		<div data-checked-money="" className="select-date" data-select="3">
-										// 			<ul>
-										// 				<li>
-										// 					<label>
-                    //           <p>-- Выбери сумму</p>
-										// 						<input type="radio" name="money" value=""></input>
-										// 					</label>
-										// 				</li><li>
-										// 					<label>
-                    //             <p>700</p>
-										// 						<input type="radio" name="money" value="700"></input>
-										// 					</label>
-										// 				</li><li>
-										// 					<label>
-                    //             <p>1000</p>
-										// 						<input type="radio" name="money" value="1000"></input>
-										// 					</label>
-										// 				</li><li>
-										// 					<label>
-                    //             <p>2000</p>
-										// 						<input type="radio" name="money" value="2000"></input>
-										// 					</label>
-										// 				</li><li>
-										// 					<label>
-                    //             <p>5000</p>
-										// 						<input type="radio" name="money" value="5000"></input>
-										// 					</label>
-										// 				</li>
-										// 			</ul>
-										// 		</div>
-										// 	</div>
-										// </label> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, {useState, useEffect, useCallback} from "react"
-// import Layout from "../components/layout"
-// import SEO from "../components/seo"
-// import { connect } from 'react-redux';
-// import {graphql} from 'gatsby'
-// import { setAddedToCart, setRemoveFromCart, allSetRemoveFromCart, 
-//   producSetsLoad, onRazmer, addedPalochki, setName, setPhone,
-//   setSity, setAdress, setHome, setEntrance, setLevel, setDoor } from "../actions";
-// import  Img  from 'gatsby-image';
-
-// import * as R from 'ramda'
-// import axios from "axios";
-// import styled  from 'styled-components';
-
-
-// const RadioWrapper = styled.div `
-//  position: relative;
-//  background-color: whitesmoke;
-// `
-// const Radio = styled.input `
-//   appearance: none;
-//   position: absolute;
-
-//   .radio_label {
-//     padding-left: 25px;
-//     font-size: 1rem;
-//     color: darkblue;
-//     cursor: pointer;
-//   }
-//   .radio_label:before {
-//     content:'';
-//     display: block;
-//     width: 16px;
-//     height: 16px;
-
-//     background-color: #fff;
-//     border: 1px solid #cccccc;
-//     border-radius: 50%;
-
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//   }
-// `
-
-// const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza}, 
-//     producSetsLoad, 
-//     items, total, 
-//     palochkiTotal, 
-//     onIncrease, 
-//     onDecrise, 
-//     onDelete, 
-//     onRazmer, 
-//     addedPribor,
-//     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
-//     setName, setPhone, setSity, setAdress, setHome, setEntrance, setLevel, setDoor
-//   }) => {
-    
-//     console.log(nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword)
-    
 //     // const [selectedValue, setSelectedValue] = useState(R.map((item) => R.prop('price33', item), items));
 //     const [data, setData] = useState([])
 //     // const loadData = useCallback(async () => await fetchData(), [fetchData])
@@ -1266,48 +1110,3 @@ export const querySets = graphql `
 
 
 
-
-
-
-
-// <form onSubmit={handleSubmit}>
-// <Input onChange={(e) => {
-//     e.persist();
-//     setSuccess(false);
-//     setAuthorName(e.target.value);
-// }} value={authorName} placeholder="Автор"></Input>
-// {!!success && 
-// <span>
-//     Товар добавлен успешно!
-// </span>
-// }
-// <Button type="submit" block>Добавить нового автора</Button>
-// </form>
-
-
-
-
-
-
-
-
-
-   
-//    {/* { R.contains('price33', R.pluck('price33', items)) ? */}
-
-
-
-// const mapDispatchToProps = () => {
-//     return {
-//         onDecrise: (id) => {
-//             console.log(`onDecrise ${id}`)
-//         },
-//         onIncrease:  (id) => {
-//             console.log(`onIncrease ${id}`)
-//         },
-//         onDelete:  (id) => {
-//             console.log(`onDelete ${id}`)
-//         }
-//     }
-//   };
-  

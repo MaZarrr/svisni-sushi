@@ -133,26 +133,3 @@ export {
     addedPalochki,
     setName, setPhone, setEntrance, setLevel, setDoor, setSity, setAdress, setHome
 }
-
-
-
-
-
-// const producPizzaLoad = (newProductPizza) => {
-//     return {
-//         type: 'PRODUCT_LOADED_PIZZA',
-//         payload: newProductPizza
-//       }
-// };
-
-
-// const onRadioChangePrice = (priceChange, inputName) => {
-//     return {
-//         type: 'PRICE_PIZZA_CHENGED',
-//         payload: {
-//             eName: inputName,
-//             eValue: priceChange
-//         } 
-        
-//     }
-// }

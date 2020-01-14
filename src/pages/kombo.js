@@ -93,16 +93,7 @@ const mapStateToProps = ({ setList: {product} }) => {
   
 export default connect(mapStateToProps, mapDispatchToProps)(Kombo)
 
-//     const mapDispatchToProps = {
-//     producSetsLoad,
-//     productRequested,
-//     onAddedToCart: (id) => {
-//         console.log('Added to cart', id)
-//     }
-//   };
-  
-
-export const querySets = graphql `
+export const query = graphql `
     {
         allContentfulProduct {
           edges {

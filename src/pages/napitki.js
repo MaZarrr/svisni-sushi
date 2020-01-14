@@ -82,9 +82,6 @@ const mapStateToProps = ({ setList: {product} }) => {
     producSetsLoad: (newProduct) => {
         dispatch(producSetsLoad(newProduct))
     },
-    // productRequested: (loading) => {
-    //     dispatch(productRequested(loading))
-    // },
     setAddedToCart: (id) => {
         dispatch(setAddedToCart(id))
         }
@@ -92,15 +89,6 @@ const mapStateToProps = ({ setList: {product} }) => {
 };
   
 export default connect(mapStateToProps, mapDispatchToProps)(Napitki)
-
-//     const mapDispatchToProps = {
-//     producSetsLoad,
-//     productRequested,
-//     onAddedToCart: (id) => {
-//         console.log('Added to cart', id)
-//     }
-//   };
-  
 
 export const querySets = graphql `
     {
