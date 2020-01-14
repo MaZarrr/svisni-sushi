@@ -16,65 +16,6 @@ const LayoutStyle = styled(Layout) `
         margin-left: 50px;
     }
 `
-const MainContent = styled.section `
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 30px 0 0 0 ;
-
-  .nav_navigation {
-    width: 100%;
-  }
-
-
-.menu_items {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  flex-grow: 1;
-  flex-wrap: wrap;
-}
-
-.nav_menu{
-  max-width: 400px;
-  position: relative;
-}
-
-.nav_menu img {
-  border-radius: 7%;
-  max-height: 250px;
-  background-size: cover;
-}
-
-.nav_menu span {
-  position: absolute;
-  left: 42%;
-  top: 70%;
-  color: white;
-  font-weight: 700;
-}
-
-  header h1 {
-      font-size: 4vmax;
-    }
-
-    @media screen and (min-width: 1200px) {
-      margin: 200px 0 0 0 ;
-      header h1 {
-        font-size: 3vmax;
-      } 
-    }
-    @media screen and (min-width: 960px) {
-      margin: 100px 0 0 0 ;
-    }
-    @media screen and (max-width: 768px) {
-      margin: 50px 0 0 0;
-    }
-`
-const Content = styled.div `
-max-width: 1440px;
-min-height: 2000px;
-`
 
 const IndexPage = () => {
 

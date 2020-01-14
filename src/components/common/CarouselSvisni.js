@@ -1,7 +1,7 @@
 import React from "react"
 import Carousel from 'react-bootstrap/Carousel';
 import styled from  'styled-components'
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import Img from 'gatsby-image';
 
 const StyledCarousel = styled.div `

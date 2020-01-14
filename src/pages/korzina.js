@@ -253,7 +253,6 @@ return (
               name={idx + 1}
               onChange={onRadioChangedd}
               value={radioPrice}
-              autoFocus
             />
               <label htmlFor="radio_1" 
               className="radio_label" 

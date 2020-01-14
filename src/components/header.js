@@ -58,22 +58,7 @@ font-size: 2vw;
 
 }
 `
-
-const NavigateMenu = styled.div `
- @media screen and (min-width: 768px) {
-    display: none;
-  }
-`
-const TabsContainer = styled.div `
-  .tabs {
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-  }
-`
-
 const AppBarStyle = styled(AppBar) `
-/* margin-top: 55px; */
 @media screen and (min-width: 768px) {
   margin-top: 0;
 }
@@ -111,11 +96,7 @@ const KorzinaItem = styled.div `
   font-size: 14px;
 }
 `
-const LinkStyle = styled(Link) `
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-`
+
 const TabsStyle = styled(Tab) `
   text-decoration: none;
 
@@ -215,7 +196,7 @@ return (
         </li>
         <li>
         <div className="head">
-            <li className="head_item header_social">
+            <div className="head_item header_social">
             <div className="head_social">
               <div className="head_social_img">
               <a href="https://vk.com/sushi_urazovo">
@@ -233,7 +214,7 @@ return (
               </a>
               </div>
             </div>       
-            </li>
+            </div>
           </div>
         
         </li>
@@ -258,12 +239,6 @@ return (
     <ul className="navbar-nav mt-2 mt-lg-0">
         { 
           links.map(({name, link}) => { 
-          {/* const isActive = active === name
-          const clazz = isActive ? 'focus' : '' */}
-{/* 
-          <li key={name} 
-          className={`nav-link ${clazz}`} 
-             onClick={() => setActive(name)}> */}
           return (
           <li key={name} 
             className="nav-item">
@@ -271,14 +246,14 @@ return (
               activeClassName="active"
               className="nav-link">
               {name}
-            <span class="sr-only">(current)
+            <span className="sr-only">(current)
             </span></Link>
           </li>
         )})
         }
         <li className="head head_social_md">
         <div className="head">
-            <li className="head_item header_social">
+            <div className="head_item header_social">
             <div className="head_social">
               <div className="head_social_img">
               <a href="https://vk.com/sushi_urazovo">
@@ -296,7 +271,7 @@ return (
               </a>
               </div>
             </div>       
-            </li>
+            </div>
           </div>
         </li>
     </ul>
@@ -323,16 +298,13 @@ return (
   </HeaderStyled> 
   
   <AppBarStyle position="sticky" color="default" >
-  {/* <AppBarStyle  color="default" > */}
   <Tabs
   indicatorColor="primary"
   textColor="primary"
-  centered={true}
   variant="scrollable"
   scrollButtons="on"
   aria-label="scrollable force tabs example"
   >
-  {/* <TabsStyle> */}
     <TabsStyle className="tabs" component={Link} to="/sety" value={0} label="Сеты" state={{choice: "Сеты"}}  {...a11yProps(0)} 
         icon={<img src={set}  alt="Сеты"></img>}>
     </TabsStyle>
@@ -398,7 +370,6 @@ return (
     <Link className="korzina_img" to="/korzina">
       <div className="korzina_content">
         <Img fluid={data.korzina.childImageSharp.fluid} />
-        {/* <img className="korzina_img"  src={korzina} alt="Корзина"></img> */}
       </div>
       <div className="korzina_content">
       <b><span>{props.numItems} ({props.total} ₽)</span></b>     
@@ -427,7 +398,12 @@ export default Header
 
 
 
-
+//           {/* const isActive = active === name
+//           const clazz = isActive ? 'focus' : '' */}
+// {/* 
+//           <li key={name} 
+//           className={`nav-link ${clazz}`} 
+//              onClick={() => setActive(name)}> */}
 
 
 
