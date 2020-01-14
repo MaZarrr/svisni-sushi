@@ -7,8 +7,8 @@ if(process.env.NODE_ENV !== 'production') {
 module.exports = {
   siteMetadata: {
     title: `СвисниБар`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    description: `Заказать пиццу, суши, роллы с доставкой - Валуйки`,
+    author: `@mazarrr`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -31,6 +31,24 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Neucha`
+          },
+          {
+            family: `Comfortaa`,
+            variants: [`300`, `400`, `700`]
+          },
+          {
+            family: `Nunito`,
+            variants: [`400`, `700`, `900`]
+          },
+        ],
       },
     },
     `gatsby-plugin-styled-components`,

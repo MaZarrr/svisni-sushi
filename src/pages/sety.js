@@ -10,10 +10,8 @@ import "../components/sass/cart.css"
 
 const Sety = ({data: {allContentfulProduct: {edges}}, 
     producSetsLoad, 
-    setAddedToCart, product, location
+    setAddedToCart,
   }) => {
-   
-    console.log(location);
     
     useEffect(() => {
         const data = edges

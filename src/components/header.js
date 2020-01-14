@@ -26,8 +26,8 @@ import Imgs from '../components/image';
 import Img  from 'gatsby-image';
 
 const HeaderContent = styled.div `
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-weight: 700;
+   font-family: 'Comfortaa', cursive;
+    font-weight: 400;
 
 >a {
     text-decoration: none;
@@ -57,6 +57,20 @@ font-size: 2vw;
 }
 `
 const AppBarStyle = styled(AppBar) `
+
+.tabs {
+  font-family: 'Comfortaa', cursive;
+font-weight: 700;
+color: darkslategray;
+text-decoration: none;
+transition: 0.1s;
+transform: scale(1);
+&:hover {
+  transition: 0.1s;
+  transform: scale(1.05);
+  color: darkslateblue;
+}
+}
 @media screen and (min-width: 768px) {
   margin-top: 0;
 }
@@ -97,10 +111,6 @@ const KorzinaItem = styled.div `
 
 const TabsStyle = styled(Tab) `
   text-decoration: none;
-
-  .tabs {
-    text-decoration: none;
-  }
 `  
 
 const Header = (props) => {
@@ -311,50 +321,50 @@ return (
         }
       />
 
-      <Tab to="/slozhnyeRolly" component={Link} label="Сложные роллы" {...a11yProps(2)} 
+      <Tab className="tabs" to="/slozhnyeRolly" component={Link} label="Сложные роллы" {...a11yProps(2)} 
           icon={
         <img src={bigRoll} alt="Сложные роллы"></img>
         }>
         </Tab>
 
-      <Tab to="/zapechenyeRolly" activeClassName="active" component={Link} label="Горячие роллы" {...a11yProps(3)} 
+      <Tab className="tabs" to="/zapechenyeRolly" activeClassName="active" component={Link} label="Горячие роллы" {...a11yProps(3)} 
         icon={<img src={hotRoll} alt="сеты"></img>
         }
       />
 
-      <Tab to="/klassicheskieRolly" component={Link} label="Классические роллы" {...a11yProps(4)} 
+      <Tab className="tabs" to="/klassicheskieRolly" component={Link} label="Классические" {...a11yProps(4)} 
         icon={
        <img src={smallRoll} alt="сеты"></img>
         }
       />
 
-      <Tab to="/sety" component={Link} label="Напитки" {...a11yProps(5)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Напитки" {...a11yProps(5)} 
           icon={<img src={drink} alt="сеты"></img>
         }
       />
 
-      <Tab to="/salaty" component={Link} label="Салаты" {...a11yProps(6)} 
+      <Tab className="tabs" to="/salaty" component={Link} label="Салаты" {...a11yProps(6)} 
         icon={<img src={salad} alt="сеты"></img>
         }
       />
 
-      <Tab to="/sety" component={Link} label="Закуски" {...a11yProps(7)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Закуски" {...a11yProps(7)} 
         icon={<img src={soup} alt="сеты"></img>
         }
       />
 
-      <Tab to="/sety" component={Link} label="Десеты" {...a11yProps(8)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Десеты" {...a11yProps(8)} 
           icon={
        <img src={desert} alt="сеты"></img>
         }
       />
 
-      <Tab to="/sety" component={Link} label="Суши" {...a11yProps(9)} 
+      <Tab className="tabs" className="tabs" to="/sety" component={Link} label="Суши" {...a11yProps(9)} 
           icon={<img src={sushi} alt="сеты"></img>
         }
       />
 
-      <Tab to="/sety" component={Link} label="Гунканы" {...a11yProps(10)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Гунканы" {...a11yProps(10)} 
           icon={<img src={gunkan} alt="сеты"></img>
         }
       />

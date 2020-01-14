@@ -150,23 +150,7 @@ export default  connect(mapStateToProps, mapDispatchToProps)(Pizza)
 
 export const query = graphql `
     {
-        allContentfulProduct {
-          edges {
-            node {
-                id
-              slug
-              name
-              price
-              description
-              image {
-                  fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid
-                  }
-              }
-              }
-            }
-          }
-          allContentfulProductPizza  {
+        allContentfulProductPizza  {
           edges {
             node {
                 id

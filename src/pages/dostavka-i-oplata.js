@@ -4,6 +4,12 @@ import SEO from "../components/seo"
 import styled  from 'styled-components';
 
 const Delivery = styled.section `
+    font-family: 'Neucha', cursive;
+    h1 {
+        font-family: 'Comfortaa', cursive;
+        font-style: normal;
+        font-weight: 700;
+    }
     .container {
         margin: 20px 0 0 20px;
         padding: 0;
@@ -11,7 +17,7 @@ const Delivery = styled.section `
     }
    
     @media screen and (max-width: 768px) {
-        .container {
+    .container {
         margin: 5vh 0 0 3vw;
         padding: 0;
        

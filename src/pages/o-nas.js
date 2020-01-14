@@ -6,6 +6,13 @@ import {Link}  from 'gatsby';
 
 
 const Onas = styled.section `
+    font-family: 'Neucha', cursive;
+    font-style: normal;
+    h1 {
+        font-family: 'Comfortaa', cursive;
+        font-style: normal;
+        font-weight: 700;
+    }
     .container {
         margin: 20px 0 0 20px;
         padding: 0;
@@ -46,7 +53,7 @@ return (
             <h1>О нас</h1>
         </header>
 		<div className="text">
-            <img src="" alt="Свисни Суши Бар" />
+            {/* <img src="" alt="Свисни Суши Бар" /> */}
             <p>
             <br></br>
             Svisni Sushi - это профессиональная служба доставки блюд японской кухни в п.Уразово 

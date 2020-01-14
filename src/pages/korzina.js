@@ -17,6 +17,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 
+const NoneItem = styled.h2 `
+font-family: 'Comfortaa', cursive;
+font-weight: 700;
+`
+
 const RadioWrapper = styled.div `
  position: relative;
  background-color: whitesmoke;
@@ -50,6 +55,12 @@ flex-direction: column;
 align-items: center;
 justify-content: space-around;
 margin: 40px auto;
+
+
+.table {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 400;
+}
 
 .container-wrap {
   display: flex;
@@ -561,7 +572,7 @@ return (
           </Button>
         </SectionInfo>
       </form> 
- : <h2 className="d-flex justify-content-center align-items-center mt-5">Ваша корзина пуста!</h2>}
+ : <NoneItem className="d-flex justify-content-center align-items-center mt-5 none_item">Ваша корзина пуста!</NoneItem>}
         
     </Layout>
     </>

@@ -20,9 +20,11 @@ import { connect } from 'react-redux';
 const Footer = styled.footer `
    background-color: #303032;
    color: white;
-   font-weight: bold;
    margin-top: 50px;
    padding: 30px 0 30px 0;
+   font-family: 'Comfortaa', cursive;
+    font-style: normal;
+    font-weight: 400;
 `
 
 const FooterUl = styled.ul `
@@ -79,10 +81,6 @@ const FooterUl = styled.ul `
     max-width: 120px;
   }
 
-  /* .footer_social{
-    display: flex;
-  } */
-
 .footer_info {
   display: flex;
 }
@@ -112,9 +110,9 @@ const FooterUl = styled.ul `
     .footer_info {
       display: block;
 }
-.foter_t {
-  display: none;
-}
+    .foter_t {
+      display: none;
+    }
 
   }
   .txt_social {

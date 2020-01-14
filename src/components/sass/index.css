@@ -5,6 +5,9 @@
 .title_home h1 {
   text-align: center;
   text-transform: uppercase;
+  font-family: 'Comfortaa', cursive;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .menu {
@@ -47,8 +50,8 @@
 .cart_item:hover {
   -webkit-transition: 0.1s ease-in;
   transition: 0.1s ease-in;
-  -webkit-transform: scale(1.05) rotate(-0.8deg);
-          transform: scale(1.05) rotate(-0.8deg);
+  -webkit-transform: scale(1.07);
+          transform: scale(1.07);
   -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9);
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9);
 }
@@ -68,5 +71,7 @@
   text-align: center;
   margin: 0;
   padding: 25px 0 0 0;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
 }
 /*# sourceMappingURL=index.css.map */
