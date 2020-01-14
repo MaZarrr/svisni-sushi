@@ -38,15 +38,18 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Neucha`
+            family: `Neucha`,
+            subsets: [`latin`, `cyrillic`]
           },
           {
             family: `Comfortaa`,
-            variants: [`300`, `400`, `700`]
+            variants: [`300`, `400`, `700`],
+            subsets: [`latin`, `cyrillic`]
           },
           {
             family: `Nunito`,
-            variants: [`400`, `700`, `900`]
+            variants: [`400`, `700`, `900`],
+            subsets: [`latin`, `cyrillic`]
           },
         ],
       },
