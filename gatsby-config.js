@@ -44,7 +44,7 @@ module.exports = {
           {
             family: `Comfortaa`,
             variants: [`300`, `400`, `700`],
-            subsets: [`latin`, `cyrillic`]
+            subsets: [`cyrillic`]
           },
           {
             family: `Nunito`,
