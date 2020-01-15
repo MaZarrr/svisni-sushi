@@ -1,20 +1,22 @@
 import React from 'react'
 import { graphql } from 'gatsby';
-import PizzaItem from '../components/PizzaItem';
+// import PizzaItem from '../components/PizzaItem';
 
-const PizzaTeamplate = ({
-    data: {contentfulProductPizza}}) => { 
-        console.log(contentfulProductPizza)
+// const PizzaTeamplate = ({
+//     data: {contentfulProductPizza}}) => { 
+//         console.log(contentfulProductPizza)
+        const PizzaTeamplate = (props) => { 
+                console.log(props)
  return  (
      <>
-   <PizzaItem
+   {/* <PizzaItem
         name={contentfulProductPizza.name}
         price={contentfulProductPizza.price}
         description={contentfulProductPizza.description}
         createdAt={contentfulProductPizza.createdAt}
         image={contentfulProductPizza.image.fluid}
     >
-    </PizzaItem>
+    </PizzaItem> */}
     </>
     )}
 

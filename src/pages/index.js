@@ -10,12 +10,6 @@ import Img from 'gatsby-image';
 const CarouselMenuSection = styled(CarouselSvisni) `
   width: 100vw;
 `
-const LayoutStyle = styled(Layout) `
-     .text_start {
-        background: red;
-        margin-left: 50px;
-    }
-`
 
 const IndexPage = () => {
 
@@ -82,7 +76,7 @@ klassika: file(relativePath: { eq: "img-starter/klassika.jpg" }) {
 
 
 return (
-  <LayoutStyle>
+  <Layout>
       <SEO title="СвисниСуши" />
       <CarouselMenuSection />
     <div className="title_home">
@@ -92,127 +86,85 @@ return (
     </div>
 
     <div className="menu">
-    <div className="cart_contant"> 
-      <Link to="/sety" state={{ choice: 'Сеты' }}>
-      <div className="cart">
+   
         <div className="cart_item">
           <div className="cart_container">
+          <Link to="/sety" state={{ choice: 'Сеты' }}>
           <div className="cart_title">
             <h3>СЕТЫ</h3>
           </div>
           <Img fluid={data.sety.childImageSharp.fluid} className="cart_img"></Img>
+          </Link>
           </div>
         </div>
-      </div>
-      </Link>
-      </div>
 
-      <div className="cart_contant"> 
-      <Link to="/pizza">
-      <div className="cart">
         <div className="cart_item">
           <div className="cart_container">
+          <Link to="/pizza">
           <div className="cart_title">
             <h3>ПИЦЦА</h3>
           </div>
           <Img fluid={data.pizza.childImageSharp.fluid} className="cart_img" />
+          </Link>
           </div>
         </div>
-      </div>
-      </Link>
-      </div>
 
-      <div className="cart_contant"> 
-      <Link to="/kombo">
-      <div className="cart">
         <div className="cart_item">
           <div className="cart_container">
+          <Link to="/kombo">
           <div className="cart_title">
             <h3>КОМБО</h3>
           </div>
           <Img fluid={data.kombo.childImageSharp.fluid} className="cart_img" />
+          </Link>
           </div>
         </div>
-      </div>
-      </Link>
-      </div>
 
-      <div className="cart_contant"> 
-      <Link to="/zapechenyeRolly">
-      <div className="cart">
         <div className="cart_item">
           <div className="cart_container">
+          <Link to="/zapechenyeRolly">
           <div className="cart_title">
             <h3>ГОРЯЧИЕ</h3>
           </div>
           <Img fluid={data.goryachie.childImageSharp.fluid} className="cart_img" />
+          </Link>
           </div>
         </div>
-      </div>
-      </Link>
-      </div>
 
-      <div className="cart_contant"> 
-      <Link to="/slozhnyeRolly">
-      <div className="cart">
         <div className="cart_item">
           <div className="cart_container">
-          <div className="cart_title">
-            <h3>СЛОЖНЫЕ</h3>
-          </div>
-          <Img fluid={data.slognye.childImageSharp.fluid} className="cart_img" />
-          </div>
-        </div>
-      </div>
-      </Link>
-      </div>
-
-      <div className="cart_contant"> 
-      <Link to="/napitki">
-      <div className="cart">
-        <div className="cart_item">
-          <div className="cart_container">
+          <Link to="/napitki">
           <div className="cart_title">
             <h3>НАПИТКИ</h3>
           </div>
           <Img fluid={data.napitki.childImageSharp.fluid} className="cart_img" />
+          </Link>
           </div>
         </div>
-      </div>
-      </Link>
-      </div>
 
-      <div className="cart_contant">
-      <Link to="/salaty">
-      <div className="cart">
         <div className="cart_item">
           <div className="cart_container">
+          <Link to="/salaty">
           <div className="cart_title">
             <h3>САЛАТЫ</h3>
           </div>
           <Img fluid={data.salaty.childImageSharp.fluid} className="cart_img" />
+          </Link>
           </div>
         </div>
-      </div>
-      </Link>
-      </div>
 
-      <div className="cart_contant">
-      <Link to="/klassicheskieRolly">
-      <div className="cart">
         <div className="cart_item">
           <div className="cart_container">
+          <Link to="/klassicheskieRolly">
           <div className="cart_title">
             <h3>КЛАССИЧЕСКИЕ</h3>
           </div>
           <Img fluid={data.klassika.childImageSharp.fluid} className="cart_img" />
+          </Link>
           </div>
         </div>
-      </div>
-      </Link>
-      </div>
     </div>
-  </LayoutStyle>
+  </Layout>
    
   
   )

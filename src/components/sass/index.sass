@@ -1,3 +1,15 @@
+.cart_contant
+    width: 270px
+    height: 270px
+    margin-bottom: 30px
+    @media screen and (max-width: 768px)
+        width: 370px
+        height: 370px
+    @media screen and (max-width: 520px)
+        width: 310px
+        height: 310px
+    
+    
 .title_home
     margin-top: 50px
     h1
@@ -15,21 +27,14 @@
     flex-wrap: wrap
     @media screen and (max-width: 768px)
         flex-direction: column
-        justify-content: center 
         align-items: center
-.cart_contant
-    width: 270px
-    height: 270px
-    margin-bottom: 30px
-    @media screen and (max-width: 768px)
-        width: 370px
-        height: 370px
-    @media screen and (max-width: 520px)
-        width: 310px
-        height: 310px
+        justify-content: center
+
 .cart_img
     max-width: 270px
     max-height: 270px
+    margin: 0
+    padding: 0
     @media screen and (max-width: 768px)
         max-width: 370px
         height: 370px
@@ -37,7 +42,7 @@
         max-width: 310px
         height: 310px
 .cart
-    margin-top: 50px
+    max-width: 310px
     h3
         font-size: 26px
         transition: 0.1s
@@ -59,6 +64,7 @@
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5)
         transition: 0.05s
         transform: scale(1)
+        margin-bottom: 40px
         @media screen and (max-width: 768px)
             width: 370px
             height: 370px
