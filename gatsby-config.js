@@ -37,7 +37,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Comfortaa', 'Neucha']
+          families: ['Comfortaa', 'Neucha', 'Montserrat Alternates']
         }
       }
     },
@@ -49,7 +49,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
-  ],
+  ]
 }
 
 // require('dotenv').config({

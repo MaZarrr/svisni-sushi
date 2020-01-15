@@ -87,12 +87,12 @@ return (
       <CarouselMenuSection />
     <div className="title_home">
     <h1 >
-      свежая и разнообразная кухня 
+      Свежая и разнообразная кухня 
     </h1>
     </div>
 
     <div className="menu">
-
+    <div className="cart_contant"> 
       <Link to="/sety" state={{ choice: 'Сеты' }}>
       <div className="cart">
         <div className="cart_item">
@@ -105,7 +105,9 @@ return (
         </div>
       </div>
       </Link>
-      
+      </div>
+
+      <div className="cart_contant"> 
       <Link to="/pizza">
       <div className="cart">
         <div className="cart_item">
@@ -118,7 +120,9 @@ return (
         </div>
       </div>
       </Link>
+      </div>
 
+      <div className="cart_contant"> 
       <Link to="/kombo">
       <div className="cart">
         <div className="cart_item">
@@ -131,7 +135,9 @@ return (
         </div>
       </div>
       </Link>
+      </div>
 
+      <div className="cart_contant"> 
       <Link to="/zapechenyeRolly">
       <div className="cart">
         <div className="cart_item">
@@ -144,7 +150,9 @@ return (
         </div>
       </div>
       </Link>
+      </div>
 
+      <div className="cart_contant"> 
       <Link to="/slozhnyeRolly">
       <div className="cart">
         <div className="cart_item">
@@ -157,7 +165,9 @@ return (
         </div>
       </div>
       </Link>
+      </div>
 
+      <div className="cart_contant"> 
       <Link to="/napitki">
       <div className="cart">
         <div className="cart_item">
@@ -170,7 +180,9 @@ return (
         </div>
       </div>
       </Link>
+      </div>
 
+      <div className="cart_contant">
       <Link to="/salaty">
       <div className="cart">
         <div className="cart_item">
@@ -183,7 +195,9 @@ return (
         </div>
       </div>
       </Link>
-      
+      </div>
+
+      <div className="cart_contant">
       <Link to="/klassicheskieRolly">
       <div className="cart">
         <div className="cart_item">
@@ -196,6 +210,7 @@ return (
         </div>
       </div>
       </Link>
+      </div>
     </div>
   </LayoutStyle>
    

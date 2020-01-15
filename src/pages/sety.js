@@ -23,11 +23,11 @@ return (
     <Layout>
     <SEO title="Сеты" />
     <section className="section_cart">
-        <div className="title"> 
+    <div className="title"> 
         <div className="title_item">
             <h1>Сеты</h1>
         </div>
-        <div className="line" />
+        {/* <div className="line" /> */}
         </div>
     <div className="conainer_product">
     {edges.map(({node: productSets}) => {

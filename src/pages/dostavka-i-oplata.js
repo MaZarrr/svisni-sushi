@@ -5,10 +5,11 @@ import styled  from 'styled-components';
 
 const Delivery = styled.section `
     font-family: 'Neucha', cursive;
+    font-weight: 500;
     h1 {
-        font-family: 'Comfortaa', cursive;
+        font-family: 'Neucha', cursive;
         font-style: normal;
-        font-weight: 700;
+        font-weight: 900;
     }
     .container {
         margin: 20px 0 0 20px;

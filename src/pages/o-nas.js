@@ -4,14 +4,13 @@ import SEO from "../components/seo"
 import styled  from 'styled-components';
 import {Link}  from 'gatsby';
 
-
 const Onas = styled.section `
-    font-family: 'Neucha', cursive;
-    font-style: normal;
+      font-family: 'Neucha', cursive;
+    font-weight: 500;
     h1 {
-        font-family: 'Comfortaa', cursive;
+        font-family: 'Neucha', cursive;
         font-style: normal;
-        font-weight: 700;
+        font-weight: 900;
     }
     .container {
         margin: 20px 0 0 20px;
@@ -20,16 +19,7 @@ const Onas = styled.section `
     }
    
     @media screen and (max-width: 768px) {
-        .container {
-            margin: 0 0 0 3vw;
-            padding: 0;
-    }
-      .container h1 {
-        font-size: 7vw;
-    }
-    }
-    @media screen and (max-width: 768px) {
-        .container {
+    .container {
         margin: 5vh 0 0 3vw;
         padding: 0;
        
@@ -53,9 +43,7 @@ return (
             <h1>О нас</h1>
         </header>
 		<div className="text">
-            {/* <img src="" alt="Свисни Суши Бар" /> */}
             <p>
-            <br></br>
             Svisni Sushi - это профессиональная служба доставки блюд японской кухни в п.Уразово 
             Мы предлагаем своим покупателям превосходные суши, готовим вкусные салаты и <Link to="/pizza"><b>пиццу</b></Link>, а также предоставляем напитки от 
             аших партнеров.

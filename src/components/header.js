@@ -27,50 +27,51 @@ import Img  from 'gatsby-image';
 
 const HeaderContent = styled.div `
    font-family: 'Comfortaa', cursive;
-    font-weight: 400;
+    font-weight: 900;
 
 >a {
     text-decoration: none;
   }
 
 li {
-list-style: none;
-text-decoration: none;
+  list-style: none;
+  text-decoration: none;
 }
 .d {
-margin-right: 15px;
-color: white;
-text-decoration: none;
-font-size: 1.5vw;
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5vw;
 }
 >div {
-margin: auto 0;
-display: flex;
-flex-grow: 1;
+  margin: auto 0;
+  display: flex;
+  flex-grow: 1;
 }
 
 @media screen and (max-width: 768px) {
 .d {
-font-size: 2vw;
+    font-size: 2vw;
   }
-
 }
 `
 const AppBarStyle = styled(AppBar) `
 
 .tabs {
-  font-family: 'Comfortaa', cursive;
-font-weight: 700;
-color: darkslategray;
-text-decoration: none;
-transition: 0.1s;
-transform: scale(1);
-&:hover {
+  font-family: 'Neucha', cursive;
+  font-weight: 700;
+  color: darkslategray;
+  background-color: white;
+  text-decoration: none;
   transition: 0.1s;
-  transform: scale(1.05);
-  color: darkslateblue;
-}
-}
+  transform: scale(1);
+  letter-spacing: 1px;
+  &:hover {
+    transition: 0.1s;
+    transform: scale(1.05);
+    color: darkslateblue;
+    }
+  }
 @media screen and (min-width: 768px) {
   margin-top: 0;
 }
@@ -327,7 +328,7 @@ return (
         }>
         </Tab>
 
-      <Tab className="tabs" to="/zapechenyeRolly" activeClassName="active" component={Link} label="Горячие роллы" {...a11yProps(3)} 
+      <Tab className="tabs" to="/zapechenyeRolly" component={Link} label="Горячие роллы" {...a11yProps(3)} 
         icon={<img src={hotRoll} alt="сеты"></img>
         }
       />
