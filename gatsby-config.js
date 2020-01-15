@@ -34,26 +34,12 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: 'gatsby-plugin-web-font-loader',
       options: {
-        fonts: [
-          {
-            family: `Neucha`,
-            subsets: [`latin`, `cyrillic`],
-          },
-          {
-            family: 'Comfortaa',
-            variants: [`300`, `500`, `700`],
-            subsets: [`latin`, `cyrillic`]
-          },
-        ],
-        formats: [
-          `woff`,
-          `woff2`,
-          `ttf`,
-          `eot`
-        ],
-      },
+        google: {
+          families: ['Comfortaa', 'Neucha']
+        }
+      }
     },
     `gatsby-plugin-styled-components`,
     {
@@ -69,6 +55,7 @@ module.exports = {
 // require('dotenv').config({
 //   path: '.env'
 // })
+// "yarn": "1.15.2"
 
 // let activeEnv =
 //   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
@@ -79,3 +66,25 @@ module.exports = {
 //   path: `.env.${process.env.NODE_ENV}`,
 // })] //
 
+// {
+//   resolve: `gatsby-plugin-prefetch-google-fonts`,
+//   options: {
+//     fonts: [
+//       {
+//         family: `Neucha`,
+//         subsets: [`latin`, `cyrillic`],
+//       },
+//       {
+//         family: 'Comfortaa',
+//         variants: [`300`, `500`, `700`],
+//         subsets: [`latin`, `cyrillic`]
+//       },
+//     ],
+//     formats: [
+//       `woff`,
+//       `woff2`,
+//       `ttf`,
+//       `eot`
+//     ],
+//   },
+// },
