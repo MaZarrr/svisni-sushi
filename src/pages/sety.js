@@ -59,7 +59,7 @@ return (
                         <p><b>{price} ₽</b></p>
                         <button 
                         onClick={() => setAddedToCart(id)}
-                        className="btn btn-success"><i class="fa fa-shopping-basket"></i></button>
+                        className="btn btn-success"><i className="fa fa-shopping-basket"></i></button>
                     </div>
                     </div>
                 </article> 

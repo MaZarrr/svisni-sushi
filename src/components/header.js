@@ -1,6 +1,6 @@
 import { Link, graphql, useStaticQuery } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, {useState, useEffect, useCallback} from "react"
 
 import set from '../images/icon-tab/set.png'
 import salad from '../images/icon-tab/salad.png'
@@ -56,7 +56,8 @@ li {
 }
 `
 const AppBarStyle = styled(AppBar) `
-
+position: sticky;
+top: 200px;
 .tabs {
   font-family: 'Neucha', cursive;
   font-weight: 700;
@@ -77,55 +78,32 @@ const AppBarStyle = styled(AppBar) `
 }
 `
 
-const KorzinaItem = styled.div `
-  background-color: white;
-  width: 17vh;
-  position: fixed;
-  top: 55%;
-  right: 0;
-  z-index: 100;
-  margin: 0;
-  padding: 8px 5px 8px 5px;
-  border-radius: 30%;
-  border: 2px solid lightgrey;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.35);
-
-  transition: 0.1s ease-in-out;
-  transform: scale(1) translateX(0);
-
-&:hover {
-  transition: 0.1s ease-in;
-  transform: scale(1.09) translateX(-6px);
-}
-
-.korzina_img {
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-}
-
-.korzina_content {
-  text-align: center;
-  font-size: 14px;
-}
-`
-
-const TabsStyle = styled(Tab) `
-  text-decoration: none;
-`  
-
-const Header = (props) => {
+const Header = () => {
+const [scrolled, setScrolled] = useState(false)
+const [lastScrollTop, setLastScrollTop] = useState(0)
+const [value, setValue] = useState(0)
 // const [activee, setActivee] = React.useState('')
+
+const scrolling = useCallback(() => {
+  let st = window.scrollY
+    if(st > lastScrollTop) {
+    setScrolled(true)
+  } else {
+    setScrolled(false)
+  }
+  setLastScrollTop(st)
+  
+}, [lastScrollTop])
+
+
+useEffect(() =>{
+  window.addEventListener('scroll', scrolling)
+  return ()=> window.removeEventListener('scroll', scrolling)
+}, [scrolling])
+
 
 const data = useStaticQuery(graphql`
 query {
-  korzina: file(relativePath: { eq: "icon-tab/korzina.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 120) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
   vk: file(relativePath: { eq: "social-img/vk.png" }) {
     childImageSharp {
       fluid(maxWidth: 50) {
@@ -173,17 +151,17 @@ const links = [
   }
 ]
 
-  function a11yProps(index) {
-    return {
-      id: `scrollable-auto-tab-${index}`,
-      'aria-controls': `scrollable-auto-tabpanel-${index}`,
-    };
-  }
+  // function a11yProps(index) {
+  //   return {
+  //     id: `scrollable-auto-tab-${index}`,
+  //     'aria-controls': `scrollable-auto-tabpanel-${index}`,
+  //   };
+  // }
 
 return (
   <>
 
-  <header>
+  <header className="header">
     <HeaderContent>
     
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -304,85 +282,76 @@ return (
   
   </header> 
   
+  <div className={scrolled ? 'app_bar scroll_bar_show' : 'app_bar' }>
   <AppBarStyle position="sticky" color="default" >
   <Tabs
   indicatorColor="primary"
   textColor="primary"
   variant="scrollable"
+  value={value}
   scrollButtons="on"
   aria-label="scrollable force tabs example"
   >
-    <TabsStyle className="tabs" component={Link} to="/sety" value={0} label="Сеты" state={{choice: "Сеты"}}  {...a11yProps(0)} 
-        icon={<img src={set}  alt="Сеты"></img>}>
-    </TabsStyle>
+    <Tab className="tabs" component={Link} to="/sety" value={0} label="Сеты" onClick={() => setValue(0)}
+        icon={<img src={set}  alt="Сеты"></img>}/>
  
-      <Tab className="tabs"  to="/pizza" component={Link} value={1} label="Пицца" {...a11yProps(1)} 
+      <Tab className="tabs"  to="/pizza" component={Link} value={1} label="Пицца" onClick={() => setValue(1)} 
         icon={
       <img src={pizza} alt="сеты"></img>
         }
       />
 
-      <Tab className="tabs" to="/slozhnyeRolly" component={Link} label="Сложные роллы" {...a11yProps(2)} 
+      <Tab className="tabs" to="/slozhnyeRolly" component={Link} label="Сложные роллы" onClick={() => setValue(2)} 
           icon={
         <img src={bigRoll} alt="Сложные роллы"></img>
         }>
         </Tab>
 
-      <Tab className="tabs" to="/zapechenyeRolly" component={Link} label="Горячие роллы" {...a11yProps(3)} 
+      <Tab className="tabs" to="/zapechenyeRolly" component={Link} label="Горячие роллы" onClick={() => setValue(3)}
         icon={<img src={hotRoll} alt="сеты"></img>
         }
       />
 
-      <Tab className="tabs" to="/klassicheskieRolly" component={Link} label="Классические" {...a11yProps(4)} 
+      <Tab className="tabs" to="/klassicheskieRolly" component={Link} label="Классические"onClick={() => setValue(4)} 
         icon={
        <img src={smallRoll} alt="сеты"></img>
         }
       />
 
-      <Tab className="tabs" to="/sety" component={Link} label="Напитки" {...a11yProps(5)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Напитки" onClick={() => setValue(5)} 
           icon={<img src={drink} alt="сеты"></img>
         }
       />
 
-      <Tab className="tabs" to="/salaty" component={Link} label="Салаты" {...a11yProps(6)} 
+      <Tab className="tabs" to="/salaty" component={Link} label="Салаты" onClick={() => setValue(6)} 
         icon={<img src={salad} alt="сеты"></img>
         }
       />
 
-      <Tab className="tabs" to="/sety" component={Link} label="Закуски" {...a11yProps(7)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Закуски" onClick={() => setValue(7)} 
         icon={<img src={soup} alt="сеты"></img>
         }
       />
 
-      <Tab className="tabs" to="/sety" component={Link} label="Десеты" {...a11yProps(8)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Десеты" onClick={() => setValue(8)}  
           icon={
        <img src={desert} alt="сеты"></img>
         }
       />
 
-      <Tab className="tabs" className="tabs" to="/sety" component={Link} label="Суши" {...a11yProps(9)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Суши" onClick={() => setValue(9)} 
           icon={<img src={sushi} alt="сеты"></img>
         }
       />
 
-      <Tab className="tabs" to="/sety" component={Link} label="Гунканы" {...a11yProps(10)} 
+      <Tab className="tabs" to="/sety" component={Link} label="Гунканы" onClick={() => setValue(10)} 
           icon={<img src={gunkan} alt="сеты"></img>
         }
       />
       {/* </TabsStyle> */}
   </Tabs>
 </AppBarStyle>
-  
-<KorzinaItem>
-    <Link className="korzina_img" to="/korzina">
-      <div className="korzina_content">
-        <Img fluid={data.korzina.childImageSharp.fluid} />
-      </div>
-      <div className="korzina_content">
-      <b><span>{props.numItems} ({props.total} ₽)</span></b>     
-      </div>
-    </Link>
-  </KorzinaItem>
+</div>
 
 </>
   )

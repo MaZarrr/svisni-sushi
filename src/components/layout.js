@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect, useCallback} from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
@@ -11,11 +11,20 @@ import ok from "../images/social-img/odnoklassniki.png"
 
 import logosvisni from "../images/logosvisni.png"
 import styled  from 'styled-components';
-import * as R from 'ramda'
 
 import ErrorBoundary from './error-boundary/error-boundary';
-import { connect } from 'react-redux';
 
+
+// const Progress = styled.div `
+// position: fixed;
+// left: 0;
+// top: 0;
+// z-index: 1001;
+// /* ${props => 'width: `${props.progressDiv}%`'} */
+// /* width: 20%; */
+// height: 5px;
+// background-color: tomato;
+// `
 
 const Footer = styled.footer `
    background-color: #303032;
@@ -121,13 +130,9 @@ const FooterUl = styled.ul `
 
 `
 
-const Layout = ({ children, orderTotal, cartItems }) => {
+const Layout = ({ children}) => {
 
-const totalCount = R.compose(
-  R.sum,
-  R.pluck('count')
-)(cartItems);
-
+const [progressPercent, setProgressPercent] = useState(0);
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -139,10 +144,26 @@ const totalCount = R.compose(
     }
   `)
 
+const progressBar = useCallback((e) => {
+  let windowScroll = document.documentElement.scrollTop;
+  let windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let per = windowScroll / windowHeight * 100;
+  setProgressPercent(per)
+  // console.log(windowScroll)
+  // console.log(windowHeight)
+  // console.log(per)
+}, [])
+
+
+useEffect(() =>{
+  window.addEventListener('scroll', progressBar)
+  return () => window.removeEventListener('scroll', progressBar)
+}, [progressBar])
+
   return (
     <>
     <ErrorBoundary>
-    <Header siteTitle={data.site.siteMetadata.title} numItems={totalCount} total={orderTotal} />
+    <Header siteTitle={data.site.siteMetadata.title} />
      
       <div
         style={{
@@ -151,9 +172,19 @@ const totalCount = R.compose(
           padding: `0`,
         }}
       >
+           <div style={{
+          position: `fixed`,
+          left: `0`,
+          top: `0`,
+          width: `${progressPercent}%`,
+          height: `5px`,
+          backgroundColor: `tomato`,
+          zIndex: `1001`
+          }}/>
         <main>
         {children}
         </main>
+   
   
         <Footer>
           <FooterUl className="footer">
@@ -221,11 +252,8 @@ const totalCount = R.compose(
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
-const mapStateToProps = ({ shoppingCart: {cartItems, orderTotal} }) => {
-  return {cartItems, orderTotal};
-}
 
-export default  connect(mapStateToProps)(Layout)
+export default Layout
 
 
 // © {new Date().getFullYear()}, Built with

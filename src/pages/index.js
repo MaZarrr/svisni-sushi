@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import { Link, graphql, useStaticQuery } from "gatsby"
 import "../components/sass/index.css"
 import Img from 'gatsby-image';
+import Korzina from './../components/korzinaComponent';
+
+
 
 const CarouselMenuSection = styled(CarouselSvisni) `
   width: 100vw;
@@ -163,10 +166,21 @@ return (
           </Link>
           </div>
         </div>
+
+        <div className="cart_item">
+          <div className="cart_container">
+          <Link to="/klassicheskieRolly">
+          <div className="cart_title">
+            <h3>КЛАССИЧЕСКИЕ</h3>
+          </div>
+          <Img fluid={data.klassika.childImageSharp.fluid} className="cart_img" />
+          </Link>
+          </div>
+        </div>
     </div>
+  <Korzina />
   </Layout>
    
-  
   )
 }
 

@@ -78,28 +78,6 @@
   }
 }
 
-.cart {
-  max-width: 310px;
-}
-
-.cart h3 {
-  font-size: 26px;
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
-}
-
-@media screen and (max-width: 768px) {
-  .cart h3 {
-    font-size: 36px;
-  }
-}
-
-@media screen and (max-width: 520px) {
-  .cart h3 {
-    font-size: 26px;
-  }
-}
-
 .cart:hover h3 {
   -webkit-transition: 0.1s;
   transition: 0.1s;
@@ -161,5 +139,6 @@
   padding: 25px 0 0 0;
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
+  font-size: 26px;
 }
 /*# sourceMappingURL=index.css.map */

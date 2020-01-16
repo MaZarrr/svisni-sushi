@@ -1,4 +1,31 @@
 @charset "UTF-8";
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.app_bar {
+  -webkit-transition: 1s;
+  transition: 1s;
+  position: fixed;
+  top: 74px;
+  z-index: 999;
+}
+
+@media screen and (min-width: 992px) {
+  .app_bar {
+    top: 87px;
+  }
+}
+
+.scroll_bar_show {
+  -webkit-transition: 1s;
+  transition: 1s;
+  top: -10%;
+}
+
 .navbar-nav {
   margin-right: 50px;
 }
