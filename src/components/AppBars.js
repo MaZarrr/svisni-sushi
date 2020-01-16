@@ -30,38 +30,25 @@ const AppBarStyle = styled(AppBar) `
   color: darkslategray;
   background-color: white;
   text-decoration: none;
-  transition: 0.1s;
-  transform: scale(1);
   letter-spacing: 1px;
-  &:hover {
+  /* &:hover {
     transition: 0.1s;
     transform: scale(1.05);
     color: darkslateblue;
-    }
+    } */
   }
-@media screen and (min-width: 768px) {
-  margin-top: 0;
-}
 `
 
 // We can inject some CSS into the DOM.
 const styles = {
   root: {
-    transition: '1s',
     position: 'sticky',
-    top: '80px',
     zindex: '999',
-    // background: 'tomato',
+    transition: '1s',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    // borderRadius: 3,
-    // border: 0,
-    // color: 'white',
-    // height: 48,
-    // padding: '0 30px',
-    // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
   st: {
-    transition: '1s',
+    transition: '1.5s',
     top: '-30%',
   },
 };
@@ -72,7 +59,7 @@ function ClassNames(props) {
 
   const scrolling = useCallback(() => {
     let st = window.scrollY
-      if(st > lastScrollTop) {
+      if(st > lastScrollTop && lastScrollTop > 80) {
       setScrolled(true)
     } else {
       setScrolled(false)

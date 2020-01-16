@@ -213,9 +213,8 @@ return (
 </nav>
 
   </HeaderContent>
-  
-  </header> 
   <AppBars/>
+  </header> 
   </>
   )
 }
