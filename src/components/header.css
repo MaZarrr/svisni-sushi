@@ -3,27 +3,19 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1001;
 }
 
-.app_bar {
-  -webkit-transition: 1s;
-  transition: 1s;
-  position: fixed;
-  top: 74px;
-  z-index: 999;
+.navbar {
+  background-color: white;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (min-width: 992px) {
-  .app_bar {
-    top: 87px;
+@media screen and (max-width: 768px) {
+  .navbar {
+    min-height: 80px;
   }
-}
-
-.scroll_bar_show {
-  -webkit-transition: 1s;
-  transition: 1s;
-  top: -10%;
 }
 
 .navbar-nav {

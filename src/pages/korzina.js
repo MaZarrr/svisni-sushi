@@ -126,7 +126,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
     setName, setPhone, setSity, setAdress, setHome, setEntrance, setLevel, setDoor
   }) => {
     
-    console.log(nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword)
+    // console.log(nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword)
 
     const [open, setOpen] = useState(false);
     const [openPayment, setOpenPayment] = useState(false);
@@ -139,7 +139,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
     useEffect(() => {
         const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges)
         producSetsLoad(data); // action push to reduxStore
-      }, [allContentfulProduct, allContentfulProductPizza])
+      }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad])
       
       const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
       

@@ -12,19 +12,7 @@ import ok from "../images/social-img/odnoklassniki.png"
 import logosvisni from "../images/logosvisni.png"
 import styled  from 'styled-components';
 
-import ErrorBoundary from './error-boundary/error-boundary';
-
-
-// const Progress = styled.div `
-// position: fixed;
-// left: 0;
-// top: 0;
-// z-index: 1001;
-// /* ${props => 'width: `${props.progressDiv}%`'} */
-// /* width: 20%; */
-// height: 5px;
-// background-color: tomato;
-// `
+import ErrorBoundary from './error-boundary/error-boundary'
 
 const Footer = styled.footer `
    background-color: #303032;
@@ -144,14 +132,11 @@ const [progressPercent, setProgressPercent] = useState(0);
     }
   `)
 
-const progressBar = useCallback((e) => {
+const progressBar = useCallback(() => {
   let windowScroll = document.documentElement.scrollTop;
   let windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   let per = windowScroll / windowHeight * 100;
   setProgressPercent(per)
-  // console.log(windowScroll)
-  // console.log(windowHeight)
-  // console.log(per)
 }, [])
 
 
@@ -172,7 +157,8 @@ useEffect(() =>{
           padding: `0`,
         }}
       >
-           <div style={{
+        <main>
+        <div style={{
           position: `fixed`,
           left: `0`,
           top: `0`,
@@ -181,7 +167,6 @@ useEffect(() =>{
           backgroundColor: `tomato`,
           zIndex: `1001`
           }}/>
-        <main>
         {children}
         </main>
    
