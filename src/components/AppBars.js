@@ -1,27 +1,15 @@
 import React, {useState, useEffect, useCallback} from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
-import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { Link, useStaticQuery, graphql  } from "gatsby"
+import PropTypes from 'prop-types';
 import "./header.css"
-
+import Img  from 'gatsby-image';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import AppBar from '@material-ui/core/AppBar';
+import clsx from 'clsx';
+import { withStyles } from '@material-ui/core/styles';
 
 import styled  from 'styled-components';
-import PropTypes from 'prop-types';
-
-import set from '../images/icon-tab/set.png'
-import salad from '../images/icon-tab/salad.png'
-import bigRoll from '../images/icon-tab/big-roll-slogn.png'
-import smallRoll from '../images/icon-tab/small-roll.png'
-import drink from '../images/icon-tab/drink.png'
-import hotRoll from '../images/icon-tab/zapechenka.png'
-import sushi from '../images/icon-tab/sushi.png'
-import soup from '../images/icon-tab/soup.png'
-import pizza from '../images/icon-tab/pizza.png'
-import desert from '../images/icon-tab/desert.png'
-import gunkan from '../images/icon-tab/gunkan.png'
 
 const AppBarStyle = styled(AppBar) `
 .tabs {
@@ -31,11 +19,6 @@ const AppBarStyle = styled(AppBar) `
   background-color: white;
   text-decoration: none;
   letter-spacing: 1px;
-  /* &:hover {
-    transition: 0.1s;
-    transform: scale(1.05);
-    color: darkslateblue;
-    } */
   }
 `
 
@@ -48,14 +31,100 @@ const styles = {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
   },
   st: {
-    transition: '1.5s',
+    transition: '0.4s',
     top: '-30%',
   },
 };
+
+const getImageData = graphql `
+    query SiteTitleQuery {
+  set: file(relativePath: { eq: "icon-tab/set.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  salad: file(relativePath: { eq: "icon-tab/salad.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  bigRoll: file(relativePath: { eq: "icon-tab/big-roll-slogn.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  smallRoll: file(relativePath: { eq: "icon-tab/small-roll.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  drink: file(relativePath: { eq: "icon-tab/drink.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  hotRoll: file(relativePath: { eq: "icon-tab/zapechenka.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  sushi: file(relativePath: { eq: "icon-tab/sushi.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 80) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  soup: file(relativePath: { eq: "icon-tab/soup.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  pizza: file(relativePath: { eq: "icon-tab/pizza.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  desert: file(relativePath: { eq: "icon-tab/desert.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 80) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  gunkan: file(relativePath: { eq: "icon-tab/gunkan.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  }
+  `
+
 function ClassNames(props) {
-  const { classes, children, className, ...other } = props;
+  const { classes, children, className, ...other 
+  } = props;
   const [scrolled, setScrolled] = useState(false)
   const [lastScrollTop, setLastScrollTop] = useState(0)
+
+  const data = useStaticQuery(getImageData);
 
   const scrolling = useCallback(() => {
     let st = window.scrollY
@@ -67,7 +136,6 @@ function ClassNames(props) {
     setLastScrollTop(st)
     
   }, [lastScrollTop])
-  
   
   useEffect(() =>{
     window.addEventListener('scroll', scrolling)
@@ -84,70 +152,46 @@ function ClassNames(props) {
   return (
     <AppBarStyle className={clsx(scrolled ? classes.st : classes.root, className)} {...other}>
     <Tabs
-    indicatorColor="primary"
-    textColor="primary"
-    variant="scrollable"
-    value={0}
-    scrollButtons="on"
-    aria-label="scrollable force tabs example"
+      indicatorColor="primary"
+      textColor="primary"
+      variant="scrollable"
+      value={0}
+      scrollButtons="on"
+      aria-label="scrollable force tabs example"
     >
-      <Tab className="tabs" component={Link} to="/sety" value={0} label="Сеты" {...a11yProps(0)}
-          icon={<img src={set}  alt="Сеты"></img>}/>
+        <Tab className="tabs" component={Link} to="/sety" value={0} label="Сеты" {...a11yProps(0)}
+          icon={<Img fluid={data.set.childImageSharp.fluid} style={{width: `65px`}} alt="Сеты"></Img>}/>
    
         <Tab className="tabs"  to="/pizza" component={Link} value={1} label="Пицца" {...a11yProps(1)}
-          icon={
-        <img src={pizza} alt="сеты"></img>
-          }
-        />
+          icon={<Img fluid={data.pizza.childImageSharp.fluid} style={{width: `65px`}} alt="Пицца"></Img>}/>
   
         <Tab className="tabs" to="/slozhnyeRolly" component={Link} label="Сложные роллы" {...a11yProps(2)}
-            icon={
-          <img src={bigRoll} alt="Сложные роллы"></img>
-          }>
+            icon={<Img fluid={data.bigRoll.childImageSharp.fluid} style={{width: `65px`}} alt="Сложные роллы"></Img>}>
           </Tab>
-  
+
         <Tab className="tabs" to="/zapechenyeRolly" component={Link} label="Горячие роллы" {...a11yProps(3)}
-          icon={<img src={hotRoll} alt="сеты"></img>
-          }
-        />
+          icon={<Img fluid={data.hotRoll.childImageSharp.fluid} style={{width: `65px`}} alt="Запеченые роллы"></Img>}/>
   
         <Tab className="tabs" to="/klassicheskieRolly" component={Link} label="Классические" {...a11yProps(4)} 
-          icon={
-         <img src={smallRoll} alt="сеты"></img>
-          }
-        />
+          icon={<Img fluid={data.smallRoll.childImageSharp.fluid} style={{width: `65px`}} alt="Классические роллы"></Img>}/>
   
-        <Tab className="tabs" to="/sety" component={Link} label="Напитки" {...a11yProps(5)} 
-            icon={<img src={drink} alt="сеты"></img>
-          }
-        />
+        <Tab className="tabs" to="/napitki" component={Link} label="Напитки" {...a11yProps(5)} 
+            icon={<Img fluid={data.drink.childImageSharp.fluid} style={{width: `65px`}} alt="Напитки"></Img>}/>
   
         <Tab className="tabs" to="/salaty" component={Link} label="Салаты" {...a11yProps(6)}
-          icon={<img src={salad} alt="сеты"></img>
-          }
-        />
-  
+          icon={<Img fluid={data.salad.childImageSharp.fluid} style={{width: `65px`}} alt="Салаты"></Img>}/>
+
         <Tab className="tabs" to="/sety" component={Link} label="Закуски" {...a11yProps(7)}
-          icon={<img src={soup} alt="сеты"></img>
-          }
-        />
+          icon={<Img fluid={data.soup.childImageSharp.fluid} style={{width: `65px`}} alt="Закуски"></Img>}/>
   
         <Tab className="tabs" to="/sety" component={Link} label="Десеты" {...a11yProps(8)}  
-            icon={
-         <img src={desert} alt="сеты"></img>
-          }
-        />
+            icon={<Img fluid={data.desert.childImageSharp.fluid} style={{width: `65px`}} alt="Десеты"></Img>}/>
   
         <Tab className="tabs" to="/sety" component={Link} label="Суши" {...a11yProps(9)}
-            icon={<img src={sushi} alt="сеты"></img>
-          }
-        />
+            icon={<Img fluid={data.sushi.childImageSharp.fluid} style={{width: `65px`}} alt="Суши"></Img>}/>
   
         <Tab className="tabs" to="/sety" component={Link} label="Гунканы" {...a11yProps(10)} 
-            icon={<img src={gunkan} alt="сеты"></img>
-          }
-        />
-        {/* </TabsStyle> */}
+            icon={<Img fluid={data.gunkan.childImageSharp.fluid} style={{width: `65px`}}  alt="Гунканы"></Img>}/>
     </Tabs>
   </AppBarStyle>
   );

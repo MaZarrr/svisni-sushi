@@ -1,4 +1,4 @@
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import AppBars from './AppBars'
@@ -8,6 +8,7 @@ import styled  from 'styled-components';
 
 import Imgs from '../components/image';
 import Img  from 'gatsby-image';
+import ProgressBar from "./common/progressBar"
 
 const HeaderContent = styled.div `
    font-family: 'Comfortaa', cursive;
@@ -39,36 +40,9 @@ li {
   }
 }
 `
-const Header = () => {
-
+const Header = ({vk, ok, inst}) => {
 // const [value, setValue] = useState(0)
 // const [activee, setActivee] = React.useState('')
-
-const data = useStaticQuery(graphql`
-query {
-  vk: file(relativePath: { eq: "social-img/vk.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 50) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  ok: file(relativePath: { eq: "social-img/odnoklassniki.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 50) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  inst: file(relativePath: { eq: "social-img/instagram.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 50) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-}
-`)
 
 const links = [ 
   {
@@ -95,6 +69,7 @@ const links = [
 
 return (
   <>
+  <ProgressBar/>
   <header className="header">
     <HeaderContent>
     
@@ -119,17 +94,17 @@ return (
             <div className="head_social">
               <div className="head_social_img">
               <a href="https://vk.com/sushi_urazovo">
-              <Img fluid={data.vk.childImageSharp.fluid}  style={{width: `30px`}} />
+              <Img fluid={vk}  style={{width: `30px`}} />
               </a>
               </div>
               <div className="head_social_img"> 
               <a href="https://www.instagram.com/svisni_sushi">
-              <Img fluid={data.inst.childImageSharp.fluid}  style={{width: `30px`}} />
+              <Img fluid={inst}  style={{width: `30px`}} />
               </a>
               </div>
               <div className="head_social_img">
               <a href="https://ok.ru/group/55132913991911">
-              <Img fluid={data.ok.childImageSharp.fluid}  style={{width: `30px`}} />
+              <Img fluid={ok}  style={{width: `30px`}} />
               </a>
               </div>
             </div>       
@@ -176,17 +151,17 @@ return (
             <div className="head_social">
               <div className="head_social_img">
               <a href="https://vk.com/sushi_urazovo">
-                <Img fluid={data.vk.childImageSharp.fluid}  style={{width: `30px`}} />
+                <Img fluid={vk}  style={{width: `30px`}} />
               </a>
               </div>
               <div className="head_social_img"> 
               <a href="https://www.instagram.com/svisni_sushi">
-                <Img fluid={data.inst.childImageSharp.fluid}  style={{width: `30px`}} />
+                <Img fluid={inst}  style={{width: `30px`}} />
               </a>
               </div>
               <div className="head_social_img">
               <a href="https://ok.ru/group/55132913991911">
-                <Img fluid={data.ok.childImageSharp.fluid}  style={{width: `30px`}} />
+                <Img fluid={ok}  style={{width: `30px`}} />
               </a>
               </div>
             </div>       

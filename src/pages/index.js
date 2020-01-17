@@ -8,8 +8,6 @@ import "../components/sass/index.css"
 import Img from 'gatsby-image';
 import Korzina from './../components/korzinaComponent';
 
-
-
 const CarouselMenuSection = styled(CarouselSvisni) `
   width: 100vw;
 `
@@ -20,56 +18,56 @@ const data = useStaticQuery(graphql`
   query {
     sety: file(relativePath: { eq: "img-starter/sety.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 350) {
+        fluid(maxWidth: 330) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
     slognye: file(relativePath: { eq: "img-starter/slognye.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 350) {
+        fluid(maxWidth: 330) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
 klassika: file(relativePath: { eq: "img-starter/klassika.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 350) {
+        fluid(maxWidth: 330) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
     goryachie: file(relativePath: { eq: "img-starter/goryachie.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 350) {
+        fluid(maxWidth: 330) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
     pizza: file(relativePath: { eq: "img-starter/pizza.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 350) {
+        fluid(maxWidth: 330) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
     kombo: file(relativePath: { eq: "img-starter/kombo.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 350) {
+        fluid(maxWidth: 330) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
     napitki: file(relativePath: { eq: "img-starter/napitki.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 350) {
+        fluid(maxWidth: 330) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
     salaty: file(relativePath: { eq: "img-starter/salaty.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 350) {
+        fluid(maxWidth: 330) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
