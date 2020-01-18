@@ -12,14 +12,14 @@ const Delivery = styled.section `
         font-weight: 900;
     }
     .container {
-        margin: 20px 0 0 20px;
+        margin: 20px 0 0 30px;
         padding: 0;
         width: 90%;
     }
    
     @media screen and (max-width: 768px) {
     .container {
-        margin: 5vh 0 0 3vw;
+        margin: 6vh 0 0 5vw;
         padding: 0;
        
     }

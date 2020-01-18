@@ -1,3 +1,19 @@
+.home_page {
+  padding: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .home_page {
+    padding-left: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home_page {
+    padding-left: 2px;
+  }
+}
+
 .cart_contant {
   width: 270px;
   height: 270px;
@@ -20,6 +36,12 @@
 
 .title_home {
   margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .title_home h1 {
@@ -29,6 +51,12 @@
   font-style: normal;
   font-weight: 900;
   letter-spacing: 2px;
+}
+
+@media screen and (max-width: 768px) {
+  .title_home h1 {
+    max-width: 90%;
+  }
 }
 
 .menu {

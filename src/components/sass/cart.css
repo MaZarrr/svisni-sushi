@@ -1,5 +1,5 @@
 .section_cart {
-  margin-top: 50px;
+  margin-top: 40px;
   font-family: 'Neucha', cursive;
 }
 
@@ -40,9 +40,22 @@
       flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 90vw;
+  width: 85vw;
   margin: 0 auto 10px auto;
   padding: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .conainer_product {
+    margin: 0;
+    padding-left: 10vmin;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .conainer_product {
+    padding-left: 5vmin;
+  }
 }
 
 .cart {
@@ -80,6 +93,8 @@
 
 .cart_items {
   max-width: 300px;
+  margin: 0;
+  padding: 0;
 }
 
 .descript {

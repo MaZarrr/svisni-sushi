@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { Link, graphql, useStaticQuery } from "gatsby"
 import "../components/sass/index.css"
 import Img from 'gatsby-image';
-import Korzina from './../components/korzinaComponent';
 
 const CarouselMenuSection = styled(CarouselSvisni) `
   width: 100vw;
@@ -77,8 +76,9 @@ klassika: file(relativePath: { eq: "img-starter/klassika.jpg" }) {
 
 
 return (
-  <Layout>
+  <Layout >
       <SEO title="СвисниСуши" />
+      <div className="home_page">
       <CarouselMenuSection />
     <div className="title_home">
     <h1 >
@@ -176,7 +176,7 @@ return (
           </div>
         </div>
     </div>
-  <Korzina />
+    </div>
   </Layout>
    
   )

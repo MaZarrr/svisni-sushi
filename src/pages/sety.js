@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useState, useEffect} from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql, Link } from "gatsby";
@@ -12,6 +12,8 @@ const Sety = ({data: {allContentfulProduct: {edges}},
     producSetsLoad, 
     setAddedToCart,
   }) => {
+
+
     
     useEffect(() => {
         const data = edges
@@ -59,6 +61,7 @@ return (
                         <p><b>{price} ₽</b></p>
                         <button 
                         onClick={() => setAddedToCart(id)}
+                        // onClick={() => console.log('asdasd')}
                         className="btn btn-success"><i className="fa fa-shopping-basket"></i></button>
                     </div>
                     </div>

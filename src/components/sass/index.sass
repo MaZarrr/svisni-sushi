@@ -1,3 +1,11 @@
+.home_page
+    padding: 0
+    @media screen and (max-width: 992px)
+        padding-left: 20px
+    @media screen and (max-width: 768px)
+        padding-left: 2px
+
+    
 .cart_contant
     width: 270px
     height: 270px
@@ -12,6 +20,8 @@
     
 .title_home
     margin-top: 50px
+    display: flex
+    justify-content: center
     h1
         text-align: center
         text-transform: uppercase
@@ -19,6 +29,8 @@
         font-style: normal
         font-weight: 900
         letter-spacing: 2px
+        @media screen and (max-width: 768px)
+            max-width: 90%
 
 .menu
     margin-top: 20px

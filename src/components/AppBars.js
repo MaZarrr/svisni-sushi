@@ -22,20 +22,6 @@ const AppBarStyle = styled(AppBar) `
   }
 `
 
-// We can inject some CSS into the DOM.
-const styles = {
-  root: {
-    position: 'sticky',
-    zindex: '999',
-    transition: '1s',
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-  },
-  st: {
-    transition: '0.4s',
-    top: '-30%',
-  },
-};
-
 const getImageData = graphql `
     query SiteTitleQuery {
   set: file(relativePath: { eq: "icon-tab/set.png" }) {
@@ -117,6 +103,23 @@ const getImageData = graphql `
   }
   }
   `
+  // We can inject some CSS into the DOM.
+const styles = theme =>( {
+  root: {
+    position: 'sticky',
+    zIndex: '0',
+    transition: '1s',
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    [theme.breakpoints.down('992')]: {
+      display: 'none',
+    }
+  },
+  st: {
+    transition: '0.4s',
+    top: '-30%',
+  },
+});
+
 
 function ClassNames(props) {
   const { classes, children, className, ...other 
@@ -128,9 +131,9 @@ function ClassNames(props) {
 
   const scrolling = useCallback(() => {
     let st = window.scrollY
-      if(st > lastScrollTop && lastScrollTop > 80) {
+      if(st > lastScrollTop && lastScrollTop > 70) {
       setScrolled(true)
-    } else {
+    } else if (st < lastScrollTop) {
       setScrolled(false)
     }
     setLastScrollTop(st)

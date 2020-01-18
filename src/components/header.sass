@@ -1,14 +1,21 @@
 .header 
-    z-index: 1001
+    z-index: 0
     position: sticky
     top: 0
-.navbar
-    background-color: white
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20) 
-    @media screen and (max-width: 768px)
-        min-height: 80px
+// .head_container
+//     display: flex
+//     background-color: red
+//     width: 100%
+// .navbar
+//     background-color: white
+//     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20) 
+//     @media screen and (max-width: 768px)
+//         min-height: 80px
 .navbar-nav
-    margin-right: 50px
+    color: white
+img
+    margin: 0
+    padding: 0
 
 .icon_start
     width: 100px
@@ -25,17 +32,21 @@
     text-align: center
     padding-top: 2.5px
     margin-right: 5px
+    background-color: #fff
 .nav-item
     font-size: 13px
     text-decoration: none
     min-width: 70px
     list-style: none
-    margin: 0 10px 0 0 
+    margin: auto 0 
     padding: 0
     border-radius: 5px
-    @media screen and (max-width: 1080px) 
-        margin: auto 0 auto 0
-        font-size: 12px
+    font-family: 'Comfortaa', cursive
+    font-weight: 900
+    color: white
+    // @media screen and (max-width: 1080px) 
+    //     margin: auto 0 auto 0
+    //     font-size: 12px
 
 
 .nav-link:focus
@@ -86,25 +97,37 @@
             display: none
     
 .head
-    &_item
-    &_social
-        display: flex
-    &_social_img
-        max-width: 30px
-        &:hover
-            transition: 0.05s
-            transform: scale(1.1)
-
-.head_social_md
-    margin-left: 30px
     position: absolute
-    right: 5vw
+    top: 13%
+    right: 0
+    margin-right: 10vmin
+    @media screen and (min-width: 1024px) 
+        margin-right: 3vmin
+    @media screen and (min-width: 1280px) 
+        margin-right: 10vmin
     @media screen and (max-width: 992px) 
-        display: none
-    @media screen and (max-width: 1080px) 
-        right: 0vw
-    @media screen and (max-width: 1280px) 
-        right: 1vw
+        margin-right: 3vmin
+    @media screen and (max-width: 1024px) 
+        margin-right: 1.5vmin
+    // &_item
+    // &_social
+    //     display: flex
+    // &_social_img
+    //     max-width: 30px
+    //     &:hover
+    //         transition: 0.05s
+    //         transform: scale(1.1)
+
+// .head_social_md
+//     margin-left: 30px
+//     position: absolute
+//     right: 5vw
+//     @media screen and (max-width: 992px) 
+//         display: none
+//     @media screen and (max-width: 1080px) 
+//         right: 0vw
+//     @media screen and (max-width: 1280px) 
+//         right: 1vw
 
 .nav_item_phone
     padding: 0
