@@ -8,9 +8,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
 
+import { autoPlay } from 'react-swipeable-views-utils';
+import SwipeableViews from 'react-swipeable-views'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -143,14 +143,13 @@ export default CarouselSvisni;
 
 
 
-
-
 // import React from "react"
 // import Carousel from 'react-bootstrap/Carousel';
 // import styled from  'styled-components'
 // import { graphql, useStaticQuery } from "gatsby"
 // import Img from 'gatsby-image';
 // import akcii from './../../pages/akcii';
+
 
 
 // const StyledCarousel = styled.div `
