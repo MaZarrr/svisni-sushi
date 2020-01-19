@@ -21,113 +21,30 @@ const AppBarStyle = styled(AppBar) `
   letter-spacing: 1px;
   }
 `
-
-const getImageData = graphql `
-    query SiteTitleQuery {
-  set: file(relativePath: { eq: "icon-tab/set.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  salad: file(relativePath: { eq: "icon-tab/salad.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  bigRoll: file(relativePath: { eq: "icon-tab/big-roll-slogn.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  smallRoll: file(relativePath: { eq: "icon-tab/small-roll.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  drink: file(relativePath: { eq: "icon-tab/drink.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  hotRoll: file(relativePath: { eq: "icon-tab/zapechenka.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  sushi: file(relativePath: { eq: "icon-tab/sushi.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 80) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  soup: file(relativePath: { eq: "icon-tab/soup.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  pizza: file(relativePath: { eq: "icon-tab/pizza.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  desert: file(relativePath: { eq: "icon-tab/desert.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 80) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  gunkan: file(relativePath: { eq: "icon-tab/gunkan.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  }
-  `
   // We can inject some CSS into the DOM.
 const styles = theme =>( {
   root: {
-    position: 'sticky',
-    zIndex: '0',
+    position: 'fixed',
     transition: '1s',
+    top: '65px',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     [theme.breakpoints.down('992')]: {
       display: 'none',
     }
   },
   st: {
-    transition: '0.4s',
+    transition: '0.8s',
     top: '-30%',
   },
 });
 
 
 function ClassNames(props) {
-  const { classes, children, className, ...other 
+  const { classes, children, className, data, ...other 
   } = props;
   const [scrolled, setScrolled] = useState(false)
   const [lastScrollTop, setLastScrollTop] = useState(0)
-
-  const data = useStaticQuery(getImageData);
+  console.log(data)
 
   const scrolling = useCallback(() => {
     let st = window.scrollY

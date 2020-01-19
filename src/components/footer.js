@@ -167,5 +167,5 @@ export default ({vk, ok, inst, logo}) => (
   </Footer>
 
 )
-
+//
     

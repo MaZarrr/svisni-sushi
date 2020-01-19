@@ -19,7 +19,7 @@ const Delivery = styled.section `
    
     @media screen and (max-width: 768px) {
     .container {
-        margin: 6vh 0 0 5vw;
+        margin: 0 0 0 5vw;
         padding: 0;
        
     }

@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql, useStaticQuery } from "gatsby"
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Header from "./header"
 import Footer from "./footer"
 import "./layout.css"
@@ -11,7 +11,7 @@ import ErrorBoundary from './error-boundary/error-boundary'
 const useStyles = makeStyles(theme => ({
   root: {
     [theme.breakpoints.down('992')]: {
-      paddingLeft: '50px',
+      paddingLeft: '67px',
     },
     [theme.breakpoints.up('992')]: {
       marginTop: '90px',

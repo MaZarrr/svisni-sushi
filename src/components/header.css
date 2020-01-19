@@ -19,18 +19,6 @@ img {
   width: 100px;
 }
 
-@media screen and (max-width: 768px) {
-  .icon_start {
-    width: 80px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .icon_start {
-    width: 65px;
-  }
-}
-
 .fa-clock-o {
   color: orange;
   width: 30px;

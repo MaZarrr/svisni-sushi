@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useStaticQuery, graphql  } from "gatsby"
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,18 +16,100 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
-import { Link } from "gatsby"
+import  MailIcon from '@material-ui/icons/Mail';
+import InboxIcon  from '@material-ui/icons/MoveToInbox';
 import Img  from 'gatsby-image';
 import Korzina from './korzinaComponent';
 import ProgressBar from "./common/progressBar"
 import Imgs from '../components/image';
 import AppBars from './AppBars'
+import ScrollTop from "./common/ScrollTop"
 
 
 import "./header.css"
+
+const getImageData = graphql `
+  query {
+  set: file(relativePath: { eq: "icon-tab/set.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  salad: file(relativePath: { eq: "icon-tab/salad.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  bigRoll: file(relativePath: { eq: "icon-tab/big-roll-slogn.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  smallRoll: file(relativePath: { eq: "icon-tab/small-roll.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  drink: file(relativePath: { eq: "icon-tab/drink.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  hotRoll: file(relativePath: { eq: "icon-tab/zapechenka.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  sushi: file(relativePath: { eq: "icon-tab/sushi.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 80) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  soup: file(relativePath: { eq: "icon-tab/soup.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  pizza: file(relativePath: { eq: "icon-tab/pizza.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  desert: file(relativePath: { eq: "icon-tab/desert.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 80) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  gunkan: file(relativePath: { eq: "icon-tab/gunkan.png" }) {
+      childImageSharp {
+      fluid(maxWidth: 60) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  }
+  `
+
 
 const drawerWidth = 240;
 
@@ -56,6 +139,12 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('992')]: {
       display: 'none',
     },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 5,
+    },
+    [theme.breakpoints.down('md')]: {
+      marginLeft: -5,
+    },
     backgroundColor: "tomato", 
   },
   hide: {
@@ -82,9 +171,9 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
+    width: theme.spacing(11) + 1,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
+      width: theme.spacing(10) + 1,
     },
   },
   toolbar: {
@@ -113,6 +202,9 @@ const useStyles = makeStyles(theme => ({
     }
   
   },
+  ListItemIcon: {
+    marginRight: '50px',
+  }
  
 }));
 
@@ -120,7 +212,7 @@ const Header = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const data = useStaticQuery(getImageData);
   const links = [ 
     {
       name: 'Акции', 
@@ -144,7 +236,6 @@ const Header = () => {
     }
   ]
 
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -152,7 +243,7 @@ const Header = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+ 
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -198,11 +289,11 @@ const Header = () => {
         }
         <ProgressBar/>
     </ul>
-    <Korzina />
+          {/* <Korzina /> */}
           </Typography>
         </Toolbar>
 
-        <AppBars />
+        <AppBars data={data}/>
 
       </AppBar>
       <Drawer
@@ -224,15 +315,87 @@ const Header = () => {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+        <List > 
+        <ListItem button component={Link} to="/sety">
+        <ListItemIcon>
+          <Img fluid={data.set.childImageSharp.fluid} style={{width: 50}} alt="Сеты"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Сеты" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/pizza">
+        <ListItemIcon>
+          <Img fluid={data.pizza.childImageSharp.fluid} style={{width: 50}} alt="Пицца"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Пицца" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/zapechenyeRolly">
+        <ListItemIcon>
+          <Img fluid={data.hotRoll.childImageSharp.fluid} style={{width: 50}} alt="Горячие"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Горячие" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/slozhnyeRolly">
+        <ListItemIcon>
+          <Img fluid={data.bigRoll.childImageSharp.fluid} style={{width: 50}} alt="Сложные"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Сложные" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/napitki">
+        <ListItemIcon>
+          <Img fluid={data.drink.childImageSharp.fluid} style={{width: 50}} alt="Напитки"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Напитки" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/salaty">
+        <ListItemIcon>
+          <Img fluid={data.salad.childImageSharp.fluid} style={{width: 50}} alt="Салаты"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Салаты" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/desert">
+        <ListItemIcon>
+          <Img fluid={data.desert.childImageSharp.fluid} style={{width: 50}} alt="Десерты"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Десерты" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/zakyski">
+        <ListItemIcon>
+          <Img fluid={data.soup.childImageSharp.fluid} style={{width: 50}} alt="Закуски"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Закуски" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/klassicheskieRolly">
+        <ListItemIcon>
+          <Img fluid={data.smallRoll.childImageSharp.fluid} style={{width: 50}} alt="Маленькие роллы"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Классические" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/sushi">
+        <ListItemIcon>
+          <Img fluid={data.sushi.childImageSharp.fluid} style={{width: 50}} alt="Суши"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Суши" />
+        </ListItem>
+
+        <ListItem button component={Link} to="/gunkany">
+        <ListItemIcon>
+          <Img fluid={data.gunkan.childImageSharp.fluid} style={{width: 50}} alt="Гунканы"></Img>
+        </ListItemIcon>
+          <ListItemText primary="Гунканы" />
+        </ListItem>
+
         </List>
         <Divider />
+
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
@@ -242,7 +405,7 @@ const Header = () => {
           ))}
         </List>
       </Drawer>
-     
+     <ScrollTop/>
 
     </div>
 
@@ -319,6 +482,8 @@ export default Header
 // import Imgs from '../components/image';
 
 // import ProgressBar from "./common/progressBar"
+
+
 
 
 // const HeaderContent = styled.div `
