@@ -111,7 +111,7 @@ const getImageData = graphql `
   `
 
 
-const drawerWidth = 240;
+const drawerWidth = 210;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -175,6 +175,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(10) + 1,
     },
+    [theme.breakpoints.up('xs')]: {
+      width: theme.spacing(7.5) + 1,
+    },
   },
   toolbar: {
     display: 'flex',
@@ -202,8 +205,8 @@ const useStyles = makeStyles(theme => ({
     }
   
   },
-  ListItemIcon: {
-    marginRight: '50px',
+  button: {
+    maxWidth: '20px',
   }
  
 }));
@@ -311,14 +314,14 @@ const Header = () => {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <ChevronRightIcon style={{backgroundColor: 'tomato'}}/> : <ChevronLeftIcon style={{backgroundColor: 'tomato'}}/>}
           </IconButton>
         </div>
         <Divider />
-        <List > 
+        <List> 
         <ListItem button component={Link} to="/sety">
         <ListItemIcon>
-          <Img fluid={data.set.childImageSharp.fluid} style={{width: 50}} alt="Сеты"></Img>
+          <Img fluid={data.set.childImageSharp.fluid} style={{width: 50, margin: 0, padding: 0}} alt="Сеты"></Img>
         </ListItemIcon>
           <ListItemText primary="Сеты" />
         </ListItem>

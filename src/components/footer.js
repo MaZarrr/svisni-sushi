@@ -11,6 +11,10 @@ const Footer = styled.footer `
    font-family: 'Comfortaa', cursive;
     font-style: normal;
     font-weight: 400;
+    @media screen and (max-width: 768px) {
+      margin-top: 400px
+    }
+
 `
 
 const FooterUl = styled.ul `

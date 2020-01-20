@@ -6,6 +6,7 @@ import styled  from 'styled-components';
 const Delivery = styled.section `
     font-family: 'Neucha', cursive;
     font-weight: 500;
+    margin-top: 30px;
     h1 {
         font-family: 'Neucha', cursive;
         font-style: normal;

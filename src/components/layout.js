@@ -11,7 +11,7 @@ import ErrorBoundary from './error-boundary/error-boundary'
 const useStyles = makeStyles(theme => ({
   root: {
     [theme.breakpoints.down('992')]: {
-      paddingLeft: '67px',
+      paddingLeft: '50px',
     },
     [theme.breakpoints.up('992')]: {
       marginTop: '90px',
@@ -92,11 +92,11 @@ const data = useStaticQuery(graphql`
        <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}
-      </main>
-      <Footer vk={data.vk.childImageSharp.fluid}
+        <Footer vk={data.vk.childImageSharp.fluid}
                 ok={data.ok.childImageSharp.fluid}
                 inst={data.inst.childImageSharp.fluid}
                 logo={data.logo.childImageSharp.fluid}/>
+      </main>
      
         {/* <main>
         

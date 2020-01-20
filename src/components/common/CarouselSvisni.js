@@ -4,7 +4,7 @@ import Img from 'gatsby-image';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
-// import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -37,22 +37,45 @@ query {
       }
     }
   }
+  akciPizzaPhone: file(relativePath: { eq: "PizzaAkciya.png" }) {
+    childImageSharp {
+      fluid(maxWidth: 300) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
 }
 `
 
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: `100vw`,
-    flexGrow: 1,
-    [theme.breakpoints.down('992')]:{
-      display: 'none'
-    }
+    flexGrow: '1',
+    [theme.breakpoints.down('768')]: {
+      maxHeight: `75vw`,
+    },
   },
+  rootPhone: {
+  display: 'none',
+  [theme.breakpoints.down('768')]: {
+    display: 'block',
+    // margin: '10px 30px 0 30px',
+  },
+},
+  rootPhoneNone:{ 
+  [theme.breakpoints.down('768')]: {
+    display: 'none',
+  }
+},
   header: {
     display: 'flex',
     alignItems: 'center',
+    paddingTop: '8px',
     // height: 50,
-    paddingLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(2),
+    [theme.breakpoints.down('768')]: {
+      backgroundColor: 'lightgrey',
+    },
     backgroundColor: theme.palette.background.default,
   },
   img: {
@@ -61,49 +84,92 @@ const useStyles = makeStyles(theme => ({
     maxWidth: `100vw`,
     overflow: 'hidden',
     width: '100%',
+    [theme.breakpoints.down('768')]: {
+      maxHeight: `55vw`,
+    }
   },
+  h1Home: {
+    fontSize: 26,
+    fontFamily: 'Neucha, cursive',
+    fontWeight: '900',
+    lineHeight: 2,
+    [theme.breakpoints.up('768')]: {
+      display: 'none'
+    }
+  },
+  stepper: {
+    // margin: '0 auto',
+    // width: '100vw',
+    marginBottom: 50,
+    paddingLeft: '30vw'
+  }
 }));
 
 function CarouselSvisni() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStepVigoda, setActiveStepVigoda] = React.useState(0);
   const data = useStaticQuery(getImageData)
   const tutorialSteps = [
     {
       id: 0,
       imgPath: data.akcii2.childImageSharp.fluid,
+      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
     },
     {
       id: 1,
       imgPath: data.akcii2.childImageSharp.fluid,
+      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
     },
     {
       id: 2,
       imgPath: data.akcii2.childImageSharp.fluid,
+      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
+    }
+  ];
+
+  const vigodaSteps = [
+    {
+      id: 0,
+      imgPath: data.akcii2.childImageSharp.fluid,
+      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
+    },
+    {
+      id: 1,
+      imgPath: data.akcii2.childImageSharp.fluid,
+      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
+    },
+    {
+      id: 2,
+      imgPath: data.akcii2.childImageSharp.fluid,
+      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
     }
   ];
 
   const maxSteps = tutorialSteps.length;
 
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
+  // const handleNext = () => {
+  //   setActiveStep(prevActiveStep => prevActiveStep + 1);
+  // };
 
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
+  // const handleBack = () => {
+  //   setActiveStep(prevActiveStep => prevActiveStep - 1);
+  // };
 
   const handleStepChange = step => {
     setActiveStep(step);
   };
 
+  const handleStepChangeVigoda = step => {
+    setActiveStepVigoda(step);
+  };
+
   return (
     <div className={classes.root}>
-      <Paper square elevation={0} className={classes.header}>
         {/* <Typography>{tutorialSteps[activeStep].label}</Typography> */}
-      </Paper>
-      <AutoPlaySwipeableViews
+
+      <AutoPlaySwipeableViews className={classes.rootPhoneNone}
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         onChangeIndex={handleStepChange}
@@ -117,29 +183,69 @@ function CarouselSvisni() {
           </div>
         ))}
       </AutoPlaySwipeableViews>
-       <MobileStepper
+
+      <Paper square elevation={0} className={classes.header}>
+        <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
+      </Paper>
+      <AutoPlaySwipeableViews className={classes.rootPhone}
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={activeStep}
+        onChangeIndex={handleStepChange}
+        enableMouseEvents
+      >
+        {tutorialSteps.map((step, index) => (
+          <div key={step.id}>
+            {Math.abs(activeStep - index) <= 2 ? (
+              <Img fluid={step.imgPathPhone} className={classes.img} alt={step.id} />
+            ) : null}
+          </div>
+        ))}
+      </AutoPlaySwipeableViews>
+      <MobileStepper
         steps={maxSteps}
         position="static"
-        variant="dots"
+        variant="progress"
         activeStep={activeStep}
-        nextButton={
-          <Button variant='contained' color='primary' size="medium" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-          </Button>
-        }
-        backButton={
-          <Button variant='contained' color='primary' size="medium" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-          </Button>
-        }
-      />
+        className={classes.stepper}></MobileStepper>
+
+
+      <AutoPlaySwipeableViews className={classes.rootPhone}
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={activeStepVigoda}
+        onChangeIndex={handleStepChangeVigoda}
+        enableMouseEvents
+      >
+        {vigodaSteps.map((step, index) => (
+          <div key={step.id}>
+            {Math.abs(activeStepVigoda - index) <= 2 ? (
+              <Img fluid={step.imgPathPhone} className={classes.img} alt={step.id} />
+            ) : null}
+          </div>
+        ))}
+      </AutoPlaySwipeableViews>
+      <MobileStepper
+        steps={maxSteps}
+        position="static"
+        variant="progress"
+        activeStep={activeStepVigoda}
+        className={classes.stepper}/>
     </div>
   );
 }
 
 export default CarouselSvisni;
 
-
+        // nextButton={
+        //   <Button variant='contained' color='primary' size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+        //     {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        //   </Button>
+        // }
+        // backButton={
+        //   <Button variant='contained' color='primary' size="small" onClick={handleBack} disabled={activeStep === 0}>
+        //     {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        //   </Button>
+        // }
+    
 
 
 

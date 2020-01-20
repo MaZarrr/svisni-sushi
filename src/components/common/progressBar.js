@@ -23,7 +23,7 @@ export default () => {
             width: `6px`,
             height: `${progressPercent}%`,
             backgroundColor: `tomato`,
-            zIndex: `1010`
+            zIndex: `1020`
         }}/>
     )
 }
