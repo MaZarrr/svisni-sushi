@@ -39,7 +39,7 @@ return (
                 <div className="cart">
                     <Link to={`/sety/${slug}`}> 
                     <div className="img_fluid">
-                        <Img style={{maxWidth: 250, height: 250}}
+                        <Img className="cart_image"
                         fluid={fluid}></Img>
                     </div>
                 </Link>

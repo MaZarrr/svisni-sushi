@@ -23,18 +23,18 @@
         font-weight: 900
         letter-spacing: 5px
         margin: 0
-.line
-    color: red
-    width: 100%
-    border-bottom: 2px solid grey
-    position: absolute
-    top: 50%
-    z-index: 0
+// .line
+//     color: red
+//     width: 100%
+//     border-bottom: 2px solid grey
+//     position: absolute
+//     top: 50%
+//     z-index: 0
 .conainer_product
     display: flex
     flex-wrap: wrap
     justify-content: space-around
-    width: 85vw
+    max-width:: 85vw
     margin: 0 auto 10px auto
     padding: 0
     @media screen and (max-width: 992px)
@@ -42,14 +42,25 @@
         padding-left: 10vmin
     @media screen and (max-width: 768px)
         padding-left: 5vmin
+        max-width: 79vw
 
 .cart
-    width: 250px
+    max-width: 250px
     margin: 50px 10px 30px 10px
+    @media screen and (max-width: 500px)
+        max-width: 200px
     &_added
         display: flex
         justify-content: space-between
         height: 50px
+.cart_image
+    max-width: 250px
+    max-height: 250px
+    @media screen and (max-width: 500px)
+        max-height: 200px
+        max-width: 200px
+      
+    
 .head_cart
     display: flex
     justify-content: space-between
