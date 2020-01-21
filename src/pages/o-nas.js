@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
 import {Link}  from 'gatsby';
@@ -35,7 +34,7 @@ const onas = () => {
 return (
     <>
     <SEO title="О нас" />
-    <Layout>
+    <section>
     <Onas>
     <div className="container">
     <article>
@@ -62,7 +61,7 @@ return (
     </article>
     </div>
 </Onas>
-</Layout>
+</section>
     </>
     
     )

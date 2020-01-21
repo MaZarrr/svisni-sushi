@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, navigate} from 'gatsby'
@@ -219,7 +218,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
 return (
     <>
     <SEO title="Корзина" />
-    <Layout>
+    <section>
 
  <table className="table">
     { items.length !== 0 &&
@@ -574,7 +573,7 @@ return (
       </form> 
  : <NoneItem className="d-flex justify-content-center align-items-center mt-5 none_item">Ваша корзина пуста!</NoneItem>}
         
-    </Layout>
+    </section>
     </>
     
     )

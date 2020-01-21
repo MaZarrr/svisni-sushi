@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
 
@@ -24,14 +23,14 @@ const SalatySection = styled.section `
 const salaty = () => {
 
     return (
-        <Layout>
+        <section>
         <SEO title="Салаты" />
         <SalatySection>
         <div className="container">
             <h1>Закуски</h1>
         </div>
         </SalatySection>
-        </Layout>
+        </section>
         )
     }
     

@@ -23,15 +23,14 @@
 
 @media screen and (max-width: 768px) {
   .icon_start {
-    min-width: 75px;
-    margin: auto 10vmin auto 25vmin;
+    margin: auto 20vmax auto 25vmax;
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
   .icon_start {
     min-width: 65px;
-    margin: auto 0 auto 25vmin;
+    margin: auto 10vmin auto 20vmin;
   }
 }
 

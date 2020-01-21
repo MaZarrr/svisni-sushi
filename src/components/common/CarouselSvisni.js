@@ -30,14 +30,14 @@ query {
       }
     }
   }
-  akcii3: file(relativePath: { eq: "3new.jpg" }) {
+  happyDayAkciya: file(relativePath: { eq: "pizzanadr.png" }) {
     childImageSharp {
-      fluid(maxWidth: 1200) {
+      fluid(maxWidth: 300) {
         ...GatsbyImageSharpFluid_tracedSVG
       }
     }
   }
-  akciPizzaPhone: file(relativePath: { eq: "PizzaAkciya.png" }) {
+  clockFunPhone: file(relativePath: { eq: "clockFun.png" }) {
     childImageSharp {
       fluid(maxWidth: 300) {
         ...GatsbyImageSharpFluid_tracedSVG
@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     width: '100%',
     [theme.breakpoints.down('768')]: {
-      maxHeight: `55vw`,
+      // maxHeight: `65vw`,
     }
   },
   h1Home: {
@@ -113,37 +113,20 @@ function CarouselSvisni() {
     {
       id: 0,
       imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
+      imgPathPhone: data.happyDayAkciya.childImageSharp.fluid
     },
     {
       id: 1,
       imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
+      imgPathPhone: data.clockFunPhone.childImageSharp.fluid
     },
     {
       id: 2,
       imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
+      imgPathPhone: data.clockFunPhone.childImageSharp.fluid
     }
   ];
 
-  const vigodaSteps = [
-    {
-      id: 0,
-      imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
-    },
-    {
-      id: 1,
-      imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
-    },
-    {
-      id: 2,
-      imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.akciPizzaPhone.childImageSharp.fluid
-    }
-  ];
 
   const maxSteps = tutorialSteps.length;
 
@@ -159,9 +142,9 @@ function CarouselSvisni() {
     setActiveStep(step);
   };
 
-  const handleStepChangeVigoda = step => {
-    setActiveStepVigoda(step);
-  };
+  // const handleStepChangeVigoda = step => {
+  //   setActiveStepVigoda(step);
+  // };
 
   return (
     <div className={classes.root}>
@@ -205,33 +188,32 @@ function CarouselSvisni() {
         variant="progress"
         activeStep={activeStep}
         className={classes.stepper}></MobileStepper>
-
-
-      <AutoPlaySwipeableViews className={classes.rootPhone}
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStepVigoda}
-        onChangeIndex={handleStepChangeVigoda}
-        enableMouseEvents
-      >
-        {vigodaSteps.map((step, index) => (
-          <div key={step.id}>
-            {Math.abs(activeStepVigoda - index) <= 2 ? (
-              <Img fluid={step.imgPathPhone} className={classes.img} alt={step.id} />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        variant="progress"
-        activeStep={activeStepVigoda}
-        className={classes.stepper}/>
     </div>
   );
 }
 
 export default CarouselSvisni;
+
+{/* <AutoPlaySwipeableViews className={classes.rootPhone}
+axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+index={activeStepVigoda}
+onChangeIndex={handleStepChangeVigoda}
+enableMouseEvents
+>
+{vigodaSteps.map((step, index) => (
+  <div key={step.id}>
+    {Math.abs(activeStepVigoda - index) <= 2 ? (
+      <Img fluid={step.imgPathPhone} className={classes.img} alt={step.id} />
+    ) : null}
+  </div>
+))}
+</AutoPlaySwipeableViews>
+<MobileStepper
+steps={maxSteps}
+position="static"
+variant="progress"
+activeStep={activeStepVigoda}
+className={classes.stepper}/> */}
 
         // nextButton={
         //   <Button variant='contained' color='primary' size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>

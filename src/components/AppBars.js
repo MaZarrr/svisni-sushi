@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useMemo} from "react"
+import React, {useState, useEffect, useCallback, useMemo, useLayoutEffect, useRef} from "react"
 import { Link, useStaticQuery, graphql  } from "gatsby"
 import PropTypes from 'prop-types';
 import "./header.css"
@@ -47,26 +47,73 @@ function ClassNames(props) {
   const inst = useMemo(() => (0), []);
   const [scrolled, setScrolled] = useState(ins)
   const [lastScrollTop, setLastScrollTop] = useState(inst)
-  console.log(data)
+  const [hideOnScroll, setHideOnScroll] = useState(true)
+  const isBrowser = typeof window !== `undefined`
 
-  const scrolling = useCallback(() => {
-    let st = window.scrollY
-      if(st > lastScrollTop && lastScrollTop > 70) {
-      setScrolled(true)
-    } else {
-      setScrolled(false)
-    }
-    setLastScrollTop(st)
+
+  // const scrolling = useCallback(() => {
+  //   let st = window.scrollY
+  //     if(st > lastScrollTop && lastScrollTop > 70) {
+  //     setScrolled(true)
+  //   } else {
+  //     setScrolled(false)
+  //   }
+  //   setLastScrollTop(st)
     
-  }, [lastScrollTop])
+  // }, [lastScrollTop])
  
+function getScrollPosition({ element, useWindow }) {
+  if (!isBrowser) return { x: 0, y: 0 }
+
+  const target = element ? element.current : document.body //Следующая часть прямо вперед, мы проверяем, запрашивал ли пользователь положение прокрутки всей страницы или какого-либо конкретного элемента внутри нее.
+  const position = target.getBoundingClientRect()
+
+  return useWindow
+    ? { x: window.scrollX, y: window.scrollY }
+    : { x: position.left, y: position.top }
+}
+
+function useScrollPosition(effect, deps, element, useWindow, wait) {
+  const position = useRef(getScrollPosition({ useWindow }))
+
+  let throttleTimeout = null
+
+  const callBack = () => {
+    const currPos = getScrollPosition({ element, useWindow })
+    effect({ prevPos: position.current, currPos })
+    position.current = currPos
+    throttleTimeout = null
+  }
+
+  useLayoutEffect(() => {
+    const handleScroll = () => {
+      if (wait) {
+        if (throttleTimeout === null) {
+          throttleTimeout = setTimeout(callBack, wait)
+        }
+      } else {
+        callBack()
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, deps)
+}
+
+useScrollPosition(({ prevPos, currPos }) => {
+  const isShow = currPos.y > prevPos.y
+  if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+}, [hideOnScroll])
   
-  useEffect(() => {
-    console.log(lastScrollTop)
-    console.log(scrolled)
-    window.addEventListener('scroll', scrolling)
-   return ()=> window.removeEventListener('scroll', scrolling)
-  }, [scrolling])
+  // useEffect(() => {
+  //   console.log(lastScrollTop)
+  //   console.log(scrolled)
+  //   // console.log(data)
+  //   window.addEventListener('scroll', scrolling)
+  //  return () => window.removeEventListener('scroll', scrolling)
+  // }, [scrolling])
 
   function a11yProps(index) {
     return {
@@ -76,7 +123,7 @@ function ClassNames(props) {
   }
 
   return (
-    <AppBarStyle className={clsx(scrolled ? classes.st : classes.root, className)} {...other}>
+    <AppBarStyle className={clsx(!hideOnScroll ? classes.st : classes.root, className)} {...other}>
     <Tabs
       indicatorColor="primary"
       textColor="primary"

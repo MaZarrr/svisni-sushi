@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql, Link } from "gatsby";
 import { connect } from 'react-redux';
@@ -22,7 +21,7 @@ const Sety = ({data: {allContentfulProduct: {edges}},
       }, [edges, producSetsLoad])
 
 return (
-    <Layout>
+    <section>
     <SEO title="Сеты" />
     <section className="section_cart">
     <div className="title"> 
@@ -69,7 +68,7 @@ return (
                 )})}
                 </div>
                 </section>
-                </Layout>
+                </section>
                 )
 }
 

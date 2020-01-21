@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
 
@@ -35,7 +34,7 @@ const dostavkaioplata = () => {
 return (
     <>
     <SEO title="Доставка и оплата" />
-    <Layout>
+    <section>
     <Delivery>
     <div className="container">
     <article>
@@ -68,7 +67,7 @@ return (
     </article>
     </div>
     </Delivery>
-    </Layout>
+    </section>
     </>
     
     )

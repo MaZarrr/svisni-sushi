@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import CarouselSvisni from "../components/common/CarouselSvisni"
 import styled from 'styled-components';
@@ -76,7 +75,7 @@ klassika: file(relativePath: { eq: "img-starter/klassika.jpg" }) {
 
 
 return (
-  <Layout >
+  <section >
       <SEO title="СвисниСуши" />
       <div className="home_page">
       <CarouselMenuSection />
@@ -177,7 +176,7 @@ return (
         </div>
     </div>
     </div>
-  </Layout>
+  </section>
    
   )
 }

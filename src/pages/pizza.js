@@ -1,5 +1,4 @@
 import React, {useEffect} from "react"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
 import { graphql, Link } from "gatsby";
@@ -90,7 +89,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges}},
       })
 
 return (
-    <Layout>
+    <section>
     <SEO title="Пицца" />
     <SetySection>
     <div className="container"> 
@@ -126,7 +125,7 @@ return (
     )})}
   
     </SetySection>
-    </Layout>
+    </section>
     )
 }
 

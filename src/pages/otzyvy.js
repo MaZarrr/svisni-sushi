@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+
 import SEO from "../components/seo"
 import styled  from 'styled-components';
 
@@ -25,13 +25,13 @@ const otzyvy = () => {
 return (
     <>
     <SEO title="Отзывы" />
-    <Layout>
+    <section>
     <Otzyv>
     <div className="container">
         <h1>Отзывы</h1>
     </div>
     </Otzyv>
-    </Layout>
+    </section>
     </>
     
     )
