@@ -1,13 +1,16 @@
-import React, {useState} from "react"
+import React from "react"
 import styled from 'styled-components';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import * as R from 'ramda'
 import Img  from 'gatsby-image';
 import { connect } from 'react-redux';
+import ShoppingBasketRoundedIcon from '@material-ui/icons/ShoppingBasketRounded';
+import Icon from '@material-ui/core/Icon';
 
 const KorzinaItem = styled.div `
   min-width: 100px;
-  margin: 0;
+  /* margin: 0; */
+  margin: 0 auto;
 &:hover {
   transition: 0.1s ease-in;
   transform: scale(1.09);
@@ -89,11 +92,19 @@ return (
     <KorzinaItem >
         <Link className="korzina_img" to="/korzina">
           <div className="korzina_content">
-            <Img fluid={data.korzina.childImageSharp.fluid} style={{width: `65px`, margin: `0 auto`}} />
+            {/* <Img fluid={data.korzina.childImageSharp.fluid} style={{width: `65px`, margin: `0 auto`}} /> */}
+            <Icon color="action">
+            <div>
+            <ShoppingBasketRoundedIcon/>
+            </div>
+            <div className="korzina_content korzina_content_txt">
+            <b ><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
+            </div>
+            </Icon>
           </div>
-          <div className="korzina_content korzina_content_txt">
-          <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>     
-          </div>
+          {/* <div className="korzina_content korzina_content_txt">
+              
+          </div> */}
         </Link>
     </KorzinaItem>
     </>

@@ -9,23 +9,33 @@
   color: white;
 }
 
-img {
-  margin: 0;
-  padding: 0;
-}
-
-.MuiButtonBase-root {
-  margin: 0;
-  padding: 0;
-}
-
 .icon_start {
-  width: 100px;
+  min-width: 95px;
+  padding: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .icon_start {
+    width: 75px;
+    margin: auto 30vmax;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .icon_start {
-    width: 82px;
+    min-width: 75px;
+    margin: auto 0 auto 16vw;
+  }
+}
+
+.icon_start img {
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 992px) {
+  .icon_start_xs {
+    display: none;
   }
 }
 

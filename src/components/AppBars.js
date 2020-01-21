@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react"
+import React, {useState, useEffect, useCallback, useMemo} from "react"
 import { Link, useStaticQuery, graphql  } from "gatsby"
 import PropTypes from 'prop-types';
 import "./header.css"
@@ -42,24 +42,30 @@ const styles = theme =>( {
 function ClassNames(props) {
   const { classes, children, className, data, ...other 
   } = props;
-  const [scrolled, setScrolled] = useState(false)
-  const [lastScrollTop, setLastScrollTop] = useState(0)
+
+  const ins = useMemo(() => (false), []);
+  const inst = useMemo(() => (0), []);
+  const [scrolled, setScrolled] = useState(ins)
+  const [lastScrollTop, setLastScrollTop] = useState(inst)
   console.log(data)
 
   const scrolling = useCallback(() => {
     let st = window.scrollY
       if(st > lastScrollTop && lastScrollTop > 70) {
       setScrolled(true)
-    } else if (st < lastScrollTop) {
+    } else {
       setScrolled(false)
     }
     setLastScrollTop(st)
     
   }, [lastScrollTop])
+ 
   
-  useEffect(() =>{
+  useEffect(() => {
+    console.log(lastScrollTop)
+    console.log(scrolled)
     window.addEventListener('scroll', scrolling)
-    return ()=> window.removeEventListener('scroll', scrolling)
+   return ()=> window.removeEventListener('scroll', scrolling)
   }, [scrolling])
 
   function a11yProps(index) {

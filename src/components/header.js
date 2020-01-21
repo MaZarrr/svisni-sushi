@@ -24,7 +24,7 @@ import ProgressBar from "./common/progressBar"
 import Imgs from '../components/image';
 import AppBars from './AppBars'
 import ScrollTop from "./common/ScrollTop"
-
+import Icon from '@material-ui/core/Icon';
 
 import "./header.css"
 
@@ -111,7 +111,7 @@ const getImageData = graphql `
   `
 
 
-const drawerWidth = 210;
+const drawerWidth = 190;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -171,13 +171,13 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: theme.spacing(11) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(10) + 1,
-    },
-    [theme.breakpoints.up('xs')]: {
-      width: theme.spacing(7.5) + 1,
-    },
+    width: theme.spacing(7.2) + 1,
+    // [theme.breakpoints.up('sm')]: {
+    //   width: theme.spacing(9) + 1,
+    // },
+    // [theme.breakpoints.up('xs')]: {
+    //   width: theme.spacing(7.5) + 1,
+    // },
   },
   toolbar: {
     display: 'flex',
@@ -192,7 +192,7 @@ const useStyles = makeStyles(theme => ({
   },
   content_header: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     width: '100%'
   },
   content_link: {
@@ -207,6 +207,15 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     maxWidth: '20px',
+  },
+  iconDiv: {
+    // magin: 0
+  },
+  iconImg: {
+    height: '25px',
+    // width: '10vw',
+    width: '25px',
+    marginRight: 17,
   }
  
 }));
@@ -268,14 +277,15 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
+   
           <Typography variant="h6" noWrap className={clsx(classes.content_header)}>
-          {/* <div className="head_container"> */}
+      
+          <ul className={clsx(classes.content_link)}>
           <div className="icon_start">
             <Link to="/">
               <Imgs />
             </Link>
           </div>
-          <ul className={clsx(classes.content_link)}>
         { 
           links.map(({name, link}) => { 
           return (
@@ -291,14 +301,24 @@ const Header = () => {
         )})
         }
         <ProgressBar/>
+        
     </ul>
-          {/* <Korzina /> */}
+    {/* <div className="container_header"> */}
+    <div className="icon_start icon_start_xs">
+            <Link to="/">
+              <Imgs />
+            </Link>
+          </div>
+          <Korzina />
+          {/* </div> */}
           </Typography>
+          
         </Toolbar>
 
         <AppBars data={data}/>
 
       </AppBar>
+      
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -319,80 +339,80 @@ const Header = () => {
         </div>
         <Divider />
         <List> 
-        <ListItem button component={Link} to="/sety">
-        <ListItemIcon>
-          <Img fluid={data.set.childImageSharp.fluid} style={{width: 50, margin: 0, padding: 0}} alt="Сеты"></Img>
-        </ListItemIcon>
+        <ListItem button component={Link} to="/sety" className={classes.iconDiv}>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.set.childImageSharp.fluid} className={classes.iconImg} alt="Сеты"></Img>
+        </Icon>
           <ListItemText primary="Сеты" />
         </ListItem>
 
         <ListItem button component={Link} to="/pizza">
-        <ListItemIcon>
-          <Img fluid={data.pizza.childImageSharp.fluid} style={{width: 50}} alt="Пицца"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.pizza.childImageSharp.fluid} className={classes.iconImg} alt="Пицца"></Img>
+        </Icon>
           <ListItemText primary="Пицца" />
         </ListItem>
 
         <ListItem button component={Link} to="/zapechenyeRolly">
-        <ListItemIcon>
-          <Img fluid={data.hotRoll.childImageSharp.fluid} style={{width: 50}} alt="Горячие"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.hotRoll.childImageSharp.fluid} className={classes.iconImg} alt="Горячие"></Img>
+        </Icon>
           <ListItemText primary="Горячие" />
         </ListItem>
 
         <ListItem button component={Link} to="/slozhnyeRolly">
-        <ListItemIcon>
-          <Img fluid={data.bigRoll.childImageSharp.fluid} style={{width: 50}} alt="Сложные"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.bigRoll.childImageSharp.fluid} className={classes.iconImg} alt="Сложные"></Img>
+        </Icon>
           <ListItemText primary="Сложные" />
         </ListItem>
 
         <ListItem button component={Link} to="/napitki">
-        <ListItemIcon>
-          <Img fluid={data.drink.childImageSharp.fluid} style={{width: 50}} alt="Напитки"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.drink.childImageSharp.fluid} className={classes.iconImg} alt="Напитки"></Img>
+        </Icon>
           <ListItemText primary="Напитки" />
         </ListItem>
 
         <ListItem button component={Link} to="/salaty">
-        <ListItemIcon>
-          <Img fluid={data.salad.childImageSharp.fluid} style={{width: 50}} alt="Салаты"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.salad.childImageSharp.fluid} className={classes.iconImg} alt="Салаты"></Img>
+        </Icon>
           <ListItemText primary="Салаты" />
         </ListItem>
 
         <ListItem button component={Link} to="/desert">
-        <ListItemIcon>
-          <Img fluid={data.desert.childImageSharp.fluid} style={{width: 50}} alt="Десерты"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.desert.childImageSharp.fluid} className={classes.iconImg} alt="Десерты"></Img>
+        </Icon>
           <ListItemText primary="Десерты" />
         </ListItem>
 
         <ListItem button component={Link} to="/zakyski">
-        <ListItemIcon>
-          <Img fluid={data.soup.childImageSharp.fluid} style={{width: 50}} alt="Закуски"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.soup.childImageSharp.fluid} className={classes.iconImg} alt="Закуски"></Img>
+        </Icon>
           <ListItemText primary="Закуски" />
         </ListItem>
 
         <ListItem button component={Link} to="/klassicheskieRolly">
-        <ListItemIcon>
-          <Img fluid={data.smallRoll.childImageSharp.fluid} style={{width: 50}} alt="Маленькие роллы"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.smallRoll.childImageSharp.fluid} className={classes.iconImg} alt="Маленькие роллы"></Img>
+        </Icon>
           <ListItemText primary="Классические" />
         </ListItem>
 
         <ListItem button component={Link} to="/sushi">
-        <ListItemIcon>
-          <Img fluid={data.sushi.childImageSharp.fluid} style={{width: 50}} alt="Суши"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.sushi.childImageSharp.fluid} className={classes.iconImg} alt="Суши"></Img>
+        </Icon>
           <ListItemText primary="Суши" />
         </ListItem>
 
         <ListItem button component={Link} to="/gunkany">
-        <ListItemIcon>
-          <Img fluid={data.gunkan.childImageSharp.fluid} style={{width: 50}} alt="Гунканы"></Img>
-        </ListItemIcon>
+        <Icon className={classes.iconImg}>
+          <Img fluid={data.gunkan.childImageSharp.fluid} className={classes.iconImg} alt="Гунканы"></Img>
+        </Icon>
           <ListItemText primary="Гунканы" />
         </ListItem>
 

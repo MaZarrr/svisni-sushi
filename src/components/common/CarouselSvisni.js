@@ -68,15 +68,15 @@ const useStyles = makeStyles(theme => ({
   }
 },
   header: {
+    backgroundColor: 'lightgrey',
     display: 'flex',
     alignItems: 'center',
     paddingTop: '8px',
-    // height: 50,
     paddingLeft: theme.spacing(2),
-    [theme.breakpoints.down('768')]: {
-      backgroundColor: 'lightgrey',
+    [theme.breakpoints.up('768')]: {
+      display: 'none',
     },
-    backgroundColor: theme.palette.background.default,
+    // backgroundColor: theme.palette.background.default,
   },
   img: {
     height: 'inherit',
@@ -89,17 +89,12 @@ const useStyles = makeStyles(theme => ({
     }
   },
   h1Home: {
-    fontSize: 26,
     fontFamily: 'Neucha, cursive',
     fontWeight: '900',
     lineHeight: 2,
-    [theme.breakpoints.up('768')]: {
-      display: 'none'
-    }
+    fontSize: '8vw',
   },
   stepper: {
-    // margin: '0 auto',
-    // width: '100vw',
     marginBottom: 50,
     paddingLeft: '30vw'
   }

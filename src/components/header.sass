@@ -13,19 +13,26 @@
 //         min-height: 80px
 .navbar-nav
     color: white
-img
-    margin: 0
-    padding: 0
-.MuiButtonBase-root
-    margin: 0
-    padding: 0
+// .MuiButtonBase-root
+//     margin: 0
+//     padding: 0
 
 .icon_start
-    width: 100px
+    min-width: 95px
+    padding: 0
+    @media screen and (max-width: 992px)
+        width: 75px
+        margin: auto 30vmax
     @media screen and (max-width: 768px)
-        width: 82px
-    // @media screen and (max-width: 480px)
-    //     width: 65px
+        min-width: 75px
+        margin: auto 0 auto 16vw 
+    img
+        margin: 0
+        padding: 0
+
+.icon_start_xs
+    @media screen and (min-width: 992px)
+        display: none
 
 .fa-clock-o
     color: orange
