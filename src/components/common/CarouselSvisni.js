@@ -93,6 +93,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: '900',
     lineHeight: 2,
     fontSize: '8vw',
+    [theme.breakpoints.down('786')]: {
+      fontSize: '6vw',
+    }
   },
   stepper: {
     marginBottom: 50,

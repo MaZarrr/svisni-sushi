@@ -1,15 +1,14 @@
 import React from "react"
 import styled from 'styled-components';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import * as R from 'ramda'
-import Img  from 'gatsby-image';
 import { connect } from 'react-redux';
 import ShoppingBasketRoundedIcon from '@material-ui/icons/ShoppingBasketRounded';
-import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+
 
 const KorzinaItem = styled.div `
   min-width: 100px;
-  /* margin: 0; */
   margin: 0 auto;
 &:hover {
   transition: 0.1s ease-in;
@@ -76,35 +75,22 @@ const Korzina = ({ orderTotal, cartItems }) => {
 // console.log(totalCount)
 // console.log(activatess)
 // console.log(styleNew)
-    const data = useStaticQuery(graphql`
-    query {
-      korzina: file(relativePath: { eq: "icon-tab/korzina.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 120) {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
-        }
-      }
-    }
-  `)
+
 return (
     <>
     <KorzinaItem >
         <Link className="korzina_img" to="/korzina">
           <div className="korzina_content">
             {/* <Img fluid={data.korzina.childImageSharp.fluid} style={{width: `65px`, margin: `0 auto`}} /> */}
-            <Icon color="action">
+            <IconButton style={{margin: 0, padding: 0, width: `60px`}} color="action" size='medium'>
             <div>
-            <ShoppingBasketRoundedIcon/>
+              <ShoppingBasketRoundedIcon/>
             </div>
+            </IconButton>
             <div className="korzina_content korzina_content_txt">
-            <b ><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
+              <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
             </div>
-            </Icon>
           </div>
-          {/* <div className="korzina_content korzina_content_txt">
-              
-          </div> */}
         </Link>
     </KorzinaItem>
     </>

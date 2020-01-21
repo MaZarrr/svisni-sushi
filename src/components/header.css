@@ -24,13 +24,33 @@
 @media screen and (max-width: 768px) {
   .icon_start {
     min-width: 75px;
-    margin: auto 0 auto 16vw;
+    margin: auto 10vmin auto 25vmin;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .icon_start {
+    min-width: 65px;
+    margin: auto 0 auto 25vmin;
   }
 }
 
 .icon_start img {
   margin: 0;
   padding: 0;
+}
+
+@media screen and (max-width: 425px) {
+  .txt_total {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .txt_total {
+    font-size: 10px;
+    letter-spacing: -0.5px;
+  }
 }
 
 @media screen and (min-width: 992px) {
