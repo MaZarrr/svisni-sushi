@@ -112,7 +112,7 @@ const ShoppingCartTr = styled.tr `
   }
 `
 
-const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza}, 
+const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts}, 
     producSetsLoad, 
     items, total, 
     palochkiTotal, 
@@ -136,7 +136,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
     const [delivery, setDelivery] = useState('');
 
     useEffect(() => {
-        const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges)
+        const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges)
         producSetsLoad(data); // action push to reduxStore
       }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad])
       
@@ -642,6 +642,22 @@ export const querySets = graphql `
               }
             }
           }
+          allContentfulHomePageCarts {
+            edges {
+              node {
+                id
+                name
+                price
+                description
+                image {
+                  fluid(maxWidth: 768) {
+                    src
+                    base64
+                  }
+                }
+              }
+            }
+  }
         }
     `
 

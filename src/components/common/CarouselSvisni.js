@@ -30,16 +30,23 @@ query {
       }
     }
   }
-  happyDayAkciya: file(relativePath: { eq: "pizzanadr.png" }) {
+  happyDayAkciya: file(relativePath: { eq: "PizzaPodarok270.png" }) {
     childImageSharp {
-      fluid(maxWidth: 300) {
+      fluid(maxWidth: 400) {
         ...GatsbyImageSharpFluid_tracedSVG
       }
     }
   }
   clockFunPhone: file(relativePath: { eq: "clockFun.png" }) {
     childImageSharp {
-      fluid(maxWidth: 300) {
+      fluid(maxWidth: 400) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+  SalamPresent: file(relativePath: { eq: "SalamPresent270.png" }) {
+    childImageSharp {
+      fluid(maxWidth: 400) {
         ...GatsbyImageSharpFluid_tracedSVG
       }
     }
@@ -53,25 +60,28 @@ const useStyles = makeStyles(theme => ({
     flexGrow: '1',
     [theme.breakpoints.down('768')]: {
       maxHeight: `75vw`,
+      marginBottom: 40,
     },
   },
   rootPhone: {
   display: 'none',
-  [theme.breakpoints.down('768')]: {
+  [theme.breakpoints.down('580')]: {
     display: 'block',
     // margin: '10px 30px 0 30px',
   },
 },
   rootPhoneNone:{ 
-  [theme.breakpoints.down('768')]: {
+  [theme.breakpoints.down('580')]: {
     display: 'none',
   }
 },
   header: {
-    backgroundColor: 'lightgrey',
+    // backgroundColor: 'lightgrey',
     display: 'flex',
     alignItems: 'center',
     paddingTop: '8px',
+    width: `100%`,
+    justifyContent: 'center',
     paddingLeft: theme.spacing(2),
     [theme.breakpoints.up('768')]: {
       display: 'none',
@@ -84,17 +94,23 @@ const useStyles = makeStyles(theme => ({
     maxWidth: `100vw`,
     overflow: 'hidden',
     width: '100%',
-    [theme.breakpoints.down('768')]: {
-      // maxHeight: `65vw`,
+    [theme.breakpoints.down('580')]: {
+      margin: `0 auto`,
+      maxHeight: `70vw`,
+      maxWidth: `70vw`,
+    },
+    [theme.breakpoints.down('425')]: {
+      width: '100%',
+      maxWidth: `100vw`,
     }
   },
   h1Home: {
     fontFamily: 'Neucha, cursive',
     fontWeight: '900',
     lineHeight: 2,
-    fontSize: '8vw',
+    fontSize: '10vw',
     [theme.breakpoints.down('786')]: {
-      fontSize: '6vw',
+      fontSize: '8vw',
     }
   },
   stepper: {
@@ -107,7 +123,7 @@ function CarouselSvisni() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [activeStepVigoda, setActiveStepVigoda] = React.useState(0);
+ 
   const data = useStaticQuery(getImageData)
   const tutorialSteps = [
     {
@@ -118,7 +134,7 @@ function CarouselSvisni() {
     {
       id: 1,
       imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.clockFunPhone.childImageSharp.fluid
+      imgPathPhone: data.SalamPresent.childImageSharp.fluid
     },
     {
       id: 2,
@@ -149,7 +165,9 @@ function CarouselSvisni() {
   return (
     <div className={classes.root}>
         {/* <Typography>{tutorialSteps[activeStep].label}</Typography> */}
-
+        <Paper square elevation={0} className={classes.header}>
+        <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
+      </Paper>
       <AutoPlaySwipeableViews className={classes.rootPhoneNone}
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
@@ -165,9 +183,6 @@ function CarouselSvisni() {
         ))}
       </AutoPlaySwipeableViews>
 
-      <Paper square elevation={0} className={classes.header}>
-        <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
-      </Paper>
       <AutoPlaySwipeableViews className={classes.rootPhone}
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
