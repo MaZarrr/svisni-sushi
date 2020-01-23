@@ -2,9 +2,8 @@ import React from 'react'
 import { graphql } from 'gatsby';
 import PizzaItem from '../components/PizzaItem';
 
-const PizzaTeamplate = ({
-    data: {contentfulProductPizza}}) => { 
-        console.log(contentfulProductPizza)
+const PizzaTeamplate = ({data: contentfulProductPizza}) => { 
+      
  return  (
      <>
    <PizzaItem

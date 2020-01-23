@@ -5,7 +5,6 @@ import SetyItem from '../components/SetyItem';
 const SetyTeamplate = ({
     data: {contentfulProduct}}) => { 
 
-
  return  (
      <>
     <SetyItem 
@@ -47,4 +46,4 @@ export const query = graphql `
 //          }
 //      }
 //  }
-`
+// `
