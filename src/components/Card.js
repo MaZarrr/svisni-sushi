@@ -77,7 +77,7 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
   
   useEffect(() => {
     producSetsLoad(edges); // action push to reduxStore
-  }, [edges, producSetsLoad])
+  }, [])
 
 
   const handleExpandClick = (id) => {
