@@ -460,30 +460,30 @@ export default Header
 
 
 
-{/* <li className="head head_social_md">
-<div className="head">
+// {/* <li className="head head_social_md">
+// <div className="head">
 
-    <div className="head_item header_social">
-    <div className="head_social">
-      <div className="head_social_img">
-      <a href="https://vk.com/sushi_urazovo">
-        <Img fluid={vk}  style={{width: `30px`}} />
-      </a>
-      </div>
-      <div className="head_social_img"> 
-      <a href="https://www.instagram.com/svisni_sushi">
-        <Img fluid={inst}  style={{width: `30px`}} />
-      </a>
-      </div>
-      <div className="head_social_img">
-      <a href="https://ok.ru/group/55132913991911">
-        <Img fluid={ok}  style={{width: `30px`}} />
-      </a>
-      </div>
-    </div>       
-    </div>
-  </div> 
-</li> */}
+//     <div className="head_item header_social">
+//     <div className="head_social">
+//       <div className="head_social_img">
+//       <a href="https://vk.com/sushi_urazovo">
+//         <Img fluid={vk}  style={{width: `30px`}} />
+//       </a>
+//       </div>
+//       <div className="head_social_img"> 
+//       <a href="https://www.instagram.com/svisni_sushi">
+//         <Img fluid={inst}  style={{width: `30px`}} />
+//       </a>
+//       </div>
+//       <div className="head_social_img">
+//       <a href="https://ok.ru/group/55132913991911">
+//         <Img fluid={ok}  style={{width: `30px`}} />
+//       </a>
+//       </div>
+//     </div>       
+//     </div>
+//   </div> 
+// </li> */}
 
 
 

@@ -1,20 +1,16 @@
 const path = require('path');
 
-exports.createPages = ({graphql, actions}) => {
+exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js')
     const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js')
 
-    return graphql(`
+    const result = await graphql(`
     {
       allContentfulProduct {
         edges {
           node {
-              id
             slug
-            name
-            price
-            description
             }
           }
         }
@@ -26,34 +22,45 @@ exports.createPages = ({graphql, actions}) => {
         }
       }
     }
-    `).then((result)=> {
-      if(result.errors) {
-        throw result.errors;
-      }
-      result.data.allContentfulProduct.edges.forEach(sety => {
-          createPage({
-              path: `/sety/${sety.node.slug}`,
-              component: setyTemplate,
-              context: sety.node
-          })
-      })
+    `)
 
+  const productssets = result.data.allContentfulProduct.edges;
+    productssets.forEach(({node: product}) => {
+      createPage({
+        path: `/sety/${product.slug}`,
+        component: setyTemplate,
+        context: {
+          slug: product.slug
+        }
+      })
     })
 
-
-
-    // const productspizza = result.data.allContentfulProductPizza.edges;
-    // productspizza.forEach(({node: product}) => {
-    //   createPage({
-    //     path: `/pizza/${product.slug}`,
-    //     component: pizzaTemplate,
-    //     context: {
-    //       slug: product.slug
-    //     }
-    //   })
-    // })
+ const productspizza = result.data.allContentfulProductPizza.edges;
+    productspizza.forEach(({node: product}) => {
+      createPage({
+        path: `/pizza/${product.slug}`,
+        component: pizzaTemplate,
+        context: {
+          slug: product.slug
+        }
+      })
+    })
 }
 
+
+    // .then((result)=> {
+    //   if(result.errors) {
+    //     throw result.errors;
+    //   }
+    //   result.data.allContentfulProduct.edges.forEach(sety => {
+    //       createPage({
+    //           path: `/sety/${sety.node.slug}`,
+    //           component: setyTemplate,
+    //           context: sety.node
+    //       })
+    //   })
+
+    // })
 
   //   productssets.forEach(({node: product}) => {
   //     createPage({

@@ -138,7 +138,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
     useEffect(() => {
         const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges)
         producSetsLoad(data); // action push to reduxStore
-      }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad])
+      }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts])
       
       const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
       

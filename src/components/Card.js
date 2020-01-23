@@ -13,11 +13,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Img  from 'gatsby-image';
 
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -80,7 +77,7 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
   
   useEffect(() => {
     producSetsLoad(edges); // action push to reduxStore
-  }, [])
+  }, [edges, producSetsLoad])
 
 
   const handleExpandClick = (id) => {

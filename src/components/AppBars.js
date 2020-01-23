@@ -1,5 +1,5 @@
 import React, {useState, useLayoutEffect, useRef} from "react"
-import { Link, useStaticQuery, graphql  } from "gatsby"
+import { Link } from "gatsby"
 import PropTypes from 'prop-types';
 import "./header.css"
 import Img  from 'gatsby-image';
