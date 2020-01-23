@@ -55,6 +55,20 @@
   }
 }
 
+@media screen and (max-width: 420px) {
+  .icon_start_xs {
+    min-width: 65px;
+    margin: 0 auto 0 20vw;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .icon_start_xs {
+    min-width: 65px;
+    margin: 0 auto 0 15vw;
+  }
+}
+
 .fa-clock-o {
   color: orange;
   width: 30px;

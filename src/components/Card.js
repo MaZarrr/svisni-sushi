@@ -59,9 +59,14 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     margin: theme.spacing(1),
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
   },
   overline: {
-    margin: '0 auto',
+    // margin: '0 auto',
     display: `flex`,
     justifyContent: 'space-between',
   }
@@ -72,6 +77,7 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState({nameCart: false});
     console.log(edges)
+  
   useEffect(() => {
     producSetsLoad(edges); // action push to reduxStore
   }, [])
@@ -112,14 +118,12 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
           {homeProduct.description}
         </Box>
         </Typography>
-        <Typography component="div" variant="overline" classes={{overline: classes.overline,
-        
-        }}>
+        <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
           <span>
           {homeProduct.weight !== null ? `Вес: ${homeProduct.weight} кг` : ''}
           </span>
           <span>
-          {`${homeProduct.count !== null ? `Вес: ${homeProduct.count} кг` : ''}`}
+          {`${homeProduct.count !== null ? `Вес: ${homeProduct.count} шт` : ''}`}
           </span>
         </Typography>
 

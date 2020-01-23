@@ -4,9 +4,11 @@ import { graphql, useStaticQuery } from "gatsby"
 import { makeStyles } from '@material-ui/core/styles';
 import Header from "./header"
 import Footer from "./footer"
+
 import "./layout.css"
 
 import ErrorBoundary from './error-boundary/error-boundary'
+import LabelBottomNavigation from './common/LabelBottomNavigation';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -96,6 +98,7 @@ const data = useStaticQuery(graphql`
                 ok={data.ok.childImageSharp.fluid}
                 inst={data.inst.childImageSharp.fluid}
                 logo={data.logo.childImageSharp.fluid}/>
+      <LabelBottomNavigation />
       </main>
      
         {/* <main>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect, useRef} from "react"
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import * as R from 'ramda'
@@ -36,10 +36,11 @@ const KorzinaItem = styled.div `
 `
 
 const TextTotal = styled.span `
-  ${props => props.styledAdded ? `animation-duration: 2s;
-    animation-name: slidein;
-    animation-iteration-count: infinite;
-    animation-direction: reverse;` : `background: white;`} 
+  ${({count, prevCount}) => count > prevCount ? `animation-duration: 1s;
+        animation-name: slidein;
+        animation-iteration-count: 3;
+        animation-direction: reverse;` : `background-color: red;`
+}
 
     @keyframes slidein {
       from {
@@ -54,28 +55,33 @@ const TextTotal = styled.span `
 `
 
 const Korzina = ({ orderTotal, cartItems }) => {
-
-    const totalCount = R.compose(
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count); // изначально 0 и сразу заришет 0
+  
+  const totalCount = R.compose(
         R.sum,
         R.pluck('count')
       )(cartItems);
 
-// const [activatess, setActivatess] = useState(0)
-// const [styleDef, setStyleDef] = useState('')
-// const [styleNew, setStyleNew] = useState(`background: white;`)
+  // usePrevious(count) // передаем в хук начальное значение // count = 0
 
+  function usePrevious(value) { // получаем count = 0 в value
+    const ref = useRef(); // аналог useState // Реф — это общий контейнер, а его свойство current — изменяемое и может хранить 
+    // любое значение, подобно свойству экземпляра класса.
+    useEffect(() => {
+      ref.current = value; // записываем в ref.current значение 0 // count = 0
+    });
+    return ref.current; // возвращаем текущее значение // равное изначально 0
+    // при первом нажатии в prevCount вернет 0
+  } 
 
-//   let prevProps = totalCount
-//   if(prevProps > activatess){
-//     setStyleNew() 
-//   } else {
-//     setStyleNew(`background: white;`)
-//   }
-//   setActivatess(prevProps)
+  useEffect(() => {
+    setCount(totalCount) // записываем количестов товара в корзине в count // при первом добавлении count = 1
+    // в count запишем 1 и при СЛЕДУЮЩЕМ РЕНДЕРИНГЕ ПОЛУЧИМ в prevCount 1 а в count уже будет 2(2й клик)
+  }, [totalCount])
 
-// console.log(totalCount)
-// console.log(activatess)
-// console.log(styleNew)
+  console.log(prevCount)
+  console.log(count)
 
 return (
     <>
@@ -89,7 +95,8 @@ return (
             </div>
             </IconButton>
             <div className="korzina_content korzina_content_txt">
-              <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
+              {/* <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b> */}
+              <b><TextTotal count={count} prevCount={prevCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
             </div>
           </div>
         </Link>

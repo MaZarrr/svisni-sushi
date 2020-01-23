@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import {  makeStyles } from '@material-ui/core/styles';
 
 import Card from '../components/Card'
+// import LabelBottomNavigation from './../components/common/LabelBottomNavigation';
 
 const CarouselMenuSection = styled(CarouselSvisni) `
   width: 100vw;
@@ -52,8 +53,9 @@ return (
         <Card data={data.allContentfulHomePageCarts}/>
       </Grid>
       </Grid>
-
     </Grid>
+    {/* <LabelBottomNavigation /> */}
+
     <div className="menu">
       {data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
         <div key={homeMenu.id} className="cart_item">
