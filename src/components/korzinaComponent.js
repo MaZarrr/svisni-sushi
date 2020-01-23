@@ -39,7 +39,7 @@ const TextTotal = styled.span `
   ${({count, prevCount}) => count > prevCount ? `animation-duration: 1s;
         animation-name: slidein;
         animation-iteration-count: 3;
-        animation-direction: reverse;` : `background-color: red;`
+        animation-direction: reverse;` : `background-color: white;`
 }
 
     @keyframes slidein {

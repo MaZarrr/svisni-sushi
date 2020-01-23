@@ -189,9 +189,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
   },
   content_header: {
-    // display: 'flex',
-    // justifyContent: 'space-around',
-    // width: '100%'
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: '100%'
   },
   content_link: {
     display: 'flex',
