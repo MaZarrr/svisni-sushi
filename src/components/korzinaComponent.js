@@ -9,7 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 
 const KorzinaItem = styled.div `
   min-width: 100px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  padding: 0 auto;
 &:hover {
   transition: 0.1s ease-in;
   transform: scale(1.09);

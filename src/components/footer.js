@@ -6,13 +6,13 @@ import { Link } from "gatsby"
 const Footer = styled.footer `
    background-color: #303032;
    color: white;
-   margin-top: 50px;
+   /* margin-top: 50px; */
    padding: 30px 0 30px 0;
    font-family: 'Comfortaa', cursive;
     font-style: normal;
     font-weight: 400;
     @media screen and (max-width: 768px) {
-      margin-top: 400px
+      margin-top: 100px
     }
 
 `

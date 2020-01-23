@@ -81,9 +81,12 @@ export const query = graphql `
     edges {
       node {
         id
+        description
         name
         price
-        description
+        count
+        weight
+        contentful_id
         image {
           fluid(maxWidth: 768) {
             ...GatsbyContentfulFluid_tracedSVG

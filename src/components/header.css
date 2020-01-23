@@ -12,26 +12,7 @@
 .icon_start {
   min-width: 95px;
   padding: 0;
-}
-
-@media screen and (max-width: 992px) {
-  .icon_start {
-    width: 75px;
-    margin: auto 30vmax;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .icon_start {
-    margin: auto 20vmax auto 25vmax;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .icon_start {
-    min-width: 65px;
-    margin: auto 10vmin auto 20vmin;
-  }
+  margin: 0;
 }
 
 .icon_start img {
@@ -52,9 +33,25 @@
   }
 }
 
+.icon_start_xs {
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 992px) {
   .icon_start_xs {
     display: none;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .icon_start_xs {
+    width: 75px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .icon_start_xs {
+    min-width: 65px;
   }
 }
 

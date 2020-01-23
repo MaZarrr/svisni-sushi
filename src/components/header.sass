@@ -20,14 +20,15 @@
 .icon_start
     min-width: 95px
     padding: 0
-    @media screen and (max-width: 992px)
-        width: 75px
-        margin: auto 30vmax
-    @media screen and (max-width: 768px)
-        margin: auto 20vmax auto 25vmax
-    @media screen and (max-width: 480px)
-        min-width: 65px
-        margin: auto 10vmin auto 20vmin
+    margin: 0
+    // @media screen and (max-width: 992px)
+    //     width: 75px
+    //     // margin: auto 30vmax
+    // // @media screen and (max-width: 768px)
+    // //     margin: auto 20vmax auto 25vmax
+    // @media screen and (max-width: 480px)
+    //     min-width: 65px
+    //     // margin: auto 10vmin auto 20vmin
     img
         margin: 0
         padding: 0
@@ -43,8 +44,13 @@
         letter-spacing: -0.5px
 
 .icon_start_xs
+    margin: 0 auto
     @media screen and (min-width: 992px)
         display: none
+    @media screen and (max-width: 992px)
+        width: 75px
+    @media screen and (max-width: 480px)
+        min-width: 65px
 
 .fa-clock-o
     color: orange

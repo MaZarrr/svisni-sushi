@@ -111,6 +111,9 @@ const useStyles = makeStyles(theme => ({
     fontSize: '10vw',
     [theme.breakpoints.down('786')]: {
       fontSize: '8vw',
+    },
+    [theme.breakpoints.down('425')]: {
+      fontSize: '6vw',
     }
   },
   stepper: {

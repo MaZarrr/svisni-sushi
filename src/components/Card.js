@@ -31,13 +31,13 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 800,
   },
   card: {
-    maxWidth: `90vmin`,
+    maxWidth: `100vmin`,
     marginTop: 30,
   },
   media: {
-    height: 0,
+    // maxHeight: `450px`,
     paddingTop: '56.25%', // 16:9
-    // backgroundSize: 'contain',
+    backgroundSize: 'contain',
     // backgroundSize: 'auto auto',
     // width: `400px`,
     // maxWidth: `400px`,
@@ -60,20 +60,25 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  overline: {
+    margin: '0 auto',
+    display: `flex`,
+    justifyContent: 'space-between',
+  }
 }));
 
 const RecipeReviewCard = ({data: {edges}, producSetsLoad, 
-  setAddedToCart, product}) => {
+  setAddedToCart }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
+  const [expanded, setExpanded] = React.useState({nameCart: false});
+    console.log(edges)
   useEffect(() => {
     producSetsLoad(edges); // action push to reduxStore
   }, [])
 
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleExpandClick = (id) => {
+    setExpanded({[id]: !expanded[id]});
   };
 
   return (
@@ -102,14 +107,25 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
         title={homeProduct.name}
       /> 
       <CardContent>
-        <Typography  variant="body2" color="textSecondary" component="p">
+        <Typography  variant="caption" color="textSecondary" component="p">
         <Box fontFamily="Comfortaa">
           {homeProduct.description}
         </Box>
         </Typography>
+        <Typography component="div" variant="overline" classes={{overline: classes.overline,
         
+        }}>
+          <span>
+          {homeProduct.weight !== null ? `Вес: ${homeProduct.weight} кг` : ''}
+          </span>
+          <span>
+          {`${homeProduct.count !== null ? `Вес: ${homeProduct.count} кг` : ''}`}
+          </span>
+        </Typography>
+
       </CardContent>
       <CardActions disableSpacing>
+     
         {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton> */}
@@ -123,17 +139,19 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
         Хочу!
       </Button>
         <IconButton
+          id={homeProduct.contentful_id}
           className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
+          [classes.expandOpen]: expanded[homeProduct.contentful_id],
           })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
+          onClick={() => handleExpandClick(homeProduct.contentful_id)}
+          aria-expanded={expanded[homeProduct.contentful_id]}
           aria-label="show more"
         >
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse in={expanded[homeProduct.contentful_id]} timeout="auto" unmountOnExit>
+      {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
         <CardContent>
           <Typography variant="h6">Доставка</Typography>
           <Typography paragraph>

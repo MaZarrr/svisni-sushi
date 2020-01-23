@@ -116,9 +116,13 @@ const drawerWidth = 190;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    justifyContent: 'space-between',
     zIndex: '1000'
   },
   appBar: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: `100%`,
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -185,9 +189,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
   },
   content_header: {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%'
+    // display: 'flex',
+    // justifyContent: 'space-around',
+    // width: '100%'
   },
   content_link: {
     display: 'flex',
@@ -201,9 +205,6 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     maxWidth: '20px',
-  },
-  iconDiv: {
-    // magin: 0
   },
   iconImg: {
     height: '25px',
@@ -260,6 +261,7 @@ const Header = () => {
         })}
       >
         <Toolbar>
+        <div>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -271,7 +273,7 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-   
+          </div>
           <Typography variant="h6" noWrap className={clsx(classes.content_header)}>
       
           <ul className={clsx(classes.content_link)}>
@@ -295,24 +297,20 @@ const Header = () => {
         )})
         }
         <ProgressBar/>
-        
-    </ul>
-    {/* <div className="container_header"> */}
-    <div className="icon_start icon_start_xs">
-            <Link to="/">
-              <Imgs />
-            </Link>
-          </div>
-          <Korzina />
-          {/* </div> */}
+    </ul>       
           </Typography>
-          
-        </Toolbar>
+          <div className="icon_start icon_start_xs">
+                  <Link to="/">
+                    <Imgs />
+                  </Link>
+                </div>
+          <Korzina />
+          </Toolbar>
 
-        <AppBars data={data}/>
+         <AppBars data={data}/>
 
-      </AppBar>
-      
+       </AppBar>
+
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
