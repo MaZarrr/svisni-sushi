@@ -67,7 +67,6 @@ function useScrollPosition(effect, deps, element, useWindow, wait) {
  
   let throttleTimeout = null
 
-
   const callBack = () => {
     const currPos = getScrollPosition({ element, useWindow }) 
     effect({ prevPos: position.current, currPos })

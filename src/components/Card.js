@@ -14,13 +14,15 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import FavoriteIcon from '@material-ui/icons/FavoriteIcon';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import { producSetsLoad, setAddedToCart } from "../actions";
 import Box from '@material-ui/core/Box';
+
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -77,7 +79,7 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
   
   useEffect(() => {
     producSetsLoad(edges); // action push to reduxStore
-  }, [])
+  }, [edges, producSetsLoad])
 
 
   const handleExpandClick = (id) => {
@@ -116,12 +118,12 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
         </Box>
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-          <span>
+          <p>
           {homeProduct.weight !== null ? `Вес: ${homeProduct.weight} кг` : ''}
-          </span>
-          <span>
+          </p>
+          <p>
           {`${homeProduct.count !== null ? `Вес: ${homeProduct.count} шт` : ''}`}
-          </span>
+          </p>
         </Typography>
 
       </CardContent>

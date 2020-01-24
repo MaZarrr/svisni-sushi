@@ -36,20 +36,34 @@ const KorzinaItem = styled.div `
 `
 
 const TextTotal = styled.span `
-  ${({count, prevCount}) => count > prevCount ? `animation-duration: 1s;
+  ${({count, prevCount}) => count > prevCount ? `animation-duration: 0.5s;
         animation-name: slidein;
-        animation-iteration-count: 3;
-        animation-direction: reverse;` : `background-color: white;`
+        animation-iteration-count: 2;
+        animation-direction: reverse;` : ``
 }
 
     @keyframes slidein {
-      from {
-        color: black;
+      0% {
+        transform: rotate(0deg);
       }
-
-      to {
+      20% {
+        transform: rotate(30deg);
         color: tomato;
-        font-weight: 800;
+      }
+      40% {
+        transform: rotate(-30deg);
+        color: tomato;
+      }
+      60% {
+        transform: rotate(30deg);
+        color: tomato;
+      }
+      80% {
+        transform: rotate(-30deg);
+        color: tomato;
+      }
+      100% {
+        transform: rotate(0deg);
       }
 }
 `
@@ -80,8 +94,8 @@ const Korzina = ({ orderTotal, cartItems }) => {
     // в count запишем 1 и при СЛЕДУЮЩЕМ РЕНДЕРИНГЕ ПОЛУЧИМ в prevCount 1 а в count уже будет 2(2й клик)
   }, [totalCount])
 
-  console.log(prevCount)
-  console.log(count)
+  // console.log(prevCount)
+  // console.log(count)
 
 return (
     <>
@@ -90,14 +104,14 @@ return (
           <div className="korzina_content">
             {/* <Img fluid={data.korzina.childImageSharp.fluid} style={{width: `65px`, margin: `0 auto`}} /> */}
             <IconButton style={{margin: 0, padding: 0, width: `60px`}} color="action" size='medium'>
-            <div>
+            <TextTotal count={count} prevCount={prevCount} >
               <ShoppingBasketRoundedIcon/>
-            </div>
+            </TextTotal>
             </IconButton>
-            <div className="korzina_content korzina_content_txt">
+            {/* <div className="korzina_content korzina_content_txt"> */}
               {/* <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b> */}
-              <b><TextTotal count={count} prevCount={prevCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
-            </div>
+              {/* <b><span className="txt_total">{totalCount} ({orderTotal} ₽)</span></b>
+            </div> */}
           </div>
         </Link>
     </KorzinaItem>

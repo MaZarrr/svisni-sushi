@@ -41,7 +41,7 @@ module.exports = {
         }
       }
     },
-    `gatsby-theme-material-ui`,
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-contentful`,

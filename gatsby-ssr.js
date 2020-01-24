@@ -16,6 +16,30 @@ exports.wrapRootElement = ({element}) => {
         )
 }
 
+exports.onRenderBody = (
+    { setHeadComponents, setHtmlAttributes, setBodyAttributes, setPreBodyComponents },
+    pluginOptions
+  ) => {
+    setPreBodyComponents([
+        <script
+ dangerouslySetInnerHTML={{
+        __html: `
+        (function(d, w, c) {
+            w.ChatraID = 'ShmYgm6KLaFn3wbcz';
+            var s = d.createElement('script');
+            w[c] = w[c] || function() {
+                (w[c].q = w[c].q || []).push(arguments);
+            };
+            s.async = true;
+            s.src = 'https://call.chatra.io/chatra.js';
+            if (d.head) d.head.appendChild(s);
+        })(document, window, 'Chatra');
+    `
+    }}
+/>
+    ])
+}
+
 
 // import wrapWithProvider from "./wrap-with-provider"
 // export const wrapRootElement = wrapWithProvider

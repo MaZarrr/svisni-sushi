@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useStaticQuery, graphql  } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -16,7 +16,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import  MailIcon from '@material-ui/icons/Mail';
+import MailIcon from '@material-ui/icons/Mail';
 import InboxIcon  from '@material-ui/icons/MoveToInbox';
 import Img  from 'gatsby-image';
 import Korzina from './korzinaComponent';
