@@ -21,14 +21,13 @@ export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState('recents');
 
   const handleChange = (event, newValue) => {
-    console.log(value)
     setValue(newValue);
   };
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
 
-      <BottomNavigationAction value="recents"  onClick={()=> window.Chatra('openChat', true)} icon={<MessageIcon />} />
+      <BottomNavigationAction value="recents" onClick={()=> window.Chatra('openChat', true)} icon={<MessageIcon />} />
       <BottomNavigationAction value="recents" icon={<KorzinaComponent />} />
       {/* <BottomNavigationAction value="nearby" icon={<LocationOnIcon />} /> */}
     </BottomNavigation>

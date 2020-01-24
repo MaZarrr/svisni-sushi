@@ -103,7 +103,7 @@ return (
         <Link className="korzina_img" to="/korzina">
           <div className="korzina_content">
             {/* <Img fluid={data.korzina.childImageSharp.fluid} style={{width: `65px`, margin: `0 auto`}} /> */}
-            <IconButton style={{margin: 0, padding: 0, width: `60px`}} color="action" size='medium'>
+            <IconButton style={{margin: 0, padding: 0, width: `60px`}} color="secondary" size='medium'>
             <TextTotal count={count} prevCount={prevCount} >
               <ShoppingBasketRoundedIcon/>
             </TextTotal>

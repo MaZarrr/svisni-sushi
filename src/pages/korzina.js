@@ -636,7 +636,7 @@ export const querySets = graphql `
               priceIn33cm
               image {
                   fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid
+                    ...GatsbyContentfulFluid_tracedSVG
                   }
               }
               }
@@ -651,8 +651,7 @@ export const querySets = graphql `
                 description
                 image {
                   fluid(maxWidth: 768) {
-                    src
-                    base64
+                    ...GatsbyContentfulFluid_tracedSVG
                   }
                 }
               }
@@ -692,15 +691,6 @@ export const querySets = graphql `
 //         return () => isSubscribed = true; 
 //     }, [data.id])
 
-//     useEffect(() => {
-      
-//         const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges)
-//         producSetsLoad(data); // action push to reduxStore
-//         // if(!isSubscribed) {
-//         //   loadData();
-//         // }
-         
-//       }, [allContentfulProduct, allContentfulProductPizza])
       
 //       const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
       
@@ -732,51 +722,6 @@ export const querySets = graphql `
 //       xhr.send(data);
 //     }
      
-
-// const onRadioChangedd = (e) => {
-
-//   const { target: { id, value } } = e
-//   onRazmer(id, value)
-//   console.log(value)
-//   }
- 
-// return (
-//     <>
-//     <SEO title="Корзина" />
-//     <Layout>
-
-//     <div className="shopping_cart_table">
-//     {/* {
-//       R.map(({id, body}) => {
-//         return (
-//           <div key={id}>
-//           <h2>{body}</h2>
-//           </div>
-//         )
-//       } )(data)
-//     } */}
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -811,12 +756,6 @@ export const querySets = graphql `
         //       access_token: 'c1c4162c4b0e11c9ca3e40e9426b56a39e9ab29d754c22a6c7e54f43c70173a590694de5fb38ec5114448',
         //       v: '5.103'
         //     }).then((response) => {
-        //         // console.log(response);
-        //         // console.log(response.data);
-        //         // console.log(response.status);
-        //         // console.log(response.statusText);
-        //         // console.log(response.headers);
-        //         // console.log(response.config);
         //       }, (error) => {
         //         console.log(error);
         //       });
@@ -842,12 +781,6 @@ export const querySets = graphql `
         //       'X-Requested-With': 'XMLHttpRequest'
         //     }
         //   }).then((response) => {
-        //     console.log(response);
-        //     console.log(response.data);
-        //     console.log(response.status);
-        //     console.log(response.statusText);
-        //     console.log(response.headers);
-        //     console.log(response.config);
         //   }, (error) => {
         //     console.log(error);
         //   }); 
@@ -856,236 +789,6 @@ export const querySets = graphql `
         // application/x-www-form-urlencoded
         // v: '5.103' // v: '5.62'
          // user_id: 526580165
-
-
-
-
-
-
-// const sentMassege = (id, totalPrice) => {
-//   // let message = `Новый заказ на сайте ${totalPrice}`
-
-//   // const url = 'https://api.vk.com/method/messages.send'
-
-// //   const options = {
-// //   method: 'post',
-// //   url: 'https://api.vk.com/method/messages.send',
-// //   data: {
-// //     user_id: id,
-// //     message:{
-// //       firstName: 'Finn',
-// //       lastName: 'Williams'
-// //     },
-// //     access_token: 'c760f0624f1cc8e00cd22ea4e3c742d20df1a1f4283ca7fac0a955363c959749a588777126b14ad94f91b',
-// //     v: '5.103'
-// //   },
-// //   headers: { 
-// //     'content-type': 'application/x-www-form-urlencoded',
-// //     'access-control-allow-origin': 'http://localhost:8000'
-// //   },
-// // };
-
-// // 0f74772b719ddce445d401ca97e3c34f92e80f05d5ac537937e1292d6a22454b68401c21eb2a77a96ca3c
-//   // Access-Control-Allow-Origin: localhost:8000/korzina
-//   // access_token=c760f0624f1cc8e00cd22ea4e3c742d20df1a1f4283ca7fac0a955363c959749a588777126b14ad94f91b
-//   axios( {
-//     method: 'post',
-//     url: 'https://api.vk.com/method/messages.send',
-//     data: {
-//       user_id: id,
-//       message:{
-//         firstName: 'Finn',
-//         lastName: 'Williams'
-//       },
-//       access_token: 'c760f0624f1cc8e00cd22ea4e3c742d20df1a1f4283ca7fac0a955363c959749a588777126b14ad94f91b',
-//       v: '5.103'
-//     },
-//     headers: { 
-//       'content-type': 'application/x-www-form-urlencoded',
-//       'access-control-allow-origin': 'http://localhost:8000'
-//     },
-//   })
-//   // axios.request(options)
-
-// //   const url = 'https://api.vk.com/method/messages.send'
-// //   const params = {
-// //     user_id: id,
-// //     message: message,
-// //     access_token: 'f630d08308074868fb009e2ecbc80f0bc04fe80545fe5d89a2a1640c8431b193e421ffc64de63f6efe9f7',
-// //     v: '5.62'
-// //   }
-
-// //  const result = file_get_contents(url, false, stream_context_create({
-// //     http: {
-// //       method: 'POST',
-// //       header: 'Content-type: application/x-www-form-urlencoded',
-// //       content: http_build_query(params)
-// //     }
-// //   }))
-// //   console.log(result)
-
-// //   return result
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  // sendMail(items)
-//  axios.post('https://vitalistarkiii.amocrm.ru/api/v2/leads', {
-//   add: [{
-//     name: "Покупка карандашей",
-//     created_at: "1508101200",
-//     updated_at: "1508274000",
-//     status_id: "13670637",
-//     responsible_user_id: "957083",
-//     sale: "5000",
-//     tags: "pencil, buy",
-//     contacts_id: [
-//       "1099149"
-//     ],
-//     company_id: "1099148",
-//     catalog_elements_id: {
-//       99999: {
-//         111111: 10
-//       }
-//     },
-//     custom_fields: [{
-//         id: "4399649",
-//         values: [
-//           "3691615",
-//           "3691616",
-//           "3691617"
-//         ]
-//       },
-//       {
-//         id: "4399656",
-//         values: [{
-//           value: "2017-10-26"
-//         }]
-//       },
-//       {
-//         id: "4399655",
-//         values: [{
-//             value: "ул. Охотный ряд, 1",
-//             subtype: "address_line_1"
-//           },
-//           {
-//             value: "Москва",
-//             subtype: "city"
-//           },
-//           {
-//             value: "101010",
-//             subtype: "zip"
-//           },
-//           {
-//             value: "RU",
-//             subtype: "country"
-//           }
-//         ]
-//       }
-//     ]
-//   }]
-// })
-// .then(function (response) {
-//   console.log(response);
-// })
-// .catch(function (error) {
-//   console.log(error);
-// });
-
-
-
-
-
-  // const sentMassege = (id, totalPrice) => {
-        // let message = `Новый заказ на сайте ${totalPrice}`
-
-        // const url = 'https://api.vk.com/method/messages.send'
-
-      //   const options = {
-      //   method: 'post',
-      //   url: 'https://api.vk.com/method/messages.send',
-      //   data: {
-      //     user_id: id,
-      //     message:{
-      //       firstName: 'Finn',
-      //       lastName: 'Williams'
-      //     },
-      //     access_token: 'c760f0624f1cc8e00cd22ea4e3c742d20df1a1f4283ca7fac0a955363c959749a588777126b14ad94f91b',
-      //     v: '5.103'
-      //   },
-      //   headers: { 
-      //     'content-type': 'application/x-www-form-urlencoded',
-      //     'access-control-allow-origin': 'http://localhost:8000'
-      //   },
-      // };
-
-// 0f74772b719ddce445d401ca97e3c34f92e80f05d5ac537937e1292d6a22454b68401c21eb2a77a96ca3c
-        // Access-Control-Allow-Origin: localhost:8000/korzina
-        // access_token=c760f0624f1cc8e00cd22ea4e3c742d20df1a1f4283ca7fac0a955363c959749a588777126b14ad94f91b
-        // axios({
-        //   method: 'post',
-        //   url: 'https://api.vk.com/method/messages.send',
-        //   data: {
-        //     user_id: id,
-        //     message:{
-        //       firstName: 'Finn',
-        //       lastName: 'Williams'
-        //     },
-        //     access_token: 'c760f0624f1cc8e00cd22ea4e3c742d20df1a1f4283ca7fac0a955363c959749a588777126b14ad94f91b',
-        //     v: '5.103'
-        //   },
-        //   headers: { 
-        //     'content-type': 'application/x-www-form-urlencoded',
-        //     'access-control-allow-origin': 'http://localhost:8000'
-        //   }
-        // }).then((response) => {
-        //   console.log(response);
-        // }, (error) => {
-        //   console.log(error);
-        // });
-        // axios.request(options)
-
-      //   const url = 'https://api.vk.com/method/messages.send'
-      //   const params = {
-      //     user_id: id,
-      //     message: message,
-      //     access_token: 'f630d08308074868fb009e2ecbc80f0bc04fe80545fe5d89a2a1640c8431b193e421ffc64de63f6efe9f7',
-      //     v: '5.62'
-      //   }
-
-      //  const result = file_get_contents(url, false, stream_context_create({
-      //     http: {
-      //       method: 'POST',
-      //       header: 'Content-type: application/x-www-form-urlencoded',
-      //       content: http_build_query(params)
-      //     }
-      //   }))
-      //   console.log(result)
-
-      //   return result
-      // }
-      //  // const client_id = '7260651'
-
-
-
-
-
-
-
-
-
-
 
 //     const sendMail = async (dataCartItems) => {
 

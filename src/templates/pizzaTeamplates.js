@@ -29,7 +29,7 @@ export const query = graphql `
           createdAt(formatString: "МММ Do, YYYY, h:mm:ss a")
           image {
               fluid(maxWidth: 400) {
-                  ...GatsbyContentfulFluid
+                  ...GatsbyContentfulFluid_tracedSVG
                 }
             }
         }

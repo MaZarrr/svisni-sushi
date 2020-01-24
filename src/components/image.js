@@ -19,7 +19,7 @@ const Image = () => {
       placeholderImage: file(relativePath: { eq: "logosvisni.png" }) {
         childImageSharp {
           fluid(maxWidth: 120) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_tracedSVG
           }
         }
       }

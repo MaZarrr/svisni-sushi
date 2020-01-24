@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
-
+import Img from 'gatsby-image';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -16,12 +16,11 @@ import { red } from '@material-ui/core/colors';
 
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import FavoriteIcon from '@material-ui/icons/FavoriteIcon';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import { producSetsLoad, setAddedToCart } from "../actions";
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,14 +33,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: 30,
   },
   media: {
-    // maxHeight: `450px`,
-    paddingTop: '56.25%', // 16:9
-    backgroundSize: 'contain',
-    // backgroundSize: 'auto auto',
-    // width: `400px`,
-    // maxWidth: `400px`,
-    // height: '85vmin',
-    // width: '80vmin',
+    maxWidth: `85%`,
+    margin: `0 auto`,
+    // paddingTop: '56.25%', // 16:9
+    // backgroundSize: 'contain',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -107,15 +102,16 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
       />
       <CardMedia 
         className={classes.media}
-        // image={<Img fluid={homeProduct.image.fluid} /> }
-        image={homeProduct.image.fluid.src}
+        // image={homeProduct.image.fluid.src}
         title={homeProduct.name}
-      /> 
+      > <Img fluid={homeProduct.image.fluid} />
+      </CardMedia> 
+
       <CardContent>
         <Typography  variant="caption" color="textSecondary" component="p">
-        <Box fontFamily="Comfortaa">
+        {/* <Box fontFamily="Comfortaa"> */}
           {homeProduct.description}
-        </Box>
+        {/* </Box> */}
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
           <p>
@@ -127,11 +123,8 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
         </Typography>
 
       </CardContent>
+
       <CardActions disableSpacing>
-     
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton> */}
         <Button
         variant="contained"
         color="secondary"
@@ -154,7 +147,6 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
         </IconButton>
       </CardActions>
       <Collapse in={expanded[homeProduct.contentful_id]} timeout="auto" unmountOnExit>
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
         <CardContent>
           <Typography variant="h6">Доставка</Typography>
           <Typography paragraph>

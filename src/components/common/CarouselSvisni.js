@@ -64,7 +64,6 @@ const useStyles = makeStyles(theme => ({
   display: 'none',
   [theme.breakpoints.down('580')]: {
     display: 'block',
-    // margin: '10px 30px 0 30px',
   },
 },
   rootPhoneNone:{ 
@@ -177,7 +176,7 @@ function CarouselSvisni() {
         {tutorialSteps.map((step, index) => (
           <div key={step.id}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Img fluid={step.imgPath} className={classes.img} alt={step.id} />
+              <Img fluid={step.imgPath} className={classes.img} />
             ) : null}
           </div>
         ))}
@@ -192,7 +191,7 @@ function CarouselSvisni() {
         {tutorialSteps.map((step, index) => (
           <div key={step.id}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Img fluid={step.imgPathPhone} className={classes.img} alt={step.id} />
+              <Img fluid={step.imgPathPhone} className={classes.img} />
             ) : null}
           </div>
         ))}
@@ -244,63 +243,3 @@ export default CarouselSvisni;
 
 
 
-// import React from "react"
-// import Carousel from 'react-bootstrap/Carousel';
-// import styled from  'styled-components'
-// import { graphql, useStaticQuery } from "gatsby"
-// import Img from 'gatsby-image';
-// import akcii from './../../pages/akcii';
-
-
-
-// const StyledCarousel = styled.div `
-//     margin: 0;
-//     padding: 0;
-//     width: 100%;
-//     z-index: 0;
-
-//     .carousel {
-//         margin: 0;
-//         padding: 0;
-//     }
-
-//     img {
-//         width: 100vw;
-//         margin: 0 auto;
-//         max-height: 30vw;
-//     }
-//     a {
-//         max-height: 5vh;
-//         max-width: 2vw;
-//         background: red;
-//         opacity: 0.5;
-//         margin: auto 20px auto 20px;
-//     }
-// `
-// const CarouselBootstrap = styled(Carousel)`
-//     z-index: 0;
-// `
-
-
-// const CarouselSvisni = () => {
-
-
-
-// return (
-// <StyledCarousel>
-// <CarouselBootstrap className="carousel">
-//   <Carousel.Item>
-//   <Img fluid={data.akcii1.childImageSharp.fluid} /> 
-//   </Carousel.Item>
-//   <Carousel.Item>
-//     <Img fluid={data.akcii2.childImageSharp.fluid} />
-    
-//   </Carousel.Item>
-//   <Carousel.Item>
-//     <Img fluid={data.akcii3.childImageSharp.fluid} />
-//   </Carousel.Item>
-// </CarouselBootstrap>
-// </StyledCarousel>
-// )
-// }
-// export default CarouselSvisni

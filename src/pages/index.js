@@ -46,9 +46,9 @@ return (
       Свежая и разнообразная кухня 
     </h1>
     </div>
-    <Grid container className={classes.root} spacing={16}>
+    <Grid container className={classes.root} spacing={2}>
       <Grid item xs={12}>
-      <Grid container className={classes.demo} justify="center" spacing={16}>
+      <Grid container className={classes.demo} justify="center" spacing={2}>
         <Card data={data.allContentfulHomePageCarts}/>
       </Grid>
       </Grid>
@@ -89,7 +89,7 @@ export const query = graphql `
         contentful_id
         image {
           fluid(maxWidth: 768) {
-            ...GatsbyContentfulFluid
+            ...GatsbyContentfulFluid_tracedSVG
           }
         }
       }
@@ -103,7 +103,7 @@ export const query = graphql `
         category
         image {
           fluid(maxWidth: 390) {
-            ...GatsbyContentfulFluid
+            ...GatsbyContentfulFluid_tracedSVG
           }
         }
       }
