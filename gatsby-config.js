@@ -41,6 +41,8 @@ module.exports = {
         }
       }
     },
+    `gatsby-plugin-material-ui`,
+    `gatsby-theme-material-ui`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-contentful`,
@@ -48,7 +50,7 @@ module.exports = {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
-    },
+    }
   ]
 }
 
