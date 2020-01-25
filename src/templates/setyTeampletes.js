@@ -35,7 +35,7 @@ export const query = graphql `
     }
   `
  
-
+//  "gatsby-theme-material-ui": "^1.0.7",
 //  export const query = graphql ` 
 //  query ($slug: String!) {
 //     contentfulProduct(slug: {eq: $slug}) {

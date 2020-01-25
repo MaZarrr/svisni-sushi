@@ -33,6 +33,8 @@ module.exports = {
         icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-material-ui`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
@@ -41,8 +43,6 @@ module.exports = {
         }
       }
     },
-    `gatsby-theme-material-ui`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-contentful`,
       options: {

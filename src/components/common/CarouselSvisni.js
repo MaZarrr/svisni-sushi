@@ -11,46 +11,6 @@ import SwipeableViews from 'react-swipeable-views'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const getImageData = graphql`
-query {
-  akcii1: file(relativePath: { eq: "3new.jpg" }) {
-    childImageSharp {
-      fluid(maxWidth: 1200) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  akcii2: file(relativePath: { eq: "3sets.jpg" }) {
-    childImageSharp {
-      fluid(maxWidth: 1200) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  happyDayAkciya: file(relativePath: { eq: "PizzaPodarok270.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 400) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  clockFunPhone: file(relativePath: { eq: "clockFun.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 400) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  SalamPresent: file(relativePath: { eq: "SalamPresent270.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 400) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-}
-`
-
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: `100vw`,
@@ -62,12 +22,12 @@ const useStyles = makeStyles(theme => ({
   },
   rootPhone: {
   display: 'none',
-  [theme.breakpoints.down('580')]: {
+  [theme.breakpoints.down('768')]: {
     display: 'block',
   },
 },
   rootPhoneNone:{ 
-  [theme.breakpoints.down('580')]: {
+  [theme.breakpoints.down('768')]: {
     display: 'none',
   }
 },
@@ -82,7 +42,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('768')]: {
       display: 'none',
     },
-    // backgroundColor: theme.palette.background.default,
   },
   img: {
     height: 'inherit',
@@ -90,6 +49,11 @@ const useStyles = makeStyles(theme => ({
     maxWidth: `100vw`,
     overflow: 'hidden',
     width: '100%',
+    [theme.breakpoints.down('768')]: {
+      margin: `0 auto`,
+      maxHeight: `70vw`,
+      maxWidth: `60vw`,
+    },
     [theme.breakpoints.down('580')]: {
       margin: `0 auto`,
       maxHeight: `70vw`,
@@ -118,32 +82,41 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function CarouselSvisni() {
+const CarouselSvisni = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
- 
-  const data = useStaticQuery(getImageData)
-  const tutorialSteps = [
-    {
-      id: 0,
-      imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.happyDayAkciya.childImageSharp.fluid
-    },
-    {
-      id: 1,
-      imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.SalamPresent.childImageSharp.fluid
-    },
-    {
-      id: 2,
-      imgPath: data.akcii2.childImageSharp.fluid,
-      imgPathPhone: data.clockFunPhone.childImageSharp.fluid
+  // const [dataCarousel, setDataCarousel] = React.useState([]);
+
+  const data = useStaticQuery(graphql `
+  {
+  allContentfulCarouselSiteImage {
+    edges {
+      node {
+        id
+        imgCarouselPc {
+          fluid(maxWidth: 1200) {
+              ...GatsbyContentfulFluid_tracedSVG
+            }
+        }
+        imgCarouselPhone {
+          fluid(maxWidth: 400) {
+              ...GatsbyContentfulFluid_tracedSVG
+            }
+        }
+      }
     }
-  ];
+  }
+  }
+  `)
 
+// React.useEffect(()=> {
+//   setDataCarousel(data)
+// })
+// console.log(data)
+// console.log(dataCarousel)
 
-  const maxSteps = tutorialSteps.length;
+const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
 
   // const handleNext = () => {
   //   setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -173,10 +146,10 @@ function CarouselSvisni() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {tutorialSteps.map((step, index) => (
-          <div key={step.id}>
+        {data.allContentfulCarouselSiteImage.edges.map((step, index) => (
+          <div key={step.node.id}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Img fluid={step.imgPath} className={classes.img} />
+              <Img fluid={step.node.imgCarouselPc.fluid} className={classes.img} />
             ) : null}
           </div>
         ))}
@@ -188,10 +161,10 @@ function CarouselSvisni() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {tutorialSteps.map((step, index) => (
-          <div key={step.id}>
+        {data.allContentfulCarouselSiteImage.edges.map((step, index) => (
+          <div key={step.node.id}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Img fluid={step.imgPathPhone} className={classes.img} />
+              <Img fluid={step.node.imgCarouselPhone.fluid} className={classes.img} />
             ) : null}
           </div>
         ))}
@@ -207,6 +180,7 @@ function CarouselSvisni() {
 }
 
 export default CarouselSvisni;
+
 
 // {/* <AutoPlaySwipeableViews className={classes.rootPhone}
 // axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}

@@ -54,7 +54,7 @@ function AppBars(props) {
         name
         slug
         image {
-          fluid(maxWidth: 20) {
+          fluid(maxWidth: 85) {
             ...GatsbyContentfulFluid_tracedSVG
           }
         }

@@ -28,7 +28,6 @@
     "gatsby-source-contentful": "^2.1.67",
     "gatsby-source-filesystem": "^2.1.39",
     "gatsby-source-firestore": "^1.0.3",
-    "gatsby-theme-material-ui": "^1.0.7",
     "gatsby-transformer-sharp": "^2.3.6",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
