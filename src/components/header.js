@@ -143,7 +143,7 @@ const Header = () => {
         slug
         image {
           fluid(maxWidth: 50) {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid
           }
         }
       }

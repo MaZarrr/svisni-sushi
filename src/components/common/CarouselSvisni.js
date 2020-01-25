@@ -96,12 +96,12 @@ const CarouselSvisni = () => {
         id
         imgCarouselPc {
           fluid(maxWidth: 1200) {
-              ...GatsbyContentfulFluid_tracedSVG
+              ...GatsbyContentfulFluid
             }
         }
         imgCarouselPhone {
           fluid(maxWidth: 400) {
-              ...GatsbyContentfulFluid_tracedSVG
+              ...GatsbyContentfulFluid
             }
         }
       }

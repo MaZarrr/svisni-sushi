@@ -92,7 +92,7 @@ export const query = graphql `
         contentful_id
         image {
           fluid(maxWidth: 380) {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid
           }
         }
       }
@@ -106,7 +106,7 @@ export const query = graphql `
         category
         image {
           fluid(maxWidth: 390) {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid
           }
         }
       }
