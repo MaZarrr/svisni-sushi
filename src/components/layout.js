@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { graphql, useStaticQuery } from "gatsby"
 import { makeStyles } from '@material-ui/core/styles';
 import Header from "./header"
 import Footer from "./footer"
@@ -37,75 +36,33 @@ const useStyles = makeStyles(theme => ({
 
 const Layout = ({ children }) => {
 const classes = useStyles();
-const data = useStaticQuery(graphql`
-    # query SiteTitleQuery {
-    #   site {
-    #     siteMetadata {
-    #       title
-    #     }
-    #   }
-    query {
-      logo: file(relativePath: { eq: "logosvisni.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 120) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  vk: file(relativePath: { eq: "social-img/vk.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 50) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  ok: file(relativePath: { eq: "social-img/odnoklassniki.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 50) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  inst: file(relativePath: { eq: "social-img/instagram.png" }) {
-    childImageSharp {
-      fluid(maxWidth: 50) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-    }
-  `)
+// const data = useStaticQuery(graphql`
+//     # query SiteTitleQuery {
+//     #   site {
+//     #     siteMetadata {
+//     #       title
+//     #     }
+//     #   }
+//     }
+//   `)
 
   return (
     <>
     <ErrorBoundary>
     <Header
-      vk={data.vk.childImageSharp.fluid}
-      ok={data.ok.childImageSharp.fluid}
-      inst={data.inst.childImageSharp.fluid}
+      // homePageCart={allContentfulHomePageCarts.edges}
     > </Header>
     {/* siteTitle={data.site.siteMetadata.title} */}
  
      
       <div
-        className={classes.root}
-      >
-        
+        className={classes.root}>
        <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}
-        <Footer vk={data.vk.childImageSharp.fluid}
-                ok={data.ok.childImageSharp.fluid}
-                inst={data.inst.childImageSharp.fluid}
-                logo={data.logo.childImageSharp.fluid}/>
+        {/* <Footer/> */}
       <LabelBottomNavigation />
       </main>
-     
-        {/* <main>
-        
-        </main> */}
-      
-  
       </div>
   </ErrorBoundary>
     </>

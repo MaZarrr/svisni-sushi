@@ -14,10 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import InboxIcon  from '@material-ui/icons/MoveToInbox';
 import Img  from 'gatsby-image';
 import Korzina from './korzinaComponent';
 import ProgressBar from "./common/progressBar"
@@ -27,89 +24,6 @@ import ScrollTop from "./common/ScrollTop"
 import Icon from '@material-ui/core/Icon';
 
 import "./header.css"
-
-const getImageData = graphql `
-  query {
-  set: file(relativePath: { eq: "icon-tab/set.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  salad: file(relativePath: { eq: "icon-tab/salad.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  bigRoll: file(relativePath: { eq: "icon-tab/big-roll-slogn.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  smallRoll: file(relativePath: { eq: "icon-tab/small-roll.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  drink: file(relativePath: { eq: "icon-tab/drink.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  hotRoll: file(relativePath: { eq: "icon-tab/zapechenka.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  sushi: file(relativePath: { eq: "icon-tab/sushi.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 80) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  soup: file(relativePath: { eq: "icon-tab/soup.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  pizza: file(relativePath: { eq: "icon-tab/pizza.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  desert: file(relativePath: { eq: "icon-tab/desert.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 80) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  gunkan: file(relativePath: { eq: "icon-tab/gunkan.png" }) {
-      childImageSharp {
-      fluid(maxWidth: 60) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-  }
-  `
-
 
 const drawerWidth = 190;
 
@@ -201,7 +115,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('992')]: {
       display: 'none',
     }
-  
   },
   button: {
     maxWidth: '20px',
@@ -219,7 +132,27 @@ const Header = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const data = useStaticQuery(getImageData);
+ 
+  const data = useStaticQuery(graphql `
+  {
+    allContentfulIconMenuLeftPanel {
+    edges {
+      node {
+        id
+        name
+        slug
+        image {
+          fluid(maxWidth: 40) {
+            ...GatsbyContentfulFluid_tracedSVG
+          }
+        }
+      }
+    }
+  }
+  }
+  `)
+
+  
   const links = [ 
     {
       id: 1,
@@ -237,10 +170,12 @@ const Header = () => {
       link: '/otzyvy'
     },
     {
+      id: 4,
       name: 'Доставка и оплата', 
       link: '/dostavka-i-oplata'
     },
     {
+      id: 5,
       name: 'Адрес и контакты', 
       link: '/adres-i-kontakty'
     }
@@ -307,7 +242,7 @@ const Header = () => {
     <Korzina />
     </Toolbar>
 
-    <AppBars data={data}/>
+    <AppBars/>
 
     </AppBar>
 
@@ -331,94 +266,16 @@ const Header = () => {
         </div>
         <Divider />
         <List> 
-        <ListItem button component={Link} to="/sety" className={classes.iconDiv}>
+        {data.allContentfulIconMenuLeftPanel.edges.map(({node: iconButton})=> (
+        <ListItem key={iconButton.id} button component={Link} to={`/${iconButton.slug}`} className={classes.iconDiv}>
         <Icon className={classes.iconImg}>
-          <Img fluid={data.set.childImageSharp.fluid} className={classes.iconImg} alt="Сеты"></Img>
+          <Img fluid={iconButton.image.fluid} className={classes.iconImg} alt={iconButton.name}></Img>
         </Icon>
-          <ListItemText primary="Сеты" />
+          <ListItemText primary={iconButton.name} />
         </ListItem>
-
-        <ListItem button component={Link} to="/pizza">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.pizza.childImageSharp.fluid} className={classes.iconImg} alt="Пицца"></Img>
-        </Icon>
-          <ListItemText primary="Пицца" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/zapechenyeRolly">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.hotRoll.childImageSharp.fluid} className={classes.iconImg} alt="Горячие"></Img>
-        </Icon>
-          <ListItemText primary="Горячие" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/slozhnyeRolly">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.bigRoll.childImageSharp.fluid} className={classes.iconImg} alt="Сложные"></Img>
-        </Icon>
-          <ListItemText primary="Сложные" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/napitki">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.drink.childImageSharp.fluid} className={classes.iconImg} alt="Напитки"></Img>
-        </Icon>
-          <ListItemText primary="Напитки" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/salaty">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.salad.childImageSharp.fluid} className={classes.iconImg} alt="Салаты"></Img>
-        </Icon>
-          <ListItemText primary="Салаты" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/desert">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.desert.childImageSharp.fluid} className={classes.iconImg} alt="Десерты"></Img>
-        </Icon>
-          <ListItemText primary="Десерты" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/zakyski">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.soup.childImageSharp.fluid} className={classes.iconImg} alt="Закуски"></Img>
-        </Icon>
-          <ListItemText primary="Закуски" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/klassicheskieRolly">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.smallRoll.childImageSharp.fluid} className={classes.iconImg} alt="Маленькие роллы"></Img>
-        </Icon>
-          <ListItemText primary="Классические" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/sushi">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.sushi.childImageSharp.fluid} className={classes.iconImg} alt="Суши"></Img>
-        </Icon>
-          <ListItemText primary="Суши" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/gunkany">
-        <Icon className={classes.iconImg}>
-          <Img fluid={data.gunkan.childImageSharp.fluid} className={classes.iconImg} alt="Гунканы"></Img>
-        </Icon>
-          <ListItemText primary="Гунканы" />
-        </ListItem>
-
+        ))}
         </List>
         <Divider />
-
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
      <ScrollTop/>
 

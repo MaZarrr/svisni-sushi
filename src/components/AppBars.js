@@ -1,5 +1,5 @@
 import React, {useState, useLayoutEffect, useRef} from "react"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import PropTypes from 'prop-types';
 import "./header.css"
 import Img  from 'gatsby-image';
@@ -40,10 +40,29 @@ const styles = theme =>( {
 
 
 function AppBars(props) {
-  const { classes, children, className, data, ...other 
+  const { classes, children, className, ...other 
   } = props;
 
   const [hideOnScroll, setHideOnScroll] = useState(true)
+
+  const data = useStaticQuery(graphql `
+  {
+    allContentfulIconMenuLeftPanel {
+    edges {
+      node {
+        id
+        name
+        slug
+        image {
+          fluid(maxWidth: 20) {
+            ...GatsbyContentfulFluid_tracedSVG
+          }
+        }
+      }
+    }
+  }
+  }
+  `)
 
   const isBrowser = typeof window !== `undefined` // проверить, готов ли DOM и существует ли контекст окна. Самый простой способ сделать 
   // это - проверить, определено ли окно.
@@ -113,39 +132,11 @@ useScrollPosition(({ prevPos, currPos }) => {
       scrollButtons="on"
       aria-label="scrollable force tabs example"
     >
-        <Tab className="tabs" component={Link} to="/sety" value={0} label="Сеты" {...a11yProps(0)}
-          icon={<Img fluid={data.set.childImageSharp.fluid} style={{width: `65px`}} alt="Сеты"></Img>}/>
-   
-        <Tab className="tabs"  to="/pizza" component={Link} value={1} label="Пицца" {...a11yProps(1)}
-          icon={<Img fluid={data.pizza.childImageSharp.fluid} style={{width: `65px`}} alt="Пицца"></Img>}/>
-  
-        <Tab className="tabs" to="/slozhnyeRolly" component={Link} label="Сложные роллы" {...a11yProps(2)}
-            icon={<Img fluid={data.bigRoll.childImageSharp.fluid} style={{width: `65px`}} alt="Сложные роллы"></Img>}>
-          </Tab>
-
-        <Tab className="tabs" to="/zapechenyeRolly" component={Link} label="Горячие роллы" {...a11yProps(3)}
-          icon={<Img fluid={data.hotRoll.childImageSharp.fluid} style={{width: `65px`}} alt="Запеченые роллы"></Img>}/>
-  
-        <Tab className="tabs" to="/klassicheskieRolly" component={Link} label="Классические" {...a11yProps(4)} 
-          icon={<Img fluid={data.smallRoll.childImageSharp.fluid} style={{width: `65px`}} alt="Классические роллы"></Img>}/>
-  
-        <Tab className="tabs" to="/napitki" component={Link} label="Напитки" {...a11yProps(5)} 
-            icon={<Img fluid={data.drink.childImageSharp.fluid} style={{width: `65px`}} alt="Напитки"></Img>}/>
-  
-        <Tab className="tabs" to="/salaty" component={Link} label="Салаты" {...a11yProps(6)}
-          icon={<Img fluid={data.salad.childImageSharp.fluid} style={{width: `65px`}} alt="Салаты"></Img>}/>
-
-        <Tab className="tabs" to="/sety" component={Link} label="Закуски" {...a11yProps(7)}
-          icon={<Img fluid={data.soup.childImageSharp.fluid} style={{width: `65px`}} alt="Закуски"></Img>}/>
-  
-        <Tab className="tabs" to="/sety" component={Link} label="Десеты" {...a11yProps(8)}  
-            icon={<Img fluid={data.desert.childImageSharp.fluid} style={{width: `65px`}} alt="Десеты"></Img>}/>
-  
-        <Tab className="tabs" to="/sety" component={Link} label="Суши" {...a11yProps(9)}
-            icon={<Img fluid={data.sushi.childImageSharp.fluid} style={{width: `65px`}} alt="Суши"></Img>}/>
-  
-        <Tab className="tabs" to="/sety" component={Link} label="Гунканы" {...a11yProps(10)} 
-            icon={<Img fluid={data.gunkan.childImageSharp.fluid} style={{width: `65px`}}  alt="Гунканы"></Img>}/>
+    {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index)=> (
+      <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} value={0} label={menu.name} {...a11yProps(index)}
+          icon={<Img fluid={menu.image.fluid} style={{width: `65px`}} alt={menu.name}></Img>}/>
+    ))}
+       
     </Tabs>
   </AppBarStyle>
   );

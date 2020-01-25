@@ -22,18 +22,17 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { producSetsLoad, setAddedToCart } from "../actions";
 // import Box from '@material-ui/core/Box';
 
-
 const useStyles = makeStyles(theme => ({
   title: {
     fontFamily: 'Comfortaa',
     fontWeight: 800,
   },
   card: {
-    maxWidth: `100vmin`,
+    maxWidth: `100%`,
     marginTop: 30,
   },
   media: {
-    maxWidth: `85%`,
+    maxWidth: `450px`,
     margin: `0 auto`,
     // paddingTop: '56.25%', // 16:9
     // backgroundSize: 'contain',
@@ -70,7 +69,7 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
   setAddedToCart }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState({nameCart: false});
-    console.log(edges)
+    // console.log(edges)
   
   useEffect(() => {
     producSetsLoad(edges); // action push to reduxStore

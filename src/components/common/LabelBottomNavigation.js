@@ -26,10 +26,8 @@ export default function LabelBottomNavigation() {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-
       <BottomNavigationAction value="recents" onClick={()=> window.Chatra('openChat', true)} icon={<MessageIcon />} />
-      <BottomNavigationAction value="recents" icon={<KorzinaComponent />} />
-      {/* <BottomNavigationAction value="nearby" icon={<LocationOnIcon />} /> */}
+      <KorzinaComponent />
     </BottomNavigation>
   );
 }

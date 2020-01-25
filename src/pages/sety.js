@@ -11,9 +11,7 @@ const Sety = ({data: {allContentfulProduct: {edges}},
     producSetsLoad, 
     setAddedToCart,
   }) => {
-
-
-    
+      
     useEffect(() => {
         const data = edges
         producSetsLoad(data); // action push to reduxStore

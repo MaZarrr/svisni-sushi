@@ -17,12 +17,12 @@ exports.wrapRootElement = ({element}) => {
 }
 
 exports.onRenderBody = (
-    { setHeadComponents, setHtmlAttributes, setBodyAttributes, setPreBodyComponents },
+    { setPostBodyComponents, setPreBodyComponents },
     pluginOptions
   ) => {
     setPreBodyComponents([
         <script
- dangerouslySetInnerHTML={{
+        dangerouslySetInnerHTML={{
         __html: `
         (function(d, w, c) {
             w.ChatraID = 'ShmYgm6KLaFn3wbcz';
@@ -39,6 +39,28 @@ exports.onRenderBody = (
 />
     ])
 }
+
+    // let args = []
+	// for (let i in pluginOptions) {
+	// 	if (i === 'plugins') continue
+	// 	let opt = pluginOptions[i]
+	// 	if (Array.isArray(opt)) {
+	// 		opt = opt.join(`,`)
+	// 	}
+	// 	args.push(`${i}=${opt}`)
+	// }
+	// if (args.length) {
+	// 	args = `?${args.join(`&`)}`
+	// }
+	// else {
+	// 	args = ``
+	// }
+	// setPostBodyComponents([
+	// 	<script
+	// 		key='polyfill-io'
+	// 		src={`https://cdn.polyfill.io/v3/polyfill.min.js${args}`}
+	// 	/>
+	// ])
 
 
 // import wrapWithProvider from "./wrap-with-provider"

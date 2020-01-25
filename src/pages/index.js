@@ -18,6 +18,9 @@ const CarouselMenuSection = styled(CarouselSvisni) `
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    width: `100%`,
+    margin: 0,
+    padding: 0,
     [theme.breakpoints.up('768')]: {
       display: 'none'
     }
@@ -26,9 +29,9 @@ const useStyles = makeStyles(theme => ({
     height: 140,
     width: 100,
   },
-  control: {
-    padding: theme.spacing.unit * 2,
-  },
+  // control: {
+  //   padding: theme.spacing.unit * 2,
+  // },
 }))
 
 
@@ -60,7 +63,7 @@ return (
           <div className="cart_container">
           <Link to={`/${homeMenu.slug}`} state={{ choice: 'Сеты' }}>
           <div className="cart_title">
-            <h3>{homeMenu.category}</h3>
+            <h3>{homeMenu.category}</h3> 
           </div>
           <Img fluid={homeMenu.image.fluid} className="cart_img"></Img>
           </Link>
@@ -88,7 +91,7 @@ export const query = graphql `
         weight
         contentful_id
         image {
-          fluid(maxWidth: 768) {
+          fluid(maxWidth: 380) {
             ...GatsbyContentfulFluid_tracedSVG
           }
         }
