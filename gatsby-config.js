@@ -35,28 +35,13 @@ module.exports = {
     },
     `gatsby-plugin-styled-components`,
     {
-      resolve: `gatsby-theme-material-ui`,
-      options: {
-        webFontsConfig: {
-          fonts: {
-            google: [
-              {
-                family: `Comfortaa`,
-                variants: [`300`, `400`, `500`, `700`, `800`]
-              },
-              {
-                family: `Neucha`,
-                variants: [`300`, `400`, `500`, `700`, `800`]
-              },
-              {
-                family: `Montserrat Alternates`,
-                variants: [`300`, `400`, `500`, `700`, `800`]
-              },
-            ],
-          },
-        },
+        resolve: 'gatsby-plugin-web-font-loader',
+        options: {
+          google: {
+            families: ['Comfortaa', 'Neucha', 'Montserrat Alternates']
+          }
+        }
       },
-    },
     {
       resolve: `gatsby-source-contentful`,
       options: {
