@@ -33,15 +33,29 @@ module.exports = {
         icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: `gatsby-theme-material-ui`,
       options: {
-        google: {
-          families: ['Comfortaa', 'Neucha', 'Montserrat Alternates']
-        }
-      }
+        webFontsConfig: {
+          fonts: {
+            google: [
+              {
+                family: `Comfortaa`,
+                variants: [`300`, `400`, `500`, `700`, `800`]
+              },
+              {
+                family: `Neucha`,
+                variants: [`300`, `400`, `500`, `700`, `800`]
+              },
+              {
+                family: `Montserrat Alternates`,
+                variants: [`300`, `400`, `500`, `700`, `800`]
+              },
+            ],
+          },
+        },
+      },
     },
     {
       resolve: `gatsby-source-contentful`,

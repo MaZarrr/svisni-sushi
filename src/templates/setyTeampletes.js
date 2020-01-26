@@ -35,7 +35,17 @@ export const query = graphql `
     }
   `
  
-//  "gatsby-theme-material-ui": "^1.0.7",
+//    "gatsby-plugin-material-ui": "^2.1.6",
+// "gatsby-plugin-web-font-loader": "^1.0.4",
+// {
+//     resolve: 'gatsby-plugin-web-font-loader',
+//     options: {
+//       google: {
+//         families: ['Comfortaa', 'Neucha', 'Montserrat Alternates']
+//       }
+//     }
+//   },
+
 //  export const query = graphql ` 
 //  query ($slug: String!) {
 //     contentfulProduct(slug: {eq: $slug}) {
