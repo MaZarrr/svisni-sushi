@@ -102,7 +102,7 @@ export const querySets = graphql `
               description
               image {
                   fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid
+                    ...GatsbyContentfulFluid_tracedSVG
                   }
               }
               }

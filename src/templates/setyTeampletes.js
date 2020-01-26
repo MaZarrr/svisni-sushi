@@ -34,7 +34,15 @@ export const query = graphql `
         }
     }
   `
- 
+
+  // import wrapWithProvider from "./wrap-with-provider"
+// import wrapWithProvider from "./wrap-with-provider"
+// export const wrapRootElement = wrapWithProvider
+    // "react-transition-group": "4.0.0",
+  
+//   "react-swipeable-views": "^0.13.4",
+//   "react-swipeable-views-core": "^0.13.4",
+//   "react-swipeable-views-utils": "^0.13.4",
 //    
 // "gatsby-theme-material-ui": "^1.0.7",
 //  export const query = graphql ` 

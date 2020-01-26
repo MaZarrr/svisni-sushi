@@ -1,4 +1,3 @@
-// import wrapWithProvider from "./wrap-with-provider"
 const createStore = require('./src/state/createStore').default
 const { Provider } = require('react-redux'); 
 const React = require('react');
@@ -16,12 +15,11 @@ exports.wrapRootElement = ({element}) => {
         )
 }
 
-exports.onRenderBody = (
-    { setPreBodyComponents }
-   
-  ) => {
+exports.onRenderBody = ({ setPreBodyComponents }) => {
     setPreBodyComponents([
+        
         <script
+
         dangerouslySetInnerHTML={{
         __html: `
         (function(d, w, c) {
@@ -35,33 +33,6 @@ exports.onRenderBody = (
             if (d.head) d.head.appendChild(s);
         })(document, window, 'Chatra');
     `
-    }}
-/>
+        }}/>
     ])
 }
-
-    // let args = []
-	// for (let i in pluginOptions) {
-	// 	if (i === 'plugins') continue
-	// 	let opt = pluginOptions[i]
-	// 	if (Array.isArray(opt)) {
-	// 		opt = opt.join(`,`)
-	// 	}
-	// 	args.push(`${i}=${opt}`)
-	// }
-	// if (args.length) {
-	// 	args = `?${args.join(`&`)}`
-	// }
-	// else {
-	// 	args = ``
-	// }
-	// setPostBodyComponents([
-	// 	<script
-	// 		key='polyfill-io'
-	// 		src={`https://cdn.polyfill.io/v3/polyfill.min.js${args}`}
-	// 	/>
-	// ])
-
-
-// import wrapWithProvider from "./wrap-with-provider"
-// export const wrapRootElement = wrapWithProvider

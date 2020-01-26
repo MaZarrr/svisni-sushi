@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import { producSetsLoad, setAddedToCart } from "../actions";
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -107,10 +107,10 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
       </CardMedia> 
 
       <CardContent>
-        <Typography classes={{title: classes.title}}  variant="caption" color="textSecondary" component="p">
-        <Box fontFamily="Comfortaa">
-          {homeProduct.description}
-        </Box>
+        <Typography className={classes.title} variant="caption" color="textSecondary" component="p">
+        {/* <Box fontFamily="Comfortaa"> */}
+        {homeProduct.description} 
+        {/* </Box> */}
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
           <p>

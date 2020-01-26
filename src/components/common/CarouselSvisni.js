@@ -5,9 +5,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
+import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import SwipeableViews from 'react-swipeable-views'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -136,8 +135,9 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
 
   return (
     <div className={classes.root}>
+
         {/* <Typography>{tutorialSteps[activeStep].label}</Typography> */}
-        <Paper square elevation={0} className={classes.header}>
+         <Paper square elevation={0} className={classes.header}>
         <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
       </Paper>
       <AutoPlaySwipeableViews className={classes.rootPhoneNone}
@@ -174,7 +174,7 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
         position="static"
         variant="progress"
         activeStep={activeStep}
-        className={classes.stepper}></MobileStepper>
+        className={classes.stepper}></MobileStepper> 
     </div>
   );
 }

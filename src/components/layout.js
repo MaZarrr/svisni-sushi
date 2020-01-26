@@ -60,9 +60,9 @@ const classes = useStyles();
        <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}
-        {/* <Footer/> */}
       <LabelBottomNavigation />
       </main>
+      <Footer/>
       </div>
   </ErrorBoundary>
     </>

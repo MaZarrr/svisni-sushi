@@ -1,7 +1,9 @@
 import React from "react"
 import styled  from 'styled-components';
-import Img  from 'gatsby-image';
+// import Img  from 'gatsby-image';
 import { Link } from "gatsby"
+// import { graphql, useStaticQuery, Link } from "gatsby"
+import Image from './image';
 
 const Footer = styled.footer `
    background-color: #303032;
@@ -12,7 +14,8 @@ const Footer = styled.footer `
     font-style: normal;
     font-weight: 400;
     @media screen and (max-width: 768px) {
-      margin-top: 100px
+      margin-top: 100px;
+      display: none;
     }
 
 `
@@ -111,13 +114,16 @@ const FooterUl = styled.ul `
 
 `
 
-export default ({vk, ok, inst, logo}) => (
+export default () => { 
+//  const dataFooter = useStaticQuery(data);
+ 
+  return (
     <Footer>
     <FooterUl className="footer">
     <div className="footer_items foter_t">
       <li className="footer_item foooter_logo">
         <Link to="/">
-          <Img  fluid={logo} />
+          <Image />
         </Link>
       </li>
       <li>
@@ -150,17 +156,17 @@ export default ({vk, ok, inst, logo}) => (
       <div className="social_container">
         <div className="social_img">
         <a href="https://vk.com/sushi_urazovo">
-          <Img fluid={vk}  style={{width: `30px`}} alt="Вконтакте"/>
+          {/* <Img fluid={dataFooter.contentfulCarouselSiteImage.edges[0]..node.}  style={{width: `30px`}} alt="Вконтакте"/> */}
         </a>
         </div>
         <div className="social_img"> 
         <a href="https://www.instagram.com/svisni_sushi">
-          <Img fluid={inst}  style={{width: `30px`}} alt="Инстаграмм"/>
+          {/* <Img fluid={inst}  style={{width: `30px`}} alt="Инстаграмм"/> */}
         </a>
         </div>
         <div className="social_img">
         <a href="https://ok.ru/group/55132913991911">
-          <Img fluid={ok}  style={{width: `30px`}} alt="Одноклассники"/>
+          {/* <Img fluid={ok}  style={{width: `30px`}} alt="Одноклассники"/> */}
         </a>
         </div>
       </div>       
@@ -169,7 +175,19 @@ export default ({vk, ok, inst, logo}) => (
     </div>
     </FooterUl>
   </Footer>
-
 )
-//
+}
+
+
+// export const data = graphql `
+//   {
+//     contentfulCarouselSiteImage {
+//     socialImg {
+//       fluid(maxWidth: 50) {
+//         ...GatsbyContentfulFluid
+//        }
+//       }
+//     }
+//   }
+//   `
     

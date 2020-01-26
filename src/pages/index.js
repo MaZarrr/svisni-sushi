@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme => ({
     height: 140,
     width: 100,
   },
+  demo: {
+    margin: `0 auto`,
+  }
   // control: {
   //   padding: theme.spacing.unit * 2,
   // },
@@ -49,9 +52,9 @@ return (
       Свежая и разнообразная кухня 
     </h1>
     </div>
-    <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12}>
-      <Grid container className={classes.demo} justify="center" spacing={2}>
+    <Grid container justify="center" className={classes.root} spacing={2}>
+      <Grid item xs={11}>
+      <Grid container className={classes.demo}  spacing={2}>
         <Card data={data.allContentfulHomePageCarts}/>
       </Grid>
       </Grid>
@@ -91,7 +94,7 @@ export const query = graphql `
         weight
         contentful_id
         image {
-          fluid(maxWidth: 410) {
+          fluid(maxWidth: 450) {
             ...GatsbyContentfulFluid_tracedSVG
           }
         }
@@ -106,7 +109,7 @@ export const query = graphql `
         category
         image {
           fluid(maxWidth: 390) {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid
           }
         }
       }
