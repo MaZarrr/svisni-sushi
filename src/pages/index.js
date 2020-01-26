@@ -91,8 +91,8 @@ export const query = graphql `
         weight
         contentful_id
         image {
-          fluid(maxWidth: 380) {
-            ...GatsbyContentfulFluid
+          fluid(maxWidth: 390) {
+            ...GatsbyContentfulFluid_tracedSVG
           }
         }
       }

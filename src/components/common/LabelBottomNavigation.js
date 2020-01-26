@@ -2,19 +2,20 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-// import RestoreIcon from '@material-ui/icons/Restore';
-// import LocationOnIcon from '@material-ui/icons/LocationOn';
 import KorzinaComponent from '../korzinaComponent';
 import MessageIcon from '@material-ui/icons/Message';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     width: `100%`,
     position: 'fixed',
     bottom: `0`,
-    zIndex: 1020
-  },
-});
+    zIndex: 1020,
+    [theme.breakpoints.up('768')]: {
+      display: 'none',
+    }
+  }
+}));
 
 export default function LabelBottomNavigation() {
   const classes = useStyles();
