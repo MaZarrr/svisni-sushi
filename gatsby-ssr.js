@@ -15,8 +15,8 @@ exports.wrapRootElement = ({element}) => {
         )
 }
 
-exports.onRenderBody = ({ setPreBodyComponents }) => {
-    setPreBodyComponents([
+exports.onRenderBody = ({ setPostBodyComponents }) => {
+    setPostBodyComponents([
         
         <script
 

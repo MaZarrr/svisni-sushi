@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import CarouselSvisni from "../components/common/CarouselSvisni"
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { Link, graphql } from "gatsby"
 import "../components/sass/index.css"
 import Img from 'gatsby-image';
@@ -11,9 +11,9 @@ import {  makeStyles } from '@material-ui/core/styles';
 
 import Card from '../components/Card'
 
-const CarouselMenuSection = styled(CarouselSvisni) `
-  width: 100vw;
-`
+// const CarouselMenuSection = styled(CarouselSvisni) `
+//   width: 100vw;
+// `
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,9 +44,10 @@ const classes = useStyles();
 
 return (
   <section >
+
       <SEO title="СвисниСуши" />
       <div className="home_page">
-      <CarouselMenuSection />
+      <CarouselSvisni />
     <div className="title_home">
     <h1>
       Свежая и разнообразная кухня 
@@ -68,7 +69,7 @@ return (
           <div className="cart_title">
             <h3>{homeMenu.category}</h3> 
           </div>
-          <Img fluid={homeMenu.image.fluid} className="cart_img"></Img>
+          <Img fluid={homeMenu.image.fluid} className="cart_img" imgStyle={{maxWidth: 300}}></Img>
           </Link>
           </div>
     </div>
@@ -95,7 +96,7 @@ export const query = graphql `
         contentful_id
         image {
           fluid(maxWidth: 450) {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid
           }
         }
       }
@@ -108,7 +109,7 @@ export const query = graphql `
         slug
         category
         image {
-          fluid(maxWidth: 390) {
+          fluid(maxWidth: 300) {
             ...GatsbyContentfulFluid
           }
         }
