@@ -11614,7 +11614,7 @@ react-side-effect@^1.1.0:
   dependencies:
     shallowequal "^1.0.1"
 
-react-swipeable-views-core@^0.13.6:
+react-swipeable-views-core@^0.13.4, react-swipeable-views-core@^0.13.6:
   version "0.13.6"
   resolved "https://registry.yarnpkg.com/react-swipeable-views-core/-/react-swipeable-views-core-0.13.6.tgz#361f432ab33e22fec0c3576fe034b864ac60c015"
   integrity sha512-Bb+0UE/ufvmUuxiscMStCp8LiJJF7GGJY6soFnqS+Jolm8CgUWFqBn61BKhsI3wytlmwkuafXo1dtvSramwCVA==
@@ -11622,7 +11622,7 @@ react-swipeable-views-core@^0.13.6:
     "@babel/runtime" "^7.0.0"
     warning "^4.0.1"
 
-react-swipeable-views-utils@^0.13.6:
+react-swipeable-views-utils@^0.13.4, react-swipeable-views-utils@^0.13.6:
   version "0.13.6"
   resolved "https://registry.yarnpkg.com/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.6.tgz#1b93185087aa87128e8c5d8f8c8924630e785333"
   integrity sha512-svjPTIxr4/LiuxGWv5xTNSlas6zUZEskSQ/6adUxwFpKUwjBe9oY4iRj8TGXSPNMNBsv+fxzFsy1ofeHuhTsKA==
@@ -11634,7 +11634,7 @@ react-swipeable-views-utils@^0.13.6:
     react-event-listener "^0.6.0"
     react-swipeable-views-core "^0.13.6"
 
-react-swipeable-views@^0.13.6:
+react-swipeable-views@^0.13.4:
   version "0.13.6"
   resolved "https://registry.yarnpkg.com/react-swipeable-views/-/react-swipeable-views-0.13.6.tgz#6e7170987ead332aeda7f7e4dd6c8b24b524c5ed"
   integrity sha512-Hj9KsSxKpW52qYOWk+/C0jk/tidMiFy1H1fHSAkd/KkXn5gWlqOCAs3eXwIjTRNrrySsyTqgnik7U/HNEPiqOA==
