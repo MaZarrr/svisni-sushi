@@ -11629,7 +11629,7 @@ react-swipeable-views-core@^0.13.1, react-swipeable-views-core@^0.13.6:
     "@babel/runtime" "^7.0.0"
     warning "^4.0.1"
 
-react-swipeable-views-utils@^0.13.4:
+react-swipeable-views-utils@^0.13.4, react-swipeable-views-utils@^0.13.6:
   version "0.13.6"
   resolved "https://registry.yarnpkg.com/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.6.tgz#1b93185087aa87128e8c5d8f8c8924630e785333"
   integrity sha512-svjPTIxr4/LiuxGWv5xTNSlas6zUZEskSQ/6adUxwFpKUwjBe9oY4iRj8TGXSPNMNBsv+fxzFsy1ofeHuhTsKA==
