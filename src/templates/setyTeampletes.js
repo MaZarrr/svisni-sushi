@@ -35,6 +35,10 @@ export const query = graphql `
     }
   `
 
+// "alias": {
+//     "react-dom": "@hot-loader/react-dom"
+//   },
+
   // import wrapWithProvider from "./wrap-with-provider"
 // import wrapWithProvider from "./wrap-with-provider"
 // export const wrapRootElement = wrapWithProvider
