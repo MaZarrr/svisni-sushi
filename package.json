@@ -73,6 +73,6 @@
     "yarn": "1.15.2"
   },
   "resolutions": {
-    "react-transition-group": "4.2.0"
+    "react-transition-group": "4.0.0"
   }
 }
