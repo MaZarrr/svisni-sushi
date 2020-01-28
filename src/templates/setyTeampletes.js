@@ -34,9 +34,7 @@ export const query = graphql `
         }
     }
   `
-//   "resolutions": {
-//     "react-transition-group": "4.3.0"
-//   }
+
 // "alias": {
 //     "react-dom": "@hot-loader/react-dom"
 //   },
