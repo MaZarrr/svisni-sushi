@@ -10,8 +10,8 @@ import Zoom from '@material-ui/core/Zoom';
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
-    bottom: theme.spacing(5), // положение от низа
-    right: theme.spacing(2),
+    bottom: theme.spacing(2.5), // положение от низа
+    right: theme.spacing(2.8),
     zIndex: '1002'
   },
   scrollToPanel: {

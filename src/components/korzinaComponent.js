@@ -102,10 +102,9 @@ return (
             </TextTotal>
             </IconButton>
 
-            {/* <div className="korzina_content korzina_content_txt"> */}
-              {/* <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b> */}
-              {/* <b><span className="txt_total">{totalCount} ({orderTotal} ₽)</span></b>
-            </div> */}
+            <div className="korzina_content korzina_content_txt">
+              <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
+            </div>
 
           </div>
         </Link>

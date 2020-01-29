@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     fontFamily: 'Comfortaa',
     fontWeight: 800,
+    fontDisplay: `fallback`
   },
   card: {
     maxWidth: `100%`,

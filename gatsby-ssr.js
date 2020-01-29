@@ -15,9 +15,9 @@ exports.wrapRootElement = ({element}) => {
         )
 }
 
-exports.onRenderBody = ({ setPostBodyComponents }) => {
-    setPostBodyComponents([
-        
+exports.onRenderBody = ({ setPreBodyComponents }) => {
+    setPreBodyComponents([
+
         <script
 
         dangerouslySetInnerHTML={{
@@ -32,7 +32,27 @@ exports.onRenderBody = ({ setPostBodyComponents }) => {
             s.src = 'https://call.chatra.io/chatra.js';
             if (d.head) d.head.appendChild(s);
         })(document, window, 'Chatra');
+
     `
         }}/>
     ])
 }
+
+// Chatra('setColors', {
+//     buttonText: '#f5f5f5',
+//     buttonBg: '#5ece1a',
+//     clientBubbleBg: '#e7ffd1', 
+//     agentBubbleBg: '#deffff' 
+// });
+
+        
+// <script
+
+// dangerouslySetInnerHTML={{
+// __html: `
+// window.ChatraSetup = {
+//     mode: 'frame',
+//     injectTo: 'chatra-wrapper'
+// };
+// `
+// }}/>,

@@ -60,7 +60,7 @@ const classes = useStyles();
        <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}
-      <LabelBottomNavigation />
+      {/* <LabelBottomNavigation /> */}
       </main>
       <Footer/>
       </div>

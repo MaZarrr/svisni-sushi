@@ -21,14 +21,18 @@ export default function LabelBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState('recents');
 
+//   const ref = React.useRef()
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
+  
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <BottomNavigationAction value="recents" onClick={()=> window.Chatra('openChat', true)} icon={<MessageIcon />} />
+      {/* <BottomNavigationAction value="recents" onClick={()=> window.Chatra('openChat', true)} icon={<MessageIcon />} /> */}
+      <BottomNavigationAction icon={<MessageIcon id="chatra-wrapper" onClick={()=> window.Chatra('openChat', true)}/>}  />
       <KorzinaComponent />
     </BottomNavigation>
+  
   );
 }

@@ -40,6 +40,10 @@ const useStyles = makeStyles(theme => ({
 
 const IndexPage = ({data}) => {
 
+React.useEffect(() => {
+ window.Chatra('setButtonSize', 50)
+})
+
 const classes = useStyles();
 
 return (
@@ -53,9 +57,9 @@ return (
       Свежая и разнообразная кухня 
     </h1>
     </div>
-    <Grid container justify="center" className={classes.root} spacing={2}>
-      <Grid item xs={11}>
-      <Grid container className={classes.demo}  spacing={2}>
+    <Grid container justify="center" className={classes.root}>
+      <Grid item xs={12}>
+      <Grid container className={classes.demo} >
         <Card data={data.allContentfulHomePageCarts}/>
       </Grid>
       </Grid>
@@ -75,6 +79,7 @@ return (
     </div>
       ))}
     </div>
+    {/* <div id="chatra-wrapper" style={{width: 500, height: 500}}></div> */}
     </div>
   </section>
   )

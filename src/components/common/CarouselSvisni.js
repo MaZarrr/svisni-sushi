@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import Img from 'gatsby-image';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
@@ -7,7 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-
+import Button from '@material-ui/core/Button'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles(theme => ({
@@ -78,6 +79,10 @@ const useStyles = makeStyles(theme => ({
   stepper: {
     marginBottom: 50,
     paddingLeft: '30vw'
+  },
+  button: {
+    margin: `0 auto`,
+    width: `100%`
   }
 }));
 
@@ -168,18 +173,41 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
         return (
           <div key={step.node.id}>
             {Math.abs(activeStep - index) <= 2 ? (
+              <>
               <Img fluid={step.node.imgCarouselPhone.fluid} className={classes.img}  imgStyle={{maxWidth: 400}} alt={step.node.id} />
+              <Button variant='contained' color='primary' size="small"  >
+               <ArrowBackIcon  classes={{root: classes.button}}/> 
+            </Button>
+            </>
             ) : null
             }
+           
           </div>
         )})}
+       
       </AutoPlaySwipeableViews>
       <MobileStepper
         steps={maxSteps}
         position="static"
         variant="progress"
         activeStep={activeStep}
-        className={classes.stepper}></MobileStepper> 
+        className={classes.stepper}>
+
+           {/* nextButton={
+        
+            <Button variant='contained' color='primary' size="small"  disabled={activeStep === maxSteps - 1}>
+              {theme.direction === 'rtl' ? <ArrowBackIcon /> : <ArrowBackIcon />}
+            </Button>
+          
+          }
+          backButton={
+          <Button variant='contained' color='primary' size="small" disabled={activeStep === 0}>
+            {theme.direction === 'rtl' ? <ArrowBackIcon /> : <ArrowBackIcon />}
+          </Button>
+          } 
+               */}
+
+        </MobileStepper> 
     </div>
   );
 }
@@ -189,7 +217,7 @@ export default CarouselSvisni;
 
 // import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
-// import Button from '@material-ui/core/Button'
+// 
 // import Paper from '@material-ui/core/Paper'
 // import { grey } from '@material-ui/core/colors'
 // import withStyles from '@material-ui/core/styles/withStyles'
