@@ -79,7 +79,7 @@ margin: 40px auto;
 }
 `
 
-const Order = ({location: {state = {}}, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
+const Order = ({location: {state: {cart: {items=[], palochkiTotal= 0, addPanelPribors= false}}}, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
     setName, setPhone, setSity, setAdress, setHome, setEntrance, setLevel, setDoor, total}) => {
 
 const [open, setOpen] = useState(false);
@@ -96,14 +96,14 @@ const handleSubmit = (ev) => {
     const data = new FormData(form);
     const xhr = new XMLHttpRequest();
 
-    state.cart.items.forEach((elem) => {
+    items.forEach((elem) => {
       return data.append(
         elem.name, 
         `Цена ${elem.total},
         Количество: ${elem.count}`);
     });
-    if(state.cart.addPanelPribors) {
-      data.append('Палочки(шт):', state.cart.palochkiTotal);
+    if(addPanelPribors) {
+      data.append('Палочки(шт):', palochkiTotal);
     }
       data.append('Общая цена:', total);
 
@@ -157,7 +157,7 @@ const handleSubmit = (ev) => {
 
 return (
     <section>
-    { state.cart.items.length !== 0 ?
+    { items.length !== 0 ?
         <form  
            method="POST"
            onSubmit={handleSubmit}
