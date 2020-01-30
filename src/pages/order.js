@@ -79,9 +79,9 @@ margin: 40px auto;
 }
 `
 
-const Order = ({location: {state: {data: {items, addPanelPribors, palochkiTotal}}}, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
+const Order = ({location: {state: {data: {items= [], addPanelPribors= false, palochkiTotal= 0 }}}, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
     setName, setPhone, setSity, setAdress, setHome, setEntrance, setLevel, setDoor, total}) => {
-// console.log(data)
+
 const [open, setOpen] = useState(false);
 const [openPayment, setOpenPayment] = useState(false);
 const [openDelivery, setOpenDelivery] = useState(false);
@@ -102,7 +102,6 @@ const handleSubmit = (ev) => {
         `Цена ${elem.total},
         Количество: ${elem.count}`);
     });
-   
     if(addPanelPribors) {
       data.append('Палочки(шт):', palochkiTotal);
     }
@@ -410,7 +409,7 @@ return (
 }
 
 const mapStateToProps = ({shoppingCart: { orderTotal}, contacts: { 
-    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword }, palochkiTotal}) => {
+    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword }}) => {
         return {
             total: orderTotal,
             nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword

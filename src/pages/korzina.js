@@ -208,7 +208,7 @@ return (
             </div>
           </div>
     }
-    <div className="total mt-3">
+      <div className="total mt-3">
              <b> Итого к оплате: {total}</b>
              </div>
       <div className="total mt-3">
