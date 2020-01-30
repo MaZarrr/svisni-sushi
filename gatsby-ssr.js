@@ -22,6 +22,7 @@ exports.onRenderBody = ({ setPreBodyComponents }) => {
 
         dangerouslySetInnerHTML={{
         __html: `
+
         (function(d, w, c) {
             w.ChatraID = 'ShmYgm6KLaFn3wbcz';
             var s = d.createElement('script');
@@ -38,6 +39,30 @@ exports.onRenderBody = ({ setPreBodyComponents }) => {
     ])
 }
 
+
+    //     <style
+
+    //     dangerouslySetInnerHTML={{
+    //     __html: `
+
+    //         #chatra:not(.chatra--expanded) {
+    //         visibility: hidden !important;
+    //         opacity: 0 !important;
+    //         pointer-events: none;
+    //     }
+    //     @media screen and (min-width: 778px) {
+    //        #chatra {
+    //         display: block;
+    //         }
+    //     }
+    // `
+    //     }}/>,
+
+
+        // window.ChatraSetup = {
+        //     mode: 'frame',
+        //     injectTo: 'chatra-wrapper'
+        // };
 // Chatra('setColors', {
 //     buttonText: '#f5f5f5',
 //     buttonBg: '#5ece1a',
@@ -50,9 +75,6 @@ exports.onRenderBody = ({ setPreBodyComponents }) => {
 
 // dangerouslySetInnerHTML={{
 // __html: `
-// window.ChatraSetup = {
-//     mode: 'frame',
-//     injectTo: 'chatra-wrapper'
-// };
+
 // `
 // }}/>,

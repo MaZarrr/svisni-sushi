@@ -11,10 +11,6 @@ import {  makeStyles } from '@material-ui/core/styles';
 
 import Card from '../components/Card'
 
-// const CarouselMenuSection = styled(CarouselSvisni) `
-//   width: 100vw;
-// `
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -40,9 +36,11 @@ const useStyles = makeStyles(theme => ({
 
 const IndexPage = ({data}) => {
 
+  
 React.useEffect(() => {
  window.Chatra('setButtonSize', 50)
 })
+
 
 const classes = useStyles();
 
@@ -58,8 +56,8 @@ return (
     </h1>
     </div>
     <Grid container justify="center" className={classes.root}>
-      <Grid item xs={12}>
-      <Grid container className={classes.demo} >
+      <Grid  item xs={12}>
+      <Grid container justify="center" className={classes.demo} >
         <Card data={data.allContentfulHomePageCarts}/>
       </Grid>
       </Grid>
@@ -76,10 +74,9 @@ return (
           <Img fluid={homeMenu.image.fluid} className="cart_img" imgStyle={{maxWidth: 300}}></Img>
           </Link>
           </div>
-    </div>
+      </div>
       ))}
     </div>
-    {/* <div id="chatra-wrapper" style={{width: 500, height: 500}}></div> */}
     </div>
   </section>
   )

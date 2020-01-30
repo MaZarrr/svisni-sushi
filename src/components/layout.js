@@ -7,7 +7,7 @@ import Footer from "./footer"
 import "./layout.css"
 
 import ErrorBoundary from './error-boundary/error-boundary'
-import LabelBottomNavigation from './common/LabelBottomNavigation';
+// import LabelBottomNavigation from './common/LabelBottomNavigation';
 
 const useStyles = makeStyles(theme => ({
   root: {

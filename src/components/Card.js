@@ -29,11 +29,14 @@ const useStyles = makeStyles(theme => ({
     fontDisplay: `fallback`
   },
   card: {
-    maxWidth: `100%`,
+    maxWidth: `75%`,
     marginTop: 30,
+    [theme.breakpoints.down('425')]: {
+      maxWidth: `100%`,
+    }
   },
   media: {
-    maxWidth: `450px`,
+    maxWidth: `350px`,
     margin: `0 auto`,
     // paddingTop: '56.25%', // 16:9
     // backgroundSize: 'contain',
@@ -114,14 +117,10 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
         {/* </Box> */}
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-          <p>
-          {homeProduct.weight !== null ? `Вес: ${homeProduct.weight} кг` : ''}
-          </p>
-          <p>
-          {`${homeProduct.count !== null ? `Вес: ${homeProduct.count} шт` : ''}`}
-          </p>
+        <b><p>{homeProduct.weight !== null ? `Вес: ${homeProduct.weight} кг` : ''}</p></b>
+          <b><p>{`${homeProduct.count !== null ? `Вес: ${homeProduct.count} шт` : ''}`}</p></b>
         </Typography>
-
+       <p>{`${homeProduct.price}₽`}</p>
       </CardContent>
 
       <CardActions disableSpacing>

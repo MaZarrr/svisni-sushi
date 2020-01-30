@@ -20,17 +20,17 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 40,
     },
   },
-  rootPhone: {
-  display: 'none',
-  [theme.breakpoints.down('768')]: {
-    display: 'block',
-  },
-},
-  rootPhoneNone:{ 
-  [theme.breakpoints.down('768')]: {
+    rootPhone: {
     display: 'none',
-  }
-},
+    [theme.breakpoints.down('768')]: {
+      display: 'block',
+    },
+  },
+    rootPhoneNone:{ 
+    [theme.breakpoints.down('768')]: {
+      display: 'none',
+    }
+  },
   header: {
     // backgroundColor: 'lightgrey',
     display: 'flex',
@@ -117,13 +117,8 @@ const CarouselSvisni = () => {
 // React.useEffect(()=> {
 //   setDataCarousel(data)
 // })
-// console.log(data)
-// console.log(dataCarousel)
 
 const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
-// console.log(maxSteps)
-// console.log(activeStep)
-// console.log(data)
   // const handleNext = () => {
   //   setActiveStep(prevActiveStep => prevActiveStep + 1);
   // };
@@ -192,21 +187,6 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
         variant="progress"
         activeStep={activeStep}
         className={classes.stepper}>
-
-           {/* nextButton={
-        
-            <Button variant='contained' color='primary' size="small"  disabled={activeStep === maxSteps - 1}>
-              {theme.direction === 'rtl' ? <ArrowBackIcon /> : <ArrowBackIcon />}
-            </Button>
-          
-          }
-          backButton={
-          <Button variant='contained' color='primary' size="small" disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? <ArrowBackIcon /> : <ArrowBackIcon />}
-          </Button>
-          } 
-               */}
-
         </MobileStepper> 
     </div>
   );
@@ -214,6 +194,21 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
 
 export default CarouselSvisni;
 
+
+
+  //  {/* nextButton={
+
+  //   <Button variant='contained' color='primary' size="small"  disabled={activeStep === maxSteps - 1}>
+  //     {theme.direction === 'rtl' ? <ArrowBackIcon /> : <ArrowBackIcon />}
+  //   </Button>
+  
+  // }
+  // backButton={
+  // <Button variant='contained' color='primary' size="small" disabled={activeStep === 0}>
+  //   {theme.direction === 'rtl' ? <ArrowBackIcon /> : <ArrowBackIcon />}
+  // </Button>
+  // } 
+  //      */}
 
 // import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
