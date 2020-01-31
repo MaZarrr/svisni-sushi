@@ -157,7 +157,7 @@ const handleSubmit = (ev) => {
 
 return (
     <section>
-    { items.length !== 0 ?
+    {/* { items.length !== 0 ? */}
         <form  
            method="POST"
            onSubmit={handleSubmit}
@@ -402,11 +402,11 @@ return (
              </Button>
            </SectionInfo>
          </form> 
-    : <NoneItem className="d-flex justify-content-center align-items-center mt-5 none_item">Ваша корзина пуста!</NoneItem>}
 </section>
 )
 
 }
+// : <NoneItem className="d-flex justify-content-center align-items-center mt-5 none_item">Ваша корзина пуста!</NoneItem>}
 
 const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}, contacts: { 
     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword }, palochkiTotal}) => {
