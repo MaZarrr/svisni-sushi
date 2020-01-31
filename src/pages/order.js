@@ -79,9 +79,9 @@ margin: 40px auto;
 }
 `
 
-const Order = ({location: {state: {cart: {items=[], palochkiTotal= 0, addPanelPribors= false}}}, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
+const Order = (location, {items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
     setName, setPhone, setSity, setAdress, setHome, setEntrance, setLevel, setDoor, total}) => {
-
+      // location: {state: {cart: {items=[], palochkiTotal= 0, addPanelPribors= false}}},
 const [open, setOpen] = useState(false);
 const [openPayment, setOpenPayment] = useState(false);
 const [openDelivery, setOpenDelivery] = useState(false);
@@ -102,7 +102,7 @@ const handleSubmit = (ev) => {
         `Цена ${elem.total},
         Количество: ${elem.count}`);
     });
-    if(addPanelPribors) {
+    if(location.state.cart) {
       data.append('Палочки(шт):', palochkiTotal);
     }
       data.append('Общая цена:', total);
@@ -408,9 +408,11 @@ return (
 
 }
 
-const mapStateToProps = ({shoppingCart: { orderTotal}, contacts: { 
-    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword }}) => {
+const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}, contacts: { 
+    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword }, palochkiTotal}) => {
         return {
+            items: cartItems, 
+            palochkiTotal,
             total: orderTotal,
             nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword
         };

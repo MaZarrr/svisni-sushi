@@ -212,7 +212,7 @@ return (
              <b> Итого к оплате: {total}</b>
              </div>
       <div className="total mt-3">
-            <Link state={{cart: {items, addPanelPribors, palochkiTotal}}} to="/order" >Продолжить оформление заказа</Link> 
+            <Link state={{cart: addPanelPribors}} to="/order" >Продолжить оформление заказа</Link> 
              </div>
         </div>         
         {/* </Paper> */}
