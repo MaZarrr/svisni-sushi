@@ -7,7 +7,7 @@ import { setAddedToCart, setRemoveFromCart, allSetRemoveFromCart,
 import  Img  from 'gatsby-image';
 
 import * as R from 'ramda'
-import styled  from 'styled-components';
+// import styled  from 'styled-components';
 
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -16,40 +16,14 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+// import FormLabel from '@material-ui/core/FormLabel';
 
-const RadioWrapper = styled.div `
- position: relative;
- background-color: whitesmoke;
-`
-const Radio = styled.input `
-  .radio_label {
-    padding-left: 25px;
-    font-size: 1rem;
-    color: darkblue;
-    cursor: pointer;
-  }
-  .radio_label:before {
-    content:'';
-    display: block;
-    width: 16px;
-    height: 16px;
+import Button from '@material-ui/core/Button';
 
-    background-color: #fff;
-    border: 1px solid #cccccc;
-    border-radius: 50%;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-`
-
-const ShoppingCartTr = styled.div `
-  .img_shopping_cart {
-    margin: 0;
-    padding: 0;
-  }
-`
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -80,6 +54,12 @@ const useStyles = makeStyles(theme => ({
   },
   containerWrapped: {
     marginBottom: 30
+  },
+  button: {
+    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    color: 'white',
+    marginTop: 8,
+    margin: `0 auto` 
   }
 }));
 
@@ -97,6 +77,15 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
 
   const classes = useStyles();
     
+  const [value, setValue] = React.useState([]);
+  const handleChange = event => {
+    setValue(() => {
+      return R.update(event.target.id, [
+        event.target.value
+      ])(value)
+    });
+  };
+  
     useEffect(() => {
         const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges)
         producSetsLoad(data); // action push to reduxStore
@@ -104,10 +93,10 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
       
     const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
       
-    const onRadioChangedd = (e) =>  {
-      const { target: { id, value } } = e
-      onRazmer(id, value)
-      console.log(value)
+    const onRadioChangedd = (id, price) =>  {
+      // const { target: { id, value } } = e
+      onRazmer(id, price)
+      console.log(price)
     }
 
 return (
@@ -130,18 +119,45 @@ return (
           <Typography variant="h6"><b>Товар</b></Typography>
           {  
         items.map((item, idx) => {
-        const {id, name, count, total, image, price33, radioPrice, radioValue} = item
-    
+        const {id, name, count, total, image, price33, radioPrice, radioValue, priceDef} = item
+        {/* console.log(R.includes(name, value)) */}
         return (
           <Paper key={id} className={classes.paper}>
           <Grid container spacing={3} className={classes.containerWrapped}>
-          <Grid item>
+          <Grid item style={{backgroundColor: `lightgrey`}}>
             <ButtonBase className={classes.image}>
             <Img style={{width: 128, height: 128, margin: 0, padding: 0}} fluid={image}> </Img> 
+         
             </ButtonBase>
+            { !!price33 &&
+              <FormControl component="fieldset" style={{marginTop: 20}}>
+              {/* <FormLabel component="legend" style={{textAlign: 'center'}}>Размер</FormLabel> */}
+              <RadioGroup aria-label="position" name="position" 
+              value={value[idx]} onChange={handleChange} row>
+              <FormControlLabel
+                  value={name}
+                  control={<Radio color="primary" name={idx + 1}  onChange={() => onRadioChangedd(id, priceDef)}/>}
+                  label="Средняя"
+                  labelPlacement="bottom"
+                  id={id}
+                  name={name}
+                  style={{margin: 5, padding: 0}}
+                />
+                <FormControlLabel
+                  value={name + "a"}
+                  control={<Radio color="primary" name={idx + 1}  onChange={() => onRadioChangedd(id, price33)}/>}
+                  label="Большая"
+                  labelPlacement="bottom"
+                  id={id}
+                  name={name}
+                  style={{margin: 5, padding: 0}}
+                />
+              </RadioGroup>
+            </FormControl>
+             }
           </Grid>
-          <Grid item xs={12} sm={9} container>
-            <Grid item xs={12} sm={6} container direction="column" spacing={2}>
+          <Grid item xs={12} sm={6} container>
+            <Grid item xs={12} sm={9} container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
                   {name}
@@ -170,21 +186,24 @@ return (
                   className="btn btn-outline-danger btn-sm ml-2">
                       <i className="fa fa-trash-o fa-lg"></i>
                   </button>
-          
                   <CssBaseline />
               </div>
+              
                 </Typography>
+                
               </Grid>
+              
               </Grid>
-          
             </Grid>
-            <Grid item>
-             <Typography variant="subtitle1"><b>{total} ₽</b></Typography>
+
+            <Grid item style={{margin: `0 5px 5px 0`}}>
+      
+             <Typography style={{backgroundColor: 'lightblue', color: '#000', textAlign: 'center'}} variant="subtitle1"><b>{total} ₽</b></Typography>
+            
             </Grid>
           </Grid>
         </Grid>
        </Paper>
- 
                 )
             })
         }
@@ -208,14 +227,17 @@ return (
             </div>
           </div>
     }
-      <div className="total mt-3">
-             <b> Итого к оплате: {total}</b>
-             </div>
-      <div className="total mt-3">
-            <Link state={{cart: addPanelPribors}} to="/order" >Продолжить оформление заказа</Link> 
+      <div className="total text-center mt-3">
+              <div>
+                <b> Итого к оплате: {total}</b>
+              </div>
+              <div>
+              <Button component={Link} state={{cart: addPanelPribors}} to="/order" className={classes.button}>Продолжить оформление</Button>
+              </div>
              </div>
         </div>         
         {/* </Paper> */}
+    
         </Grid>
         </Grid>
         </div>
@@ -454,6 +476,7 @@ export const querySets = graphql `
 //             <td>{total} ₽</td>
         
 //             <td>
+// -----------------------------------------------------------------------------------------------
 //             { !!price33 &&
        
 //             <div>

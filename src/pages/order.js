@@ -6,7 +6,11 @@ import { setName, setPhone,
   setSity, setAdress, setHome, setEntrance, setLevel, setDoor } from "../actions";
 // import  Img  from 'gatsby-image';
 
-// import * as R from 'ramda'
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -78,10 +82,28 @@ margin: 40px auto;
   padding: 20px 0 20px 0;
 }
 `
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  gridContainer: {
+    flexGrow: 1,
+    paddingLeft: theme.spacing(4),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    paddingLeft: theme.spacing(4),
+    marginBottom: 20,
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
+  }
+}));
 
-const Order = (location, {items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
+
+
+const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
     setName, setPhone, setSity, setAdress, setHome, setEntrance, setLevel, setDoor, total}) => {
-      // location: {state: {cart: {items=[], palochkiTotal= 0, addPanelPribors= false}}},
+    
 const [open, setOpen] = useState(false);
 const [openPayment, setOpenPayment] = useState(false);
 const [openDelivery, setOpenDelivery] = useState(false);
@@ -89,6 +111,8 @@ const [openDelivery, setOpenDelivery] = useState(false);
 const [age, setAge] = useState('');
 const [payment, setPayment] = useState('');
 const [delivery, setDelivery] = useState('');
+
+const classes = useStyles();
 
 const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -157,13 +181,29 @@ const handleSubmit = (ev) => {
 
 return (
     <section>
-    {/* { items.length !== 0 ? */}
+     <div className={classes.root}>
+    <Grid container>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+          <Typography variant="h2">
+            <Box fontFamily="Neucha" fontWeight={900} fontSize={46}>
+             Оформление заказа
+            </Box>
+          </Typography>
+          </Paper>
+          </Grid>
+          </Grid>
+
+        <Grid container xs className={classes.gridContainer}>
         <form  
            method="POST"
            onSubmit={handleSubmit}
            action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca">
-             <SectionInfo>    
-             <h4>Контактные данные</h4>  
+             {/* <SectionInfo>     */}
+             <Grid item xs={12}>
+             <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} fontSize={36}>Контактные данные</Box></Typography>  
+             </Grid>
+             
                <div className="section-contacts">
                <div>
                  <TextField id="validation-outlined-input" 
@@ -400,13 +440,15 @@ return (
              >
              Оформить заказ
              </Button>
-           </SectionInfo>
-         </form> 
+           {/* </SectionInfo> */}
+         </form>
+         </Grid> 
+         </div>
 </section>
 )
+// : <NoneItem className="d-flex justify-content-center align-items-center mt-5 none_item">Ваша корзина пуста!</NoneItem>}
 
 }
-// : <NoneItem className="d-flex justify-content-center align-items-center mt-5 none_item">Ваша корзина пуста!</NoneItem>}
 
 const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}, contacts: { 
     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword }, palochkiTotal}) => {

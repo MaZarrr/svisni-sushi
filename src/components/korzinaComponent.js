@@ -43,23 +43,23 @@ const TextTotal = styled.span `
         transform: rotate(0deg);
       }
       20% {
-        transform: rotate(30deg);
+        transform: rotate(30deg) scale(1.3);
         color: tomato;
       }
       40% {
-        transform: rotate(-30deg);
+        transform: rotate(-30deg) scale(1.1);
         color: tomato;
       }
       60% {
-        transform: rotate(30deg);
+        transform: rotate(30deg) scale(1.3);
         color: tomato;
       }
       80% {
-        transform: rotate(-30deg);
+        transform: rotate(-30deg) scale(1.1);
         color: tomato;
       }
       100% {
-        transform: rotate(0deg);
+        transform: rotate(0deg) scale(1.00);
       }
 }
 `
