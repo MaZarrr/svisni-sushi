@@ -8,6 +8,7 @@ import { setName, setPhone,
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,7 +18,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
 import styled  from 'styled-components';
 
 
@@ -96,7 +96,30 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 20,
     textAlign: 'left',
     color: theme.palette.text.secondary,
+  },
+  infoGrid: {
+    display: `flex`,
+    justifyContent: `center`,
+    width: `100%`
+  },
+  conatiner_info: {
+    maxWidth: 200,
+    minHeight: 100,
+    margin: `15px auto 15px auto`,
+    border: `2px solid blue`,
+    padding: 10,
+    borderRadius: 10
+  },
+  conatiner_info_left: {
+    minHeight: 100,
+    maxWidth: 200,
+    margin: `15px auto 15px 0`,
+    border: `2px solid blue`,
+    borderRadius: 10,
+    padding: 10,
+
   }
+
 }));
 
 
@@ -198,18 +221,22 @@ return (
         <form  
            method="POST"
            onSubmit={handleSubmit}
-           action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca">
+           action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
+           style={{width: '100%'}}
+           >
              {/* <SectionInfo>     */}
              <Grid item xs={12}>
-             <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} fontSize={36}>Контактные данные</Box></Typography>  
+             <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
+             fontSize={36}>Контактные данные</Box></Typography>  
              </Grid>
              
-               <div className="section-contacts">
-               <div>
+                <Grid container xs={6} sm={12} >
+                 {/* <Grid item xs={12}> */}
                  <TextField id="validation-outlined-input" 
                  label="Имя" 
                  variant="outlined" 
                  zIndex={0}
+                 style={{margin: `10px auto 10px 0`}}
                  required inputProps={{
                    maxLength: 12,
                    }} 
@@ -219,12 +246,14 @@ return (
                  }}  
                  value={nameUser} 
                  helperText="Введите ваше имя."/>
-                 </div>
-                 <div>
+                 {/* </div> */}
+                 {/* <div> */}
                  <TextField id="validation-outlined-input" 
                    label="Телефон" 
                    variant="outlined"
                    type="tel" 
+                   style={{margin: `10px auto 10px auto`}}
+
                    required inputProps={{
                      maxLength: 12,
                      }} 
@@ -233,12 +262,13 @@ return (
                        setPhone(e.target.value);
                    }}  
                    value={phoneUser} 
-                   helperText="Введите ваш телефон."/>       
-               </div>
-               </div>
-               <div className="container-wrap">
-               <div className="conatiner-info">
-                 <InputLabel id="controlled-open-select-label">Выберите форму оплаты</InputLabel>
+                   helperText="Введите ваш телефон."/>
+                   </Grid>
+                   {/* </Grid>        */}
+
+                  <Grid container xs={6} sm={12} >
+                  <div className={classes.conatiner_info_left}>
+                 <InputLabel id="controlled-open-select-label">Форма оплаты</InputLabel>
                  <Select
                    labelId="controlled-open-select-label"
                    id="controlled-open-select"
@@ -255,9 +285,9 @@ return (
                  <MenuItem value="Оплата наличными">Оплата наличными</MenuItem>
                </Select>
                </div>
-    
-               <div className="conatiner-info">
-               <InputLabel id="open-select-label">Выберите способ доставки</InputLabel>
+
+               <div className={classes.conatiner_info}>
+               <InputLabel id="open-select-label">Способ доставки</InputLabel>
                <Select
                  labelId="open-select-label"
                  id="open-select"
@@ -276,8 +306,8 @@ return (
              </div>
     
                { payment === "Оплата наличными" &&
-               <div className="conatiner-info">
-                 <InputLabel id="demo-controlled-open-select-label">С какой суммы сдача?</InputLabel>
+               <div className={classes.conatiner_info_left}>
+                 <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
                  <Select
                    labelId="demo-controlled-open-select-label"
                    id="demo-controlled-open-select"
@@ -296,15 +326,17 @@ return (
                  <MenuItem value={5000}>С 5000 руб</MenuItem>
                </Select>
              </div>
+             
                }
-             </div>
-    
-           <div className="container_delivery">
+             </Grid>
+
            { delivery === "Доставка курьером" &&  
-            <div>
-            <h4>Адрес доставки</h4>
-               <div className="content_info_user">
-               <div>
+           <>
+           <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} fontSize={36}>Адрес доставки</Box></Typography>  
+   
+            <Grid container xs={6} sm={12} justify="center">
+              
+              <div style={{margin: `20px`}}>
                <TextField id="validation-outlined-input" 
                  label="Населенный пункт" 
                  variant="outlined" 
@@ -316,9 +348,11 @@ return (
                      setSity(e.target.value);
                  }}  
                  value={deliverySity} 
-                 helperText="Введите ваш населенный пункт."/>
+                //  style={{margin: `10px auto 10px 0`}}
+
+                 helperText="Населенный пункт"/>
                </div>
-               <div>
+               <div style={{margin: `20px`}}>
                <TextField id="validation-outlined-input" 
                  label="Улица" 
                  variant="outlined" 
@@ -332,11 +366,11 @@ return (
                  value={deliveryAdress} 
                  helperText="Ваша улица"/>
                </div>
-               </div>
+  
+               </Grid>
     
-               <div className="container_delivery_info">
-               <div className="content_info_delivery"> 
-               <div>
+            <Grid container xs={6} sm={12} justify="space-around">
+          
                <TextField id="validation-outlined-input" 
                  label="Дом" 
                  variant="outlined" 
@@ -351,9 +385,7 @@ return (
                  }}  
                  value={homeNumber}
                  helperText="Введите ваш номер дома."/>	
-                               </div>
-    
-               <div>
+                               
                <TextField id="validation-outlined-input" 
                  label="Подъезд" 
                  variant="outlined" 
@@ -368,11 +400,7 @@ return (
                  }}  
                  value={entranceNumber}
                  helperText="Введите ваш номер подъезда."/>	
-               </div>
-               </div>
-    
-               <div className="content_info_delivery"> 
-               <div>
+             
                <TextField id="validation-outlined-input" 
                  label="Этаж" 
                  variant="outlined" 
@@ -387,9 +415,7 @@ return (
                  }}  
                  value={levelNumber}
                  helperText="Введите ваш этаж."/>	
-               </div>
-    
-               <div>
+
                <TextField id="validation-outlined-input" 
                  label="Код двери" 
                  variant="outlined" 
@@ -404,15 +430,13 @@ return (
                  }}  
                  value={doorPassword}
                  helperText="Код двери подьезда."/>	
-               </div>
-               </div>
-               </div>
-           </div>
+              
+               </Grid>
+               </>
          }
-        
-        </div>
-         
-           <div>
+  
+         <Grid container xs={12} direction="column" >
+ 
            <TextField
              id="outlined-multiline-static"
              label="Комментарий к заказу"
@@ -423,10 +447,10 @@ return (
                }} 
              name="Комментарий к заказу"
              variant="outlined"
-             className="mt-3"
+             style={{marginTop: `50px`}}
            />
-           </div>
-                  
+           
+           <Grid container xs={12} direction="column" alignItems="center">
            <div className="total mt-3">
              <b> Итого к оплате: {total}</b>
              </div>
@@ -436,11 +460,11 @@ return (
              variant="contained" 
              color="primary"
              size='large'
-             label='aa'
              >
              Оформить заказ
              </Button>
-           {/* </SectionInfo> */}
+             </Grid>
+             </Grid>
          </form>
          </Grid> 
          </div>

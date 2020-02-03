@@ -119,8 +119,9 @@ return (
           <Typography variant="h6"><b>Товар</b></Typography>
           {  
         items.map((item, idx) => {
+
         const {id, name, count, total, image, price33, radioPrice, radioValue, priceDef} = item
-        {/* console.log(R.includes(name, value)) */}
+   
         return (
           <Paper key={id} className={classes.paper}>
           <Grid container spacing={3} className={classes.containerWrapped}>
@@ -198,7 +199,7 @@ return (
 
             <Grid item style={{margin: `0 5px 5px 0`}}>
       
-             <Typography style={{backgroundColor: 'lightblue', color: '#000', textAlign: 'center'}} variant="subtitle1"><b>{total} ₽</b></Typography>
+             <Typography style={{ color: '#000', textAlign: 'center'}} variant="subtitle1"><b>{total} ₽</b></Typography>
             
             </Grid>
           </Grid>

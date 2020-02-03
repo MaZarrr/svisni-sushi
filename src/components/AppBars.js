@@ -133,7 +133,7 @@ useScrollPosition(({ prevPos, currPos }) => {
       aria-label="scrollable force tabs example"
     >
     {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index)=> (
-      <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} value={0} label={menu.name} {...a11yProps(index)}
+      <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} value={index + 1} label={menu.name} {...a11yProps(index)}
           icon={<Img fluid={menu.image.fluid} style={{width: `65px`}} imgStyle={{maxWidth: 65}} alt={menu.name}></Img>}/>
     ))}
        
