@@ -10,7 +10,7 @@ export default (props) =>{
 return (
     <Grid container xs direction="column" alignItems="center">
         <Typography variant="h1" style={{marginTop: `70px`}}>
-        <Box fontFamily="Neucha" fontWeight={900} fontSize={46} >
+        <Box fontFamily="Neucha" fontWeight={900} fontSize={46} style={{textAlign: `center`}}>
             Ваш заказ оформлен!
         </Box>
         </Typography>

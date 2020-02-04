@@ -103,16 +103,21 @@ const useStyles = makeStyles(theme => ({
     width: `100%`
   },
   conatiner_info: {
-    maxWidth: 200,
-    minHeight: 100,
-    margin: `15px auto 15px auto`,
+    // maxWidth: 200,
+    // minHeight: 100,
+    margin: `15px auto 15px 0`,
     border: `2px solid blue`,
     padding: 10,
     borderRadius: 10
   },
+  conatiner_info_delivery: {
+    // maxWidth: 200,
+    // minHeight: 100,
+    margin: `15px auto 15px 0`
+  },
   conatiner_info_left: {
-    minHeight: 100,
-    maxWidth: 200,
+    // minHeight: 100,
+    // maxWidth: 200,
     margin: `15px auto 15px 0`,
     border: `2px solid blue`,
     borderRadius: 10,
@@ -209,7 +214,7 @@ return (
         <Grid item xs={12}>
           <Paper className={classes.paper}>
           <Typography variant="h2">
-            <Box fontFamily="Neucha" fontWeight={900} fontSize={46}>
+            <Box fontFamily="Neucha" fontWeight={900} fontSize={32}>
              Оформление заказа
             </Box>
           </Typography>
@@ -227,10 +232,10 @@ return (
              {/* <SectionInfo>     */}
              <Grid item xs={12}>
              <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
-             fontSize={36}>Контактные данные</Box></Typography>  
+             fontSize={24}>Контактные данные</Box></Typography>  
              </Grid>
              
-                <Grid container xs={6} sm={12} >
+                <Grid container xs={12} >
                  {/* <Grid item xs={12}> */}
                  <TextField id="validation-outlined-input" 
                  label="Имя" 
@@ -252,7 +257,7 @@ return (
                    label="Телефон" 
                    variant="outlined"
                    type="tel" 
-                   style={{margin: `10px auto 10px auto`}}
+                   style={{margin: `10px auto 10px 0`}}
 
                    required inputProps={{
                      maxLength: 12,
@@ -266,7 +271,7 @@ return (
                    </Grid>
                    {/* </Grid>        */}
 
-                  <Grid container xs={6} sm={12} >
+                  <Grid container xs={12} >
                   <div className={classes.conatiner_info_left}>
                  <InputLabel id="controlled-open-select-label">Форма оплаты</InputLabel>
                  <Select
@@ -332,11 +337,10 @@ return (
 
            { delivery === "Доставка курьером" &&  
            <>
-           <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} fontSize={36}>Адрес доставки</Box></Typography>  
+           <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} fontSize={24}>Адрес доставки</Box></Typography>  
    
-            <Grid container xs={6} sm={12} justify="center">
-              
-              <div style={{margin: `20px`}}>
+            <Grid container xs={12} justify="center">      
+              <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Населенный пункт" 
                  variant="outlined" 
@@ -352,7 +356,7 @@ return (
 
                  helperText="Населенный пункт"/>
                </div>
-               <div style={{margin: `20px`}}>
+               <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Улица" 
                  variant="outlined" 
@@ -366,11 +370,10 @@ return (
                  value={deliveryAdress} 
                  helperText="Ваша улица"/>
                </div>
-  
                </Grid>
     
-            <Grid container xs={6} sm={12} justify="space-around">
-          
+            <Grid container xs={8} justify="space-around">
+                 <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Дом" 
                  variant="outlined" 
@@ -385,7 +388,9 @@ return (
                  }}  
                  value={homeNumber}
                  helperText="Введите ваш номер дома."/>	
-                               
+                </div>
+
+                <div className={classes.conatiner_info_delivery}>               
                <TextField id="validation-outlined-input" 
                  label="Подъезд" 
                  variant="outlined" 
@@ -400,7 +405,8 @@ return (
                  }}  
                  value={entranceNumber}
                  helperText="Введите ваш номер подъезда."/>	
-             
+              </div>
+              <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Этаж" 
                  variant="outlined" 
@@ -415,7 +421,8 @@ return (
                  }}  
                  value={levelNumber}
                  helperText="Введите ваш этаж."/>	
-
+              </div>
+              <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Код двери" 
                  variant="outlined" 
@@ -430,7 +437,7 @@ return (
                  }}  
                  value={doorPassword}
                  helperText="Код двери подьезда."/>	
-              
+              </div>
                </Grid>
                </>
          }

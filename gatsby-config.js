@@ -43,6 +43,12 @@ module.exports = {
           }
         }
       },
+      {
+        resolve: `gatsby-plugin-google-analytics`,
+        options: {
+          trackingId: 'G-3KY3WP513Z'
+        }
+      },
     {
       resolve: `gatsby-source-contentful`,
       options: {
@@ -52,7 +58,14 @@ module.exports = {
     }
   ]
 }
-
+// {
+//   resolve: `gatsby-plugin-yandex-metrika`,
+//   options: {
+//     trackingId: 'YOUR_YANDEX_METRIKA_TRACKING_ID',
+//     webvisor: true,
+//     trackHash: true,
+//   },
+// },
 // require('dotenv').config({
 //   path: '.env'
 // })
