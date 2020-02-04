@@ -19,7 +19,7 @@ import * as R from 'ramda'
   }
   
   const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.node.price) => { // добавление в корзину 
-   
+   //
       const { id = setу.node.id, count = 0, name = setу.node.name, total = 0, 
           image = setу.node.image.fluid, price33 = setу.node.priceIn33cm, pribor = 0,
       } = item
