@@ -1,9 +1,8 @@
 import React, {useEffect} from "react"
-import SEO from "../components/seo"
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import { connect } from 'react-redux';
 import Img from 'gatsby-image';
-import { producSetsLoad, setAddedToCart } from "../actions";
+import { producSetsLoad, setAddedToCart } from "../../actions";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -12,15 +11,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
-
-// import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -82,55 +77,53 @@ const useStyles = makeStyles(theme => ({
 
 // import "../components/sass/cart.css"
 
-const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, allContentfulIconMenuLeftPanel: {edges: imagee}},
-    producSetsLoad, 
-    setAddedToCart,
-  }) => {
-    console.log(imagee)
+const MenuProduct = ({
+        pizzaProduct,
+        producSetsLoad,
+        setAddedToCart,
+        imageInfo,
+        category,
+        path
+    }) => {
+        console.log(imageInfo)
   const classes = useStyles();
       
     useEffect(() => {
-        const data = setyProduct
+        const data = pizzaProduct
         producSetsLoad(data); // action push to reduxStore
 
-      }, [setyProduct, producSetsLoad])
+      }, [pizzaProduct, producSetsLoad])
 
 return (
-    <section>
-    <SEO title="Сеты" />
-    <section className="section_cart">
-     <div className="title"> 
-        <div className="title_item">
-            <h1>Сеты</h1>
-        </div>
-      </div>
-    <Grid container xs={12} justify="center" direction="row-reverse">
+    <Grid container>
     {
-      setyProduct.map(({
+      pizzaProduct.map(({
             node: productSets
           }) => {
     const {id, name, slug, description, price, image: {fluid} } = productSets
     
     return (
-    <Grid item xs={12} sm={6} md={3} >
-    <Card key={id} className={classes.card}>
+    <Grid key={id} item xs={12} sm={6} md={3} >
+    <Card className={classes.card}>
       <CardHeader
       classes={{title: classes.title}}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-           <Img style={{width: 50}} fluid={imagee[0].node.image.fluid} />
+           <Img style={{width: 50}} fluid={imageInfo.node.image.fluid} />
           </Avatar>
         }
-        title="Сет"
+        title={category}
         subheader={name}
       />
       <CardMedia 
         className={classes.media}
         title={name}
       > 
-
-      <Link to={`/sety/${slug}`}></Link>
+    <div>
+      <Link to={`/${path}/${slug}`}>
       <Img fluid={fluid} />
+      </Link>
+      </div>
       </CardMedia> 
 
       <CardContent>
@@ -158,9 +151,7 @@ return (
     </Card>
     </Grid>
     )})}
-        </Grid>
-      </section>
-    </section>
+    </Grid>
     )
 }
 
@@ -182,36 +173,6 @@ const mapStateToProps = ({ setList: {product} }) => {
     }  
 };
   
-export default connect(mapStateToProps, mapDispatchToProps)(Sety)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuProduct)
 
-export const querySets = graphql `
-    {
-        allContentfulProduct {
-          edges {
-            node {
-                id
-              slug
-              name
-              price
-              description
-              image {
-                  fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid_tracedSVG
-                  }
-              }
-              }
-            }
-          }
-             allContentfulIconMenuLeftPanel {
-               edges {
-                 node {
-                   image {
-                     fluid(maxWidth: 70) {
-                       ...GatsbyContentfulFluid
-                     }
-                   }
-                 }
-               }
-             }
-        }
-    `
+

@@ -1,11 +1,11 @@
-import React, {useEffect} from "react"
+import React from "react"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 
 import { connect } from 'react-redux';
-import Img from 'gatsby-image';
 import { producSetsLoad, setAddedToCart } from "../actions";
+import MenuProduct from "../components/common/MenuProduct";
 
 
 const SetySection = styled.section `
@@ -21,72 +21,9 @@ const SetySection = styled.section `
         padding: 0;
         border-bottom: 1px solid grey;
     }
-    .container h1 {
-        /* font-size: 5vw; */
-    }
-    header h2 {
-        font-size: 18px;
-        text-align: center;
-    }
-    .descript{
-        text-align: center;
-        font-size: 14px;
-        height: 45px;
-    }
-
-   a header h2 {
-       text-decoration: none;
-       list-style: none;
-       color: black;
-   }
-
-    ul.d {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: space-between;
-    }
-    p b {
-        font-size: 22px;
-    }
-    li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    .conainer_product {
-        width: 400px;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 50px;
-    }
-    article {
-        display: flex;
-        justify-content: center;
-        /* min-height: 400px; */
-    }
-    .img_fluid {
-        width: 300px;
-        text-align: center;
-        margin: 0 auto;
-    }
-
-    .container_cart {
-        height: 150px;
-        margin: 0;
-        padding: 0;
-    }
 ` 
 
-const Pizza = ({data: {allContentfulProductPizza: {edges}}, 
-    product, producSetsLoad, 
-    setAddedToCart
-  }) => {
-
-    useEffect(() => {
-        const data = edges
-        producSetsLoad(data); // action push to reduxStore
-      })
+const Pizza = ({data: {allContentfulProductPizza, allContentfulIconMenuLeftPanel}}) => {
 
 return (
     <section>
@@ -95,35 +32,13 @@ return (
     <div className="container"> 
         <h1>Пицца</h1>
     </div>
-    {edges.map(({node: productSets}) => {
-        const {id, name, slug, description, price, image: {fluid} } = productSets
-        return (
-        <div key={id} className="conainer_product"> 
-            <article>
-                <div>
-                <Link to={`/pizza/${slug}`}> 
-                    <div className="img_fluid">
-                        <Img style={{maxWidth: 300, height: 300}}
-                        fluid={fluid}></Img>
-                    </div>
-                <header>
-                    <h2>{name}</h2>
-                </header>
-                </Link>
-                <ul className="container_cart">
-                    <p className="descript">{description}</p>
-                <ul className="d">
-                    <p><b>от {price}</b> РУБ.</p>
-                    <button 
-                    onClick={() => setAddedToCart(id)}
-                    className="btn btn-success"><i className="fa fa-cart-plus fa-lg"></i></button>
-                </ul>
-                </ul>
-                </div>
-            </article>
-        </div>
-    )})}
-  
+
+    <MenuProduct 
+    pizzaProduct={allContentfulProductPizza.edges} 
+    imageInfo={allContentfulIconMenuLeftPanel.edges[1]}
+    category="Пицца"
+    path="pizza"
+    />
     </SetySection>
     </section>
     )
@@ -166,5 +81,16 @@ export const query = graphql `
               }
             }
           }
+        allContentfulIconMenuLeftPanel {
+            edges {
+                node {
+                    image {
+                        fluid(maxWidth: 70) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
         }
     `
