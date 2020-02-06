@@ -12,9 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -32,15 +30,18 @@ const useStyles = makeStyles(theme => ({
       fontFamily: 'Comfortaa',
       fontWeight: 800,
       fontDisplay: `fallback`,
-      minHeight: 125,
+      minHeight: 130,
+      [theme.breakpoints.down('500')]: {
+        minHeight: 'auto'
+      }
     },
   card: {
     maxWidth: `260px`,
     // minHeight: `680px`,
-    margin: `20px 1vw 10px 2vw`,
-    // [theme.breakpoints.down('425')]: {
-    //   maxWidth: `100%`,
-    // }
+    margin: `20px auto 10px auto`,
+    [theme.breakpoints.down('600')]: {
+      maxWidth: `300px`,
+    }
   },
   media: {
     maxWidth: `400px`,
@@ -86,7 +87,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, allContentfulI
     producSetsLoad, 
     setAddedToCart,
   }) => {
-    console.log(imagee)
+
   const classes = useStyles();
       
     useEffect(() => {
@@ -96,15 +97,14 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, allContentfulI
       }, [setyProduct, producSetsLoad])
 
 return (
-    <section>
-    <SEO title="Сеты" />
     <section className="section_cart">
+    <SEO title="Сеты" />
      <div className="title"> 
         <div className="title_item">
             <h1>Сеты</h1>
         </div>
       </div>
-    <Grid container xs={12} justify="center" direction="row-reverse">
+    <Grid container xs justify="center">
     {
       setyProduct.map(({
             node: productSets
@@ -129,8 +129,9 @@ return (
         title={name}
       > 
 
-      <Link to={`/sety/${slug}`}></Link>
+      <Link to={`/sety/${slug}`}>
       <Img fluid={fluid} />
+      </Link>
       </CardMedia> 
 
       <CardContent>
@@ -160,7 +161,6 @@ return (
     )})}
         </Grid>
       </section>
-    </section>
     )
 }
 
@@ -215,3 +215,117 @@ export const querySets = graphql `
              }
         }
     `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react"
+// import SEO from "../components/seo"
+// import {
+//   graphql
+// } from "gatsby";
+
+// import MenuProduct from './../components/common/MenuProduct';
+
+
+// const Sety = ({
+//   data: {
+//     allContentfulProduct,
+//     allContentfulIconMenuLeftPanel
+//   }
+// }) => {
+
+//   return ( <
+//     section className = "section_cart" >
+//     <
+//     SEO title = "Сеты" / >
+//     <
+//     div className = "title" >
+//     <
+//     div className = "title_item" >
+//     <
+//     h1 > Сеты < /h1> <
+//     /div> <
+//     /div>
+
+//     <
+//     MenuProduct product = {
+//       allContentfulProduct.edges
+//     }
+//     imageInfo = {
+//       allContentfulIconMenuLeftPanel.edges[0]
+//     }
+//     category = "Сеты"
+//     path = "sety" /
+//     >
+//     <
+//     /section>
+//   )
+// }
+
+// export default Sety
+
+// export const querySets = graphql `
+//     {
+//         allContentfulProduct {
+//           edges {
+//             node {
+//                 id
+//               slug
+//               name
+//               price
+//               description
+//               image {
+//                   fluid(maxWidth: 400) {
+//                     ...GatsbyContentfulFluid_tracedSVG
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//              allContentfulIconMenuLeftPanel {
+//                edges {
+//                  node {
+//                    image {
+//                      fluid(maxWidth: 70) {
+//                        ...GatsbyContentfulFluid
+//                      }
+//                    }
+//                  }
+//                }
+//              }
+//           }
+//     `

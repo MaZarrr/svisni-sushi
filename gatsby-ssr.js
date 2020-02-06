@@ -15,7 +15,10 @@ exports.wrapRootElement = ({element}) => {
         )
 }
 
-exports.onRenderBody = ({ setPreBodyComponents }) => {
+exports.onRenderBody = ({
+        setPreBodyComponents,
+        setPostBodyComponents
+    }) => {
     setPreBodyComponents([
 
         <script
@@ -37,10 +40,24 @@ exports.onRenderBody = ({ setPreBodyComponents }) => {
     `
         }}/>
     ])
+
+// setPostBodyComponents([
+// <script type="text/javascript"
+//  dangerouslySetInnerHTML={{
+//          __html: `
+
+//             VK.init({
+//                 apiId: 7263178,
+//                 onlyWidgets: true
+//             })
+//     `
+//             }} />
+// ])
 }
+    //         <script type="text/javascript">
+    //            dangerouslySetInnerHTML={{
 
-
-    //     <style
+   
 
     //     dangerouslySetInnerHTML={{
     //     __html: `

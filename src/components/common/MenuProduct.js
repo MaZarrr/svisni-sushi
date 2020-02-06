@@ -17,6 +17,7 @@ import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
 
+
 const useStyles = makeStyles(theme => ({
   title: {
     fontFamily: 'Comfortaa',
@@ -74,30 +75,27 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-// import "../components/sass/cart.css"
-
 const MenuProduct = ({
-        pizzaProduct,
+        product,
         producSetsLoad,
         setAddedToCart,
         imageInfo,
         category,
         path
     }) => {
-        console.log(imageInfo)
+     
   const classes = useStyles();
       
     useEffect(() => {
-        const data = pizzaProduct
+        const data = product
         producSetsLoad(data); // action push to reduxStore
 
-      }, [pizzaProduct, producSetsLoad])
+      }, [product, producSetsLoad])
 
 return (
     <Grid container>
     {
-      pizzaProduct.map(({
+      product.map(({
             node: productSets
           }) => {
     const {id, name, slug, description, price, image: {fluid} } = productSets
@@ -119,7 +117,7 @@ return (
         className={classes.media}
         title={name}
       > 
-    <div>
+        <div>
       <Link to={`/${path}/${slug}`}>
       <Img fluid={fluid} />
       </Link>

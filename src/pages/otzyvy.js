@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 
 import SEO from "../components/seo"
 import styled  from 'styled-components';
@@ -20,15 +20,28 @@ const Otzyv = styled.section `
     }
 ` 
 
-const otzyvy = () => {
+const Otzyvy = () => {
+
+// useEffect(() => {
+//    window.VK.init({
+//         apiId: 7141171,
+//         onlyWidgets: true
+//     });
+// }, [])
+
+// useEffect(() => {
+//   window.VK.Widgets.Comments('vk_comments');
+// }, [])
+
+
 
 return (
     <>
     <SEO title="Отзывы" />
     <section>
     <Otzyv>
-    <div className="container">
-        <h1>Отзывы</h1>
+    <div className="vk_comments" style={{width: `100%`, height: `400px`}}>
+        {/* <h1>Отзывы</h1> */}
     </div>
     </Otzyv>
     </section>
@@ -37,4 +50,4 @@ return (
     )
 }
 
-export default otzyvy
+export default Otzyvy

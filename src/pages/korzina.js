@@ -7,7 +7,6 @@ import { setAddedToCart, setRemoveFromCart, allSetRemoveFromCart,
 import  Img  from 'gatsby-image';
 
 import * as R from 'ramda'
-// import styled  from 'styled-components';
 
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';

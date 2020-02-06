@@ -41,6 +41,12 @@ function SEO({ description, lang, meta, title }) {
           crossorigin: `anonymous`
         } 
       ]}
+      script={[
+        {
+        src: `https://vk.com/js/api/openapi.js?167`,
+        type: `text/javascript`
+       }
+      ]}
       meta={[
         {
           name: `description`,
