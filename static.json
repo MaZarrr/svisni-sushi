@@ -20,8 +20,9 @@
     "routes": {
       "/assets/*": "/assets/",
       "/**": "index.html",
-      "/pages/**": "/sety"
-      },
+      "/pages/**": "/sety",
+      "/": "/graphql"
+      }, 
       "redirects": {
         "/old/gone/": {
           "url": "/404",
@@ -29,6 +30,6 @@
         }
       },
     "https_only": true,
-    "error_page": "pages/404.js",
+    "error_page": "/pages/404.js",
     "clean_urls": true
   }

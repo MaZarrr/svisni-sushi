@@ -33,21 +33,25 @@ const Otzyvy = () => {
 //   window.VK.Widgets.Comments('vk_comments');
 // }, [])
 
+// const test = () => {
+
+// }
+
 return (
   <>
     <SEO title="Отзывы" />
     <section>
-      <VK apiId={7311665}>
+      <VK apiId={7311665} onlyWidgets="true">
         <Comments elementId="vk_comments" />
-        <Otzyv></Otzyv>
       </VK>
-      <iframe
+      <div
         id="vk_comments"
         className="vk_comments"
         style={{ width: `100%`, height: `400px` }}
       >
+       {/* < Otzyv > < /Otzyv> */}
         {/* <h1>Отзывы</h1> */}
-      </iframe>
+      </div>
     </section>
   </>
 )
