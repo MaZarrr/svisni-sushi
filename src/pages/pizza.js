@@ -1,4 +1,3 @@
-
 import React, {useEffect} from "react"
 import SEO from "../components/seo"
 import { graphql, Link } from "gatsby";

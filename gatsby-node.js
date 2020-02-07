@@ -4,6 +4,7 @@ exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js')
     const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js')
+    const slognyeTeamplates = path.resolve('./src/templates/slognyeTeamplates.js')
 
     const result = await graphql(`
     {
@@ -15,6 +16,13 @@ exports.createPages = async ({graphql, actions}) => {
           }
         }
       allContentfulProductPizza {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+      allContentfulProductSlognyeRolly {
         edges {
           node {
             slug
@@ -45,7 +53,23 @@ exports.createPages = async ({graphql, actions}) => {
         }
       })
     })
+    
+ const productslognye = result.data.allContentfulProductSlognyeRolly.edges;
+ productslognye.forEach(({
+   node: product
+ }) => {
+   createPage({
+     path: `/slozhnyeRolly/${product.slug}`,
+     component: slognyeTeamplates,
+     context: {
+       slug: product.slug
+     }
+   })
+ })
+
 }
+
+
 
 
     // .then((result)=> {
