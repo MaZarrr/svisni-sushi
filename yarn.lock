@@ -11674,6 +11674,11 @@ react-transition-group@4.0.0, react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-vk@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/react-vk/-/react-vk-5.0.2.tgz#c590cebde365f66f154ec338fdd58cfd1d004ca6"
+  integrity sha512-fjlznPH3o4lsOyKUzOXyWmfIELtd/CR6ZOeJsOhIH3TMI/T7QH8acdEWJH9Bz2Ivd9pa/MN9WMr00G9F25TDUg==
+
 react@^16.12.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"

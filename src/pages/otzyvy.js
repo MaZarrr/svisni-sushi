@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-
+import VK, {Comments} from "react-vk";
 import SEO from "../components/seo"
 import styled  from 'styled-components';
 
@@ -33,17 +33,19 @@ const Otzyvy = () => {
 //   window.VK.Widgets.Comments('vk_comments');
 // }, [])
 
-
-
 return (
     <>
     <SEO title="Отзывы" />
     <section>
+    <VK apiId={7263178}>
+    <Comments elementId="vk_comments"/>
     <Otzyv>
-    <div className="vk_comments" style={{width: `100%`, height: `400px`}}>
-        {/* <h1>Отзывы</h1> */}
-    </div>
+
     </Otzyv>
+    </VK>
+        <iframe id="vk_comments" className="vk_comments" style={{width: `100%`, height: `400px`}}>
+        {/* <h1>Отзывы</h1> */}
+    </iframe>
     </section>
     </>
     
