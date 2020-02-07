@@ -34,22 +34,23 @@ const Otzyvy = () => {
 // }, [])
 
 return (
-    <>
+  <>
     <SEO title="Отзывы" />
     <section>
-    <VK apiId={7263178}>
-    <Comments elementId="vk_comments"/>
-    <Otzyv>
-
-    </Otzyv>
-    </VK>
-        <iframe id="vk_comments" className="vk_comments" style={{width: `100%`, height: `400px`}}>
+      <VK apiId={7311665}>
+        <Comments elementId="vk_comments" />
+        <Otzyv></Otzyv>
+      </VK>
+      <iframe
+        id="vk_comments"
+        className="vk_comments"
+        style={{ width: `100%`, height: `400px` }}
+      >
         {/* <h1>Отзывы</h1> */}
-    </iframe>
+      </iframe>
     </section>
-    </>
-    
-    )
+  </>
+)
 }
 
 export default Otzyvy
