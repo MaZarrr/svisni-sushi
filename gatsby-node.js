@@ -75,8 +75,8 @@ exports.createPages = async ({graphql, actions}) => {
    })
  })
 
-  const productslognye = result.data.allContentfulProductKlassika.edges;
-  productslognye.forEach(({
+  const productsklassika = result.data.allContentfulProductKlassika.edges;
+  productsklassika.forEach(({
     node: product
   }) => {
     createPage({
