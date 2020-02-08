@@ -29,13 +29,14 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 800,
         fontDisplay: `fallback`,
     },
-    titleH1: {
+      titleH1: {
         fontFamily: 'Neucha',
         fontWeight: 800,
+        paddingLeft: `20px`,
         [theme.breakpoints.down('500')]: {
-            fontSize: `26px`
+          fontSize: `28px`
         }
-    },
+      },
     deckript: {
         fontFamily: 'Comfortaa',
         fontWeight: 800,
@@ -107,9 +108,7 @@ return (
    <section className="section_cart" >
     <SEO title="Сложные роллы" />
      <div className="title"> 
-        <div className="title_item">
             <h1 className={classes.titleH1}>Сложные роллы</h1>
-        </div>
       </div>
     <Grid container xs={12} justify="center">
     {

@@ -5,6 +5,7 @@ exports.createPages = async ({graphql, actions}) => {
     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js')
     const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js')
     const slognyeTeamplates = path.resolve('./src/templates/slognyeTeamplates.js')
+    const klassikaTeamplates = path.resolve('./src/templates/klassikaTeamplates.js')
 
     const result = await graphql(`
     {
@@ -29,6 +30,13 @@ exports.createPages = async ({graphql, actions}) => {
           }
         }
       }
+       allContentfulProductKlassika {
+         edges {
+           node {
+             slug
+           }
+         }
+       }
     }
     `)
 
@@ -66,6 +74,19 @@ exports.createPages = async ({graphql, actions}) => {
      }
    })
  })
+
+  const productslognye = result.data.allContentfulProductKlassika.edges;
+  productslognye.forEach(({
+    node: product
+  }) => {
+    createPage({
+      path: `/klassicheskieRolly/${product.slug}`,
+      component: klassikaTeamplates,
+      context: {
+        slug: product.slug
+      }
+    })
+  })
 
 }
 

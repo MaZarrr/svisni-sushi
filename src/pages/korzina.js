@@ -62,7 +62,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts}, 
+const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts,
+  allContentfulProductKlassika, allContentfulProductSlognyeRolly},
     producSetsLoad, 
     items, 
     total,
@@ -86,7 +87,8 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
   };
   
     useEffect(() => {
-        const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges)
+        const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
+          allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges)
         producSetsLoad(data); // action push to reduxStore
       }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts])
       
@@ -317,7 +319,41 @@ export const querySets = graphql `
                 }
               }
             }
-  }
+    }
+    allContentfulProductKlassika {
+      edges {
+        node {
+          id
+          name
+          price
+          description
+          weight
+          count
+          image {
+            fluid(maxWidth: 400) {
+              ...GatsbyContentfulFluid
+            }
+          }
+        }
+      }
+    }
+      allContentfulProductSlognyeRolly {
+        edges {
+          node {
+            id
+            name
+            price
+            description
+            weight
+            count
+            image {
+              fluid(maxWidth: 400) {
+                ...GatsbyContentfulFluid
+              }
+            }
+          }
+        }
+      }
         }
     `
 
