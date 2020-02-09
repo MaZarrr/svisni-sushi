@@ -63,7 +63,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts,
-  allContentfulProductKlassika, allContentfulProductSlognyeRolly},
+  allContentfulProductKlassika, allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
+  allContentfulProductSalat, allContentfulProductNapitki, allContentfulProductGunkan},
     producSetsLoad, 
     items, 
     total,
@@ -88,16 +89,16 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
   
     useEffect(() => {
         const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
-          allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges)
+          allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
+          allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
+          allContentfulProductGunkan.edges)
         producSetsLoad(data); // action push to reduxStore
       }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts])
       
     const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
       
     const onRadioChangedd = (id, price) =>  {
-      // const { target: { id, value } } = e
       onRazmer(id, price)
-      console.log(price)
     }
 
 return (
@@ -165,7 +166,7 @@ return (
                   {name}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                 76шт 1080кг
+                 {/* 76шт 1080кг */}
                 </Typography>
                   <Typography variant="body2" color="textSecondary">
                   {count} шт
@@ -295,7 +296,6 @@ export const querySets = graphql `
               slug
               name
               price
-              description
               priceIn33cm
               image {
                   fluid(maxWidth: 400) {
@@ -311,7 +311,6 @@ export const querySets = graphql `
                 id
                 name
                 price
-                description
                 image {
                   fluid(maxWidth: 768) {
                     ...GatsbyContentfulFluid
@@ -326,7 +325,6 @@ export const querySets = graphql `
           id
           name
           price
-          description
           weight
           count
           image {
@@ -343,7 +341,6 @@ export const querySets = graphql `
             id
             name
             price
-            description
             weight
             count
             image {
@@ -354,6 +351,84 @@ export const querySets = graphql `
           }
         }
       }
+           allContentfulProductSushi {
+             edges {
+               node {
+                 id
+                 name
+                 count
+                 price
+                 weight
+                 image {
+                   fluid(maxWidth: 400) {
+                     ...GatsbyContentfulFluid
+                   }
+                 }
+               }
+             }
+           }
+               allContentfulProductHotRolly {
+                 edges {
+                   node {
+                     id
+                     name
+                     price
+                     weight
+                     count
+                     image {
+                       fluid(maxWidth: 400) {
+                         ...GatsbyContentfulFluid
+                       }
+                     }
+                   }
+                 }
+               }
+                 allContentfulProductSalat {
+                   edges {
+                     node {
+                       id
+                       name
+                       price
+                       weight
+                       image {
+                         fluid(maxWidth: 400) {
+                           ...GatsbyContentfulFluid
+                         }
+                       }
+                     }
+                   }
+                 }
+                allContentfulProductNapitki {
+                  edges {
+                    node {
+                      id
+                      price
+                      name
+                      weight
+                      image {
+                        fluid(maxWidth: 400) {
+                          ...GatsbyContentfulFluid
+                        }
+                      }
+                    }
+                  }
+              }
+              allContentfulProductGunkan {
+                edges {
+                  node {
+                    id
+                    name
+                    count
+                    price
+                    weight
+                    image {
+                      fluid(maxWidth: 400) {
+                        ...GatsbyContentfulFluid
+                      }
+                    }
+                  }
+                }
+              }
         }
     `
 

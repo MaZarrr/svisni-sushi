@@ -19,7 +19,7 @@ const Akcii = styled.section `
     }
 ` 
 
-const deserty = () => {
+const souses = () => {
 
 return (
     <>
@@ -36,6 +36,6 @@ return (
     )
 }
 
-export default deserty
+export default souses
 
 
