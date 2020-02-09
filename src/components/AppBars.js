@@ -141,7 +141,7 @@ useScrollPosition(({ prevPos, currPos }) => {
   </AppBarStyle>
   );
 }
-
+//
 AppBars.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired,
