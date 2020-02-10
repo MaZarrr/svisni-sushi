@@ -64,7 +64,8 @@ const useStyles = makeStyles(theme => ({
 
 const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts,
   allContentfulProductKlassika, allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
-  allContentfulProductSalat, allContentfulProductNapitki, allContentfulProductGunkan},
+  allContentfulProductSalat, allContentfulProductNapitki, allContentfulProductGunkan, allContentfulProductZakuski,
+  allContentfulProductSouse},
     producSetsLoad, 
     items, 
     total,
@@ -77,8 +78,8 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
   }) => {
 
   const classes = useStyles();
-    
   const [value, setValue] = React.useState([]);
+
   const handleChange = event => {
     setValue(() => {
       return R.update(event.target.id, [
@@ -91,9 +92,12 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
         const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
           allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
           allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
-          allContentfulProductGunkan.edges)
-        producSetsLoad(data); // action push to reduxStore
-      }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts])
+          allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges)
+          producSetsLoad(data); // action push to reduxStore
+      }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts, allContentfulProductNapitki,
+          allContentfulProductHotRolly, allContentfulProductGunkan, allContentfulProductKlassika, allContentfulProductSalat,
+          allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski
+      ])
       
     const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
       
@@ -122,7 +126,7 @@ return (
           {  
         items.map((item, idx) => {
 
-        const {id, name, count, total, image, price33, radioPrice, radioValue, priceDef} = item
+        const {id, name, count, total, image, price33, radioValue, priceDef} = item // radioPrice
    
         return (
           <Paper key={id} className={classes.paper}>
@@ -429,6 +433,34 @@ export const querySets = graphql `
                   }
                 }
               }
+              allContentfulProductZakuski {
+                edges {
+                  node {
+                    id
+                    name
+                    price
+                    image {
+                      fluid(maxWidth: 400) {
+                        ...GatsbyContentfulFluid
+                      }
+                    }
+                  }
+                }
+              }
+            allContentfulProductSouse {
+              edges {
+                node {
+                  id
+                  price
+                  name
+                  image {
+                    fluid(maxWidth: 400) {
+                      ...GatsbyContentfulFluid
+                    }
+                  }
+                }
+              }
+            }
         }
     `
 

@@ -83,7 +83,15 @@ const useStyles = makeStyles(theme => ({
 
 // import "../components/sass/cart.css"
 
-const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, allContentfulIconMenuLeftPanel: {edges: imagee}},
+const Sety = ({
+      data: {
+        allContentfulProduct: {
+          edges: setyProduct
+        },
+        contentfulIconMenuLeftPanel: {
+          image
+        }
+      },
     producSetsLoad, 
     setAddedToCart,
   }) => {
@@ -109,7 +117,7 @@ return (
       setyProduct.map(({
             node: productSets
           }) => {
-    const {id, name, slug, description, price, image: {fluid} } = productSets
+    const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
     
     return (
     <Grid item xs={12} sm={6} md={3} >
@@ -118,7 +126,7 @@ return (
       classes={{title: classes.title}}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-           <Img style={{width: 50}} fluid={imagee[0].node.image.fluid} />
+           <Img style={{width: 50}} fluid={image.fluid} />
           </Avatar>
         }
         title="Сет"
@@ -139,8 +147,8 @@ return (
         {description}
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-        <b><p>1020кг</p></b>
-          <b><p>64шт</p></b>
+        <b><p>{weight}кг</p></b>
+          <b><p>{count}шт</p></b>
         </Typography>
        <p>{`${price}₽`}</p>
       </CardContent>
@@ -193,6 +201,8 @@ export const querySets = graphql `
               slug
               name
               price
+              weight
+              count
               description
               image {
                   fluid(maxWidth: 400) {
@@ -202,17 +212,13 @@ export const querySets = graphql `
               }
             }
           }
-             allContentfulIconMenuLeftPanel {
-               edges {
-                 node {
-                   image {
-                     fluid(maxWidth: 70) {
-                       ...GatsbyContentfulFluid
-                     }
-                   }
-                 }
-               }
-             }
+           contentfulIconMenuLeftPanel(name: {eq: "Сеты"}) {
+            image {
+              fluid {
+                ...GatsbyContentfulFluid
+              }
+            }
+          }
         }
     `
 

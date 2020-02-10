@@ -1,7 +1,6 @@
 import React from "react"
 import SEO from "../components/seo"
 import CarouselSvisni from "../components/common/CarouselSvisni"
-// import styled from 'styled-components';
 import { Link, graphql } from "gatsby"
 import "../components/sass/index.css"
 import Img from 'gatsby-image';

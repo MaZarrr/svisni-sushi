@@ -92,8 +92,8 @@ const KlassicheskieRolly = ({
                 allContentfulProductKlassika: {
                     edges: setyProduct
                 },
-                allContentfulIconMenuLeftPanel: {
-                    edges: imagee
+                contentfulIconMenuLeftPanel: {
+                    image
                 }
             },
     producSetsLoad, 
@@ -128,7 +128,7 @@ return (
       classes={{title: classes.title}}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-           <Img style={{width: 50}} fluid={imagee[8].node.image.fluid} />
+           <Img style={{width: 50}} fluid={image.fluid} />
           </Avatar>
         }
         title={variant === "Темпура" ? "Темпурные" : "Классические"}
@@ -216,17 +216,13 @@ export const query = graphql `
                }
            }
        }
-        allContentfulIconMenuLeftPanel {
-            edges {
-                node {
-                    image {
-                        fluid(maxWidth: 70) {
-                            ...GatsbyContentfulFluid
-                             }
-                         }
-                    }
+         contentfulIconMenuLeftPanel(name: {eq: "Классические"}) {
+            image {
+                fluid(maxWidth: 35) {
+                    ...GatsbyContentfulFluid
                 }
             }
+        }
         }
     `
 

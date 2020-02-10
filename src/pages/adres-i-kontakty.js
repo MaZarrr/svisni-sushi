@@ -41,6 +41,7 @@ return (
     <Grid container xs={12} justify="space-around">
     <Grid item xs={11} sm={6} style={{border: `1px solid lightgrey`, padding: `10px`}}>
     <iframe 
+        title="frameMap"
         src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae5afe408e842285d3190098da0f22e3fe919c5fe14946fbe0b85c30d3fd71989&amp;source=constructor" 
         width="100%" 
         height="400" 

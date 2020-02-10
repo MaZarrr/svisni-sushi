@@ -1,8 +1,7 @@
 import React from "react"
 import styled  from 'styled-components';
-// import Img  from 'gatsby-image';
-import { Link } from "gatsby"
-// import { graphql, useStaticQuery, Link } from "gatsby"
+import Img  from 'gatsby-image';
+import { graphql, useStaticQuery, Link } from "gatsby"
 import Image from './image';
 
 const Footer = styled.footer `
@@ -84,10 +83,11 @@ const FooterUl = styled.ul `
 
   .social_container {
     display: flex;
+    margin: 0;
   }
   .social_img {
-    max-width: 35px;
-    margin: 0 5px 0 0;
+    max-width: 30px;
+    margin: 0 50px 0 0;
   }
 
   .social_img:hover {
@@ -115,7 +115,25 @@ const FooterUl = styled.ul `
 `
 
 export default () => { 
-//  const dataFooter = useStaticQuery(data);
+ 
+ const data = useStaticQuery(graphql `
+  {
+      allContentfulSocial {
+        edges {
+          node {
+            id
+            url
+            name
+            image {
+              fluid(maxWidth: 70) {
+                ...GatsbyContentfulFluid
+              }
+            }
+          }
+        }
+      }
+  }
+  `)
  
   return (
     <Footer>
@@ -126,9 +144,7 @@ export default () => {
           <Image />
         </Link>
       </li>
-      <li>
-        Свисни Суши
-      </li>
+      <li><strong>Свисни Суши</strong></li>
     </div>
 
     <div className="footer_info">
@@ -151,43 +167,21 @@ export default () => {
     </div>
 
     <div className="footer_items mt-3">
-      <li className="footer_item footer_social">
-      <p>Узнавайте об акциях первыми — <span className="txt_social">подписывайтесь на наши группы в соцсетях</span></p>
-      <div className="social_container">
-        <div className="social_img">
-        <a href="https://vk.com/sushi_urazovo">
-          {/* <Img fluid={dataFooter.contentfulCarouselSiteImage.edges[0]..node.}  style={{width: `30px`}} alt="Вконтакте"/> */}
+    <div className="footer_item footer_social">
+    <p>Узнавайте об акциях первыми — <span className="txt_social">подписывайтесь на наши группы в соцсетях</span></p>
+    <ul className="social_container">
+    {data.allContentfulSocial.edges.map(({node})=> (
+      <li className="social_img"  key={node.id}>
+        <a href={node.url}>
+        <Img fluid={node.image.fluid} style={{width: `30px`}} alt={node.name}/>
         </a>
-        </div>
-        <div className="social_img"> 
-        <a href="https://www.instagram.com/svisni_sushi">
-          {/* <Img fluid={inst}  style={{width: `30px`}} alt="Инстаграмм"/> */}
-        </a>
-        </div>
-        <div className="social_img">
-        <a href="https://ok.ru/group/55132913991911">
-          {/* <Img fluid={ok}  style={{width: `30px`}} alt="Одноклассники"/> */}
-        </a>
-        </div>
-      </div>       
-      </li>
+      </li>   
+    ))}
+     </ul>
+     </div>
     </div>
     </div>
     </FooterUl>
   </Footer>
 )
 }
-
-
-// export const data = graphql `
-//   {
-//     contentfulCarouselSiteImage {
-//     socialImg {
-//       fluid(maxWidth: 50) {
-//         ...GatsbyContentfulFluid
-//        }
-//       }
-//     }
-//   }
-//   `
-    

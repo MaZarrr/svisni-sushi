@@ -82,7 +82,15 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Napitki = ({data: {allContentfulProductNapitki: {edges: setyProduct}, allContentfulIconMenuLeftPanel: {edges: imagee}},
+const Napitki = ({
+      data: {
+        allContentfulProductNapitki: {
+          edges: setyProduct
+        },
+        contentfulIconMenuLeftPanel: {
+         image
+        }
+      },
     producSetsLoad, 
     setAddedToCart,
   }) => {
@@ -106,7 +114,7 @@ return (
       setyProduct.map(({
             node: productSets
           }) => {
-    const {id, name, price, weight, count, image: {fluid}} = productSets
+    const {id, name, price, weight, image: {fluid}} = productSets
     
     return (
     <Grid item xs={12} sm={6} md={3} >
@@ -115,7 +123,7 @@ return (
       classes={{title: classes.title}}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-           <Img style={{width: 50}} fluid={imagee[4].node.image.fluid} />
+           <Img style={{width: 50}} fluid={image.fluid} />
           </Avatar>
         }
         title="Напитки"
@@ -196,16 +204,12 @@ export const query = graphql `
             }
         }
     }
-        allContentfulIconMenuLeftPanel {
-            edges {
-                node {
-                    image {
-                        fluid(maxWidth: 70) {
-                            ...GatsbyContentfulFluid
-                             }
-                         }
-                    }
-                }
-            }
+        contentfulIconMenuLeftPanel(name: {eq: "Напитки"}) {
+           image {
+             fluid(maxWidth: 35) {
+               ...GatsbyContentfulFluid
+             }
+           }
+         }
         }
     `

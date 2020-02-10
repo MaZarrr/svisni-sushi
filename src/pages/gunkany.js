@@ -82,7 +82,15 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Gunkany = ({data: {allContentfulProductGunkan: {edges: setyProduct}, allContentfulIconMenuLeftPanel: {edges: imagee}},
+const Gunkany = ({
+      data: {
+        allContentfulProductGunkan: {
+          edges: setyProduct
+        },
+        contentfulIconMenuLeftPanel: {
+          image
+        }
+      },
     producSetsLoad, 
     setAddedToCart,
   }) => {
@@ -115,7 +123,7 @@ return (
       classes={{title: classes.title}}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-           <Img style={{width: 50}} fluid={imagee[10].node.image.fluid} />
+           <Img style={{width: 50}} fluid={image.fluid} />
           </Avatar>
         }
         title="Гункан"
@@ -191,16 +199,12 @@ export const query = graphql `
               }
           }
       }
-        allContentfulIconMenuLeftPanel {
-            edges {
-                node {
-                    image {
-                        fluid(maxWidth: 50) {
-                            ...GatsbyContentfulFluid
-                             }
-                         }
-                    }
-                }
-            }
+      contentfulIconMenuLeftPanel(name: {eq: "Гунканы"}) {
+         image {
+           fluid(maxWidth: 35) {
+             ...GatsbyContentfulFluid
+           }
+         }
+       }
         }
     `

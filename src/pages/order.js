@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { navigate} from 'gatsby'
 import { setName, setPhone,
   setSity, setAdress, setHome, setEntrance, setLevel, setDoor } from "../actions";
-// import  Img  from 'gatsby-image';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -18,70 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Select from '@material-ui/core/Select';
-import styled  from 'styled-components';
 
-
-const NoneItem = styled.h2 `
-font-family: 'Comfortaa', cursive;
-font-weight: 700;
-`
-const SectionInfo = styled.div `
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-around;
-margin: 40px auto;
-
-
-.table {
-  font-family: 'Comfortaa', cursive;
-  font-weight: 400;
-}
-
-.container-wrap {
-  display: flex;
-  flex-grow: 1;
-  background-color: #EEEADD;
-  width: 100%;
-  margin: 50px 0 50px 0;
-  /* flex-wrap: wrap; */
-}
-
-.conatiner-info {
-  margin: 50px auto 50px auto;
-}
-
-.section-contacts {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.container_delivery {
-  width: 100%;
-}
-.container_delivery h4 {
-  text-align: center;
-}
-
-.content_info_user {
-  display: flex;
-  justify-content: space-around;
-  margin: 0 0 50px 0;
-}
-
-.container_delivery_info {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.content_info_delivery {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0 20px 0;
-}
-`
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1

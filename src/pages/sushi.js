@@ -82,7 +82,15 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Sushi = ({data: {allContentfulProductSushi: {edges: setyProduct}, allContentfulIconMenuLeftPanel: {edges: imagee}},
+const Sushi = ({
+      data: {
+        allContentfulProductSushi: {
+          edges: setyProduct
+        },
+        contentfulIconMenuLeftPanel: {
+          image
+        }
+      },
     producSetsLoad, 
     setAddedToCart,
   }) => {
@@ -115,7 +123,7 @@ return (
       classes={{title: classes.title}}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-           <Img style={{width: 50}} fluid={imagee[9].node.image.fluid} />
+           <Img style={{width: 50}} fluid={image.fluid} />
           </Avatar>
         }
         title="Суши"
@@ -191,16 +199,12 @@ export const query = graphql `
               }
           }
       }
-        allContentfulIconMenuLeftPanel {
-            edges {
-                node {
-                    image {
-                        fluid(maxWidth: 70) {
-                            ...GatsbyContentfulFluid
-                             }
-                         }
-                    }
-                }
-            }
+             contentfulIconMenuLeftPanel(name: {eq: "Суши"}) {
+               image {
+                 fluid(maxWidth: 35) {
+                   ...GatsbyContentfulFluid
+                 }
+               }
+             }
         }
     `

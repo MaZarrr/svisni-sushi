@@ -1,33 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
-import styled  from 'styled-components';
 import {Link}  from 'gatsby';
-
-const Onas = styled.section `
-      font-family: 'Neucha', cursive;
-    font-weight: 500;
-    h1 {
-        font-family: 'Neucha', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
-    .container {
-        margin: 20px 0 0 20px;
-        padding: 0;
-        width: 90%;
-    }
-   
-    @media screen and (max-width: 768px) {
-    .container {
-        margin: 5vh 0 0 3vw;
-        padding: 0;
-       
-    }
-      .container h1 {
-        font-size: 7vw;
-    }
-}
-` 
+import {Styling} from './dostavka-i-oplata';
 
 const onas = () => {
 
@@ -35,7 +9,7 @@ return (
     <>
     <SEO title="О нас" />
     <section>
-    <Onas>
+    <Styling>
     <div className="container">
     <article>
         <header>
@@ -60,7 +34,7 @@ return (
         </div>
     </article>
     </div>
-</Onas>
+</Styling>
 </section>
     </>
     

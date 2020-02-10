@@ -2,11 +2,21 @@ import React from "react"
 import SEO from "../components/seo"
 import styled  from 'styled-components';
 
-const Delivery = styled.section `
-    font-family: 'Neucha', cursive;
+export const Styling = styled.section `
+    font-family: 'Comfortaa', cursive;
     font-weight: 500;
     margin-top: 30px;
     h1 {
+        font-family: 'Neucha', cursive;
+        font-style: normal;
+        font-weight: 900;
+    }
+    h3 {
+        font-family: 'Neucha', cursive;
+        font-style: normal;
+        font-weight: 900;
+    }
+    h2 {
         font-family: 'Neucha', cursive;
         font-style: normal;
         font-weight: 900;
@@ -35,7 +45,7 @@ return (
     <>
     <SEO title="Доставка и оплата" />
     <section>
-    <Delivery>
+    <Styling>
     <div className="container">
     <article>
         <header>
@@ -66,7 +76,7 @@ return (
 
     </article>
     </div>
-    </Delivery>
+    </Styling>
     </section>
     </>
     

@@ -17,7 +17,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('992')]: {
       marginTop: '90px',
     },
-    zIndex: '1000'
+    maxWidth: `1440px`,
+    zIndex: '1000',
+    margin: '0 auto',
   },
   toolbar: {
     display: 'flex',
@@ -47,16 +49,13 @@ const classes = useStyles();
 //   `)
 
   return (
-    <>
     <ErrorBoundary>
-    <Header
-      // homePageCart={allContentfulHomePageCarts.edges}
-    > </Header>
-    {/* siteTitle={data.site.siteMetadata.title} */}
- 
-     
-      <div
-        className={classes.root}>
+      <div className={classes.root}>
+           <Header
+  
+            > </Header>
+          
+       
        <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}
@@ -64,8 +63,7 @@ const classes = useStyles();
       </main>
       <Footer/>
       </div>
-  </ErrorBoundary>
-    </>
+</ErrorBoundary>
   )
 }
 
