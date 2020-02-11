@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
 const classes = useStyles();
 // const data = useStaticQuery(graphql`
 //     # query SiteTitleQuery {
@@ -51,17 +51,13 @@ const classes = useStyles();
   return (
     <ErrorBoundary>
       <div className={classes.root}>
-           <Header
-  
-            > </Header>
-          
-       
+      <Header /> 
        <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}
-      {/* <LabelBottomNavigation /> */}
+        {/* <LabelBottomNavigation /> */}
       </main>
-      <Footer/>
+        {location.pathname !== "/order" && location.pathname !== "/korzina" ? <Footer /> : null}
       </div>
 </ErrorBoundary>
   )

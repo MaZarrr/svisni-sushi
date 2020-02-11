@@ -103,6 +103,8 @@ export const query = graphql `
         price
         count
         weight
+        color
+        variant
         contentful_id
         image {
           fluid(maxWidth: 450) {

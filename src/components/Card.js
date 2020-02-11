@@ -12,16 +12,17 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-
-
+// import { red } from '@material-ui/core/colors';
+import Logo from "../images/logosvisni.png"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-
 import { producSetsLoad, setAddedToCart } from "../actions";
-// import Box from '@material-ui/core/Box';
+import styled from 'styled-components';
 
+const AvatarWrapp = styled(Avatar) `
+background: ${props => props.color};
+`
 const useStyles = makeStyles(theme => ({
   title: {
     fontFamily: 'Comfortaa',
@@ -52,7 +53,10 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500],
+    // backgroundColor: red[500],
+    border: `1px solid #000`,
+    width: `50px`,
+    height: `50px`
   },
   button: {
     margin: theme.spacing(1),
@@ -66,6 +70,10 @@ const useStyles = makeStyles(theme => ({
     // margin: '0 auto',
     display: `flex`,
     justifyContent: 'space-between',
+  },
+  img: {
+    margin: 0,
+    padding: 0
   }
 }));
 
@@ -73,8 +81,7 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
   setAddedToCart }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState({nameCart: false});
-    // console.log(edges)
-  
+    
   useEffect(() => {
     producSetsLoad(edges); // action push to reduxStore
   }, [edges, producSetsLoad])
@@ -91,16 +98,18 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
       <CardHeader
       classes={{title: classes.title}}
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            Top
-          </Avatar>
+           <AvatarWrapp alt="Sushi" src={Logo}
+              className={classes.avatar}
+              classes={{img: classes.img}}
+              color={homeProduct.color}>
+          </AvatarWrapp>
         }
         // action={
         //   <IconButton aria-label="settings">
         //     <MoreVertIcon />
         //   </IconButton>
         // }
-        title="Рекомендуем"
+        title={homeProduct.variant}
         subheader={homeProduct.name}
       />
       <CardMedia 
@@ -117,8 +126,8 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
         {/* </Box> */}
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-        <b><p>{homeProduct.weight !== null ? `Вес: ${homeProduct.weight} кг` : ''}</p></b>
-          <b><p>{`${homeProduct.count !== null ? `Вес: ${homeProduct.count} шт` : ''}`}</p></b>
+        <b><p>{homeProduct.weight !== null ? `${homeProduct.weight} гр` : ''}</p></b>
+          <b><p>{`${homeProduct.count !== null ? `${homeProduct.count} шт` : ''}`}</p></b>
         </Typography>
        <p>{`${homeProduct.price}₽`}</p>
       </CardContent>
