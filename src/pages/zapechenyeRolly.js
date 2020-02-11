@@ -91,7 +91,15 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ZapechenyeRolly = ({data: {allContentfulProductHotRolly: {edges: setyProduct}, allContentfulIconMenuLeftPanel: {edges: imagee}},
+const ZapechenyeRolly = ({
+      data: {
+        allContentfulProductHotRolly: {
+          edges: setyProduct
+        },
+        contentfulIconMenuLeftPanel: {
+          image
+        }
+      },
     producSetsLoad, 
     setAddedToCart,
   }) => {
@@ -124,7 +132,7 @@ return (
       classes={{title: classes.title}}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-           <Img style={{width: 50}} fluid={imagee[2].node.image.fluid} />
+           <Img style={{width: 50}} fluid={image.fluid} />
           </Avatar>
         }
         title={variant}
@@ -212,16 +220,12 @@ export const query = graphql `
               }
             }
           }
-        allContentfulIconMenuLeftPanel {
-            edges {
-                node {
-                    image {
-                        fluid(maxWidth: 70) {
-                            ...GatsbyContentfulFluid
-                             }
-                         }
-                    }
-                }
+        contentfulIconMenuLeftPanel(name: {eq: "Горячие"}) {
+             image {
+               fluid(maxWidth: 35) {
+                 ...GatsbyContentfulFluid
+               }
+             }
             }
         }
     `

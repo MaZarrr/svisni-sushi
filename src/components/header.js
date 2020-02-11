@@ -135,7 +135,7 @@ const Header = () => {
  
   const data = useStaticQuery(graphql `
   {
-    allContentfulIconMenuLeftPanel {
+    allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
     edges {
       node {
         id

@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
 const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts,
   allContentfulProductKlassika, allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
   allContentfulProductSalat, allContentfulProductNapitki, allContentfulProductGunkan, allContentfulProductZakuski,
-  allContentfulProductSouse},
+  allContentfulProductSouse, allContentfulProductKombo},
     producSetsLoad, 
     items, 
     total,
@@ -92,11 +92,12 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
         const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
           allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
           allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
-          allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges)
+          allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges, allContentfulProductKombo.edges)
           producSetsLoad(data); // action push to reduxStore
       }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts, allContentfulProductNapitki,
           allContentfulProductHotRolly, allContentfulProductGunkan, allContentfulProductKlassika, allContentfulProductSalat,
-          allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski
+          allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski,
+          allContentfulProductKombo
       ])
       
     const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
@@ -461,6 +462,22 @@ export const querySets = graphql `
                 }
               }
             }
+         allContentfulProductKombo {
+           edges {
+             node {
+               id
+               name
+               price
+               weight
+               count
+               image {
+                 fluid(maxWidth: 400) {
+                   ...GatsbyContentfulFluid_tracedSVG
+                 }
+               }
+             }
+           }
+         }
         }
     `
 

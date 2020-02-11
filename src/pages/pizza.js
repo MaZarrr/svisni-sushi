@@ -24,6 +24,11 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 800,
         fontDisplay: `fallback`
     },
+    titleH1: {
+      fontFamily: 'Neucha',
+      fontWeight: 800,
+      paddingLeft: `20px`
+    },
     deckript: {
         fontFamily: 'Comfortaa',
         fontWeight: 800,
@@ -104,7 +109,7 @@ return (
     <SEO title="Пицца" />
      <div className="title"> 
         <div className="title_item">
-            <h1>Пицца</h1>
+            <h1 className={classes.titleH1}>Пицца</h1>
         </div>
       </div>
     <Grid container xs={12} justify="center" direction="row-reverse">
@@ -143,8 +148,8 @@ return (
         {description}
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-        <b><p>1020кг</p></b>
-          <b><p>64шт</p></b>
+        <b><p>{0.6}кг</p></b>
+          <b><p>1шт</p></b>
         </Typography>
        <p>{`${price}₽`}</p>
       </CardContent>

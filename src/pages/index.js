@@ -103,12 +103,13 @@ export const query = graphql `
       }
     }
   }
-  allContentfulHomePageImageMenu {
+  allContentfulHomePageImageMenu(sort: {fields: desc}) {
     edges {
       node {
         id
         slug
         category
+        desc
         image {
           fluid(maxWidth: 300) {
             ...GatsbyContentfulFluid

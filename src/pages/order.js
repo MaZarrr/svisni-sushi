@@ -378,7 +378,7 @@ return (
                </>
          }
   
-         <Grid container xs={12} direction="column" >
+         <Grid container xs={10} direction="column" >
  
            <TextField
              id="outlined-multiline-static"
@@ -393,11 +393,13 @@ return (
              style={{marginTop: `50px`}}
            />
            
-           <Grid container xs={12} direction="column" alignItems="center">
-           <div className="total mt-3">
-             <b> Итого к оплате: {total}</b>
+           {/* <Grid container xs={12} direction="column" alignItems="center">
+        
+             </Grid> */}
+             </Grid>
+            <div className="total mt-3">
+             <b>Итого к оплате: {total}</b>
              </div>
-    
              <Button 
              type="submit" 
              variant="contained" 
@@ -406,8 +408,6 @@ return (
              >
              Оформить заказ
              </Button>
-             </Grid>
-             </Grid>
          </form>
          </Grid> 
          </div>

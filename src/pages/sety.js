@@ -20,11 +20,19 @@ import { Grid } from "@material-ui/core";
 
 // import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles(theme => ({
   title: {
     fontFamily: 'Comfortaa',
     fontWeight: 800,
     fontDisplay: `fallback`
+  },
+  titleH1: {
+    fontFamily: 'Neucha',
+    fontWeight: 800,
+    paddingLeft: `35px`,
+    paddingTop: `25px`,
+    paddingBottom: `20px`,
+    borderBottom: `1px solid lightgrey`
   },
   deckript: {
       fontFamily: 'Comfortaa',
@@ -107,11 +115,9 @@ const Sety = ({
 return (
     <section className="section_cart">
     <SEO title="Сеты" />
-     <div className="title"> 
-        <div className="title_item">
-            <h1>Сеты</h1>
+        <div className="title">
+            <h1 className={classes.titleH1}>Сеты</h1>
         </div>
-      </div>
     <Grid container xs justify="center">
     {
       setyProduct.map(({
