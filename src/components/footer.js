@@ -12,10 +12,10 @@ const Footer = styled.footer `
    font-family: 'Comfortaa', cursive;
     font-style: normal;
     font-weight: 400;
-    @media screen and (max-width: 768px) {
+    /* @media screen and (max-width: 767px) {
       margin-top: 100px;
       display: none;
-    }
+    } */
 
 `
 
@@ -48,6 +48,9 @@ const FooterUl = styled.ul `
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.53);
     transition: 0.05s;
     transform: scale(1);
+    @media screen and (max-width: 767px) {
+      max-width: 85%;
+    }
   }
 
   .footer_info_st a:hover {

@@ -54,16 +54,19 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: 36,
-    [theme.breakpoints.up('992')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: 5,
-    },
-    [theme.breakpoints.down('md')]: {
-      marginLeft: -5,
-    },
-    backgroundColor: "tomato", 
+    fontSize: `10px`,
+    color: `tomato`,
+    border: `1px solid tomato`,
+    // [theme.breakpoints.up('992')]: {
+    //   display: 'none',
+    // },
+    // [theme.breakpoints.down('sm')]: {
+    //   marginLeft: 5,
+    // },
+    // [theme.breakpoints.down('md')]: {
+    //   marginLeft: -5,
+    // },
+    // backgroundColor: "tomato", 
   },
   hide: {
     display: 'none',
@@ -124,8 +127,13 @@ const useStyles = makeStyles(theme => ({
     // width: '10vw',
     width: '25px',
     marginRight: 17,
+  },
+  iconDiv: {
+    span: {
+      fontFamily: 'Neucha, cursive',
+      fontWeight: 800
+    }
   }
- 
 }));
 
 const Header = () => {
@@ -260,18 +268,23 @@ const Header = () => {
         }}
       >
         <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon style={{backgroundColor: 'tomato'}}/> : <ChevronLeftIcon style={{backgroundColor: 'tomato'}}/>}
+          <IconButton size="small" onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon style={{backgroundColor: `tomato`}}/> 
+            : <ChevronLeftIcon style={{backgroundColor: `tomato`}}/>}
           </IconButton>
         </div>
         <Divider />
         <List> 
         {data.allContentfulIconMenuLeftPanel.edges.map(({node: iconButton})=> (
-        <ListItem key={iconButton.id} button component={Link} to={`/${iconButton.slug}`} className={classes.iconDiv}>
+        <ListItem key={iconButton.id} button component={Link} 
+        activeStyle={{ color: "tomato", 
+        borderBottom: `1px solid tomato`,
+        borderTop: `1px solid tomato`
+        }} to={`/${iconButton.slug}`}>
         <Icon className={classes.iconImg}>
           <Img fluid={iconButton.image.fluid} className={classes.iconImg} alt={iconButton.name}></Img>
         </Icon>
-          <ListItemText primary={iconButton.name} />
+          <ListItemText className={classes.iconDiv} primary={iconButton.name} />
         </ListItem>
         ))}
         </List>

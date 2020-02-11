@@ -26,6 +26,13 @@ const useStyles = makeStyles(theme => ({
   },
   demo: {
     margin: `0 auto`,
+  },
+  menuHome: {
+    display: `block`,
+    [theme.breakpoints.down('768')]: {
+       display: 'none',
+       margin: `0 auto`
+     }
   }
   // control: {
   //   padding: theme.spacing.unit * 2,
@@ -62,7 +69,9 @@ return (
       </Grid>
     </Grid>
 
+    {/* <div className={classes.menuHome}> */}
     <div className="menu">
+
       {data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
         <div key={homeMenu.id} className="cart_item">
           <div className="cart_container">

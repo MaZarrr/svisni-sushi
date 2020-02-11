@@ -170,8 +170,9 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
             {Math.abs(activeStep - index) <= 2 ? (
               <>
               <Img fluid={step.node.imgCarouselPhone.fluid} className={classes.img}  imgStyle={{maxWidth: 400}} alt={step.node.id} />
-              <Button variant='contained' color='primary' size="small"  >
-               <ArrowBackIcon  classes={{root: classes.button}}/> 
+            <Button variant='contained' color='primary' size="small"  >
+               {/* <ArrowBackIcon  classes={{root: classes.button}}/>  */}
+               Подробнее
             </Button>
             </>
             ) : null
