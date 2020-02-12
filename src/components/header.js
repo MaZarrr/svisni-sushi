@@ -57,9 +57,9 @@ const useStyles = makeStyles(theme => ({
     fontSize: `10px`,
     color: `tomato`,
     border: `1px solid tomato`,
-    // [theme.breakpoints.up('992')]: {
-    //   display: 'none',
-    // },
+    [theme.breakpoints.up('769')]: {
+      display: 'none',
+    },
     // [theme.breakpoints.down('sm')]: {
     //   marginLeft: 5,
     // },

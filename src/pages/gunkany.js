@@ -139,8 +139,8 @@ return (
 
       <CardContent>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-        <b><p>{weight}гр</p></b>
-          <b><p>{count}</p></b>
+        <b><p>{weight} гр</p></b>
+          <b><p>{count} шт</p></b>
         </Typography>
        <p>{`${price}₽`}</p>
       </CardContent>
