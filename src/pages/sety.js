@@ -3,7 +3,11 @@ import SEO from "../components/seo"
 import { graphql, Link } from "gatsby";
 import { connect } from 'react-redux';
 import Img from 'gatsby-image';
-import { producSetsLoad, setAddedToCart } from "../actions";
+import {
+  producSetsLoad,
+  setAddedToCart,
+  productRequested
+} from "../actions";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -102,15 +106,26 @@ const Sety = ({
       },
     producSetsLoad, 
     setAddedToCart,
+    productRequested,
+    loading
   }) => {
 
   const classes = useStyles();
-      
-    useEffect(() => {
-        const data = setyProduct
-        producSetsLoad(data); // action push to reduxStore
+console.log(loading);
 
+
+    useEffect(() => {
+
+      const data = setyProduct
+       productRequested()
+      producSetsLoad(data); // action push to reduxStore
+      
       }, [setyProduct, producSetsLoad])
+
+        if(loading) {
+        return <h1 style={{marginBottom: `300px`}}>...Загрузка</h1> 
+      }
+
 
 return (
     <section className="section_cart">
@@ -178,18 +193,16 @@ return (
     )
 }
 
-const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
+const mapStateToProps = ({ setList: {product, loading} }) => {
+    return {product, loading};
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
+    productRequested: () => dispatch(productRequested()),
     producSetsLoad: (newProduct) => {
         dispatch(producSetsLoad(newProduct))
     },
-    // productRequested: (loading) => {
-    //     dispatch(productRequested(loading))
-    // },
     setAddedToCart: (id) => {
         dispatch(setAddedToCart(id))
         }

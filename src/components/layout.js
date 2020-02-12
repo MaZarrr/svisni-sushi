@@ -50,7 +50,7 @@ const classes = useStyles();
 
   return (
     <ErrorBoundary>
-      <div className={classes.root}>
+      <div id="container" className={classes.root}>
       <Header /> 
        <main className={classes.content}>
         <div className={classes.toolbar} />
