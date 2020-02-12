@@ -111,16 +111,11 @@ const Sety = ({
   }) => {
 
   const classes = useStyles();
-console.log(loading);
-
-
     useEffect(() => {
-
+      productRequested()
       const data = setyProduct
-       productRequested()
       producSetsLoad(data); // action push to reduxStore
-      
-      }, [setyProduct, producSetsLoad])
+      }, [setyProduct, producSetsLoad, productRequested])
 
         if(loading) {
         return <h1 style={{marginBottom: `300px`}}>...Загрузка</h1> 

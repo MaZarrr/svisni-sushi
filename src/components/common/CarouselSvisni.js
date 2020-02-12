@@ -7,8 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import Button from '@material-ui/core/Button'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+// import Button from '@material-ui/core/Button'
+// import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles(theme => ({
@@ -170,10 +170,10 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
             {Math.abs(activeStep - index) <= 2 ? (
               <>
               <Img fluid={step.node.imgCarouselPhone.fluid} className={classes.img}  imgStyle={{maxWidth: 400}} alt={step.node.id} />
-            <Button variant='contained' color='primary' size="small"  >
+            {/* <Button variant='contained' color='primary' size="small"  > */}
                {/* <ArrowBackIcon  classes={{root: classes.button}}/>  */}
-               Подробнее
-            </Button>
+               {/* Подробнее */}
+            {/* </Button> */}
             </>
             ) : null
             }

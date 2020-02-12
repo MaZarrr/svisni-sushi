@@ -59,6 +59,10 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     marginTop: 8,
     margin: `0 auto` 
+  },
+  emty: {
+    padding: theme.spacing(2),
+    paddingLeft: theme.spacing(4),
   }
 }));
 
@@ -114,15 +118,14 @@ return (
     <Grid container>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-          { items.length !== 0 &&
           <Typography variant="h2">
             <Box fontFamily="Neucha" fontWeight={900} fontSize={46}>
-             Корзина
+                Корзина
             </Box>
           </Typography>
-          }
           </Paper>
-          <div className={classes.paperDiv}>
+           { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={34}>
+           Ваша корзина пуста </Box> : <div className={classes.paperDiv}>
           <Typography variant="h6"><b>Товар</b></Typography>
           {  
         items.map((item, idx) => {
@@ -244,8 +247,7 @@ return (
               </div>
              </div>
         </div>         
-        {/* </Paper> */}
-    
+        }
         </Grid>
         </Grid>
         </div>

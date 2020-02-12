@@ -205,7 +205,49 @@ return (
                    value={phoneUser} 
                    helperText="Введите ваш телефон."/>
                    </Grid>
-                   {/* </Grid>        */}
+
+                  <Grid item xs={12}>
+                  <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
+                  fontSize={24}>Дата и время доставки заказа</Box></Typography>  
+                  </Grid>
+
+                <Grid container xs={12} >
+                 <TextField id="validation-outlined-input" 
+                 label="Дата" 
+                 variant="outlined" 
+                 zIndex={0}
+                 style={{margin: `10px auto 10px 0`}}
+                 required inputProps={{
+                   maxLength: 12,
+                   }} 
+                   name="Дата" 
+                   onChange={(e) => {
+                     setName(e.target.value);
+                 }}  
+                 value={nameUser} 
+                 helperText="Когда доставить"/>
+
+                 <TextField id="validation-outlined-input" 
+                   label="Время" 
+                   variant="outlined"
+                   type="tel" 
+                   style={{margin: `10px auto 10px 0`}}
+
+                   required inputProps={{
+                     maxLength: 12,
+                     }} 
+                     name="Время" 
+                     onChange={(e) => {
+                       setPhone(e.target.value);
+                   }}  
+                   value={phoneUser} 
+                   helperText="К какому времени"/>
+                   </Grid>
+
+                  <Grid item xs={12}>
+                  <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
+                  fontSize={24}>Оплата</Box></Typography>  
+                  </Grid>
 
                   <Grid container xs={12} >
                   <div className={classes.conatiner_info_left}>
@@ -245,9 +287,11 @@ return (
                <MenuItem value="Доставка курьером">Доставка курьером</MenuItem>
              </Select>  
              </div>
-    
+
+       
+              
                { payment === "Оплата наличными" &&
-               <div className={classes.conatiner_info_left}>
+               <div className={classes.conatiner_info_left}> 
                  <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
                  <Select
                    labelId="demo-controlled-open-select-label"
@@ -271,10 +315,9 @@ return (
                }
              </Grid>
 
+            
            { delivery === "Доставка курьером" &&  
            <>
-           <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} fontSize={24}>Адрес доставки</Box></Typography>  
-   
             <Grid container xs={12} justify="center">      
               <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
