@@ -159,12 +159,13 @@ return (
         <form  
            method="POST"
            onSubmit={handleSubmit}
-           action="http://localhost:3000/"
+          // action="http://localhost:3000/"
+          action="https://node-server-ten.now.sh"
            name="svisniData"
           //  action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
            style={{width: '100%'}}
-           >
-    
+        >
+   
              <Grid item xs={12}>
              <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
              fontSize={24}>Контактные данные</Box></Typography>  
