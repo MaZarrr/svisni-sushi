@@ -160,7 +160,7 @@ return (
            method="POST"
            onSubmit={handleSubmit}
           // action="http://localhost:3000/"
-          action="https://node-server-ten.now.sh"
+          action="https://node-server-ten.now.sh/"
            name="svisniData"
           //  action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
            style={{width: '100%'}}
