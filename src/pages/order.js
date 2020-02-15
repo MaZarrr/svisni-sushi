@@ -182,7 +182,7 @@ return (
                  required inputProps={{
                    maxLength: 12,
                    }} 
-                   name="Имя" 
+                   name="name" 
                    onChange={(e) => {
                      setName(e.target.value);
                  }}  
@@ -199,7 +199,7 @@ return (
                    required inputProps={{
                      maxLength: 12,
                      }} 
-                     name="Телефон" 
+                     name="phone" 
                      onChange={(e) => {
                        setPhone(e.target.value);
                    }}  
