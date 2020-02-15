@@ -39,21 +39,15 @@ const useStyles = makeStyles(theme => ({
     width: `100%`
   },
   conatiner_info: {
-    // maxWidth: 200,
-    // minHeight: 100,
     margin: `15px auto 15px 0`,
     border: `2px solid blue`,
     padding: 10,
     borderRadius: 10
   },
   conatiner_info_delivery: {
-    // maxWidth: 200,
-    // minHeight: 100,
     margin: `15px auto 15px 0`
   },
   conatiner_info_left: {
-    // minHeight: 100,
-    // maxWidth: 200,
     margin: `15px auto 15px 0`,
     border: `2px solid blue`,
     borderRadius: 10,
@@ -86,19 +80,19 @@ const handleSubmit = (ev) => {
 
     items.forEach((elem) => {
       return data.append(
-        product, 
+        'product', 
         `
         Товар: ${elem.name},
         Общая цена ${elem.total},
         Количество: ${elem.count}`);
     });
     if(location.state.cart) {
-      data.append(chopsticks, palochkiTotal);
+      data.append('chopsticks', palochkiTotal);
     }
-      data.append(totalPrice, total);
+      data.append('totalPrice', total);
 
     xhr.open(form.method, form.action);
-  // xhr.setRequestHeader("Accept", "application/json");
+    // xhr.setRequestHeader("Accept", "application/json");
     // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = () => {
       if (xhr.readyState !== XMLHttpRequest.DONE) return;
@@ -170,14 +164,13 @@ return (
           //  action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
            style={{width: '100%'}}
            >
-             {/* <SectionInfo>     */}
+    
              <Grid item xs={12}>
              <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
              fontSize={24}>Контактные данные</Box></Typography>  
              </Grid>
              
                 <Grid container xs={12} >
-                 {/* <Grid item xs={12}> */}
                  <TextField id="validation-outlined-input" 
                  label="Имя" 
                  variant="outlined" 
@@ -192,8 +185,7 @@ return (
                  }}  
                  value={nameUser} 
                  helperText="Введите ваше имя."/>
-                 {/* </div> */}
-                 {/* <div> */}
+
                  <TextField id="validation-outlined-input" 
                    label="Телефон" 
                    variant="outlined"
@@ -440,11 +432,8 @@ return (
              variant="outlined"
              style={{marginTop: `50px`}}
            />
-           
-           {/* <Grid container xs={12} direction="column" alignItems="center">
-        
-             </Grid> */}
-             </Grid>
+           </Grid>
+
             <div className="total mt-3">
              <b>Итого к оплате: {total}</b>
              </div>
@@ -460,9 +449,7 @@ return (
          </Grid> 
          </div>
 </section>
-)
-// : <NoneItem className="d-flex justify-content-center align-items-center mt-5 none_item">Ваша корзина пуста!</NoneItem>}
-
+  )
 }
 
 const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}, contacts: { 
