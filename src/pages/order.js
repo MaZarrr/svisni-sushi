@@ -86,14 +86,16 @@ const handleSubmit = (ev) => {
 
     items.forEach((elem) => {
       return data.append(
-        elem.name, 
-        `Цена ${elem.total},
+        product, 
+        `
+        Товар: ${elem.name},
+        Общая цена ${elem.total},
         Количество: ${elem.count}`);
     });
     if(location.state.cart) {
-      data.append('Палочки(шт):', palochkiTotal);
+      data.append(chopsticks, palochkiTotal);
     }
-      data.append('Общая цена:', total);
+      data.append(totalPrice, total);
 
     xhr.open(form.method, form.action);
   // xhr.setRequestHeader("Accept", "application/json");
@@ -223,7 +225,7 @@ return (
                  required inputProps={{
                    maxLength: 12,
                    }} 
-                   name="Дата" 
+                   name="date" 
                    onChange={(e) => {
                      setName(e.target.value);
                  }}  
@@ -239,7 +241,7 @@ return (
                    required inputProps={{
                      maxLength: 12,
                      }} 
-                     name="Время" 
+                     name="time" 
                      onChange={(e) => {
                        setPhone(e.target.value);
                    }}  
@@ -262,7 +264,7 @@ return (
                    onClose={handleClosePayment}
                    onOpen={handleOpenPayment}
                    value={payment}
-                   name="Форма оплаты"
+                   name="payForm"
                    onChange={handleChangePayment}>
                    <MenuItem value="">
                    <em>Форма оплаты</em>
@@ -281,7 +283,7 @@ return (
                  onClose={handleCloseDelivery}
                  onOpen={handleOpenDelivery}
                  value={delivery}
-                 name="Доставка"
+                 name="delivery"
                  onChange={handleChangeDelivery}>
                  <MenuItem value="">
                  <em>Способ доставки</em>
@@ -303,7 +305,7 @@ return (
                    onClose={handleClose}
                    onOpen={handleOpen}
                    value={age}
-                   name="Сдача"
+                   name="sdacha"
                    onChange={handleChange}>
                    <MenuItem value="Без сдачи">
                    <em>Без сдачи</em>
@@ -329,7 +331,7 @@ return (
                  required inputProps={{
                    maxLength: 20,
                    }} 
-                   name="Адрес" 
+                   name="adress" 
                    onChange={(e) => {
                      setSity(e.target.value);
                  }}  
@@ -345,7 +347,7 @@ return (
                  required inputProps={{
                    maxLength: 20,
                    }} 
-                   name="Улица" 
+                   name="street" 
                    onChange={(e) => {
                      setAdress(e.target.value);
                  }}  
@@ -364,7 +366,7 @@ return (
                  required inputProps={{
                    maxLength: 5,
                    }} 
-                   name="Дом" 
+                   name="home" 
                    onChange={(e) => {
                      setHome(e.target.value);
                  }}  
@@ -381,7 +383,7 @@ return (
                  inputProps={{
                    maxLength: 3,
                    }} 
-                   name="Подъезд" 
+                   name="podezd" 
                    onChange={(e) => {
                      setEntrance(e.target.value);
                  }}  
@@ -397,7 +399,7 @@ return (
                  inputProps={{
                    maxLength: 3,
                    }} 
-                   name="Этаж" 
+                   name="etag" 
                    onChange={(e) => {
                      setLevel(e.target.value);
                  }}  
@@ -413,7 +415,7 @@ return (
                  inputProps={{
                    maxLength: 6,
                    }} 
-                   name="Код двери" 
+                   name="kodDveri" 
                    onChange={(e) => {
                      setDoor(e.target.value);
                  }}  
@@ -434,7 +436,7 @@ return (
              inputProps={{
                maxLength: 200,
                }} 
-             name="Комментарий к заказу"
+             name="comments"
              variant="outlined"
              style={{marginTop: `50px`}}
            />

@@ -221,7 +221,7 @@ return (
         { addPanelPribors &&
           <div className="container_pribor">
             <div className="d-flex flex-column align-items-center">
-              <b><p>Количество приборов</p></b>
+              <b><p>Количество приборов(палочки)</p></b>
               <div className="d-flex">
               <button 
               onClick={()=> addedPribor(1)}
