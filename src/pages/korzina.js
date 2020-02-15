@@ -474,7 +474,7 @@ export const querySets = graphql `
                count
                image {
                  fluid(maxWidth: 400) {
-                   ...GatsbyContentfulFluid_tracedSVG
+                   ...GatsbyContentfulFluid
                  }
                }
              }
