@@ -162,7 +162,8 @@ return (
         <form  
            method="POST"
            onSubmit={handleSubmit}
-           action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
+           action="http://localhost:3000/"
+          //  action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
            style={{width: '100%'}}
            >
              {/* <SectionInfo>     */}
