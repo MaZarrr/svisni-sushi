@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
-import {useStyles} from "./sety"
+import { useStylesCart } from '../components/common/style'
 
 const Kombo = ({
       data: {
@@ -31,7 +31,7 @@ const Kombo = ({
     setAddedToCart,
   }) => {
 
-  const classes = useStyles();
+  const classes = useStylesCart();
       
     useEffect(() => {
         const data = setyProduct

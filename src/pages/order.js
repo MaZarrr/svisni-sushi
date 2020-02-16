@@ -3,19 +3,19 @@ import React, {useState} from "react"
 import { connect } from 'react-redux';
 import { navigate} from 'gatsby'
 import { setName, setPhone,
-  setSity, setAdress, setHome, setEntrance, setLevel, setDoor } from "../actions";
+  setSity, setAdress, setHome, setEntrance, setLevel, setDoor, setTime, setDate } from "../actions";
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
-
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import Switch from '@material-ui/core/Switch';
 import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles(theme => ({
@@ -57,10 +57,62 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
+const IOSSwitch = withStyles(theme => ({
+  root: {
+    width: 42,
+    height: 26,
+    padding: 0,
+    margin: theme.spacing(1),
+  },
+  switchBase: {
+    padding: 1,
+    '&$checked': {
+      transform: 'translateX(16px)',
+      color: theme.palette.common.white,
+      '& + $track': {
+        backgroundColor: '#52d869',
+        opacity: 1,
+        border: 'none',
+      },
+    },
+    '&$focusVisible $thumb': {
+      color: '#52d869',
+      border: '6px solid #fff',
+    },
+  },
+  thumb: {
+    width: 24,
+    height: 24,
+  },
+  track: {
+    borderRadius: 26 / 2,
+    border: `1px solid ${theme.palette.grey[400]}`,
+    backgroundColor: `#00BFFF`,
+    opacity: 1,
+    transition: theme.transitions.create(['background-color', 'border']),
+  },
+  checked: {},
+  focusVisible: {},
+}))(({ classes, ...props }) => {
+  return (
+    <Switch
+      focusVisibleClassName={classes.focusVisible}
+      disableRipple
+      classes={{
+        root: classes.root,
+        switchBase: classes.switchBase,
+        thumb: classes.thumb,
+        track: classes.track,
+        checked: classes.checked,
+      }}
+      {...props}
+    />
+  );
+});
 
-
-const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword,
-    setName, setPhone, setSity, setAdress, setHome, setEntrance, setLevel, setDoor, total}) => {
+const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber, 
+  entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, 
+  setLevel, setDoor,  setTime, setDate, total, dateDelivery, timeDelivery}) => {
     
 const [open, setOpen] = useState(false);
 const [openPayment, setOpenPayment] = useState(false);
@@ -69,6 +121,17 @@ const [openDelivery, setOpenDelivery] = useState(false);
 const [age, setAge] = useState('');
 const [payment, setPayment] = useState('');
 const [delivery, setDelivery] = useState('');
+
+ const [state, setState] = React.useState({
+   checkedC: false
+ });
+
+console.log(state);
+
+
+ const handleChangee = name => event => {
+    setState({ ...state, [name]: event.target.checked });
+  };
 
 const classes = useStyles();
 
@@ -159,7 +222,6 @@ return (
         <form  
            method="POST"
            onSubmit={handleSubmit}
-          // action="http://localhost:3000/"
           action="https://node-server-ten.now.sh/"
            name="svisniData"
           //  action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
@@ -202,13 +264,29 @@ return (
                    }}  
                    value={phoneUser} 
                    helperText="Введите ваш телефон."/>
-                   </Grid>
-
+                  </Grid>
+                  <hr></hr>
                   <Grid item xs={12}>
                   <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
                   fontSize={24}>Дата и время доставки заказа</Box></Typography>  
-                  </Grid>
+                  <FormGroup>
+                    <Typography component="div">
+                    <Grid component="label" container alignItems="center" spacing={1}>
+                      <Grid item>Сразу</Grid>
+                      <Grid item>
+                        <IOSSwitch
+                          checked={state.checkedC}
+                          onChange={handleChangee('checkedC')}
+                          value="checkedC"
+                        />
+                      </Grid>
+                      <Grid item>Предзаказ</Grid>
+                    </Grid>
+                  </Typography>
+                </FormGroup>
+                </Grid>
 
+              {  state.checkedC &&
                 <Grid container xs={12} >
                  <TextField id="validation-outlined-input" 
                  label="Дата" 
@@ -216,15 +294,15 @@ return (
                  zIndex={0}
                  style={{margin: `10px auto 10px 0`}}
                  required inputProps={{
-                   maxLength: 12,
+                   maxLength: 22,
                    }} 
                    name="date" 
                    onChange={(e) => {
-                     setName(e.target.value);
+                     setDate(e.target.value);
                  }}  
-                 value={nameUser} 
+                 value={dateDelivery} 
                  helperText="Когда доставить"/>
-
+              
                  <TextField id="validation-outlined-input" 
                    label="Время" 
                    variant="outlined"
@@ -232,21 +310,22 @@ return (
                    style={{margin: `10px auto 10px 0`}}
 
                    required inputProps={{
-                     maxLength: 12,
+                     maxLength: 16,
                      }} 
                      name="time" 
                      onChange={(e) => {
-                       setPhone(e.target.value);
+                       setTime(e.target.value);
                    }}  
-                   value={phoneUser} 
+                   value={timeDelivery} 
                    helperText="К какому времени"/>
                    </Grid>
-
+                }
+                <hr></hr>
                   <Grid item xs={12}>
                   <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
                   fontSize={24}>Оплата</Box></Typography>  
                   </Grid>
-
+               
                   <Grid container xs={12} >
                   <div className={classes.conatiner_info_left}>
                  <InputLabel id="controlled-open-select-label">Форма оплаты</InputLabel>
@@ -266,7 +345,7 @@ return (
                  <MenuItem value="Оплата наличными">Оплата наличными</MenuItem>
                </Select>
                </div>
-
+               
                <div className={classes.conatiner_info}>
                <InputLabel id="open-select-label">Способ доставки</InputLabel>
                <Select
@@ -286,34 +365,30 @@ return (
              </Select>  
              </div>
 
-       
-              
-               { payment === "Оплата наличными" &&
-               <div className={classes.conatiner_info_left}> 
-                 <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
-                 <Select
-                   labelId="demo-controlled-open-select-label"
-                   id="demo-controlled-open-select"
-                   open={open}
-                   onClose={handleClose}
-                   onOpen={handleOpen}
-                   value={age}
-                   name="sdacha"
-                   onChange={handleChange}>
-                   <MenuItem value="Без сдачи">
-                   <em>Без сдачи</em>
-                 </MenuItem>
-                 <MenuItem value={700}>С 700 руб</MenuItem>
-                 <MenuItem value={1000}>С 1000 руб</MenuItem>
-                 <MenuItem value={2000}>С 2000 руб</MenuItem>
-                 <MenuItem value={5000}>С 5000 руб</MenuItem>
-               </Select>
-             </div>
-             
-               }
-             </Grid>
-
-            
+            { payment === "Оплата наличными" &&
+            <div className={classes.conatiner_info_left}> 
+              <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
+              <Select
+                labelId="demo-controlled-open-select-label"
+                id="demo-controlled-open-select"
+                open={open}
+                onClose={handleClose}
+                onOpen={handleOpen}
+                value={age}
+                name="sdacha"
+                onChange={handleChange}>
+                <MenuItem value="Без сдачи">
+                <em>Без сдачи</em>
+              </MenuItem>
+              <MenuItem value={700}>С 700 руб</MenuItem>
+              <MenuItem value={1000}>С 1000 руб</MenuItem>
+              <MenuItem value={2000}>С 2000 руб</MenuItem>
+              <MenuItem value={5000}>С 5000 руб</MenuItem>
+            </Select>
+          </div>
+            }
+          </Grid>
+          <hr></hr>
            { delivery === "Доставка курьером" &&  
            <>
             <Grid container xs={12} justify="center">      
@@ -350,7 +425,7 @@ return (
                </Grid>
     
             <Grid container xs={8} justify="space-around">
-                 <div className={classes.conatiner_info_delivery}>
+              <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Дом" 
                  variant="outlined" 
@@ -416,7 +491,7 @@ return (
                  helperText="Код двери подьезда."/>	
               </div>
                </Grid>
-               </>
+            </>
          }
   
          <Grid container xs={10} direction="column" >
@@ -454,7 +529,9 @@ return (
 }
 
 const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}, contacts: { 
-    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword }, palochkiTotal}) => {
+    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword, timeDelivery,
+    dateDelivery}, palochkiTotal
+    }) => {
         return {
             items: cartItems, 
             palochkiTotal,
@@ -467,7 +544,8 @@ const mapDispatchToProps = {
     setName, setPhone,
     setSity, setAdress, 
     setHome, setEntrance, 
-    setLevel, setDoor
+    setLevel, setDoor, 
+    setDate, setTime
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)

@@ -9,7 +9,9 @@ const contactUser = (state, action) => {
             homeNumber: '',
             entranceNumber: '',
             levelNumber: '',
-            doorPassword: ''
+            doorPassword: '',
+            timeDelivery: '',
+            dateDelivery: ''
           };
     }
 
@@ -104,6 +106,32 @@ const contactUser = (state, action) => {
                     levelNumber: state.contacts.levelNumber,
                     doorPassword: action.payload
                 };
+              case 'SET_TIME_DELIVERY':
+              return {
+                  nameUser: state.contacts.nameUser,
+                  phoneUser: state.contacts.phoneUser,
+                  deliverySity: state.contacts.deliverySity,
+                  deliveryAdress: state.contacts.deliveryAdress,
+                  homeNumber: state.contacts.homeNumber,
+                  entranceNumber: state.contacts.entranceNumber,
+                  levelNumber: state.contacts.levelNumber,
+                  doorPassword: state.contacts.doorPassword,
+                  dateDelivery: state.contacts.dateDelivery,
+                  timeDelivery: action.payload
+              };
+            case 'SET_DATE_DELIVERY':
+            return {
+                nameUser: state.contacts.nameUser,
+                phoneUser: state.contacts.phoneUser,
+                deliverySity: state.contacts.deliverySity,
+                deliveryAdress: state.contacts.deliveryAdress,
+                homeNumber: state.contacts.homeNumber,
+                entranceNumber: state.contacts.entranceNumber,
+                levelNumber: state.contacts.levelNumber,
+                doorPassword: state.contacts.doorPassword,
+                dateDelivery: action.payload,
+                timeDelivery: state.contacts.timeDelivery
+            };
 
         default:
             return state.contacts

@@ -120,6 +120,19 @@ const setDoor = (valueDoor) => {
         payload: valueDoor
       }
 }; 
+const setDate = (valueDate) => {
+    return {
+        type: 'SET_DATE_DELIVERY',
+        payload: valueDate
+    }
+};
+const setTime = (valueTime) => {
+    return {
+        type: 'SET_TIME_DELIVERY',
+        payload: valueTime
+    }
+};
+
 
 
 export {
@@ -131,5 +144,5 @@ export {
     allSetRemoveFromCart,
     onRazmer,
     addedPalochki,
-    setName, setPhone, setEntrance, setLevel, setDoor, setSity, setAdress, setHome
+    setName, setPhone, setEntrance, setLevel, setDoor, setSity, setAdress, setHome, setDate, setTime
 }

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Img from 'gatsby-image';
 import { producSetsLoad, setAddedToCart } from "../actions";
 
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -16,71 +15,8 @@ import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
-
-const useStyles = makeStyles(theme => ({
-    title: {
-        fontFamily: 'Comfortaa',
-        fontWeight: 800,
-        fontDisplay: `fallback`,
-    },
-      titleH1: {
-        fontFamily: 'Neucha',
-        fontWeight: 800,
-        paddingLeft: `20px`,
-        [theme.breakpoints.down('500')]: {
-          fontSize: `28px`
-        }
-      },
-    deckript: {
-        fontFamily: 'Comfortaa',
-        fontWeight: 800,
-        fontDisplay: `fallback`,
-    },
-    card: {
-        maxWidth: `260px`,
-        // minHeight: `680px`,
-        margin: `20px auto 10px auto`,
-        [theme.breakpoints.down('600')]: {
-            maxWidth: `300px`,
-        }
-    },
-    media: {
-        maxWidth: `400px`,
-        margin: `0 auto`,
-        // paddingTop: '56.25%', // 16:9
-        // backgroundSize: 'contain',
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-    avatar: {
-        // backgroundColor: red[500],
-        backgroundColor: `white`,
-        border: `1px dotted #000`
-    },
-    button: {
-        margin: theme.spacing(1),
-        // margin: `auto, 0, 10px 10px`,
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-    },
-    overline: {
-        minHeight: 55,
-        display: `flex`,
-        justifyContent: 'space-between',
-    }
-}));
 
 const Souses = ({
       data: {
@@ -95,7 +31,7 @@ const Souses = ({
     setAddedToCart,
   }) => {
   
-  const classes = useStyles();
+  const classes = useStylesCart();
       
     useEffect(() => {
         const data = setyProduct

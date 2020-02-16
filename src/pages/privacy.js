@@ -1,14 +1,14 @@
 import React from "react"
 import SEO from "../components/seo"
-import {Styling} from './dostavka-i-oplata';
+import { StylingInfo } from '../components/common/style';
+
 
 const privacy = () => {
 
 return (
     <>
     <SEO title="Условия обработки персональных данных" />
-    <section>
-    <Styling>
+    <StylingInfo>
     <div className="container">
     <article>
         <header>
@@ -73,8 +73,7 @@ return (
         </div>
     </article>
     </div>
-    </Styling>
-    </section>
+    </StylingInfo>
     </>
     
     )

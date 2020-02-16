@@ -1,51 +1,13 @@
 import React from "react"
 import SEO from "../components/seo"
-import styled  from 'styled-components';
-
-export const Styling = styled.section `
-    font-family: 'Comfortaa', cursive;
-    font-weight: 500;
-    margin-top: 30px;
-    h1 {
-        font-family: 'Neucha', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
-    h3 {
-        font-family: 'Neucha', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
-    h2 {
-        font-family: 'Neucha', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
-    .container {
-        margin: 20px 0 0 30px;
-        padding: 0;
-        width: 90%;
-    }
-   
-    @media screen and (max-width: 768px) {
-    .container {
-        margin: 0 0 0 5vw;
-        padding: 0;
-       
-    }
-      .container h1 {
-        font-size: 7vw;
-    }
-}
-` 
+import { StylingInfo } from '../components/common/style';
 
 const dostavkaioplata = () => {
 
 return (
     <>
     <SEO title="Доставка и оплата" />
-    <section>
-    <Styling>
+    <StylingInfo>
     <div className="container">
     <article>
         <header>
@@ -76,8 +38,7 @@ return (
 
     </article>
     </div>
-    </Styling>
-    </section>
+    </StylingInfo>
     </>
     
     )

@@ -1,15 +1,15 @@
 import React from "react"
 import SEO from "../components/seo"
 import {Link}  from 'gatsby';
-import {Styling} from './dostavka-i-oplata';
+import { StylingInfo } from '../components/common/style';
+
 
 const onas = () => {
 
 return (
     <>
     <SEO title="О нас" />
-    <section>
-    <Styling>
+    <StylingInfo>
     <div className="container">
     <article>
         <header>
@@ -34,10 +34,8 @@ return (
         </div>
     </article>
     </div>
-</Styling>
-</section>
-    </>
-    
+</StylingInfo>
+</>
     )
 }
 
