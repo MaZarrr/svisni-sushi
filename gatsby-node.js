@@ -7,6 +7,7 @@ exports.createPages = async ({graphql, actions}) => {
     const slognyeTeamplates = path.resolve('./src/templates/slognyeTeamplates.js')
     const klassikaTeamplates = path.resolve('./src/templates/klassikaTeamplates.js')
     const hotTeamplates = path.resolve('./src/templates/hotTeamplates.js')
+    const saleTeamplates = path.resolve('./src/templates/saleTemplates.js')
 
     const result = await graphql(`
     {
@@ -45,6 +46,13 @@ exports.createPages = async ({graphql, actions}) => {
            }
          }
        }
+        allContentfulProductSale {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
     }
     `)
   
@@ -108,6 +116,19 @@ exports.createPages = async ({graphql, actions}) => {
       }
     })
   })
+
+  const productssale = result.data.allContentfulProductSale.edges;
+    productssale.forEach(({
+      node: product
+    }) => {
+      createPage({
+        path: `/sale/${product.slug}`,
+        component: saleTeamplates,
+        context: {
+          slug: product.slug
+        }
+      })
+    })
 
 }
 

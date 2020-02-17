@@ -153,8 +153,8 @@ export default () => {
     <div className="footer_info">
     <div className="footer_items">
       <li className="footer_item footer_info_st">
-        <Link to="/">Меню</Link>
-        <Link to="/akcii">Акции</Link>
+        <Link to="/">Главная</Link>
+        <Link to="/sale">Акции</Link>
         <Link to="/dostavka-i-oplata">Доставка и оплата</Link>
         <Link to="/adres-i-kontakty">Адрес и контакты</Link>
       </li>

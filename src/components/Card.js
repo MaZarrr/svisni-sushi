@@ -19,11 +19,18 @@ import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { producSetsLoad, setAddedToCart } from "../actions";
 import styled from 'styled-components';
+import { useStaticQuery, graphql } from "gatsby"
 
 const AvatarWrapp = styled(Avatar) `
 background: ${props => props.color};
 `
 const useStyles = makeStyles(theme => ({
+  root: {
+    margin: `0 auto`,
+    display: `flex`,
+    flexDirection: `column`,
+    alignItems: `center`
+  },
   title: {
     fontFamily: 'Comfortaa',
     fontWeight: 800,
@@ -34,6 +41,9 @@ const useStyles = makeStyles(theme => ({
     marginTop: 30,
     [theme.breakpoints.down('425')]: {
       maxWidth: `100%`,
+    },
+     [theme.breakpoints.up('768')]: {
+      maxWidth: `50%`,
     }
   },
   media: {
@@ -77,11 +87,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RecipeReviewCard = ({data: {edges}, producSetsLoad, 
+const RecipeReviewCard = ({producSetsLoad, 
   setAddedToCart }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState({nameCart: false});
     
+  const {allContentfulHomePageCarts: {edges}} = useStaticQuery(graphql `
+  {
+  allContentfulHomePageCarts {
+    edges {
+      node {
+        id
+        description
+        name
+        price
+        count
+        weight
+        color
+        variant
+        contentful_id
+        image {
+          fluid(maxWidth: 400) {
+            ...GatsbyContentfulFluid
+          }
+        }
+      }
+    }
+  }
+  }
+  `)
+
   useEffect(() => {
     producSetsLoad(edges); // action push to reduxStore
   }, [edges, producSetsLoad])
@@ -93,6 +128,7 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
 
   return (
     <>
+    <div className={classes.root}>
     {edges.map(({node: homeProduct}) => (
       <Card key={homeProduct.id} className={classes.card}>
       <CardHeader
@@ -114,19 +150,16 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
       />
       <CardMedia 
         className={classes.media}
-        // image={homeProduct.image.fluid.src}
         title={homeProduct.name}
       > <Img fluid={homeProduct.image.fluid} />
       </CardMedia> 
 
       <CardContent>
         <Typography className={classes.title} variant="caption" color="textSecondary" component="p">
-        {/* <Box fontFamily="Comfortaa"> */}
         {homeProduct.description} 
-        {/* </Box> */}
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-        <b><p>{homeProduct.weight !== null ? `${homeProduct.weight} гр` : ''}</p></b>
+        <b><p>{homeProduct.weight !== null ? `${homeProduct.weight} кг` : ''}</p></b>
           <b><p>{`${homeProduct.count !== null ? `${homeProduct.count} шт` : ''}`}</p></b>
         </Typography>
        <p>{`${homeProduct.price}₽`}</p>
@@ -170,6 +203,7 @@ const RecipeReviewCard = ({data: {edges}, producSetsLoad,
 
     </Card>
     ))}
+    </div>
      </>
   );
 

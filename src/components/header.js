@@ -165,7 +165,7 @@ const Header = () => {
     {
       id: 1,
       name: 'Акции', 
-      link: '/akcii'
+      link: '/sale'
     },
     {
       id: 2,
@@ -234,7 +234,7 @@ const Header = () => {
             <Link to={link} 
               activeClassName="active"
               className="nav-link">
-              {name}
+            {name}
           </Link>
           </li> 
         ))

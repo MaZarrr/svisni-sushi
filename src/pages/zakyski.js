@@ -41,9 +41,9 @@ const Zakyski = ({
 
 return ( 
    <section className="section_cart" >
-    <SEO title="Гунканы" />
+    <SEO title="Закуски" />
      <div className="title"> 
-            <h1 className={classes.titleH1}>Гунканы</h1>
+            <h1 className={classes.titleH1}>Закуски</h1>
       </div>
     <Grid container xs={12} justify="center">
     {

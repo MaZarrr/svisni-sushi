@@ -64,7 +64,7 @@ return (
     <Grid container justify="center" className={classes.root}>
       <Grid  item xs={12}>
       <Grid container justify="center" className={classes.demo} >
-        <Card data={data.allContentfulHomePageCarts}/>
+        <Card />
       </Grid>
       </Grid>
     </Grid>
@@ -77,7 +77,7 @@ return (
           <div className="cart_container">
           <Link to={`/${homeMenu.slug}`} state={{ choice: 'Сеты' }}>
           <div className="cart_title">
-            <h3>{homeMenu.category}</h3> 
+            <h3><b>{homeMenu.category}</b></h3> 
           </div>
           <Img fluid={homeMenu.image.fluid} className="cart_img" imgStyle={{maxWidth: 300}}></Img>
           </Link>
@@ -94,26 +94,6 @@ export default IndexPage
 
 export const query = graphql `
 {
-  allContentfulHomePageCarts {
-    edges {
-      node {
-        id
-        description
-        name
-        price
-        count
-        weight
-        color
-        variant
-        contentful_id
-        image {
-          fluid(maxWidth: 450) {
-            ...GatsbyContentfulFluid
-          }
-        }
-      }
-    }
-  }
   allContentfulHomePageImageMenu(sort: {fields: desc}) {
     edges {
       node {

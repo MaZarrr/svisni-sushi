@@ -99,7 +99,7 @@ const CarouselSvisni = () => {
       node {
         id
         imgCarouselPc {
-          fluid(maxWidth: 1200) {
+          fluid(maxWidth: 1680) {
               ...GatsbyContentfulFluid
             }
         }
@@ -113,10 +113,6 @@ const CarouselSvisni = () => {
   }
   }
   `)
-
-// React.useEffect(()=> {
-//   setDataCarousel(data)
-// })
 
 const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
   // const handleNext = () => {
@@ -211,117 +207,6 @@ export default CarouselSvisni;
   // } 
   //      */}
 //
-// import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
-// 
-// import Paper from '@material-ui/core/Paper'
-// import { grey } from '@material-ui/core/colors'
-// import withStyles from '@material-ui/core/styles/withStyles'
-// import { duration } from '@material-ui/core/styles/transitions'
-// import Fab from '@material-ui/core/Fab'
-// import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-// import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
-// import Modal from '@material-ui/core/Modal'
-// import Fade from '@material-ui/core/Fade'
-// import Backdrop from '@material-ui/core/Backdrop'
-// import Dots from 'material-ui-dots'
-// import classNames from 'classnames'
-// import Carousel from './SwipableCarouselView'
-// import { modulo } from './util'
-
-// const styles = {
-//   root: {
-//     marginTop: 200,
-//     '& > *:focus': {
-//       outline: 'none'
-//     }
-//   },
-//   content: {
-//     width: '60%',
-//     maxWidth: 700,
-//     height: 'calc(100% - 96px)',
-//     maxHeight: 600,
-//     margin: '-16px auto 0',
-//     position: 'relative',
-//     top: '50%',
-//     transform: 'translateY(-50%)'
-//   },
-//   contentMobile: {
-//     width: '100%',
-//     height: '100%',
-//     maxWidth: 'initial',
-//     maxHeight: 'initial',
-//     margin: 0,
-//     top: 0,
-//     transform: 'none',
-
-//     '& > $carouselWrapper': {
-//       borderRadius: 0
-//     }
-//   },
-//   arrow: {
-//     width: 48,
-//     height: 48,
-//     position: 'absolute',
-//     top: 'calc((100% - 96px) / 2 + 24px)'
-//   },
-//   arrowLeft: {
-//     left: -96
-//   },
-//   arrowRight: {
-//     right: -96
-//   },
-//   arrowIcon: {
-//     color: grey[700]
-//   },
-//   carouselWrapper: {
-//     overflow: 'hidden',
-//     borderRadius: 14,
-//     transform: 'scale(1.0)',
-//     background: 'transparent',
-//     height: '100%'
-//   },
-//   dots: {
-//     paddingTop: 36,
-//     margin: '0 auto'
-//   },
-//   dotsMobile: {
-//     paddingTop: 0
-//   },
-//   dotsMobileLandscape: {
-//     paddingTop: 20
-//   },
-//   footer: {
-//     marginTop: -72,
-//     width: '100%',
-//     position: 'relative',
-//     textAlign: 'center'
-//   },
-//   footerMobile: {
-//     marginTop: -92
-//   },
-//   footerMobileLandscape: {
-//     marginTop: -3,
-//     transform: 'translateY(-50vh)',
-//     display: 'inline-block',
-//     width: 'auto'
-//   },
-//   slide: {
-//     width: '100%',
-//     height: '100%'
-//   },
-//   slideMobile: {
-//     width: '100%',
-//     height: '100%'
-//   },
-//   carousel: {
-//     height: '100%'
-//   },
-//   carouselContainer: {
-//     height: '100%'
-//   },
-//   closed: {}
-// }
 
 // class CarouselSvisni extends Component {
 //   state = {
@@ -514,45 +399,9 @@ export default CarouselSvisni;
 // }
 
 // export default withStyles(styles)(CarouselSvisni)
-
-
-// import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-// import { graphql, useStaticQuery } from "gatsby"
-// import Img from 'gatsby-image';
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import { Carousel } from 'react-responsive-carousel';
  
 // const CarouselSvisni = ()=> {
 
- 
-//   const data = useStaticQuery(graphql `
-//   {
-//   allContentfulCarouselSiteImage {
-//     edges {
-//       node {
-//         id
-//         imgCarouselPc {
-//           fluid(maxWidth: 1200) {
-//               ...GatsbyContentfulFluid
-//             }
-//         }
-//         imgCarouselPhone {
-//           fluid(maxWidth: 400) {
-//             ...GatsbyContentfulFluid
-//             }
-//         }
-//       }
-//     }
-//   }
-//   }
-// `)
-// // console.log('====================================');
-// // console.log(data.allContentfulCarouselSiteImage.edges[0].node.imgCarouselPhone.src);
-// // console.log('====================================');
-// // console.log('====================================');
-// // console.log(data.allContentfulCarouselSiteImage.edges[0].node.imgCarouselPc.fluid.src);
-// // console.log('====================================');
 //       return (
 //         <Carousel>
 //          <div style={{marginTop: 200}}>
@@ -580,56 +429,8 @@ export default CarouselSvisni;
 //         </Carousel>
 //     );
 //     };
-// export default CarouselSvisni;
-
-// export const data = graphql `
-// {
-// allContentfulCarouselSiteImage {
-//   edges {
-//     node {
-//       id
-//       imgCarouselPc {
-//         fluid(maxWidth: 1200) {
-//             ...GatsbyContentfulFluid
-//           }
-//       }
-//       imgCarouselPhone {
-//         fluid(maxWidth: 400) {
-//             ...GatsbyContentfulFluid
-//           }
-//       }
-//     }
-//   }
-// }
-// }
-// `
-
-// import React from 'react';
-// import SwipeableViews from 'react-swipeable-views';
-// import { autoPlay } from 'react-swipeable-views-utils';
-// // import Pagination from 'docs/src/modules/components/Pagination';
 
 // const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-// const styles = {
-//   root: {
-//     position: 'relative',
-//   },
-//   slide: {
-//     padding: 15,
-//     minHeight: 100,
-//     color: '#fff',
-//   },
-//   slide1: {
-//     backgroundColor: '#FEA900',
-//   },
-//   slide2: {
-//     backgroundColor: '#B3DC4A',
-//   },
-//   slide3: {
-//     backgroundColor: '#6AC0FF',
-//   },
-// };
 
 // class CarouselSvisni extends React.Component {
 //   state = {
@@ -658,89 +459,8 @@ export default CarouselSvisni;
 //   }
 // }
 
-// export default CarouselSvisni;
-
-// import React from 'react';
-// import { makeStyles, useTheme } from '@material-ui/core/styles';
-// import MobileStepper from '@material-ui/core/MobileStepper';
-// import Paper from '@material-ui/core/Paper';
-// import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
-// import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-// import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-// import SwipeableViews from 'react-swipeable-views';
-// // import SwipeableViews from '../../utils/svipeable-views'
-// // import {autoPlay} from '../../utils/auto-play';
-// import { autoPlay } from 'react-swipeable-views-utils';
 
 // const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-// const tutorialSteps = [
-//   {
-//     label: 'San Francisco – Oakland Bay Bridge, United States',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-//   },
-//   {
-//     label: 'Bird',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-//   },
-//   {
-//     label: 'Bali, Indonesia',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-//   },
-//   {
-//     label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
-//   },
-//   {
-//     label: 'Goč, Serbia',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-//   },
-// ];
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     maxWidth: 400,
-//     flexGrow: 1,
-//   },
-//   header: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     height: 50,
-//     paddingLeft: theme.spacing(4),
-//     backgroundColor: theme.palette.background.default,
-//   },
-//   img: {
-//     height: 255,
-//     display: 'block',
-//     maxWidth: 400,
-//     overflow: 'hidden',
-//     width: '100%',
-//   },
-// }));
-
-// function CarouselSvisni() {
-//   const classes = useStyles();
-//   const theme = useTheme();
-//   const [activeStep, setActiveStep] = React.useState(0);
-//   const maxSteps = tutorialSteps.length;
-
-//   const handleNext = () => {
-//     setActiveStep(prevActiveStep => prevActiveStep + 1);
-//   };
-
-//   const handleBack = () => {
-//     setActiveStep(prevActiveStep => prevActiveStep - 1);
-//   };
-
-//   const handleStepChange = step => {
-//     setActiveStep(step);
-//   };
 
 //   return (
 //     <div className={classes.root}>
@@ -784,41 +504,6 @@ export default CarouselSvisni;
 // }
 // export default CarouselSvisni;
 
-
-
-
-// // {/* <AutoPlaySwipeableViews className={classes.rootPhone}
-// // axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-// // index={activeStepVigoda}
-// // onChangeIndex={handleStepChangeVigoda}
-// // enableMouseEvents
-// // >
-// // {vigodaSteps.map((step, index) => (
-// //   <div key={step.id}>
-// //     {Math.abs(activeStepVigoda - index) <= 2 ? (
-// //       <Img fluid={step.imgPathPhone} className={classes.img} alt={step.id} />
-// //     ) : null}
-// //   </div>
-// // ))}
-// // </AutoPlaySwipeableViews>
-// // <MobileStepper
-// // steps={maxSteps}
-// // position="static"
-// // variant="progress"
-// // activeStep={activeStepVigoda}
-// // className={classes.stepper}/> */}
-
-//         // nextButton={
-//         //   <Button variant='contained' color='primary' size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-//         //     {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-//         //   </Button>
-//         // }
-//         // backButton={
-//         //   <Button variant='contained' color='primary' size="small" onClick={handleBack} disabled={activeStep === 0}>
-//         //     {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-//         //   </Button>
-//         // }
-    
 
 
 
