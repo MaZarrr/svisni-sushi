@@ -45,7 +45,7 @@ return (
      <div className="title"> 
              <h1 className={classes.titleH1}>Комбо</h1>
         </div>
-    <Grid container xs justify="center">
+    <Grid container justify="center">
     {
       setyProduct.map(({
             node: productSets
@@ -53,8 +53,8 @@ return (
     const {id, name, description, price, weight, count, image: {fluid} } = productSets //  slug,
     
     return (
-    <Grid item xs={12} sm={6} md={3} >
-    <Card key={id} className={classes.card}>
+    <Grid item xs={12} sm={6} md={3} key={id}>
+    <Card className={classes.card}>
       <CardHeader
       classes={{title: classes.title}}
         avatar={
@@ -69,10 +69,7 @@ return (
         className={classes.media}
         title={name}
       > 
-
-      {/* <Link to={`/sety/${slug}`}> */}
       <Img fluid={fluid} />
-      {/* </Link> */}
       </CardMedia> 
 
       <CardContent>

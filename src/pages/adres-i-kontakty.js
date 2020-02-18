@@ -1,44 +1,19 @@
 import React from "react"
 import SEO from "../components/seo"
-import styled  from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
-const Kontakty = styled.section `
-     .container {
-         margin: 20px 0 0 30px;
-         padding: 0;
-         width: 90%;
-     }
-     h1 {
-        font-family: 'Neucha', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
- 
-    @media screen and (max-width: 768px) {
-       .container {
-        margin: 20px 0 0 30px;
-        padding: 0;
-       
-    }
-      .container h1 {
-        font-size: 7vw;
-    }
-    }
-` 
+import { StylingInfo } from '../components/common/style';
 
 const adresikontakty = () => {
 
 return (
     <>
     <SEO title="Адрес и контакты" />
-    <section>
-    <Kontakty>
+    <StylingInfo>
     <div className="container">
         <h1>Адрес и контакты</h1>
     </div>
-    <Grid container xs={12} justify="space-around">
+    <Grid container justify="space-around">
         <Grid item xs={11} sm={5}  style={{margin: `auto 0 auto 25px`}}>
         <Typography variant="h5">Режим работы</Typography>
         <p>c 10.00 до 22.00</p>
@@ -53,13 +28,12 @@ return (
     <iframe 
         title="frameMap"
         src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae5afe408e842285d3190098da0f22e3fe919c5fe14946fbe0b85c30d3fd71989&amp;source=constructor" 
-        width="90%" 
+        width="100%" 
         height="350" 
-        frameborder="0"/>
+        frameBorder="0"/>
     </Grid>   
     </Grid>
-    </Kontakty>
-    </section>
+    </StylingInfo>
     </>
     )
 }

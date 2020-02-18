@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-// import SEO from "../components/seo"
+import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import { navigate} from 'gatsby'
 import { setName, setPhone,
@@ -17,14 +17,16 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Switch from '@material-ui/core/Switch';
 import Select from '@material-ui/core/Select';
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   gridContainer: {
     flexGrow: 1,
     paddingLeft: theme.spacing(4),
+    width: `98%`
   },
   paper: {
     padding: theme.spacing(2),
@@ -94,6 +96,7 @@ const IOSSwitch = withStyles(theme => ({
   checked: {},
   focusVisible: {},
 }))(({ classes, ...props }) => {
+
   return (
     <Switch
       focusVisibleClassName={classes.focusVisible}
@@ -125,9 +128,6 @@ const [delivery, setDelivery] = useState('');
  const [state, setState] = React.useState({
    checkedC: false
  });
-
-console.log(state);
-
 
  const handleChangee = name => event => {
     setState({ ...state, [name]: event.target.checked });
@@ -164,8 +164,33 @@ const handleSubmit = (ev) => {
       }
     };
     xhr.send(data);
-    // console.log(data)
-   
+
+    axios({
+        method: 'POST',
+        data: {
+          name: ev.target.name.value,
+          phone: ev.target.phone.value,
+          delivery: delivery === "Доставка курьером" ? {
+            formDelivery: ev.target.delivery.value || "Не выбрано",
+            timeDelivery: ev.target.time.value || "Без предзаказа",
+            dateDelivery: ev.target.date.value || "Без предзаказа",
+            adress: ev.target.adress.value || "Самовывоз",
+            street: ev.target.street.value || "Самовывоз",
+            home: ev.target.home.value || "Самовывоз" } : "Самовывоз",
+          products: 
+            items.map((elem) => {
+              return {
+                product: elem.name,
+                total: elem.total,
+                count: elem.count,
+              }
+            }),
+          totalPrice: total,
+          comments: ev.target.comments.value || "Без комментария",
+        },
+        url: 'https://svisni-sushi.firebaseio.com/order.json'
+        })
+        
     navigate('/order-processed', {replace: true})
   }
    
@@ -204,7 +229,8 @@ const handleSubmit = (ev) => {
   };
 
 return (
-    <section>
+    <section >
+    <SEO title="Оформление заказа" />
      <div className={classes.root}>
     <Grid container>
         <Grid item xs={12}>
@@ -218,7 +244,7 @@ return (
           </Grid>
           </Grid>
 
-        <Grid container xs className={classes.gridContainer}>
+        <Grid container className={classes.gridContainer}>
         <form  
            method="POST"
            onSubmit={handleSubmit}
@@ -228,16 +254,15 @@ return (
            style={{width: '100%'}}
         >
    
-             <Grid item xs={12}>
-             <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
-             fontSize={24}>Контактные данные</Box></Typography>  
-             </Grid>
+              <Grid item xs={12}>
+              <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
+              fontSize={24}>Контактные данные</Box></Typography>  
+              </Grid>
              
-                <Grid container xs={12} >
+                <Grid container >
                  <TextField id="validation-outlined-input" 
                  label="Имя" 
                  variant="outlined" 
-                 zIndex={0}
                  style={{margin: `10px auto 10px 0`}}
                  required inputProps={{
                    maxLength: 12,
@@ -291,7 +316,6 @@ return (
                  <TextField id="validation-outlined-input" 
                  label="Дата" 
                  variant="outlined" 
-                 zIndex={0}
                  style={{margin: `10px auto 10px 0`}}
                  required inputProps={{
                    maxLength: 22,
@@ -326,7 +350,7 @@ return (
                   fontSize={24}>Оплата</Box></Typography>  
                   </Grid>
                
-                  <Grid container xs={12} >
+                  <Grid container >
                   <div className={classes.conatiner_info_left}>
                  <InputLabel id="controlled-open-select-label">Форма оплаты</InputLabel>
                  <Select
@@ -494,7 +518,7 @@ return (
             </>
          }
   
-         <Grid container xs={10} direction="column" >
+         <Grid container direction="column" >
  
            <TextField
              id="outlined-multiline-static"

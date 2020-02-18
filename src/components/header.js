@@ -22,7 +22,9 @@ import Imgs from '../components/image';
 import AppBars from './AppBars'
 import ScrollTop from "./common/ScrollTop"
 import Icon from '@material-ui/core/Icon';
-
+import RoomIcon from '@material-ui/icons/Room';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import "./header.css"
 
 const drawerWidth = 190;
@@ -129,10 +131,8 @@ const useStyles = makeStyles(theme => ({
     marginRight: 17,
   },
   iconDiv: {
-    span: {
       fontFamily: 'Neucha, cursive',
       fontWeight: 800
-    }
   }
 }));
 
@@ -273,22 +273,46 @@ const Header = () => {
             : <ChevronLeftIcon style={{backgroundColor: `tomato`}}/>}
           </IconButton>
         </div>
-        <Divider />
-        <List> 
+         <Divider />
+         <List>
+             <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000", 
+              borderBottom: `2px solid tomato`,
+              }}>
+              <ListItemIcon>
+              <Icon className="fa fa-percent" style={{ marginLeft: `5px`}} color="secondary" />
+              </ListItemIcon>
+              <ListItemText primary="Акции" />
+            </ListItem>
+            <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000", 
+              borderBottom: `2px solid tomato`,
+              }}>
+              <ListItemIcon><RoomIcon color="primary"/></ListItemIcon>
+              <ListItemText primary="Адрес" />
+            </ListItem>
+            <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000", 
+              borderBottom: `2px solid tomato`,
+              }}>
+              <ListItemIcon><LocalTaxiIcon color="action"/></ListItemIcon>
+              <ListItemText primary="Доставка" />
+            </ListItem>
+        </List>
+         <Divider />
+        <List > 
         {data.allContentfulIconMenuLeftPanel.edges.map(({node: iconButton})=> (
         <ListItem key={iconButton.id} button component={Link} 
-        activeStyle={{ color: "tomato", 
-        borderBottom: `1px solid tomato`,
-        borderTop: `1px solid tomato`
-        }} to={`/${iconButton.slug}`}>
+          activeStyle={{ color: "#000", 
+          borderBottom: `2px solid tomato`,
+          backgroundColor: `lightgrey`,
+          // borderTop: `1px solid tomato`
+          }} to={`/${iconButton.slug}`}>
         <Icon className={classes.iconImg}>
           <Img fluid={iconButton.image.fluid} className={classes.iconImg} alt={iconButton.name}></Img>
         </Icon>
           <ListItemText className={classes.iconDiv} primary={iconButton.name} />
         </ListItem>
         ))}
-        </List>
         <Divider />
+        </List>
       </Drawer>
      <ScrollTop/>
 

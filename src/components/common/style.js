@@ -85,6 +85,11 @@ export const StylingInfo = styled.section `
         font-style: normal;
         font-weight: 900;
     }
+      h5 {
+        font-family: 'Neucha', cursive;
+        font-style: normal;
+        font-weight: 900;
+    }
     h2 {
         font-family: 'Neucha', cursive;
         font-style: normal;

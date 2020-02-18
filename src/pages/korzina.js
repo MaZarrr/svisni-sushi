@@ -153,7 +153,7 @@ return (
               <FormControlLabel
                   value={name}
                   control={<Radio color="primary" name={idx + 1}  onChange={() => onRadioChangedd(id, priceDef)}/>}
-                  label="Средняя"
+                  label="Маленькая"
                   labelPlacement="bottom"
                   id={id}
                   name={name}
@@ -186,7 +186,7 @@ return (
                 </Typography>
                 <Grid item>
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                <div className="mt-1">
+       
                 <button disabled={false}
                   onClick={()=> onIncrease(id, radioValue)}
                   className="btn btn-outline-success btn-sm">
@@ -203,7 +203,7 @@ return (
                       <i className="fa fa-trash-o fa-lg"></i>
                   </button>
                   <CssBaseline />
-              </div>
+        
               
                 </Typography>
                 

@@ -128,13 +128,13 @@ useScrollPosition(({ prevPos, currPos }) => {
       indicatorColor="primary"
       textColor="primary"
       variant="scrollable"
-      value={0}
+      value={1}
       scrollButtons="on"
       aria-label="scrollable force tabs example"
     >
     {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index)=> (
       <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} 
-      value={index + 1} label={menu.name} activeStyle={{ color: "tomato", borderBottom: `3px solid tomato` }} {...a11yProps(index)}
+      value={index + 1} label={menu.name} activeStyle={{ color: "tomato", borderBottom: `3px solid tomato` }} {...a11yProps(1)}
           icon={<Img fluid={menu.image.fluid} style={{width: `65px`}} imgStyle={{maxWidth: 65}} alt={menu.name}></Img>}/>
     ))}
        
