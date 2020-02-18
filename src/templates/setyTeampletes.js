@@ -8,10 +8,13 @@ const SetyTeamplate = ({
  return  (
      <>
     <SetyItem 
+        id={contentfulProduct.id}
         name={contentfulProduct.name}
         price={contentfulProduct.price}
         description={contentfulProduct.description}
         createdAt={contentfulProduct.createdAt}
+        weight={contentfulProduct.weight}
+        count={contentfulProduct.count}
         image={contentfulProduct.image.fluid}
     > </SetyItem>
     </>
@@ -22,9 +25,13 @@ export default SetyTeamplate
 export const query = graphql ` 
     query ($slug: String!) {
        contentfulProduct(slug: {eq: $slug}) {
-          name
-          price
-          description
+           id
+            slug
+            name
+            price
+            weight
+            count
+            description
           createdAt(formatString: "МММ Do, YYYY, h:mm:ss a")
           image {
               fluid(maxWidth: 400) {

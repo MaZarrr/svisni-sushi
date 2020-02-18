@@ -69,10 +69,7 @@ return (
         className={classes.media}
         title={name}
       > 
-
-      <Link to={`/zapechenyeRolly/${slug}`}>
       <Img fluid={fluid} style={{height: `250px`, width: `100%`}}/>
-    </Link>
       </CardMedia> 
  
 
@@ -95,7 +92,16 @@ return (
           startIcon={<ShoppingBasketIcon />}
           onClick={()=> setAddedToCart(id)}
       >
-        Хочу!
+        Хочу
+      </Button>
+         <Button
+      component={Link}
+      to={`/zapechenyeRolly/${slug}`}
+      variant="contained"
+      color="secondary"
+      className={classes.buttonInfo}
+      >
+        Подробнее
       </Button>
       </CardActions>
     </Card>

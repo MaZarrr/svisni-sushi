@@ -72,11 +72,8 @@ return (
         title={name}
       > 
 
-      <Link to={`/pizza/${slug}`}>
       <Img fluid={fluid} />
-    </Link>
       </CardMedia> 
- 
 
       <CardContent>
         <Typography className={classes.deckript} variant="caption" color="textSecondary" component="p">
@@ -97,7 +94,16 @@ return (
           startIcon={<ShoppingBasketIcon />}
           onClick={()=> setAddedToCart(id)}
       >
-        Хочу!
+        Хочу
+      </Button>
+         <Button
+      component={Link}
+      to={`/pizza/${slug}`}
+      variant="contained"
+      color="secondary"
+      className={classes.buttonInfo}
+      >
+        Подробнее
       </Button>
       </CardActions>
     </Card>

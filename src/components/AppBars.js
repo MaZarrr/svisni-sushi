@@ -20,6 +20,11 @@ const AppBarStyle = styled(AppBar) `
   text-decoration: none;
   letter-spacing: 1px;
   }
+  @media screen and(max-width: 768px) {
+    .tabs {
+      display: none;
+    }
+  }
 `
   // We can inject some CSS into the DOM.
 const styles = theme =>( {
@@ -44,6 +49,11 @@ function AppBars(props) {
   } = props;
 
   const [hideOnScroll, setHideOnScroll] = useState(true)
+  const [value, setValue] = React.useState(0);
+
+   const handleChange = (event, newValue) => {
+     setValue(newValue);
+   };
 
   const data = useStaticQuery(graphql `
   {
@@ -52,6 +62,7 @@ function AppBars(props) {
       node {
         id
         name
+        deck
         slug
         image {
           fluid(maxWidth: 70) {
@@ -128,13 +139,14 @@ useScrollPosition(({ prevPos, currPos }) => {
       indicatorColor="primary"
       textColor="primary"
       variant="scrollable"
-      value={1}
+      value={value}
+      onChange={handleChange}
       scrollButtons="on"
       aria-label="scrollable force tabs example"
     >
     {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index)=> (
       <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} 
-      value={index + 1} label={menu.name} activeStyle={{ color: "tomato", borderBottom: `3px solid tomato` }} {...a11yProps(1)}
+      value={index + 1} label={menu.name} {...a11yProps(menu.deck)}
           icon={<Img fluid={menu.image.fluid} style={{width: `65px`}} imgStyle={{maxWidth: 65}} alt={menu.name}></Img>}/>
     ))}
        

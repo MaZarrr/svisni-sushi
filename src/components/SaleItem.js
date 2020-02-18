@@ -67,7 +67,7 @@ const PizzaItem = ({image, name, description, location}) => {
         to="/sale" 
         size="large"
         endIcon={<ReplyIcon/>}
-        style={{margin: `0 0 30px 25px`}}>Все акции</Button>
+        style={{margin: `30px 0 30px 25px`}}>Все акции</Button>
         </SetySection>
         </>
         )

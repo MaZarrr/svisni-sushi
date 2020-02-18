@@ -279,7 +279,7 @@ const Header = () => {
               borderBottom: `2px solid tomato`,
               }}>
               <ListItemIcon>
-              <Icon className="fa fa-percent" style={{ marginLeft: `5px`}} color="secondary" />
+              <Icon className="fa fa-percent" style={{ marginLeft: `3px`}} color="secondary" />
               </ListItemIcon>
               <ListItemText primary="Акции" />
             </ListItem>
