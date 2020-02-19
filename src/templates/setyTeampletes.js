@@ -1,14 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import SetyItem from '../components/SetyItem';
+import { connect } from 'react-redux';
+import {setAddedToCart} from '../actions';
+
 
 const SetyTeamplate = ({
-    data: {contentfulProduct}}) => { 
+    data: {contentfulProduct}, setAddedToCart}) => { 
 
  return  (
      <>
     <SetyItem 
-        id={contentfulProduct.id}
         name={contentfulProduct.name}
         price={contentfulProduct.price}
         description={contentfulProduct.description}
@@ -16,11 +18,24 @@ const SetyTeamplate = ({
         weight={contentfulProduct.weight}
         count={contentfulProduct.count}
         image={contentfulProduct.image.fluid}
+        added={() => setAddedToCart(contentfulProduct.id)}
     > </SetyItem>
     </>
     )}
 
-export default SetyTeamplate
+    const mapStateToProps = ({ setList: {product, loading} }) => {
+    return {product, loading};
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+    setAddedToCart: (id) => {
+        dispatch(setAddedToCart(id))
+        }
+    }  
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SetyTeamplate)
 
 export const query = graphql ` 
     query ($slug: String!) {

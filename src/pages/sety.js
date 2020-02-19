@@ -23,6 +23,7 @@ import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
 
+
 const Sety = ({
       data: {
         allContentfulProduct: {
@@ -35,7 +36,8 @@ const Sety = ({
     producSetsLoad, 
     setAddedToCart,
     productRequested,
-    loading
+    loading,
+    product
   }) => {
 
   const classes = useStylesCart();
@@ -58,7 +60,7 @@ return (
         </div>
     <Grid container justify="center">
     {
-      setyProduct.map(({
+      product.map(({
             node: productSets
           }) => {
     const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
@@ -117,8 +119,8 @@ return (
     </Card>
     </Grid>
     )})}
-        </Grid>
-      </section>
+    </Grid>
+  </section>
     )
 }
 

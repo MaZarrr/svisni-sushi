@@ -4,10 +4,9 @@ import Img from 'gatsby-image';
 import {StylingInfo} from '../components/common/style'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import ReplyIcon from '@material-ui/icons/Reply';
-import { Link } from 'gatsby';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
-const SetyItem = ({name, description, createdAt, image, count, weight, price}) => {
+const SetyItem = ({name, description, createdAt, image, count, weight, price, added}) => {
 
 return (
     <section>
@@ -27,12 +26,11 @@ return (
             <p><b>Цена</b> {price} руб</p>
         <Button 
             variant="outlined" 
-            component={Link} 
-            to="/sale" 
             size="large"
-            endIcon={<ReplyIcon/>}
+            endIcon={<ShoppingBasketIcon/>}
             style={{marginBottom: `50px`}}
-            >Все акции</Button>
+            onClick={added}
+            >В корзину</Button>
         </Grid>
         </Grid>
     </div>
