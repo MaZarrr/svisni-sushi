@@ -28,7 +28,7 @@ const Pizza = ({
         }
       },
     producSetsLoad, 
-    setAddedToCart,
+    setAddedToCart, product
   }) => {
   
   const classes = useStylesCart();
@@ -49,7 +49,7 @@ return (
       </div>
     <Grid container justify="center" >
     {
-      setyProduct.map(({
+      product.map(({
             node: productSets
           }) => {
     const {id, name, slug, description, price, image: {fluid} } = productSets

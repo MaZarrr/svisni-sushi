@@ -1,45 +1,64 @@
 import React from "react"
 import SEO from "./seo"
-import styled  from 'styled-components';
 import Img from 'gatsby-image';
+import {StylingInfo} from '../components/common/style'
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
-const SetySection = styled.section `
-        .container {
-        margin: 8vmax 0 0 2.5vw;
-        padding: 0;
-    }
-    .container h1 {
-        font-size: 5vw;
-    }
+const PizzaItem = ({name, description, image, price, added, priceIn33, weight, weight33}) => {
 
-    @media screen and (max-width: 768px) {
-        .container {
-        margin: 0 0 0 3vw;
-        padding: 0;
-    }
+ return (
+         <>
+    <SEO title={name} />
+    <StylingInfo>
+    <div className="container"> 
+        <h1>{name}</h1>
+        <hr></hr>
+        <Grid container>
+        <Grid item xs={12} sm={6}>
+            <Img style={{maxWidth: 400}} fluid={image} />
+        </Grid>
+        <Grid item xs={12} sm={5} style={{margin: `auto 0`}}>
+            <p><b>Состав:</b> {description}</p>
+            {/* <p><b>Количество:</b> {count} шт</p> */}
+            {/* <p><b>Общий вес:</b> {weight} гр</p> */}
+            <div style={{width: `80%`}}>
+            <div style={{ display: `inline-block`, marginRight: `30px`}}>
+            <p><b>Маленькая</b> {price} руб</p>
+            {/* <p><b>{weight} кг</b></p> */}
+            </div>
+            <div style={{ display: `inline-block`,  marginLeft: `auto`}}>
+            <Button 
+            variant="outlined" 
+            size="large"
+            endIcon={<ShoppingBasketIcon/>}
+            // style={{marginBottom: `50px`}}
+            onClick={added}
+            >-></Button>
+            </div>
+            </div>
 
-}
-` 
-
-const PizzaItem = ({name, description, createdAt, image}) => {
-
-    return (
-        <section>
-        <SEO title="Сеты" />
-        <SetySection>
-        <div className="container"> 
-            <h1>Сеты</h1>
-        </div>
-        
-        <div>
-            <h2>{name} - <span style={{color: '#ccc'}}></span>added on {createdAt}</h2>
-            <p>{description}</p>
-            <Img style={{maxWidth: 400}} fluid={image}></Img>
-        </div>
-        
+            <div style={{width: `80%`}}>
+            <div style={{ display: `inline-block`, marginRight: `51px`}}>
+            <p><b>Большая</b> {priceIn33} руб</p>
+            {/* <p><b>{weight33} кг</b></p> */}
+            </div>
+            <div style={{ display: `inline-block`, marginLeft: `auto`}}>
+            <Button 
+            variant="outlined" 
+            size="large"
+            endIcon={<ShoppingBasketIcon/>}
+            onClick={added}
+            >-></Button>
+            </div>
+            </div>
     
-        </SetySection>
-        </section>
+        </Grid>
+        </Grid>
+    </div>
+    </StylingInfo>
+    </>
         )
 }
 

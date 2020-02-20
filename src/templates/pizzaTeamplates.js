@@ -1,32 +1,55 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import PizzaItem from '../components/PizzaItem';
+import { connect } from 'react-redux';
+import {setAddedToCart} from '../actions';
 
 const PizzaTeamplate = ({
-    data: {contentfulProductPizza}}) => { 
+    data: {contentfulProductPizza}, setAddedToCart}) => { 
       
  return  (
      <>
    <PizzaItem
         name={contentfulProductPizza.name}
         price={contentfulProductPizza.price}
+        priceIn33={contentfulProductPizza.priceIn33cm}
         description={contentfulProductPizza.description}
-        createdAt={contentfulProductPizza.createdAt}
         image={contentfulProductPizza.image.fluid}
+        added={() => setAddedToCart(contentfulProductPizza.id)}
+        weight33={contentfulProductPizza.weight33}
+        weight={contentfulProductPizza.weight}
+        count={contentfulProductPizza.count}
     >
     </PizzaItem>
     </>
     )}
 
-export default PizzaTeamplate
+    const mapStateToProps = ({ setList: {product, loading} }) => {
+    return {product, loading};
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+    setAddedToCart: (id) => {
+        dispatch(setAddedToCart(id))
+        }
+    }  
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PizzaTeamplate)
 
 export const query = graphql ` 
     query ($slug: String!) {
         contentfulProductPizza(slug: {eq: $slug}) {
-          name
-          price
-          description
-          createdAt(formatString: "МММ Do, YYYY, h:mm:ss a")
+           id
+           slug
+           price
+           name
+           priceIn33cm
+           weight
+           weight33
+           count
+           description
           image {
               fluid(maxWidth: 400) {
                   ...GatsbyContentfulFluid

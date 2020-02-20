@@ -8,8 +8,8 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 const SloghItem = ({name, description, image, count, weight, price, added}) => {
 
-    return(
-    <section>
+    return (
+    <>
     <SEO title={name} />
     <StylingInfo>
     <div className="container"> 
@@ -35,7 +35,7 @@ const SloghItem = ({name, description, image, count, weight, price, added}) => {
         </Grid>
     </div>
     </StylingInfo>
-    </section>
+    </>
     )
 }
 

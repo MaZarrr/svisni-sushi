@@ -22,7 +22,7 @@ const SlognyeTeamplates = ({
     </>
     )}
 
-        const mapStateToProps = ({ setList: {product, loading} }) => {
+const mapStateToProps = ({ setList: {product, loading} }) => {
     return {product, loading};
   }
   
@@ -38,13 +38,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(SlognyeTeamplates)
 export const query = graphql ` 
     query ($slug: String!) {
         contentfulProductSlognyeRolly(slug: {eq: $slug}) {
-            id
-            slug
-            name
-            price
-            weight
-            count
-            description
+        id
+        slug
+        name
+        price
+        weight
+        count
+        description
           image {
               fluid(maxWidth: 400) {
                   ...GatsbyContentfulFluid

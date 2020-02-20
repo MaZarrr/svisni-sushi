@@ -21,9 +21,9 @@ export const useStylesCart = makeStyles(theme => ({
         fontFamily: 'Comfortaa',
         fontWeight: 800,
         fontDisplay: `fallback`,
-        minHeight: 130,
+        minHeight: 110,
         [theme.breakpoints.down('500')]: {
-            minHeight: 'auto'
+            minHeight: `30px`
         }
     },
     card: {
@@ -105,12 +105,13 @@ export const StylingInfo = styled.section `
         margin: 20px 0 0 30px;
         padding: 0;
         width: 90%;
+        padding-bottom: 50px;
     }
    
     @media screen and (max-width: 768px) {
     .container {
         margin: 0 0 0 6vw;
-        padding: 0;
+        padding-bottom: 50px;
        
     }
       /* .container h1 {

@@ -3,6 +3,7 @@ const updateSetList = (state, action) => {
     if(state === undefined) {
         return  {
             product: [],
+            productPizza: [],
             loading: true,
             error: null
         };

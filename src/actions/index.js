@@ -4,6 +4,12 @@ const producSetsLoad = (newProduct) => {
         payload: newProduct
       }
 };
+const producPizzaLoad = (newProductPizza) => {
+    return {
+        type: 'PRODUCT_LOADED_PIZZA',
+        payload: newProductPizza
+    }
+};
 
 const onRazmer = (idPizza, value) => {
     return {
@@ -143,6 +149,6 @@ export {
     setRemoveFromCart,
     allSetRemoveFromCart,
     onRazmer,
-    addedPalochki,
+    addedPalochki, producPizzaLoad,
     setName, setPhone, setEntrance, setLevel, setDoor, setSity, setAdress, setHome, setDate, setTime
 }

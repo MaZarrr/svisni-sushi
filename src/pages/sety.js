@@ -23,7 +23,6 @@ import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
 
-
 const Sety = ({
       data: {
         allContentfulProduct: {
@@ -45,6 +44,7 @@ const Sety = ({
       productRequested()
       const data = setyProduct
       producSetsLoad(data); // action push to reduxStore
+
       }, [setyProduct, producSetsLoad, productRequested])
 
         if(loading) {

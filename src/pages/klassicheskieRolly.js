@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
 import SEO from "../components/seo"
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import Img from 'gatsby-image';
 import { producSetsLoad, setAddedToCart } from "../actions";
@@ -28,7 +28,7 @@ const KlassicheskieRolly = ({
                 }
             },
     producSetsLoad, 
-    setAddedToCart,
+    setAddedToCart, product
   }) => {
   
   const classes = useStylesCart();
@@ -47,10 +47,10 @@ return (
       </div>
     <Grid container justify="center">
     {
-      setyProduct.map(({
+      product.map(({
             node: productSets
           }) => {
-    const {id, name, slug, description, price, weight, count, image: {fluid}, variant } = productSets
+    const {id, name, description, price, weight, count, image: {fluid}, variant } = productSets
     
     return (
     <Grid item xs={12} sm={6} md={3} key={id}>
@@ -69,10 +69,7 @@ return (
         className={classes.media}
         title={name}
       > 
-
-      <Link to={`/klassicheskieRolly/${slug}`}>
       <Img fluid={fluid} style={{height: `250px`, width: `250px`}}/>
-    </Link>
       </CardMedia> 
  
 
@@ -134,7 +131,6 @@ export const query = graphql `
                    id
                    name
                    price
-                   slug
                    variant
                    description
                    weight
