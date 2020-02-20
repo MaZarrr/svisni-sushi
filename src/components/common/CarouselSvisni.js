@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
       [theme.breakpoints.down('786')]: {
-        background: `tomato`
+        background: `lightgrey`
       },
   },
   img: {
@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: '30px',
       lineHeight: `14vmin`,
       letterSpacing: `1px`,
-      color: `white`
+      color: `#000`
     },
     // [theme.breakpoints.down('425')]: {
     //   fontSize: '6vw',

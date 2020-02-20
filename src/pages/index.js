@@ -43,9 +43,9 @@ const useStyles = makeStyles(theme => ({
 const IndexPage = ({data}) => {
 
   
-React.useEffect(() => {
- window.Chatra('setButtonSize', 50)
-})
+// React.useEffect(() => {
+//  window.Chatra('setButtonSize', 50)
+// })
 
 
 const classes = useStyles();
