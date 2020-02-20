@@ -35,7 +35,7 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     media: {
-        maxWidth: `400px`,
+        maxWidth: `100%`,
         margin: `0 auto`,
         // paddingTop: '56.25%', // 16:9
         // backgroundSize: 'contain',

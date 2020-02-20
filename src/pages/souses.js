@@ -69,7 +69,7 @@ return (
         className={classes.media}
         title={name}
       > 
-      <Img fluid={fluid} style={{height: `250px`, width: `100%`}}/>
+      <Img fluid={fluid} />
       </CardMedia> 
  
 
@@ -126,7 +126,7 @@ export const query = graphql `
                   name
                   count
                        image {
-                           fluid(maxWidth: 400) {
+                           fluid(maxWidth: 310) {
                                ...GatsbyContentfulFluid
                            }
                        }

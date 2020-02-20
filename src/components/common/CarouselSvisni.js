@@ -42,6 +42,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('768')]: {
       display: 'none',
     },
+      [theme.breakpoints.down('786')]: {
+        background: `tomato`
+      },
   },
   img: {
     height: 'inherit',
@@ -70,11 +73,14 @@ const useStyles = makeStyles(theme => ({
     lineHeight: 2,
     fontSize: '10vw',
     [theme.breakpoints.down('786')]: {
-      fontSize: '8vw',
+      fontSize: '30px',
+      lineHeight: `14vmin`,
+      letterSpacing: `1px`,
+      color: `white`
     },
-    [theme.breakpoints.down('425')]: {
-      fontSize: '6vw',
-    }
+    // [theme.breakpoints.down('425')]: {
+    //   fontSize: '6vw',
+    // }
   },
   stepper: {
     marginBottom: 50,

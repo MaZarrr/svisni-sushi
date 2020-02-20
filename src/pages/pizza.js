@@ -146,7 +146,7 @@ export const query = graphql `
               priceIn33cm
               description
               image {
-                  fluid(maxWidth: 400) {
+                  fluid(maxWidth: 320) {
                     ...GatsbyContentfulFluid
                   }
               }
