@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
@@ -59,7 +59,7 @@ const classes = useStyles();
           <div
             id="vk_message"
             className="vk_message"
-            style={{ width: `99%` }}
+            style={{ width: `99%`, display: `flex`, justifyContent: `center`, margin: `0 auto` }}
           ></div>
           <div className={classes.toolbar} />
           {children}
