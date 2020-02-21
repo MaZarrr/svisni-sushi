@@ -23,9 +23,14 @@ export default PizzaTeamplate
 export const query = graphql ` 
     query ($slug: String!) {
         contentfulProductSale(slug: {eq: $slug}) {
-          name
-          description
-          createdAt(formatString: "МММ Do, YYYY, h:mm:ss a")
+        id
+        slug
+        variant
+        name
+        detailedDescription {
+          detailedDescription
+        }
+        description
           image {
               fluid(maxWidth: 1280) {
                   ...GatsbyContentfulFluid

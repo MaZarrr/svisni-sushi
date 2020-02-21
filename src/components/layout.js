@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { makeStyles } from '@material-ui/core/styles';
 import Header from "./header"
 import Footer from "./footer"
-
+import VK, {CommunityMessages} from "react-vk";
 import "./layout.css"
 
 import ErrorBoundary from './error-boundary/error-boundary'
@@ -50,6 +50,9 @@ const classes = useStyles();
 
   return (
     <ErrorBoundary>
+    <VK apiId={7311665}>
+        <CommunityMessages groupId={161250465} />
+    </VK>
       <div id="container" className={classes.root}>
       <Header /> 
        <main className={classes.content}>
