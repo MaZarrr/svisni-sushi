@@ -58,12 +58,12 @@ const useStyles = makeStyles(theme => ({
     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
     color: 'white',
     marginTop: 8,
-    margin: `0 auto`,
+    // margin: `0 auto`,
     textAlign: `start`,
-    // [theme.breakpoints.down('xs')]: {
-    //   maxWidth: '80%',
-    //   margin: 0
-    // }
+    maxWidth: '90%',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '70%'
+    }
   },
   emty: {
     padding: theme.spacing(2),
