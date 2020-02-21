@@ -50,19 +50,21 @@ const classes = useStyles();
 
   return (
     <ErrorBoundary>
-    <VK apiId={7311665}>
-        <CommunityMessages groupId={161250465} />
-    </VK>
       <div id="container" className={classes.root}>
-      <Header /> 
-       <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {children}
-        {/* <LabelBottomNavigation /> */}
-      </main>
-        {location.pathname !== "/order" && location.pathname !== "/korzina" ? <Footer /> : null}
+        <Header />
+        <main className={classes.content}>
+          <VK apiId={7311665}>
+            <CommunityMessages groupId={161250465} />
+          </VK>
+          <div className={classes.toolbar} />
+          {children}
+          {/* <LabelBottomNavigation /> */}
+        </main>
+        {location.pathname !== "/order" && location.pathname !== "/korzina" ? (
+          <Footer />
+        ) : null}
       </div>
-</ErrorBoundary>
+    </ErrorBoundary>
   )
 }
 
