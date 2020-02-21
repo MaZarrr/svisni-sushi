@@ -85,10 +85,10 @@ return (
       </div>
       ))}
       <div
-      id="vk_message"
-      className="vk_message"
-      style={{ maxWidth: `99%`, position: `relative`, display: `flex`, justifyContent: `center`, margin: `0 auto` }}
-    ></div>
+        id="vk_message"
+        className="vk_message"
+        // style={{ maxWidth: `99%`, position: `relative`, display: `flex`, justifyContent: `center`, margin: `0 auto` }}
+      />
     </div>
     </div>
   </section>

@@ -55,7 +55,13 @@ const classes = useStyles();
         <main className={classes.content}>
           <VK apiId={7311665}>
           <div className={classes.toolbar} />
-          <CommunityMessages groupId={161250465} elementId="vk_message" />
+          <CommunityMessages 
+            groupId={161250465} 
+            elementId="vk_message" 
+            options={{
+              disableButtonTooltip: 1
+            }}  
+            />
           {children}
           {/* <LabelBottomNavigation /> */}
         </VK>
