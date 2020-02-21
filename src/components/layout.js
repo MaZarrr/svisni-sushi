@@ -54,8 +54,13 @@ const classes = useStyles();
         <Header />
         <main className={classes.content}>
           <VK apiId={7311665}>
-            <CommunityMessages groupId={161250465} />
+            <CommunityMessages groupId={161250465} elementId="vk_message" />
           </VK>
+          <div
+            id="vk_message"
+            className="vk_message"
+            style={{ width: `99%` }}
+          ></div>
           <div className={classes.toolbar} />
           {children}
           {/* <LabelBottomNavigation /> */}
