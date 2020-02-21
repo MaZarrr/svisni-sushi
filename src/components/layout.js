@@ -54,16 +54,11 @@ const classes = useStyles();
         <Header />
         <main className={classes.content}>
           <VK apiId={7311665}>
-            <CommunityMessages groupId={161250465} elementId="vk_message" />
-          </VK>
-          <div
-            id="vk_message"
-            className="vk_message"
-            style={{ width: `99%`, display: `flex`, justifyContent: `center`, margin: `0 auto` }}
-          ></div>
           <div className={classes.toolbar} />
+          <CommunityMessages groupId={161250465} elementId="vk_message" />
           {children}
           {/* <LabelBottomNavigation /> */}
+        </VK>
         </main>
         {location.pathname !== "/order" && location.pathname !== "/korzina" ? (
           <Footer />

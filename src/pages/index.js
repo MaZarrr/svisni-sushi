@@ -84,6 +84,11 @@ return (
           </div>
       </div>
       ))}
+      <div
+      id="vk_message"
+      className="vk_message"
+      // style={{ width: `99%`, display: `flex`, justifyContent: `center`, margin: `0 auto` }}
+    ></div>
     </div>
     </div>
   </section>
