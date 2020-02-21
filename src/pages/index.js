@@ -87,7 +87,7 @@ return (
       <div
       id="vk_message"
       className="vk_message"
-      // style={{ width: `99%`, display: `flex`, justifyContent: `center`, margin: `0 auto` }}
+      style={{ maxWidth: `99%`, position: `relative`, display: `flex`, justifyContent: `center`, margin: `0 auto` }}
     ></div>
     </div>
     </div>
