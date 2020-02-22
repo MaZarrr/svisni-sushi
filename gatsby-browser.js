@@ -18,6 +18,67 @@ exports.wrapRootElement = ({element}) => {
         )
     }
 
+exports.onServiceWorkerActive = ({
+    getResourceURLsForPathname,
+    serviceWorker,
+}) => {
+    // if the SW has just updated then clear the path dependencies and don't cache
+    // stuff, since we're on the old revision until we navigate to another page
+    if (window.___swUpdated) {
+        serviceWorker.active.postMessage({
+            gatsbyApi: `clearPathResources`
+        })
+        return
+    }
+
+    // grab nodes from head of document
+    const nodes = document.querySelectorAll(`
+    head > script[src],
+    head > link[href],
+    head > style[data-href]
+  `)
+
+    // get all resource URLs
+    const headerResources = [].slice
+        .call(nodes)
+        // don't include preconnect/prefetch/prerender resources
+        .filter(
+            node =>
+            node.tagName !== `LINK` ||
+            whiteListLinkRels.test(node.getAttribute(`rel`))
+        )
+        .map(node => node.src || node.href || node.getAttribute(`data-href`))
+
+    // Loop over prefetched pages and add their resources to an array,
+    // plus specify which resources are required for those paths.
+    const prefetchedResources = []
+    prefetchedPathnames.forEach(path => {
+        const resources = getResourceURLsForPathname(path)
+        prefetchedResources.push(...resources)
+
+        serviceWorker.active.postMessage({
+            gatsbyApi: `setPathResources`,
+            path,
+            resources,
+        })
+    })
+
+    // Loop over all resources and fetch the page component + JSON data
+    // to add it to the SW cache.
+    const resources = [...headerResources, ...prefetchedResources]
+    resources.forEach(resource => {
+        // Create a prefetch link for each resource, so Workbox runtime-caches them
+        const link = document.createElement(`link`)
+        link.rel = `prefetch`
+        link.href = resource
+
+        link.onload = link.remove
+        link.onerror = link.remove
+
+        document.head.appendChild(link)
+    })
+}
+
 exports.onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
     `This application has been updated. ` +
@@ -29,10 +90,3 @@ exports.onServiceWorkerUpdateReady = () => {
   }
 }
 
-
-// export default ({ element }) => {
-
-
-// }
-
-// export const wrapRootElement = wrapWithProvider

@@ -1,5 +1,5 @@
 import React from "react"
-import VK, {Comments} from "react-vk";
+// import VK, {Comments} from "react-vk";
 import SEO from "../components/seo"
 
 const Otzyvy = () => {
@@ -8,9 +8,9 @@ return (
   <>
     <SEO title="Отзывы" />
     <section>
-      <VK apiId={7311665} onlyWidgets="true">
+      {/* <VK apiId={7311665} onlyWidgets="true">
         <Comments elementId="vk_comments" />
-      </VK>
+      </VK> */}
       <div
         id="vk_comments"
         className="vk_comments"
