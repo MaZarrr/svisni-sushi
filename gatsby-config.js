@@ -11,6 +11,14 @@ module.exports = {
     author: `@mazarrr`,
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
   `gatsby-transformer-sharp`,
   `gatsby-plugin-sharp`, 
   {
@@ -25,14 +33,6 @@ module.exports = {
       icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
     },
   },
-    `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
     'gatsby-plugin-offline',
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
