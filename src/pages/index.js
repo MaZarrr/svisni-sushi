@@ -4,6 +4,11 @@ import CarouselSvisni from "../components/common/CarouselSvisni"
 import { Link, graphql } from "gatsby"
 import "../components/sass/index.css"
 import Img from 'gatsby-image';
+// import {
+//   onServiceWorkerRedundant,
+//   onServiceWorkerUpdateReady,
+//   registerServiceWorker
+// } from '../../gatsby-browser'
 
 import Grid from '@material-ui/core/Grid';
 import {  makeStyles } from '@material-ui/core/styles';
@@ -49,6 +54,9 @@ const IndexPage = ({data}) => {
 
 
 const classes = useStyles();
+// console.log(onServiceWorkerRedundant());
+// console.log(onServiceWorkerUpdateReady());
+// console.log(registerServiceWorker());
 
 return (
   <section >
