@@ -25,8 +25,8 @@ module.exports = {
     resolve: `gatsby-plugin-manifest`,
     options: {
       name: `svisni-sushi`,
-      short_name: `SvisniSushi`,
-      start_url: `./`,
+      short_name: `SS`,
+      start_url: `/`,
       background_color: `#663399`,
       theme_color: `#663399`,
       display: `standalone`,
