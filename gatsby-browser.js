@@ -18,7 +18,8 @@ exports.wrapRootElement = ({element}) => {
         )
     }
 
-exports.registerServiceWorker = () => true
+// exports.registerServiceWorker = () => true
+exports.onServiceWorkerRedundant = () => true
 
 exports.onServiceWorkerUpdateReady = () => {
     const answer = window.confirm(
