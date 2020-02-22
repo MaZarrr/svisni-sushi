@@ -35,7 +35,7 @@ module.exports = {
   {
     resolve: 'gatsby-plugin-offline',
     options: {
-      precachePages: [`/`, `/sety/`, `/pizza/*`],
+      precachePages: [`/*`],
        workboxConfig: {
          importWorkboxFrom: `cdn`,
        },
