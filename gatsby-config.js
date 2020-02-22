@@ -24,11 +24,12 @@ module.exports = {
     resolve: `gatsby-plugin-manifest`,
     options: {
       name: `svisni-sushi`,
-      short_name: `Свисни суши`,
+      short_name: `Svisni-sushi`,
       start_url: `/`,
       background_color: `#663399`,
       theme_color: `#663399`,
-      display: `minimal-ui`,
+      display: `standalone`,
+      // display: `minimal-ui`,
       icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
     },
   },
