@@ -18,7 +18,7 @@ exports.wrapRootElement = ({element}) => {
         )
     }
 
-export const onServiceWorkerUpdateReady = () => {
+exports.onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
     `This application has been updated. ` +
       `Reload to display the latest version?`
