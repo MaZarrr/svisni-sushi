@@ -19,38 +19,43 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-  `gatsby-transformer-sharp`,
-  `gatsby-plugin-sharp`, 
-  {
-    resolve: `gatsby-plugin-manifest`,
-    options: {
-      name: `svisni-sushi`,
-      short_name: `SS`,
-      start_url: `/`,
-      background_color: `#663399`,
-      theme_color: `#663399`,
-      display: `standalone`,
-      // display: `minimal-ui`,
-      icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `svisni-sushi`,
+        short_name: `SS`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `fullscreen`,
+        // display: `minimal-ui`,
+        icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
+      },
     },
-  },
-  'gatsby-plugin-offline',
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/*`],
+      },
+    },
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     {
-    resolve: 'gatsby-plugin-web-font-loader',
-    options: {
-      google: {
-        families: ['Comfortaa', 'Neucha', 'Montserrat Alternates']
-      }
-    }
-  },
-      {
-        resolve: `gatsby-plugin-google-analytics`,
-        options: {
-          trackingId: 'G-3KY3WP513Z'
-        }
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Comfortaa", "Neucha", "Montserrat Alternates"],
+        },
       },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "G-3KY3WP513Z",
+      },
+    },
     {
       resolve: `gatsby-source-contentful`,
       options: {
@@ -64,9 +69,9 @@ module.exports = {
         color: `tomato`,
         minimum: 0.2,
         showSpinner: false,
-      }
-    }
-  ]
+      },
+    },
+  ],
 }
 
   // {
