@@ -11,6 +11,19 @@ module.exports = {
     author: `@mazarrr`,
   },
   plugins: [
+      `gatsby-transformer-sharp`,
+      `gatsby-plugin-sharp`, {
+        resolve: `gatsby-plugin-manifest`,
+        options: {
+          name: `svisni-sushi`,
+          short_name: `Свисни суши`,
+          start_url: `/`,
+          background_color: `#663399`,
+          theme_color: `#663399`,
+          display: `minimal-ui`,
+          icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
+        },
+      },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -19,21 +32,12 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-  `gatsby-transformer-sharp`,
-  `gatsby-plugin-sharp`, 
   {
-    resolve: `gatsby-plugin-manifest`,
+    resolve: 'gatsby-plugin-offline',
     options: {
-      name: `svisni-sushi`,
-      short_name: `Свисни суши`,
-      start_url: `/`,
-      background_color: `#663399`,
-      theme_color: `#663399`,
-      display: `minimal-ui`,
-      icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
-    },
+      precachePages: [`/`, `/sety/`, `/pizza/*`],
+  }
   },
-    'gatsby-plugin-offline',
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     {
