@@ -20,12 +20,13 @@ module.exports = {
       },
     },
   `gatsby-transformer-sharp`,
-  `gatsby-plugin-sharp`, {
+  `gatsby-plugin-sharp`, 
+  {
     resolve: `gatsby-plugin-manifest`,
     options: {
       name: `svisni-sushi`,
-      short_name: `Svisni-sushi`,
-      start_url: `/`,
+      short_name: `SvisniSushi`,
+      start_url: `https://svisni.onrender.com/`,
       background_color: `#663399`,
       theme_color: `#663399`,
       display: `standalone`,
@@ -33,15 +34,7 @@ module.exports = {
       icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
     },
   },
-  {
-    resolve: 'gatsby-plugin-offline',
-    options: {
-      precachePages: [`/*`],
-       workboxConfig: {
-         importWorkboxFrom: `cdn`,
-       },
-  }
-  },
+  'gatsby-plugin-offline',
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     {
@@ -75,6 +68,16 @@ module.exports = {
     }
   ]
 }
+
+  // {
+  //   resolve: 
+  //   options: {
+  //     precachePages: [`/*`],
+  //      workboxConfig: {
+  //        importWorkboxFrom: `cdn`,
+  //      },
+  // }
+  // },
 // {
 //   resolve: `gatsby-plugin-yandex-metrika`,
 //   options: {
