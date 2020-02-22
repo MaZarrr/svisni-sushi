@@ -36,6 +36,9 @@ module.exports = {
     resolve: 'gatsby-plugin-offline',
     options: {
       precachePages: [`/`, `/sety/`, `/pizza/*`],
+       workboxConfig: {
+         importWorkboxFrom: `cdn`,
+       },
   }
   },
     `gatsby-plugin-material-ui`,
