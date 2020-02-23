@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   media: {
-    maxWidth: `350px`,
+    maxWidth: `250px`,
     margin: `0 auto`,
     // paddingTop: '56.25%', // 16:9
     // backgroundSize: 'contain',

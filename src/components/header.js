@@ -131,7 +131,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: 17,
   },
   iconDiv: {
-      fontFamily: 'Neucha, cursive',
+      fontFamily: 'Neucha, Comfortaa, cursive',
       fontWeight: 800
   }
 }));

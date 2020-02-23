@@ -18,17 +18,17 @@ const SetySection = styled.section `
     }
 
     h1 {
-        font-family: 'Neucha', cursive;
+        font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
     }
     h3 {
-        font-family: 'Neucha', cursive;
+        font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
     }
     h2 {
-        font-family: 'Neucha', cursive;
+        font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
     }

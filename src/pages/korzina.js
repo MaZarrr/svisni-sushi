@@ -60,14 +60,19 @@ const useStyles = makeStyles(theme => ({
     marginTop: 8,
     // margin: `0 auto`,
     textAlign: `start`,
-    maxWidth: '90%',
+    width: `300px`,
+    // maxWidth: '90%',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '70%'
+      maxWidth: '90%'
     }
   },
   emty: {
     padding: theme.spacing(2),
     paddingLeft: theme.spacing(4),
+  },
+  typography: {
+    fontSize: 18,
+    padding: 5
   }
 }));
 
@@ -124,7 +129,7 @@ return (
         <Grid item xs={12}>
           <Paper className={classes.paper}>
           <Typography variant="h2">
-            <Box fontFamily="Neucha" fontWeight={900} fontSize={46}>
+            <Box fontFamily="Oswald" fontWeight={900} fontSize={46}>
                 Корзина
             </Box>
           </Typography>
@@ -140,7 +145,7 @@ return (
         return (
           <Paper key={id} className={classes.paper}>
           <Grid container spacing={3} className={classes.containerWrapped}>
-          <Grid item style={{backgroundColor: `lightgrey`}}>
+          <Grid item >
             <ButtonBase className={classes.image}>
             <Img style={{width: 128, height: 128, margin: 0, padding: 0}} fluid={image}> </Img> 
          
@@ -181,8 +186,8 @@ return (
                 <Typography variant="body2" gutterBottom>
                  {/* 76шт 1080кг */}
                 </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                  {count} шт
+                  <Typography variant="body2" color="textSecondary" style={{padding: `0 5px 7px 0`}}>
+                  <b>{count} шт</b>
                 </Typography>
                 <Grid item>
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
@@ -214,7 +219,8 @@ return (
 
             <Grid item style={{margin: `0 5px 5px 0`}}>
       
-             <Typography style={{ color: '#000', textAlign: 'center'}} variant="subtitle1"><b>{total} ₽</b></Typography>
+             <Typography style={{ color: '#000', textAlign: 'center', padding: `10px 5px 0 0`, fontSize: 20}} 
+              variant="subtitle1"><b>{total} ₽</b></Typography>
             
             </Grid>
           </Grid>
@@ -222,28 +228,39 @@ return (
        </Paper>
                 )
             })
-        }
+    }
+    <Grid container>
+    <Grid item xs={12}>
+     <Paper elevation={3} style={{padding: 20}}>
         { addPanelPribors &&
-          <div className="container_pribor">
-            <div className="d-flex flex-column align-items-center">
-              <b><p>Количество приборов(палочки)</p></b>
+          <div className="container_pribor mb-2" >
+            <div className="d-flex flex-column">
+              <p style={{fontSize: `16px`}}>Количество <br></br> приборов(палочки)</p>
               <div className="d-flex">
               <button 
               onClick={()=> addedPribor(1)}
-              className="btn btn-outline-success">
-                <i className="fa fa-plus-circle"></i>
+              className="btn btn-outline-success btn-sm">
+                <i className="fa fa-plus-circle fa-lg"></i>
               </button>
-              <b className="ml-3 mr-3">{palochkiTotal}</b>
+              <b className="ml-3 mr-3" style={{fontSize: 18}}>{palochkiTotal}</b>
               <button 
               onClick={()=> addedPribor(-1) }
-              className="btn btn-outline-warning">
-                <i className="fa fa-minus-circle"></i>
+              className="btn btn-outline-warning btn-sm">
+                <i className="fa fa-minus-circle fa-lg"></i>
               </button> 
             </div> 
             </div>
           </div>
     }
-      <div className="total text-center mt-3">
+     <Typography variant="subtitle2" className={classes.typography}>Товары: {total} ₽ </Typography>
+     <Typography variant="subtitle2" className={classes.typography}><b>Итого {total} ₽</b></Typography>
+     <Button component={Link} state={{cart: addPanelPribors}} to="/order" className={classes.button} >
+      <b>Оформить заказ</b>
+      </Button>
+     </Paper>
+    </Grid>
+    </Grid>
+      {/* <div className="total text-center mt-3">
               <div>
                 <b> Итого к оплате: {total} ₽</b>
               </div>
@@ -252,7 +269,7 @@ return (
               <b>Продолжить оформление</b>
               </Button>
               </div>
-             </div>
+        </div> */}
         </div>         
         }
         </Grid>

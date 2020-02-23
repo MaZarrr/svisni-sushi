@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
       [theme.breakpoints.down('786')]: {
-        background: `lightgrey`
+        background: `#f0ecec`
       },
   },
   img: {
@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   h1Home: {
-    fontFamily: 'Neucha, cursive',
+    fontFamily: 'Oswald, cursive',
     fontWeight: '900',
     lineHeight: 2,
     fontSize: '10vw',

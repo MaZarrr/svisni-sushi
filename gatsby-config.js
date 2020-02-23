@@ -46,7 +46,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Comfortaa", "Neucha", "Montserrat Alternates"],
+          families: ["Comfortaa", "Oswald", "Neucha"],
         },
       },
     },
@@ -110,7 +110,7 @@ module.exports = {
 //   options: {
 //     fonts: [
 //       {
-//         family: `Neucha`,
+//         family: `Oswald`,
 //         subsets: [`latin`, `cyrillic`],
 //       },
 //       {

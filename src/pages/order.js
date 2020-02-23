@@ -54,8 +54,18 @@ const useStyles = makeStyles(theme => ({
     border: `2px solid blue`,
     borderRadius: 10,
     padding: 10,
-
-  }
+    maxWidth: `200px`
+  },
+    button: {
+      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+      color: 'white',
+      marginTop: 8,
+      textAlign: `start`,
+      width: `300px`,
+      [theme.breakpoints.down('sm')]: {
+        maxWidth: '90%'
+      }
+  },
 
 }));
 
@@ -290,68 +300,14 @@ return (
                    value={phoneUser} 
                    helperText="Введите ваш телефон."/>
                   </Grid>
-                  <hr></hr>
-                  <Grid item xs={12}>
-                  <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
-                  fontSize={24}>Дата и время доставки заказа</Box></Typography>  
-                  <FormGroup>
-                    <Typography component="div">
-                    <Grid component="label" container alignItems="center" spacing={1}>
-                      <Grid item>Сразу</Grid>
-                      <Grid item>
-                        <IOSSwitch
-                          checked={state.checkedC}
-                          onChange={handleChangee('checkedC')}
-                          value="checkedC"
-                        />
-                      </Grid>
-                      <Grid item>Предзаказ</Grid>
-                    </Grid>
-                  </Typography>
-                </FormGroup>
-                </Grid>
-
-              {  state.checkedC &&
-                <Grid container xs={12} >
-                 <TextField id="validation-outlined-input" 
-                 label="Дата" 
-                 variant="outlined" 
-                 style={{margin: `10px auto 10px 0`}}
-                 required inputProps={{
-                   maxLength: 22,
-                   }} 
-                   name="date" 
-                   onChange={(e) => {
-                     setDate(e.target.value);
-                 }}  
-                 value={dateDelivery} 
-                 helperText="Когда доставить"/>
+                       <hr></hr>
+                     <Grid item xs={12}>
+              <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
+              fontSize={24}>Доставка</Box></Typography>  
+              </Grid>
               
-                 <TextField id="validation-outlined-input" 
-                   label="Время" 
-                   variant="outlined"
-                   type="tel" 
-                   style={{margin: `10px auto 10px 0`}}
-
-                   required inputProps={{
-                     maxLength: 16,
-                     }} 
-                     name="time" 
-                     onChange={(e) => {
-                       setTime(e.target.value);
-                   }}  
-                   value={timeDelivery} 
-                   helperText="К какому времени"/>
-                   </Grid>
-                }
-                <hr></hr>
-                  <Grid item xs={12}>
-                  <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
-                  fontSize={24}>Оплата</Box></Typography>  
-                  </Grid>
-               
-                  <Grid container >
-                  <div className={classes.conatiner_info_left}>
+                <Grid container >
+                  {/* <div className={classes.conatiner_info_left}>
                  <InputLabel id="controlled-open-select-label">Форма оплаты</InputLabel>
                  <Select
                    labelId="controlled-open-select-label"
@@ -368,7 +324,7 @@ return (
                  <MenuItem value="Онлайн оплата">Онлайн оплата</MenuItem>
                  <MenuItem value="Оплата наличными">Оплата наличными</MenuItem>
                </Select>
-               </div>
+               </div> */}
                
                <div className={classes.conatiner_info}>
                <InputLabel id="open-select-label">Способ доставки</InputLabel>
@@ -412,7 +368,62 @@ return (
           </div>
             }
           </Grid>
-          <hr></hr>
+                  <hr></hr>
+                  <Grid item xs={12}>
+                  <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={700} 
+                  fontSize={24}>Дата и время доставки заказа</Box></Typography>  
+                  <FormGroup>
+                    <Typography component="div">
+                    <Grid component="label" container alignItems="center" spacing={1}>
+                      <Grid item>Сразу</Grid>
+                      <Grid item>
+                        <IOSSwitch
+                          checked={state.checkedC}
+                          onChange={handleChangee('checkedC')}
+                          value="checkedC"
+                        />
+                      </Grid>
+                      <Grid item>Предзаказ</Grid>
+                    </Grid>
+                  </Typography>
+                </FormGroup>
+                </Grid>
+             
+              {  state.checkedC &&
+                <Grid container xs={12} >
+                 <TextField id="validation-outlined-input" 
+                 label="Дата" 
+                 variant="outlined" 
+                 style={{margin: `10px auto 10px 0`}}
+                 required inputProps={{
+                   maxLength: 22,
+                   }} 
+                   name="date" 
+                   onChange={(e) => {
+                     setDate(e.target.value);
+                 }}  
+                 value={dateDelivery} 
+                 helperText="Когда доставить"/>
+              
+                 <TextField id="validation-outlined-input" 
+                   label="Время" 
+                   variant="outlined"
+                   type="tel" 
+                   style={{margin: `10px auto 10px 0`}}
+
+                   required inputProps={{
+                     maxLength: 16,
+                     }} 
+                     name="time" 
+                     onChange={(e) => {
+                       setTime(e.target.value);
+                   }}  
+                   value={timeDelivery} 
+                   helperText="К какому времени"/>
+                   </Grid>
+                }
+                  <hr></hr>
+              
            { delivery === "Доставка курьером" &&  
            <>
             <Grid container xs={12} justify="center">      
@@ -533,17 +544,35 @@ return (
              style={{marginTop: `50px`}}
            />
            </Grid>
-
-            <div className="total mt-3">
-             <b>Итого к оплате: {total}</b>
+            <div className={classes.conatiner_info_left}> 
+              <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
+              <Select
+                labelId="demo-controlled-open-select-label"
+                id="demo-controlled-open-select"
+                open={open}
+                onClose={handleClose}
+                onOpen={handleOpen}
+                value={age}
+                name="sdacha"
+                onChange={handleChange}>
+                <MenuItem value="Без сдачи">
+                <em>Без сдачи</em>
+              </MenuItem>
+              <MenuItem value={700}>С 700 руб</MenuItem>
+              <MenuItem value={1000}>С 1000 руб</MenuItem>
+              <MenuItem value={2000}>С 2000 руб</MenuItem>
+              <MenuItem value={5000}>С 5000 руб</MenuItem>
+            </Select>
+          </div>
+            <div className="total" style={{margin: `20px 0 20px 0`, fontSize: 20}}>
+             <b>Итого к оплате: {total} ₽</b>
              </div>
              <Button 
              type="submit" 
              variant="contained" 
-             color="primary"
-             size='large'
+             className={classes.button}
              >
-             Оформить заказ
+            Заказать
              </Button>
          </form>
          </Grid> 

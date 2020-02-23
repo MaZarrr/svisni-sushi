@@ -10,12 +10,16 @@ export const useStylesCart = makeStyles(theme => ({
         fontDisplay: `fallback`
     },
     titleH1: {
-        fontFamily: 'Neucha',
-        fontWeight: 800,
+        fontFamily: 'Oswald',
+        fontWeight: 700,
         paddingLeft: `35px`,
         paddingTop: `25px`,
         paddingBottom: `20px`,
-        borderBottom: `1px solid lightgrey`
+        borderBottom: `1px solid lightgrey`,
+        [theme.breakpoints.down('600')]: {
+            margin: 0
+        }
+        
     },
     deckript: {
         fontFamily: 'Comfortaa',
@@ -31,11 +35,11 @@ export const useStylesCart = makeStyles(theme => ({
         // minHeight: `680px`,
         margin: `20px auto 10px auto`,
         [theme.breakpoints.down('600')]: {
-            maxWidth: `300px`,
+            margin: `0 auto 30px auto`
         }
     },
     media: {
-        maxWidth: `100%`,
+        maxWidth: `70%`,
         margin: `0 auto`,
         // paddingTop: '56.25%', // 16:9
         // backgroundSize: 'contain',

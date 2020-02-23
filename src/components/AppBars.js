@@ -13,7 +13,7 @@ import styled  from 'styled-components';
 
 const AppBarStyle = styled(AppBar) `
 .tabs {
-  font-family: 'Neucha', cursive;
+  font-family: Neucha, Comfortaa, cursive;
   font-weight: 700;
   color: darkslategray;
   background-color: white;
