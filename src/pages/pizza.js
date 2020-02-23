@@ -28,7 +28,7 @@ const Pizza = ({
         }
       },
     producSetsLoad, 
-    setAddedToCart, product
+    setAddedToCart, product, loading
   }) => {
   
   const classes = useStylesCart();
@@ -38,6 +38,11 @@ const Pizza = ({
         producSetsLoad(data); // action push to reduxStore
 
       }, [setyProduct, producSetsLoad])
+
+ if(loading) {
+        return <><h1 style={{marginBottom: `300px`}}>...Загрузка</h1></> 
+      }
+     
 
 return ( 
    <section className = "section_cart" >
@@ -114,8 +119,8 @@ return (
     )
 }
 
-const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
+const mapStateToProps = ({ setList: {product, loading} }) => {
+    return {product, loading};
   }
   
   const mapDispatchToProps = (dispatch) => {

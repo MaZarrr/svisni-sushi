@@ -39,18 +39,19 @@ const Sety = ({
     product
   }) => {
 
+
   const classes = useStylesCart();
-    useEffect(() => {
-      productRequested()
-      const data = setyProduct
-      producSetsLoad(data); // action push to reduxStore
 
+    useEffect( () => {
+      productRequested();
+      producSetsLoad(setyProduct); // action push to reduxStore
+      
       }, [setyProduct, producSetsLoad, productRequested])
-
-        if(loading) {
-        return <h1 style={{marginBottom: `300px`}}>...Загрузка</h1> 
+   
+   if(loading) {
+        return <><h1 style={{marginBottom: `300px`}}>...Загрузка</h1></> 
       }
-
+     
 
 return (
     <section className="section_cart">
