@@ -32,17 +32,13 @@ const useStyles = makeStyles(theme => ({
     }
   },
   header: {
-    // backgroundColor: 'lightgrey',
     display: 'flex',
     alignItems: 'center',
     paddingTop: '8px',
     width: `100%`,
     justifyContent: 'flex-start',
     background: `#f0ecec`,
-    paddingLeft: theme.spacing(2),
-    [theme.breakpoints.down('786')]: {
-        background: `#f0ecec`
-      },
+    paddingLeft: theme.spacing(2)
   },
   img: {
     height: 'inherit',

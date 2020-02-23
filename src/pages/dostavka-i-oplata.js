@@ -109,9 +109,8 @@ return (
      <Grid container> 
      <StylingInfo>
       <header>
-            <h1 style={{paddingLeft: 30}}>Валуйский район - Зоны и стоимость доставки</h1>
+            <h1 style={{paddingLeft: 30, fontSize: `36px`}}>Валуйский район - Зоны и стоимость доставки</h1>
         </header>
-      
      </StylingInfo>
 
       <Grid item xs={12} sm={6}> 

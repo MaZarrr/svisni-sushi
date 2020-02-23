@@ -301,9 +301,9 @@ const Header = () => {
         {data.allContentfulIconMenuLeftPanel.edges.map(({node: iconButton})=> (
         <ListItem key={iconButton.id} button component={Link} 
           activeStyle={{ color: "#000", 
-          borderBottom: `2px solid tomato`,
-          backgroundColor: `lightgrey`,
-          // borderTop: `1px solid tomato`
+          borderBottom: `1px solid tomato`,
+          backgroundColor: `#f0ecec`,
+          borderTop: `1px solid tomato`
           }} to={`/${iconButton.slug}`}>
         <Icon className={classes.iconImg}>
           <Img fluid={iconButton.image.fluid} className={classes.iconImg} alt={iconButton.name}></Img>

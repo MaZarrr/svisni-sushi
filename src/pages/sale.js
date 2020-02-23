@@ -13,7 +13,7 @@ return (
     <SEO title="Акции" />
     <StylingInfo>
     <div className="container">
-    <h1>Акции</h1>
+    <h1 style={{fontSize: `40px`}}>Акции</h1>
     <hr></hr>
 
     <Grid container xs style={{margin: `0 0 50px 0`}}>

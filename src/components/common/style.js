@@ -14,6 +14,7 @@ export const useStylesCart = makeStyles(theme => ({
         fontWeight: 700,
         paddingLeft: `35px`,
         paddingTop: `25px`,
+        fontSize: 46,
         paddingBottom: `20px`,
         borderBottom: `1px solid lightgrey`,
         [theme.breakpoints.down('600')]: {

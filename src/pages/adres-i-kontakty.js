@@ -10,7 +10,7 @@ return (
     <>
     <SEO title="Адрес и контакты" />
     <StylingInfo>
-    <h1 style={{paddingLeft: 30}}>Адрес и контакты</h1>
+    <h1 style={{paddingLeft: 30, fontSize: `40px`}}>Адрес и контакты</h1>
     <hr></hr>
     <Grid container>
         <Grid item xs={11} sm={5}  style={{margin: `auto 0 auto 25px`}}>
