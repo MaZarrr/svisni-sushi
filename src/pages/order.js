@@ -128,11 +128,11 @@ const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySit
   setLevel, setDoor,  setTime, setDate, total, dateDelivery, timeDelivery}) => {
     
 const [open, setOpen] = useState(false);
-const [openPayment, setOpenPayment] = useState(false);
+// const [openPayment, setOpenPayment] = useState(false);
 const [openDelivery, setOpenDelivery] = useState(false);
 
 const [age, setAge] = useState('');
-const [payment, setPayment] = useState('');
+// const [payment, setPayment] = useState('');
 const [delivery, setDelivery] = useState('');
 
  const [state, setState] = React.useState({
@@ -207,9 +207,9 @@ const handleSubmit = (ev) => {
   const handleChange = event => {
     setAge(event.target.value);
   };
-  const handleChangePayment = event => {
-    setPayment(event.target.value);
-  };
+  // const handleChangePayment = event => {
+  //   setPayment(event.target.value);
+  // };
 
   const handleChangeDelivery = event => {
     setDelivery(event.target.value);
@@ -222,13 +222,13 @@ const handleSubmit = (ev) => {
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleClosePayment = () => {
-    setOpenPayment(false);
-  };
+  // const handleClosePayment = () => {
+  //   setOpenPayment(false);
+  // };
   
-  const handleOpenPayment = () => {
-    setOpenPayment(true);
-  };
+  // const handleOpenPayment = () => {
+  //   setOpenPayment(true);
+  // };
 
   const handleCloseDelivery = () => {
     setOpenDelivery(false);
@@ -345,7 +345,7 @@ return (
              </Select>  
              </div>
 
-            { payment === "Оплата наличными" &&
+            {/* { payment === "Оплата наличными" &&
             <div className={classes.conatiner_info_left}> 
               <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
               <Select
@@ -366,7 +366,7 @@ return (
               <MenuItem value={5000}>С 5000 руб</MenuItem>
             </Select>
           </div>
-            }
+            } */}
           </Grid>
                   <hr></hr>
                   <Grid item xs={12}>

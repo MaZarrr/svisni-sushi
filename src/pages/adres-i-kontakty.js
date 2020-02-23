@@ -10,10 +10,9 @@ return (
     <>
     <SEO title="Адрес и контакты" />
     <StylingInfo>
-    <div className="container">
-        <h1>Адрес и контакты</h1>
-    </div>
-    <Grid container justify="space-around">
+    <h1 style={{paddingLeft: 30}}>Адрес и контакты</h1>
+    <hr></hr>
+    <Grid container>
         <Grid item xs={11} sm={5}  style={{margin: `auto 0 auto 25px`}}>
         <Typography variant="h5">Режим работы</Typography>
         <p>c 10.00 до 22.00</p>

@@ -172,11 +172,11 @@ const Header = () => {
       name: 'О нас', 
       link: '/o-nas'
     },
-    {
-      id: 3,
-      name: 'Отзывы', 
-      link: '/otzyvy'
-    },
+    // {
+    //   id: 3,
+    //   name: 'Отзывы', 
+    //   link: '/otzyvy'
+    // },
     {
       id: 4,
       name: 'Доставка и оплата', 

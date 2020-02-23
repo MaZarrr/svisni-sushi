@@ -33,7 +33,7 @@ const styles = theme =>( {
     transition: '1s',
     top: '65px',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    [theme.breakpoints.down('992')]: {
+    [theme.breakpoints.down('768')]: {
       display: 'none',
     }
   },
@@ -49,7 +49,7 @@ function AppBars(props) {
   } = props;
 
   const [hideOnScroll, setHideOnScroll] = useState(true)
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
    const handleChange = (event, newValue) => {
      setValue(newValue);

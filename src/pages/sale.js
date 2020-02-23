@@ -14,6 +14,7 @@ return (
     <StylingInfo>
     <div className="container">
     <h1>Акции</h1>
+    <hr></hr>
 
     <Grid container xs style={{margin: `0 0 50px 0`}}>
         {data.allContentfulProductSale.edges.map((product) => (

@@ -37,12 +37,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     paddingTop: '8px',
     width: `100%`,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    background: `#f0ecec`,
     paddingLeft: theme.spacing(2),
-    [theme.breakpoints.up('768')]: {
-      display: 'none',
-    },
-      [theme.breakpoints.down('786')]: {
+    [theme.breakpoints.down('786')]: {
         background: `#f0ecec`
       },
   },
@@ -71,12 +69,14 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'Oswald, cursive',
     fontWeight: '900',
     lineHeight: 2,
-    fontSize: '10vw',
+    fontSize: '46px',
+    paddingLeft: `30px`,
     [theme.breakpoints.down('786')]: {
       fontSize: '30px',
       lineHeight: `14vmin`,
       letterSpacing: `1px`,
-      color: `#000`
+      color: `#000`,
+      padding: 0
     },
     // [theme.breakpoints.down('425')]: {
     //   fontSize: '6vw',
