@@ -21,7 +21,7 @@ return (
         <Typography variant="h5">Адрес</Typography>
         <p>3Интернационала д.48а, Уразово</p>
         <Typography variant="caption">ИП Беженова Татьяна Викторовна</Typography>
-        <p variant="caption"> ОРГНИП 318527500073350</p>
+        <p variant="caption"> ОРГНИП 318312300012678</p>
       </Grid> 
     {/* <Grid item xs={11} sm={6} style={{border: `1px solid lightgrey`, padding: `10px`}}>
     <iframe 

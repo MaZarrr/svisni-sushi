@@ -6,9 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Link } from 'gatsby';
 
-export default (props) =>{ 
+export default (props) => {
+console.log(props);
 return (
-    <Grid container xs direction="column" alignItems="center">
+    <Grid container direction="column" alignItems="center">
         <Typography variant="h1" style={{marginTop: `70px`}}>
         <Box fontFamily="Oswald" fontWeight={900} fontSize={46} style={{textAlign: `center`}}>
             Ваш заказ оформлен!

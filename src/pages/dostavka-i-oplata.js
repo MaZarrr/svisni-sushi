@@ -1,6 +1,5 @@
 import React from "react"
 import SEO from "../components/seo"
-import { StylingInfo } from '../components/common/style';
 import Avatar from '@material-ui/core/Avatar';
 import { Grid } from "@material-ui/core";
 import Container from '@material-ui/core/Container';
@@ -88,16 +87,16 @@ const delivery = [
   {
         id: 9,
         adress: 'Валуйки',
-        do: 999,
-        posle: 1000,
+        do: 1399,
+        posle: 1400,
         color: '#d2143a',
         price: 300,
     },
  {
         id: 10,
         adress: 'Борки',
-        do: 999,
-        posle: 1000,
+        do: 1399,
+        posle: 1400,
         color: '#fde601',
         price: 300,
     },
@@ -106,14 +105,19 @@ const delivery = [
 return (
     <>
     <SEO title="Доставка и оплата" />
-     <Grid container> 
-     <StylingInfo>
-      <header>
-            <h1 style={{paddingLeft: 30, fontSize: `36px`}}>Валуйский район - Зоны и стоимость доставки</h1>
+          <header>
+            <h1 style={{
+              paddingLeft: 30, 
+              fontSize: `30px`,
+              fontFamily: `Neucha, cursive`,
+              fontStyle: `normal`,
+              fontWeight: 700,
+              paddingTop: 20
+            }}>Валуйский&nbsp;район - Зоны&nbsp;и стоимость доставки</h1>
         </header>
-     </StylingInfo>
+     <Grid container> 
 
-      <Grid item xs={12} sm={6}> 
+    <Grid item xs={12} sm={6}> 
     <hr></hr>
       <Container style={{overflowY: `scroll`, height: `400px`}}>
       {delivery.map((el) => (
@@ -178,38 +182,8 @@ return (
     вами свяжется.
     </p>
     </div>
+
     </Grid>
-    
-      {/* </div> */}
-    {/* <StylingInfo>
- 
-    <article>
-       
-        <div>
-            <p className="text">
-            <b>Доставка осуществляется курьерами, которые доставят Ваш заказ в удобное для Вас место и время. </b> <br/>
-            <b>Условия заказа и доставки: </b> 
-            <br></br>
-                • Заказ осуществляется у наших операторов по номерам телефонов или у нас на сайте
-            <br></br>
-            <b>п.Уразово</b>
-            <br></br>
-                366-233, +7(904)094-92-22 
-            <br></br><br></br>
-                • Минимальная сумма заказа для бесплатной доставки составляет 500 ₽. точную стоимость доставки уточняйте
-                у оператора.
-            <br></br> <br></br>
-                • Время доставки 60–80мин. Скорость доставки напрямую зависит от ситуаций на дорогах, погодных 
-                условий и времени суток. Надеемся на понимание с Вашей стороны. <br></br><br></br>
-                • Приём заказов и доставка осуществляется с 10:00 до 22.00, в субботу с 11:00 до 23.00
-                <br></br> <br></br>
-                • Оплата курьеру - наличный расчёт или безналичный расчёт с оплатой у нас на сайте. 
-            </p>
-        </div> */}
-		
-    {/* </article> */}
-    {/* </div> */}
-    {/* </StylingInfo> */}
     </>
     
     )

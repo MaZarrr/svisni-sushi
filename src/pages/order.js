@@ -202,6 +202,7 @@ const handleSubmit = (ev) => {
         })
         
     navigate('/order-processed', {replace: true})
+    // navigate('/order-processed', {replace: true}, {state: {data}})
   }
    
   const handleChange = event => {
