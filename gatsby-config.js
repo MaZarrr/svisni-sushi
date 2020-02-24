@@ -51,6 +51,14 @@ module.exports = {
         },
       },
     },
+    {
+    resolve: "gatsby-plugin-google-tagmanager",
+    options: {
+      id: "G-Z1XLFFGKW2",
+      includeInDevelopment: false,
+      defaultDataLayer: { platform: "gatsby" },
+    },
+  },
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -67,13 +75,13 @@ module.exports = {
       }
     },
     {
-    resolve: "gatsby-plugin-google-tagmanager",
-    options: {
-      id: "G-Z1XLFFGKW2",
-      includeInDevelopment: false,
-      defaultDataLayer: { platform: "gatsby" },
+    resolve: `gatsby-plugin-yandex-metrika`,
+      options: {
+        trackingId: '57341296',
+        webvisor: true,
+        trackHash: true,
+        },
     },
-  },
     {
       resolve: `gatsby-source-contentful`,
       options: {
@@ -102,13 +110,7 @@ module.exports = {
   // }
   // },
 // {
-//   resolve: `gatsby-plugin-yandex-metrika`,
-//   options: {
-//     trackingId: 'YOUR_YANDEX_METRIKA_TRACKING_ID',
-//     webvisor: true,
-//     trackHash: true,
-//   },
-// },
+
 // require('dotenv').config({
 //   path: '.env'
 // })
