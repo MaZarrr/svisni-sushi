@@ -6,6 +6,7 @@ if(process.env.NODE_ENV !== 'production') {
 
 module.exports = {
   siteMetadata: {
+    siteUrl: `https://svisni-sushi.ru`,
     title: `СвисниБар`,
     description: `Заказать пиццу, суши, роллы с доставкой - Валуйки`,
     author: `@mazarrr`,
@@ -25,7 +26,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `svisni-sushi`,
-        short_name: `SS`,
+        short_name: `SvisniSushi`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -50,11 +51,20 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "G-3KY3WP513Z",
+        trackingId: "G-Z1XLFFGKW2",
       },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://svisni-sushi.ru',
+        sitemap: 'https://svisni-sushi.ru/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
     },
     {
       resolve: `gatsby-source-contentful`,
