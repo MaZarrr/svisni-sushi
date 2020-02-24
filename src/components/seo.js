@@ -51,6 +51,10 @@ function SEO({ description, lang, meta, title }) {
           content: `Dl5O_rAjIGCzaRIsDM6M4jsV2gz4zAePxeTghWzZbvE`,
         },
         {
+          name: `yandex-verification`,
+          content: `d47803efe98f2440`,
+        },
+        {
           property: `og:title`,
           content: title,
         },
