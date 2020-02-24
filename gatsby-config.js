@@ -55,7 +55,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "G-Z1XLFFGKW2",
+        trackingId: "1816115975"
       },
     },
     {
@@ -66,6 +66,14 @@ module.exports = {
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
+    {
+    resolve: "gatsby-plugin-google-tagmanager",
+    options: {
+      id: "G-Z1XLFFGKW2",
+      includeInDevelopment: false,
+      defaultDataLayer: { platform: "gatsby" },
+    },
+  },
     {
       resolve: `gatsby-source-contentful`,
       options: {
