@@ -26,7 +26,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `svisni-sushi`,
-        short_name: `SvisniSushi`,
+        short_name: `Свисни суши`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -63,7 +63,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "1816115975"
+        trackingId: "G-Z1XLFFGKW2"
       },
     },
     {
