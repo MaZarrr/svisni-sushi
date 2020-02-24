@@ -51,6 +51,10 @@ function SEO({ description, lang, meta, title }) {
           content: `Dl5O_rAjIGCzaRIsDM6M4jsV2gz4zAePxeTghWzZbvE`,
         },
         {
+          name: `wmail-verification`,
+          content: `3f3d80ea360609afbf541ab3ad672f4a`,
+        },
+        {
           name: `yandex-verification`,
           content: `d47803efe98f2440`,
         },
