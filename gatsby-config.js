@@ -105,16 +105,6 @@ module.exports = {
   ],
 }
 
-  // {
-  //   resolve: 
-  //   options: {
-  //     precachePages: [`/*`],
-  //      workboxConfig: {
-  //        importWorkboxFrom: `cdn`,
-  //      },
-  // }
-  // },
-// {
 
 // require('dotenv').config({
 //   path: '.env'
