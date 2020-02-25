@@ -101,6 +101,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
+        precachePages: [`/*`],
         workboxConfig: {
           importWorkboxFrom: `local`,
           globDirectory: '/',
