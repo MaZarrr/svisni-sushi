@@ -48,7 +48,7 @@ const PizzaItem = ({image, name, description, location}) => {
 
     return (
         <>
-        <SEO title="Акция" />
+        <SEO title={`${name} - Свисни Суши Уразово`} />
         <SetySection>
         <div className="container"> 
         <h1>{name}</h1>

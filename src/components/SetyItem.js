@@ -10,7 +10,7 @@ const SetyItem = ({name, description, createdAt, image, count, weight, price, ad
 
 return (
     <section>
-    <SEO title={name} />
+    <SEO title={`Сет роллов ${name}`} />
     <StylingInfo>
     <div className="container"> 
         <h1>{name}</h1>

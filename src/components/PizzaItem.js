@@ -10,7 +10,7 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
 
  return (
     <>
-    <SEO title={name} />
+    <SEO title={`Пицца ${name}`} />
     <StylingInfo>
     <div className="container"> 
         <h1>{name}</h1>

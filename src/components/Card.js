@@ -13,7 +13,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 // import { red } from '@material-ui/core/colors';
-import Logo from "../images/logosvisni.png"
+import Logo from "../images/logoPN.png"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';

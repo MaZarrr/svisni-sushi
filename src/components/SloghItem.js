@@ -10,7 +10,7 @@ const SloghItem = ({name, description, image, count, weight, price, added}) => {
 
     return (
     <>
-    <SEO title={name} />
+    <SEO title={`Роллы ${name}`} />
     <StylingInfo>
     <div className="container"> 
         <h1>{name}</h1>

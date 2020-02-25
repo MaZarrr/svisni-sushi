@@ -9,8 +9,8 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 const HotItem = ({name, description, image, count, weight, price, added}) => {
 
     return (
-         <>
-    <SEO title={name} />
+    <>
+    <SEO title={`Горячие роллы ${name}`} />
     <StylingInfo>
     <div className="container"> 
         <h1>{name}</h1>

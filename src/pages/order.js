@@ -199,7 +199,7 @@ const handleSubmit = (ev) => {
           comments: ev.target.comments.value || "Без комментария",
         },
         url: 'https://svisni-sushi.firebaseio.com/order.json'
-        })
+    })
         
     navigate('/order-processed', {replace: true})
     // navigate('/order-processed', {replace: true}, {state: {data}})
