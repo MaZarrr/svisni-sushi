@@ -8,7 +8,7 @@ const onas = () => {
 
 return (
     <>
-    <SEO title="О нас" />
+    <SEO title="Узнай больше о компании Свисни Sushi в посёлке Уразово" />
     <StylingInfo>
     <div className="container">
     <article>

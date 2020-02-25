@@ -46,7 +46,7 @@ const Pizza = ({
 
 return ( 
    <section className = "section_cart" >
-    <SEO title="Пицца" />
+    <SEO title="Заказать пиццу в Валуйках с 10:00 до 22:00. Доставка пиццы на дом - Свисни Пицца Уразово" />
      <div className="title"> 
         <div className="title_item">
             <h1 className={classes.titleH1}>Пицца</h1>

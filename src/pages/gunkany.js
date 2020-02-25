@@ -42,7 +42,7 @@ const Gunkany = ({
 
 return ( 
    <section className="section_cart" >
-    <SEO title="Гунканы" />
+    <SEO title="Заказать гунканы с доставкой в Валуйках - Свисни Суши Уразово" />
      <div className="title"> 
             <h1 className={classes.titleH1}>Гунканы</h1>
       </div>

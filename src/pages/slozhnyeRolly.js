@@ -33,7 +33,7 @@ const Pizza = ({data: {allContentfulProductSlognyeRolly: {edges: setyProduct}, c
 
 return ( 
    <section className="section_cart" >
-    <SEO title="Сложные роллы" />
+    <SEO title="Заказать роллы с доставкой с 10:00 до 22:00 в Валуйках. Доставка роллов на дом и офис - Свисни Sushi" />
      <div className="title"> 
             <h1 className={classes.titleH1}>Сложные роллы</h1>
       </div>

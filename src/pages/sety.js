@@ -55,7 +55,8 @@ const Sety = ({
 
 return (
     <section className="section_cart">
-    <SEO title="Сеты" />
+    <SEO title="Заказать наборы суши и роллов с доставкой в Валуйках, 
+    доставка сетов роллов и суши - Свисни Суши" />
         <div className="title">
             <h1 className={classes.titleH1}>Сеты</h1>
         </div>

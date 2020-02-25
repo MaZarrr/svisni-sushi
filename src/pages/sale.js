@@ -10,7 +10,7 @@ const Sale = ({data}) => {
 
 return (
     <>
-    <SEO title="Акции" />
+    <SEO title="Акции и скидки Свисни Суши Уразово 2020 на пиццу, роллы, суши и наборы" />
     <StylingInfo>
     <div className="container">
     <h1 style={{fontSize: `40px`}}>Акции</h1>

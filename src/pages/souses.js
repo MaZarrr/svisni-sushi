@@ -41,7 +41,7 @@ const Souses = ({
 
 return ( 
    <section className="section_cart" >
-    <SEO title="Соусы" />
+    <SEO title="Доставка соусов и различных добавок к суши и роллам на дом в Уразово - Свисни Суши" />
      <div className="title"> 
             <h1 className={classes.titleH1}>Соусы</h1>
       </div>

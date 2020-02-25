@@ -41,7 +41,7 @@ const Salaty = ({
 
 return ( 
    <section className="section_cart" >
-    <SEO title="Салаты" />
+    <SEO title="Заказать салаты с 10:00 до 22:00 с доставкой в Валуйках. Доставка салатов на дом и офис - Свисни Суши Уразово" />
      <div className="title"> 
             <h1 className={classes.titleH1}>Салаты</h1>
       </div>

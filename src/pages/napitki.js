@@ -42,7 +42,7 @@ const Napitki = ({
 
 return ( 
    <section className="section_cart" >
-    <SEO title="Напитки" />
+    <SEO title="Доставка напитков на дом в Уразово, заказать напитки в Свисни Суши" />
      <div className="title"> 
             <h1 className={classes.titleH1}>Напитки</h1>
       </div>

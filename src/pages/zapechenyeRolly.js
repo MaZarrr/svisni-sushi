@@ -41,7 +41,7 @@ const ZapechenyeRolly = ({
 
 return ( 
    <section className="section_cart" >
-    <SEO title="Запеченые роллы" />
+    <SEO title="Заказать запеченные роллы с доставкой с 10:00 до 22:00 в Валуйках. Доставка роллов на дом и офис - Свисни Sushi" />
      <div className="title"> 
             <h1 className={classes.titleH1}>Запеченые роллы</h1>
       </div>

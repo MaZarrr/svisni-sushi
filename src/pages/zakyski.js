@@ -41,7 +41,7 @@ const Zakyski = ({
 
 return ( 
    <section className="section_cart" >
-    <SEO title="Закуски" />
+    <SEO title="Заказать закуски с доставкой в Валуйках. Доставка закусок на дом и офис - Свисни Суши Уразово" />
      <div className="title"> 
             <h1 className={classes.titleH1}>Закуски</h1>
       </div>

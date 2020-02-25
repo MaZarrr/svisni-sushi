@@ -165,7 +165,7 @@ const handleSubmit = (ev) => {
       data.append('totalPrice', total);
 
     xhr.open(form.method, form.action);
-    // xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
     // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = () => {
       if (xhr.readyState !== XMLHttpRequest.DONE) return;
@@ -283,7 +283,7 @@ return (
                      setName(e.target.value);
                  }}  
                  value={nameUser} 
-                 helperText="Введите ваше имя."/>
+                 helperText="Введите ваше имя"/>
 
                  <TextField id="validation-outlined-input" 
                    label="Телефон" 
@@ -299,13 +299,13 @@ return (
                        setPhone(e.target.value);
                    }}  
                    value={phoneUser} 
-                   helperText="Введите ваш телефон."/>
+                   helperText="Введите ваш телефон"/>
                   </Grid>
-                       <hr></hr>
-                     <Grid item xs={12}>
-              <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
-              fontSize={24}>Доставка</Box></Typography>  
-              </Grid>
+                  <hr></hr>
+                  <Grid item xs={12}>
+                    <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
+                    fontSize={24}>Доставка</Box></Typography>  
+                  </Grid>
               
                 <Grid container >
                   {/* <div className={classes.conatiner_info_left}>
@@ -395,6 +395,7 @@ return (
                  <TextField id="validation-outlined-input" 
                  label="Дата" 
                  variant="outlined" 
+                 type="date" 
                  style={{margin: `10px auto 10px 0`}}
                  required inputProps={{
                    maxLength: 22,
@@ -409,7 +410,7 @@ return (
                  <TextField id="validation-outlined-input" 
                    label="Время" 
                    variant="outlined"
-                   type="tel" 
+                   type="time" 
                    style={{margin: `10px auto 10px 0`}}
 
                    required inputProps={{

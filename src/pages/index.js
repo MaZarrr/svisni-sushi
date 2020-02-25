@@ -4,11 +4,6 @@ import CarouselSvisni from "../components/common/CarouselSvisni"
 import { Link, graphql } from "gatsby"
 import "../components/sass/index.css"
 import Img from 'gatsby-image';
-// import {
-//   onServiceWorkerRedundant,
-//   onServiceWorkerUpdateReady,
-//   registerServiceWorker
-// } from '../../gatsby-browser'
 
 import Grid from '@material-ui/core/Grid';
 import {  makeStyles } from '@material-ui/core/styles';
@@ -52,16 +47,12 @@ const IndexPage = ({data}) => {
 //  window.Chatra('setButtonSize', 50)
 // })
 
-
 const classes = useStyles();
-// console.log(onServiceWorkerRedundant());
-// console.log(onServiceWorkerUpdateReady());
-// console.log(registerServiceWorker());
 
 return (
   <section >
 
-      <SEO title="СвисниСуши" />
+      <SEO title="Cвисни Суши - доставка с 10:00 до 22:00 еды на дом в Валуйском районе, заказать еду в Валуйках" />
       <div className="home_page">
       <CarouselSvisni />
     <div className="title_home">
