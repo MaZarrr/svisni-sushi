@@ -104,7 +104,9 @@ module.exports = {
         workboxConfig: {
           importWorkboxFrom: `local`,
           globDirectory: '/',
-          globPatterns,
+          globPatterns: [
+            '**\/*.{js,css,html,png,jpg,jpeg}',
+          ],
           modifyURLPrefix: {
             // If `pathPrefix` is configured by user, we should replace
             // the default prefix with `pathPrefix`.
