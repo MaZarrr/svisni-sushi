@@ -107,11 +107,11 @@ module.exports = {
           globPatterns: [
             '**\/*.{js,css,html,png,jpg,jpeg}',
           ],
-          modifyURLPrefix: {
+          // modifyURLPrefix: {
             // If `pathPrefix` is configured by user, we should replace
             // the default prefix with `pathPrefix`.
-            "/": `${pathPrefix}/`,
-          },
+          //   "/": `${pathPrefix}/`,
+          // },
           cacheId: `gatsby-plugin-offline`,
           // Don't cache-bust JS or CSS files, and anything in the static directory,
           // since these files have unique URLs and their contents will never change
