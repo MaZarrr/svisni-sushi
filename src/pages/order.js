@@ -63,7 +63,8 @@ const useStyles = makeStyles(theme => ({
       textAlign: `start`,
       width: `300px`,
       [theme.breakpoints.down('sm')]: {
-        maxWidth: '90%'
+        maxWidth: '90%',
+        marginBottom: 60
       }
   },
 

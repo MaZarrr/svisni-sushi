@@ -73,6 +73,11 @@ const useStyles = makeStyles(theme => ({
   typography: {
     fontSize: 18,
     padding: 5
+  },
+  bottomHead: {
+  [theme.breakpoints.down('sm')]: {
+    marginBottom: 60
+  }
   }
 }));
 
@@ -157,7 +162,8 @@ return (
               value={value[idx]} onChange={handleChange} row>
               <FormControlLabel
                   value={name}
-                  control={<Radio color="primary" name={idx + 1}  onChange={() => onRadioChangedd(id, priceDef)}/>}
+                  control={<Radio color="primary" name={idx + 1}  
+                  onChange={() => onRadioChangedd(id, priceDef)}/>}
                   label="Маленькая"
                   labelPlacement="bottom"
                   id={id}
@@ -229,7 +235,7 @@ return (
                 )
             })
     }
-    <Grid container>
+    <Grid container className={classes.bottomHead}>
     <Grid item xs={12}>
      <Paper elevation={3} style={{padding: 20}}>
         { addPanelPribors &&
