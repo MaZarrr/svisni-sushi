@@ -56,7 +56,8 @@ export const query = graphql `
         }
     }
   `
-
+    // "react-vk": "^5.0.2",
+    //  precachePages: [`/*`],
 // "alias": {
 //     "react-dom": "@hot-loader/react-dom"
 //   },
