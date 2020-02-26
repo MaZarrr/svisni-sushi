@@ -65,7 +65,11 @@ module.exports = {
       options: {
         host: 'https://svisni-sushi.ru',
         sitemap: 'https://svisni-sushi.ru/sitemap.xml',
-        policy: [{ userAgent: '*', allow: '/' }]
+        policy: [{
+          userAgent: '*',
+          allow: '/',
+          disallow: ['/cookie', '/korzina', '/offer', '/order-processed', '/order', '/privacy']
+        }]
       }
     },
     {

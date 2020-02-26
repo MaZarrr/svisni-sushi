@@ -67,7 +67,10 @@ const useStyles = makeStyles(theme => ({
         marginBottom: 60
       }
   },
-
+   emty: {
+     padding: theme.spacing(2),
+     paddingLeft: theme.spacing(4),
+   },
 }));
 
 const IOSSwitch = withStyles(theme => ({
@@ -244,7 +247,9 @@ return (
     <section >
     <SEO title="Оформление заказа" />
      <div className={classes.root}>
+  
     <Grid container>
+
         <Grid item xs={12}>
           <Paper className={classes.paper}>
           <Typography variant="h2">
@@ -256,7 +261,7 @@ return (
           </Grid>
           </Grid>
 
-        <Grid container className={classes.gridContainer}>
+         { items.length !== 0 ? <Grid container className={classes.gridContainer}>
         <form  
            method="POST"
            onSubmit={handleSubmit}
@@ -578,7 +583,9 @@ return (
             Заказать
              </Button>
          </form>
-         </Grid> 
+         </Grid> : <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={34}>
+           Ваша корзина пуста </Box>
+         } 
          </div>
 </section>
   )

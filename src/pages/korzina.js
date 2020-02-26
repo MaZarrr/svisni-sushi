@@ -266,22 +266,12 @@ return (
      </Paper>
     </Grid>
     </Grid>
-      {/* <div className="total text-center mt-3">
-              <div>
-                <b> Итого к оплате: {total} ₽</b>
-              </div>
-              <div>
-              <Button component={Link} state={{cart: addPanelPribors}} to="/order" className={classes.button}>
-              <b>Продолжить оформление</b>
-              </Button>
-              </div>
-        </div> */}
-        </div>         
-        }
-        </Grid>
-        </Grid>
-        </div>
-        </section>
+    </div>         
+    }
+  </Grid>
+  </Grid>
+  </div>
+  </section>
   </>
     )
 }
