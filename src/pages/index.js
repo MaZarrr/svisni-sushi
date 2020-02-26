@@ -33,6 +33,13 @@ const useStyles = makeStyles(theme => ({
        display: 'none',
        margin: `0 auto`
      }
+  },
+  menuPc: {
+    maxWidth: 1368, 
+    marginTop: 40,
+    [theme.breakpoints.down('768')]: {
+       display: 'none',
+     }
   }
 }))
 
@@ -43,7 +50,7 @@ const classes = useStyles();
 
 return (
   <section >
-  <SEO title="Cвисни Суши - доставка еды на дом в Валуйском районе с 10:00 до 22:00, заказать еду в Валуйках" />
+  <SEO title="Cвисни Суши - доставка еды на дом в Валуйки с 10:00 до 22:00, заказать еду в Валуйском районе" />
   <div className="home_page">
   <CarouselSvisni />
     <div className="title_home">
@@ -59,7 +66,7 @@ return (
       </Grid>
     </Grid>
 
-      <Grid container style={{maxWidth: 1368, marginTop: 40}}>  
+      <Grid container className={classes.menuPc}>  
       {data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
         <Grid item xs={6} sm={4} key={homeMenu.id} >  
           <div className="cart_item">

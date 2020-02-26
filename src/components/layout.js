@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: `1440px`,
     [theme.breakpoints.down('769')]: {
-      paddingLeft: '50px',
+      paddingLeft: '50px'
     },
     [theme.breakpoints.up('769')]: {
       marginTop: '90px',
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    maxWidth: `1440px`,
+    // maxWidth: `1440px`,
     // padding: theme.spacing(3),
   }
 }));

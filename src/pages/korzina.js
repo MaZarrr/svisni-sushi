@@ -140,7 +140,7 @@ return (
           </Typography>
           </Paper>
            { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={34}>
-           Ваша корзина пуста </Box> : <div className={classes.paperDiv}>
+           Похоже, что в вашей корзине нет товаров, давайте добавим их :) </Box> : <div className={classes.paperDiv}>
           <Typography variant="h6"><b>Товар</b></Typography>
           {  
         items.map((item, idx) => {

@@ -33,9 +33,9 @@
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 320px) {
   .icon_start_xs {
-    margin: 0 0 0 17%;
+    margin: 0 0 0 10%;
   }
 }
 
