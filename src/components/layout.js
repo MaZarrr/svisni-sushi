@@ -11,10 +11,10 @@ import ErrorBoundary from './error-boundary/error-boundary'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    [theme.breakpoints.down('992')]: {
+    [theme.breakpoints.down('769')]: {
       paddingLeft: '50px',
     },
-    [theme.breakpoints.up('992')]: {
+    [theme.breakpoints.up('769')]: {
       marginTop: '90px',
     },
     maxWidth: `1440px`,

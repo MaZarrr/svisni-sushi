@@ -61,13 +61,8 @@ const useStyles = makeStyles(theme => ({
     border: `1px solid tomato`,
     [theme.breakpoints.up('769')]: {
       display: 'none',
+      margin: 0
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   marginLeft: 5,
-    // },
-    // [theme.breakpoints.down('md')]: {
-    //   marginLeft: -5,
-    // },
     // backgroundColor: "tomato", 
   },
   hide: {
@@ -77,7 +72,7 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
-    [theme.breakpoints.up('992')]: {
+    [theme.breakpoints.up('769')]: {
       display: 'none',
     }
   },
@@ -117,7 +112,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
     margin: 'auto 0',
     width: '100%',
-    [theme.breakpoints.down('992')]: {
+    [theme.breakpoints.down('769')]: {
       display: 'none',
     }
   },
@@ -242,11 +237,11 @@ const Header = () => {
     <ProgressBar/>
     </ul>       
     </Typography>
-    <div className="icon_start icon_start_xs">
-            <Link to="/">
-              <Imgs />
-            </Link>
-          </div>
+    <div className="icon_start_xs">
+      <Link to="/">
+        <Imgs />
+      </Link>
+    </div>
     <Korzina />
     </Toolbar>
 

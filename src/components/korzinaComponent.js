@@ -7,8 +7,8 @@ import ShoppingBasketRoundedIcon from '@material-ui/icons/ShoppingBasketRounded'
 import IconButton from '@material-ui/core/IconButton';
 
 const KorzinaItem = styled.div `
-  min-width: 100px;
-  /* margin: 0 auto; */
+  min-width: 90px;
+  margin-left: auto;
   padding: 0 auto;
 &:hover {
   transition: 0.1s ease-in;
@@ -28,6 +28,7 @@ const KorzinaItem = styled.div `
 .korzina_content {
   text-align: center;
   font-size: 14px;
+
 }
 `
 

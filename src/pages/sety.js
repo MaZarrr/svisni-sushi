@@ -9,8 +9,6 @@ import {
   productRequested
 } from "../actions";
 
-import { useStylesCart } from '../components/common/style';
-
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -22,7 +20,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
-
+import LayoutProduct from '../components/layoutProduct'
+import { useStylesCart } from '../components/common/style';
 const Sety = ({
       data: {
         allContentfulProduct: {
@@ -38,9 +37,7 @@ const Sety = ({
     loading,
     product
   }) => {
-
-
-  const classes = useStylesCart();
+    const classes = useStylesCart();
 
     useEffect( () => {
       productRequested();
@@ -54,19 +51,20 @@ const Sety = ({
      
 
 return (
-    <section className="section_cart">
-    <SEO title="Заказать наборы суши и роллов с доставкой в Валуйках, 
+  <>
+  <SEO title="Заказать наборы суши и роллов с доставкой в Валуйках, 
     доставка сетов роллов и суши - Свисни Суши" />
-        <div className="title">
+   <section className="section_cart" >
+     <div className="title"> 
+        <div className="title_item">
             <h1 className={classes.titleH1}>Сеты</h1>
         </div>
-    <Grid container justify="center">
-    {
-      product.map(({
-            node: productSets
-          }) => {
+      </div>
+    <Grid container justify="center" >
+    {product.map(({node: productSets}) => {
+      
     const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
-    
+
     return (
     <Grid item xs={12} sm={6} md={3} key={id}>
     <Card className={classes.card}>
@@ -121,8 +119,9 @@ return (
     </Card>
     </Grid>
     )})}
-    </Grid>
-  </section>
+     </Grid>
+    </section>
+   </>
     )
 }
 
