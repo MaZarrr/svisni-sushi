@@ -34,27 +34,18 @@ const useStyles = makeStyles(theme => ({
        margin: `0 auto`
      }
   }
-  // control: {
-  //   padding: theme.spacing.unit * 2,
-  // },
 }))
 
 
 const IndexPage = ({data}) => {
 
-  
-// React.useEffect(() => {
-//  window.Chatra('setButtonSize', 50)
-// })
-
 const classes = useStyles();
 
 return (
   <section >
-
-      <SEO title="Cвисни Суши - доставка с 10:00 до 22:00 еды на дом в Валуйском районе, заказать еду в Валуйках" />
-      <div className="home_page">
-      <CarouselSvisni />
+  <SEO title="Cвисни Суши - доставка еды на дом в Валуйском районе с 10:00 до 22:00, заказать еду в Валуйках" />
+  <div className="home_page">
+  <CarouselSvisni />
     <div className="title_home">
     <h1>
       Свежая и разнообразная кухня 
@@ -68,27 +59,20 @@ return (
       </Grid>
     </Grid>
 
-    {/* <div className={classes.menuHome}> */}
-    <div className="menu">
-
+      <Grid container style={{maxWidth: 1368, marginTop: 40}}>  
       {data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
-        <div key={homeMenu.id} className="cart_item">
-          <div className="cart_container">
-          <Link to={`/${homeMenu.slug}`} state={{ choice: 'Сеты' }}>
+        <Grid item xs={6} sm={4} key={homeMenu.id} >  
+          <div className="cart_item">
+          <Link to={`/${homeMenu.slug}`}>
           <div className="cart_title">
             <h3><b>{homeMenu.category}</b></h3> 
           </div>
-          <Img fluid={homeMenu.image.fluid} className="cart_img" imgStyle={{maxWidth: 300}}></Img>
+          <Img fluid={homeMenu.image.fluid} className="cart_img" imgStyle={{maxWidth: 300}} />
           </Link>
           </div>
-      </div>
+     </Grid>
       ))}
-      <div
-        id="vk_message"
-        className="vk_message"
-        // style={{ maxWidth: `99%`, position: `relative`, display: `flex`, justifyContent: `center`, margin: `0 auto` }}
-      />
-    </div>
+    </Grid>
     </div>
   </section>
   )

@@ -11,14 +11,13 @@ import ErrorBoundary from './error-boundary/error-boundary'
 
 const useStyles = makeStyles(theme => ({
   root: {
+    maxWidth: `1440px`,
     [theme.breakpoints.down('769')]: {
       paddingLeft: '50px',
     },
     [theme.breakpoints.up('769')]: {
       marginTop: '90px',
     },
-    maxWidth: `1440px`,
-    zIndex: '1000',
     margin: '0 auto',
   },
   toolbar: {
@@ -30,6 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
+    maxWidth: `1440px`,
     // padding: theme.spacing(3),
   }
 }));

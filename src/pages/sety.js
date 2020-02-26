@@ -20,8 +20,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
-import LayoutProduct from '../components/layoutProduct'
+
 import { useStylesCart } from '../components/common/style';
+
 const Sety = ({
       data: {
         allContentfulProduct: {
@@ -91,7 +92,7 @@ return (
         </Typography>
         <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
         <b><p>{weight}кг</p></b>
-          <b><p>{count}шт</p></b>
+        <b><p>{count}шт</p></b>
         </Typography>
        <p>{`${price}₽`}</p>
       </CardContent>
