@@ -139,7 +139,7 @@ return (
             </Box>
           </Typography>
           </Paper>
-           { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={34}>
+           { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
            Похоже, что в вашей корзине нет товаров, давайте добавим их :) </Box> : <div className={classes.paperDiv}>
           <Typography variant="h6"><b>Товар</b></Typography>
           {  

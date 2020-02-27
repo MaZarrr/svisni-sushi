@@ -1,5 +1,5 @@
 .icon_start {
-  min-width: 95px;
+  min-width: 65px;
   padding: 0;
   margin: 0;
 }
@@ -10,7 +10,7 @@
 }
 
 .icon_start_xs {
-  min-width: 95px;
+  min-width: 75px;
   margin: 0 auto;
 }
 
@@ -28,7 +28,7 @@
 
 @media screen and (max-width: 500px) {
   .icon_start_xs {
-    min-width: 80px;
+    min-width: 65px;
     margin: 0 10% 0 15%;
   }
 }
