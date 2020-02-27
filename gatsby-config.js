@@ -31,9 +31,10 @@ module.exports = {
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
-        display: `fullscreen`,
+        display: `standalone`,
         // display: `minimal-ui`,
         icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
+        crossOrigin: `use-credentials`
       },
     },
     `gatsby-plugin-material-ui`,
