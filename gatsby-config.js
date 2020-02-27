@@ -34,7 +34,6 @@ module.exports = {
         display: `standalone`,
         // display: `minimal-ui`,
         icon: `src/images/logosvisni.png`, // This path is relative to the root of the site.
-        crossOrigin: `use-credentials`
       },
     },
     `gatsby-plugin-material-ui`,
@@ -59,7 +58,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-123121109-2"
+        head: false,
+        trackingId: "UA-123121109-2",
+        cookieExpires: "5000000"
       },
     },
     {
