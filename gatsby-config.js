@@ -58,8 +58,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
+        head: false,
         trackingId: "UA-123121109-2",
-        cookieExpires: "1000000",
+        cookieExpires: "1000000"
       },
     },
     {
@@ -118,7 +119,7 @@ module.exports = {
 //   path: '.env'
 // })
 // "yarn": "1.15.2"
-
+//
 // let activeEnv =
 //   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
 
