@@ -33,7 +33,6 @@ export const useStylesCart = makeStyles(theme => ({
     },
     card: {
         maxWidth: `260px`,
-        // minHeight: `680px`,
         margin: `20px auto 10px auto`,
         [theme.breakpoints.down('600')]: {
             margin: `0 auto 30px auto`
@@ -42,8 +41,6 @@ export const useStylesCart = makeStyles(theme => ({
     media: {
         maxWidth: `70%`,
         margin: `0 auto`,
-        // paddingTop: '56.25%', // 16:9
-        // backgroundSize: 'contain',
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -119,8 +116,5 @@ export const StylingInfo = styled.section `
         padding-bottom: 50px;
        
     }
-      /* .container h1 {
-        font-size: 7vw;
-    } */
 }
 `

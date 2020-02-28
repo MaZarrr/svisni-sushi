@@ -25,25 +25,7 @@
 
 @media screen and (max-width: 768px) {
   .title_home h1 {
-    max-width: 90%;
-  }
-}
-
-.menu {
-  margin-top: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  max-width: 1368px;
-}
-
-@media screen and (max-width: 767px) {
-  .menu {
-    display: none;
+    max-width: 90;
   }
 }
 

@@ -12,7 +12,6 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-// import { red } from '@material-ui/core/colors';
 import Logo from "../images/logoPN.png"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
@@ -49,8 +48,6 @@ const useStyles = makeStyles(theme => ({
   media: {
     maxWidth: `250px`,
     margin: `0 auto`,
-    // paddingTop: '56.25%', // 16:9
-    // backgroundSize: 'contain',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -63,7 +60,6 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    // backgroundColor: red[500],
     border: `1px solid #000`,
     width: `50px`,
     height: `50px`
@@ -77,7 +73,6 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
   },
   overline: {
-    // margin: '0 auto',
     display: `flex`,
     justifyContent: 'space-between',
   },

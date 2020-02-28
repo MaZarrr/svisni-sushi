@@ -13,17 +13,15 @@ import styled  from 'styled-components';
 
 const AppBarStyle = styled(AppBar) `
 .tabs {
-  font-family: Neucha, Comfortaa, cursive;
-  font-weight: 700;
+  font-family: Comfortaa, cursive;
+  font-weight: 800;
   color: darkslategray;
   background-color: white;
   text-decoration: none;
   letter-spacing: 1px;
   }
   @media screen and(max-width: 768px) {
-    .tabs {
       display: none;
-    }
   }
 `
   // We can inject some CSS into the DOM.
@@ -44,7 +42,7 @@ const styles = theme =>( {
 });
 
 
-function AppBars(props) {
+const AppBars = (props) => {
   const { classes, children, className, ...other 
   } = props;
 
@@ -126,7 +124,7 @@ useScrollPosition(({ prevPos, currPos }) => {
   if (isShow !== hideOnScroll) setHideOnScroll(isShow)
 }, [hideOnScroll])
   
-  function a11yProps(index) {
+  const a11yProps = (index) => {
     return {
       id: `scrollable-auto-tab-${index}`,
       'aria-controls': `scrollable-auto-tabpanel-${index}`,
@@ -142,14 +140,12 @@ useScrollPosition(({ prevPos, currPos }) => {
       value={value}
       onChange={handleChange}
       scrollButtons="on"
-      aria-label="scrollable force tabs example"
     >
     {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index)=> (
       <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} 
       value={index + 1} label={menu.name} {...a11yProps(menu.deck)}
-          icon={<Img fluid={menu.image.fluid} style={{width: `65px`}} imgStyle={{maxWidth: 65}} alt={menu.name}></Img>}/>
+          icon={<Img fluid={menu.image.fluid} style={{width: `65px`}} imgStyle={{maxWidth: 65}} alt={menu.name} />}/>
     ))}
-       
     </Tabs>
   </AppBarStyle>
   );

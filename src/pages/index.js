@@ -14,25 +14,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: `100%`,
-    margin: 0,
-    padding: 0,
     [theme.breakpoints.up('768')]: {
       display: 'none'
     }
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  demo: {
-    margin: `0 auto`,
-  },
-  menuHome: {
-    display: `block`,
-    [theme.breakpoints.down('768')]: {
-       display: 'none',
-       margin: `0 auto`
-     }
   },
   menuPc: {
     maxWidth: 1368, 
@@ -43,28 +27,22 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
 const IndexPage = ({data}) => {
 
 const classes = useStyles();
 
 return (
-  <section >
+  <section>
   <SEO title="Cвисни Суши - доставка еды на дом в Валуйки с 10:00 до 22:00, заказать еду в Валуйском районе" />
-  <div className="home_page">
   <CarouselSvisni />
     <div className="title_home">
     <h1>
       Свежая и разнообразная кухня 
     </h1>
     </div>
-    <Grid container justify="center" className={classes.root}>
-      <Grid  item xs={12}>
-      <Grid container justify="center" className={classes.demo} >
+      <Grid item xs={12} className={classes.root}>
         <Card />
       </Grid>
-      </Grid>
-    </Grid>
 
       <Grid container className={classes.menuPc}>  
       {data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
@@ -80,7 +58,6 @@ return (
      </Grid>
       ))}
     </Grid>
-    </div>
   </section>
   )
 }

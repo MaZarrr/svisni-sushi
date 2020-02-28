@@ -63,7 +63,6 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
       margin: 0
     },
-    // backgroundColor: "tomato", 
   },
   hide: {
     display: 'none',
@@ -98,10 +97,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
   content_header: {
     display: 'flex',
     justifyContent: 'space-around',
@@ -116,12 +111,8 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     }
   },
-  button: {
-    maxWidth: '20px',
-  },
   iconImg: {
     height: '25px',
-    // width: '10vw',
     width: '25px',
     marginRight: 17,
   },
@@ -202,7 +193,6 @@ const Header = () => {
         })}
       >
         <Toolbar>
-        <div>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -214,15 +204,15 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          </div>
+
           <Typography variant="h6" noWrap className={clsx(classes.content_header)}>
       
           <ul className={clsx(classes.content_link)}>
-          <div className="icon_start">
+          <li className="icon_start">
             <Link to="/">
               <Imgs />
             </Link>
-          </div>
+          </li>
         { 
           links.map(({name, link, id}) => (
           <li key={id} className="nav-item">
@@ -234,7 +224,6 @@ const Header = () => {
           </li> 
         ))
         }
-    <ProgressBar/>
     </ul>       
     </Typography>
     <div className="icon_start_xs">
@@ -310,7 +299,7 @@ const Header = () => {
         </List>
       </Drawer>
      <ScrollTop/>
-
+    <ProgressBar/>
     </div>
 
   );
