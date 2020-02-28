@@ -133,7 +133,7 @@ export const querySets = graphql `
               count
               description
               image {
-                  fluid(maxWidth: 310) {
+                  fluid(maxWidth: 310, toFormat: WEBP) {
                     ...GatsbyContentfulFluid
                   }
               }

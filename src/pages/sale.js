@@ -47,7 +47,7 @@ export const query = graphql `
               name
               description
                 image {
-                fluid(maxWidth: 600) {
+                fluid(maxWidth: 600, toFormat: WEBP) {
                     ...GatsbyContentfulFluid_tracedSVG
                 }
             }

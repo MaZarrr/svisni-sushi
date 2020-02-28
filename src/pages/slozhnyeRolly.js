@@ -135,7 +135,7 @@ export const query = graphql `
               weight
               count
               image {
-                 fluid(maxWidth: 300, maxHeight: 300) {
+                 fluid(maxWidth: 300, maxHeight: 350, toFormat: WEBP) {
                      ...GatsbyContentfulFluid_tracedSVG
                   }
               }

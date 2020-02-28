@@ -124,7 +124,7 @@ export const query = graphql `
                   name
                   count
                        image {
-                           fluid(maxWidth: 300, maxHeight: 300) {
+                           fluid(maxWidth: 300, maxHeight: 300, toFormat: WEBP) {
                                ...GatsbyContentfulFluid_tracedSVG
                            }
                        }
