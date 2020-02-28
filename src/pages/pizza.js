@@ -45,13 +45,9 @@ const Pizza = ({
      
 
 return ( 
-   <section className = "section_cart" >
+   <section>
     <SEO title="Заказать пиццу в Валуйках с 10:00 до 22:00. Доставка пиццы на дом - Свисни Пицца Уразово" />
-     <div className="title"> 
-        <div className="title_item">
-            <h1 className={classes.titleH1}>Пицца</h1>
-        </div>
-      </div>
+    <h1 className={classes.titleH1}>Пицца</h1>
     <Grid container justify="center" >
     {
       product.map(({
@@ -151,8 +147,8 @@ export const query = graphql `
               priceIn33cm
               description
               image {
-                  fluid(maxWidth: 320) {
-                    ...GatsbyContentfulFluid
+                  fluid(maxWidth: 300, maxHeight: 300) {
+                    ...GatsbyContentfulFluid_tracedSVG
                   }
               }
               }

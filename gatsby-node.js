@@ -113,33 +113,6 @@ exports.createPages = async ({graphql, actions}) => {
 }
 
 
-
-
-    // .then((result)=> {
-    //   if(result.errors) {
-    //     throw result.errors;
-    //   }
-    //   result.data.allContentfulProduct.edges.forEach(sety => {
-    //       createPage({
-    //           path: `/sety/${sety.node.slug}`,
-    //           component: setyTemplate,
-    //           context: sety.node
-    //       })
-    //   })
-
-    // })
-
-  //   productssets.forEach(({node: product}) => {
-  //     createPage({
-  //         path: `/sety/${product.slug}`,
-  //         component: setyTemplate,
-  //         context: {
-  //             slug: product.slug
-  //         }
-  //     })
-  // })
-
-
 // exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
 //   const pokemons = [
 //     { name: "Pikachu", type: "electric" },

@@ -32,11 +32,9 @@ const Pizza = ({data: {allContentfulProductSlognyeRolly: {edges: setyProduct}, c
       }, [setyProduct, producSetsLoad])
 
 return ( 
-   <section className="section_cart" >
+   <section>
     <SEO title="Заказать роллы с доставкой с 10:00 до 22:00 в Валуйках. Доставка роллов на дом и офис - Свисни Sushi" />
-     <div className="title"> 
-            <h1 className={classes.titleH1}>Сложные роллы</h1>
-      </div>
+    <h1 className={classes.titleH1}>Сложные роллы</h1>
     <Grid container justify="center">
     {
       product.map(({
@@ -137,8 +135,8 @@ export const query = graphql `
               weight
               count
               image {
-                  fluid(maxWidth: 300) {
-                    ...GatsbyContentfulFluid
+                 fluid(maxWidth: 300, maxHeight: 300) {
+                     ...GatsbyContentfulFluid_tracedSVG
                   }
               }
               }

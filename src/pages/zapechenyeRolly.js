@@ -40,11 +40,9 @@ const ZapechenyeRolly = ({
       }, [setyProduct, producSetsLoad])
 
 return ( 
-   <section className="section_cart" >
+   <section>
     <SEO title="Заказать запеченные роллы с доставкой с 10:00 до 22:00 в Валуйках. Доставка роллов на дом и офис - Свисни Sushi" />
-     <div className="title"> 
-            <h1 className={classes.titleH1}>Запеченые роллы</h1>
-      </div>
+    <h1 className={classes.titleH1}>Запеченые роллы</h1>
     <Grid container justify="center">
     {
       product.map(({
@@ -69,7 +67,7 @@ return (
         className={classes.media}
         title={name}
       > 
-      <Img fluid={fluid} style={{height: `250px`, width: `100%`}}/>
+      <Img fluid={fluid}/>
       </CardMedia> 
  
 
@@ -146,8 +144,8 @@ export const query = graphql `
               variant
               count
               image {
-                  fluid(maxWidth: 400) {
-                    ...GatsbyContentfulFluid
+                  fluid(maxWidth: 300, maxHeight: 300) {
+                      ...GatsbyContentfulFluid_tracedSVG
                   }
               }
               }

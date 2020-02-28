@@ -40,11 +40,9 @@ const Souses = ({
       }, [setyProduct, producSetsLoad])
 
 return ( 
-   <section className="section_cart" >
+   <section >
     <SEO title="Доставка соусов и различных добавок к суши и роллам на дом в Уразово - Свисни Суши" />
-     <div className="title"> 
-            <h1 className={classes.titleH1}>Соусы</h1>
-      </div>
+    <h1 className={classes.titleH1}>Соусы</h1>
     <Grid container justify="center">
     {
       setyProduct.map(({
@@ -126,8 +124,8 @@ export const query = graphql `
                   name
                   count
                        image {
-                           fluid(maxWidth: 310) {
-                               ...GatsbyContentfulFluid
+                           fluid(maxWidth: 300, maxHeight: 300) {
+                               ...GatsbyContentfulFluid_tracedSVG
                            }
                        }
               }

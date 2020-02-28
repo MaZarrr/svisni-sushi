@@ -74,8 +74,8 @@ export const query = graphql `
         category
         desc
         image {
-          fluid(maxWidth: 300) {
-            ...GatsbyContentfulFluid
+          fluid(maxWidth: 300, maxHeight: 300) {
+            ...GatsbyContentfulFluid_tracedSVG
           }
         }
       }

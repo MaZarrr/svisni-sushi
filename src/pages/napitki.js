@@ -41,11 +41,9 @@ const Napitki = ({
       }, [setyProduct, producSetsLoad])
 
 return ( 
-   <section className="section_cart" >
+   <section>
     <SEO title="Доставка напитков на дом в Уразово, заказать напитки в Свисни Суши" />
-     <div className="title"> 
-            <h1 className={classes.titleH1}>Напитки</h1>
-      </div>
+    <h1 className={classes.titleH1}>Напитки</h1>
     <Grid container justify="center">
     {
       setyProduct.map(({
@@ -134,8 +132,8 @@ export const query = graphql `
                 name
                 weight
                     image {
-                        fluid(maxWidth: 300) {
-                            ...GatsbyContentfulFluid
+                        fluid(maxWidth: 300, maxHeight: 300) {
+                            ...GatsbyContentfulFluid_tracedSVG
                         }
                     }
             }

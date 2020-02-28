@@ -40,7 +40,7 @@ const Sety = ({
   }) => {
     const classes = useStylesCart();
 
-    useEffect( () => {
+    useEffect(() => {
       productRequested();
       producSetsLoad(setyProduct); // action push to reduxStore
       
@@ -55,11 +55,7 @@ return (
   <SEO title="Заказать наборы суши и роллов с доставкой в Валуйках, 
     доставка сетов роллов и суши - Свисни Суши" />
    <section className="section_cart" >
-     <div className="title"> 
-        <div className="title_item">
-            <h1 className={classes.titleH1}>Сеты</h1>
-        </div>
-      </div>
+    <h1 className={classes.titleH1}>Сеты</h1>
     <Grid container justify="center" >
     {product.map(({node: productSets}) => {
       
@@ -71,7 +67,7 @@ return (
       <CardHeader
       classes={{title: classes.title}}
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar className={classes.avatar}>
            <Img style={{width: 50}} fluid={image.fluid} />
           </Avatar>
         }
@@ -156,8 +152,8 @@ export const querySets = graphql `
               count
               description
               image {
-                  fluid(maxWidth: 330) {
-                    ...GatsbyContentfulFluid
+                  fluid(maxWidth: 300, maxHeight: 300) {
+                    ...GatsbyContentfulFluid_tracedSVG
                   }
               }
               }
@@ -166,7 +162,7 @@ export const querySets = graphql `
            contentfulIconMenuLeftPanel(name: {eq: "Сеты"}) {
             image {
               fluid {
-                ...GatsbyContentfulFluid
+                ...GatsbyContentfulFluid_tracedSVG
               }
             }
           }

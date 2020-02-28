@@ -40,11 +40,9 @@ const Zakyski = ({
       }, [setyProduct, producSetsLoad])
 
 return ( 
-   <section className="section_cart" >
+   <section>
     <SEO title="Заказать закуски с доставкой в Валуйках. Доставка закусок на дом и офис - Свисни Суши Уразово" />
-     <div className="title"> 
-            <h1 className={classes.titleH1}>Закуски</h1>
-      </div>
+      <h1 className={classes.titleH1}>Закуски</h1>
     <Grid container justify="center">
     {
       setyProduct.map(({
@@ -128,8 +126,8 @@ export const query = graphql `
                   price
                   weight
                       image {
-                          fluid(maxWidth: 300) {
-                              ...GatsbyContentfulFluid
+                          fluid(maxWidth: 300, maxHeight: 300) {
+                              ...GatsbyContentfulFluid_tracedSVG
                           }
                       }
               }

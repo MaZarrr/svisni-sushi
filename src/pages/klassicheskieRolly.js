@@ -40,11 +40,9 @@ const KlassicheskieRolly = ({
       }, [setyProduct, producSetsLoad])
 
 return ( 
-   <section className="section_cart" >
+   <section>
     <SEO title="Классические роллы" />
-     <div className="title"> 
-            <h1 className={classes.titleH1}>Классические роллы</h1>
-      </div>
+     <h1 className={classes.titleH1}>Классические роллы</h1>
     <Grid container justify="center">
     {
       product.map(({
@@ -69,7 +67,7 @@ return (
         className={classes.media}
         title={name}
       > 
-      <Img fluid={fluid} style={{height: `260px`, width: `260px`}}/>
+      <Img fluid={fluid}/>
       </CardMedia> 
  
 
@@ -136,8 +134,8 @@ export const query = graphql `
                    weight
                    count
                      image {
-                         fluid(maxWidth: 370) {
-                             ...GatsbyContentfulFluid
+                         fluid(maxWidth: 300, maxHeight: 300) {
+                             ...GatsbyContentfulFluid_tracedSVG
                          }
                      }
                }

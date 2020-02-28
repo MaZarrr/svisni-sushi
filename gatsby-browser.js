@@ -1,6 +1,3 @@
-
-// import wrapWithProvider from "./wrap-with-provider"
-// const ErrorBoundary = require('./src/components/error-boundary/error-boundary'); 
 const createStore  = require('./src/state/createStore').default
 const { Provider } = require('react-redux'); 
 const React = require('react');

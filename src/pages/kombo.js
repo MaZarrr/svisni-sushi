@@ -40,11 +40,9 @@ const Kombo = ({
       }, [setyProduct, producSetsLoad])
 
 return (
-    <section className="section_cart">
+    <section>
     <SEO title="Доставка с 10:00 до 22:00 комбо наборов из суши, роллов, пиццы и лапши Вок в Уразово и Валуйках" />
-     <div className="title"> 
-             <h1 className={classes.titleH1}>Комбо</h1>
-        </div>
+    <h1 className={classes.titleH1}>Комбо</h1>
     <Grid container justify="center">
     {
       setyProduct.map(({
