@@ -1,55 +1,19 @@
 import React from "react"
 import SEO from "./seo"
-import styled  from 'styled-components';
 import Img from 'gatsby-image';
 import Card from './Card';
 import { Link } from 'gatsby';
 import Button from '@material-ui/core/Button';
 import ReplyIcon from '@material-ui/icons/Reply';
+import {StylingInfo} from '../components/common/style'
 
-const SetySection = styled.section `
-    font-family: 'Comfortaa', cursive;
-    font-weight: 500;
-
-    .container {
-        margin: 20px 0 0 30px;
-        padding: 0;
-        width: 90%;
-    }
-
-    h1 {
-        font-family: 'Oswald', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
-    h3 {
-        font-family: 'Oswald', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
-    h2 {
-        font-family: 'Oswald', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
-   @media screen and (max-width: 768px) {
-    .container {
-        margin: 10px 0 0 6vw;
-        padding: 0;
-       
-    }
-      .container h1 {
-        font-size: 7vw;
-    }
-}
-` 
 
 const PizzaItem = ({image, name, description, location}) => {
 
     return (
         <>
         <SEO title={`${name} - Свисни Суши Уразово`} />
-        <SetySection>
+        <StylingInfo>
         <div className="container"> 
         <h1>{name}</h1>
         <Img style={{maxWidth: 1280}} fluid={image} />
@@ -68,7 +32,7 @@ const PizzaItem = ({image, name, description, location}) => {
         size="large"
         endIcon={<ReplyIcon/>}
         style={{margin: `30px 0 30px 25px`}}>Все акции</Button>
-        </SetySection>
+        </StylingInfo>
         </>
         )
 }

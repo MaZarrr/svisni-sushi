@@ -50,7 +50,6 @@ const Sety = ({
         return <><h1 style={{marginBottom: `300px`}}>...Загрузка</h1></> 
       }
      
-
 return (
   <>
   <SEO title="Заказать наборы суши и роллов с доставкой в Валуйках, 

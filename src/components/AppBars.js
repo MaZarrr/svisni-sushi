@@ -163,8 +163,6 @@ AppBars.propTypes = {
 
 export default withStyles(styles)(AppBars);
 
-//  const ins = useMemo(() => (false), []);
-//   const inst = useMemo(() => (0), []);
 //   const [scrolled, setScrolled] = useState(ins)
 //   const [lastScrollTop, setLastScrollTop] = useState(inst)
 
