@@ -9,8 +9,11 @@ const Footer = styled.footer `
    color: white;
    padding: 30px 0 30px 0;
    font-family: 'Comfortaa', cursive;
-    font-style: normal;
+   font-style: normal;
     font-weight: 400;
+
+  @media screen and (max-width: 768px) {
+  padding-left: 50px;
 `
 
 const FooterUl = styled.ul `
@@ -19,7 +22,6 @@ const FooterUl = styled.ul `
   align-items: center;
   flex-wrap: wrap;
  
-  
   .footer_item {
     display: flex;
     flex-direction: column;

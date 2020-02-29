@@ -4,7 +4,6 @@ import CarouselSvisni from "../components/common/CarouselSvisni"
 import { Link, graphql } from "gatsby"
 import "../components/sass/index.css"
 import Img from 'gatsby-image';
-
 import Grid from '@material-ui/core/Grid';
 import {  makeStyles } from '@material-ui/core/styles';
 
@@ -27,9 +26,20 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const IndexPage = ({data}) => {
+const IndexPage = (props) => {
+const [screen, setScreen] = React.useState('')
 
 const classes = useStyles();
+
+React.useEffect(() => {
+
+  const lg = window.screen.width >= 768
+  if(lg) setScreen(lg)
+  
+  const xs = window.screen.width <= 768
+  if(xs) setScreen(xs)
+
+}, [])
 
 return (
   <section>
@@ -40,12 +50,14 @@ return (
       Свежая и разнообразная кухня 
     </h1>
     </div>
+    { !!screen &&
       <Grid item xs={12} className={classes.root}>
         <Card />
       </Grid>
-
+    }
+    { screen &&
       <Grid container className={classes.menuPc}>  
-      {data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
+      {props.data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
         <Grid item xs={6} sm={4} key={homeMenu.id} >  
           <div className="cart_item">
           <Link to={`/${homeMenu.slug}`}>
@@ -58,6 +70,7 @@ return (
      </Grid>
       ))}
     </Grid>
+    }
   </section>
   )
 }
@@ -74,7 +87,7 @@ export const query = graphql `
         category
         desc
         image {
-          fluid(maxWidth: 300, maxHeight: 300, toFormat: WEBP) {
+          fluid(maxWidth: 300, toFormat: WEBP) {
             ...GatsbyContentfulFluid_tracedSVG
           }
         }
