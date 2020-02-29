@@ -96,12 +96,12 @@ const CarouselSvisni = () => {
       node {
         id
         imgCarouselPc {
-          fluid(maxWidth: 1680) {
+          fluid(maxWidth: 1680, quality: 30, toFormat: WEBP) {
               ...GatsbyContentfulFluid
             }
         }
         imgCarouselPhone {
-          fluid(maxWidth: 400) {
+          fluid(maxWidth: 400, quality: 30) {
               ...GatsbyContentfulFluid
             }
         }
