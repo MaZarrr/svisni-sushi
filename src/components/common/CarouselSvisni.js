@@ -7,8 +7,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-// import Button from '@material-ui/core/Button'
-// import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles(theme => ({
@@ -74,9 +72,6 @@ const useStyles = makeStyles(theme => ({
       color: `#000`,
       padding: 0
     },
-    // [theme.breakpoints.down('425')]: {
-    //   fontSize: '6vw',
-    // }
   },
   stepper: {
     marginBottom: 50,

@@ -34,10 +34,7 @@ const classes = useStyles();
 React.useEffect(() => {
 
   const lg = window.screen.width >= 768
-  if(lg) setScreen(lg)
-  
-  const xs = window.screen.width <= 768
-  if(xs) setScreen(xs)
+  setScreen(lg)
 
 }, [])
 
@@ -50,7 +47,7 @@ return (
       Свежая и разнообразная кухня 
     </h1>
     </div>
-    { !!screen &&
+    { !screen &&
       <Grid item xs={12} className={classes.root}>
         <Card />
       </Grid>
