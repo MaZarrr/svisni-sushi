@@ -54,7 +54,7 @@ return (
   <>
   <SEO title="Заказать наборы суши и роллов с доставкой в Валуйках, 
     доставка сетов роллов и суши - Свисни Суши" />
-   <section className="section_cart" >
+   <section>
     <h1 className={classes.titleH1}>Сеты</h1>
     <Grid container justify="center" >
     {product.map(({node: productSets}) => {

@@ -27,16 +27,16 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const IndexPage = (props) => {
-const [screen, setScreen] = React.useState('')
+// const [screen, setScreen] = React.useState('')
 
 const classes = useStyles();
 
-React.useEffect(() => {
+// React.useEffect(() => {
 
-  const lg = window.screen.width >= 768
-  setScreen(lg)
+//   const lg = window.screen.width >= 768
+//   setScreen(lg)
 
-}, [])
+// }, [])
 
 return (
   <section>
@@ -47,12 +47,11 @@ return (
       Свежая и разнообразная кухня 
     </h1>
     </div>
-    { !screen &&
+
       <Grid item xs={12} className={classes.root}>
         <Card />
       </Grid>
-    }
-    { screen &&
+
       <Grid container className={classes.menuPc}>  
       {props.data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
         <Grid item xs={6} sm={4} key={homeMenu.id} >  
@@ -67,7 +66,6 @@ return (
      </Grid>
       ))}
     </Grid>
-    }
   </section>
   )
 }

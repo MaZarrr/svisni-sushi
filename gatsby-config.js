@@ -89,6 +89,21 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-guess-js",
+      options: {
+        GAViewID: `212087237`,
+        minimumThreshold: 0.03,
+        jwt: {
+          client_email: `svisnisushi@svisni.iam.gserviceaccount.com`,
+          private_key: `82459e3199ba0281496f6e1e02aab0f8a5e8b91a`,
+        },
+        period: {
+          startDate: new Date("2020-2-2"),
+          endDate: new Date(),
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         color: `tomato`,
@@ -104,11 +119,38 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        precachePages: [`/*`]
-      }
+    resolve: `gatsby-plugin-offline`,
+    options: {
+      workboxConfig: {
+        importWorkboxFrom: `cdn`,
+        globDirectory: '/',
+        globPatterns: [
+          '**/*.{html,json,js,css}',
+        ],
+        cacheId: `gatsby-plugin-offline`,
+        dontCacheBustURLsMatching: /(\.js$|\.css$|static\/)/,
+        runtimeCaching: [{
+        urlPattern: /(\.js$|\.css$|static\/)/,
+        handler: `CacheFirst`,
+        },
+        {
+          urlPattern: /^https?:.*\page-data\/.*\/page-data\.json/,
+          handler: `NetworkFirst`,
+        },
+        {
+          urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+          handler: `StaleWhileRevalidate`,
+        },
+        {
+          urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
+          handler: `StaleWhileRevalidate`,
+        },
+        ],
+        skipWaiting: true,
+        clientsClaim: true,
     },
+  },
+  },
   ],
 }
 
