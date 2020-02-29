@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-around',
     width: `100%`,
+    // height: `70px`,
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -208,11 +209,11 @@ const Header = () => {
           <Typography variant="h6" noWrap className={clsx(classes.content_header)}>
       
           <ul className={clsx(classes.content_link)}>
-          <li className="icon_start">
+          <div className="icon_start">
             <Link to="/">
               <Imgs />
             </Link>
-          </li>
+          </div>
         { 
           links.map(({name, link, id}) => (
           <li key={id} className="nav-item">

@@ -43,6 +43,9 @@ module.exports = {
         google: {
           families: ["Comfortaa", "Oswald"],
         },
+        typekit: {
+          families: ["Oswald"],
+        }
       },
     },
     {
