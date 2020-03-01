@@ -49,7 +49,7 @@ export const query = graphql `
             description
           createdAt(formatString: "МММ Do, YYYY, h:mm:ss a")
           image {
-              fluid(maxWidth: 400, toFormat: WEBP, quality: 40) {
+              fluid(maxWidth: 400, quality: 40) {
                   ...GatsbyContentfulFluid
                 }
             }

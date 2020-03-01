@@ -102,7 +102,7 @@ const RecipeReviewCard = ({producSetsLoad,
         variant
         contentful_id
         image {
-          fluid(maxWidth: 400, quality: 30, toFormat: WEBP) {
+          fluid(maxWidth: 400, quality: 30) {
             ...GatsbyContentfulFluid
           }
         }

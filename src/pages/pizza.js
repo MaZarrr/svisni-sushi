@@ -147,7 +147,7 @@ export const query = graphql `
               priceIn33cm
               description
               image {
-                  fluid(maxWidth: 300, maxHeight: 300, toFormat: WEBP, quality: 30) {
+                  fluid(maxWidth: 300, maxHeight: 300, quality: 30) {
                     ...GatsbyContentfulFluid
                   }
               }
