@@ -153,7 +153,7 @@ export const querySets = graphql `
               description
               image {
                   fluid(maxWidth: 300, maxHeight: 300, toFormat: WEBP, quality: 30) {
-                    ...GatsbyContentfulFluid_tracedSVG
+                    ...GatsbyContentfulFluid
                   }
               }
               }
@@ -162,7 +162,7 @@ export const querySets = graphql `
            contentfulIconMenuLeftPanel(name: {eq: "Сеты"}) {
             image {
               fluid {
-                ...GatsbyContentfulFluid_tracedSVG
+                ...GatsbyContentfulFluid
               }
             }
           }

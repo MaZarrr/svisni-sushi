@@ -133,7 +133,7 @@ export const query = graphql `
                 weight
                     image {
                         fluid(maxWidth: 300, maxHeight: 300) {
-                            ...GatsbyContentfulFluid_tracedSVG
+                            ...GatsbyContentfulFluid
                         }
                     }
             }

@@ -48,7 +48,7 @@ export const query = graphql `
               description
                 image {
                 fluid(maxWidth: 600, toFormat: WEBP) {
-                    ...GatsbyContentfulFluid_tracedSVG
+                    ...GatsbyContentfulFluid
                 }
             }
           }

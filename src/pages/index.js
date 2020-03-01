@@ -83,7 +83,7 @@ export const query = graphql `
         desc
         image {
           fluid(maxWidth: 300, toFormat: WEBP) {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid
           }
         }
       }

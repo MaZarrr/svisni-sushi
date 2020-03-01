@@ -136,7 +136,7 @@ export const query = graphql `
               count
               image {
                  fluid(maxWidth: 300, maxHeight: 350, toFormat: WEBP) {
-                     ...GatsbyContentfulFluid_tracedSVG
+                     ...GatsbyContentfulFluid
                   }
               }
               }
