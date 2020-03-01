@@ -20,11 +20,13 @@ const updateSetList = (state, action) => {
         case  'PRODUCT_LOADED':
         return {
             product: action.payload,
+            productPizza: state.productPizza,
             loading: false,
             error: null
         };
         case 'PRODUCT_LOADED_PIZZA':
             return {
+                product: state.product,
                 productPizza: action.payload,
                 loading: false,
                 error: null

@@ -3,7 +3,7 @@ import SEO from "../components/seo"
 import { graphql, Link } from "gatsby";
 import { connect } from 'react-redux';
 import Img from 'gatsby-image';
-import { producSetsLoad, setAddedToCart } from "../actions";
+import { producPizzaLoad, setAddedToCart } from "../actions";
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -17,27 +17,27 @@ import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
+import Spinner from '../components/spinner/spinner'
 
 const Pizza = ({
       data: {
         allContentfulProductPizza: {
-          edges: setyProduct
+          edges: pizzaProduct
         },
         contentfulIconMenuLeftPanel: {
           image
         }
       },
-    producSetsLoad, 
-    setAddedToCart, product, loading
+    producPizzaLoad,
+    setAddedToCart, productPizza, loading
   }) => {
   
   const classes = useStylesCart();
       
     useEffect(() => {
-        const data = setyProduct
-        producSetsLoad(data); // action push to reduxStore
-
-      }, [setyProduct, producSetsLoad])
+           const data = pizzaProduct
+           producPizzaLoad(data); // action push to reduxStore
+      }, [producPizzaLoad, pizzaProduct, productPizza])
 
  if(loading) {
         return <><h1 style={{marginBottom: `300px`}}>...Загрузка</h1></> 
@@ -49,11 +49,10 @@ return (
     <SEO title="Заказать пиццу в Валуйках с 10:00 до 22:00. Доставка пиццы на дом - Свисни Пицца Уразово" />
     <h1 className={classes.titleH1}>Пицца</h1>
     <Grid container justify="center" >
-    {
-      product.map(({
-            node: productSets
+    {productPizza !== undefined ? productPizza.map(({
+            node: pizza
           }) => {
-    const {id, name, slug, description, price, image: {fluid} } = productSets
+    const {id, name, slug, description, price, image: {fluid} } = pizza
     
     return (
     <Grid item xs={12} sm={6} md={3} key={id}>
@@ -109,20 +108,20 @@ return (
       </CardActions>
     </Card>
     </Grid>
-    )})}
+    )}) : <Spinner />}
         </Grid>
       </section>
     )
 }
 
-const mapStateToProps = ({ setList: {product, loading} }) => {
-    return {product, loading};
+const mapStateToProps = ({ setList: {productPizza, loading} }) => {
+    return {productPizza, loading};
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-    producSetsLoad: (newProduct) => {
-        dispatch(producSetsLoad(newProduct))
+    producPizzaLoad: (newProduct) => {
+        dispatch(producPizzaLoad(newProduct))
     },
     // productRequested: (loading) => {
     //     dispatch(productRequested(loading))

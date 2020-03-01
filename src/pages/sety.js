@@ -16,11 +16,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-
+import Spinner from '../components/spinner/spinner'
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
-
+import * as R from 'ramda'
 import { useStylesCart } from '../components/common/style';
 
 const Sety = ({
@@ -38,30 +38,37 @@ const Sety = ({
     loading,
     product
   }) => {
-    const classes = useStylesCart();
 
+    // const [ listJsx, updateLustJsx ] = React.useState('')
+
+    const classes = useStylesCart();
+    
+    
     useEffect(() => {
+      // if(R.isEmpty(product)) {
+      //   return
+      // }
+      // console.log(R.isEmpty(product));
       productRequested();
       producSetsLoad(setyProduct); // action push to reduxStore
-      
       }, [setyProduct, producSetsLoad, productRequested])
    
    if(loading) {
         return <><h1 style={{marginBottom: `300px`}}>...Загрузка</h1></> 
       }
-     
+
 return (
   <>
   <SEO title="Заказать наборы суши и роллов с доставкой в Валуйках, 
     доставка сетов роллов и суши - Свисни Суши" />
    <section>
     <h1 className={classes.titleH1}>Сеты</h1>
-    <Grid container justify="center" >
-    {product.map(({node: productSets}) => {
+<Grid container justify="center" >
+{ product !== undefined ? product.map(({node: productSets}) => {
       
-    const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
+  const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
 
-    return (
+   return (
     <Grid item xs={12} sm={6} md={3} key={id}>
     <Card className={classes.card}>
       <CardHeader
@@ -114,7 +121,7 @@ return (
       </CardActions>
     </Card>
     </Grid>
-    )})}
+    )}) : <Spinner />} 
      </Grid>
     </section>
    </>
