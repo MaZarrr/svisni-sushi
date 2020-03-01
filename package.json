@@ -80,7 +80,7 @@
   "engines": {
     "node": "13.5.0",
     "npm": "6.4.1",
-    "yarn": "1.22.0"
+    "yarn": "1.13.0"
   },
   "resolutions": {
     "react-transition-group": "4.0.0"
