@@ -2,35 +2,43 @@ import React from 'react'
 import { graphql } from 'gatsby';
 import SloghItem from '../components/SloghItem';
 import { connect } from 'react-redux';
-import {setAddedToCart} from '../actions';
+import {setAddedToCart, producSetsLoad} from '../actions';
+import Spinner from '../components/spinner/spinner'
 
 const SlognyeTeamplates = ({
-    data: {contentfulProductSlognyeRolly}, setAddedToCart}) => { 
-      
+    data: {contentfulProductSlognyeRolly}, setAddedToCart, producSetsLoad, product}) => { 
+       const [load, setLoad] = React.useState(true)
+        React.useEffect(() => {
+            // producSetsLoad(contentfulProductSlognyeRolly)
+            setLoad(false)
+        }, [contentfulProductSlognyeRolly, producSetsLoad])
  return  (
-     <>
-   <SloghItem
+    <>
+    {!load ? <SloghItem
         name={contentfulProductSlognyeRolly.name}
         price={contentfulProductSlognyeRolly.price}
         description={contentfulProductSlognyeRolly.description}
         image={contentfulProductSlognyeRolly.image.fluid}
-        added={() => setAddedToCart(contentfulProductSlognyeRolly.id)}
+        added={() => setAddedToCart(contentfulProductSlognyeRolly.id, null, product)}
         weight={contentfulProductSlognyeRolly.weight}
         count={contentfulProductSlognyeRolly.count}
     >
-    </SloghItem>
+    </SloghItem> : <Spinner />}
     </>
     )}
 
-const mapStateToProps = ({ setList: {product, loading} }) => {
-    return {product, loading};
+const mapStateToProps = ({ setList: {product} }) => {
+    return {product};
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-    setAddedToCart: (id) => {
-        dispatch(setAddedToCart(id))
-        }
+           producSetsLoad: (newProduct) => {
+               dispatch(producSetsLoad(newProduct))
+           },
+ setAddedToCart: (id, price, product) => {
+     dispatch(setAddedToCart(id, price, product))
+ }
     }  
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SlognyeTeamplates)

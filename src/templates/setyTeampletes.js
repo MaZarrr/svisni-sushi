@@ -6,7 +6,7 @@ import {setAddedToCart} from '../actions';
 
 
 const SetyTeamplate = ({
-    data: {contentfulProduct}, setAddedToCart}) => { 
+    data: {contentfulProduct}, setAddedToCart, product}) => { 
 
  return  (
      <>
@@ -18,20 +18,20 @@ const SetyTeamplate = ({
         weight={contentfulProduct.weight}
         count={contentfulProduct.count}
         image={contentfulProduct.image.fluid}
-        added={() => setAddedToCart(contentfulProduct.id)}
+         added={() => setAddedToCart(contentfulProduct.id, null, product)}
     > </SetyItem>
     </>
     )}
 
-    const mapStateToProps = ({ setList: {product, loading} }) => {
-    return {product, loading};
+    const mapStateToProps = ({ setList: {product} }) => {
+    return {product};
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-    setAddedToCart: (id) => {
-        dispatch(setAddedToCart(id))
-        }
+     setAddedToCart: (id, price, product) => {
+         dispatch(setAddedToCart(id, price, product))
+     }
     }  
 };
 

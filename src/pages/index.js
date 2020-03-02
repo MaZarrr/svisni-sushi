@@ -6,7 +6,7 @@ import "../components/sass/index.css"
 import Img from 'gatsby-image';
 import Grid from '@material-ui/core/Grid';
 import {  makeStyles } from '@material-ui/core/styles';
-
+import Spinner from '../components/spinner/spinner'
 import Card from '../components/Card'
 
 const useStyles = makeStyles(theme => ({
@@ -27,21 +27,23 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const IndexPage = (props) => {
-// const [screen, setScreen] = React.useState('')
+  const [load, setLoad] = React.useState(true)
+  const classes = useStyles();
+  const [dataIndex, setDataIndex] = React.useState([])
 
-const classes = useStyles();
-
-// React.useEffect(() => {
-
-//   const lg = window.screen.width >= 768
-//   setScreen(lg)
-
-// }, [])
+  React.useEffect(() => {
+    const dataIndex = async () => {
+     return await props.data.allContentfulHomePageImageMenu.edges
+    }
+    dataIndex()
+    .then((data) => setDataIndex(data))
+    .then(() => setLoad(false))
+  }, [props.data.allContentfulHomePageImageMenu.edges])
 
 return (
   <section>
   <SEO title="Cвисни Суши - доставка еды на дом в Валуйки с 10:00 до 22:00, заказать еду в Валуйском районе" />
-  <CarouselSvisni />
+  { !load ? <> <CarouselSvisni />
     <div className="title_home">
     <h1>
       Свежая и разнообразная кухня 
@@ -53,7 +55,7 @@ return (
       </Grid>
 
       <Grid container className={classes.menuPc}>  
-      {props.data.allContentfulHomePageImageMenu.edges.map(({node: homeMenu}) => (
+      {dataIndex.map(({node: homeMenu}) => (
         <Grid item xs={6} sm={4} key={homeMenu.id} >  
           <div className="cart_item">
           <Link to={`/${homeMenu.slug}`}>
@@ -65,7 +67,7 @@ return (
           </div>
      </Grid>
       ))}
-    </Grid>
+    </Grid> </> : <Spinner />}
   </section>
   )
 }

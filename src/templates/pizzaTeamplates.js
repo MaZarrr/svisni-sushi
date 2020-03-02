@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import {setAddedToCart} from '../actions';
 
 const PizzaTeamplate = ({
-    data: {contentfulProductPizza}, setAddedToCart}) => { 
+    data: {contentfulProductPizza}, setAddedToCart, productPizza}) => { 
+      console.log(productPizza);
       
  return  (
      <>
@@ -14,25 +15,24 @@ const PizzaTeamplate = ({
         price={contentfulProductPizza.price}
         priceIn33={contentfulProductPizza.priceIn33cm}
         description={contentfulProductPizza.description}
-        image={contentfulProductPizza.image.fluid}
-        added={() => setAddedToCart(contentfulProductPizza.id)}
+        image={contentfulProductPizza.image.fluid} 
+        added={() => setAddedToCart(contentfulProductPizza.id, contentfulProductPizza.price, productPizza)}
         weight33={contentfulProductPizza.weight33}
         weight={contentfulProductPizza.weight}
-        count={contentfulProductPizza.count}
-    >
+        count={contentfulProductPizza.count}>
     </PizzaItem>
     </>
     )}
 
-    const mapStateToProps = ({ setList: {product, loading} }) => {
-    return {product, loading};
+    const mapStateToProps = ({ setList: {productPizza} }) => {
+    return {productPizza};
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-    setAddedToCart: (id) => {
-        dispatch(setAddedToCart(id))
-        }
+       setAddedToCart: (id, price, productPizza) => {
+           dispatch(setAddedToCart(id, price, productPizza))
+       }
     }  
 };
 

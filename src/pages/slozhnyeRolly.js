@@ -18,30 +18,26 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style';
 import Spinner from '../components/spinner/spinner'
-const Pizza = ({data: {allContentfulProductSlognyeRolly: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
+
+const SlognyeRolly = ({data: {allContentfulProductSlognyeRolly: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
     producSetsLoad, 
     setAddedToCart, product
   }) => {
   
   const classes = useStylesCart();
-      
+  const [load, setLoad] = React.useState(true)
     useEffect(() => {
         const data = setyProduct
         producSetsLoad(data); // action push to reduxStore
-      // const ss = async () => {
-      //   return await product;
-      //   }
-      //   console.log(ss().then((data) => console.log(data)));
+        setLoad(false)
       }, [setyProduct, producSetsLoad])
       
-
-
 return ( 
    <section>
     <SEO title="Заказать роллы с доставкой с 10:00 до 22:00 в Валуйках. Доставка роллов на дом и офис - Свисни Sushi" />
     <h1 className={classes.titleH1}>Сложные роллы</h1>
     <Grid container justify="center">
-    {product !== undefined ? product.map(({ node: productSets }) => {
+    {!load ? product.map(({ node: productSets }) => {
     
     const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
     return (
@@ -82,7 +78,7 @@ return (
           color="secondary"
           className={classes.button}
           startIcon={<ShoppingBasketIcon />}
-          onClick={()=> setAddedToCart(id)}
+          onClick={()=> setAddedToCart(id, null, product)}
       >
         Хочу
       </Button>
@@ -116,13 +112,13 @@ const mapStateToProps = ({ setList: {product} }) => {
     // productRequested: (loading) => {
     //     dispatch(productRequested(loading))
     // },
-    setAddedToCart: (id) => {
-        dispatch(setAddedToCart(id))
-        }
+    setAddedToCart: (id, price, product) => {
+      dispatch(setAddedToCart(id, price, product))
+    }
     }  
 };
   
-export default connect(mapStateToProps, mapDispatchToProps)(Pizza)
+export default connect(mapStateToProps, mapDispatchToProps)(SlognyeRolly)
 
 export const query = graphql `
     {

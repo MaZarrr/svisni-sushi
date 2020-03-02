@@ -20,6 +20,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 // import FormLabel from '@material-ui/core/FormLabel';
+import Spinner from '../components/spinner/spinner'
 
 import Button from '@material-ui/core/Button';
 
@@ -93,11 +94,29 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
     onDecrise, 
     onDelete, 
     onRazmer, 
-    addedPribor
+    addedPribor,
+    product
   }) => {
 
-  const classes = useStyles();
+
   const [value, setValue] = React.useState([]);
+  const [load, setLoad] = React.useState(true)
+
+ useEffect(() => {
+
+   const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
+     allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
+     allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
+     allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges, allContentfulProductKombo.edges)
+      producSetsLoad(data); // action push to reduxStore
+      setLoad(false)
+ }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts, allContentfulProductNapitki,
+   allContentfulProductHotRolly, allContentfulProductGunkan, allContentfulProductKlassika, allContentfulProductSalat,
+   allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski,
+   allContentfulProductKombo
+ ])
+
+  const classes = useStyles();
 
   const handleChange = event => {
     setValue(() => {
@@ -106,18 +125,8 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
       ])(value)
     });
   };
-  
-    useEffect(() => {
-        const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
-          allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
-          allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
-          allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges, allContentfulProductKombo.edges)
-          producSetsLoad(data); // action push to reduxStore
-      }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts, allContentfulProductNapitki,
-          allContentfulProductHotRolly, allContentfulProductGunkan, allContentfulProductKlassika, allContentfulProductSalat,
-          allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski,
-          allContentfulProductKombo
-      ])
+
+   
       
     const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
       
@@ -142,8 +151,7 @@ return (
            { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
            Похоже, что в вашей корзине нет товаров, давайте добавим их :) </Box> : <div className={classes.paperDiv}>
           <Typography variant="h6"><b>Товар</b></Typography>
-          {  
-        items.map((item, idx) => {
+          { !load ? items.map((item, idx) => {
 
         const {id, name, count, total, image, price33, radioValue, priceDef} = item // radioPrice
    
@@ -199,17 +207,17 @@ return (
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
        
                 <button disabled={false}
-                  onClick={()=> onIncrease(id, radioValue)}
+                  onClick={()=> onIncrease(id, radioValue, product)}
                   className="btn btn-outline-success btn-sm">
                       <i className="fa fa-plus-circle fa-lg"></i>
                   </button>
                   <button 
-                  onClick={()=> onDecrise(id, radioValue)}
+                  onClick={()=> onDecrise(id, radioValue, product)}
                   className="btn btn-outline-warning btn-sm ml-2">
                       <i className="fa fa-minus-circle fa-lg"></i>
                   </button>
                   <button 
-                  onClick={()=> onDelete(id, radioValue)}
+                  onClick={()=> onDelete(id, radioValue, product)}
                   className="btn btn-outline-danger btn-sm ml-2">
                       <i className="fa fa-trash-o fa-lg"></i>
                   </button>
@@ -234,7 +242,7 @@ return (
        </Paper>
                 )
             })
-    }
+    : <Spinner />}
     <Grid container className={classes.bottomHead}>
     <Grid item xs={12}>
      <Paper elevation={3} style={{padding: 20}}>

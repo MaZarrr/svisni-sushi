@@ -39,8 +39,11 @@ import * as R from 'ramda'
 
   const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
   
-      const {setList: {product, productPizza}, shoppingCart: { cartItems } } = state
-
+      const {setList: {
+        product, 
+        productPizza
+      }, shoppingCart: { cartItems } } = state
+      
       const sety = categoryName.find(({node: productCategory}) => productCategory.id === setId);
       const itemIndex = cartItems.findIndex(({id}) => id === setId);
       const item = cartItems[itemIndex];
@@ -77,21 +80,21 @@ import * as R from 'ramda'
       switch (action.type) {
        
           case  'SET_ADDED_TO_CART':
-            console.log(action.payload.categotyName);
+            // console.log(action.payload.categotyName);
             
             return updateOder(state, action.payload.id, 1, action.payload.radioValue, action.payload.categotyName)
         
              case 'SET_REMOVE_FROM_CART':
-              return updateOder(state, action.payload.id, -1, action.payload.radioValue)
+              return updateOder(state, action.payload.id, -1, action.payload.radioValue, action.payload.categotyName)
   
               case 'ALL_SET_REMOVE_FROM_CART':
                   const item = state.shoppingCart.cartItems.find(({id}) => id === action.payload.id)
-                  return updateOder(state, action.payload.id, -item.count, action.payload.radioValue)
+                  return updateOder(state, action.payload.id, -item.count, action.payload.radioValue, action.payload.categotyName)
 
                 case 'PRODUCT_RAZMER':
 
                   const {setList: {product}, shoppingCart: { cartItems } } = state
-
+              
                   const pizza = product.find(({node: pizzaId}) => pizzaId.id === action.payload.id);
                   const itemIndexPizza = cartItems.findIndex(({id}) => id === action.payload.id)
                   const itemPizza = cartItems[itemIndexPizza]
@@ -106,6 +109,7 @@ import * as R from 'ramda'
                     count: itemPizza.count,
                     total: itemPizza.count * parseInt(action.payload.value)
                 })(cartItems)
+
 
                 const totalPrice = R.compose(
                   R.sum,
@@ -123,3 +127,54 @@ import * as R from 'ramda'
   }
 
   export default updateShoppingCart
+
+
+
+
+
+
+
+
+  // case 'PRODUCT_RAZMER':
+
+  // const {
+  //   setList: {
+  //     product
+  //   },
+  //   shoppingCart: {
+  //     cartItems
+  //   }
+  // } = state
+  // console.log(product);
+  // console.log(cartItems);
+
+  // const pizza = product.find(({
+  //   id
+  // }) => id === action.payload.id);
+  // const itemIndexPizza = cartItems.findIndex(({
+  //   id
+  // }) => id === action.payload.id)
+  // const itemPizza = cartItems[itemIndexPizza]
+
+  // const updateItemPizza = R.update(itemIndexPizza, {
+  //   id: action.payload.id,
+  //   name: pizza.node.name,
+  //   priceDef: pizza.node.price,
+  //   price33: pizza.node.priceIn33cm,
+  //   radioValue: parseInt(action.payload.value) * 1,
+  //   image: {
+  //     ...pizza.node.image.fluid
+  //   },
+  //   count: itemPizza.count,
+  //   total: itemPizza.count * parseInt(action.payload.value)
+  // })(cartItems)
+
+  // const totalPrice = R.compose(
+  //   R.sum,
+  //   R.pluck('total')
+  // )(updateItemPizza)
+
+  // return {
+  //   orderTotal: totalPrice * 1,
+  //   cartItems: updateItemPizza
+  // }

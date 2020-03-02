@@ -53,22 +53,24 @@ const addedPalochki = (int) => {
       }
 };
 
-const setRemoveFromCart = (setId, radioValue) => {
+const setRemoveFromCart = (setId, radioValue, categotyName) => {
     return {
         type: 'SET_REMOVE_FROM_CART',
         payload: {
             id: setId,
-            radioValue     
+            radioValue,
+            categotyName
         } 
       }
 };
 
-const allSetRemoveFromCart = (setId, radioValue) => {
+const allSetRemoveFromCart = (setId, radioValue, categotyName) => {
     return {
         type: 'ALL_SET_REMOVE_FROM_CART',
         payload: {
             id: setId,
-            radioValue     
+            radioValue,
+            categotyName
         } 
       }
 };

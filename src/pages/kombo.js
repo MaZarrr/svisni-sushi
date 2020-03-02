@@ -17,6 +17,7 @@ import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style'
+import Spinner from '../components/spinner/spinner'
 
 const Kombo = ({
       data: {
@@ -28,24 +29,24 @@ const Kombo = ({
         }
       },
     producSetsLoad, 
-    setAddedToCart,
+    setAddedToCart, product
   }) => {
 
-  const classes = useStylesCart();
-      
-    useEffect(() => {
-        const data = setyProduct
-        producSetsLoad(data); // action push to reduxStore
+ const [load, setLoad] = React.useState(true)
+ const classes = useStylesCart();
 
-      }, [setyProduct, producSetsLoad])
+ useEffect(() => {
+   const data = setyProduct
+   producSetsLoad(data); // action push to reduxStore
+   setLoad(false)
+ }, [setyProduct, producSetsLoad])
 
 return (
     <section>
     <SEO title="Доставка с 10:00 до 22:00 комбо наборов из суши, роллов, пиццы и лапши Вок в Уразово и Валуйках" />
     <h1 className={classes.titleH1}>Комбо</h1>
     <Grid container justify="center">
-    {
-      setyProduct.map(({
+    { !load ? product.map(({
             node: productSets
           }) => {
     const {id, name, description, price, weight, count, image: {fluid} } = productSets //  slug,
@@ -87,16 +88,16 @@ return (
           color="secondary"
           className={classes.button}
           startIcon={<ShoppingBasketIcon />}
-          onClick={()=> setAddedToCart(id)}
+          onClick={()=> setAddedToCart(id, null, product)}
       >
         Хочу!
       </Button>
       </CardActions>
     </Card>
     </Grid>
-    )})}
-        </Grid>
-      </section>
+    )}) : <Spinner />}
+  </Grid>
+</section>
     )
 }
 
@@ -109,12 +110,9 @@ const mapStateToProps = ({ setList: {product} }) => {
     producSetsLoad: (newProduct) => {
         dispatch(producSetsLoad(newProduct))
     },
-    // productRequested: (loading) => {
-    //     dispatch(productRequested(loading))
-    // },
-    setAddedToCart: (id) => {
-        dispatch(setAddedToCart(id))
-        }
+   setAddedToCart: (id, price, product) => {
+     dispatch(setAddedToCart(id, price, product))
+   }
     }  
 };
   

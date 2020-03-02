@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {setAddedToCart} from '../actions';
 
 const HotTeamplates = ({
-    data: {contentfulProductHotRolly}, setAddedToCart}) => { 
+    data: {contentfulProductHotRolly}, setAddedToCart, product}) => { 
       
  return  (
      <>
@@ -14,7 +14,7 @@ const HotTeamplates = ({
         price={contentfulProductHotRolly.price}
         description={contentfulProductHotRolly.description}
         image={contentfulProductHotRolly.image.fluid}
-        added={() => setAddedToCart(contentfulProductHotRolly.id)}
+         added={() => setAddedToCart(contentfulProductHotRolly.id, null, product)}
         weight={contentfulProductHotRolly.weight}
         count={contentfulProductHotRolly.count}
     >
@@ -22,15 +22,15 @@ const HotTeamplates = ({
     </>
     )}
 
-        const mapStateToProps = ({ setList: {product, loading} }) => {
-    return {product, loading};
+const mapStateToProps = ({ setList: {product} }) => {
+    return {product};
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-    setAddedToCart: (id) => {
-        dispatch(setAddedToCart(id))
-        }
+    setAddedToCart: (id, price, product) => {
+        dispatch(setAddedToCart(id, price, product))
+    }
     }  
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HotTeamplates)

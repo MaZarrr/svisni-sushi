@@ -1,7 +1,5 @@
 const updateSetList = (state, action) => {
-    console.log(state);
     if(state === undefined) {
-        console.log(state);
         return  {
             product: [],
             productPizza: [],

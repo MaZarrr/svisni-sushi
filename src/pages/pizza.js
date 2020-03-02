@@ -30,23 +30,22 @@ const Pizza = ({
         }
       },
     producPizzaLoad,
-    setAddedToCart, productPizza, loading, productRequested
+    setAddedToCart, productPizza, productRequested
   }) => {
   const [load, setLoad] = React.useState(true)
   const classes = useStylesCart();
-  // const initialState = React.useMemo(() => productRequested(), [])
-  //   console.log(initialState);
+
     useEffect(() => {
-          // if(R.isEmpty)
-          // initialState()
+          if(!R.isEmpty(productPizza)) {
+            setLoad(false)
+            return
+          }
           const ProductFetch = async () => {
             return await pizzaProduct
           }
           ProductFetch()
            .then((data) => producPizzaLoad(data))
            .then(() => setLoad(false))
-           console.log("pizza");
-           
       }, [producPizzaLoad, pizzaProduct, productRequested])
 
 return ( 

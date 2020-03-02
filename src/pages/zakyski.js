@@ -17,7 +17,7 @@ import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { useStylesCart } from '../components/common/style'
 import { Grid } from "@material-ui/core";
-
+import Spinner from '../components/spinner/spinner'
 const Zakyski = ({
       data: {
         allContentfulProductZakuski: {
@@ -28,15 +28,15 @@ const Zakyski = ({
         }
       },
     producSetsLoad, 
-    setAddedToCart,
+    setAddedToCart, product
   }) => {
-  
+  const [load, setLoad] = React.useState(true)
   const classes = useStylesCart();
       
     useEffect(() => {
         const data = setyProduct
         producSetsLoad(data); // action push to reduxStore
-
+        setLoad(false)
       }, [setyProduct, producSetsLoad])
 
 return ( 
@@ -44,8 +44,7 @@ return (
     <SEO title="Заказать закуски с доставкой в Валуйках. Доставка закусок на дом и офис - Свисни Суши Уразово" />
       <h1 className={classes.titleH1}>Закуски</h1>
     <Grid container justify="center">
-    {
-      setyProduct.map(({
+    {!load ? product.map(({
             node: productSets
           }) => {
     const {id, name, price, weight, count, image: {fluid}} = productSets
@@ -85,14 +84,14 @@ return (
           color="secondary"
           className={classes.button}
           startIcon={<ShoppingBasketIcon />}
-          onClick={()=> setAddedToCart(id)}
+          onClick={()=> setAddedToCart(id, null, product)}
       >
         Хочу!
       </Button>
       </CardActions>
     </Card>
     </Grid>
-    )})}
+    )}) : <Spinner />}
         </Grid>
       </section>
     )
@@ -107,9 +106,9 @@ const mapStateToProps = ({ setList: {product} }) => {
     producSetsLoad: (newProduct) => {
         dispatch(producSetsLoad(newProduct))
     },
-    setAddedToCart: (id) => {
-        dispatch(setAddedToCart(id))
-        }
+       setAddedToCart: (id, price, product) => {
+         dispatch(setAddedToCart(id, price, product))
+       }
     }  
 };
   

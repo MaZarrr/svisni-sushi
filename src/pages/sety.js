@@ -20,7 +20,7 @@ import Spinner from '../components/spinner/spinner'
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
-import * as R from 'ramda'
+// import * as R from 'ramda'
 import { useStylesCart } from '../components/common/style';
 
 const Sety = ({
@@ -34,8 +34,6 @@ const Sety = ({
       },
     producSetsLoad, 
     setAddedToCart,
-    productRequested,
-    loading,
     product
   }) => {
 
@@ -44,13 +42,13 @@ const Sety = ({
     const classes = useStylesCart();
     
     useEffect(() => {
-      if(!R.isEmpty(product)) {
-        setLoad(false)
-        return
-      }
+      // if(!R.isEmpty(product)) {
+      //   setLoad(false)
+      //   return
+      // }
       producSetsLoad(setyProduct)
       setLoad(false)
-      }, [setyProduct, producSetsLoad, productRequested])
+      }, [setyProduct, producSetsLoad])
    
 return (
   <>
@@ -123,8 +121,8 @@ return (
     )
 }
 
-const mapStateToProps = ({ setList: {product, loading} }) => {
-    return {product, loading};
+const mapStateToProps = ({ setList: {product} }) => {
+    return {product};
   }
   
   const mapDispatchToProps = (dispatch) => {
