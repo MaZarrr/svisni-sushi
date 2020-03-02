@@ -253,7 +253,9 @@ return (
         <Grid item xs={12}>
           <Paper className={classes.paper}>
           <Typography variant="h2">
-            <Box fontFamily="Neucha" fontWeight={900} fontSize={32}>
+            <Box fontFamily = "Oswald"
+            fontWeight={900}
+            fontSize={32}>
              Оформление заказа
             </Box>
           </Typography>
@@ -272,7 +274,7 @@ return (
         >
    
               <Grid item xs={12}>
-              <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
+              <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
               fontSize={24}>Контактные данные</Box></Typography>  
               </Grid>
              
@@ -309,7 +311,7 @@ return (
                   </Grid>
                   <hr></hr>
                   <Grid item xs={12}>
-                    <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={900} 
+                    <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
                     fontSize={24}>Доставка</Box></Typography>  
                   </Grid>
               
@@ -377,7 +379,10 @@ return (
           </Grid>
                   <hr></hr>
                   <Grid item xs={12}>
-                  <Typography variant="h6"><Box fontFamily="Neucha" fontWeight={700} 
+                  < Typography variant = "h6" > < Box fontFamily = "Oswald"
+                  fontWeight = {
+                    700
+                  }
                   fontSize={24}>Дата и время доставки заказа</Box></Typography>  
                   <FormGroup>
                     <Typography component="div">

@@ -19,7 +19,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { producSetsLoad, setAddedToCart } from "../actions";
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
-
+import Spinner from './spinner/spinner'
 const AvatarWrapp = styled(Avatar) `
 background: ${props => props.color};
 `
@@ -83,7 +83,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const RecipeReviewCard = ({producSetsLoad, 
-  setAddedToCart }) => {
+  setAddedToCart, product
+  }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState({nameCart: false});
     
@@ -112,8 +113,11 @@ const RecipeReviewCard = ({producSetsLoad,
   }
   `)
 
+  const [load, setLoad] = React.useState(true)
+
   useEffect(() => {
-    producSetsLoad(edges); // action push to reduxStore
+    producSetsLoad(edges)
+    setLoad(false)
   }, [edges, producSetsLoad])
 
 
@@ -124,7 +128,7 @@ const RecipeReviewCard = ({producSetsLoad,
   return (
     <>
     <div className={classes.root}>
-    {edges.map(({node: homeProduct}) => (
+    { !load ? product.map(({node: homeProduct}) => (
       <Card key={homeProduct.id} className={classes.card}>
       <CardHeader
       classes={{title: classes.title}}
@@ -166,7 +170,7 @@ const RecipeReviewCard = ({producSetsLoad,
         color="secondary"
         className={classes.button}
         startIcon={<ShoppingBasketIcon />}
-        onClick={()=> setAddedToCart(homeProduct.id)}
+        onClick={()=> setAddedToCart(homeProduct.id, null, product)}
       >
         Хочу!
       </Button>
@@ -197,7 +201,7 @@ const RecipeReviewCard = ({producSetsLoad,
       </Collapse>
 
     </Card>
-    ))}
+    )) : <Spinner />}
     </div>
      </>
   );
@@ -213,9 +217,9 @@ const mapDispatchToProps = (dispatch) => {
   producSetsLoad: (newProduct) => {
       dispatch(producSetsLoad(newProduct))
   },
-  setAddedToCart: (id) => {
-      dispatch(setAddedToCart(id))
-      }
+     setAddedToCart: (id, price, product) => {
+       dispatch(setAddedToCart(id, price, product))
+     }
   }  
 };
 

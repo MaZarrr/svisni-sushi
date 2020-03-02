@@ -84,22 +84,22 @@ export const StylingInfo = styled.section `
     font-weight: 500;
     margin-top: 30px;
     h1 {
-        font-family: 'Neucha', cursive;
+        font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
     }
     h3 {
-        font-family: 'Neucha', cursive;
+        font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
     }
       h5 {
-        font-family: 'Neucha', cursive;
+        font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
     }
     h2 {
-        font-family: 'Neucha', cursive;
+        font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
     }
