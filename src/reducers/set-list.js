@@ -1,6 +1,7 @@
 const updateSetList = (state, action) => {
-  
+    console.log(state);
     if(state === undefined) {
+        console.log(state);
         return  {
             product: [],
             productPizza: [],
@@ -13,6 +14,7 @@ const updateSetList = (state, action) => {
         case 'PRODUCT_REQUESTED':
             return {
                 product: [],
+                productPizza: [],
                 loading: true,
                 error: null
             };
@@ -20,13 +22,13 @@ const updateSetList = (state, action) => {
         case  'PRODUCT_LOADED':
         return {
             product: action.payload,
-            productPizza: state.productPizza,
+            productPizza: state.setList.productPizza,
             loading: false,
             error: null
         };
         case 'PRODUCT_LOADED_PIZZA':
             return {
-                product: state.product,
+                product: state.setList.product,
                 productPizza: action.payload,
                 loading: false,
                 error: null

@@ -37,11 +37,11 @@ import * as R from 'ramda'
           }
   } 
 
-  const updateOder = (state, setId, quantity, priceRadioPizza ) => {
+  const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
   
-      const {setList: {product}, shoppingCart: { cartItems } } = state
+      const {setList: {product, productPizza}, shoppingCart: { cartItems } } = state
 
-      const sety = product.find(({node: productCategory}) => productCategory.id === setId);
+      const sety = categoryName.find(({node: productCategory}) => productCategory.id === setId);
       const itemIndex = cartItems.findIndex(({id}) => id === setId);
       const item = cartItems[itemIndex];
 
@@ -77,7 +77,9 @@ import * as R from 'ramda'
       switch (action.type) {
        
           case  'SET_ADDED_TO_CART':
-            return updateOder(state, action.payload.id, 1, action.payload.radioValue)
+            console.log(action.payload.categotyName);
+            
+            return updateOder(state, action.payload.id, 1, action.payload.radioValue, action.payload.categotyName)
         
              case 'SET_REMOVE_FROM_CART':
               return updateOder(state, action.payload.id, -1, action.payload.radioValue)

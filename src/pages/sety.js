@@ -40,23 +40,18 @@ const Sety = ({
   }) => {
 
     // const [ listJsx, updateLustJsx ] = React.useState('')
-
+    const [load, setLoad] = React.useState(true)
     const classes = useStylesCart();
     
-    
     useEffect(() => {
-      // if(R.isEmpty(product)) {
-      //   return
-      // }
-      // console.log(R.isEmpty(product));
-      productRequested();
-      producSetsLoad(setyProduct); // action push to reduxStore
+      if(!R.isEmpty(product)) {
+        setLoad(false)
+        return
+      }
+      producSetsLoad(setyProduct)
+      setLoad(false)
       }, [setyProduct, producSetsLoad, productRequested])
    
-   if(loading) {
-        return <><h1 style={{marginBottom: `300px`}}>...Загрузка</h1></> 
-      }
-
 return (
   <>
   <SEO title="Заказать наборы суши и роллов с доставкой в Валуйках, 
@@ -64,7 +59,7 @@ return (
    <section>
     <h1 className={classes.titleH1}>Сеты</h1>
 <Grid container justify="center" >
-{ product !== undefined ? product.map(({node: productSets}) => {
+{ !load ? product.map(({node: productSets}) => {
       
   const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
 
@@ -105,7 +100,7 @@ return (
           color="secondary"
           className={classes.button}
           startIcon={<ShoppingBasketIcon />}
-          onClick={()=> setAddedToCart(id)}
+          onClick={()=> setAddedToCart(id, null, product)}
       >
         Хочу
       </Button>
@@ -138,8 +133,8 @@ const mapStateToProps = ({ setList: {product, loading} }) => {
     producSetsLoad: (newProduct) => {
         dispatch(producSetsLoad(newProduct))
     },
-    setAddedToCart: (id) => {
-        dispatch(setAddedToCart(id))
+    setAddedToCart: (id, price, product) => {
+        dispatch(setAddedToCart(id, price, product))
         }
     }  
 };

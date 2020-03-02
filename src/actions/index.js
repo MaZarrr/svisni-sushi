@@ -35,12 +35,13 @@ const productError = (error) => {
       }
 };
 
-const setAddedToCart = (setId, radioValue) => {
+const setAddedToCart = (setId, radioValue, categotyName) => {
     return {
         type: 'SET_ADDED_TO_CART',
         payload: {
             id: setId,
-            radioValue     
+            radioValue,
+            categotyName
         } 
     
       }
