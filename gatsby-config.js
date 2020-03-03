@@ -39,7 +39,7 @@ module.exports = {
         resolve: `gatsby-plugin-offline`,
         options: {
           workboxConfig: {
-            importWorkboxFrom: `local`,
+            importWorkboxFrom: `cdn`,
             globDirectory: '/',
             globPatterns: [
               '**/*.{html,json,js,css}',
