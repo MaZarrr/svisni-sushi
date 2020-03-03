@@ -44,6 +44,11 @@ module.exports = {
             globPatterns: [
               '**/*.{html,json,js,css}',
             ],
+            modifyURLPrefix: {
+              "/": `sety/`,
+              "/": `pizza/`,
+              "/": `/`,
+            },
             cacheId: `gatsby-plugin-offline`,
             dontCacheBustURLsMatching: /(\.js$|\.css$|static\/)/,
             runtimeCaching: [{
