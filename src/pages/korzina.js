@@ -127,12 +127,12 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
   };
 
    
-      
-    const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
-      
-    const onRadioChangedd = (id, price) =>  {
-      onRazmer(id, price)
-    }
+  
+const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
+  
+const onRadioChangedd = (id, price) =>  {
+  onRazmer(id, price)
+}
 
 return (
   <>
@@ -160,7 +160,7 @@ return (
           <Grid container spacing={3} className={classes.containerWrapped}>
           <Grid item >
             <ButtonBase className={classes.image}>
-            <Img style={{width: 128, height: 128, margin: 0, padding: 0}} fluid={image}> </Img> 
+            <Img style={{maxWidth: 128, maxHeight: 128, margin: 0, padding: 0}} fluid={image}> </Img> 
          
             </ButtonBase>
             { !!price33 &&
@@ -303,7 +303,7 @@ const mapDispatchToProps = {
   };
   
 
-  export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
 
 
 export const querySets = graphql `
@@ -312,12 +312,10 @@ export const querySets = graphql `
           edges {
             node {
                 id
-              slug
               name
               price
-              description
               image {
-                  fluid(maxWidth: 400) {
+                  fluid(maxWidth: 128, maxHeight: 128) {
                     ...GatsbyContentfulFluid
                   }
               }
@@ -328,12 +326,11 @@ export const querySets = graphql `
           edges {
             node {
                 id
-              slug
               name
               price
               priceIn33cm
               image {
-                  fluid(maxWidth: 400) {
+                  fluid(maxWidth: 128, maxHeight: 128) {
                     ...GatsbyContentfulFluid
                   }
               }
@@ -347,7 +344,7 @@ export const querySets = graphql `
                 name
                 price
                 image {
-                  fluid(maxWidth: 768) {
+                  fluid(maxWidth: 128, maxHeight: 128) {
                     ...GatsbyContentfulFluid
                   }
                 }
@@ -360,10 +357,8 @@ export const querySets = graphql `
           id
           name
           price
-          weight
-          count
           image {
-            fluid(maxWidth: 400) {
+            fluid(maxWidth: 128, maxHeight: 128) {
               ...GatsbyContentfulFluid
             }
           }
@@ -376,10 +371,8 @@ export const querySets = graphql `
             id
             name
             price
-            weight
-            count
             image {
-              fluid(maxWidth: 400) {
+              fluid(maxWidth: 128, maxHeight: 128) {
                 ...GatsbyContentfulFluid
               }
             }
@@ -391,11 +384,9 @@ export const querySets = graphql `
                node {
                  id
                  name
-                 count
                  price
-                 weight
                  image {
-                   fluid(maxWidth: 400) {
+                   fluid(maxWidth: 128, maxHeight: 128) {
                      ...GatsbyContentfulFluid
                    }
                  }
@@ -408,10 +399,8 @@ export const querySets = graphql `
                      id
                      name
                      price
-                     weight
-                     count
                      image {
-                       fluid(maxWidth: 400) {
+                       fluid(maxWidth: 128, maxHeight: 128) {
                          ...GatsbyContentfulFluid
                        }
                      }
@@ -424,9 +413,8 @@ export const querySets = graphql `
                        id
                        name
                        price
-                       weight
                        image {
-                         fluid(maxWidth: 400) {
+                         fluid(maxWidth: 128, maxHeight: 128) {
                            ...GatsbyContentfulFluid
                          }
                        }
@@ -439,9 +427,8 @@ export const querySets = graphql `
                       id
                       price
                       name
-                      weight
                       image {
-                        fluid(maxWidth: 400) {
+                        fluid(maxWidth: 128, maxHeight: 128) {
                           ...GatsbyContentfulFluid
                         }
                       }
@@ -453,11 +440,9 @@ export const querySets = graphql `
                   node {
                     id
                     name
-                    count
                     price
-                    weight
                     image {
-                      fluid(maxWidth: 400) {
+                      fluid(maxWidth: 128, maxHeight: 128) {
                         ...GatsbyContentfulFluid
                       }
                     }
@@ -471,7 +456,7 @@ export const querySets = graphql `
                     name
                     price
                     image {
-                      fluid(maxWidth: 400) {
+                      fluid(maxWidth: 128, maxHeight: 128) {
                         ...GatsbyContentfulFluid
                       }
                     }
@@ -485,7 +470,7 @@ export const querySets = graphql `
                   price
                   name
                   image {
-                    fluid(maxWidth: 400) {
+                    fluid(maxWidth: 128, maxHeight: 128) {
                       ...GatsbyContentfulFluid
                     }
                   }
@@ -498,10 +483,8 @@ export const querySets = graphql `
                id
                name
                price
-               weight
-               count
                image {
-                 fluid(maxWidth: 400) {
+                 fluid(maxWidth: 128, maxHeight: 128) {
                    ...GatsbyContentfulFluid
                  }
                }

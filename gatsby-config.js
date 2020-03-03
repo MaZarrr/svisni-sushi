@@ -35,6 +35,39 @@ module.exports = {
         icon: `src/images/logosvisni.png`, 
       },
     },
+      {
+        resolve: `gatsby-plugin-offline`,
+        options: {
+          workboxConfig: {
+            importWorkboxFrom: `local`,
+            globDirectory: '/',
+            globPatterns: [
+              '**/*.{html,json,js,css}',
+            ],
+            cacheId: `gatsby-plugin-offline`,
+            dontCacheBustURLsMatching: /(\.js$|\.css$|static\/)/,
+            runtimeCaching: [{
+                urlPattern: /(\.js$|\.css$|static\/)/,
+                handler: `CacheFirst`,
+              },
+              {
+                urlPattern: /^https?:.*\page-data\/.*\/page-data\.json/,
+                handler: `NetworkFirst`,
+              },
+              {
+                urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+                handler: `StaleWhileRevalidate`,
+              },
+              {
+                urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
+                handler: `StaleWhileRevalidate`,
+              },
+            ],
+            skipWaiting: true,
+            clientsClaim: true,
+          },
+        },
+      },
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     {
@@ -48,14 +81,6 @@ module.exports = {
         }
       },
     },
-    {
-    resolve: "gatsby-plugin-google-tagmanager",
-    options: {
-      id: "UA-123121109-2",
-      includeInDevelopment: false,
-      defaultDataLayer: { platform: "gatsby" },
-    },
-  },
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -120,44 +145,18 @@ module.exports = {
         enabled: true,
         websiteId: `4ea5ea00-517c-43e9-bb61-33f55324d3cc`,
       },
-    },
-    {
-    resolve: `gatsby-plugin-offline`,
-    options: {
-      workboxConfig: {
-        importWorkboxFrom: `local`,
-        globDirectory: '/',
-        globPatterns: [
-          '**/*.{html,json,js,css}',
-        ],
-        cacheId: `gatsby-plugin-offline`,
-        dontCacheBustURLsMatching: /(\.js$|\.css$|static\/)/,
-        runtimeCaching: [{
-        urlPattern: /(\.js$|\.css$|static\/)/,
-        handler: `CacheFirst`,
-        },
-        {
-          urlPattern: /^https?:.*\page-data\/.*\/page-data\.json/,
-          handler: `NetworkFirst`,
-        },
-        {
-          urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
-          handler: `StaleWhileRevalidate`,
-        },
-        {
-          urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
-          handler: `StaleWhileRevalidate`,
-        },
-        ],
-        skipWaiting: true,
-        clientsClaim: true,
-    },
-  },
-  },
-  ],
+    }
+  ]
 }
 
-
+  //   {
+  //   resolve: "gatsby-plugin-google-tagmanager",
+  //   options: {
+  //     id: "UA-123121109-2",
+  //     includeInDevelopment: false,
+  //     defaultDataLayer: { platform: "gatsby" },
+  //   },
+  // },
 // require('dotenv').config({
 //   path: '.env'
 // })
