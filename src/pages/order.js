@@ -178,7 +178,9 @@ const handleSubmit = (ev) => {
       }
     };
     xhr.send(data);
-
+    
+    navigate('/order-processed')
+    
     axios({
         method: 'POST',
         data: {
@@ -204,9 +206,7 @@ const handleSubmit = (ev) => {
         },
         url: 'https://svisni-sushi.firebaseio.com/order.json'
     })
-        
-    navigate('/order-processed', {replace: true})
-    // navigate('/order-processed', {replace: true}, {state: {data}})
+ 
   }
    
   const handleChange = event => {
