@@ -160,7 +160,7 @@ return (
           <Grid container spacing={3} className={classes.containerWrapped}>
           <Grid item >
             <ButtonBase className={classes.image}>
-            <Img style={{maxWidth: 128, maxHeight: 128, margin: 0, padding: 0}} fluid={image}> </Img> 
+            <Img style={{maxWidth: 128, margin: 0, padding: 0}} fluid={image}> </Img> 
          
             </ButtonBase>
             { !!price33 &&

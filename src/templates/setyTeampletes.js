@@ -56,6 +56,96 @@ export const query = graphql `
         }
     }
   `
+
+
+// "react-virtualized-auto-sizer": "^1.0.2",
+//     "react-window": "^1.8.5",
+//     "react-window-infinite-loader": "^1.0.5",
+
+  //   {
+  //   resolve: "gatsby-plugin-google-tagmanager",
+  //   options: {
+  //     id: "UA-123121109-2",
+  //     includeInDevelopment: false,
+  //     defaultDataLayer: { platform: "gatsby" },
+  //   },
+  // },
+// require('dotenv').config({
+//   path: '.env'
+// })
+// "yarn": "1.15.2"
+//
+// let activeEnv =
+//   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+
+// console.log(`Using environment config: ${activeEnv}`)
+
+// require("dotenv").config({
+//   path: `.env.${process.env.NODE_ENV}`,
+// })] //
+
+// {
+//   resolve: `gatsby-plugin-prefetch-google-fonts`,
+//   options: {
+//     fonts: [
+//       {
+//         family: `Oswald`,
+//         subsets: [`latin`, `cyrillic`],
+//       },
+//       {
+//         family: 'Comfortaa',
+//         variants: [`300`, `500`, `700`],
+//         subsets: [`latin`, `cyrillic`]
+//       },
+//     ],
+//     formats: [
+//       `woff`,
+//       `woff2`,
+//       `ttf`,
+//       `eot`
+//     ],
+//   },
+// },
+
+
+
+// offline ================================
+// options: {
+//           workboxConfig: {
+//             importWorkboxFrom: `cdn`,
+//             globDirectory: '/',
+//             globPatterns: [
+//               '**/*.{html,json,js,css}',
+//             ],
+//             modifyURLPrefix: {
+//               "/": `sety/`,
+//               "/": `pizza/`,
+//               "/": `/`,
+//             },
+//             cacheId: `gatsby-plugin-offline`,
+//             dontCacheBustURLsMatching: /(\.js$|\.css$|static\/)/,
+//             runtimeCaching: [{
+//                 urlPattern: /(\.js$|\.css$|static\/)/,
+//                 handler: `CacheFirst`,
+//               },
+//               {
+//                 urlPattern: /^https?:.*\page-data\/.*\/page-data\.json/,
+//                 handler: `NetworkFirst`,
+//               },
+//               {
+//                 urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+//                 handler: `StaleWhileRevalidate`,
+//               },
+//               {
+//                 urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
+//                 handler: `StaleWhileRevalidate`,
+//               },
+//             ],
+//             skipWaiting: true,
+//             clientsClaim: true,
+//           },
+//         },
+
     // "react-vk": "^5.0.2",
     //  precachePages: [`/*`],
 // "alias": {
