@@ -104,7 +104,7 @@ const delivery = [
 
 return (
     <>
-    <SEO title="Доставка Суши Wok Уразово - районы доставки" />
+    <SEO title="Доставка Свисни Суши Уразово - районы доставки" />
           <header>
             <h1 style={{
               paddingLeft: 30, 

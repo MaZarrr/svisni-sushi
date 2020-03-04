@@ -8,7 +8,7 @@ const adresikontakty = () => {
 
 return (
     <>
-    <SEO title="Адрес и контакты" />
+    <SEO title="Адрес и контакты Свистни Суши" />
     <StylingInfo>
     <h1 style={{paddingLeft: 30, fontSize: `40px`}}>Адрес и контакты</h1>
     <hr></hr>
