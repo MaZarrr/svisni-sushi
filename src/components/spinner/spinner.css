@@ -1,146 +1,71 @@
-@-webkit-keyframes ldio-ngj4s2sln1i {
-  0% {
-    opacity: 1;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    -webkit-transform: translateZ(0) scale(1.5,1.5);
-            transform: translateZ(0) scale(1.5,1.5);
-  } 100% {
-    opacity: 0;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    -webkit-transform: translateZ(0) scale(1,1);
-            transform: translateZ(0) scale(1,1);
-  }
+@keyframes ldio-bp47xt223ma {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
 }
-@keyframes ldio-ngj4s2sln1i {
-  0% {
-    opacity: 1;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    -webkit-transform: translateZ(0) scale(1.5,1.5);
-            transform: translateZ(0) scale(1.5,1.5);
-  } 100% {
-    opacity: 0;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    -webkit-transform: translateZ(0) scale(1,1);
-            transform: translateZ(0) scale(1,1);
-  }
-}
-.ldio-ngj4s2sln1i div > div {
+.ldio-bp47xt223ma div {
+  left: 81.225px;
+  top: 41.894999999999996px;
   position: absolute;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #ff727d;
-  -webkit-animation: ldio-ngj4s2sln1i 1s linear infinite;
-          animation: ldio-ngj4s2sln1i 1s linear infinite;
-}.ldio-ngj4s2sln1i div:nth-child(1) > div {
-  left: 148px;
-  top: 88px;
-  -webkit-animation-delay: -0.875s;
-          animation-delay: -0.875s;
+  animation: ldio-bp47xt223ma linear 1.0416666666666665s infinite;
+  background: #fe718d;
+  width: 8.55px;
+  height: 8.55px;
+  border-radius: 3.3345px / 3.3345px;
+  transform-origin: 4.275px 43.605px;
+}.ldio-bp47xt223ma div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -0.9374999999999999s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(2) {
+  transform: rotate(36deg);
+  animation-delay: -0.8333333333333333s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(3) {
+  transform: rotate(72deg);
+  animation-delay: -0.7291666666666665s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(4) {
+  transform: rotate(108deg);
+  animation-delay: -0.6249999999999999s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(5) {
+  transform: rotate(144deg);
+  animation-delay: -0.5208333333333333s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(6) {
+  transform: rotate(180deg);
+  animation-delay: -0.41666666666666663s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(7) {
+  transform: rotate(216deg);
+  animation-delay: -0.31249999999999994s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(8) {
+  transform: rotate(252deg);
+  animation-delay: -0.20833333333333331s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(9) {
+  transform: rotate(288deg);
+  animation-delay: -0.10416666666666666s;
+  background: #fe718d;
+}.ldio-bp47xt223ma div:nth-child(10) {
+  transform: rotate(324deg);
+  animation-delay: 0s;
+  background: #fe718d;
 }
-.ldio-ngj4s2sln1i > div:nth-child(1) {
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-  -webkit-transform-origin: 160px 100px;
-          transform-origin: 160px 100px;
-}.ldio-ngj4s2sln1i div:nth-child(2) > div {
-  left: 130px;
-  top: 130px;
-  -webkit-animation-delay: -0.75s;
-          animation-delay: -0.75s;
-}
-.ldio-ngj4s2sln1i > div:nth-child(2) {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  -webkit-transform-origin: 142px 142px;
-          transform-origin: 142px 142px;
-}.ldio-ngj4s2sln1i div:nth-child(3) > div {
-  left: 88px;
-  top: 148px;
-  -webkit-animation-delay: -0.625s;
-          animation-delay: -0.625s;
-}
-.ldio-ngj4s2sln1i > div:nth-child(3) {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  -webkit-transform-origin: 100px 160px;
-          transform-origin: 100px 160px;
-}.ldio-ngj4s2sln1i div:nth-child(4) > div {
-  left: 46px;
-  top: 130px;
-  -webkit-animation-delay: -0.5s;
-          animation-delay: -0.5s;
-}
-.ldio-ngj4s2sln1i > div:nth-child(4) {
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
-  -webkit-transform-origin: 58px 142px;
-          transform-origin: 58px 142px;
-}.ldio-ngj4s2sln1i div:nth-child(5) > div {
-  left: 28px;
-  top: 88px;
-  -webkit-animation-delay: -0.375s;
-          animation-delay: -0.375s;
-}
-.ldio-ngj4s2sln1i > div:nth-child(5) {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-  -webkit-transform-origin: 40px 100px;
-          transform-origin: 40px 100px;
-}.ldio-ngj4s2sln1i div:nth-child(6) > div {
-  left: 46px;
-  top: 46px;
-  -webkit-animation-delay: -0.25s;
-          animation-delay: -0.25s;
-}
-.ldio-ngj4s2sln1i > div:nth-child(6) {
-  -webkit-transform: rotate(225deg);
-          transform: rotate(225deg);
-  -webkit-transform-origin: 58px 58px;
-          transform-origin: 58px 58px;
-}.ldio-ngj4s2sln1i div:nth-child(7) > div {
-  left: 88px;
-  top: 28px;
-  -webkit-animation-delay: -0.125s;
-          animation-delay: -0.125s;
-}
-.ldio-ngj4s2sln1i > div:nth-child(7) {
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
-  -webkit-transform-origin: 100px 40px;
-          transform-origin: 100px 40px;
-}.ldio-ngj4s2sln1i div:nth-child(8) > div {
-  left: 130px;
-  top: 46px;
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
-}
-.ldio-ngj4s2sln1i > div:nth-child(8) {
-  -webkit-transform: rotate(315deg);
-          transform: rotate(315deg);
-  -webkit-transform-origin: 142px 58px;
-          transform-origin: 142px 58px;
-}
-.loadingio-spinner-spin-6vy1bpr55by {
-  width: 200px;
-  height: 200px;
+.loadingio-spinner-spinner-ijmganeeya {
+  width: 171px;
+  height: 171px;
   display: inline-block;
   overflow: hidden;
-  background: #ffffff;
+  background: rgba(NaN, NaN, NaN, 0);
 }
-.ldio-ngj4s2sln1i {
+.ldio-bp47xt223ma {
   width: 100%;
   height: 100%;
   position: relative;
-  -webkit-transform: translateZ(0) scale(1);
-          transform: translateZ(0) scale(1);
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0; /* see note above */
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
 }
-.ldio-ngj4s2sln1i div { box-sizing: content-box; }
+.ldio-bp47xt223ma div { box-sizing: content-box; }

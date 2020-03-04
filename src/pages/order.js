@@ -49,13 +49,13 @@ const useStyles = makeStyles(theme => ({
   conatiner_info_delivery: {
     margin: `15px auto 15px 0`
   },
-  conatiner_info_left: {
-    margin: `15px auto 15px 0`,
-    border: `2px solid blue`,
-    borderRadius: 10,
-    padding: 10,
-    maxWidth: `200px`
-  },
+  // conatiner_info_left: {
+  //   margin: `15px auto 15px 0`,
+  //   border: `2px solid blue`,
+  //   borderRadius: 10,
+  //   padding: 10,
+  //   maxWidth: `200px`
+  // },
     button: {
       background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
       color: 'white',
@@ -267,7 +267,7 @@ return (
         <form  
            method="POST"
            onSubmit={handleSubmit}
-          action="https://node-server-ten.now.sh/"
+            action="https://node-server-ten.now.sh/"
            name="svisniData"
           //  action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
            style={{width: '100%'}}
@@ -379,10 +379,8 @@ return (
           </Grid>
                   <hr></hr>
                   <Grid item xs={12}>
-                  < Typography variant = "h6" > < Box fontFamily = "Oswald"
-                  fontWeight = {
-                    700
-                  }
+                  <Typography variant = "h6" > <Box fontFamily = "Oswald"
+                  fontWeight={700}
                   fontSize={24}>Дата и время доставки заказа</Box></Typography>  
                   <FormGroup>
                     <Typography component="div">
@@ -557,7 +555,7 @@ return (
              style={{marginTop: `50px`}}
            />
            </Grid>
-            <div className={classes.conatiner_info_left}> 
+            <div className={classes.conatiner_info}> 
               <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
               <Select
                 labelId="demo-controlled-open-select-label"

@@ -2,7 +2,7 @@ import React from 'react'
 import './spinner.css'
 
 export default () => (
-    <div className="loadingio-spinner-spin-6vy1bpr55by"><div className="ldio-ngj4s2sln1i">
-    <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+    <div className="loadingio-spinner-spinner-ijmganeeya"><div className="ldio-bp47xt223ma">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
     </div></div>
 )   
