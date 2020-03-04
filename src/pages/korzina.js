@@ -315,7 +315,7 @@ export const querySets = graphql `
               name
               price
               image {
-                  fluid(maxWidth: 128) {
+                  fluid(maxWidth: 300) {
                     ...GatsbyContentfulFluid
                   }
               }
@@ -330,7 +330,7 @@ export const querySets = graphql `
               price
               priceIn33cm
               image {
-                  fluid(maxWidth: 128) {
+                  fluid(maxWidth: 300) {
                     ...GatsbyContentfulFluid
                   }
               }
@@ -344,7 +344,7 @@ export const querySets = graphql `
                 name
                 price
                 image {
-                  fluid(maxWidth: 128) {
+                  fluid(maxWidth: 300) {
                     ...GatsbyContentfulFluid
                   }
                 }
@@ -358,7 +358,7 @@ export const querySets = graphql `
           name
           price
           image {
-            fluid(maxWidth: 128) {
+            fluid(maxWidth: 300) {
               ...GatsbyContentfulFluid
             }
           }
@@ -372,7 +372,7 @@ export const querySets = graphql `
             name
             price
             image {
-              fluid(maxWidth: 128) {
+              fluid(maxWidth: 300) {
                 ...GatsbyContentfulFluid
               }
             }
@@ -386,7 +386,7 @@ export const querySets = graphql `
                  name
                  price
                  image {
-                   fluid(maxWidth: 128) {
+                   fluid(maxWidth: 300) {
                      ...GatsbyContentfulFluid
                    }
                  }
@@ -400,7 +400,7 @@ export const querySets = graphql `
                      name
                      price
                      image {
-                       fluid(maxWidth: 128) {
+                       fluid(maxWidth: 300) {
                          ...GatsbyContentfulFluid
                        }
                      }
@@ -414,7 +414,7 @@ export const querySets = graphql `
                        name
                        price
                        image {
-                         fluid(maxWidth: 128) {
+                         fluid(maxWidth: 300) {
                            ...GatsbyContentfulFluid
                          }
                        }
@@ -428,7 +428,7 @@ export const querySets = graphql `
                       price
                       name
                       image {
-                        fluid(maxWidth: 128) {
+                        fluid(maxWidth: 300) {
                           ...GatsbyContentfulFluid
                         }
                       }
@@ -442,7 +442,7 @@ export const querySets = graphql `
                     name
                     price
                     image {
-                      fluid(maxWidth: 128) {
+                      fluid(maxWidth: 300) {
                         ...GatsbyContentfulFluid
                       }
                     }
@@ -456,7 +456,7 @@ export const querySets = graphql `
                     name
                     price
                     image {
-                      fluid(maxWidth: 128) {
+                      fluid(maxWidth: 300) {
                         ...GatsbyContentfulFluid
                       }
                     }
@@ -470,7 +470,7 @@ export const querySets = graphql `
                   price
                   name
                   image {
-                    fluid(maxWidth: 128) {
+                    fluid(maxWidth: 300) {
                       ...GatsbyContentfulFluid
                     }
                   }
@@ -484,7 +484,7 @@ export const querySets = graphql `
                name
                price
                image {
-                 fluid(maxWidth: 128) {
+                 fluid(maxWidth: 300) {
                    ...GatsbyContentfulFluid
                  }
                }
