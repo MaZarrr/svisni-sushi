@@ -46,7 +46,7 @@ const Pizza = ({
           ProductFetch()
            .then((data) => producPizzaLoad(data))
            .then(() => setLoad(false))
-      }, [producPizzaLoad, pizzaProduct, productRequested])
+      }, [producPizzaLoad, pizzaProduct, productRequested, productPizza])
 
 return ( 
    <section>

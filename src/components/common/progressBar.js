@@ -18,7 +18,7 @@ export default () => {
     return (
         <div style={{
             position: `fixed`,
-            left: `0`,
+            right: `0`,
             top: `0`,
             width: `6px`,
             height: `${progressPercent}%`,

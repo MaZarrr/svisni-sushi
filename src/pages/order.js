@@ -30,7 +30,6 @@ const useStyles = makeStyles(theme => ({
     width: `98%`
   },
    formControl: {
-    //  margin: theme.spacing(1),
     marginTop: 10,
     width: `220px`,
    },
@@ -56,13 +55,6 @@ const useStyles = makeStyles(theme => ({
   conatiner_info_delivery: {
     margin: `15px auto 15px 0`
   },
-  // conatiner_info_left: {
-  //   margin: `15px auto 15px 0`,
-  //   border: `2px solid blue`,
-  //   borderRadius: 10,
-  //   padding: 10,
-  //   maxWidth: `200px`
-  // },
     button: {
       background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
       color: 'white',
@@ -79,15 +71,14 @@ const useStyles = makeStyles(theme => ({
      paddingLeft: theme.spacing(4),
    },
    payInfo: {
-     margin: `20px 0 20px 0`, 
-     fontSize: 20, 
-     background: `#f0ecec`,
-    padding: 20, maxWidth: `60%`, 
+    margin: `20px 0 20px 0`, 
+    fontSize: 20, 
+    background: `#f0ecec`,
+    padding: 20,
     boxShadow: `0px 4px 8px rgba(0, 0, 0, 0.5)`,
     maxWidth: '65%',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '100%',
-      // marginBottom: 60
+      maxWidth: '90%'
     }
    }
 }));
@@ -151,28 +142,27 @@ const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySit
   setLevel, setDoor,  setTime, setDate, total, dateDelivery, timeDelivery}) => {
     
 const [open, setOpen] = useState(false);
-// const [openPayment, setOpenPayment] = useState(false);
-// const [openDelivery, setOpenDelivery] = useState(false);
 
 const [age, setAge] = useState('');
-// const [payment, setPayment] = useState('');
 const [delivery, setDelivery] = useState('');
 
 const inputLabel = React.useRef(null);
-const [labelWidth, setLabelWidth] = React.useState(0);
  const [state, setState] = React.useState({
    checkedC: false
  });
 
-const [city, setCity] = useState({
-kol: {id: 3, priceDel: 150, deliverySalePrice: 1000, name: "Колыхалино"},          
-dvyl: {id: 4, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},            
-val: {id: 5, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки"},                    
-yraz: {id: 6, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},                 
-shel: {id: 7, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
-gera: {id: 8, priceDel: 200, deliverySalePrice: 1000, name: "Герасимовка"},
-sobo: {id: 2, priceDel: 100, deliverySalePrice: 500, name: "Соболёвка"},
-sved: {id: 1, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"}
+const [city, ] = useState({
+kol: {id: 1, priceDel: 150, deliverySalePrice: 1000, name: "Колыхалино"},          
+dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},            
+val: {id: 3, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки"},                    
+yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},                 
+shel: {id: 5, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
+gera: {id: 6, priceDel: 200, deliverySalePrice: 1000, name: "Герасимовка"},
+sobo: {id: 7, priceDel: 100, deliverySalePrice: 500, name: "Соболёвка"},
+sved: {id: 8, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"},
+borki: {id: 9, priceDel: 300, deliverySalePrice: 1400, name: "Борки"},
+znamenk: {id: 10, priceDel: 100, deliverySalePrice: 500, name: "Знаменка"},
+kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
 });
 
 const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
@@ -227,8 +217,6 @@ const handleSubmit = (ev) => {
           phone: ev.target.phone.value,
           delivery: delivery === "Доставка курьером" ? {
             formDelivery: ev.target.delivery.value || "Не выбрано",
-            // timeDelivery: ev.target.time.value || "Без предзаказа",
-            // dateDelivery: ev.target.date.value || "Без предзаказа",
             adress: stateDeliveryPrice.name || "Самовывоз",
             street: ev.target.street.value || "Самовывоз",
             home: ev.target.home.value || "Самовывоз" } : "Самовывоз",
@@ -248,56 +236,39 @@ const handleSubmit = (ev) => {
  
   }
    
-  const handleChange = event => {
-    setAge(event.target.value);
-  };
-  // const handleChangePayment = event => {
-  //   setPayment(event.target.value);
-  // };
+const handleChange = event => {
+setAge(event.target.value);
+};
 
-  const handleChangeDelivery = event => {
-    setDelivery(event.target.value);
-  };
+const handleChangeDelivery = event => {
+setDelivery(event.target.value);
+};
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  
-  const handleChangeCity = city => event => {
-    // console.log(event.target.value);
-    setSity(`${city[event.target.value].name}`)
-    // setSity(`${city[event.target.value].name}`)
-    setStateDeliveryPrice(city[event.target.value]);
-  };
+const handleClose = () => {
+setOpen(false);
+};
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  // const handleClosePayment = () => {
-  //   setOpenPayment(false);
-  // };
-  
-  // const handleOpenPayment = () => {
-  //   setOpenPayment(true);
-  // };
+const handleChangeCity = city => event => {
+setSity(`${city[event.target.value].name}`)
+setStateDeliveryPrice(city[event.target.value]);
+};
 
-  // const handleCloseDelivery = () => {
-  //   setOpenDelivery(false);
-  // };
-  
-  // const handleOpenDelivery = () => {
-  //   setOpenDelivery(true);
-  // };
-// console.log(stateDeliveryPrice);
-// console.log(deliverySity);
+const handleOpen = () => {
+setOpen(true);
+};
+
+const isEmpty = (obj) => {
+  if (Object.keys(obj).length === 0) {
+    return true;
+  }
+  return false
+}
 
 return (
     <section >
     <SEO title="Оформление заказа" />
      <div className={classes.root}>
-  
     <Grid container>
-
         <Grid item xs={12}>
           <Paper className={classes.paper}>
           <Typography variant="h2">
@@ -311,81 +282,58 @@ return (
           </Grid>
           </Grid>
 
-         { items.length !== 0 ? <Grid container className={classes.gridContainer}>
+        { items.length !== 0 ? <Grid container className={classes.gridContainer}>
         <form  
-           method="POST"
-           onSubmit={handleSubmit}
-            action="https://node-server-ten.now.sh/"
-           name="svisniData"
-          //  action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
-           style={{width: '100%'}}>
+          method="POST"
+          onSubmit={handleSubmit}
+          action="https://node-server-ten.now.sh/"
+          name="svisniData"
+          style={{width: '100%'}}>
    
-              <Grid item xs={12}>
-              <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
-              fontSize={24}>Контактные данные</Box></Typography>  
-              </Grid>
-             
-                <Grid container >
-                 <TextField id="validation-outlined-input" 
-                 label="Имя" 
-                 variant="outlined" 
-                 style={{margin: `10px auto 10px 0`}}
-                 required 
-                 inputProps={{
-                   maxLength: 12,
-                   }} 
-                   name="name" 
-                   onChange={(e) => {
-                     setName(e.target.value);
-                 }}  
-                 value={nameUser} 
-                 helperText="Введите ваше имя"/>
+          <Grid item xs={12}>
+          <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
+          fontSize={24}>Контактные данные</Box></Typography>  
+          </Grid>
+          
+            <Grid container >
+              <TextField id="validation-outlined-input" 
+              label="Имя" 
+              variant="outlined" 
+              style={{margin: `10px auto 10px 0`}}
+              required 
+              inputProps={{
+                maxLength: 12,
+                }} 
+                name="name" 
+                onChange={(e) => {
+                  setName(e.target.value);
+              }}  
+              value={nameUser} 
+              helperText="Введите ваше имя"/>
 
-                 <TextField id="validation-outlined-input" 
-                   label="Телефон" 
-                   variant="outlined"
-                   type="tel" 
-                   style={{margin: `10px auto 10px 0`}}
-                   required 
-                   inputProps={{
-                     maxLength: 12,
-                     }} 
-                     name="phone" 
-                     onChange={(e) => {
-                       setPhone(e.target.value);
-                   }}  
-                   value={phoneUser} 
-                   helperText="Введите ваш телефон"/>
-                  </Grid>
-                  <hr></hr>
-                  <Grid item xs={12}>
-                    <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
-                    fontSize={24}>Доставка</Box></Typography>  
-                  </Grid>
-              
-                <Grid container >
-              
-                  {/* <div className={classes.conatiner_info_left}>
-                 <InputLabel id="controlled-open-select-label">Форма оплаты</InputLabel>
-                 <Select
-                   labelId="controlled-open-select-label"
-                   id="controlled-open-select"
-                   open={openPayment}
-                   onClose={handleClosePayment}
-                   onOpen={handleOpenPayment}
-                   value={payment}
-                   name="payForm"
-                   onChange={handleChangePayment}>
-                   <MenuItem value="">
-                   <em>Форма оплаты</em>
-                 </MenuItem>
-                 <MenuItem value="Онлайн оплата">Онлайн оплата</MenuItem>
-                 <MenuItem value="Оплата наличными">Оплата наличными</MenuItem>
-               </Select>
-               </div> */}
-               
-               {/* <div className={classes.conatiner_info}> */}
-               {/* <div className={classes.conatiner_info}> */}
+              <TextField id="validation-outlined-input" 
+                label="Телефон" 
+                variant="outlined"
+                type="tel" 
+                style={{margin: `10px auto 10px 0`}}
+                required 
+                inputProps={{
+                  maxLength: 12,
+                  }} 
+                  name="phone" 
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                }}  
+                value={phoneUser} 
+                helperText="Введите ваш телефон"/>
+              </Grid>
+              <hr></hr>
+              <Grid item xs={12}>
+                <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
+                fontSize={24}>Доставка</Box></Typography>  
+              </Grid>
+          
+              <Grid container >
                <div>
               <FormControl required variant="outlined" className={classes.formControl}>
                   <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
@@ -395,19 +343,10 @@ return (
                         native
                         value={delivery} // 
                         onChange={handleChangeDelivery}
-                        labelWidth={labelWidth}
                         inputProps={{
                           name: 'delivery',
                           id: 'outlined-age-native-simple',
                         }}>
-                      {/* labelId="open-select-label"
-                      id="open-select"
-                      open={openDelivery}
-                      onClose={handleCloseDelivery}
-                      onOpen={handleOpenDelivery}
-                      value={delivery}
-                      name="delivery"
-                      onChange={handleChangeDelivery}> */}
                     <option value=""></option>
                     <option value="Самовывоз">Самовывоз</option>
                     <option value="Доставка курьером">Доставка курьером</option>
@@ -415,111 +354,69 @@ return (
                 </FormControl>
                </div>
             </Grid>
-               
-               {/* <FormControl required variant="standard" className={classes.formControl}>
-               <InputLabel id="open-select-label">Способ доставки</InputLabel>
-               <Select
-                 labelId="open-select-label"
-                 id="open-select"
-                 open={openDelivery}
-                 onClose={handleCloseDelivery}
-                 onOpen={handleOpenDelivery}
-                 value={delivery}
-                 name="delivery"
-                 onChange={handleChangeDelivery}>
-                 <MenuItem value="">
-                 {/* <em>Способ доставки</em> */}
-               {/* </MenuItem> */}
-               {/* <option value="Самовывоз">Самовывоз</option>
-               <option value="Доставка курьером">Доставка курьером</option> */}
-             {/* </Select>
-             </FormControl> */}
-           
-            {/* { payment === "Оплата наличными" &&
-            <div className={classes.conatiner_info_left}> 
-              <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
-              <Select
-                labelId="demo-controlled-open-select-label"
-                id="demo-controlled-open-select"
-                open={open}
-                onClose={handleClose}
-                onOpen={handleOpen}
-                value={age}
-                name="sdacha"
-                onChange={handleChange}>
-                <MenuItem value="Без сдачи">
-                <em>Без сдачи</em>
-              </MenuItem>
-              <MenuItem value={700}>С 700 руб</MenuItem>
-              <MenuItem value={1000}>С 1000 руб</MenuItem>
-              <MenuItem value={2000}>С 2000 руб</MenuItem>
-              <MenuItem value={5000}>С 5000 руб</MenuItem>
-            </Select>
-          </div>
-            } */}
-      
-                  <hr></hr>
-                  <Grid item xs={12}>
-                  <Typography variant = "h6" > <Box fontFamily = "Oswald"
-                  fontWeight={700}
-                  fontSize={24}>Дата и время доставки заказа</Box></Typography>  
-                  <FormGroup>
-                    <Typography component="div">
-                    <Grid component="label" container alignItems="center" spacing={1}>
-                      <Grid item>Сразу</Grid>
-                      <Grid item>
-                        <IOSSwitch
-                          checked={state.checkedC}
-                          onChange={handleChangee('checkedC')}
-                          value="checkedC"
-                        />
-                      </Grid>
-                      <Grid item>Предзаказ</Grid>
-                    </Grid>
-                  </Typography>
-                </FormGroup>
-                </Grid>
-             
-              {  state.checkedC &&
-                <Grid container xs={12} >
-                 <TextField id="validation-outlined-input" 
-                 label="Дата" 
-                 variant="outlined" 
-                 type="date" 
-                 style={{margin: `10px auto 10px 0`}}
-                 required 
-                 inputProps={{
-                   maxLength: 22,
-                   }} 
-                   name="date" 
-                   onChange={(e) => {
-                     setDate(e.target.value);
-                 }}  
-                 value={dateDelivery} 
-                 helperText="Когда доставить"/>
               
-                 <TextField id="validation-outlined-input" 
-                   label="Время" 
-                   variant="outlined"
-                   type="time" 
-                   style={{margin: `10px auto 10px 0`}}
-                   required 
-                   inputProps={{
-                     maxLength: 16,
-                     }} 
-                     name="time" 
-                     onChange={(e) => {
-                       setTime(e.target.value);
-                   }}  
-                   value={timeDelivery} 
-                   helperText="К какому времени"/>
-                   </Grid>
-                }
-                  <hr></hr>
+            <hr></hr>
+            <Grid item xs={12}>
+            <Typography variant = "h6" > <Box fontFamily = "Oswald"
+            fontWeight={700}
+            fontSize={24}>Дата и время доставки заказа</Box></Typography>  
+            <FormGroup>
+              <Typography component="div">
+              <Grid component="label" container alignItems="center" spacing={1}>
+                <Grid item>Сразу</Grid>
+                <Grid item>
+                  <IOSSwitch
+                    checked={state.checkedC}
+                    onChange={handleChangee('checkedC')}
+                    value="checkedC"
+                  />
+                </Grid>
+                <Grid item>Предзаказ</Grid>
+              </Grid>
+            </Typography>
+          </FormGroup>
+          </Grid>
+             
+        {  state.checkedC &&
+          <Grid container>
+            <TextField id="validation-outlined-input" 
+            label="Дата" 
+            variant="outlined" 
+            type="date" 
+            style={{margin: `10px auto 10px 0`}}
+            required 
+            inputProps={{
+              maxLength: 22,
+              }} 
+              name="date" 
+              onChange={(e) => {
+                setDate(e.target.value);
+            }}  
+            value={dateDelivery} 
+            helperText="Когда доставить"/>
+        
+            <TextField id="validation-outlined-input" 
+              label="Время" 
+              variant="outlined"
+              type="time" 
+              style={{margin: `10px auto 10px 0`}}
+              required 
+              inputProps={{
+                maxLength: 16,
+                }} 
+                name="time" 
+                onChange={(e) => {
+                  setTime(e.target.value);
+              }}  
+              value={timeDelivery} 
+              helperText="К какому времени"/>
+              </Grid>
+          }
+          <hr></hr>
               
            { delivery === "Доставка курьером" &&  
            <>
-            <Grid container xs={12} justify="center">      
+            <Grid container justify="center">      
               <div className={classes.conatiner_info_delivery}>
               <FormControl required variant="outlined" className={classes.formControl}>
                   <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
@@ -529,38 +426,26 @@ return (
                     native
                     value={deliverySity.city} // 
                     onChange={handleChangeCity(city)}
-                    labelWidth={labelWidth}
                     inputProps={{
                       name: 'city',
                       id: 'outlined-age-native-simple',
                     }}>
                     <option value=""></option>
                     <option value="yraz">Уразово</option>
-                    <option value="val">Валуйки</option>
-                    <option value="kol">Колыхалино</option>
+                    <option style={{background: `#f0ecec`}} value="val">Валуйки</option>
                     <option value="dvyl">Двулучное</option>
-                    <option value="shel">Шелаево</option>
+                    <option style={{background: `#f0ecec`}} value="shel">Шелаево</option>
                     <option value="sobo">Соболевка</option>
-                    <option value="yraz">Уразово</option>
+                    <option style={{background: `#f0ecec`}} value="kol">Колыхалино</option>
                     <option value="sved">Шведуновка</option>
-                    <option value="gera">Герасимовка</option>
+                    <option style={{background: `#f0ecec`}} value="borki">Борки</option>
+                    <option value="znamenk">Знаменка</option>
+                    <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
+                    <option value="kazink">Казинка</option>
                   </Select>
                 </FormControl>
-               {/* <TextField id="validation-outlined-input" 
-                 label="Населенный пункт" 
-                 variant="outlined" 
-                 required inputProps={{
-                   maxLength: 20,
-                   }} 
-                   name="adress" 
-                   onChange={(e) => {
-                     setSity(e.target.value);
-                 }}  
-                 value={deliverySity} 
-                //  style={{margin: `10px auto 10px 0`}}
-
-                 helperText="Населенный пункт"/> */}
                </div>
+
                <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Улица" 
@@ -679,12 +564,15 @@ return (
               </MenuItem>
               <MenuItem value={700}>С 700 руб</MenuItem>
               <MenuItem value={1000}>С 1000 руб</MenuItem>
+              <MenuItem value={1500}>С 1000 руб</MenuItem>
               <MenuItem value={2000}>С 2000 руб</MenuItem>
+              <MenuItem value={3000}>С 2000 руб</MenuItem>
               <MenuItem value={5000}>С 5000 руб</MenuItem>
             </Select>
           </div>
+          
             <div className={classes.payInfo}>
-            { delivery !== "Самовывоз" && delivery !== "" &&
+            { delivery !== "Самовывоз" && !isEmpty(stateDeliveryPrice) &&
             <>
             <div>
                 <p>{total <= stateDeliveryPrice.deliverySalePrice ? <>
@@ -694,11 +582,12 @@ return (
               <hr></hr>
               <div>
                <p>{total <= stateDeliveryPrice.deliverySalePrice ? <><b>Доставка:</b> + {stateDeliveryPrice.priceDel} ₽</> : <b>Доставка бесплатно</b>}</p>
-                <b>{total >= stateDeliveryPrice.deliverySalePrice ? `Итого к оплате: ${total} ₽` : `Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
+                <b>{total >= stateDeliveryPrice.deliverySalePrice ? 
+                `Итого к оплате: ${total} ₽` : `Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
              </div>
              </>
             }
-            { delivery !== "Доставка курьером" &&
+            { isEmpty(stateDeliveryPrice) &&
               <div>
                 <b>Итого к оплате: {total} ₽</b>
              </div>
