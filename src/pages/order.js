@@ -208,7 +208,12 @@ const handleSubmit = (ev) => {
     };
     xhr.send(data);
     
-    navigate('/order-processed', {state: { name: ev.target.name.value, phone: ev.target.phone.value }})
+    const dataOrderInfo = {
+      name: ev.target.name.value, 
+      phone: ev.target.phone.value
+    }
+
+    navigate('/order-processed', {state: dataOrderInfo || {name: ":)", phone: "указанному"}  })
     
     axios({
         method: 'POST',
