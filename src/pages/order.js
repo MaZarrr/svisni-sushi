@@ -5,6 +5,7 @@ import { navigate} from 'gatsby'
 import { setName, setPhone,
   setSity, setAdress, setHome, setEntrance, setLevel, setDoor, setTime, setDate } from "../actions";
 
+import FormControl from '@material-ui/core/FormControl';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -28,6 +29,10 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(4),
     width: `98%`
   },
+   formControl: {
+     margin: theme.spacing(1),
+     width: `220px`,
+   },
   paper: {
     padding: theme.spacing(2),
     paddingLeft: theme.spacing(4),
@@ -44,7 +49,8 @@ const useStyles = makeStyles(theme => ({
     margin: `15px auto 15px 0`,
     border: `2px solid blue`,
     padding: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    maxWidth: `300px`,
   },
   conatiner_info_delivery: {
     margin: `15px auto 15px 0`
@@ -139,9 +145,24 @@ const [age, setAge] = useState('');
 // const [payment, setPayment] = useState('');
 const [delivery, setDelivery] = useState('');
 
+const inputLabel = React.useRef(null);
+const [labelWidth, setLabelWidth] = React.useState(0);
  const [state, setState] = React.useState({
    checkedC: false
  });
+
+const [city, setCity] = useState({
+kol: {id: 3, priceDel: 150, deliverySalePrice: 1000, name: "Колыхалино"},          
+dvyl: {id: 4, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},            
+val: {id: 5, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки"},                    
+yraz: {id: 6, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},                 
+shel: {id: 7, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
+gera: {id: 8, priceDel: 200, deliverySalePrice: 1000, name: "Герасимовка"},
+sobo: {id: 2, priceDel: 100, deliverySalePrice: 500, name: "Соболёвка"},
+sved: {id: 1, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"}
+});
+
+const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
 
  const handleChangee = name => event => {
     setState({ ...state, [name]: event.target.checked });
@@ -166,8 +187,13 @@ const handleSubmit = (ev) => {
     if(location.state.cart) {
       data.append('chopsticks', palochkiTotal);
     }
-      data.append('totalPrice', total);
-
+    if(delivery !== "Самовывоз" && total <= stateDeliveryPrice.deliverySalePrice) {
+      const deliveryTotalPrice = total + stateDeliveryPrice.priceDel
+      data.append('totalPrice', `Цена с доставкой ${deliveryTotalPrice} руб.`);
+    } else {
+       data.append('totalPrice', total);
+    }
+    data.append('adress', stateDeliveryPrice.name);
     xhr.open(form.method, form.action);
     xhr.setRequestHeader("Accept", "application/json");
     // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -181,31 +207,31 @@ const handleSubmit = (ev) => {
     
     navigate('/order-processed')
     
-    axios({
-        method: 'POST',
-        data: {
-          name: ev.target.name.value,
-          phone: ev.target.phone.value,
-          delivery: delivery === "Доставка курьером" ? {
-            formDelivery: ev.target.delivery.value || "Не выбрано",
-            timeDelivery: ev.target.time.value || "Без предзаказа",
-            dateDelivery: ev.target.date.value || "Без предзаказа",
-            adress: ev.target.adress.value || "Самовывоз",
-            street: ev.target.street.value || "Самовывоз",
-            home: ev.target.home.value || "Самовывоз" } : "Самовывоз",
-          products: 
-            items.map((elem) => {
-              return {
-                product: elem.name,
-                total: elem.total,
-                count: elem.count,
-              }
-            }),
-          totalPrice: total,
-          comments: ev.target.comments.value || "Без комментария",
-        },
-        url: 'https://svisni-sushi.firebaseio.com/order.json'
-    })
+    // axios({
+    //     method: 'POST',
+    //     data: {
+    //       name: ev.target.name.value,
+    //       phone: ev.target.phone.value,
+    //       delivery: delivery === "Доставка курьером" ? {
+    //         formDelivery: ev.target.delivery.value || "Не выбрано",
+    //         timeDelivery: ev.target.time.value || "Без предзаказа",
+    //         dateDelivery: ev.target.date.value || "Без предзаказа",
+    //         adress: ev.target.adress.value || "Самовывоз",
+    //         street: ev.target.street.value || "Самовывоз",
+    //         home: ev.target.home.value || "Самовывоз" } : "Самовывоз",
+    //       products: 
+    //         items.map((elem) => {
+    //           return {
+    //             product: elem.name,
+    //             total: elem.total,
+    //             count: elem.count,
+    //           }
+    //         }),
+    //       totalPrice: total,
+    //       comments: ev.target.comments.value || "Без комментария",
+    //     },
+    //     url: 'https://svisni-sushi.firebaseio.com/order.json'
+    // })
  
   }
    
@@ -224,6 +250,13 @@ const handleSubmit = (ev) => {
     setOpen(false);
   };
   
+  const handleChangeCity = city => event => {
+    console.log(event.target.value);
+    setSity(`${city[event.target.value].name}`)
+    // setSity(`${city[event.target.value].name}`)
+    setStateDeliveryPrice(city[event.target.value]);
+  };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -242,6 +275,8 @@ const handleSubmit = (ev) => {
   const handleOpenDelivery = () => {
     setOpenDelivery(true);
   };
+// console.log(stateDeliveryPrice);
+console.log(deliverySity);
 
 return (
     <section >
@@ -270,8 +305,7 @@ return (
             action="https://node-server-ten.now.sh/"
            name="svisniData"
           //  action="https://getform.io/f/a61244df-12d1-445d-9210-5033e2b633ca"
-           style={{width: '100%'}}
-        >
+           style={{width: '100%'}}>
    
               <Grid item xs={12}>
               <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
@@ -283,7 +317,8 @@ return (
                  label="Имя" 
                  variant="outlined" 
                  style={{margin: `10px auto 10px 0`}}
-                 required inputProps={{
+                 required 
+                 inputProps={{
                    maxLength: 12,
                    }} 
                    name="name" 
@@ -298,8 +333,8 @@ return (
                    variant="outlined"
                    type="tel" 
                    style={{margin: `10px auto 10px 0`}}
-
-                   required inputProps={{
+                   required 
+                   inputProps={{
                      maxLength: 12,
                      }} 
                      name="phone" 
@@ -316,6 +351,7 @@ return (
                   </Grid>
               
                 <Grid container >
+              
                   {/* <div className={classes.conatiner_info_left}>
                  <InputLabel id="controlled-open-select-label">Форма оплаты</InputLabel>
                  <Select
@@ -335,7 +371,38 @@ return (
                </Select>
                </div> */}
                
+               {/* <div className={classes.conatiner_info}> */}
                <div className={classes.conatiner_info}>
+              <FormControl required variant="outlined" className={classes.formControl}>
+                  <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                    Способ доставки
+                  </InputLabel>
+                  <Select
+                        native
+                        value={delivery} // 
+                        onChange={handleChangeDelivery}
+                        labelWidth={labelWidth}
+                        inputProps={{
+                          name: 'delivery',
+                          id: 'outlined-age-native-simple',
+                        }}>
+                      {/* labelId="open-select-label"
+                      id="open-select"
+                      open={openDelivery}
+                      onClose={handleCloseDelivery}
+                      onOpen={handleOpenDelivery}
+                      value={delivery}
+                      name="delivery"
+                      onChange={handleChangeDelivery}> */}
+                    <option value=""></option>
+                    <option value="Самовывоз">Самовывоз</option>
+                    <option value="Доставка курьером">Доставка курьером</option>
+                  </Select>
+                </FormControl>
+               </div>
+            </Grid>
+               
+               {/* <FormControl required variant="standard" className={classes.formControl}>
                <InputLabel id="open-select-label">Способ доставки</InputLabel>
                <Select
                  labelId="open-select-label"
@@ -347,13 +414,13 @@ return (
                  name="delivery"
                  onChange={handleChangeDelivery}>
                  <MenuItem value="">
-                 <em>Способ доставки</em>
-               </MenuItem>
-               <MenuItem value="Самовывоз">Самовывоз</MenuItem>
-               <MenuItem value="Доставка курьером">Доставка курьером</MenuItem>
-             </Select>  
-             </div>
-
+                 {/* <em>Способ доставки</em> */}
+               {/* </MenuItem> */}
+               {/* <option value="Самовывоз">Самовывоз</option>
+               <option value="Доставка курьером">Доставка курьером</option> */}
+             {/* </Select>
+             </FormControl> */}
+           
             {/* { payment === "Оплата наличными" &&
             <div className={classes.conatiner_info_left}> 
               <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
@@ -376,7 +443,7 @@ return (
             </Select>
           </div>
             } */}
-          </Grid>
+      
                   <hr></hr>
                   <Grid item xs={12}>
                   <Typography variant = "h6" > <Box fontFamily = "Oswald"
@@ -406,7 +473,8 @@ return (
                  variant="outlined" 
                  type="date" 
                  style={{margin: `10px auto 10px 0`}}
-                 required inputProps={{
+                 required 
+                 inputProps={{
                    maxLength: 22,
                    }} 
                    name="date" 
@@ -421,8 +489,8 @@ return (
                    variant="outlined"
                    type="time" 
                    style={{margin: `10px auto 10px 0`}}
-
-                   required inputProps={{
+                   required 
+                   inputProps={{
                      maxLength: 16,
                      }} 
                      name="time" 
@@ -439,7 +507,32 @@ return (
            <>
             <Grid container xs={12} justify="center">      
               <div className={classes.conatiner_info_delivery}>
-               <TextField id="validation-outlined-input" 
+              <FormControl required variant="outlined" className={classes.formControl}>
+                  <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                    Населённый пункт
+                  </InputLabel>
+                  <Select
+                    native
+                    value={deliverySity.city} // 
+                    onChange={handleChangeCity(city)}
+                    labelWidth={labelWidth}
+                    inputProps={{
+                      name: 'city',
+                      id: 'outlined-age-native-simple',
+                    }}>
+                    <option value=""></option>
+                    <option value="yraz">Уразово</option>
+                    <option value="val">Валуйки</option>
+                    <option value="kol">Колыхалино</option>
+                    <option value="dvyl">Двулучное</option>
+                    <option value="shel">Шелаево</option>
+                    <option value="sobo">Соболевка</option>
+                    <option value="yraz">Уразово</option>
+                    <option value="sved">Шведуновка</option>
+                    <option value="gera">Герасимовка</option>
+                  </Select>
+                </FormControl>
+               {/* <TextField id="validation-outlined-input" 
                  label="Населенный пункт" 
                  variant="outlined" 
                  required inputProps={{
@@ -452,13 +545,14 @@ return (
                  value={deliverySity} 
                 //  style={{margin: `10px auto 10px 0`}}
 
-                 helperText="Населенный пункт"/>
+                 helperText="Населенный пункт"/> */}
                </div>
                <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Улица" 
                  variant="outlined" 
-                 required inputProps={{
+                 required 
+                 inputProps={{
                    maxLength: 20,
                    }} 
                    name="street" 
@@ -477,7 +571,8 @@ return (
                  variant="outlined" 
                  size="small"
                  type="text"
-                 required inputProps={{
+                 required 
+                 inputProps={{
                    maxLength: 5,
                    }} 
                    name="home" 
@@ -541,7 +636,6 @@ return (
          }
   
          <Grid container direction="column" >
- 
            <TextField
              id="outlined-multiline-static"
              label="Комментарий к заказу"
@@ -576,7 +670,27 @@ return (
             </Select>
           </div>
             <div className="total" style={{margin: `20px 0 20px 0`, fontSize: 20}}>
-             <b>Итого к оплате: {total} ₽</b>
+            { delivery !== "Самовывоз" && delivery !== "" &&
+            <>
+            <div>
+             <b>{total <= stateDeliveryPrice.deliverySalePrice ? `Доставка: + ${stateDeliveryPrice.priceDel} ₽` : "Доставка бесплатно"}</b>
+             </div>
+
+              <div>
+              <b>{total <= stateDeliveryPrice.deliverySalePrice ? 
+              `До бесплатной доставки в ${stateDeliveryPrice.name} + ${stateDeliveryPrice.deliverySalePrice - total}` : '' }</b>
+             </div>
+
+              <div>
+             <b>{total >= stateDeliveryPrice.deliverySalePrice ? `Итого к оплате: ${total} ₽` : `Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
+             </div>
+             </>
+            }
+            { delivery !== "Доставка курьером" &&
+              <div>
+                <b>Итого к оплате: {total} ₽</b>
+             </div>
+             }
              </div>
              <Button 
              type="submit" 

@@ -26,6 +26,7 @@ function SEO({ description, lang, meta, title }) {
         lang,
       }}
       title={title}
+      description={metaDescription}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       link={[
         {
@@ -45,18 +46,6 @@ function SEO({ description, lang, meta, title }) {
         {
           name: `description`,
           content: metaDescription,
-        },
-        {
-          name: `google-site-verification`, 
-          content: `Dl5O_rAjIGCzaRIsDM6M4jsV2gz4zAePxeTghWzZbvE`,
-        },
-        {
-          name: `wmail-verification`,
-          content: `3f3d80ea360609afbf541ab3ad672f4a`,
-        },
-        {
-          name: `yandex-verification`,
-          content: `d47803efe98f2440`,
         },
         {
           property: `og:title`,
@@ -89,6 +78,18 @@ function SEO({ description, lang, meta, title }) {
         {
           name: `viewport`,
           content: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+        },
+        {
+        name: `google-site-verification`, 
+        content: `Dl5O_rAjIGCzaRIsDM6M4jsV2gz4zAePxeTghWzZbvE`,
+        },
+        {
+          name: `wmail-verification`,
+          content: `3f3d80ea360609afbf541ab3ad672f4a`,
+        },
+        {
+          name: `yandex-verification`,
+          content: `d47803efe98f2440`,
         }
       ].concat(meta)}
     />

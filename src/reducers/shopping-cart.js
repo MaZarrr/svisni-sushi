@@ -91,6 +91,55 @@ import * as R from 'ramda'
                   const item = state.shoppingCart.cartItems.find(({id}) => id === action.payload.id)
                   return updateOder(state, action.payload.id, -item.count, action.payload.radioValue, action.payload.categotyName)
 
+                // case 'SET_USER_CITY':
+                  
+                // //   // const {shoppingCart: { cartItems } } = state
+                //   console.log(action.payload);
+                  
+                // const priceDelivety = () => {
+                //      if(state.shoppingCart.orderTotal <= action.payload.deliverySalePrice) {
+                //       R.always(state.shoppingCart.orderTotal + action.payload.priceDel)
+                //      }
+                //       return state.shoppingCart.orderTotal
+                // }
+                //   console.log(priceDelivety());
+                //   const personsObject = {          
+                //       name: 'Nicolac',
+                //       age: 19,
+                //       birthCountry: 'OUR_COUNTRY',
+                //       naturalizationDate: true,
+                //       address: {
+                //           city: 'Moscov',
+                //           zipCode: 765983
+                //       }
+                //   }
+                // const deliveryPrice = () => {
+                //   const price = state.shoppingCart.orderTotal
+
+                //   return price + action.payload.priceDel
+                // }
+
+                //   const updatedPersonName = R.assoc('name', 'Artem', personsObject)
+                //   console.log(updatedPersonName); 
+                // return {
+                //   orderTotal: (state.shoppingCart.orderTotal - action.payload.priceDel) + action.payload.priceDel,
+                //   cartItems: state.shoppingCart.cartItems
+                // }
+                //  return R.assoc('orderTotal', deliveryPrice(), {
+                //     orderTotal: state.shoppingCart.orderTotal,
+                //     cartItems: state.shoppingCart.cartItems
+                //    })
+
+                  // return {
+                  //   orderTotal: priceDelivety(),
+                  //   cartItems: state.shoppingCart.cartItems
+                  // }
+
+                  //  return {
+                  //   orderTotal: state.shoppingCart.orderTotal >= action.payload.deliverySalePrice ? state.shoppingCart.orderTotal : priceDelivety(),
+                  //   cartItems: state.shoppingCart.cartItems
+                  // }
+
                 case 'PRODUCT_RAZMER':
 
                   const {setList: {product}, shoppingCart: { cartItems } } = state
