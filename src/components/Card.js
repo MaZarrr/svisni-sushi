@@ -188,14 +188,14 @@ const RecipeReviewCard = ({producSetsLoad,
       </CardActions>
       <Collapse in={expanded[homeProduct.contentful_id]} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography variant="h6">Доставка</Typography>
-          <Typography paragraph>
-          😉Тебе нужно знать что:
-          </Typography>
-          <ul style={{ padding: 0}}>
-            <li>✅Есть бесплатная доставка!</li>
-            <li>✅Заказать можно с 10:00 до 22:00</li>
-            <li>✅Готовим с любовью для каждого от Svisni-Sushi</li>
+          <Typography variant="h6"><span role="img" aria-label="ok">😉</span>Тебе нужно знать что:</Typography>
+          {/* <Typography paragraph>
+          <span role="img" aria-label="ok">😉</span>Тебе нужно знать что:
+          </Typography> */}
+          <ul style={{ listStyle: `none`, margin: 0, padding: `8px 0 0 0`}}>
+            <li><span role="img" aria-label="ok">✅</span>Есть бесплатная доставка!</li>
+            <li><span role="img" aria-label="ok">✅</span>Заказать можно с 10:00 до 22:00</li>
+            <li><span role="img" aria-label="ok">✅</span>Готовим с любовью для каждого от Svisni-Sushi</li>
           </ul>
         </CardContent>
       </Collapse>
