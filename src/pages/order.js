@@ -213,7 +213,8 @@ const handleSubmit = (ev) => {
       phone: ev.target.phone.value
     }
 
-    navigate('/order-processed', {state: dataOrderInfo || {name: ":)", phone: "указанному"}  })
+    navigate('/order-processed')
+    // navigate('/order-processed', {state: dataOrderInfo || {name: ":)", phone: "указанному"}  })
     
     axios({
         method: 'POST',
