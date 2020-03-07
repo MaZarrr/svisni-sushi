@@ -109,7 +109,7 @@ return (
             <h1 style={{
               paddingLeft: 30, 
               fontSize: `30px`,
-              fontFamily: `Neucha, cursive`,
+              fontFamily: `Oswald, cursive`,
               fontStyle: `normal`,
               fontWeight: 700,
               paddingTop: 20

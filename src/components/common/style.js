@@ -18,9 +18,12 @@ export const useStylesCart = makeStyles(theme => ({
         paddingBottom: `20px`,
         borderBottom: `1px solid lightgrey`,
         [theme.breakpoints.down('600')]: {
-            margin: 0
+            margin: 0,
+        },
+        [theme.breakpoints.down('475')]: {
+            margin: 0,
+            fontSize: 30
         }
-        
     },
     deckript: {
         fontFamily: 'Comfortaa',
@@ -87,6 +90,7 @@ export const StylingInfo = styled.section `
         font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
+        font-size: 40px;
     }
     h3 {
         font-family: 'Oswald', cursive;
@@ -114,7 +118,9 @@ export const StylingInfo = styled.section `
     .container {
         margin: 0 0 0 6vw;
         padding-bottom: 50px;
-       
+    }
+    h1 {
+    font-size: 30px;
     }
 }
 `

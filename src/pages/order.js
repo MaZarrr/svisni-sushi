@@ -30,8 +30,9 @@ const useStyles = makeStyles(theme => ({
     width: `98%`
   },
    formControl: {
-     margin: theme.spacing(1),
-     width: `220px`,
+    //  margin: theme.spacing(1),
+    marginTop: 10,
+    width: `220px`,
    },
   paper: {
     padding: theme.spacing(2),
@@ -77,6 +78,18 @@ const useStyles = makeStyles(theme => ({
      padding: theme.spacing(2),
      paddingLeft: theme.spacing(4),
    },
+   payInfo: {
+     margin: `20px 0 20px 0`, 
+     fontSize: 20, 
+     background: `#f0ecec`,
+    padding: 20, maxWidth: `60%`, 
+    boxShadow: `0px 4px 8px rgba(0, 0, 0, 0.5)`,
+    maxWidth: '65%',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+      // marginBottom: 60
+    }
+   }
 }));
 
 const IOSSwitch = withStyles(theme => ({
@@ -139,7 +152,7 @@ const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySit
     
 const [open, setOpen] = useState(false);
 // const [openPayment, setOpenPayment] = useState(false);
-const [openDelivery, setOpenDelivery] = useState(false);
+// const [openDelivery, setOpenDelivery] = useState(false);
 
 const [age, setAge] = useState('');
 // const [payment, setPayment] = useState('');
@@ -207,31 +220,31 @@ const handleSubmit = (ev) => {
     
     navigate('/order-processed')
     
-    // axios({
-    //     method: 'POST',
-    //     data: {
-    //       name: ev.target.name.value,
-    //       phone: ev.target.phone.value,
-    //       delivery: delivery === "Доставка курьером" ? {
-    //         formDelivery: ev.target.delivery.value || "Не выбрано",
-    //         timeDelivery: ev.target.time.value || "Без предзаказа",
-    //         dateDelivery: ev.target.date.value || "Без предзаказа",
-    //         adress: ev.target.adress.value || "Самовывоз",
-    //         street: ev.target.street.value || "Самовывоз",
-    //         home: ev.target.home.value || "Самовывоз" } : "Самовывоз",
-    //       products: 
-    //         items.map((elem) => {
-    //           return {
-    //             product: elem.name,
-    //             total: elem.total,
-    //             count: elem.count,
-    //           }
-    //         }),
-    //       totalPrice: total,
-    //       comments: ev.target.comments.value || "Без комментария",
-    //     },
-    //     url: 'https://svisni-sushi.firebaseio.com/order.json'
-    // })
+    axios({
+        method: 'POST',
+        data: {
+          name: ev.target.name.value,
+          phone: ev.target.phone.value,
+          delivery: delivery === "Доставка курьером" ? {
+            formDelivery: ev.target.delivery.value || "Не выбрано",
+            // timeDelivery: ev.target.time.value || "Без предзаказа",
+            // dateDelivery: ev.target.date.value || "Без предзаказа",
+            adress: stateDeliveryPrice.name || "Самовывоз",
+            street: ev.target.street.value || "Самовывоз",
+            home: ev.target.home.value || "Самовывоз" } : "Самовывоз",
+            products: 
+            items.map((elem) => {
+              return {
+                product: elem.name,
+                total: elem.total,
+                count: elem.count,
+              }
+            }),
+          totalPrice: total,
+          comments: ev.target.comments.value || "Без комментария",
+        },
+        url: 'https://svisni-sushi.firebaseio.com/order.json'
+    })
  
   }
    
@@ -251,7 +264,7 @@ const handleSubmit = (ev) => {
   };
   
   const handleChangeCity = city => event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setSity(`${city[event.target.value].name}`)
     // setSity(`${city[event.target.value].name}`)
     setStateDeliveryPrice(city[event.target.value]);
@@ -268,15 +281,15 @@ const handleSubmit = (ev) => {
   //   setOpenPayment(true);
   // };
 
-  const handleCloseDelivery = () => {
-    setOpenDelivery(false);
-  };
+  // const handleCloseDelivery = () => {
+  //   setOpenDelivery(false);
+  // };
   
-  const handleOpenDelivery = () => {
-    setOpenDelivery(true);
-  };
+  // const handleOpenDelivery = () => {
+  //   setOpenDelivery(true);
+  // };
 // console.log(stateDeliveryPrice);
-console.log(deliverySity);
+// console.log(deliverySity);
 
 return (
     <section >
@@ -288,7 +301,7 @@ return (
         <Grid item xs={12}>
           <Paper className={classes.paper}>
           <Typography variant="h2">
-            <Box fontFamily = "Oswald"
+            <Box fontFamily="Oswald"
             fontWeight={900}
             fontSize={32}>
              Оформление заказа
@@ -372,7 +385,8 @@ return (
                </div> */}
                
                {/* <div className={classes.conatiner_info}> */}
-               <div className={classes.conatiner_info}>
+               {/* <div className={classes.conatiner_info}> */}
+               <div>
               <FormControl required variant="outlined" className={classes.formControl}>
                   <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                     Способ доставки
@@ -669,20 +683,18 @@ return (
               <MenuItem value={5000}>С 5000 руб</MenuItem>
             </Select>
           </div>
-            <div className="total" style={{margin: `20px 0 20px 0`, fontSize: 20}}>
+            <div className={classes.payInfo}>
             { delivery !== "Самовывоз" && delivery !== "" &&
             <>
             <div>
-             <b>{total <= stateDeliveryPrice.deliverySalePrice ? `Доставка: + ${stateDeliveryPrice.priceDel} ₽` : "Доставка бесплатно"}</b>
+                <p>{total <= stateDeliveryPrice.deliverySalePrice ? <>
+                  Для бесплатной доставки в {stateDeliveryPrice.name} сделайте заказ еще минимум на <b> + {stateDeliveryPrice.deliverySalePrice - total} ₽</b></>
+                  : ''}</p>
              </div>
-
+              <hr></hr>
               <div>
-              <b>{total <= stateDeliveryPrice.deliverySalePrice ? 
-              `До бесплатной доставки в ${stateDeliveryPrice.name} + ${stateDeliveryPrice.deliverySalePrice - total}` : '' }</b>
-             </div>
-
-              <div>
-             <b>{total >= stateDeliveryPrice.deliverySalePrice ? `Итого к оплате: ${total} ₽` : `Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
+               <p>{total <= stateDeliveryPrice.deliverySalePrice ? <><b>Доставка:</b> + {stateDeliveryPrice.priceDel} ₽</> : <b>Доставка бесплатно</b>}</p>
+                <b>{total >= stateDeliveryPrice.deliverySalePrice ? `Итого к оплате: ${total} ₽` : `Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
              </div>
              </>
             }

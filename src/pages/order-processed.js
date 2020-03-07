@@ -12,7 +12,7 @@ return (
     <Grid container direction="column" alignItems="center">
         <Typography variant="h1" style={{marginTop: `70px`}}>
         <Box fontFamily="Oswald" fontWeight={900} fontSize={46} style={{textAlign: `center`}}>
-            Ваш заказ оформлен! Ваша скидка 10%!
+            Ваш заказ успешно оформлен!  
         </Box>
         </Typography>
         <Button component={Link} to="/" variant="contained" color="primary" style={{marginTop: `50px`, marginBottom: `69px`}}>
