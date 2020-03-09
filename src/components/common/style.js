@@ -17,6 +17,7 @@ export const useStylesCart = makeStyles(theme => ({
         fontSize: 46,
         paddingBottom: `20px`,
         borderBottom: `1px solid lightgrey`,
+        display: `flex`,
         [theme.breakpoints.down('600')]: {
             margin: 0,
         },
@@ -38,7 +39,7 @@ export const useStylesCart = makeStyles(theme => ({
         maxWidth: `260px`,
         margin: `20px auto 10px auto`,
         [theme.breakpoints.down('600')]: {
-            margin: `0 auto 30px auto`
+            margin: `10px auto 30px auto`
         }
     },
     media: {

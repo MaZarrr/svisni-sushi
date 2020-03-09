@@ -141,6 +141,20 @@ const setTime = (valueTime) => {
         payload: valueTime
     }
 };
+// filters ----------------------
+const serchProduct = (text) => {
+    return {
+        type: 'SEARCH_PRODUCT',
+        payload: text
+    }
+};
+
+const filterPrice = (value) => {
+    return {
+        type: 'PRICE_FILTER_PRODUCT',
+        payload: value
+    }
+};
 
 
 
@@ -153,5 +167,5 @@ export {
     allSetRemoveFromCart,
     onRazmer,
     addedPalochki, producPizzaLoad,
-    setName, setPhone, setEntrance, setLevel, setDoor, setSity, setAdress, setHome, setDate, setTime
+    setName, setPhone, setEntrance, setLevel, setDoor, setSity, setAdress, setHome, setDate, setTime, serchProduct, filterPrice
 }

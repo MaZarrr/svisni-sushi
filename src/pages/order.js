@@ -208,10 +208,10 @@ const handleSubmit = (ev) => {
     };
     xhr.send(data);
     
-    const dataOrderInfo = {
-      name: ev.target.name.value, 
-      phone: ev.target.phone.value
-    }
+    // const dataOrderInfo = {
+    //   name: ev.target.name.value, 
+    //   phone: ev.target.phone.value
+    // }
 
     navigate('/order-processed')
     // navigate('/order-processed', {state: dataOrderInfo || {name: ":)", phone: "указанному"}  })

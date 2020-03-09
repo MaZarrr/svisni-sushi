@@ -22,6 +22,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
 // import * as R from 'ramda'
 import { useStylesCart } from '../components/common/style';
+import CustomizedInputSearch from '../components/CustomizedInputSearch'
 
 const Sety = ({
       data: {
@@ -34,12 +35,11 @@ const Sety = ({
       },
     producSetsLoad, 
     setAddedToCart,
-    product
+    product, searchText, priceFilter
   }) => {
 
     // const [ listJsx, updateLustJsx ] = React.useState('')
     const [load, setLoad] = React.useState(true)
-    const classes = useStylesCart();
     
     useEffect(() => {
       // if(!R.isEmpty(product)) {
@@ -49,15 +49,58 @@ const Sety = ({
       producSetsLoad(setyProduct)
       setLoad(false)
       }, [setyProduct, producSetsLoad])
-   
+
+    const classes = useStylesCart();
+
+    const search = (items, txt) => {
+        if(txt === undefined) {
+          return items
+        }
+        return items.filter(({node}) => {
+          
+          return node.name.toLowerCase().indexOf(txt.toLowerCase()) > -1
+        })
+      }
+
+    const filter = (items, filter) => {
+      switch (filter) {
+        case 'def':
+          return items
+        case 'inc':
+          return items.sort((a, b)=> a.node.price - b.node.price)
+        case 'dec':
+          return items.sort((a, b)=> b.node.price - a.node.price)
+
+        default:
+          return items
+      }
+    }
+
+  
+  const visibleItems = filter(search(product, searchText), priceFilter)
+
+    
+  if(load) {
+    return <div style={{display: `flex`, justifyContent: `center`, alignItems: `center`}}> 
+    <Spinner /></div>
+  }
+      
 return (
   <>
     <SEO title="Заказать наборы суши и роллов в Валуйки, доставка сетов роллов с 10 до 22:00" 
     description="Меню суши, роллы. Доставка сетов в Валуйки, широкий выбор, приятные цены — в службе доставки японской кухни Свисни-Суши. Закажи Сеты в Уразово с доставкой на дом"/>
    <section>
-    <h1 className={classes.titleH1}>Сеты</h1>
+ 
+   <div className={classes.titleH1}>
+   <div>
+    <h1 style={{fontFamily: `Oswald, cursive`,
+    fontWeight: 600, }}>Сеты</h1>
+    </div>
+   
+   </div>
+    <CustomizedInputSearch />
 <Grid container justify="center" >
-{ !load ? product.map(({node: productSets}) => {
+{ visibleItems.map(({node: productSets}) => {
       
   const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
 
@@ -114,15 +157,15 @@ return (
       </CardActions>
     </Card>
     </Grid>
-    )}) : <Spinner />} 
+    )})} 
      </Grid>
     </section>
    </>
     )
 }
 
-const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
+const mapStateToProps = ({ setList: {product, searchText, priceFilter} }) => {
+    return {product, searchText, priceFilter};
   }
   
   const mapDispatchToProps = (dispatch) => {
