@@ -18,6 +18,8 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
 import Spinner from '../components/spinner/spinner'
+import filtersProducts from '../utils/filtersProducts'
+import CustomizedInputSearch from '../components/CustomizedInputSearch'
 import * as R from 'ramda'
 
 const Pizza = ({
@@ -30,7 +32,7 @@ const Pizza = ({
         }
       },
     producPizzaLoad,
-    setAddedToCart, productPizza, productRequested
+    setAddedToCart, productPizza, productRequested, searchText, priceFilter
   }) => {
   const [load, setLoad] = React.useState(true)
   const classes = useStylesCart();
@@ -48,17 +50,31 @@ const Pizza = ({
            .then(() => setLoad(false))
       }, [producPizzaLoad, pizzaProduct, productRequested, productPizza])
 
+const visibleItems = filtersProducts(productPizza, searchText, priceFilter)
+
+ if(load) {
+    return <div style={{display: `flex`, 
+    justifyContent: `center`, 
+    alignItems: `center`}}> 
+    <Spinner /></div>
+  }
+
 return ( 
    <section>
     <SEO title="Заказать пиццу в Валуйках. Доставка пиццы на дом - Свисни Пицца Уразово" 
       description="Доставка пиццы в Валуйки. Заказать ароматную пиццу с 10:00 до 22:00 в службе доставки Свистни Суши"
     />
-    <h1 className={classes.titleH1}>Пицца</h1>
-    <Grid container justify="center" >
-    {!load ? productPizza.map(({
-            node: pizza
-          }) => {
-    const {id, name, slug, description, price, image: {fluid} } = pizza
+     <div className={classes.titleH1}>
+    <h1 style={{fontFamily: `Oswald, cursive`,
+      fontWeight: 600, }}>Пицца</h1>
+   </div>
+  <CustomizedInputSearch />
+   
+  <Grid container justify="center" >
+  {visibleItems.map(({
+          node: pizza
+        }) => {
+  const {id, name, slug, description, price, image: {fluid} } = pizza
     
     return (
     <Grid item xs={12} sm={6} md={3} key={id}>
@@ -114,14 +130,14 @@ return (
       </CardActions>
     </Card>
     </Grid>
-    )}) : <Spinner />}
-        </Grid>
-      </section>
+    )})}
+    </Grid>
+  </section>
     )
 }
 
-const mapStateToProps = ({ setList: {productPizza, loading} }) => {
-    return {productPizza, loading};
+const mapStateToProps = ({ setList: {productPizza, searchText, priceFilter} }) => {
+    return {productPizza, searchText, priceFilter};
   }
   
   const mapDispatchToProps = (dispatch) => {
@@ -130,9 +146,6 @@ const mapStateToProps = ({ setList: {productPizza, loading} }) => {
     producPizzaLoad: (newProduct) => {
         dispatch(producPizzaLoad(newProduct))
     },
-    // productRequested: (loading) => {
-    //     dispatch(productRequested(loading))
-    // },
     setAddedToCart: (id, price, productPizza) => {
         dispatch(setAddedToCart(id, price, productPizza))
         }

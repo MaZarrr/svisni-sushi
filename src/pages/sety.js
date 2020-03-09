@@ -20,9 +20,9 @@ import Spinner from '../components/spinner/spinner'
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
-// import * as R from 'ramda'
 import { useStylesCart } from '../components/common/style';
 import CustomizedInputSearch from '../components/CustomizedInputSearch'
+import filtersProducts from '../utils/filtersProducts'
 
 const Sety = ({
       data: {
@@ -42,48 +42,20 @@ const Sety = ({
     const [load, setLoad] = React.useState(true)
     
     useEffect(() => {
-      // if(!R.isEmpty(product)) {
-      //   setLoad(false)
-      //   return
-      // }
       producSetsLoad(setyProduct)
       setLoad(false)
       }, [setyProduct, producSetsLoad])
 
     const classes = useStylesCart();
 
-    const search = (items, txt) => {
-        if(txt === undefined) {
-          return items
-        }
-        return items.filter(({node}) => {
-          
-          return node.name.toLowerCase().indexOf(txt.toLowerCase()) > -1
-        })
-      }
-
-    const filter = (items, filter) => {
-      switch (filter) {
-        case 'def':
-          return items
-        case 'inc':
-          return items.sort((a, b)=> a.node.price - b.node.price)
-        case 'dec':
-          return items.sort((a, b)=> b.node.price - a.node.price)
-
-        default:
-          return items
-      }
-    }
-
-  
-  const visibleItems = filter(search(product, searchText), priceFilter)
-
+    const visibleItems = filtersProducts(product, searchText, priceFilter)
     
-  if(load) {
-    return <div style={{display: `flex`, justifyContent: `center`, alignItems: `center`}}> 
-    <Spinner /></div>
-  }
+    if(load) {
+      return <div style={{display: `flex`, 
+      justifyContent: `center`, 
+      alignItems: `center`}}> 
+      <Spinner /></div>
+    }
       
 return (
   <>
@@ -92,15 +64,12 @@ return (
    <section>
  
    <div className={classes.titleH1}>
-   <div>
     <h1 style={{fontFamily: `Oswald, cursive`,
     fontWeight: 600, }}>Сеты</h1>
-    </div>
-   
    </div>
-    <CustomizedInputSearch />
-<Grid container justify="center" >
-{ visibleItems.map(({node: productSets}) => {
+  <CustomizedInputSearch />
+  <Grid container justify="center" >
+  { visibleItems.map(({node: productSets}) => {
       
   const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
 
