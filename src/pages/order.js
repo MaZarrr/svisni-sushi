@@ -19,7 +19,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Switch from '@material-ui/core/Switch';
 import Select from '@material-ui/core/Select';
 import axios from "axios";
-import keys from '../../keys'
+// import keys from '../../keys'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -293,7 +293,7 @@ return (
         <form  
           method="POST"
           onSubmit={handleSubmit}
-          action={keys.ACTION_FORM}
+          action="https://node-server-ten.now.sh/"
           name="svisniData"
           style={{width: '100%'}}>
    
@@ -301,7 +301,7 @@ return (
           <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
           fontSize={24}>Контактные данные</Box></Typography>  
           </Grid>
-          
+         
             <Grid container >
               <TextField id="validation-outlined-input" 
               label="Имя" 
@@ -571,9 +571,9 @@ return (
               </MenuItem>
               <MenuItem value={700}>С 700 руб</MenuItem>
               <MenuItem value={1000}>С 1000 руб</MenuItem>
-              <MenuItem value={1500}>С 1000 руб</MenuItem>
+              <MenuItem value={1500}>С 1500 руб</MenuItem>
               <MenuItem value={2000}>С 2000 руб</MenuItem>
-              <MenuItem value={3000}>С 2000 руб</MenuItem>
+              <MenuItem value={3000}>С 3000 руб</MenuItem>
               <MenuItem value={5000}>С 5000 руб</MenuItem>
             </Select>
           </div>

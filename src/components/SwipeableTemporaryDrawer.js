@@ -14,11 +14,17 @@ const useStyles = makeStyles({
     width: 250,
   },
   fullList: {
-    width: 'auto',
+    width: 'auto'
   },
   iconButton: {
-  padding: 10,
-}
+    padding: 10,
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    color: `white`
+},
+// divider: {
+//   height: 28,
+//   // margin: 4,
+// },
 });
 
 export default function SwipeableTemporaryDrawer() {
@@ -55,9 +61,12 @@ export default function SwipeableTemporaryDrawer() {
 
   return (
     <div style={{marginLeft: `auto`, marginRight: 40}}>
-    <IconButton onClick={toggleDrawer('right', true)} className={classes.iconButton} aria-label="menu">
-        <MenuIcon />
+   
+    <IconButton onClick={toggleDrawer('right', true)} 
+      className={classes.iconButton} aria-label="menu">
+      <MenuIcon />
     </IconButton>
+    {/* <Divider className={classes.divider} orientation="vertical" /> */}
       <SwipeableDrawer
         anchor="right"
         open={state.right}

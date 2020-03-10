@@ -16,42 +16,47 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
+import { useStylesCart } from '../components/common/style';
 import Spinner from '../components/spinner/spinner'
-import { useStylesCart } from '../components/common/style'
+import CustomizedInputSearch from '../components/CustomizedInputSearch'
+import filtersProducts from '../utils/filtersProducts'
 
-const ZapechenyeRolly = ({
-      data: {
-        allContentfulProductHotRolly: {
-          edges: setyProduct
-        },
-        contentfulIconMenuLeftPanel: {
-          image
-        }
-      },
+const SlognyeRolly = ({data: {allContentfulProductSlognyeRolly: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
     producSetsLoad, 
-    setAddedToCart, product
+    setAddedToCart, product, searchText, priceFilter
   }) => {
-  const [load, setLoad] = React.useState(true)
+  
   const classes = useStylesCart();
-      
+  const [load, setLoad] = React.useState(true)
     useEffect(() => {
         const data = setyProduct
         producSetsLoad(data); // action push to reduxStore
         setLoad(false)
       }, [setyProduct, producSetsLoad])
 
+      const visibleItems = filtersProducts(product, searchText, priceFilter)
+
+      if(load) {
+      return <div style={{display: `flex`, 
+      justifyContent: `center`, 
+      alignItems: `center`}}> 
+      <Spinner /></div>
+    }
+      
 return ( 
    <section>
-    <SEO title="Заказать запеченные роллы с доставкой с 10:00 до 22:00 в Валуйках. Доставка роллов на дом и офис - Свисни Sushi" />
-    <h1 className={classes.titleH1}>Запеченые роллы</h1>
+    <SEO title="Заказать роллы с доставкой с 10:00 до 22:00 в Валуйках. Доставка роллов на дом и офис - Свисни Sushi" />
+    <div className={classes.titleH1}>
+    <h1 style={{fontFamily: `Oswald, cursive`,
+    fontWeight: 600, }}>Сложные роллы</h1>
+   </div>
+   <CustomizedInputSearch />
     <Grid container justify="center">
-    { !load ? product.map(({
-            node: productSets
-          }) => {
-    const {id, name, slug, description, price, weight, count, image: {fluid}, variant } = productSets
+    { visibleItems.map(({ node: productSets }) => {
     
+    const {id, name, slug, description, price, weight, count, image: {fluid} } = productSets
     return (
-    <Grid item xs={12} sm={6} md={3}  key={id} >
+    <Grid item xs={12} sm={6} md={3} key={id}>
     <Card className={classes.card}>
       <CardHeader
       classes={{title: classes.title}}
@@ -60,7 +65,7 @@ return (
            <Img style={{width: 50}} fluid={image.fluid} />
           </Avatar>
         }
-        title={variant}
+        title="Сложные"
         subheader={name}
       />
       <CardMedia 
@@ -94,7 +99,7 @@ return (
       </Button>
          <Button
       component={Link}
-      to={`/zapechenyeRolly/${slug}`}
+      to={`/branded-rolls/${slug}`}
       variant="contained"
       color="secondary"
       className={classes.buttonInfo}
@@ -104,14 +109,14 @@ return (
       </CardActions>
     </Card>
     </Grid>
-    )}) : <Spinner />}
-        </Grid>
-      </section>
+    )})}
+    </Grid>
+  </section>
     )
 }
 
-const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
+const mapStateToProps = ({ setList: {product, searchText, priceFilter} }) => {
+    return {product, searchText, priceFilter};
   }
   
   const mapDispatchToProps = (dispatch) => {
@@ -119,17 +124,17 @@ const mapStateToProps = ({ setList: {product} }) => {
     producSetsLoad: (newProduct) => {
         dispatch(producSetsLoad(newProduct))
     },
-     setAddedToCart: (id, price, product) => {
-       dispatch(setAddedToCart(id, price, product))
-     }
+    setAddedToCart: (id, price, product) => {
+      dispatch(setAddedToCart(id, price, product))
+    }
     }  
 };
   
-export default connect(mapStateToProps, mapDispatchToProps)(ZapechenyeRolly)
+export default connect(mapStateToProps, mapDispatchToProps)(SlognyeRolly)
 
 export const query = graphql `
     {
-       allContentfulProductHotRolly {
+        allContentfulProductSlognyeRolly {
           edges {
             node {
                 id
@@ -138,26 +143,24 @@ export const query = graphql `
               price
               description
               weight
-              variant
               count
               image {
-                  fluid(maxWidth: 300, maxHeight: 300) {
-                      ...GatsbyContentfulFluid
+                 fluid(maxWidth: 300, maxHeight: 350) {
+                     ...GatsbyContentfulFluid
                   }
               }
               }
             }
           }
-        contentfulIconMenuLeftPanel(name: {eq: "Горячие"}) {
-             image {
-               fluid(maxWidth: 35) {
-                 ...GatsbyContentfulFluid
-               }
+          contentfulIconMenuLeftPanel(name: {eq: "Фирменные"}) {
+          image {
+             fluid(maxWidth: 35) {
+               ...GatsbyContentfulFluid
              }
-            }
+          }
+        }
         }
     `
-
 
 
 

@@ -41,8 +41,8 @@ module.exports = {
         `/*`, 
         `/sety/*`,
         `/pizza/*`,
-        `/zapechenyeRolly/*`,
-        `/slozhnyeRolly/*`
+        `/hot-rolls/*`,
+        `/branded-rolls/*`
       ],
       },
     },

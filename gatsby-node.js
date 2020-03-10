@@ -76,7 +76,7 @@ exports.createPages = async ({graphql, actions}) => {
    node: product
  }) => {
    createPage({
-     path: `/slozhnyeRolly/${product.slug}`,
+     path: `/branded-rolls/${product.slug}`,
      component: slognyeTeamplates,
      context: {
        slug: product.slug
@@ -89,7 +89,7 @@ exports.createPages = async ({graphql, actions}) => {
     node: product
   }) => {
     createPage({
-      path: `/zapechenyeRolly/${product.slug}`,
+      path: `/hot-rolls/${product.slug}`,
       component: hotTeamplates,
       context: {
         slug: product.slug

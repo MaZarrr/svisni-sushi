@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: `98%`,
+    width: `95%`,
     margin: `0 auto`
   },
   input: {
@@ -26,6 +26,11 @@ const useStyles = makeStyles(theme => ({
     height: 28,
     margin: 4,
   },
+  iconButton: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    color: `white`,
+    padding: 10
+  }
 }));
 
 function CustomizedInputSearch({serchProduct}) {
