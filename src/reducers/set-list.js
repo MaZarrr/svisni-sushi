@@ -9,6 +9,7 @@ const updateSetList = (state, action) => {
             error: null,
             searchText: '',
             priceFilter: "def",
+            checkboxFilter: "def"
         };
     }
 
@@ -29,6 +30,7 @@ const updateSetList = (state, action) => {
             error: null,
             searchText: '',
             priceFilter: "def",
+            checkboxFilter: "def"
         };
         case 'PRODUCT_LOADED_PIZZA':
             return {
@@ -58,9 +60,15 @@ const updateSetList = (state, action) => {
         })
 
         case 'PRICE_FILTER_PRODUCT':
-        
+
             return R.merge(state.setList, {
             priceFilter: action.payload
+        })
+
+        case 'FILTER_PRODUCT_CHECKBOX':
+        
+        return R.merge(state.setList, {
+            checkboxFilter: action.payload
         })
       
         default:

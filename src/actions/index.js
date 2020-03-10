@@ -156,7 +156,12 @@ const filterPrice = (value) => {
     }
 };
 
-
+const setFilterCheckbox = (check) => {
+    return {
+        type: 'FILTER_PRODUCT_CHECKBOX',
+        payload: check
+    }
+};
 
 export {
     producSetsLoad,
@@ -167,5 +172,6 @@ export {
     allSetRemoveFromCart,
     onRazmer,
     addedPalochki, producPizzaLoad,
-    setName, setPhone, setEntrance, setLevel, setDoor, setSity, setAdress, setHome, setDate, setTime, serchProduct, filterPrice
+    setName, setPhone, setEntrance, setLevel, setDoor, setSity, setAdress, setHome, setDate, setTime, 
+    serchProduct, filterPrice, setFilterCheckbox
 }

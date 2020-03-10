@@ -17,7 +17,7 @@ function FormControlLabelPosition({ filterPrice, priceFilter }) {
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Фильтры</FormLabel>
-      <RadioGroup aria-label="position" name="position" value={priceFilter} onChange={handleChange} column="true">
+      <RadioGroup aria-label="position" name="position" defaultValue="def" value={priceFilter} onChange={handleChange} column="true">
         <FormControlLabel
           value="def"
           control={<Radio color="primary" />}

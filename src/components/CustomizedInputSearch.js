@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function CustomizedInputSearch({serchProduct}) {
+function CustomizedInputSearch({serchProduct, location}) {
   const classes = useStyles();
   const [value, setValue] = React.useState('')
 
@@ -48,8 +48,8 @@ function CustomizedInputSearch({serchProduct}) {
     }
 
   return (
-    <Paper component="form"  onSubmit={handleSabmit} className={classes.root}>
-      <SwipeableTemporaryDrawer />
+    <Paper component="form" onSubmit={handleSabmit} className={classes.root}>
+      <SwipeableTemporaryDrawer location={location}/>
       <InputBase
         className={classes.input}
         value={value}

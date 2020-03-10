@@ -309,7 +309,8 @@ return (
               style={{margin: `10px auto 10px 0`}}
               required 
               inputProps={{
-                maxLength: 12,
+                maxLength: 11,
+                minLength: 2
                 }} 
                 name="name" 
                 onChange={(e) => {
@@ -325,7 +326,8 @@ return (
                 style={{margin: `10px auto 10px 0`}}
                 required 
                 inputProps={{
-                  maxLength: 12,
+                  maxLength: 13,
+                  minLength: 10
                   }} 
                   name="phone" 
                   onChange={(e) => {
@@ -364,7 +366,8 @@ return (
               
             <hr></hr>
             <Grid item xs={12}>
-            <Typography variant = "h6" > <Box fontFamily = "Oswald"
+            <Typography variant="h6"> 
+            <Box fontFamily = "Oswald"
             fontWeight={700}
             fontSize={24}>Дата и время доставки заказа</Box></Typography>  
             <FormGroup>
@@ -392,12 +395,9 @@ return (
             type="date" 
             style={{margin: `10px auto 10px 0`}}
             required 
-            inputProps={{
-              maxLength: 22,
-              }} 
-              name="date" 
-              onChange={(e) => {
-                setDate(e.target.value);
+            name="date" 
+            onChange={(e) => {
+              setDate(e.target.value);
             }}  
             value={dateDelivery} 
             helperText="Когда доставить"/>
@@ -408,12 +408,9 @@ return (
               type="time" 
               style={{margin: `10px auto 10px 0`}}
               required 
-              inputProps={{
-                maxLength: 16,
-                }} 
-                name="time" 
-                onChange={(e) => {
-                  setTime(e.target.value);
+              name="time" 
+              onChange={(e) => {
+                setTime(e.target.value);
               }}  
               value={timeDelivery} 
               helperText="К какому времени"/>
@@ -459,7 +456,8 @@ return (
                  variant="outlined" 
                  required 
                  inputProps={{
-                   maxLength: 20,
+                    maxLength: 20,
+                    minLength: 4
                    }} 
                    name="street" 
                    onChange={(e) => {
@@ -496,7 +494,7 @@ return (
                  type="number"
                  size="small"
                  inputProps={{
-                   maxLength: 3,
+                   maxLength: 2,
                    }} 
                    name="podezd" 
                    onChange={(e) => {
@@ -512,7 +510,7 @@ return (
                  size="small"
                  type="number"
                  inputProps={{
-                   maxLength: 3,
+                   maxLength: 2,
                    }} 
                    name="etag" 
                    onChange={(e) => {
@@ -528,7 +526,7 @@ return (
                  size="small"
                  type="number"
                  inputProps={{
-                   maxLength: 6,
+                   maxLength: 5,
                    }} 
                    name="kodDveri" 
                    onChange={(e) => {
@@ -548,7 +546,7 @@ return (
              multiline
              rows="4"
              inputProps={{
-               maxLength: 200,
+               maxLength: 230,
                }} 
              name="comments"
              variant="outlined"

@@ -1,4 +1,4 @@
- export default (product, searchText, priceFilter) => {
+ export default (product, searchText, priceFilter, checkboxFilter) => {
         
     const search = (items, txt) => {
         if(txt === undefined) {
@@ -24,7 +24,25 @@
       }
     }
 
+    const filterCheckbox = (items, filterCheckbox) => {
+        switch (filterCheckbox) {
+          case 'def':
+            return items
+          case 'two': 
+            return items.filter(({node}) => node.count < 32)
+          case 'three':
+            return items.filter(({node}) => node.count > 32 && node.count < 55 )
+          case 'fo':
+            return items.filter(({node}) => node.count > 55 && node.count < 64 )
+          case 'five':
+            return items.filter(({node}) => node.count > 63)
+
+          default:
+            return items
+        }
+    }
+
   
-  return filter(search(product, searchText), priceFilter)
+  return filterCheckbox(filter(search(product, searchText), priceFilter), checkboxFilter)
     
   }

@@ -35,7 +35,7 @@ const Sety = ({
       },
     producSetsLoad, 
     setAddedToCart,
-    product, searchText, priceFilter
+    product, searchText, priceFilter, checkboxFilter, location
   }) => {
 
     // const [ listJsx, updateLustJsx ] = React.useState('')
@@ -48,7 +48,7 @@ const Sety = ({
 
     const classes = useStylesCart();
 
-    const visibleItems = filtersProducts(product, searchText, priceFilter)
+    const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter)
     
     if(load) {
       return <div style={{display: `flex`, 
@@ -67,7 +67,7 @@ return (
     <h1 style={{fontFamily: `Oswald, cursive`,
     fontWeight: 600, }}>Сеты</h1>
    </div>
-  <CustomizedInputSearch />
+  <CustomizedInputSearch location={location.pathname}/>
   <Grid container justify="center" >
   { visibleItems.map(({node: productSets}) => {
       
@@ -133,8 +133,15 @@ return (
     )
 }
 
-const mapStateToProps = ({ setList: {product, searchText, priceFilter} }) => {
-    return {product, searchText, priceFilter};
+const mapStateToProps = ({
+    setList: {
+      product,
+      searchText,
+      priceFilter,
+      checkboxFilter
+    }
+  }) => {
+    return {product, searchText, priceFilter, checkboxFilter};
   }
   
   const mapDispatchToProps = (dispatch) => {

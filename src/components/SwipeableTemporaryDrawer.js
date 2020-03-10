@@ -4,7 +4,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 // import Divider from '@material-ui/core/Divider';
 import RadioButtonsFiltr from './RadioButtonsFiltr'
-// import FormControlLabelPosition from './FormControlLabelPosition'
+import FormControlLabelPosition from './FormControlLabelPosition'
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -27,10 +27,10 @@ const useStyles = makeStyles({
 // },
 });
 
-export default function SwipeableTemporaryDrawer() {
+export default function SwipeableTemporaryDrawer({location}) {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    right: false,
+    left: false,
   });
 
   const toggleDrawer = (side, open) => event => {
@@ -46,7 +46,9 @@ export default function SwipeableTemporaryDrawer() {
     <RadioButtonsFiltr />
     {/* <Divider /> */}
     <hr></hr>
-    {/* <FormControlLabelPosition /> */}
+     { location === "/sety" &&
+    <FormControlLabelPosition />
+     }
     <div
       className={classes.list}
       role="presentation"
@@ -62,18 +64,18 @@ export default function SwipeableTemporaryDrawer() {
   return (
     <div style={{marginLeft: `auto`, marginRight: 40}}>
    
-    <IconButton onClick={toggleDrawer('right', true)} 
+    <IconButton onClick={toggleDrawer('left', true)} 
       className={classes.iconButton} aria-label="menu">
       <MenuIcon />
     </IconButton>
     {/* <Divider className={classes.divider} orientation="vertical" /> */}
       <SwipeableDrawer
-        anchor="right"
-        open={state.right}
-        onClose={toggleDrawer('right', false)}
-        onOpen={toggleDrawer('right', true)}
+        anchor="left"
+        open={state.left}
+        onClose={toggleDrawer('left', false)}
+        onOpen={toggleDrawer('left', true)}
       >
-        {sideList('right')}
+        {sideList('left')}
       </SwipeableDrawer>
     </div>
   );
