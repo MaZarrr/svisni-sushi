@@ -19,6 +19,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Switch from '@material-ui/core/Switch';
 import Select from '@material-ui/core/Select';
 import axios from "axios";
+import keys from '../../keys'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -241,7 +242,7 @@ const handleSubmit = (ev) => {
     })
  
   }
-   
+
 const handleChange = event => {
 setAge(event.target.value);
 };
@@ -292,7 +293,7 @@ return (
         <form  
           method="POST"
           onSubmit={handleSubmit}
-          action="https://node-server-ten.now.sh/"
+          action={keys.ACTION_FORM}
           name="svisniData"
           style={{width: '100%'}}>
    
@@ -469,7 +470,7 @@ return (
                </div>
                </Grid>
     
-            <Grid container xs={8} justify="space-around">
+            <Grid container justify="space-around">
               <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input" 
                  label="Дом" 
