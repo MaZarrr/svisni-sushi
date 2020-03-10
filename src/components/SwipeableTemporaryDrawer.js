@@ -5,8 +5,9 @@ import Button from '@material-ui/core/Button';
 import RadioButtonsFiltr from './RadioButtonsFiltr'
 import FormControlLabelPosition from './FormControlLabelPosition'
 import FilterListIcon from '@material-ui/icons/FilterList';
+import IconButton from '@material-ui/core/IconButton';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   list: {
     width: 250,
   },
@@ -18,12 +19,12 @@ const useStyles = makeStyles({
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     color: `white`,
     [theme.breakpoints.down('500')]: {
-      color: `#000`,
+      color: `grey`,
       background: `white`,
-      border: `1px solid tomato`,
+      border: `1px solid tomato`
     }
 }
-});
+}));
 
 export default function SwipeableTemporaryDrawer({location}) {
   const classes = useStyles();

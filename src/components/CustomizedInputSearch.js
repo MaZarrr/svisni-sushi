@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     color: `white`,
     padding: 10,
     [theme.breakpoints.down('500')]: {
-      color: `#000`,
+      color: `grey`,
       background: `white`,
       border: `1px solid tomato`,
     }
