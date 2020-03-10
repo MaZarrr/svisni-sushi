@@ -2,12 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
-// import Divider from '@material-ui/core/Divider';
 import RadioButtonsFiltr from './RadioButtonsFiltr'
 import FormControlLabelPosition from './FormControlLabelPosition'
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 const useStyles = makeStyles({
   list: {
@@ -19,12 +16,13 @@ const useStyles = makeStyles({
   iconButton: {
     padding: 10,
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    color: `white`
-},
-// divider: {
-//   height: 28,
-//   // margin: 4,
-// },
+    color: `white`,
+    [theme.breakpoints.down('500')]: {
+      color: `#000`,
+      background: `white`,
+      border: `1px solid tomato`,
+    }
+}
 });
 
 export default function SwipeableTemporaryDrawer({location}) {
@@ -44,7 +42,6 @@ export default function SwipeableTemporaryDrawer({location}) {
   const sideList = side => (
     <div style={{padding: 10}}>
     <RadioButtonsFiltr />
-    {/* <Divider /> */}
     <hr></hr>
      { location === "/sety" &&
     <FormControlLabelPosition />
@@ -66,7 +63,7 @@ export default function SwipeableTemporaryDrawer({location}) {
    
     <IconButton onClick={toggleDrawer('left', true)} 
       className={classes.iconButton} aria-label="menu">
-      <MenuIcon />
+      <FilterListIcon />
     </IconButton>
     {/* <Divider className={classes.divider} orientation="vertical" /> */}
       <SwipeableDrawer

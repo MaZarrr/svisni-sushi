@@ -29,7 +29,12 @@ const useStyles = makeStyles(theme => ({
   iconButton: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     color: `white`,
-    padding: 10
+    padding: 10,
+    [theme.breakpoints.down('500')]: {
+      color: `#000`,
+      background: `white`,
+      border: `1px solid tomato`,
+    }
   }
 }));
 
