@@ -61,8 +61,8 @@ const visibleItems = filtersProducts(productPizza, searchText, priceFilter)
 
 return ( 
    <section>
-    <SEO title="Заказать пиццу в Валуйках. Доставка пиццы на дом - Свисни Пицца Уразово" 
-      description="Доставка пиццы в Валуйки. Заказать ароматную пиццу с 10:00 до 22:00 в службе доставки Свистни Суши"
+    <SEO title="Доставка пиццы на дом. Маленькая и большая пицца, меню на сайте" 
+      description="Вкуснее пиццы только свисни пицца. Заказать ароматную пиццу в Валуйки с 10:00 до 22:00"
     />
      <div className={classes.titleH1}>
     <h1 style={{fontFamily: `Oswald, cursive`,

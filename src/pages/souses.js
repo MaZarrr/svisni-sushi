@@ -44,7 +44,7 @@ const Souses = ({
 
 return ( 
    <section >
-    <SEO title="Доставка соусов и различных добавок к суши и роллам на дом в Уразово - Свисни Суши" />
+    <SEO title="Доставка соусов и различных добавок к суши и роллам" />
     <h1 className={classes.titleH1}>Соусы</h1>
     <Grid container justify="center">
     { !load ? product.map(({

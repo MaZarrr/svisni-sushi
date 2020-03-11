@@ -6,7 +6,9 @@ const cookie = () => {
 
 return (
     <>
-    <SEO title="Политика обработки файлов Cookie" />
+    <SEO title="Политика обработки файлов Cookie" 
+    description="Политика обработки файлов Cookie"
+    />
     <section>
     <StylingInfo>
     <div className="container">

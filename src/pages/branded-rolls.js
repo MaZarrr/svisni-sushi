@@ -45,7 +45,8 @@ const SlognyeRolly = ({data: {allContentfulProductSlognyeRolly: {edges: setyProd
       
 return ( 
    <section>
-    <SEO title="Заказать роллы с доставкой с 10:00 до 22:00 в Валуйках. Доставка роллов на дом и офис - Свисни Sushi" />
+    <SEO title="Меню фирменные роллы. Доставка сложных роллов на дом в Валуйки"  
+    description="Роллы которых вы еще не пробовали. Закажи доставку или приходи к нам в гости"/>
     <div className={classes.titleH1}>
     <h1 style={{fontFamily: `Oswald, cursive`,
     fontWeight: 600, }}>Сложные роллы</h1>

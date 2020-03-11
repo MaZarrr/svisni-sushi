@@ -43,7 +43,7 @@ const Kombo = ({
 
 return (
     <section>
-    <SEO title="Доставка с 10:00 до 22:00 комбо наборов из суши, роллов, пиццы и лапши Вок в Уразово и Валуйках" />
+    <SEO title="Доставка с 10:00 до 22:00 комбо наборов из суши, роллов, пиццы и лапши Вок" />
     <h1 className={classes.titleH1}>Комбо</h1>
     <Grid container justify="center">
     { !load ? product.map(({

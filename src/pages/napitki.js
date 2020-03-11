@@ -44,7 +44,9 @@ const Napitki = ({
 
 return ( 
    <section>
-    <SEO title="Доставка напитков на дом в Уразово, заказать напитки в Свисни Суши" />
+    <SEO title="Доставка напитков на дом" 
+       description="Коктейль Голубая лагуна, Мохито. Фруктовые охлажденные коктейли"
+    />
     <h1 className={classes.titleH1}>Напитки</h1>
     <Grid container justify="center">
     {!load ? product.map(({

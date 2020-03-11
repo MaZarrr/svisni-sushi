@@ -8,7 +8,9 @@ const adresikontakty = () => {
 
 return (
     <>
-    <SEO title="Адрес и контакты Свистни Суши" />
+    <SEO title="Адрес и контакты" 
+    description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"
+    />
     <StylingInfo>
     <h1 style={{paddingLeft: 30, fontSize: `40px`}}>Адрес и контакты</h1>
     <hr></hr>

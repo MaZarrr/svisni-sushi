@@ -136,7 +136,9 @@ const onRadioChangedd = (id, price) =>  {
 
 return (
   <>
-  <SEO title="Корзина" />
+  <SEO title="Корзина" 
+  description="Корзина товаров"
+  />
   <section>
   <div className={classes.root}>
     <Grid container>

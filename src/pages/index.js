@@ -39,7 +39,7 @@ const IndexPage = (props) => {
 
 return (
   <section>
-  <SEO title="Cвисни Суши - доставка еды на дом в Валуйки с 10:00 до 22:00, заказать еду в Валуйском районе" />
+  <SEO title="Доставка еды на дом в Валуйки. Заказать суши, пиццу c 10 до 22.00" />
    <CarouselSvisni />
     <div className="title_home">
     <h1>

@@ -44,7 +44,7 @@ const Gunkany = ({
 
 return ( 
    <section>
-    <SEO title="Заказать гунканы с доставкой в Валуйках - Свисни Суши Уразово" />
+    <SEO title="Заказать гунканы с доставкой в Валуйках" />
             <h1 className={classes.titleH1}>Гунканы</h1>
     <Grid container justify="center">
     { !load ? product.map(({

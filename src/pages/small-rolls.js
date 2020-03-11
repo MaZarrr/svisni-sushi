@@ -43,7 +43,7 @@ const KlassicheskieRolly = ({
 
 return ( 
    <section>
-    <SEO title="Маленькие, недорогие роллы в Валуйках" />
+    <SEO title="Маленькие, недорогие роллы. Работаем с 10 до 22.00" />
      <h1 className={classes.titleH1}>Классические роллы</h1>
     <Grid container justify="center">
     { !load ? product.map(({

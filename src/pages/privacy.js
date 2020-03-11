@@ -7,7 +7,9 @@ const privacy = () => {
 
 return (
     <>
-    <SEO title="Условия обработки персональных данных" />
+    <SEO title="Условия обработки персональных данных" 
+    description="Условия обработки персональных данных"
+    />
     <StylingInfo>
     <div className="container">
     <article>
