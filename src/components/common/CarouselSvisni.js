@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     paddingTop: '8px',
-    width: `100%`,
+    maxWidth: `1400px`,
     justifyContent: 'flex-start',
     background: `#f0ecec`,
     paddingLeft: theme.spacing(2)
