@@ -11,132 +11,14 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import Switch from '@material-ui/core/Switch';
 import Select from '@material-ui/core/Select';
+
 import axios from "axios";
-// import keys from '../../keys'
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  gridContainer: {
-    flexGrow: 1,
-    paddingLeft: theme.spacing(4),
-    width: `98%`
-  },
-   formControl: {
-    marginTop: 10,
-    width: `220px`,
-   },
-  paper: {
-    padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4),
-    marginBottom: 20,
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
-  },
-  infoGrid: {
-    display: `flex`,
-    justifyContent: `center`,
-    width: `100%`
-  },
-  conatiner_info: {
-    margin: `15px auto 15px 0`,
-    border: `2px solid blue`,
-    padding: 10,
-    borderRadius: 10,
-    maxWidth: `300px`,
-  },
-  conatiner_info_delivery: {
-    margin: `15px auto 15px 0`
-  },
-    button: {
-      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-      color: 'white',
-      marginTop: 8,
-      textAlign: `start`,
-      width: `300px`,
-      [theme.breakpoints.down('sm')]: {
-        maxWidth: '90%',
-        marginBottom: 60
-      }
-  },
-   emty: {
-     padding: theme.spacing(2),
-     paddingLeft: theme.spacing(4),
-   },
-   payInfo: {
-    margin: `20px 0 20px 0`, 
-    fontSize: 20, 
-    background: `#f0ecec`,
-    padding: 20,
-    boxShadow: `0px 4px 8px rgba(0, 0, 0, 0.5)`,
-    maxWidth: '65%',
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: '90%'
-    }
-   }
-}));
-
-const IOSSwitch = withStyles(theme => ({
-  root: {
-    width: 42,
-    height: 26,
-    padding: 0,
-    margin: theme.spacing(1),
-  },
-  switchBase: {
-    padding: 1,
-    '&$checked': {
-      transform: 'translateX(16px)',
-      color: theme.palette.common.white,
-      '& + $track': {
-        backgroundColor: '#52d869',
-        opacity: 1,
-        border: 'none',
-      },
-    },
-    '&$focusVisible $thumb': {
-      color: '#52d869',
-      border: '6px solid #fff',
-    },
-  },
-  thumb: {
-    width: 24,
-    height: 24,
-  },
-  track: {
-    borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
-    backgroundColor: `#00BFFF`,
-    opacity: 1,
-    transition: theme.transitions.create(['background-color', 'border']),
-  },
-  checked: {},
-  focusVisible: {},
-}))(({ classes, ...props }) => {
-
-  return (
-    <Switch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
-    />
-  );
-});
+import {useStyleOrder, IOSSwitch} from '../components/common/style'
 
 const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber, 
   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, 
@@ -146,6 +28,8 @@ const [open, setOpen] = useState(false);
 
 const [age, setAge] = useState('');
 const [delivery, setDelivery] = useState('');
+
+const classes = useStyleOrder();
 
 const inputLabel = React.useRef(null);
  const [state, setState] = React.useState({
@@ -171,8 +55,6 @@ const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
  const handleChangee = name => event => {
     setState({ ...state, [name]: event.target.checked });
   };
-
-const classes = useStyles();
 
 const handleSubmit = (ev) => {
     ev.preventDefault();

@@ -10,7 +10,6 @@ import * as R from 'ramda'
 
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -19,68 +18,10 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-// import FormLabel from '@material-ui/core/FormLabel';
-import Spinner from '../components/spinner/spinner'
-
 import Button from '@material-ui/core/Button';
+import {useStyleKorzina} from '../components/common/style'
 
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4),
-    marginBottom: 20,
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
-  },
-  paperDiv: {
-    padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4),
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
-  },
-  image: {
-    width: 128,
-    height: 128,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-  containerWrapped: {
-    marginBottom: 30
-  },
-  button: {
-    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-    color: 'white',
-    marginTop: 8,
-    // margin: `0 auto`,
-    textAlign: `start`,
-    width: `300px`,
-    // maxWidth: '90%',
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: '90%'
-    }
-  },
-  emty: {
-    padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4),
-  },
-  typography: {
-    fontSize: 18,
-    padding: 5
-  },
-  bottomHead: {
-  [theme.breakpoints.down('sm')]: {
-    marginBottom: 60
-  }
-  }
-}));
+import Spinner from '../components/spinner/spinner'
 
 const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts,
   allContentfulProductKlassika, allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
@@ -116,7 +57,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
    allContentfulProductKombo
  ])
 
-  const classes = useStyles();
+  const classes = useStyleKorzina();
 
   const handleChange = event => {
     setValue(() => {
@@ -126,8 +67,6 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
     });
   };
 
-   
-  
 const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
   
 const onRadioChangedd = (id, price) =>  {
