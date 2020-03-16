@@ -112,13 +112,11 @@ export const StylingInfo = styled.section `
         margin: 20px 0 0 30px;
         padding: 0;
         width: 90%;
-        padding-bottom: 50px;
     }
    
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 475px) {
     .container {
         margin: 0 0 0 6vw;
-        padding-bottom: 50px;
     }
     h1 {
     font-size: 30px;

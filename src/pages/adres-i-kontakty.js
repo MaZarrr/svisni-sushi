@@ -12,7 +12,11 @@ return (
     description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"
     />
     <StylingInfo>
-    <h1 style={{paddingLeft: 30, fontSize: `40px`}}>Адрес и контакты</h1>
+
+    <div className="container">
+    <h1>Адрес и контакты</h1>
+    </div>
+
     <hr></hr>
     <Grid container>
         <Grid item xs={11} sm={5}  style={{margin: `auto 0 auto 25px`}}>

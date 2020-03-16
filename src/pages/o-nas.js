@@ -12,10 +12,7 @@ return (
     />
     <StylingInfo>
     <div className="container">
-    <article>
-        <header>
-            <h1 style={{fontSize: `40px`}}>О нас</h1>
-        </header>
+            <h1>О нас</h1>
 		<div className="text">
           <hr></hr>
             <p>
@@ -34,7 +31,6 @@ return (
             наших клиентов. Мы - те, кто удивит вас изысканной подачей блюд и незабываемым вкусом.
             </p>
         </div>
-    </article>
     </div>
 </StylingInfo>
 </>

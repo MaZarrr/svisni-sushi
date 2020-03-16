@@ -4,6 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { Grid } from "@material-ui/core";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import {StylingInfo} from "../components/common/style";
 // import { makeStyles } from '@material-ui/core/styles';
 
 // const useStyles = makeStyles(theme => ({
@@ -107,18 +108,11 @@ return (
     <SEO title="Зоны и стоимость доставки. Бесплатная доставка" 
        description="Доставка осуществляется с 10 до 22.00 в Валуйки и Валуйском районе"
     />
-          <header>
-            <h1 style={{
-              paddingLeft: 30, 
-              fontSize: `30px`,
-              fontFamily: `Oswald, cursive`,
-              fontStyle: `normal`,
-              fontWeight: 700,
-              paddingTop: 20
-            }}>Валуйский&nbsp;район - Зоны&nbsp;и стоимость доставки</h1>
-        </header>
-     <Grid container> 
-
+    <StylingInfo>
+        <div className="container">
+            <h1>Валуйский&nbsp;район - Зоны&nbsp;и стоимость доставки</h1>
+        </div>
+    <Grid container>
     <Grid item xs={12} sm={6}> 
     <hr></hr>
       <Container style={{overflowY: `scroll`, height: `400px`}}>
@@ -186,6 +180,7 @@ return (
     </div>
 
     </Grid>
+    </StylingInfo>
     </>
     
     )

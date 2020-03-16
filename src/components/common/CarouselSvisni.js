@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import Img from 'gatsby-image';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
@@ -87,7 +87,6 @@ const CarouselSvisni = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  // const [dataCarousel, setDataCarousel] = React.useState([]);
 
   const data = useStaticQuery(graphql `
   {
@@ -95,6 +94,7 @@ const CarouselSvisni = () => {
     edges {
       node {
         id
+        slug
         imgCarouselPc {
           fluid(maxWidth: 1680, quality: 30) {
               ...GatsbyContentfulFluid
@@ -133,8 +133,10 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
         {data.allContentfulCarouselSiteImage.edges.map((step, index) => (
           <div key={step.node.id}>
             {Math.abs(activeStep - index) <= 2 ? (
+              <Link to={step.node.slug}>
               <Img fluid={step.node.imgCarouselPc.fluid} className={classes.img} imgStyle={{maxWidth: 1400}} alt={step.node.id} />
-            ) : null}
+              </Link>
+              ) : null}
           </div>
         ))}
       </AutoPlaySwipeableViews>
@@ -151,8 +153,10 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
           <div key={step.node.id}>
             {Math.abs(activeStep - index) <= 2 ? (
               <>
-              <Img fluid={step.node.imgCarouselPhone.fluid} className={classes.img}  imgStyle={{maxWidth: 400}} alt={step.node.id} />
-            {/* <Button variant='contained' color='primary' size="small"  > */}
+                <Link to={step.node.slug}>
+                  <Img fluid={step.node.imgCarouselPhone.fluid} className={classes.img}  imgStyle={{maxWidth: 400}} alt={step.node.id} />
+                </Link>
+              {/* <Button variant='contained' color='primary' size="small"  > */}
                {/* <ArrowBackIcon  classes={{root: classes.button}}/>  */}
                {/* Подробнее */}
             {/* </Button> */}
