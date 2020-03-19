@@ -11,12 +11,12 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+
 import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-
 import axios from "axios";
 import {useStyleOrder, IOSSwitch} from '../components/common/style'
 
@@ -35,6 +35,10 @@ const inputLabel = React.useRef(null);
  const [state, setState] = React.useState({
    checkedC: false
  });
+
+ function onChangeOrder(e) {
+    
+ }
 
 const [city, ] = useState({
 kol: {id: 1, priceDel: 150, deliverySalePrice: 1000, name: "Колыхалино"},          
@@ -302,7 +306,7 @@ return (
               
            { delivery === "Доставка курьером" &&  
            <>
-            <Grid container justify="center">      
+            <Grid container justify="center">
               <div className={classes.conatiner_info_delivery}>
               <FormControl required variant="outlined" className={classes.formControl}>
                   <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
@@ -310,7 +314,7 @@ return (
                   </InputLabel>
                   <Select
                     native
-                    value={deliverySity.city} // 
+                    value={deliverySity.city} //
                     onChange={handleChangeCity(city)}
                     inputProps={{
                       name: 'city',
@@ -333,89 +337,89 @@ return (
                </div>
 
                <div className={classes.conatiner_info_delivery}>
-               <TextField id="validation-outlined-input" 
-                 label="Улица" 
-                 variant="outlined" 
-                 required 
+               <TextField id="validation-outlined-input"
+                 label="Улица"
+                 variant="outlined"
+                 required
                  inputProps={{
                     maxLength: 20,
                     minLength: 4
-                   }} 
-                   name="street" 
+                   }}
+                   name="street"
                    onChange={(e) => {
                      setAdress(e.target.value);
-                 }}  
-                 value={deliveryAdress} 
+                 }}
+                 value={deliveryAdress}
                  helperText="Ваша улица"/>
                </div>
                </Grid>
-    
+
             <Grid container justify="space-around">
               <div className={classes.conatiner_info_delivery}>
-               <TextField id="validation-outlined-input" 
-                 label="Дом" 
-                 variant="outlined" 
+               <TextField id="validation-outlined-input"
+                 label="Дом"
+                 variant="outlined"
                  size="small"
                  type="text"
-                 required 
+                 required
                  inputProps={{
                    maxLength: 5,
-                   }} 
-                   name="home" 
+                   }}
+                   name="home"
                    onChange={(e) => {
                      setHome(e.target.value);
-                 }}  
+                 }}
                  value={homeNumber}
-                 helperText="Введите ваш номер дома."/>	
+                 helperText="Введите ваш номер дома."/>
                 </div>
 
-                <div className={classes.conatiner_info_delivery}>               
-               <TextField id="validation-outlined-input" 
-                 label="Подъезд" 
-                 variant="outlined" 
+                <div className={classes.conatiner_info_delivery}>
+               <TextField id="validation-outlined-input"
+                 label="Подъезд"
+                 variant="outlined"
                  type="number"
                  size="small"
                  inputProps={{
                    maxLength: 2,
-                   }} 
-                   name="podezd" 
+                   }}
+                   name="podezd"
                    onChange={(e) => {
                      setEntrance(e.target.value);
-                 }}  
+                 }}
                  value={entranceNumber}
-                 helperText="Введите ваш номер подъезда."/>	
+                 helperText="Введите ваш номер подъезда."/>
               </div>
               <div className={classes.conatiner_info_delivery}>
-               <TextField id="validation-outlined-input" 
-                 label="Этаж" 
-                 variant="outlined" 
+               <TextField id="validation-outlined-input"
+                 label="Этаж"
+                 variant="outlined"
                  size="small"
                  type="number"
                  inputProps={{
                    maxLength: 2,
-                   }} 
-                   name="etag" 
+                   }}
+                   name="etag"
                    onChange={(e) => {
                      setLevel(e.target.value);
-                 }}  
+                 }}
                  value={levelNumber}
-                 helperText="Введите ваш этаж."/>	
+                 helperText="Введите ваш этаж."/>
               </div>
               <div className={classes.conatiner_info_delivery}>
-               <TextField id="validation-outlined-input" 
-                 label="Код двери" 
-                 variant="outlined" 
+               <TextField id="validation-outlined-input"
+                 label="Код двери"
+                 variant="outlined"
                  size="small"
                  type="number"
                  inputProps={{
                    maxLength: 5,
-                   }} 
-                   name="kodDveri" 
+                   }}
+                   name="kodDveri"
                    onChange={(e) => {
                      setDoor(e.target.value);
-                 }}  
+                 }}
                  value={doorPassword}
-                 helperText="Код двери подьезда."/>	
+                 helperText="Код двери подьезда."/>
               </div>
                </Grid>
             </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from "gatsby"
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -26,105 +26,10 @@ import RoomIcon from '@material-ui/icons/Room';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import "./header.css"
-
-const drawerWidth = 190;
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    zIndex: '1000'
-  },
-  appBar: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: `100%`,
-    // height: `70px`,
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    backgroundColor: "white", 
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-    fontSize: `10px`,
-    color: `tomato`,
-    border: `1px solid tomato`,
-    [theme.breakpoints.up('769')]: {
-      display: 'none',
-      margin: 0
-    },
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    [theme.breakpoints.up('769')]: {
-      display: 'none',
-    }
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7.2) + 1,
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-  },
-  content_header: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: '100%'
-  },
-  content_link: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    margin: 'auto 0',
-    width: '100%',
-    [theme.breakpoints.down('769')]: {
-      display: 'none',
-    }
-  },
-  iconImg: {
-    height: '25px',
-    width: '25px',
-    marginRight: 17,
-  },
-  iconDiv: {
-      fontFamily: 'Neucha, Comfortaa, cursive',
-      fontWeight: 800
-  }
-}));
+import {useStyleHeader} from "./common/style";
 
 const Header = () => {
-  const classes = useStyles();
+  const classes = useStyleHeader()
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
  
@@ -147,7 +52,6 @@ const Header = () => {
   }
   `)
 
-  
   const links = [ 
     {
       id: 1,

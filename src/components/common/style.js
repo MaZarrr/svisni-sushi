@@ -4,6 +4,8 @@ import lime from '@material-ui/core/colors/lime';
 import Switch from "@material-ui/core/Switch";
 import React from "react";
 
+const drawerWidth = 190;
+
 export const useStylesCart = makeStyles(theme => ({
     title: {
         fontFamily: 'Comfortaa',
@@ -251,6 +253,299 @@ export const useStyleKorzina = makeStyles(theme => ({
     bottomHead: {
         [theme.breakpoints.down('sm')]: {
             marginBottom: 60
+        }
+    }
+}))
+
+export const useStyleCardIndexPage = makeStyles(theme => ({
+    root: {
+        margin: `0 auto`,
+        display: `flex`,
+        flexDirection: `column`,
+        alignItems: `center`
+    },
+    title: {
+        fontFamily: 'Comfortaa',
+        fontWeight: 800,
+        fontDisplay: `fallback`
+    },
+    card: {
+        maxWidth: `75%`,
+        marginTop: 30,
+        [theme.breakpoints.down('425')]: {
+            maxWidth: `100%`,
+        },
+        [theme.breakpoints.up('768')]: {
+            maxWidth: `50%`,
+        }
+    },
+    media: {
+        maxWidth: `250px`,
+        margin: `0 auto`,
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+    avatar: {
+        border: `1px solid #000`,
+        width: `50px`,
+        height: `50px`
+    },
+    button: {
+        margin: theme.spacing(1),
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+    },
+    overline: {
+        display: `flex`,
+        justifyContent: 'space-between',
+    },
+    img: {
+        margin: 0,
+        padding: 0
+    }
+}))
+
+export const useStyleIndexPage = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+        width: `100%`,
+        [theme.breakpoints.up('768')]: {
+            display: 'none'
+        }
+    },
+    menuPc: {
+        maxWidth: 1368,
+        marginTop: 40,
+        [theme.breakpoints.down('768')]: {
+            display: 'none',
+        }
+    }
+}))
+
+export const useStyleCarousel = makeStyles(theme => ({
+    root: {
+        maxWidth: `100vw`,
+        flexGrow: '1',
+        [theme.breakpoints.down('768')]: {
+            maxHeight: `75vw`,
+            marginBottom: 40,
+        },
+    },
+    rootPhone: {
+        display: 'none',
+        [theme.breakpoints.down('768')]: {
+            display: 'block',
+        },
+    },
+    rootPhoneNone:{
+        [theme.breakpoints.down('768')]: {
+            display: 'none',
+        }
+    },
+    header: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingTop: '8px',
+        maxWidth: `1400px`,
+        justifyContent: 'flex-start',
+        background: `#f0ecec`,
+        paddingLeft: theme.spacing(2)
+    },
+    img: {
+        height: 'inherit',
+        display: 'block',
+        maxWidth: `100vw`,
+        overflow: 'hidden',
+        width: '100%',
+        [theme.breakpoints.down('768')]: {
+            margin: `0 auto`,
+            maxHeight: `70vw`,
+            maxWidth: `60vw`,
+        },
+        [theme.breakpoints.down('580')]: {
+            margin: `0 auto`,
+            maxHeight: `70vw`,
+            maxWidth: `70vw`,
+        },
+        [theme.breakpoints.down('425')]: {
+            width: '100%',
+            maxWidth: `100vw`,
+        }
+    },
+    h1Home: {
+        fontFamily: 'Oswald, cursive',
+        fontWeight: '900',
+        lineHeight: 2,
+        fontSize: '46px',
+        paddingLeft: `30px`,
+        [theme.breakpoints.down('786')]: {
+            fontSize: '30px',
+            lineHeight: `14vmin`,
+            letterSpacing: `1px`,
+            color: `#000`,
+            padding: 0
+        },
+    },
+    stepper: {
+        marginBottom: 50,
+        paddingLeft: '30vw'
+    },
+    button: {
+        margin: `0 auto`,
+        width: `100%`
+    }
+}))
+
+export const useStyleHeader = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        zIndex: '1000'
+    },
+    appBar: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        width: `100%`,
+        // height: `70px`,
+        zIndex: theme.zIndex.drawer + 1,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        backgroundColor: "white",
+    },
+    appBarShift: {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    menuButton: {
+        marginRight: 36,
+        fontSize: `10px`,
+        color: `tomato`,
+        border: `1px solid tomato`,
+        [theme.breakpoints.up('769')]: {
+            display: 'none',
+            margin: 0
+        },
+    },
+    hide: {
+        display: 'none',
+    },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+        [theme.breakpoints.up('769')]: {
+            display: 'none',
+        }
+    },
+    drawerOpen: {
+        width: drawerWidth,
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    drawerClose: {
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        overflowX: 'hidden',
+        width: theme.spacing(7.2) + 1,
+    },
+    toolbar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: theme.spacing(0, 1),
+        ...theme.mixins.toolbar,
+    },
+    content_header: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        width: '100%'
+    },
+    content_link: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        margin: 'auto 0',
+        width: '100%',
+        [theme.breakpoints.down('769')]: {
+            display: 'none',
+        }
+    },
+    iconImg: {
+        height: '25px',
+        width: '25px',
+        marginRight: 17,
+    },
+    iconDiv: {
+        fontFamily: 'Neucha, Comfortaa, cursive',
+        fontWeight: 800
+    }
+}))
+
+export const useStyleLayout = makeStyles(theme => ({
+    root: {
+        maxWidth: `1440px`,
+        [theme.breakpoints.down('769')]: {
+            paddingLeft: '50px'
+        },
+        [theme.breakpoints.up('769')]: {
+            marginTop: '90px',
+        },
+        margin: '0 auto',
+    },
+    toolbar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: theme.spacing(0, 1),
+        ...theme.mixins.toolbar,
+    }
+}))
+
+export const useStyleSearchInput = makeStyles(theme => ({
+    root: {
+        padding: '2px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        width: `95%`,
+        margin: `0 auto`
+    },
+    input: {
+        marginLeft: theme.spacing(1),
+        flex: 1,
+        padding: 0
+    },
+    divider: {
+        height: 28,
+        margin: 4,
+    },
+    iconButton: {
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        color: `white`,
+        padding: 10,
+        [theme.breakpoints.down('500')]: {
+            color: `grey`,
+            background: `white`,
+            border: `1px solid tomato`,
         }
     }
 }))

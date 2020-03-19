@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import Img from 'gatsby-image';
-import { makeStyles } from '@material-ui/core/styles';
+
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -20,74 +20,18 @@ import { producSetsLoad, setAddedToCart } from "../actions";
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
 import Spinner from './spinner/spinner'
+import {useStyleCardIndexPage} from "./common/style";
+
 const AvatarWrapp = styled(Avatar) `
 background: ${props => props.color};
 `
-const useStyles = makeStyles(theme => ({
-  root: {
-    margin: `0 auto`,
-    display: `flex`,
-    flexDirection: `column`,
-    alignItems: `center`
-  },
-  title: {
-    fontFamily: 'Comfortaa',
-    fontWeight: 800,
-    fontDisplay: `fallback`
-  },
-  card: {
-    maxWidth: `75%`,
-    marginTop: 30,
-    [theme.breakpoints.down('425')]: {
-      maxWidth: `100%`,
-    },
-     [theme.breakpoints.up('768')]: {
-      maxWidth: `50%`,
-    }
-  },
-  media: {
-    maxWidth: `250px`,
-    margin: `0 auto`,
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    border: `1px solid #000`,
-    width: `50px`,
-    height: `50px`
-  },
-  button: {
-    margin: theme.spacing(1),
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-  },
-  overline: {
-    display: `flex`,
-    justifyContent: 'space-between',
-  },
-  img: {
-    margin: 0,
-    padding: 0
-  }
-}));
 
-const RecipeReviewCard = ({producSetsLoad, 
-  setAddedToCart, product
-  }) => {
-  const classes = useStyles();
+const RecipeReviewCard = ({producSetsLoad, setAddedToCart, product}) => {
+
+  const classes = useStyleCardIndexPage()
   const [expanded, setExpanded] = React.useState({nameCart: false});
-    
+  const [load, setLoad] = React.useState(true)
+
   const {allContentfulHomePageCarts: {edges}} = useStaticQuery(graphql `
   {
   allContentfulHomePageCarts {
@@ -113,13 +57,10 @@ const RecipeReviewCard = ({producSetsLoad,
   }
   `)
 
-  const [load, setLoad] = React.useState(true)
-
   useEffect(() => {
     producSetsLoad(edges)
     setLoad(false)
   }, [edges, producSetsLoad])
-
 
   const handleExpandClick = (id) => {
     setExpanded({[id]: !expanded[id]});

@@ -20,9 +20,12 @@ import Spinner from '../components/spinner/spinner'
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
-import { useStylesCart } from '../components/common/style';
-import CustomizedInputSearch from '../components/CustomizedInputSearch'
 import filtersProducts from '../utils/filtersProducts'
+import loadable from '@loadable/component'
+import {useStylesCart} from "../components/common/style";
+
+// const { useStylesCart } = loadable(() => import('../components/common/style'))
+const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 
 const Sety = ({
       data: {
@@ -62,7 +65,6 @@ return (
     <SEO title="Доставка суши и роллов в Валуйки. Заказать сет с 10 до 22:00" 
     description="Меню суши, роллы. Наборы, широкий выбор, приятные цены, бесплатная доставка по Валуйскому району"/>
    <section>
- 
    <div className={classes.titleH1}>
     <h1 style={{fontFamily: `Oswald, cursive`,
     fontWeight: 600, }}>Сеты</h1>
@@ -143,7 +145,7 @@ const mapStateToProps = ({
   }) => {
     return {product, searchText, priceFilter, checkboxFilter};
   }
-  
+
   const mapDispatchToProps = (dispatch) => {
     return {
     productRequested: () => dispatch(productRequested()),

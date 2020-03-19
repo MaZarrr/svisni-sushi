@@ -47,7 +47,6 @@ export const query = graphql `
             weight
             count
             description
-          createdAt(formatString: "МММ Do, YYYY, h:mm:ss a")
           image {
               fluid(maxWidth: 400, quality: 40) {
                   ...GatsbyContentfulFluid
