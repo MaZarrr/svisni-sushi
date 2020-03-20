@@ -12,7 +12,7 @@ return (
         <LayoutItem name={name} image={image}>
             <p><b>Состав:</b> {description}</p>
             <p><b>Количество:</b> {count} шт</p>
-            <p><b>Общий вес:</b> {weight} гр</p>
+            <p><b>Общий вес:</b> {weight} кг</p>
             <p><b>Цена</b> {price} руб</p>
         <Button 
             variant="outlined" 

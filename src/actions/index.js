@@ -28,12 +28,12 @@ const productRequested = () => {
       }
 };
 
-const productError = (error) => {
-    return {
-        type: 'PRODUCT_ERROR',
-        payload: error
-      }
-};
+// const productError = (error) => {
+//     return {
+//         type: 'PRODUCT_ERROR',
+//         payload: error
+//       }
+// };
 
 const setAddedToCart = (setId, radioValue, categotyName) => {
     return {
@@ -166,7 +166,7 @@ const setFilterCheckbox = (check) => {
 export {
     producSetsLoad,
     productRequested,
-    productError,
+    // productError,
     setAddedToCart,
     setRemoveFromCart,
     allSetRemoveFromCart,
