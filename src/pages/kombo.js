@@ -35,7 +35,10 @@ const Kombo = ({
 return (
     <section>
     <SEO title="Доставка с 10:00 до 22:00 комбо наборов из суши, роллов, пиццы и лапши Вок" />
-    <h1 className={classes.titleH1}>Комбо</h1>
+        <div className={classes.titleH1}>
+            <h1 style={{fontFamily: `Oswald, cursive`,
+                fontWeight: 600}}>Комбо</h1>
+        </div>
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}

@@ -33,7 +33,10 @@ return (
    <section>
     <SEO title="Недорогие суши с доставкой по Валуйскому району"
     description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте. Звонок +7(904)094-92-22"/>
-    <h1 className={classes.titleH1}>Суши</h1>
+       <div className={classes.titleH1}>
+           <h1 style={{fontFamily: `Oswald, cursive`,
+               fontWeight: 600}}>Суши</h1>
+       </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Суши" slugCategogy="/sushi" visibleItems={product}
                        setAddedToCart={setAddedToCart} image={image} product={product}/>

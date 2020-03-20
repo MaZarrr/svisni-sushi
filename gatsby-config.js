@@ -7,8 +7,9 @@ if(process.env.NODE_ENV !== 'production') {
 module.exports = {
   siteMetadata: {
     siteUrl: `https://svisni-sushi.ru`,
-    title: `Свистни суши`,
+    title: `Свистни Суши`,
     description: `Заказать роллы, пиццу и суши c 10 до 22:00 в службе доставки Свисни-Суши Уразово. Доставка в Валуйки, на дом, приятные цены, именинникам скидки.`,
+    keywords: `доставка, заказать, роллы, суши, еду, сеты, пиццу, на заказ`,
     author: `@mazarrr`,
   },
   plugins: [
@@ -112,7 +113,6 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-preload-link-crossorigin',
     {
       resolve: `@mangoart/gatsby-plugin-purechat`,
       options: {

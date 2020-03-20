@@ -35,7 +35,10 @@ const Gunkany = ({
 return ( 
    <section>
     <SEO title="Заказать гунканы с доставкой в Валуйках" />
-            <h1 className={classes.titleH1}>Гунканы</h1>
+       <div className={classes.titleH1}>
+           <h1 style={{fontFamily: `Oswald, cursive`,
+               fontWeight: 600}}>Гунканы</h1>
+       </div>
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Гункан" slugCategogy="/gunkany" visibleItems={product}

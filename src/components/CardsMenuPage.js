@@ -35,12 +35,10 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                                     </Avatar>
                                 }
                                 title={titleCategory}
-                                subheader={name}
-                            />
+                                subheader={name}/>
                             <CardMedia
                                 className={classes.media}
-                                title={name}
-                            >
+                                title={name}>
                                 <Img fluid={fluid}/>
                             </CardMedia>
 
@@ -62,19 +60,15 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                                     color="secondary"
                                     className={classes.button}
                                     startIcon={<ShoppingBasketIcon/>}
-                                    onClick={() => setAddedToCart(id, null, product)}
-                                >
-                                    Хочу
-                                </Button>
+                                    onClick={() => setAddedToCart(id, null, product)}>
+                                    Хочу </Button>
                                 <Button
                                     component={Link}
                                     to={`/${slugCategogy}/${slug}`}
                                     variant="contained"
                                     color="secondary"
-                                    className={classes.buttonInfo}
-                                >
-                                    Подробнее
-                                </Button>
+                                    className={classes.buttonInfo}>
+                                    Подробнее </Button>
                             </CardActions>
                         </Card>
                     </Grid>

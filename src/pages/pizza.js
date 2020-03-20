@@ -54,14 +54,15 @@ const visibleItems = filtersProducts(productPizza, searchText, priceFilter)
 
 return ( 
    <section>
-    <SEO title="Доставка пиццы на дом. Маленькая и большая пицца, меню на сайте" 
-      description="Вкуснее пиццы только свисни пицца. Заказать ароматную пиццу в Валуйки с 10:00 до 22:00"
-    />
-     <div className={classes.titleH1}>
-    <h1 style={{fontFamily: `Oswald, cursive`,
-      fontWeight: 600, }}>Пицца</h1>
-   </div>
-  <CustomizedInputSearch />
+    <SEO title="Доставка пиццы в Валуйках - сытная пицца с быстрой и бесплатной доставкой от 500р"
+      description="Заказать пиццу на дом в Валуйки от бара Свисни Суши.
+      Скидка на пиццу 10% в счастливые часы. Свисни пицца от 235р с быстрой доставкой на дом и в офис!"/>
+
+      <div className={classes.titleH1}>
+        <h1 style={{fontFamily: `Oswald, cursive`,
+        fontWeight: 600, }}>Пицца</h1>
+      </div>
+       <CustomizedInputSearch />
   <Grid container justify="center" >
         <CardsMenuPage titleCategory="Пицца" slugCategogy="/pizza" visibleItems={visibleItems}
                        setAddedToCart={setAddedToCart} image={image} product={productPizza}/>

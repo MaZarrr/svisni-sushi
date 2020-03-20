@@ -36,7 +36,10 @@ const SmallRolls = ({
 return ( 
    <section>
     <SEO title="Вкусные недорогие роллы. Заказать доставку на дом в Валуйки" />
-     <h1 className={classes.titleH1}>Классические роллы</h1>
+       <div className={classes.titleH1}>
+           <h1 style={{fontFamily: `Oswald, cursive`,
+               fontWeight: 600}}>Классические роллы</h1>
+       </div>
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}

@@ -15,17 +15,14 @@ export const useStylesCart = makeStyles(theme => ({
     titleH1: {
         fontFamily: 'Oswald',
         fontWeight: 700,
-        paddingLeft: `35px`,
-        paddingTop: `25px`,
+        padding: `25px 10px 20px 35px`,
         fontSize: 46,
-        paddingBottom: `20px`,
         borderBottom: `1px solid lightgrey`,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
             margin: 0,
         },
         [theme.breakpoints.down('475')]: {
-            margin: 0,
             fontSize: 30
         }
     },
@@ -324,11 +321,14 @@ export const useStyleCarousel = makeStyles(theme => ({
             maxHeight: `75vw`,
             marginBottom: 40,
         },
+        [theme.breakpoints.down('475')]: {
+            marginBottom: 95,
+        },
     },
     rootPhone: {
         display: 'none',
         [theme.breakpoints.down('768')]: {
-            display: 'block',
+            display: 'block'
         },
     },
     rootPhoneNone:{
@@ -377,7 +377,7 @@ export const useStyleCarousel = makeStyles(theme => ({
             lineHeight: `14vmin`,
             letterSpacing: `1px`,
             color: `#000`,
-            padding: 0
+            padding: `10px 0 10px 0`
         },
     },
     button: {

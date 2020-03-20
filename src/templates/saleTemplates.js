@@ -1,6 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby';
-import SaleItem from '../components/SaleItem';
+import loadable from "@loadable/component";
+
+const SaleItem = loadable(() => import('../components/SaleItem'))
 
 const PizzaTeamplate = ({
     data: {contentfulProductSale}, location}) => { 

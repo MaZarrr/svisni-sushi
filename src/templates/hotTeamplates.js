@@ -1,8 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby';
-import HotItem from '../components/HotItem';
 import { connect } from 'react-redux';
 import {setAddedToCart} from '../actions';
+import loadable from "@loadable/component";
+
+const HotItem = loadable(() => import('../components/HotItem'))
 
 const HotTeamplates = ({
     data: {contentfulProductHotRolly}, setAddedToCart, product}) => { 

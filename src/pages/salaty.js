@@ -35,7 +35,10 @@ const Salaty = ({
 return ( 
    <section>
     <SEO title="Заказать салаты с 10:00 до 22:00 с доставкой в Валуйки. Доставка салатов на дом и офис" />
-    <h1 className={classes.titleH1}>Салаты</h1>
+       <div className={classes.titleH1}>
+           <h1 style={{fontFamily: `Oswald, cursive`,
+               fontWeight: 600}}>Салаты</h1>
+       </div>
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}

@@ -48,10 +48,10 @@ return (
    <section>
     <SEO title="Запечёные, гриль, жареные роллы, меню на сайте. Работаем с 10 до 22.00"   
     description="Закажи горячие роллы, оцени великолепный вкус японской кухни от Свисни Суши. Доставка Валуйки"/>
-    <div className={classes.titleH1}>
-    <h1 style={{fontFamily: `Oswald, cursive`,
-    fontWeight: 600, }}>Гриль роллы</h1>
-   </div>
+       <div className={classes.titleH1}>
+           <h1 style={{fontFamily: `Oswald, cursive`,
+               fontWeight: 600}}>Гриль роллы</h1>
+       </div>
   <CustomizedInputSearch />
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}

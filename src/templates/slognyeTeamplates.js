@@ -1,9 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby';
-import SloghItem from '../components/SloghItem';
 import { connect } from 'react-redux';
 import {setAddedToCart, producSetsLoad} from '../actions';
 import Spinner from '../components/spinner/spinner'
+import loadable from "@loadable/component";
+
+const SloghItem = loadable(() => import('../components/SloghItem'))
 
 const SlognyeTeamplates = ({
     data: {contentfulProductSlognyeRolly}, setAddedToCart, producSetsLoad, product}) => { 
