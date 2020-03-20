@@ -36,10 +36,6 @@ const inputLabel = React.useRef(null);
    checkedC: false
  });
 
- function onChangeOrder(e) {
-    
- }
-
 const [city, ] = useState({
 kol: {id: 1, priceDel: 150, deliverySalePrice: 1000, name: "Колыхалино"},          
 dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},            

@@ -316,23 +316,6 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
     }
 }))
 
-export const useStyleIndexPage = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        width: `100%`,
-        [theme.breakpoints.up('768')]: {
-            display: 'none'
-        }
-    },
-    menuPc: {
-        maxWidth: 1368,
-        marginTop: 40,
-        [theme.breakpoints.down('768')]: {
-            display: 'none',
-        }
-    }
-}))
-
 export const useStyleCarousel = makeStyles(theme => ({
     root: {
         maxWidth: `100vw`,
@@ -396,10 +379,6 @@ export const useStyleCarousel = makeStyles(theme => ({
             color: `#000`,
             padding: 0
         },
-    },
-    stepper: {
-        marginBottom: 50,
-        paddingLeft: '30vw'
     },
     button: {
         margin: `0 auto`,

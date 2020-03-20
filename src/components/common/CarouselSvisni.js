@@ -11,9 +11,11 @@ import {useStyleCarousel} from "./style";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const CarouselSvisni = () => {
-  const classes = useStyleCarousel()
-  const theme = useTheme();
+
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const theme = useTheme();
+  const classes = useStyleCarousel();
 
   const data = useStaticQuery(graphql `
   {
@@ -56,7 +58,7 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
-      >
+        >
         {data.allContentfulCarouselSiteImage.edges.map((step, index) => (
           <div key={step.node.id}>
             {Math.abs(activeStep - index) <= 2 ? (
@@ -100,7 +102,7 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
         position="static"
         variant="progress"
         activeStep={activeStep}
-        className={classes.stepper}>
+        style={{marginBottom: 50, paddingLeft: '30vw'}}>
         </MobileStepper> 
     </div>
   );

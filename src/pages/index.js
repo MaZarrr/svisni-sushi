@@ -1,24 +1,41 @@
 import React from "react"
 import SEO from "../components/seo"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import "../components/sass/index.css"
-import Img from 'gatsby-image';
 import Grid from '@material-ui/core/Grid';
-import { useStyleIndexPage } from "../components/common/style";
 import loadable from '@loadable/component'
+import {makeStyles} from "@material-ui/core/styles";
 
 const Card = loadable(() => import('../components/Card'))
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'))
+const HomePageMenu = loadable(() => import('../components/common/HomePageMenu'))
+
+const useStyleIndexPage = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+        width: `100%`,
+        [theme.breakpoints.up('768')]: {
+            display: 'none'
+        }
+    },
+    menuPc: {
+        maxWidth: 1368,
+        marginTop: 40,
+        [theme.breakpoints.down('768')]: {
+            display: 'none',
+        }
+    }
+}))
 
 const IndexPage = (props) => {
-  const classes = useStyleIndexPage()
+
   const [dataIndex, setDataIndex] = React.useState([])
+  const classes = useStyleIndexPage();
 
   React.useEffect(() => {
     const dataIndex = async () => {
      return await props.data.allContentfulHomePageImageMenu.edges
     }
-
     dataIndex()
     .then((data) => setDataIndex(data))
   }, [props.data.allContentfulHomePageImageMenu.edges])
@@ -33,19 +50,8 @@ return (
       <Grid item xs={12} className={classes.root}>
         <Card />
       </Grid>
-      <Grid container className={classes.menuPc}>  
-      {dataIndex.map(({node: homeMenu}) => (
-        <Grid item xs={6} sm={4} key={homeMenu.id} >  
-          <div className="cart_item">
-          <Link to={`/${homeMenu.slug}`}>
-          <div className="cart_title">
-            <h3><b>{homeMenu.category}</b></h3> 
-          </div>
-          <Img fluid={homeMenu.image.fluid} className="cart_img" imgStyle={{maxWidth: 300}} />
-          </Link>
-          </div>
-     </Grid>
-      ))}
+      <Grid container className={classes.menuPc}>
+        <HomePageMenu dataIndex={dataIndex}/>
     </Grid>
   </section>
   )
