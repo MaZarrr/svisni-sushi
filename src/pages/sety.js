@@ -62,7 +62,7 @@ return (
    </div>
   <CustomizedInputSearch location={location.pathname}/>
     <Grid container justify="center" >
-    <CardsMenuPage titleCategory="Сеты" slugCategogy="/sety" visibleItems={visibleItems}
+    <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
                    setAddedToCart={setAddedToCart} image={image} product={product}/>
     </Grid>
     </section>

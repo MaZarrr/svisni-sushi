@@ -2,23 +2,13 @@ import React, {useEffect} from "react"
 import SEO from "../components/seo"
 import { graphql} from "gatsby";
 import { connect } from 'react-redux';
-import Img from 'gatsby-image';
 import { producSetsLoad, setAddedToCart } from "../actions";
-
 import { useStylesCart } from '../components/common/style';
-
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import Spinner from '../components/spinner/spinner'
-
-import Button from '@material-ui/core/Button';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
+import loadable from "@loadable/component";
+
+const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Napitki = ({
       data: {
@@ -45,58 +35,14 @@ const Napitki = ({
 return ( 
    <section>
     <SEO title="Доставка напитков на дом" 
-       description="Коктейль Голубая лагуна, Мохито. Фруктовые охлажденные коктейли"
+       description="Коктейль Голубая лагуна, Мохито. Фруктовые, охлаждающие коктейли"
     />
     <h1 className={classes.titleH1}>Напитки</h1>
     <Grid container justify="center">
-    {!load ? product.map(({
-            node: productSets
-          }) => {
-    const {id, name, price, weight, image: {fluid}} = productSets
-    
-    return (
-    <Grid item xs={12} sm={6} md={3} key={id}>
-    <Card className={classes.card}>
-      <CardHeader
-      classes={{title: classes.title}}
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-           <Img style={{width: 50}} fluid={image.fluid} />
-          </Avatar>
+        {
+            !load ? <CardsMenuPage titleCategory="Напитки" slugCategogy="/napitki" visibleItems={product}
+                                   setAddedToCart={setAddedToCart} image={image} product={product}/> : <Spinner />
         }
-        title="Напитки"
-        subheader={name}
-      />
-      <CardMedia 
-        className={classes.media}
-        title={name}
-      > 
-      <Img fluid={fluid} />
-      </CardMedia> 
- 
-
-      <CardContent>
-        <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-        <b><p>{weight}л</p></b>
-          <b><p>1шт</p></b>
-        </Typography>
-       <p>{`${price}₽`}</p>
-      </CardContent>
-
-      <CardActions disableSpacing>
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.button}
-          startIcon={<ShoppingBasketIcon />}
-          onClick={()=> setAddedToCart(id, null, product)}
-      >
-        Хочу!
-      </Button>
-      </CardActions>
-    </Card>
-    </Grid>
-    )}) : <Spinner />}
     </Grid>
   </section>
     )

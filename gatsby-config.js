@@ -38,7 +38,7 @@ module.exports = {
       resolve: `gatsby-plugin-offline`,
       options: {
         precachePages: [
-        `/*`, 
+        `/*`,
         `/sety/*`,
         `/pizza/*`,
         `/hot-rolls/*`,
@@ -75,7 +75,7 @@ module.exports = {
         policy: [{
           userAgent: '*',
           allow: '/',
-          disallow: ['/cookie', '/korzina', '/offer', '/order-processed', '/order', '/privacy']
+          disallow: ['/korzina', '/order-processed', '/order']
         }]
       }
     },
@@ -112,14 +112,7 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-nprogress`,
-      options: {
-        color: `tomato`,
-        minimum: 0.2,
-        showSpinner: false,
-      },
-    },
+    'gatsby-plugin-preload-link-crossorigin',
     {
       resolve: `@mangoart/gatsby-plugin-purechat`,
       options: {
@@ -130,3 +123,11 @@ module.exports = {
   ]
 }
 
+// {
+//   resolve: `gatsby-plugin-nprogress`,
+//       options: {
+//   color: `tomato`,
+//       minimum: 0.2,
+//       showSpinner: false,
+// },
+// },
