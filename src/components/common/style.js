@@ -482,9 +482,7 @@ export const useStyleHeader = makeStyles(theme => ({
     },
     topBarInfo: {
         backgroundColor: `#303032`,
-        padding: 8
-    },
-    topBarFade: {
+        padding: 8,
         [theme.breakpoints.down('769')]: {
             display: 'none',
         }
@@ -495,8 +493,7 @@ export const useStyleLayout = makeStyles(theme => ({
     root: {
         maxWidth: `1440px`,
         [theme.breakpoints.down('769')]: {
-            paddingLeft: '50px',
-            marginTop: '29px',
+            paddingLeft: '50px'
         },
         [theme.breakpoints.up('769')]: {
             marginTop: '115px',

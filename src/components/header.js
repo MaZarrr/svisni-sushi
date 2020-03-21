@@ -98,8 +98,9 @@ const Header = () => {
           [classes.appBarShift]: open,
         })}
       >
-        <Grid container direction="row" className={classes.topBarInfo}>
-          <Grid item xs={3} className={classes.topBarFade}>
+        <div className={classes.topBarInfo}>
+        <Grid container direction="row">
+          <Grid item xs={3}>
             <Typography variant="button" align='center' component="p">
                с 10:00 до 22:00
             </Typography>
@@ -109,12 +110,13 @@ const Header = () => {
               Бесплатная доставка по Уразово от 500р
             </Typography>
           </Grid>
-          <Grid item xs={3} className={classes.topBarFade}>
+          <Grid item xs={3}>
             <Typography variant="button" align='center' component='p' >
               <a href='tel:+79040949222' style={{color: `white`}}> +7(904)094-92-22</a>
             </Typography>
           </Grid>
         </Grid>
+        </div>
         <Toolbar>
           <IconButton
             color="inherit"
