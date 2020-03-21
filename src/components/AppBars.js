@@ -29,7 +29,7 @@ const styles = theme =>( {
   root: {
     position: 'fixed',
     transition: '1s',
-    top: '65px',
+    top: '109px',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     [theme.breakpoints.down('768')]: {
       display: 'none',
@@ -124,7 +124,7 @@ useScrollPosition(({ prevPos, currPos }) => {
   if (isShow !== hideOnScroll) setHideOnScroll(isShow)
 }, [hideOnScroll])
   
-  const a11yProps = (index) => {
+  function a11yProps(index){
     return {
       id: `scrollable-auto-tab-${index}`,
       'aria-controls': `scrollable-auto-tabpanel-${index}`,

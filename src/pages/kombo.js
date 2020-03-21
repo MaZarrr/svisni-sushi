@@ -34,7 +34,8 @@ const Kombo = ({
 
 return (
     <section>
-    <SEO title="Доставка с 10:00 до 22:00 комбо наборов из суши, роллов, пиццы и лапши Вок" />
+    <SEO title="Доставка комбо наборов из суши, роллов, пиццы и лапши Вок"
+    description="Специальные комбо наборы, выгодно, заказать в Уразово с 10 до 22:00"/>
         <div className={classes.titleH1}>
             <h1 style={{fontFamily: `Oswald, cursive`,
                 fontWeight: 600}}>Комбо</h1>

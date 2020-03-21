@@ -38,6 +38,10 @@ function SEO({ description, lang, meta, title, keywords }) {
           crossorigin: `anonymous`
         },
         {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        },
+        {
           href: `https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css`,
           rel: `stylesheet`,
           integrity: `sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN`,

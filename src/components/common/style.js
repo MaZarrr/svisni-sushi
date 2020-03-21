@@ -86,6 +86,7 @@ export const useStylesCart = makeStyles(theme => ({
 export const useStyleOrder = makeStyles(theme => ({
     root: {
         flexGrow: 1,
+        marginTop: 10
     },
     gridContainer: {
         flexGrow: 1,
@@ -202,6 +203,7 @@ export const IOSSwitch = withStyles(theme => ({
 export const useStyleKorzina = makeStyles(theme => ({
     root: {
         flexGrow: 1,
+        marginTop: 10
     },
     paper: {
         padding: theme.spacing(2),
@@ -477,6 +479,15 @@ export const useStyleHeader = makeStyles(theme => ({
     iconDiv: {
         fontFamily: 'Neucha, Comfortaa, cursive',
         fontWeight: 800
+    },
+    topBarInfo: {
+        backgroundColor: `#303032`,
+        padding: 8
+    },
+    topBarFade: {
+        [theme.breakpoints.down('769')]: {
+            display: 'none',
+        }
     }
 }))
 
@@ -484,10 +495,11 @@ export const useStyleLayout = makeStyles(theme => ({
     root: {
         maxWidth: `1440px`,
         [theme.breakpoints.down('769')]: {
-            paddingLeft: '50px'
+            paddingLeft: '50px',
+            marginTop: '29px',
         },
         [theme.breakpoints.up('769')]: {
-            marginTop: '90px',
+            marginTop: '115px',
         },
         margin: '0 auto',
     },

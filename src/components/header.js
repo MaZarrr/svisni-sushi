@@ -27,6 +27,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import "./header.css"
 import {useStyleHeader} from "./common/style";
+import {Grid} from "@material-ui/core";
 
 const Header = () => {
   const classes = useStyleHeader()
@@ -87,7 +88,7 @@ const Header = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
- 
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -97,6 +98,23 @@ const Header = () => {
           [classes.appBarShift]: open,
         })}
       >
+        <Grid container direction="row" className={classes.topBarInfo}>
+          <Grid item xs={3} className={classes.topBarFade}>
+            <Typography variant="button" align='center' component="p">
+               с 10:00 до 22:00
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body2" align='center' component="p">
+              Бесплатная доставка по Уразово от 500р
+            </Typography>
+          </Grid>
+          <Grid item xs={3} className={classes.topBarFade}>
+            <Typography variant="button" align='center' component='p' >
+              <a href='tel:+79040949222' style={{color: `white`}}> +7(904)094-92-22</a>
+            </Typography>
+          </Grid>
+        </Grid>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -111,25 +129,24 @@ const Header = () => {
           </IconButton>
 
           <Typography variant="h6" noWrap className={clsx(classes.content_header)}>
-      
           <ul className={clsx(classes.content_link)}>
           <div className="icon_start">
             <Link to="/">
               <Imgs />
             </Link>
           </div>
-        { 
+        {
           links.map(({name, link, id}) => (
           <li key={id} className="nav-item">
-            <Link to={link} 
+            <Link to={link}
               activeClassName="active"
               className="nav-link">
             {name}
           </Link>
-          </li> 
+          </li>
         ))
         }
-    </ul>       
+    </ul>
     </Typography>
     <div className="icon_start_xs">
       <Link to="/">
@@ -138,9 +155,7 @@ const Header = () => {
     </div>
     <Korzina />
     </Toolbar>
-
-    <AppBars/>
-
+      <AppBars/>
     </AppBar>
 
       <Drawer
@@ -158,13 +173,13 @@ const Header = () => {
       >
         <div className={classes.toolbar}>
           <IconButton size="small" onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon style={{backgroundColor: `tomato`}}/> 
+            {theme.direction === 'rtl' ? <ChevronRightIcon style={{backgroundColor: `tomato`}}/>
             : <ChevronLeftIcon style={{backgroundColor: `tomato`}}/>}
           </IconButton>
         </div>
          <Divider />
          <List>
-             <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000", 
+             <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000",
               borderBottom: `2px solid tomato`,
               }}>
               <ListItemIcon>
@@ -172,13 +187,13 @@ const Header = () => {
               </ListItemIcon>
               <ListItemText primary="Акции" />
             </ListItem>
-            <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000", 
+            <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000",
               borderBottom: `2px solid tomato`,
               }}>
               <ListItemIcon><RoomIcon color="primary"/></ListItemIcon>
               <ListItemText primary="Адрес" />
             </ListItem>
-            <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000", 
+            <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000",
               borderBottom: `2px solid tomato`,
               }}>
               <ListItemIcon><LocalTaxiIcon color="action"/></ListItemIcon>
@@ -186,10 +201,10 @@ const Header = () => {
             </ListItem>
         </List>
          <Divider />
-        <List > 
+        <List >
         {data.allContentfulIconMenuLeftPanel.edges.map(({node: iconButton})=> (
-        <ListItem key={iconButton.id} button component={Link} 
-          activeStyle={{ color: "#000", 
+        <ListItem key={iconButton.id} button component={Link}
+          activeStyle={{ color: "#000",
           borderBottom: `1px solid tomato`,
           backgroundColor: `#f0ecec`,
           borderTop: `1px solid tomato`
