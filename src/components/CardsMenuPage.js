@@ -64,7 +64,7 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                                     Хочу </Button>
                                 <Button
                                     component={Link}
-                                    to={`/${slugCategogy}/${slug}`}
+                                    to={`${slugCategogy}/${slug}`}
                                     variant="contained"
                                     color="secondary"
                                     className={classes.buttonInfo}>

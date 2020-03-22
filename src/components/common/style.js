@@ -488,7 +488,7 @@ export const useStyleHeader = makeStyles(theme => ({
         }
     }
 }))
-
+// Gatsby будет вставлять критические CSS и ленивый остаток загрузки при просмотре сайта
 export const useStyleLayout = makeStyles(theme => ({
     root: {
         maxWidth: `1440px`,

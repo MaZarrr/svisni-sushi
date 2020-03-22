@@ -17,7 +17,7 @@ return (
     <h1>Акции</h1>
     <hr></hr>
 
-    <Grid container xs style={{margin: `0 0 50px 0`}}>
+    <Grid container style={{margin: `0 0 50px 0`}}>
         {data.allContentfulProductSale.edges.map((product) => (
         <Grid key={product.node.id} item xs={12} sm={12} md={6}>
             <Img fluid={product.node.image.fluid} style={{maxWidth: `600px`, margin: `20px 40px 20px 0`}} />

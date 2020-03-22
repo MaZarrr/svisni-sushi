@@ -1,11 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Header from "./header"
-import Footer from "./footer"
 import "./layout.css"
 import {useStyleLayout} from "./common/style";
+import loadable from '@loadable/component'
 
-const Layout = ({ children, location }) => {
+const Footer = loadable(() => import('./footer'))
+
+const Layout = ({ children, location: {pathname} }) => {
 
 const classes = useStyleLayout();
 
@@ -18,15 +20,17 @@ const classes = useStyleLayout();
           {children}
         </main>
       </div>
-      {location.pathname !== "/order" && location.pathname !== "/korzina" ? (
-        <Footer />
-      ) : null}
+      {
+        pathname === "/" || pathname === "/sale" || pathname === "/adres-i-kontakty" ?
+        <Footer/> : null
+      }
     </>
   )
 }
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  pathname: PropTypes.string
 }
 
 export default Layout
