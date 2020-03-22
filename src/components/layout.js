@@ -22,7 +22,7 @@ const classes = useStyleLayout();
       </div>
       {
         pathname === "/" || pathname === "/sale" || pathname === "/adres-i-kontakty" ?
-        <Footer/> : null
+        <Footer/> : ""
       }
     </>
   )

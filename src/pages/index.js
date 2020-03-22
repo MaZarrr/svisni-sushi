@@ -5,10 +5,18 @@ import "../components/sass/index.css"
 import Grid from '@material-ui/core/Grid';
 import loadable from '@loadable/component'
 import {makeStyles} from "@material-ui/core/styles";
+import Spinner from '../components/spinner/spinner'
 
-const Card = loadable(() => import('../components/Card'))
-const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'))
-const HomePageMenu = loadable(() => import('../components/common/HomePageMenu'))
+const Card = loadable(() => import('../components/Card'), {
+    fallback: <Spinner/>
+})
+const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'), {
+    fallback: <Spinner/>
+})
+const HomePageMenu = loadable(() => import('../components/common/HomePageMenu'), {
+    fallback: <Spinner/>
+    }
+)
 
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -54,7 +62,7 @@ return (
         <Card />
       </Grid>
       <Grid container className={classes.menuPc}>
-        <HomePageMenu dataIndex={dataIndex}/>
+            <HomePageMenu dataIndex={dataIndex}/>
     </Grid>
   </section>
   )

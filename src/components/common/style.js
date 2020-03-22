@@ -1,17 +1,11 @@
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 import styled from 'styled-components';
-import lime from '@material-ui/core/colors/lime';
 import Switch from "@material-ui/core/Switch";
 import React from "react";
 
 const drawerWidth = 190;
 
 export const useStylesCart = makeStyles(theme => ({
-    title: {
-        fontFamily: 'Comfortaa',
-        fontWeight: 800,
-        fontDisplay: `fallback`
-    },
     titleH1: {
         fontFamily: 'Oswald',
         fontWeight: 700,
@@ -57,7 +51,7 @@ export const useStylesCart = makeStyles(theme => ({
         transform: 'rotate(180deg)',
     },
     avatar: {
-        backgroundColor: lime[50],
+        backgroundColor: `white`,
         background: `#fff`,
         border: `1px dotted #000`
     },
@@ -480,15 +474,15 @@ export const useStyleHeader = makeStyles(theme => ({
         fontFamily: 'Neucha, Comfortaa, cursive',
         fontWeight: 800
     },
-    topBarInfo: {
-        backgroundColor: `#303032`,
-        padding: 8,
-        [theme.breakpoints.down('769')]: {
-            display: 'none',
-        }
-    }
+    // topBarInfo: {
+    //     backgroundColor: `#303032`,
+    //     padding: 8,
+    //     [theme.breakpoints.down('769')]: {
+    //         display: 'none',
+    //     }
+    // }
 }))
-// Gatsby будет вставлять критические CSS и ленивый остаток загрузки при просмотре сайта
+//
 export const useStyleLayout = makeStyles(theme => ({
     root: {
         maxWidth: `1440px`,
@@ -496,7 +490,7 @@ export const useStyleLayout = makeStyles(theme => ({
             paddingLeft: '50px'
         },
         [theme.breakpoints.up('769')]: {
-            marginTop: '115px',
+            marginTop: '75px',
         },
         margin: '0 auto',
     },

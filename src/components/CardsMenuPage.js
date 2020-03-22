@@ -17,7 +17,6 @@ import {useStylesCart} from "./common/style";
 export default ({titleCategory, slugCategogy, visibleItems, image, product, setAddedToCart}) => {
 
     const classes = useStylesCart()
-
     return (
         <>
             {visibleItems.map(({node: productSets}) => {
@@ -28,10 +27,9 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                     <Grid item xs={12} sm={6} md={3} key={id}>
                         <Card className={classes.card}>
                             <CardHeader
-                                classes={{title: classes.title}}
                                 avatar={
-                                    <Avatar className={classes.avatar}>
-                                        <Img style={{width: 50}} fluid={image.fluid}/>
+                                    <Avatar aria-label="menu" className={classes.avatar}>
+                                        <Img style={{width: 50}} fluid={image.fluid} alt={name} />
                                     </Avatar>
                                 }
                                 title={titleCategory}
@@ -39,7 +37,7 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
-                                <Img fluid={fluid}/>
+                                <Img fluid={fluid} alt={name} style={{maxWidth: 270, maxHeight: 270}}/>
                             </CardMedia>
 
                             <CardContent>
@@ -62,13 +60,19 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                                     startIcon={<ShoppingBasketIcon/>}
                                     onClick={() => setAddedToCart(id, null, product)}>
                                     Хочу </Button>
-                                <Button
-                                    component={Link}
-                                    to={`${slugCategogy}/${slug}`}
-                                    variant="contained"
-                                    color="secondary"
-                                    className={classes.buttonInfo}>
-                                    Подробнее </Button>
+
+                                {   slugCategogy === "/sety" ||
+                                    slugCategogy === "/pizza" ||
+                                    slugCategogy === "/branded-rolls" ||
+                                    slugCategogy === "/hot-rolls" ?
+                                    <Button
+                                        component={Link}
+                                        to={`${slugCategogy}/${slug}`}
+                                        variant="contained"
+                                        color="secondary"
+                                        className={classes.buttonInfo}>
+                                        Подробнее </Button> : null
+                                }
                             </CardActions>
                         </Card>
                     </Grid>

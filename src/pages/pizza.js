@@ -46,9 +46,9 @@ const Pizza = ({
 const visibleItems = filtersProducts(productPizza, searchText, priceFilter)
 
  if(load) {
-    return <div style={{display: `flex`, 
-    justifyContent: `center`, 
-    alignItems: `center`}}> 
+    return <div style={{display: `flex`,
+    justifyContent: `center`,
+    alignItems: `center`}}>
     <Spinner /></div>
   }
 

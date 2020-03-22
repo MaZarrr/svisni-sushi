@@ -16,7 +16,9 @@ import loadable from '@loadable/component'
 import {useStylesCart} from "../components/common/style";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
-const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
+const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
+    fallback: <Spinner/>
+})
 
 const Sety = ({
       data: {
@@ -44,12 +46,7 @@ const Sety = ({
 
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter)
 
-    if(load) {
-      return <div style={{display: `flex`, 
-      justifyContent: `center`, 
-      alignItems: `center`}}> 
-      <Spinner /></div>
-    }
+
 
 return (
   <>

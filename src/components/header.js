@@ -27,7 +27,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import "./header.css"
 import {useStyleHeader} from "./common/style";
-import {Grid} from "@material-ui/core";
 
 const Header = () => {
   const classes = useStyleHeader()
@@ -98,25 +97,25 @@ const Header = () => {
           [classes.appBarShift]: open,
         })}
       >
-        <div className={classes.topBarInfo}>
-        <Grid container direction="row">
-          <Grid item xs={3}>
-            <Typography variant="button" align='center' component="p">
-               с 10:00 до 22:00
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="body2" align='center' component="p">
-              Бесплатная доставка по Уразово от 500р
-            </Typography>
-          </Grid>
-          <Grid item xs={3}>
-            <Typography variant="button" align='center' component='p' >
-              <a href='tel:+79040949222' style={{color: `white`}}> +7(904)094-92-22</a>
-            </Typography>
-          </Grid>
-        </Grid>
-        </div>
+        {/*<div className={classes.topBarInfo}>*/}
+        {/*<Grid container direction="row">*/}
+        {/*  <Grid item xs={3}>*/}
+        {/*    <Typography variant="button" align='center' component="p">*/}
+        {/*       с 10:00 до 22:00*/}
+        {/*    </Typography>*/}
+        {/*  </Grid>*/}
+        {/*  <Grid item xs={12} sm={6}>*/}
+        {/*    <Typography variant="body2" align='center' component="p">*/}
+        {/*      Бесплатная доставка по Уразово от 500р*/}
+        {/*    </Typography>*/}
+        {/*  </Grid>*/}
+        {/*  <Grid item xs={3}>*/}
+        {/*    <Typography variant="button" align='center' component='p' >*/}
+        {/*      <a href='tel:+79040949222' style={{color: `white`}}> +7(904)094-92-22</a>*/}
+        {/*    </Typography>*/}
+        {/*  </Grid>*/}
+        {/*</Grid>*/}
+        {/*</div>*/}
         <Toolbar>
           <IconButton
             color="inherit"
