@@ -122,7 +122,7 @@ const handleSubmit = (ev) => {
           totalPrice: total,
           comments: ev.target.comments.value || "Без комментария",
         },
-        url: process.env.DATA_BASE
+        url: "https://svisni-sushi.firebaseio.com/order.json"
     })
  
   }
@@ -168,7 +168,7 @@ return (
         <form  
           method="POST"
           onSubmit={handleSubmit}
-          action={process.env.NODE_SERVE}
+          action='https://node-server-ten.now.sh/'
           name="svisniData"
           style={{width: '100%'}}>
    
