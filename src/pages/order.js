@@ -26,9 +26,9 @@ import {
     setPhoneUser, setTimeDeliveryUser
 } from "../reducers/contacts-info";
 
-const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber,
+const Order = ({items = [], palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber,
   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, 
-  setLevel, setDoor,  setTime, setDate, total, dateDelivery, timeDelivery}) => {
+  setLevel, setDoor,  setTime, setDate, total = 0, dateDelivery, timeDelivery}) => {
     
 const [open, setOpen] = useState(false);
 
