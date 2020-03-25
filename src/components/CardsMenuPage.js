@@ -13,7 +13,6 @@ import {Link} from "gatsby";
 import React from "react";
 import {useStylesCart} from "./common/style";
 
-
 export default ({titleCategory, slugCategogy, visibleItems, image, product, setAddedToCart}) => {
 
     const classes = useStylesCart()
@@ -62,9 +61,9 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                                     Хочу </Button>
 
                                 {   slugCategogy === "/sety" ||
-                                    slugCategogy === "/pizza" ||
-                                    slugCategogy === "/branded-rolls" ||
-                                    slugCategogy === "/hot-rolls" ?
+                                slugCategogy === "/pizza" ||
+                                slugCategogy === "/branded-rolls" ||
+                                slugCategogy === "/hot-rolls" ?
                                     <Button
                                         component={Link}
                                         to={`${slugCategogy}/${slug}`}
@@ -81,4 +80,3 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
         </>
     )
 }
-

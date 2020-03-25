@@ -5,9 +5,9 @@ import Divider from '@material-ui/core/Divider';
 import SearchIcon from '@material-ui/icons/Search';
 import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
-import {serchProduct} from '../actions'
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
 import {useStyleSearchInput} from "./common/style";
+import {getSearchText} from "../reducers/filters";
 
 function CustomizedInputSearch({serchProduct, location}) {
   const classes = useStyleSearchInput();
@@ -29,7 +29,7 @@ function CustomizedInputSearch({serchProduct, location}) {
         className={classes.input}
         value={value}
         name="search"
-        placeholder={"Знаешь название! Пиши..."}
+        placeholder={"Поиск..."}
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={handleChange}
       />
@@ -41,10 +41,8 @@ function CustomizedInputSearch({serchProduct, location}) {
   );
 }
 
- const mapDispatchToProps = (dispatch) => {
-    return {
-    serchProduct: (text) => dispatch(serchProduct(text)),
-    }  
-};
+ const mapDispatchToProps = (dispatch) => ({
+    serchProduct: (text) => dispatch(getSearchText(text))
+    })
 
 export default connect(null, mapDispatchToProps)(CustomizedInputSearch)

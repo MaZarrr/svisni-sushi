@@ -1,13 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-import {setAddedToCart} from '../actions';
 import loadable from "@loadable/component";
+import Spinner from '../components/spinner/spinner'
+import {addedCart} from "../reducers/shopping-cart";
 
-const HotItem = loadable(() => import('../components/HotItem'))
+const HotItem = loadable(() => import('../components/HotItem'),{
+    fallback: <Spinner />
+})
 
-const HotTeamplates = ({
-    data: {contentfulProductHotRolly}, setAddedToCart, product}) => { 
+const HotTeamplates = ({data: {contentfulProductHotRolly}, addedToCart, product}) => {
       
  return  (
      <>
@@ -16,7 +18,7 @@ const HotTeamplates = ({
         price={contentfulProductHotRolly.price}
         description={contentfulProductHotRolly.description}
         image={contentfulProductHotRolly.image.fluid}
-         added={() => setAddedToCart(contentfulProductHotRolly.id, null, product)}
+         added={() => addedToCart(contentfulProductHotRolly.id, null, product)}
         weight={contentfulProductHotRolly.weight}
         count={contentfulProductHotRolly.count}
     >
@@ -24,17 +26,15 @@ const HotTeamplates = ({
     </>
     )}
 
-const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-    setAddedToCart: (id, price, product) => {
-        dispatch(setAddedToCart(id, price, product))
-    }
-    }  
-};
+const mapStateToProps = (state) => ({
+    product: state.app.product
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
+})
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(HotTeamplates)
 
 export const query = graphql ` 

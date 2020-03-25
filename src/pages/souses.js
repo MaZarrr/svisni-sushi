@@ -2,32 +2,26 @@ import React, {useEffect} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-import { producSetsLoad, setAddedToCart } from "../actions";
+
 import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
+import {getProduct} from "../reducers/app";
+import {addedCart} from "../reducers/shopping-cart";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const Souses = ({
-      data: {
-        allContentfulProductSouse: {
-          edges: setyProduct
-        },
-        contentfulIconMenuLeftPanel: {
-          image
-        }
-      },
-    producSetsLoad, 
-    setAddedToCart, product
+const Souses = ({data: {allContentfulProductSouse: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
+    loadProduct,
+    addedToCart, product
   }) => {
 
  const classes = useStylesCart();
 
  useEffect(() => {
    const data = setyProduct
-   producSetsLoad(data); // action push to reduxStore
- }, [setyProduct, producSetsLoad])
+   loadProduct(data); // action push to reduxStore
+ }, [setyProduct, loadProduct])
 
 return ( 
    <section>
@@ -38,26 +32,20 @@ return (
        </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Соус" slugCategogy="/souses" visibleItems={product}
-                       setAddedToCart={setAddedToCart} image={image} product={product}/>
+                       setAddedToCart={addedToCart} image={image} product={product}/>
     </Grid>
 </section>
     )
 }
 
-const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-    producSetsLoad: (newProduct) => {
-        dispatch(producSetsLoad(newProduct))
-    },
-    setAddedToCart: (id, price, product) => {
-        dispatch(setAddedToCart(id, price, product))
-        }
-    }  
-};
+const mapStateToProps = (state) => ({
+    product: state.app.product
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
+    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
+})
   
 export default connect(mapStateToProps, mapDispatchToProps)(Souses)
 

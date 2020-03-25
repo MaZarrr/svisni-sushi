@@ -2,8 +2,6 @@ import React, {useEffect} from "react"
 import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
-import { setAddedToCart, setRemoveFromCart, allSetRemoveFromCart, 
-  producSetsLoad, onRazmer, addedPalochki } from "../actions";
 import  Img  from 'gatsby-image';
 
 import * as R from 'ramda'
@@ -22,20 +20,22 @@ import Button from '@material-ui/core/Button';
 import {useStyleKorzina} from '../components/common/style'
 
 import Spinner from '../components/spinner/spinner'
+import {addedCart, removeCart, allRemoveCart, pizzaSized, addPribor} from "../reducers/shopping-cart";
+import {getProduct} from "../reducers/app";
 
 const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts,
   allContentfulProductKlassika, allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
   allContentfulProductSalat, allContentfulProductNapitki, allContentfulProductGunkan, allContentfulProductZakuski,
   allContentfulProductSouse, allContentfulProductKombo},
     producSetsLoad, 
-    items, 
-    total,
+    items = [],
+    total = 0,
     palochkiTotal, 
     onIncrease, 
     onDecrise, 
     onDelete, 
     onRazmer, 
-    addedPribor,
+    addedPriborCount,
     product
   }) => {
 
@@ -68,7 +68,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
   };
 
 const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
-  
+
 const onRadioChangedd = (id, price) =>  {
   onRazmer(id, price)
 }
@@ -111,7 +111,7 @@ return (
               value={value[idx]} onChange={handleChange} row>
               <FormControlLabel
                   value={name}
-                  control={<Radio color="primary" name={idx + 1}  
+                  control={<Radio color="primary" name={String(idx + 1)}
                   onChange={() => onRadioChangedd(id, priceDef)}/>}
                   label="Маленькая"
                   labelPlacement="bottom"
@@ -121,7 +121,9 @@ return (
                 />
                 <FormControlLabel
                   value={name + "a"}
-                  control={<Radio color="primary" name={idx + 1}  onChange={() => onRadioChangedd(id, price33)}/>}
+                  control={<Radio color="primary"
+                  name={String(idx + 1)}
+                  onChange={() => onRadioChangedd(id, price33)}/>}
                   label="Большая"
                   labelPlacement="bottom"
                   id={id}
@@ -193,13 +195,13 @@ return (
               <p style={{fontSize: `16px`}}>Количество <br></br> приборов(палочки)</p>
               <div className="d-flex">
               <button 
-              onClick={()=> addedPribor(1)}
+              onClick={()=> addedPriborCount(1)}
               className="btn btn-outline-success btn-sm">
                 <i className="fa fa-plus-circle fa-lg"></i>
               </button>
               <b className="ml-3 mr-3" style={{fontSize: 18}}>{palochkiTotal}</b>
               <button 
-              onClick={()=> addedPribor(-1) }
+              onClick={()=> addedPriborCount(-1) }
               className="btn btn-outline-warning btn-sm">
                 <i className="fa fa-minus-circle fa-lg"></i>
               </button> 
@@ -224,23 +226,30 @@ return (
   </>
     )
 }
+
+const mapStateToProps = (state) => ({
+  items: state.shoppingCart.cartItems.cartItems,
+  product: state.app.product,
+  palochkiTotal: state.shoppingCart.palochkiTotal,
+  total: state.shoppingCart.cartItems.orderTotal
+})
  
-const mapStateToProps = ({shoppingCart: { cartItems, orderTotal}, setList: {product}, palochkiTotal}) => {
-    return {
-        items: cartItems, 
-        product: product,
-        palochkiTotal,
-        total: orderTotal
-    };
-  }
+// const mapStateToProps = ({shoppingCart: { cartItems, orderTotal}, setList: {product}, palochkiTotal}) => {
+//     return {
+//         items: cartItems,
+//         product: product,
+//         palochkiTotal,
+//         total: orderTotal
+//     };
+//   }
    
 const mapDispatchToProps = {
-        producSetsLoad: producSetsLoad,
-        onDecrise: setRemoveFromCart,
-        onIncrease: setAddedToCart,
-        onDelete: allSetRemoveFromCart,
-        onRazmer: onRazmer,
-        addedPribor: addedPalochki,
+        producSetsLoad: getProduct,
+        onDecrise: removeCart,
+        onIncrease: addedCart,
+        onDelete: allRemoveCart,
+        onRazmer: pizzaSized,
+        addedPriborCount: addPribor,
   };
   
 

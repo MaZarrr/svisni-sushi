@@ -2,8 +2,6 @@ import React, {useState} from "react"
 import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import { navigate} from 'gatsby'
-import { setName, setPhone,
-  setSity, setAdress, setHome, setEntrance, setLevel, setDoor, setTime, setDate } from "../actions";
 
 import FormControl from '@material-ui/core/FormControl';
 import Paper from '@material-ui/core/Paper';
@@ -19,8 +17,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import axios from "axios";
 import {useStyleOrder, IOSSwitch} from '../components/common/style'
+import {
+    setAdresUser,
+    setCityUser, setDateDeliveryUser, setDoorUser,
+    setEnhanceUser,
+    setHomeUser, setLavelUser,
+    setNameUser,
+    setPhoneUser, setTimeDeliveryUser
+} from "../reducers/contacts-info";
 
-const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber, 
+const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber,
   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, 
   setLevel, setDoor,  setTime, setDate, total, dateDelivery, timeDelivery}) => {
     
@@ -32,9 +38,7 @@ const [delivery, setDelivery] = useState('');
 const classes = useStyleOrder();
 
 const inputLabel = React.useRef(null);
- const [state, setState] = React.useState({
-   checkedC: false
- });
+ const [state, setState] = React.useState({checkedC: false});
 
 const [city, ] = useState({
 kol: {id: 1, priceDel: 150, deliverySalePrice: 1000, name: "Колыхалино"},          
@@ -52,9 +56,7 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
 
 const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
 
- const handleChangee = name => event => {
-    setState({ ...state, [name]: event.target.checked });
-  };
+const handleChangee = name => event => setState({ ...state, [name]: event.target.checked });
 
 const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -120,31 +122,22 @@ const handleSubmit = (ev) => {
           totalPrice: total,
           comments: ev.target.comments.value || "Без комментария",
         },
-        url: 'https://svisni-sushi.firebaseio.com/order.json'
+        url: process.env.GATSBY_DATA_BASE
     })
  
   }
 
-const handleChange = event => {
-setAge(event.target.value);
-};
+const handleChange = event => setAge(event.target.value)
+const handleChangeDelivery = event => setDelivery(event.target.value);
 
-const handleChangeDelivery = event => {
-setDelivery(event.target.value);
-};
-
-const handleClose = () => {
-setOpen(false);
-};
+const handleClose = () => setOpen(false)
 
 const handleChangeCity = city => event => {
-setSity(`${city[event.target.value].name}`)
-setStateDeliveryPrice(city[event.target.value]);
+    setSity(`${city[event.target.value].name}`)
+    setStateDeliveryPrice(city[event.target.value]);
 };
 
-const handleOpen = () => {
-setOpen(true);
-};
+const handleOpen = () => setOpen(true);
 
 const isEmpty = (obj) => {
   if (Object.keys(obj).length === 0) {
@@ -171,11 +164,11 @@ return (
           </Grid>
           </Grid>
 
-        { items.length !== 0 ? <Grid container className={classes.gridContainer}>
+        { !isEmpty(items) ? <Grid container className={classes.gridContainer}>
         <form  
           method="POST"
           onSubmit={handleSubmit}
-          action="https://node-server-ten.now.sh/"
+          action={process.env.GATSBY_NODE_SERVE}
           name="svisniData"
           style={{width: '100%'}}>
    
@@ -278,9 +271,8 @@ return (
             style={{margin: `10px auto 10px 0`}}
             required 
             name="date" 
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}  
+            onChange={(e) => {setDate(e.target.value);
+            }}
             value={dateDelivery} 
             helperText="Когда доставить"/>
         
@@ -385,7 +377,7 @@ return (
                  value={entranceNumber}
                  helperText="Введите ваш номер подъезда."/>
               </div>
-              <div className={classes.conatiner_info_delivery}>
+                <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input"
                  label="Этаж"
                  variant="outlined"
@@ -401,7 +393,7 @@ return (
                  value={levelNumber}
                  helperText="Введите ваш этаж."/>
               </div>
-              <div className={classes.conatiner_info_delivery}>
+                <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input"
                  label="Код двери"
                  variant="outlined"
@@ -488,7 +480,8 @@ return (
             Заказать
              </Button>
          </form>
-         </Grid> : <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={34}>
+         </Grid> :
+            <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={34}>
            Ваша корзина пуста </Box>
          } 
          </div>
@@ -496,24 +489,26 @@ return (
   )
 }
 
-const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}, contacts: { 
-    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword, timeDelivery,
-    dateDelivery}, palochkiTotal
-    }) => {
-        return {
-            items: cartItems, 
-            palochkiTotal,
-            total: orderTotal,
-            nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword
-        };
-      }
+const mapStateToProps = ({shoppingCart: {cartItems: {cartItems, orderTotal}}, contactsUser: {
+    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword}, palochkiTotal}) => ({
+
+    items: cartItems,
+    total: orderTotal,
+    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber,
+   doorPassword, palochkiTotal
+})
 
 const mapDispatchToProps = {
-    setName, setPhone,
-    setSity, setAdress, 
-    setHome, setEntrance, 
-    setLevel, setDoor, 
-    setDate, setTime
+    setName: setNameUser,
+    setPhone: setPhoneUser,
+    setSity: setCityUser,
+    setAdress: setAdresUser,
+    setHome: setHomeUser,
+    setEntrance: setEnhanceUser,
+    setLevel: setLavelUser,
+    setDoor: setDoorUser,
+    setDate: setDateDeliveryUser,
+    setTime: setTimeDeliveryUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)

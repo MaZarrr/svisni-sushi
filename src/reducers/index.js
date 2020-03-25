@@ -1,23 +1,15 @@
-import updateSetList from './set-list';
-import updateShoppingCart from './shopping-cart';
-import contactUser from './contacts-info';
+import {combineReducers} from "redux";
 
-  const reducer = (state, action) => {
-  
-    if(action.type === 'PALOCHKI_ADDED') {
-      return {
-        palochkiTotal: state.palochkiTotal >= 1 ? state.palochkiTotal + parseInt(action.payload) : state.palochkiTotal * 1 + 1,
-        setList: updateSetList(state, action),
-        shoppingCart: updateShoppingCart(state, action),
-        contacts: contactUser(state, action)
-      }
-    }
-      return {
-          setList: updateSetList(state, action),
-          shoppingCart: updateShoppingCart(state, action),
-          palochkiTotal: 1,
-          contacts: contactUser(state, action) 
-      }
-    };
+import app from './app'
+import shoppingCart from './shopping-cart';
+import contactsUser from './contacts-info';
+import filters from "./filters";
 
-    export default reducer
+export default combineReducers({
+    app,
+    filters,
+    shoppingCart,
+    contactsUser
+})
+
+

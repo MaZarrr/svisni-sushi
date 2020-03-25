@@ -1,19 +1,20 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-import {setAddedToCart, producSetsLoad} from '../actions';
 import Spinner from '../components/spinner/spinner'
 import loadable from "@loadable/component";
+import {getProduct} from "../reducers/app";
+import {addedCart} from "../reducers/shopping-cart";
 
 const SloghItem = loadable(() => import('../components/SloghItem'))
 
-const SlognyeTeamplates = ({
-    data: {contentfulProductSlognyeRolly}, setAddedToCart, producSetsLoad, product}) => { 
-       const [load, setLoad] = React.useState(true)
+const SlognyeTeamplates = ({data: {contentfulProductSlognyeRolly}, addedToCart, loadProduct, product}) => {
+
+    const [load, setLoad] = React.useState(true)
         React.useEffect(() => {
-            // producSetsLoad(contentfulProductSlognyeRolly)
+            // loadProduct(contentfulProductSlognyeRolly)
             setLoad(false)
-        }, [contentfulProductSlognyeRolly, producSetsLoad])
+        }, [contentfulProductSlognyeRolly])
  return  (
     <>
     {!load ? <SloghItem
@@ -21,28 +22,21 @@ const SlognyeTeamplates = ({
         price={contentfulProductSlognyeRolly.price}
         description={contentfulProductSlognyeRolly.description}
         image={contentfulProductSlognyeRolly.image.fluid}
-        added={() => setAddedToCart(contentfulProductSlognyeRolly.id, null, product)}
+        added={() => addedToCart(contentfulProductSlognyeRolly.id, null, product)}
         weight={contentfulProductSlognyeRolly.weight}
-        count={contentfulProductSlognyeRolly.count}
-    >
+        count={contentfulProductSlognyeRolly.count}>
     </SloghItem> : <Spinner />}
     </>
     )}
 
-const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-           producSetsLoad: (newProduct) => {
-               dispatch(producSetsLoad(newProduct))
-           },
- setAddedToCart: (id, price, product) => {
-     dispatch(setAddedToCart(id, price, product))
- }
-    }  
-};
+const mapStateToProps = (state) => ({
+    product: state.app.product
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
+    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
+})
 export default connect(mapStateToProps, mapDispatchToProps)(SlognyeTeamplates)
 
 export const query = graphql ` 

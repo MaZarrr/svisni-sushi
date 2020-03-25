@@ -24,7 +24,6 @@
     "gatsby-plugin-guess-js": "^1.1.30",
     "gatsby-plugin-manifest": "^2.2.30",
     "gatsby-plugin-material-ui": "^2.1.6",
-    "gatsby-plugin-nprogress": "^2.1.19",
     "gatsby-plugin-offline": "3.0.35",
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-react-redux": "^1.1.0-0",
@@ -53,6 +52,8 @@
     "react-swipeable-views-utils": "^0.13.6",
     "react-transition-group": "4.0.0",
     "redux": "^4.0.4",
+    "redux-act": "^1.8.0",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
@@ -81,7 +82,7 @@
   "engines": {
     "node": "13.5.0",
     "npm": "6.4.1",
-    "yarn": "1.22.0"
+    "yarn": "1.13.0"
   },
   "resolutions": {
     "react-transition-group": "4.0.0"

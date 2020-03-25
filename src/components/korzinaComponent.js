@@ -65,10 +65,10 @@ const TextTotal = styled.span `
 }
 `
 
-const Korzina = ({ orderTotal, cartItems }) => {
+const Korzina = ({ cartItems: {orderTotal = 0, cartItems = []} }) => {
   const [count, setCount] = useState(0);
   const prevCount = usePrevious(count); // изначально 0 и сразу заришет 0
-  
+
   const totalCount = R.compose(
         R.sum,
         R.pluck('count')
@@ -106,7 +106,6 @@ return (
             <div className="korzina_content korzina_content_txt">
               <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
             </div>
-
           </div>
         </Link>
     </KorzinaItem>
@@ -114,8 +113,12 @@ return (
         )
 }
 
-const mapStateToProps = ({ shoppingCart: {cartItems, orderTotal} }) => {
-    return {cartItems, orderTotal};
-  }
+const mapStateToProps = (state) => ({
+    cartItems: state.shoppingCart.cartItems
+})
 
-export default connect(mapStateToProps)(Korzina)
+// const mapStateToProps = ({ shoppingCart: {cartItems, orderTotal} }) => {
+//     return {cartItems, orderTotal};
+//   }
+
+export default connect(mapStateToProps, null)(Korzina)

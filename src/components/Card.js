@@ -16,17 +16,19 @@ import Logo from "../images/logoPN.png"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import { producSetsLoad, setAddedToCart } from "../actions";
+
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
 import Spinner from './spinner/spinner'
 import {useStyleCardIndexPage} from "./common/style";
+import {getProduct} from "../reducers/app";
+import {addedCart} from "../reducers/shopping-cart";
 
 const AvatarWrapp = styled(Avatar) `
 background: ${props => props.color};
 `
 
-const RecipeReviewCard = ({producSetsLoad, setAddedToCart, product}) => {
+const RecipeReviewCard = ({loadProduct, addedToCart, product}) => {
 
   const classes = useStyleCardIndexPage()
   const [expanded, setExpanded] = React.useState({nameCart: false});
@@ -58,9 +60,9 @@ const RecipeReviewCard = ({producSetsLoad, setAddedToCart, product}) => {
   `)
 
   useEffect(() => {
-    producSetsLoad(edges)
+    loadProduct(edges)
     setLoad(false)
-  }, [edges, producSetsLoad])
+  }, [edges, loadProduct])
 
   const handleExpandClick = (id) => {
     setExpanded({[id]: !expanded[id]});
@@ -111,7 +113,7 @@ const RecipeReviewCard = ({producSetsLoad, setAddedToCart, product}) => {
         color="secondary"
         className={classes.button}
         startIcon={<ShoppingBasketIcon />}
-        onClick={()=> setAddedToCart(homeProduct.id, null, product)}
+        onClick={()=> addedToCart(homeProduct.id, null, product)}
       >
         Хочу!
       </Button>
@@ -149,20 +151,14 @@ const RecipeReviewCard = ({producSetsLoad, setAddedToCart, product}) => {
 
 }
 
-const mapStateToProps = ({ setList: {product} }) => {
-  return {product};
-}
+const mapStateToProps = (state) => ({
+  product: state.app.product
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  producSetsLoad: (newProduct) => {
-      dispatch(producSetsLoad(newProduct))
-  },
-     setAddedToCart: (id, price, product) => {
-       dispatch(setAddedToCart(id, price, product))
-     }
-  }  
-};
+const mapDispatchToProps = (dispatch) => ({
+  loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
+  addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeReviewCard)
 

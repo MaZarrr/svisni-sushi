@@ -1,13 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-import {setAddedToCart} from '../actions';
 import loadable from "@loadable/component";
+import {addedCart} from "../reducers/shopping-cart";
 
 const SetyItem = loadable(() => import('../components/SetyItem'))
 
 const SetyTeamplate = ({
-    data: {contentfulProduct}, setAddedToCart, product}) => { 
+    data: {contentfulProduct}, addedToCart, product}) => {
 
  return  (
      <>
@@ -19,22 +19,18 @@ const SetyTeamplate = ({
         weight={contentfulProduct.weight}
         count={contentfulProduct.count}
         image={contentfulProduct.image.fluid}
-         added={() => setAddedToCart(contentfulProduct.id, null, product)}
+         added={() => addedToCart(contentfulProduct.id, null, product)}
     > </SetyItem>
     </>
     )}
 
-    const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-     setAddedToCart: (id, price, product) => {
-         dispatch(setAddedToCart(id, price, product))
-     }
-    }  
-};
+const mapStateToProps = (state) => ({
+    product: state.app.product,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SetyTeamplate)
 

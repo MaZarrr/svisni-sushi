@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { connect } from 'react-redux';
-import {filterPrice} from '../actions'
+import {getPriceDecInc} from "../reducers/filters";
 
 function FormControlLabelPosition({ filterPrice, priceFilter }) {
   // const [value, setValue] = React.useState(priceFilter);
@@ -41,14 +41,13 @@ function FormControlLabelPosition({ filterPrice, priceFilter }) {
   );
 }
 
-const mapStateToProps = ({ setList: {priceFilter} }) => {
-    return { priceFilter };
-  }
+const mapStateToProps = ({filters: {priceFilter}}) => ({
+    priceFilter
+  })
 
- const mapDispatchToProps = (dispatch) => {
-    return {
-    filterPrice: (value) => dispatch(filterPrice(value)),
-    }  
-};
+ const mapDispatchToProps = (dispatch) => ({
+        filterPrice: (value) => dispatch(getPriceDecInc(value)),
+    })
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormControlLabelPosition)

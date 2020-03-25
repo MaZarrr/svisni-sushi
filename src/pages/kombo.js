@@ -2,25 +2,18 @@ import React, {useEffect} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-import { producSetsLoad, setAddedToCart } from "../actions";
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style'
 import Spinner from '../components/spinner/spinner'
 import loadable from "@loadable/component";
+import {getProduct} from "../reducers/app";
+import {addedCart} from "../reducers/shopping-cart";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const Kombo = ({
-      data: {
-        allContentfulProductKombo: {
-          edges: setyProduct
-        },
-        contentfulIconMenuLeftPanel: {
-          image
-        }
-      },
-    producSetsLoad, 
-    setAddedToCart, product
+const Kombo = ({data: {allContentfulProductKombo: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
+    loadProduct,
+    addedToCart, product
   }) => {
 
  const [load, setLoad] = React.useState(true)
@@ -28,9 +21,9 @@ const Kombo = ({
 
  useEffect(() => {
    const data = setyProduct
-   producSetsLoad(data); // action push to reduxStore
+   loadProduct(data); // action push to reduxStore
    setLoad(false)
- }, [setyProduct, producSetsLoad])
+ }, [setyProduct, loadProduct])
 
 return (
     <section>
@@ -43,27 +36,21 @@ return (
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
-                                   setAddedToCart={setAddedToCart} image={image} product={product}/> : <Spinner />
+                                   setAddedToCart={addedToCart} image={image} product={product}/> : <Spinner />
         }
   </Grid>
 </section>
     )
 }
 
-const mapStateToProps = ({ setList: {product} }) => {
-    return {product};
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-    producSetsLoad: (newProduct) => {
-        dispatch(producSetsLoad(newProduct))
-    },
-   setAddedToCart: (id, price, product) => {
-     dispatch(setAddedToCart(id, price, product))
-   }
-    }  
-};
+const mapStateToProps = (state) => ({
+    product: state.app.product
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
+    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
+})
   
 export default connect(mapStateToProps, mapDispatchToProps)(Kombo)
 

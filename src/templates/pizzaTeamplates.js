@@ -1,14 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-import {setAddedToCart} from '../actions';
 import loadable from "@loadable/component";
+import {addedCart} from "../reducers/shopping-cart";
+import Spinner from '../components/spinner/spinner'
 
-const PizzaItem = loadable(() => import('../components/PizzaItem'))
+const PizzaItem = loadable(() => import('../components/PizzaItem'), {
+    fallback: <Spinner />
+})
 
-const PizzaTeamplate = ({
-    data: {contentfulProductPizza}, setAddedToCart, productPizza}) => { 
-      console.log(productPizza);
+const PizzaTeamplate = ({data: {contentfulProductPizza}, addedToCart, productPizza}) => {
       
  return  (
      <>
@@ -18,7 +19,7 @@ const PizzaTeamplate = ({
         priceIn33={contentfulProductPizza.priceIn33cm}
         description={contentfulProductPizza.description}
         image={contentfulProductPizza.image.fluid} 
-        added={() => setAddedToCart(contentfulProductPizza.id, contentfulProductPizza.price, productPizza)}
+        added={() => addedToCart(contentfulProductPizza.id, contentfulProductPizza.price, productPizza)}
         weight33={contentfulProductPizza.weight33}
         weight={contentfulProductPizza.weight}
         count={contentfulProductPizza.count}>
@@ -26,17 +27,13 @@ const PizzaTeamplate = ({
     </>
     )}
 
-    const mapStateToProps = ({ setList: {productPizza} }) => {
-    return {productPizza};
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-       setAddedToCart: (id, price, productPizza) => {
-           dispatch(setAddedToCart(id, price, productPizza))
-       }
-    }  
-};
+const mapStateToProps = (state) => ({
+    productPizza: state.app.productPizza,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    addedToCart: (id, price, productPizza) => dispatch(addedCart(id, price, productPizza))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(PizzaTeamplate)
 

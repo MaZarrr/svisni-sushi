@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { connect } from 'react-redux';
-import {setFilterCheckbox} from '../actions'
+import {getCheckNabor} from "../reducers/filters";
 
 function FormControlLabelPosition({setFilterCheckbox, checkboxFilter}) {
   
@@ -51,15 +51,13 @@ function FormControlLabelPosition({setFilterCheckbox, checkboxFilter}) {
   );
 }
 
-const mapStateToProps = ({ setList: {checkboxFilter} }) => {
-    return {checkboxFilter};
-  }
+const mapStateToProps = ({filters: {checkboxFilter}}) => ({
+    checkboxFilter
+})
   
-  const mapDispatchToProps = (dispatch) => {
-    return {
-    setFilterCheckbox: (check) => dispatch(setFilterCheckbox(check)),
-    }  
-};
+  const mapDispatchToProps = (dispatch) => ({
+    setFilterCheckbox: (check) => dispatch(getCheckNabor(check))
+    })
   
 export default connect(mapStateToProps, mapDispatchToProps)(FormControlLabelPosition)
 
