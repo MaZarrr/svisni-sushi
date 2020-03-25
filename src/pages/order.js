@@ -122,7 +122,7 @@ const handleSubmit = (ev) => {
           totalPrice: total,
           comments: ev.target.comments.value || "Без комментария",
         },
-        url: process.env.GATSBY_DATA_BASE
+        url: process.env.DATA_BASE
     })
  
   }
@@ -168,7 +168,7 @@ return (
         <form  
           method="POST"
           onSubmit={handleSubmit}
-          action={process.env.GATSBY_NODE_SERVE}
+          action={process.env.NODE_SERVE}
           name="svisniData"
           style={{width: '100%'}}>
    
