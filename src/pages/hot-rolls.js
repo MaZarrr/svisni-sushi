@@ -25,7 +25,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: setyProduct}, co
         loadProduct(data); // action push to reduxStore
         setLoad(false)
       }, [setyProduct, loadProduct])
-
+//GG
     const visibleItems = filtersProducts(product, searchText, priceFilter)
     
     if(load) {
