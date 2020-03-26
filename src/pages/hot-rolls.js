@@ -27,7 +27,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: setyProduct}, co
       }, [setyProduct, loadProduct])
     // dels GG cherry pick
     const visibleItems = filtersProducts(product, searchText, priceFilter)
-    
+    // new
     if(load) {
       return <div style={{display: `flex`, 
       justifyContent: `center`, 
