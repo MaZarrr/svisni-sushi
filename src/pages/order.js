@@ -26,9 +26,9 @@ import {
     setPhoneUser, setTimeDeliveryUser
 } from "../reducers/contacts-info";
 
-const Order = ({items = [], palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber,
+const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber,
   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, 
-  setLevel, setDoor,  setTime, setDate, total = 0, dateDelivery, timeDelivery}) => {
+  setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery}) => {
     
 const [open, setOpen] = useState(false);
 
@@ -471,14 +471,15 @@ return (
                 <b>Итого к оплате: {total} ₽</b>
              </div>
              }
+                <hr></hr>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    classes={{root: classes.button, label: classes.label}}>
+                    Заказать
+                </Button>
              </div>
-             <Button 
-             type="submit" 
-             variant="contained" 
-             className={classes.button}
-             >
-            Заказать
-             </Button>
+
          </form>
          </Grid> :
             <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={34}>
@@ -489,13 +490,12 @@ return (
   )
 }
 
-const mapStateToProps = ({shoppingCart: {cartItems: {cartItems, orderTotal}}, contactsUser: {
+const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}, contactsUser: {
     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword}, palochkiTotal}) => ({
-
     items: cartItems,
     total: orderTotal,
     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber,
-   doorPassword, palochkiTotal
+    doorPassword, palochkiTotal
 })
 
 const mapDispatchToProps = {

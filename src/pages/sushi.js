@@ -6,21 +6,17 @@ import { connect } from 'react-redux';
 import { useStylesCart } from '../components/common/style'
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
-import {getProduct} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import {productLoaded} from "../reducers/app";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const Sushi = ({data: {allContentfulProductSushi: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-    loadProduct,
-    addedToCart, product
-  }) => {
+const Sushi = ({data: {allContentfulProductSushi: {edges: products}, contentfulIconMenuLeftPanel: {image}}, product, dispatch}) => {
+
   const classes = useStylesCart();
       
       useEffect(() => {
-        const data = setyProduct
-        loadProduct(data); // action push to reduxStore
-      }, [setyProduct, loadProduct])
+        dispatch(productLoaded(products)) // action push to reduxStore
+      }, [products, dispatch])
 
 return ( 
    <section>
@@ -32,7 +28,7 @@ return (
        </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Суши" slugCategogy="/sushi" visibleItems={product}
-                       setAddedToCart={addedToCart} image={image} product={product}/>
+                       image={image} product={product}/>
     </Grid>
   </section>
     )
@@ -41,13 +37,8 @@ return (
 const mapStateToProps = (state) => ({
     product: state.app.product
 })
-
-const mapDispatchToProps = (dispatch) => ({
-    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-})
   
-export default connect(mapStateToProps, mapDispatchToProps)(Sushi)
+export default connect(mapStateToProps, null)(Sushi)
 
 export const query = graphql `
     {

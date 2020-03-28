@@ -21,23 +21,3 @@ export default createReducer({
 }, initialState)
 
 
-
-
-
-
-
-
-
-// case 'SEARCH_PRODUCT':
-// //  state.setList.product[id]
-// // const getProductById = (state, id) => R.prop(id, state.setList.product)
-// // const applySearch = item => R.contains(action.payload, R.prop('name', item))
-// // const products = R.compose(
-// // R.filter(applySearch),
-// // R.map((node) => node)
-// // )(state.setList.product)
-//
-// return R.merge(state.setList, {
-//     searchText: action.payload
-// })
-//

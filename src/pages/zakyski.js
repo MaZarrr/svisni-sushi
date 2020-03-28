@@ -7,22 +7,20 @@ import { useStylesCart } from '../components/common/style'
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import Spinner from "../components/spinner/spinner";
-import {getProduct} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import {productLoaded} from "../reducers/app";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const Zakyski = ({data: {allContentfulProductZakuski: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-    loadProduct, addedToCart, product}) => {
+const Zakyski = ({data: {allContentfulProductZakuski: {edges: productsZakyski}, contentfulIconMenuLeftPanel: {image}},
+                     dispatch, product}) => {
 
     const [load, setLoad] = React.useState(true)
     const classes = useStylesCart();
-      
+
     useEffect(() => {
-        const data = setyProduct
-        loadProduct(data); // action push to reduxStore
+        dispatch(productLoaded(productsZakyski)) // action push to reduxStore
         setLoad(false)
-      }, [setyProduct, loadProduct])
+    }, [productsZakyski, dispatch])
 
 return ( 
    <section>
@@ -34,7 +32,7 @@ return (
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Закуски" slugCategogy="/zakyski" visibleItems={product}
-                                   setAddedToCart={addedToCart} image={image} product={product}/> : <Spinner />
+                                   image={image} product={product}/> : <Spinner />
         }
         </Grid>
       </section>
@@ -44,13 +42,8 @@ return (
 const mapStateToProps = (state) => ({
     product: state.app.product
 })
-
-const mapDispatchToProps = (dispatch) => ({
-    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-})
   
-export default connect(mapStateToProps, mapDispatchToProps)(Zakyski)
+export default connect(mapStateToProps, null)(Zakyski)
 
 export const query = graphql `
     {

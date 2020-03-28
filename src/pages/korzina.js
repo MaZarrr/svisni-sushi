@@ -27,18 +27,10 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
   allContentfulProductKlassika, allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
   allContentfulProductSalat, allContentfulProductNapitki, allContentfulProductGunkan, allContentfulProductZakuski,
   allContentfulProductSouse, allContentfulProductKombo},
-    producSetsLoad, 
-    items = [],
-    total = 0,
-    palochkiTotal, 
-    onIncrease, 
-    onDecrise, 
-    onDelete, 
-    onRazmer, 
-    addedPriborCount,
-    product
-  }) => {
-
+    producSetsLoad,
+    items = [], product,
+    total = 0, palochkiTotal,
+    onIncrease, onDecrise, onDelete, addedPriborCount, onRazmer }) => {
 
   const [value, setValue] = React.useState([]);
   const [load, setLoad] = React.useState(true)
@@ -58,7 +50,6 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
  ])
 
   const classes = useStyleKorzina();
-
   const handleChange = event => {
     setValue(() => {
       return R.update(event.target.id, [
@@ -69,8 +60,8 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
 
 const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
 
-const onRadioChangedd = (id, price) =>  {
-  onRazmer(id, price)
+const onRadioChangedd = (id, price, product) =>  {
+  onRazmer({id, price, product})
 }
 
 return (
@@ -112,7 +103,7 @@ return (
               <FormControlLabel
                   value={name}
                   control={<Radio color="primary" name={String(idx + 1)}
-                  onChange={() => onRadioChangedd(id, priceDef)}/>}
+                  onChange={() => onRadioChangedd(id, priceDef, allContentfulProductPizza.edges)}/>}
                   label="Маленькая"
                   labelPlacement="bottom"
                   id={id}
@@ -123,7 +114,7 @@ return (
                   value={name + "a"}
                   control={<Radio color="primary"
                   name={String(idx + 1)}
-                  onChange={() => onRadioChangedd(id, price33)}/>}
+                  onChange={() => onRadioChangedd(id, price33, allContentfulProductPizza.edges)}/>}
                   label="Большая"
                   labelPlacement="bottom"
                   id={id}
@@ -150,17 +141,17 @@ return (
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
        
                 <button disabled={false}
-                  onClick={()=> onIncrease(id, radioValue, product)}
+                  onClick={()=> onIncrease( {id, radioValue, product} )}
                   className="btn btn-outline-success btn-sm">
                       <i className="fa fa-plus-circle fa-lg"></i>
                   </button>
-                  <button 
-                  onClick={()=> onDecrise(id, radioValue, product)}
+                  <button
+                  onClick={()=> onDecrise({ id, radioValue, product})}
                   className="btn btn-outline-warning btn-sm ml-2">
                       <i className="fa fa-minus-circle fa-lg"></i>
                   </button>
                   <button 
-                  onClick={()=> onDelete(id, radioValue, product)}
+                  onClick={()=> onDelete( { id, radioValue, product } )}
                   className="btn btn-outline-danger btn-sm ml-2">
                       <i className="fa fa-trash-o fa-lg"></i>
                   </button>
@@ -228,21 +219,12 @@ return (
 }
 
 const mapStateToProps = (state) => ({
-  items: state.shoppingCart.cartItems.cartItems,
+  items: state.shoppingCart.cartItems,
   product: state.app.product,
   palochkiTotal: state.shoppingCart.palochkiTotal,
-  total: state.shoppingCart.cartItems.orderTotal
+  total: state.shoppingCart.orderTotal
 })
- 
-// const mapStateToProps = ({shoppingCart: { cartItems, orderTotal}, setList: {product}, palochkiTotal}) => {
-//     return {
-//         items: cartItems,
-//         product: product,
-//         palochkiTotal,
-//         total: orderTotal
-//     };
-//   }
-   
+
 const mapDispatchToProps = {
         producSetsLoad: getProduct,
         onDecrise: removeCart,
@@ -251,10 +233,7 @@ const mapDispatchToProps = {
         onRazmer: pizzaSized,
         addedPriborCount: addPribor,
   };
-  
-
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
-
 
 export const querySets = graphql `
     {

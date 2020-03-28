@@ -3,25 +3,20 @@ import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { useStylesCart } from '../components/common/style';
-// import Spinner from '../components/spinner/spinner'
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
-import {getProduct} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import { productLoaded } from "../reducers/app";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const Gunkany = ({data: {allContentfulProductGunkan: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-    loadProduct, addedToCart, product}) => {
-  
- // const [load, setLoad] = React.useState(true)
+const Gunkany = ({data: {allContentfulProductGunkan: {edges: productsGunkan}, contentfulIconMenuLeftPanel: {image}},
+                     dispatch, product}) => {
+
  const classes = useStylesCart();
 
- useEffect(() => {
-   const data = setyProduct
-   loadProduct(data); // action push to reduxStore
-   //setLoad(false)
- }, [setyProduct, loadProduct])
+    useEffect(() => {
+        dispatch(productLoaded(productsGunkan)) // action push to reduxStore
+    }, [productsGunkan, dispatch])
 
 return ( 
    <section>
@@ -32,7 +27,7 @@ return (
        </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Гункан" slugCategogy="/gunkany" visibleItems={product}
-                       setAddedToCart={addedToCart} image={image} product={product}/>
+                       image={image} product={product}/>
     </Grid>
   </section>
     )
@@ -41,13 +36,8 @@ return (
 const mapStateToProps = (state) => ({
     product: state.app.product
 })
-
-const mapDispatchToProps = (dispatch) => ({
-    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-})
   
-export default connect(mapStateToProps, mapDispatchToProps)(Gunkany)
+export default connect(mapStateToProps, null)(Gunkany)
 
 export const query = graphql `
     {

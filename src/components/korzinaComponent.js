@@ -65,7 +65,7 @@ const TextTotal = styled.span `
 }
 `
 
-const Korzina = ({ cartItems: {orderTotal = 0, cartItems = []} }) => {
+const Korzina = ({ cartItems = [], orderTotal = 0}) => {
   const [count, setCount] = useState(0);
   const prevCount = usePrevious(count); // изначально 0 и сразу заришет 0
 
@@ -114,7 +114,8 @@ return (
 }
 
 const mapStateToProps = (state) => ({
-    cartItems: state.shoppingCart.cartItems
+    cartItems: state.shoppingCart.cartItems,
+    orderTotal: state.shoppingCart.orderTotal
 })
 
 // const mapStateToProps = ({ shoppingCart: {cartItems, orderTotal} }) => {

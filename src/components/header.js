@@ -140,7 +140,7 @@ const Header = () => {
           links.map(({name, link, id}) => (
           <li key={id} className="nav-item">
             <Link to={link}
-              activeClassName="active"
+              // activeClassName="active"
               className="nav-link">
             {name}
           </Link>
@@ -181,22 +181,25 @@ const Header = () => {
          <Divider />
          <List>
              <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000",
-              borderBottom: `2px solid tomato`,
-              }}>
+               backgroundColor: `#f0ecec`,
+               boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+             }}>
               <ListItemIcon>
               <Icon className="fa fa-percent" style={{ marginLeft: `3px`}} color="secondary" />
               </ListItemIcon>
               <ListItemText primary="Акции" />
             </ListItem>
             <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000",
-              borderBottom: `2px solid tomato`,
-              }}>
+              backgroundColor: `#f0ecec`,
+              boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+            }}>
               <ListItemIcon><RoomIcon color="primary"/></ListItemIcon>
               <ListItemText primary="Адрес" />
             </ListItem>
             <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000",
-              borderBottom: `2px solid tomato`,
-              }}>
+              backgroundColor: `#f0ecec`,
+              boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+            }}>
               <ListItemIcon><LocalTaxiIcon color="action"/></ListItemIcon>
               <ListItemText primary="Доставка" />
             </ListItem>
@@ -206,9 +209,8 @@ const Header = () => {
         {data.allContentfulIconMenuLeftPanel.edges.map(({node: iconButton})=> (
         <ListItem key={iconButton.id} button component={Link}
           activeStyle={{ color: "#000",
-          borderBottom: `1px solid tomato`,
-          backgroundColor: `#f0ecec`,
-          borderTop: `1px solid tomato`
+            backgroundColor: `#f0ecec`,
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
           }} to={`/${iconButton.slug}`}>
         <Icon className={classes.iconImg}>
           <Img fluid={iconButton.image.fluid} className={classes.iconImg} alt={iconButton.name}></Img>

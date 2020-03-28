@@ -1,25 +1,23 @@
 import {createReducer, createAction} from "redux-act";
 
-const productLoaded = createAction('PRODUCT_LOADED')
-const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA')
+export const productLoaded = createAction('PRODUCT_LOADED')
+export const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA')
 const _setLoading = createAction(`SET_LOADING`)
 
-export function setLoading(isLoading) {
+export const setLoading = (isLoading) => {
     const action = _setLoading(isLoading)
     return action
 }
 
 export const getProduct = (product) => async (dispatch) => {
-    // dispatch(_setLoading(true))
-    // console.log(await dispatch(productLoaded(product)))
     await dispatch(productLoaded(product))
 }
 
-export const getProductPizza = (productPizza) => disbatch => {
-    disbatch(productPizzaLoaded(productPizza))
-}
-
 const initialState = {
+    // product: {
+    //     sety: [],
+    //     pizza: []
+    // },
     product: [],
     productPizza: [],
     loading: false,
@@ -29,10 +27,10 @@ const initialState = {
 export default createReducer({
     [productLoaded]: (state, product) => ({...state, product}),
     [productPizzaLoaded]: (state, productPizza) => ({...state, productPizza}),
-    [setLoading]: (state, loading) => ({...state, loading})
+    [_setLoading]: (state, loading) => {
+        return {...state, loading}
+    }
 }, initialState)
-
-
 
 
 // export const productGet = () => (dispatch, getState) => {

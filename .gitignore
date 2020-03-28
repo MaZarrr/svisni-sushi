@@ -8,6 +8,12 @@ yarn-error.log*
 # keys directory
 keys/
 
+# options IDE
+nbproject/
+
+# test folders
+schema/
+
 # Runtime data
 pids
 *.pid

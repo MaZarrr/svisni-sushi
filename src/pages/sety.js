@@ -8,8 +8,7 @@ import { Grid } from "@material-ui/core";
 import filtersProducts from '../utils/filtersProducts'
 import loadable from '@loadable/component'
 import {useStylesCart} from "../components/common/style";
-import {getProduct} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import {productLoaded, setLoading} from "../reducers/app";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
@@ -17,15 +16,17 @@ const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
 })
 
 const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-    loadProduct, addedToCart, product, searchText, priceFilter, checkboxFilter, location, dispatch}) => {
+                  product, searchText, priceFilter, checkboxFilter, location, dispatch, loading}) => {
 
     // const [ listJsx, updateLustJsx ] = React.useState('')
-    // const [load, setLoad] = React.useState(true)
-    useEffect(() => {
-        loadProduct(setyProduct)
-    }, [setyProduct, loadProduct])
-
     const classes = useStylesCart();
+
+    useEffect(() => {
+        dispatch(setLoading(true))
+        dispatch(productLoaded(setyProduct))
+        dispatch(setLoading(false))
+    }, [setyProduct, dispatch])
+
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter)
 
 return (
@@ -39,10 +40,9 @@ return (
    </div>
   <CustomizedInputSearch location={location.pathname}/>
     <Grid container justify="center" >
-        {/*{ loading ? */}
-            <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
-                           setAddedToCart={addedToCart} image={image} product={product}/>
-                                   {/*: <Spinner/>}*/}
+        {!loading ? <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
+                                  image={image} product={product}/> : <Spinner/> }
+
     </Grid>
     </section>
    </>
@@ -55,15 +55,9 @@ const mapStateToProps = (state, props) => ({
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter
 })
+export default connect(mapStateToProps, null)(Sety)
 
-  const mapDispatchToProps = (dispatch) => ({
-      loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-      addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-    })
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sety)
-
-export const querySets = graphql `
+export const querySet = graphql `
     {
         allContentfulProduct {
           edges {
@@ -92,14 +86,3 @@ export const querySets = graphql `
           }
         }
     `
-
-
-// const mapStateToProps = ({
-//     setList: {
-//       product,
-//       searchText,
-//       priceFilter,
-//       checkboxFilter
-//     }
-//   }) => {
-//     return {product, searchText, priceFilte

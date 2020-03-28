@@ -2,7 +2,6 @@ import React, {useEffect} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-// import { producPizzaLoad, setAddedToCart, productRequested } from "../actions";
 
 import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
@@ -11,26 +10,16 @@ import filtersProducts from '../utils/filtersProducts'
 import * as R from 'ramda'
 
 import loadable from "@loadable/component";
-import {getProductPizza} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import {productPizzaLoaded} from "../reducers/app";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const Pizza = ({
-      data: {
-        allContentfulProductPizza: {
-          edges: pizzaProduct
-        },
-        contentfulIconMenuLeftPanel: {
-          image
-        }
-      },
-    producPizzaLoad,
-    productPizza, productRequested, searchText, priceFilter, loadProduct, addedToCart
-  }) => {
-  const [load, setLoad] = React.useState(true)
-  const classes = useStylesCart();
+const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image}},
+    productPizza, searchText, priceFilter, dispatch }) => {
+
+    const [load, setLoad] = React.useState(true)
+    const classes = useStylesCart();
 
     useEffect(() => {
           if(!R.isEmpty(productPizza)) {
@@ -41,18 +30,18 @@ const Pizza = ({
             return await pizzaProduct
           }
           ProductFetch()
-           .then((data) => loadProduct(data))
+           .then((data) => dispatch(productPizzaLoaded(data)))
            .then(() => setLoad(false))
-      }, [loadProduct, pizzaProduct, productPizza])
+      }, [productPizza, dispatch, pizzaProduct])
 
-const visibleItems = filtersProducts(productPizza, searchText, priceFilter)
+    const visibleItems = filtersProducts(productPizza, searchText, priceFilter)
 
- if(load) {
-    return <div style={{display: `flex`,
-    justifyContent: `center`,
-    alignItems: `center`}}>
-    <Spinner /></div>
-  }
+    if(load) {
+        return <div style={{display: `flex`,
+        justifyContent: `center`,
+        alignItems: `center`}}>
+        <Spinner /></div>
+    }
 
 return ( 
    <section>
@@ -67,7 +56,7 @@ return (
        <CustomizedInputSearch />
   <Grid container justify="center" >
         <CardsMenuPage titleCategory="Пицца" slugCategogy="/pizza" visibleItems={visibleItems}
-                       setAddedToCart={addedToCart} image={image} product={productPizza}/>
+                       image={image} product={productPizza}/>
     </Grid>
   </section>
     )
@@ -75,42 +64,26 @@ return (
 
 const mapStateToProps = (state, props) => ({
     productPizza: state.app.productPizza,
-    loading: state.app.loading,
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    loadProduct: (newProduct) => dispatch(getProductPizza(newProduct)),
-    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-})
+export default connect(mapStateToProps, null)(Pizza)
 
-//   const mapDispatchToProps = (dispatch) => {
-//     return {
-//     productRequested: () => dispatch(productRequested()),
-//     producPizzaLoad: (newProduct) => {
-//         dispatch(producPizzaLoad(newProduct))
-//     },
-//     setAddedToCart: (id, price, productPizza) => {
-//         dispatch(setAddedToCart(id, price, productPizza))
-//         }
-//     }
-// };
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Pizza)
-
-export const query = graphql `
+export const queryPizza = graphql `
     {
         allContentfulProductPizza  {
           edges {
             node {
                 id
-              slug
-              name
-              price
-              priceIn33cm
-              description
-              image {
+                slug
+                name
+                price
+                count
+                priceIn33cm
+                weight
+                description
+                image {
                   fluid(maxWidth: 300, maxHeight: 300, quality: 30) {
                     ...GatsbyContentfulFluid
                   }

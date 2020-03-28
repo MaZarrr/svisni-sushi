@@ -7,24 +7,20 @@ import Spinner from '../components/spinner/spinner'
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style';
 import loadable from "@loadable/component";
-import {getProduct} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import {productLoaded} from "../reducers/app";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const SmallRolls = ({data: {allContentfulProductKlassika: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-    loadProduct,
-    addedToCart, product
-  }) => {
+const SmallRolls = ({data: {allContentfulProductKlassika: {edges: productsSmallRolls}, contentfulIconMenuLeftPanel: {image}},
+    dispatch, product }) => {
   
   const [load, setLoad] = React.useState(true)
   const classes = useStylesCart();
 
-  useEffect(() => {
-    const data = setyProduct
-    loadProduct(data); // action push to reduxStore
-    setLoad(false)
-  }, [setyProduct, loadProduct])
+    useEffect(() => {
+        dispatch(productLoaded(productsSmallRolls)) // action push to reduxStore
+        setLoad(false)
+    }, [productsSmallRolls, dispatch])
 
 return ( 
    <section>
@@ -36,7 +32,7 @@ return (
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}
-                                   setAddedToCart={addedToCart} image={image} product={product}/> : <Spinner />
+                                   image={image} product={product}/> : <Spinner />
         }
         </Grid>
       </section>
@@ -46,13 +42,8 @@ return (
 const mapStateToProps = (state) => ({
     product: state.app.product
 })
-
-const mapDispatchToProps = (dispatch) => ({
-    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-})
   
-export default connect(mapStateToProps, mapDispatchToProps)(SmallRolls)
+export default connect(mapStateToProps, null)(SmallRolls)
 
 export const query = graphql `
     {
