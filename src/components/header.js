@@ -140,7 +140,7 @@ const Header = () => {
           links.map(({name, link, id}) => (
           <li key={id} className="nav-item">
             <Link to={link}
-              // activeClassName="active"
+              activeClassName="active"
               className="nav-link">
             {name}
           </Link>
