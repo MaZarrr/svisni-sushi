@@ -22,6 +22,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
     const classes = useStylesCart();
 
     useEffect(() => {
+        console.log(setyProduct)
         dispatch(setLoading(true))
         dispatch(productLoaded(setyProduct))
         dispatch(setLoading(false))

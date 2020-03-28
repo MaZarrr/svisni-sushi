@@ -1,11 +1,12 @@
 import * as R from 'ramda'
-import {createReducer, createAction} from "redux-act";
+import {createReducer, createAction, disbatch} from "redux-act";
 
 export const addedToCart = createAction('SET_ADDED_TO_CART')
 const removeFromCart = createAction('SET_REMOVE_FROM_CART')
 const allRemoveFromCart = createAction('ALL_SET_REMOVE_FROM_CART')
 const pizzaSize = createAction('PRODUCT_RAZMER')
 const addedPribor = createAction('PALOCHKI_ADDED')
+const addedSaleRoll = createAction('ADD_SALE_ROLL')
 
 // =====
 const updateCartItems = (cartItems, item, idx) => {
@@ -63,6 +64,10 @@ const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
 
 }
 
+// const saleRoll = (state) => {
+//     return R.a
+// }
+
 // action func
 export const addedCart = (data) => (dispatch) => dispatch(addedToCart(data))
 
@@ -78,6 +83,8 @@ export const addPribor = (count) => (dispatch, getStore) => {
     const priborTotal = palochkiTotal >= 2 ? palochkiTotal + parseInt(count) : palochkiTotal * 1 + 1
     dispatch(addedPribor(priborTotal))
 }
+
+export const saleRoll = (objRoll) => (disbatch) => disbatch(addedSaleRoll(objRoll))
 
 const initialState = {
     cartItems: [],
@@ -124,7 +131,18 @@ export default createReducer({
             cartItems: updateItemPizza
         }
     },
-    [addedPribor]: (state, palochkiTotal) => ({...state, palochkiTotal})
+    [addedPribor]: (state, palochkiTotal) => ({...state, palochkiTotal}),
+    [addedSaleRoll]: (state, objRoll) => {
+
+       return {
+           ...state,
+           orderTotal: state.orderTotal + objRoll.priceDef,
+           cartItems: R.append({
+               ...objRoll,
+               count: 0
+           }, state.cartItems)
+       }
+    }
 }, initialState)
 
 
