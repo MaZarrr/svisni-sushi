@@ -12,8 +12,10 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import {Link} from "gatsby";
 import React from "react";
 import {useStylesCart} from "./common/style";
+import {addedToCart} from "../reducers/shopping-cart";
+import {connect} from "react-redux";
 
-export default ({titleCategory, slugCategogy, visibleItems, image, product, setAddedToCart}) => {
+const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch}) => {
 
     const classes = useStylesCart()
     return (
@@ -27,7 +29,7 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                         <Card className={classes.card}>
                             <CardHeader
                                 avatar={
-                                    <Avatar aria-label="menu" className={classes.avatar}>
+                                    <Avatar aria-label="menu">
                                         <Img style={{width: 50}} fluid={image.fluid} alt={name} />
                                     </Avatar>
                                 }
@@ -46,7 +48,7 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                                 </Typography>
                                 <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
                                     <b><p>{weight}кг</p></b>
-                                    <b><p>{count}шт</p></b>
+                                    <b><p>{slugCategogy === '/pizza' ? `${1}шт` : `${count}шт`}</p></b>
                                 </Typography>
                                 <p>{`${price}₽`}</p>
                             </CardContent>
@@ -57,10 +59,10 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
                                     color="secondary"
                                     className={classes.button}
                                     startIcon={<ShoppingBasketIcon/>}
-                                    onClick={() => setAddedToCart(id, null, product)}>
+                                    onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
                                     Хочу </Button>
 
-                                {   slugCategogy === "/sety" ||
+                                {  slugCategogy === "/sety" ||
                                 slugCategogy === "/pizza" ||
                                 slugCategogy === "/branded-rolls" ||
                                 slugCategogy === "/hot-rolls" ?
@@ -80,3 +82,5 @@ export default ({titleCategory, slugCategogy, visibleItems, image, product, setA
         </>
     )
 }
+
+export default connect(null, null)(CardsMenuPage)

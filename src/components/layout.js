@@ -8,7 +8,6 @@ import loadable from '@loadable/component'
 const Footer = loadable(() => import('./footer'))
 
 const Layout = ({ children, location: {pathname} }) => {
-
 const classes = useStyleLayout();
 
   return (
@@ -21,8 +20,8 @@ const classes = useStyleLayout();
         </main>
       </div>
       {
-        pathname === "/" || pathname === "/sale" || pathname === "/adres-i-kontakty" ?
-        <Footer/> : ""
+        pathname !== "/korzina" && pathname !== "/order" ?
+        <Footer/> : ''
       }
     </>
   )

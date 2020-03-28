@@ -6,6 +6,10 @@ import React from "react";
 const drawerWidth = 190;
 
 export const useStylesCart = makeStyles(theme => ({
+    // root: {
+    //     border: `1px dotted #000`,
+    //     backgroundColor: `red`
+    // },
     titleH1: {
         fontFamily: 'Oswald',
         fontWeight: 700,
@@ -50,11 +54,9 @@ export const useStylesCart = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    avatar: {
-        backgroundColor: `white`,
-        background: `#fff`,
-        border: `1px dotted #000`
-    },
+    // colorDefault: {
+    //     backgroundColor: `red`
+    // },
     button: {
         margin: theme.spacing(1),
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -63,7 +65,7 @@ export const useStylesCart = makeStyles(theme => ({
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         color: 'white',
     },
-     buttonInfo: {
+    buttonInfo: {
         margin: theme.spacing(1),
         background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -84,7 +86,7 @@ export const useStyleOrder = makeStyles(theme => ({
     },
     gridContainer: {
         flexGrow: 1,
-        paddingLeft: theme.spacing(4),
+        paddingLeft: theme.spacing(3),
         width: `98%`
     },
     formControl: {
@@ -101,14 +103,14 @@ export const useStyleOrder = makeStyles(theme => ({
     infoGrid: {
         display: `flex`,
         justifyContent: `center`,
-        width: `100%`
+        width: `99%`
     },
     conatiner_info: {
         margin: `15px auto 15px 0`,
         border: `2px solid blue`,
         padding: 10,
         borderRadius: 10,
-        maxWidth: `300px`,
+        maxWidth: `250px`,
     },
     conatiner_info_delivery: {
         margin: `15px auto 15px 0`
@@ -116,12 +118,14 @@ export const useStyleOrder = makeStyles(theme => ({
     button: {
         background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
         color: 'white',
-        marginTop: 8,
+        marginTop: 10,
         textAlign: `start`,
-        width: `300px`,
+        padding: 20,
+        width: 350,
         [theme.breakpoints.down('sm')]: {
             maxWidth: '90%',
-            marginBottom: 60
+            padding: 50,
+            marginBottom: 30
         }
     },
     emty: {
@@ -130,14 +134,18 @@ export const useStyleOrder = makeStyles(theme => ({
     },
     payInfo: {
         margin: `20px 0 20px 0`,
-        fontSize: 20,
+        fontSize: 15,
         background: `#f0ecec`,
         padding: 20,
         boxShadow: `0px 4px 8px rgba(0, 0, 0, 0.5)`,
         maxWidth: '65%',
         [theme.breakpoints.down('sm')]: {
-            maxWidth: '90%'
+            maxWidth: '97%'
         }
+    },
+    label: {
+        color: `white`,
+        fontSize: 20
     }
 }))
 
@@ -473,19 +481,14 @@ export const useStyleHeader = makeStyles(theme => ({
     iconDiv: {
         fontFamily: 'Neucha, Comfortaa, cursive',
         fontWeight: 800
-    },
-    // topBarInfo: {
-    //     backgroundColor: `#303032`,
-    //     padding: 8,
-    //     [theme.breakpoints.down('769')]: {
-    //         display: 'none',
-    //     }
-    // }
+    }
 }))
-//
+
 export const useStyleLayout = makeStyles(theme => ({
     root: {
         maxWidth: `1440px`,
+        backgroundColor: "#fafafa",
+        minHeight: `100vh`,
         [theme.breakpoints.down('769')]: {
             paddingLeft: '50px'
         },

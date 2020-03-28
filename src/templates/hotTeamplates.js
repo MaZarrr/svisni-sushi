@@ -9,7 +9,7 @@ const HotItem = loadable(() => import('../components/HotItem'),{
     fallback: <Spinner />
 })
 
-const HotTeamplates = ({data: {contentfulProductHotRolly}, addedToCart, product}) => {
+const HotTeamplates = ({data: {contentfulProductHotRolly}, addedToCart}) => {
       
  return  (
      <>
@@ -18,7 +18,18 @@ const HotTeamplates = ({data: {contentfulProductHotRolly}, addedToCart, product}
         price={contentfulProductHotRolly.price}
         description={contentfulProductHotRolly.description}
         image={contentfulProductHotRolly.image.fluid}
-         added={() => addedToCart(contentfulProductHotRolly.id, null, product)}
+        added={() => addedToCart({id: contentfulProductHotRolly.id, price: null,
+           product: [{
+               node: {
+                   id: contentfulProductHotRolly.id,
+                   name: contentfulProductHotRolly.name,
+                   price: contentfulProductHotRolly.price,
+                   count: contentfulProductHotRolly.count,
+                   image: contentfulProductHotRolly.image
+               }
+           }
+           ]}
+       )}
         weight={contentfulProductHotRolly.weight}
         count={contentfulProductHotRolly.count}
     >
@@ -26,16 +37,12 @@ const HotTeamplates = ({data: {contentfulProductHotRolly}, addedToCart, product}
     </>
     )}
 
-const mapStateToProps = (state) => ({
-    product: state.app.product
-})
-
 const mapDispatchToProps = (dispatch) => ({
     addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotTeamplates)
+export default connect(null, mapDispatchToProps)(HotTeamplates)
 
 export const query = graphql ` 
     query ($slug: String!) {

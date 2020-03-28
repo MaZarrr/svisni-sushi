@@ -8,24 +8,21 @@ import { useStylesCart } from '../components/common/style';
 import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
-import {getProduct} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import { productLoaded } from "../reducers/app";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-    loadProduct, addedToCart, product, searchText, priceFilter
-  }) => {
+const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
+    dispatch, product, searchText, priceFilter }) => {
   
   const classes = useStylesCart();
   const [load, setLoad] = React.useState(true)
 
     useEffect(() => {
-        const data = setyProduct
-        loadProduct(data); // action push to reduxStore
+        dispatch(productLoaded(productsBrandedRolls)) // action push to reduxStore
         setLoad(false)
-      }, [setyProduct, loadProduct])
+    }, [productsBrandedRolls, dispatch])
 
       const visibleItems = filtersProducts(product, searchText, priceFilter)
 
@@ -47,8 +44,7 @@ return (
    <CustomizedInputSearch />
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls" visibleItems={visibleItems}
-                       setAddedToCart={addedToCart} image={image} product={product}/>
-    )})}
+                       image={image} product={product}/>
     </Grid>
   </section>
     )
@@ -59,15 +55,10 @@ const mapStateToProps = (state, props) => ({
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter
 })
-
-const mapDispatchToProps = (dispatch) => ({
-    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-})
   
-export default connect(mapStateToProps, mapDispatchToProps)(BrandedRolls)
+export default connect(mapStateToProps, null)(BrandedRolls)
 
-export const query = graphql `
+export const queryBrandedRolls = graphql `
     {
         allContentfulProductSlognyeRolly {
           edges {

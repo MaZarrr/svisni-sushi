@@ -4,26 +4,19 @@ import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style'
-import Spinner from '../components/spinner/spinner'
 import loadable from "@loadable/component";
-import {getProduct} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import { productLoaded } from "../reducers/app";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const Kombo = ({data: {allContentfulProductKombo: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-    loadProduct,
-    addedToCart, product
-  }) => {
+const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: {image}},
+    dispatch, product }) => {
 
- const [load, setLoad] = React.useState(true)
- const classes = useStylesCart();
+  const classes = useStylesCart();
 
- useEffect(() => {
-   const data = setyProduct
-   loadProduct(data); // action push to reduxStore
-   setLoad(false)
- }, [setyProduct, loadProduct])
+    useEffect(() => {
+        dispatch(productLoaded(productsKombo)) // action push to reduxStore
+    }, [productsKombo, dispatch])
 
 return (
     <section>
@@ -34,10 +27,8 @@ return (
                 fontWeight: 600}}>Комбо</h1>
         </div>
     <Grid container justify="center">
-        {
-            !load ? <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
-                                   setAddedToCart={addedToCart} image={image} product={product}/> : <Spinner />
-        }
+        <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
+                       image={image} product={product}/>
   </Grid>
 </section>
     )
@@ -46,15 +37,10 @@ return (
 const mapStateToProps = (state) => ({
     product: state.app.product
 })
-
-const mapDispatchToProps = (dispatch) => ({
-    loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-    addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-})
   
-export default connect(mapStateToProps, mapDispatchToProps)(Kombo)
+export default connect(mapStateToProps, null)(Kombo)
 
-export const querySets = graphql `
+export const queryKombo = graphql `
     {
         allContentfulProductKombo {
           edges {

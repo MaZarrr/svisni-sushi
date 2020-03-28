@@ -1,13 +1,13 @@
 import * as R from 'ramda'
 import {createReducer, createAction} from "redux-act";
 
-const addedToCart = createAction('SET_ADDED_TO_CART')
+export const addedToCart = createAction('SET_ADDED_TO_CART')
 const removeFromCart = createAction('SET_REMOVE_FROM_CART')
 const allRemoveFromCart = createAction('ALL_SET_REMOVE_FROM_CART')
 const pizzaSize = createAction('PRODUCT_RAZMER')
-// const totalPrice = createAction('TOTAL_PRICE_ITEMS')
 const addedPribor = createAction('PALOCHKI_ADDED')
 
+// =====
 const updateCartItems = (cartItems, item, idx) => {
     // обновлуние уже существующего элемсента в корзине
     if(item.count === 0) {
@@ -44,22 +44,12 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.node.pric
 }
 
 const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
-
-    const {app: {
-        product,
-        productPizza
-    }, shoppingCart: { cartItems: {cartItems = []} } } = state
-
+    const {cartItems} = state
+    // console.log(categoryName)
     const sety = categoryName.find(({node: productCategory}) => productCategory.id === setId);
     const itemIndex = cartItems.findIndex(({id}) => id === setId);
     const item = cartItems[itemIndex];
 
-    //   const selects = {
-    //     local: false,
-    //     dispathes: 'Redux'
-    // }
-
-    // const defaultOptions = { local: true, value: 42 }
     const totalPrice = R.compose(
         R.sum,
         R.pluck('total')
@@ -73,57 +63,14 @@ const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
 
 }
 
-export const addedCart = (id, pizzaSize, categoryName) => (dispatch, getStore) => {
-    const state = getStore()
+// action func
+export const addedCart = (data) => (dispatch) => dispatch(addedToCart(data))
 
-    const res = updateOder(state, id, 1, pizzaSize, categoryName)
-    dispatch(addedToCart(res))
-}
+export const removeCart = (data) => (dispatch) => dispatch(removeFromCart(data))
 
-export const removeCart = (id, pizzaSize, categoryName) => (dispatch, getStore) => {
-    const state = getStore()
+export const allRemoveCart = (data) => (dispatch) => dispatch(allRemoveFromCart(data))
 
-    const res = updateOder(state, id, -1, pizzaSize, categoryName)
-    dispatch(addedToCart(res))
-}
-
-export const allRemoveCart = (id, pizzaSize, categoryName) => (dispatch, getStore) => {
-    const state = getStore()
-    const item = state.shoppingCart.cartItems.cartItems.find((el) => el.id === id)
-    const res = updateOder(state, id, -item.count, pizzaSize, categoryName)
-    dispatch(allRemoveFromCart(res))
-}
-
-export const pizzaSized = (id, sizePrice) => (dispatch, getStore) => {
-    const state = getStore()
-
-    const {app: {product}, shoppingCart: { cartItems: {cartItems} } } = state
-
-    const pizza = product.find(({node: pizzaId}) => pizzaId.id === id);
-    const itemIndexPizza = cartItems.findIndex((data) => data.id === id)
-    const itemPizza = cartItems[itemIndexPizza]
-//
-  const updateItemPizza = R.update(itemIndexPizza, {
-      id: id,
-      name: pizza.node.name,
-      priceDef: pizza.node.price,
-      price33: pizza.node.priceIn33cm,
-      radioValue: parseInt(sizePrice) * 1,
-      image: {...pizza.node.image.fluid},
-      count: itemPizza.count,
-      total: itemPizza.count * parseInt(sizePrice)
-  })(cartItems)
-
-  const totalPrice = R.compose(
-    R.sum,
-    R.pluck('total')
-  )(updateItemPizza)
-
-    dispatch(pizzaSize({
-        orderTotal: totalPrice * 1,
-        cartItems: updateItemPizza
-    }))
-}
+export const pizzaSized = (data) => (dispatch) => dispatch(pizzaSize(data))
 
 export const addPribor = (count) => (dispatch, getStore) => {
     const {shoppingCart: {palochkiTotal}} = getStore()
@@ -134,45 +81,51 @@ export const addPribor = (count) => (dispatch, getStore) => {
 
 const initialState = {
     cartItems: [],
+    orderTotal: 0,
     palochkiTotal: 0
 }
 
 export default createReducer({
-    [addedToCart]: (state, cartItems) => ({...state, cartItems}),
-    [removeFromCart]: (state, cartItems) => ({...state, cartItems}),
-    [allRemoveFromCart]: (state, cartItems) => ({...state, cartItems}),
-    [pizzaSize]: (state, cartItems) => ({...state, cartItems}),
+    [addedToCart]: (state, {id, productPrice, product}) => {
+        const res = updateOder(state, id, 1, productPrice, product)
+        return {...state, cartItems: res.cartItems, orderTotal: res.orderTotal}},
+    [removeFromCart]: (state, data) => {
+        const {cartItems, orderTotal} = updateOder(state, data.id, -1, data.productPrice, data.product)
+        return { ...state, cartItems, orderTotal }
+    },
+    [allRemoveFromCart]: (state, data) => {
+        const item = state.cartItems.find((el) => el.id === data.id)
+        const {cartItems, orderTotal} = updateOder(state, data.id, -item.count, data.radioValue, data.product)
+        return { ...state, cartItems, orderTotal}
+    },
+    [pizzaSize]: (state, {id, price, product}) => {
+        const pizza = product.find(({node: pizzaId}) => pizzaId.id === id);
+        const itemIndexPizza = state.cartItems.findIndex((data) => data.id === id)
+        const itemPizza = state.cartItems[itemIndexPizza]
+
+        const updateItemPizza = R.update(itemIndexPizza, {
+            id: id,
+            name: pizza.node.name,
+            priceDef: pizza.node.price,
+            price33: pizza.node.priceIn33cm,
+            radioValue: parseInt(price) * 1,
+            image: {...pizza.node.image.fluid},
+            count: itemPizza.count,
+            total: itemPizza.count * parseInt(price)
+        })(state.cartItems)
+
+        const totalPrice = R.compose(
+            R.sum,
+            R.pluck('total')
+        )(updateItemPizza)
+
+        return {
+            orderTotal: totalPrice,
+            cartItems: updateItemPizza
+        }
+    },
     [addedPribor]: (state, palochkiTotal) => ({...state, palochkiTotal})
 }, initialState)
-
-
-
-
-
-
-//     if(action.type === 'PALOCHKI_ADDED') {
-//       return {
-//         palochkiTotal: state.palochkiTotal >= 2 ? state.palochkiTotal + parseInt(action.payload) : state.palochkiTotal * 1 + 1,
-//         setList: updateSetList(state, action),
-//         shoppingCart: updateShoppingCart(state, action),
-//         contacts: contactUser(state, action)
-
-  //         return {
-  //             cartItems: [],
-  //             orderTotal: 0,
-  //             palochkiTotal: 0
-  //         };
-  //     }
-  //
-
-
-
-
-
-
-
-
-
 
 
 

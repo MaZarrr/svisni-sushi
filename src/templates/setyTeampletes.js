@@ -6,8 +6,7 @@ import {addedCart} from "../reducers/shopping-cart";
 
 const SetyItem = loadable(() => import('../components/SetyItem'))
 
-const SetyTeamplate = ({
-    data: {contentfulProduct}, addedToCart, product}) => {
+const SetyTeamplate = ({data: {contentfulProduct}, addedToCart}) => {
 
  return  (
      <>
@@ -19,20 +18,27 @@ const SetyTeamplate = ({
         weight={contentfulProduct.weight}
         count={contentfulProduct.count}
         image={contentfulProduct.image.fluid}
-         added={() => addedToCart(contentfulProduct.id, null, product)}
+        added={() => addedToCart({id: contentfulProduct.id, price: null,
+            product: [{
+                node: {
+                    id: contentfulProduct.id,
+                    name: contentfulProduct.name,
+                    price: contentfulProduct.price,
+                    count: contentfulProduct.count,
+                    image: contentfulProduct.image
+                }
+            }
+            ]}
+        )}
     > </SetyItem>
     </>
     )}
-
-const mapStateToProps = (state) => ({
-    product: state.app.product,
-})
 
 const mapDispatchToProps = (dispatch) => ({
     addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetyTeamplate)
+export default connect(null, mapDispatchToProps)(SetyTeamplate)
 
 export const query = graphql ` 
     query ($slug: String!) {

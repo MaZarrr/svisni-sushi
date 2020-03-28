@@ -113,7 +113,7 @@ const FooterUl = styled.ul `
 
 `
 
-export default () => { 
+export default () => {
  
  const data = useStaticQuery(graphql `
   {
