@@ -25,11 +25,12 @@ import {
     setNameUser,
     setPhoneUser, setTimeDeliveryUser
 } from "../reducers/contacts-info";
+import {defaultTo} from "ramda";
 
-const Order = ({items, palochkiTotal, nameUser, location, phoneUser, deliverySity, deliveryAdress, homeNumber,
+const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, 
   setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery}) => {
-    
+
 const [open, setOpen] = useState(false);
 
 const [age, setAge] = useState('');
@@ -72,14 +73,19 @@ const handleSubmit = (ev) => {
         Общая цена ${elem.total},
         Количество: ${elem.count}`);
     });
-    if(location.state.cart) {
-      data.append('chopsticks', palochkiTotal);
-    }
-    if(delivery !== "Самовывоз" && total <= stateDeliveryPrice.deliverySalePrice) {
-      const deliveryTotalPrice = total + stateDeliveryPrice.priceDel
+    data.append('chopsticks', palochkiTotal);
+     const def = defaultTo({itemCartSale:{
+         priceDef: 1,
+         radioValue: 80
+         }}, itemCartSale)
+
+    const deliveryTotalPrice = total + stateDeliveryPrice.priceDel
+    if(delivery !== "Самовывоз" && (def.priceDef === 0 || def.radioValue === 79) ) {
       data.append('totalPrice', `Цена с доставкой ${deliveryTotalPrice} руб.`);
+    } else if(delivery !== "Самовывоз" && total <= stateDeliveryPrice.deliverySalePrice) {
+        data.append('totalPrice', `Цена + c доставкой ${deliveryTotalPrice} руб.`);
     } else {
-       data.append('totalPrice', total);
+        data.append('totalPrice', total);
     }
     data.append('adress', stateDeliveryPrice.name);
     xhr.open(form.method, form.action);
@@ -92,11 +98,6 @@ const handleSubmit = (ev) => {
       }
     };
     xhr.send(data);
-    
-    // const dataOrderInfo = {
-    //   name: ev.target.name.value, 
-    //   phone: ev.target.phone.value
-    // }
 
     navigate('/order-processed')
     // navigate('/order-processed', {state: dataOrderInfo || {name: ":)", phone: "указанному"}  })
@@ -146,6 +147,7 @@ const isEmpty = (obj) => {
   return false
 }
 
+const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
 return (
     <section >
     <SEO title="Оформление заказа" />
@@ -454,15 +456,29 @@ return (
             { delivery !== "Самовывоз" && !isEmpty(stateDeliveryPrice) &&
             <>
             <div>
-                <p>{total <= stateDeliveryPrice.deliverySalePrice ? <>
-                  Для бесплатной доставки в {stateDeliveryPrice.name} сделайте заказ еще минимум на <b> + {stateDeliveryPrice.deliverySalePrice - total} ₽</b></>
-                  : ''}</p>
-             </div>
+                { itemCartSale === undefined &&
+                    <p>{total <= stateDeliveryPrice.deliverySalePrice ? <>
+                            Для бесплатной доставки в {stateDeliveryPrice.name} сделайте заказ еще минимум
+                            на <b> + {stateDeliveryPrice.deliverySalePrice - total} ₽</b></>
+                        : ""}</p>
+                }
+                { itemCartSale !== undefined &&
+                    <p>{`Доставка с акцией + ${stateDeliveryPrice.priceDel}`}</p>
+                }
+                </div>
               <hr></hr>
               <div>
-               <p>{total <= stateDeliveryPrice.deliverySalePrice ? <><b>Доставка:</b> + {stateDeliveryPrice.priceDel} ₽</> : <b>Доставка бесплатно</b>}</p>
-                <b>{total >= stateDeliveryPrice.deliverySalePrice ? 
-                `Итого к оплате: ${total} ₽` : `Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
+                  { itemCartSale === undefined &&
+                      <p>{total <= stateDeliveryPrice.deliverySalePrice ? <>
+                          <b>Доставка:</b> + {stateDeliveryPrice.priceDel} ₽</> : <b>Доставка бесплатно</b>}</p>
+                  }
+                  { itemCartSale !== undefined &&
+                      <b>{`Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
+                  }
+                  { itemCartSale === undefined &&
+                      <b>{total >= stateDeliveryPrice.deliverySalePrice ?
+                      `Итого к оплате: ${total} ₽` : `Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
+                  }
              </div>
              </>
             }
@@ -490,8 +506,8 @@ return (
   )
 }
 
-const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}, contactsUser: {
-    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword}, palochkiTotal}) => ({
+const mapStateToProps = ({shoppingCart: {cartItems, orderTotal, palochkiTotal}, contactsUser: {
+    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword}}) => ({
     items: cartItems,
     total: orderTotal,
     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber,

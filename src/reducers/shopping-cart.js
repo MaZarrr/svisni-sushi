@@ -6,6 +6,10 @@ const removeFromCart = createAction('SET_REMOVE_FROM_CART')
 const allRemoveFromCart = createAction('ALL_SET_REMOVE_FROM_CART')
 const pizzaSize = createAction('PRODUCT_RAZMER')
 const addedPribor = createAction('PALOCHKI_ADDED')
+const addedSaleRoll = createAction('ADD_SALE_ROLL')
+const addedSalePizza = createAction('ADD_SALE_PIZZA')
+const deletePizzaDarom = createAction('DEL_PIZZA_DAROM')
+const deleteRollSale = createAction('DEL_ROLL_SALE')
 
 // =====
 const updateCartItems = (cartItems, item, idx) => {
@@ -72,12 +76,25 @@ export const allRemoveCart = (data) => (dispatch) => dispatch(allRemoveFromCart(
 
 export const pizzaSized = (data) => (dispatch) => dispatch(pizzaSize(data))
 
-export const addPribor = (count) => (dispatch, getStore) => {
-    const {shoppingCart: {palochkiTotal}} = getStore()
+export const addPribor = (count) => (dispatch) => {
+    // const {shoppingCart: {palochkiTotal}} = getStore()
 
-    const priborTotal = palochkiTotal >= 2 ? palochkiTotal + parseInt(count) : palochkiTotal * 1 + 1
-    dispatch(addedPribor(priborTotal))
+    // const priborTotal = palochkiTotal >= 2 ? palochkiTotal + parseInt(count) : palochkiTotal * 1 + 1
+    dispatch(addedPribor(count))
 }
+
+export const saleRoll = (objRoll) => async (dispatch) => {
+   //  const {app: {product}} = getStore()
+   // const rr = R.append({node: {
+   //      ...objRoll,
+   //      id: `${objRoll.id}saleRoll`
+   //  }}, product)
+   //  console.log(rr)
+    await dispatch(addedSaleRoll(objRoll))
+}
+export const salePizza = (objPizza) => async (dispatch) => await dispatch(addedSalePizza(objPizza))
+export const deletePizza = (id) => (dispatch) => dispatch(deletePizzaDarom(id))
+export const deleteRoll = (id) => (dispatch) => dispatch(deleteRollSale(id))
 
 const initialState = {
     cartItems: [],
@@ -86,11 +103,11 @@ const initialState = {
 }
 
 export default createReducer({
-    [addedToCart]: (state, {id, productPrice, product}) => {
-        const res = updateOder(state, id, 1, productPrice, product)
+    [addedToCart]: (state, {id, radioValue, product}) => {
+        const res = updateOder(state, id, 1, radioValue, product)
         return {...state, cartItems: res.cartItems, orderTotal: res.orderTotal}},
     [removeFromCart]: (state, data) => {
-        const {cartItems, orderTotal} = updateOder(state, data.id, -1, data.productPrice, data.product)
+        const {cartItems, orderTotal} = updateOder(state, data.id, -1, data.radioValue, data.product)
         return { ...state, cartItems, orderTotal }
     },
     [allRemoveFromCart]: (state, data) => {
@@ -124,7 +141,51 @@ export default createReducer({
             cartItems: updateItemPizza
         }
     },
-    [addedPribor]: (state, palochkiTotal) => ({...state, palochkiTotal})
+    [addedPribor]: (state, count) => {
+        const priborTotal = state.palochkiTotal > 1 ? state.palochkiTotal + parseInt(count) : state.palochkiTotal * 1 + 1
+        return {
+            ...state,
+            palochkiTotal: priborTotal
+        }
+    },
+    [addedSaleRoll]: (state, objRoll) => {
+       return {
+           ...state,
+           orderTotal: state.orderTotal + objRoll.radioValue,
+           cartItems: R.append({
+               ...objRoll,
+               // id: `${objRoll.id}saleRoll`,
+               priceSale: 0,
+               textRollSale: "Филадельфия за 79!"
+           }, state.cartItems)
+       }
+    },
+    [addedSalePizza]: (state, objPizza) => {
+        return {
+            ...state,
+            cartItems: R.append({
+                ...objPizza,
+                pizzaSale: true,
+                textPizza: "Бесплатная пицца!",
+                count: 0
+            }, state.cartItems)
+        }
+    },
+    [deletePizzaDarom]: (state, id) => {
+        const pizzaDaromIndex = state.cartItems.findIndex((el) => el.id === id)
+        return {
+            ...state,
+            cartItems: R.remove(pizzaDaromIndex, 1, state.cartItems)
+        }
+    },
+    [deleteRollSale]: (state, id) => {
+        const rollSaleIndex = state.cartItems.findIndex((el) => el.id === id)
+        return {
+            ...state,
+            orderTotal: state.orderTotal - 79,
+            cartItems: R.remove(rollSaleIndex, 1, state.cartItems)
+        }
+    }
 }, initialState)
 
 
