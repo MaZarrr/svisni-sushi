@@ -196,7 +196,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
     const onRadioChangedd = (id, price, product) =>  {
   onRazmer({id, price, product})
 }
-
+//
 return (
   <>
   <SEO title="Корзина" 
