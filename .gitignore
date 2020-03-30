@@ -8,11 +8,11 @@ yarn-error.log*
 # keys directory
 keys/
 
-# options IDE
-nbproject/
-
 # test folders
 schema/
+reduxcacheaC90s3/
+nbproject/
+.idea/
 
 # Runtime data
 pids
