@@ -21,14 +21,14 @@ import styled from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
 import Spinner from './spinner/spinner'
 import {useStyleCardIndexPage} from "./common/style";
-import {getProduct} from "../reducers/app";
-import {addedCart} from "../reducers/shopping-cart";
+import {productLoaded} from "../reducers/app";
+import {addedToCart} from "../reducers/shopping-cart";
 
 const AvatarWrapp = styled(Avatar) `
 background: ${props => props.color};
 `
 
-const RecipeReviewCard = ({loadProduct, addedToCart, product}) => {
+const RecipeReviewCard = ({product, dispatch}) => {
 
   const classes = useStyleCardIndexPage()
   const [expanded, setExpanded] = React.useState({nameCart: false});
@@ -60,9 +60,9 @@ const RecipeReviewCard = ({loadProduct, addedToCart, product}) => {
   `)
 
   useEffect(() => {
-    loadProduct(edges)
+    dispatch(productLoaded(edges))
     setLoad(false)
-  }, [edges, loadProduct])
+  }, [edges, dispatch])
 
   const handleExpandClick = (id) => {
     setExpanded({[id]: !expanded[id]});
@@ -113,7 +113,7 @@ const RecipeReviewCard = ({loadProduct, addedToCart, product}) => {
         color="secondary"
         className={classes.button}
         startIcon={<ShoppingBasketIcon />}
-        onClick={()=> addedToCart(homeProduct.id, null, product)}
+        onClick={() => dispatch(addedToCart({id: homeProduct.id, productPrice: homeProduct.price, product}))}
       >
         Хочу!
       </Button>
@@ -155,10 +155,10 @@ const mapStateToProps = (state) => ({
   product: state.app.product
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-  addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-})
+// const mapDispatchToProps = (dispatch) => ({
+//   loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
+//   addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeReviewCard)
+export default connect(mapStateToProps, null)(RecipeReviewCard)
 

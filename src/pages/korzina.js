@@ -116,7 +116,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
 
     const test = () => {
         const cart = items.filter((el) => {
-            return allContentfulProductHotRolly.edges.concat(allContentfulProductSlognyeRolly.edges, allContentfulProductKlassika.edges).find((data) => data.node.id === el.id)
+            return allContentfulProductHotRolly.edges.concat(allContentfulProductSlognyeRolly.edges, allContentfulProductKlassika.edges, allContentfulProductGunkan.edges, allContentfulProductSushi.edges).find((data) => data.node.id === el.id)
         })
 
         const res = cart.findIndex((data) => data.name === "Филадельфия one")
@@ -168,6 +168,8 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
                                                 className="btn btn-success btn-sm">
                                             Филадельфия за 79!
                                         </button>
+
+
                                     </Typography>
                                 </Grid>
                             </Grid>
@@ -217,7 +219,7 @@ return (
           <Typography variant="h6"><b>Товар</b></Typography>
           { !load ? items.map((item, idx) => {
 
-        const {id, name, count, total, image, price33, radioValue, priceDef, textRollSale, textPizza} = item // radioPrice
+        const {id, name, count, total, image, price33, radioValue, priceDef, textRollSale, textPizza, pizzaSale} = item // radioPrice
 
         return (
           <Paper key={id} className={classes.paper}>
@@ -282,13 +284,20 @@ return (
                     <i className="fa fa-minus-circle fa-lg"></i>
                       </button> </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
 
-                      { disabled() && priceDef === 79 &&
+                      { radioValue > 78 &&
                       <button
-                          onClick={()=> onDelete( { id, radioValue, product } )}
+                          onClick={radioValue !== 79 ? ()=> onDelete( { id, radioValue, product } ) : () => deleteFilaSale(id)}
                           className="btn btn-outline-danger btn-sm ml-2">
                           <i className="fa fa-trash-o fa-lg"></i>
                       </button>
                       }
+                    {pizzaSale &&
+                    <button
+                        onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
+                        className="btn btn-outline-danger btn-sm ml-2">
+                        <i className="fa fa-trash-o fa-lg"></i>
+                    </button>
+                    }
                   <CssBaseline />
               </Grid>
               </Grid>
@@ -311,7 +320,7 @@ return (
     <Grid container className={classes.bottomHead}>
     <Grid item xs={12}>
      <Paper elevation={3} style={{padding: 20}}>
-        { addPanelPribors && !pizzaSaleFlag &&
+        { addPanelPribors  &&
           <div className="container_pribor mb-2" >
             <div className="d-flex flex-column">
               <p style={{fontSize: `16px`}}>Количество <br></br> приборов(палочки)</p>
