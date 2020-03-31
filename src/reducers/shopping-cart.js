@@ -10,7 +10,7 @@ const addedSaleRoll = createAction('ADD_SALE_ROLL')
 const addedSalePizza = createAction('ADD_SALE_PIZZA')
 const deletePizzaDarom = createAction('DEL_PIZZA_DAROM')
 const deleteRollSale = createAction('DEL_ROLL_SALE')
-
+export const clockSale = createAction('CLOCK_HAPPY_SALE')
 // =====
 const updateCartItems = (cartItems, item, idx) => {
     // обновлуние уже существующего элемсента в корзине
@@ -137,6 +137,7 @@ export default createReducer({
         )(updateItemPizza)
 
         return {
+            ...state,
             orderTotal: totalPrice,
             cartItems: updateItemPizza
         }
@@ -185,6 +186,9 @@ export default createReducer({
             orderTotal: state.orderTotal - 79,
             cartItems: R.remove(rollSaleIndex, 1, state.cartItems)
         }
+    },
+    [clockSale]: (state) => {
+        console.log('clockSaleReducer')
     }
 }, initialState)
 

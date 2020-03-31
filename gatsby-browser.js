@@ -1,13 +1,21 @@
+// import {clockSale} from "./src/reducers/shopping-cart";
+// const {clockSale} = require('./src/reducers/shopping-cart').default
 const createStore  = require('./src/state/createStore').default
-const { Provider } = require('react-redux'); 
+const { Provider } = require('react-redux');
 const React = require('react');
 const Layout = require('./src/components/layout').default
 // const Spinner = require('./src/components/spinner/spinner').default
+
 
 exports.wrapPageElement = ({element, props}) => {
     // console.log(props)
     return <Layout {...props}>{element}</Layout>
 }
+
+// connect(null, null)(exports.onClientEntry = () => {
+//     console.log("We've started!")
+// })
+
 
 exports.wrapRootElement = ({element}) => {
     return (
@@ -16,6 +24,11 @@ exports.wrapRootElement = ({element}) => {
         </Provider>
         )
     }
+// exports.onInitialClientRender = async () => {
+//     const  {dispatch} = createStore
+//     const clock = await dispatch(clockSale)
+//     console.log(clock)
+// }
 //     exports.onRouteUpdate = (props) => {
 //     console.log(props)
 //         Spinner()
