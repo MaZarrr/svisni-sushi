@@ -17,7 +17,7 @@ const classes = useStyleLayout();
   // console.log(day)
   // if(time < 15 && (day === 'Tue' || day === 'Mon')) {
   //   console.log('Акция счастливые часы')
-  // }
+  // } //
   return (
     <>
     <Header />
