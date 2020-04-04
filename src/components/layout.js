@@ -10,14 +10,7 @@ const Footer = loadable(() => import('./footer'))
 
 const Layout = ({ children, location: {pathname} }) => {
 const classes = useStyleLayout();
-  //
-  // console.log(moment().format('HH: MMMM'))
-  // const time = moment().format('HH')
-  // const day = moment().format('ddd')
-  // console.log(day)
-  // if(time < 15 && (day === 'Tue' || day === 'Mon')) {
-  //   console.log('Акция счастливые часы')
-  // } //
+
   return (
     <>
     <Header />

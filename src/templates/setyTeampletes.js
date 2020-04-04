@@ -60,6 +60,17 @@ export const query = graphql `
   `
 
 
+// "@mangoart/gatsby-plugin-purechat": "^1.0.2",
+// {
+//     resolve: `@mangoart/gatsby-plugin-purechat`,
+//         options: {
+//     enabled: true,
+//         websiteId: `4ea5ea00-517c-43e9-bb61-33f55324d3cc`,
+// // },
+// }
+
+
+
 // "react-virtualized-auto-sizer": "^1.0.2",
 //     "react-window": "^1.8.5",
 //     "react-window-infinite-loader": "^1.0.5",

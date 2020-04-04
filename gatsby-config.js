@@ -112,13 +112,6 @@ module.exports = {
           endDate: new Date(),
         },
       },
-    },
-    {
-      resolve: `@mangoart/gatsby-plugin-purechat`,
-      options: {
-        enabled: true,
-        websiteId: `4ea5ea00-517c-43e9-bb61-33f55324d3cc`,
-      },
     }
   ]
 }
