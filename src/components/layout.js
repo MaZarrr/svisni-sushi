@@ -4,16 +4,26 @@ import Header from "./header"
 import "./layout.css"
 import {useStyleLayout} from "./common/style";
 import loadable from '@loadable/component'
-// import moment from "moment";
+import moment from "moment";
+import {connect} from "react-redux";
+import {clockSale} from "../reducers/shopping-cart";
 
 const Footer = loadable(() => import('./footer'))
 
-const Layout = ({ children, location: {pathname} }) => {
+const Layout = ({ children, location: {pathname}, dispatch, clockSaleBool }) => {
 const classes = useStyleLayout();
+
+React.useEffect(() => {
+const time = moment().format('HH')
+  const day = moment().format('ddd')
+  if(time < 16 && time > 10 && (day === 'Tue' || day === 'Mon')) {
+    dispatch(clockSale())
+  }
+}, [dispatch])
 
   return (
     <>
-    <Header />
+    <Header clockSale={clockSaleBool}/>
       <div className={classes.root}>
         <main>
           <div className={classes.toolbar} />
@@ -33,6 +43,10 @@ Layout.propTypes = {
   pathname: PropTypes.string
 }
 
-export default Layout
+const mapStateToProps = (state) => ({
+  clockSaleBool: state.shoppingCart.clockSale
+})
+
+export default connect(mapStateToProps, null)(Layout)
 
 

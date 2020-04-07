@@ -99,7 +99,8 @@ export const deleteRoll = (id) => (dispatch) => dispatch(deleteRollSale(id))
 const initialState = {
     cartItems: [],
     orderTotal: 0,
-    palochkiTotal: 0
+    palochkiTotal: 0,
+    clockSale: false
 }
 
 export default createReducer({
@@ -189,6 +190,7 @@ export default createReducer({
     },
     [clockSale]: (state) => {
         console.log('clockSaleReducer')
+        return {...state, clockSale: true}
     }
 }, initialState)
 

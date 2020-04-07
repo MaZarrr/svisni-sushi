@@ -27,12 +27,16 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import "./header.css"
 import {useStyleHeader} from "./common/style";
+import AlarmIcon from '@material-ui/icons/Alarm';
+import {Fade} from "@material-ui/core";
+import Popper from '@material-ui/core/Popper';
 
-const Header = () => {
+const Header = (props) => {
   const classes = useStyleHeader()
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
- 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
   const data = useStaticQuery(graphql `
   {
     allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
@@ -52,7 +56,14 @@ const Header = () => {
   }
   `)
 
-  const links = [ 
+  const handleClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const openPopover = Boolean(anchorEl);
+  const id = openPopover ? 'transitions-popper' : undefined;
+
+  const links = [
     {
       id: 1,
       name: 'Акции', 
@@ -128,7 +139,6 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-
           <Typography variant="h6" noWrap className={clsx(classes.content_header)}>
           <ul className={clsx(classes.content_link)}>
           <div className="icon_start">
@@ -154,6 +164,30 @@ const Header = () => {
         <Imgs />
       </Link>
     </div>
+          {props.clockSale &&
+              <div style={{margin: `auto auto auto 0`}}>
+              <IconButton style={{margin: `auto 0 auto auto`, height: `100%`}}>
+                <AlarmIcon aria-describedby={id} onClick={handleClick} style={{color: `tomato`, fontSize: 22}} />
+              </IconButton>
+                <Popper style={{zIndex: 1500}} id={id} open={openPopover} anchorEl={anchorEl} transition>
+                  {({ TransitionProps }) => (
+                      <Fade {...TransitionProps} timeout={350}>
+                        <div className={classes.paper}>Акция счастливые часы! <b>Скидка к заказу 10%.</b></div>
+                      </Fade>
+                  )}
+                </Popper>
+              </div>
+          // <Typography variant="caption"
+          //             style={{
+          //               color: `tomato`,
+          //               fontSize: `11px`,
+          //               textAlign: 'center',
+          //               backgroundColor: 'grey',
+          //               padding: '15px'
+          //             }}
+          // >
+          //   Счастливые часы</Typography>
+          }
     <Korzina />
     </Toolbar>
       <AppBars/>

@@ -481,6 +481,12 @@ export const useStyleHeader = makeStyles(theme => ({
     iconDiv: {
         fontFamily: 'Neucha, Comfortaa, cursive',
         fontWeight: 800
+    },
+    paper: {
+        border: '1px solid',
+        padding: theme.spacing(1),
+        backgroundColor: theme.palette.background.paper,
+        fontSize: `14px`
     }
 }))
 
