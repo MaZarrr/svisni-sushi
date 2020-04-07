@@ -3,7 +3,6 @@ import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
-import Spinner from '../components/spinner/spinner'
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style';
 import loadable from "@loadable/component";
@@ -13,13 +12,11 @@ const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Salaty = ({data: {allContentfulProductSalat: {edges: productsSalaty}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product}) => {
-  
- const [load, setLoad] = React.useState(true)
+
  const classes = useStylesCart();
 
     useEffect(() => {
         dispatch(productLoaded(productsSalaty)) // action push to reduxStore
-        setLoad(false)
     }, [productsSalaty, dispatch])
 
 return ( 
@@ -30,10 +27,8 @@ return (
                fontWeight: 600}}>Салаты</h1>
        </div>
     <Grid container justify="center">
-        {
-            !load ? <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}
-                                   image={image} product={product}/> : <Spinner />
-        }
+        <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}
+                                   image={image} product={product}/>
         </Grid>
       </section>
     )

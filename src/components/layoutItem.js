@@ -9,7 +9,7 @@ return (
 <StylingInfo>
     <div className="container">
         <h1 style={{fontFamily: `Oswald, cursive`,
-            fontWeight: 600, fontSize: 46}}>{props.name}</h1>
+            fontWeight: 600, fontSize: 40}}>{props.name}</h1>
     <hr></hr>
     <Grid container>
     <Grid item xs={12} sm={6}>

@@ -11,6 +11,7 @@ import * as R from 'ramda'
 
 import loadable from "@loadable/component";
 import {productPizzaLoaded} from "../reducers/app";
+import {defFilters} from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
@@ -24,6 +25,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
     useEffect(() => {
           if(!R.isEmpty(productPizza)) {
             setLoad(false)
+              dispatch(defFilters())
             return
           }
           const ProductFetch = async () => {
@@ -32,6 +34,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
           ProductFetch()
            .then((data) => dispatch(productPizzaLoaded(data)))
            .then(() => setLoad(false))
+            .then(() => dispatch(defFilters()))
       }, [productPizza, dispatch, pizzaProduct])
 
     const visibleItems = filtersProducts(productPizza, searchText, priceFilter)

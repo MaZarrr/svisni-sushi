@@ -209,7 +209,7 @@ return (
         <Grid item xs={12}>
           <Paper className={classes.paper}>
           <Typography variant="h2">
-            <Box fontFamily="Oswald" fontWeight={900} fontSize={46}>
+            <Box fontFamily="Oswald" fontWeight={900} fontSize={40}>
                 Корзина
             </Box>
           </Typography>
@@ -342,7 +342,12 @@ return (
     }
      <Typography variant="subtitle2" className={classes.typography}>Товары: {total} ₽ </Typography>
      <Typography variant="subtitle2" className={classes.typography}><b>Итого {total} ₽</b></Typography>
-     <Button component={Link} to="/order" className={classes.button} >
+     <Button
+         component={Link}
+         to="/order"
+         color={'primary'}
+         size={'large'}
+         variant="contained" >
       <b>Оформить заказ</b>
       </Button>
      </Paper>

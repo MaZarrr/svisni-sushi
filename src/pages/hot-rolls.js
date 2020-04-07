@@ -9,6 +9,7 @@ import { useStylesCart } from '../components/common/style'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
+import {defFilters} from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
@@ -22,6 +23,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
     useEffect(() => {
         dispatch(productLoaded(productsHotRolls)) // action push to reduxStore
         setLoad(false)
+        dispatch(defFilters())
     }, [productsHotRolls, dispatch])
 
     const visibleItems = filtersProducts(product, searchText, priceFilter)

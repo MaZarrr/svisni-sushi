@@ -9,6 +9,7 @@ import filtersProducts from '../utils/filtersProducts'
 import loadable from '@loadable/component'
 import {useStylesCart} from "../components/common/style";
 import {productLoaded, setLoading} from "../reducers/app";
+import {defFilters} from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
@@ -19,15 +20,25 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
                   product, searchText, priceFilter, checkboxFilter, location, dispatch, loading}) => {
 
     // const [ listJsx, updateLustJsx ] = React.useState('')
+    const [load, setLoad] = React.useState(true)
     const classes = useStylesCart();
 
     useEffect(() => {
         dispatch(setLoading(true))
         dispatch(productLoaded(setyProduct))
         dispatch(setLoading(false))
+        dispatch(defFilters())
+        setLoad(false)
     }, [setyProduct, dispatch])
 
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter)
+
+    if(load) {
+        return <div style={{display: `flex`,
+            justifyContent: `center`,
+            alignItems: `center`}}>
+            <Spinner /></div>
+    }
 
 return (
   <>

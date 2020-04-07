@@ -182,7 +182,7 @@ return (
           <Typography variant="h2">
             <Box fontFamily="Oswald"
             fontWeight={900}
-            fontSize={32}>
+            fontSize={40}>
              Оформление заказа
             </Box>
           </Typography>
@@ -210,34 +210,24 @@ return (
                 variant="outlined"
                 style={{margin: `10px auto 10px 0`}}
                 required
-                inputProps={{
-                maxLength: 11,
-                minLength: 2
-                }} 
+                inputProps={{maxLength: 11, minLength: 2}}
                 name="name" 
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              value={nameUser} 
-              helperText={validateUserName() === false ? "Введите ваше имя" : "" } />
+                onChange={(e) => {setName(e.target.value)}}
+                value={nameUser}
+                helperText={validateUserName() === false ? "Введите ваше имя" : "" } />
 
               <TextField id="validation-outlined-input" 
                 label="Телефон" 
                 variant="outlined"
-                error={!validatePhone() && phoneUser.length > 9}
+                error={!validatePhone() && phoneUser.length > 10}
                 type="tel" 
                 style={{margin: `10px auto 10px 0`}}
                 required 
-                inputProps={{
-                  maxLength: 13,
-                  minLength: 10
-                  }} 
-                  name="phone" 
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                }}  
+                inputProps={{maxLength: 13, minLength: 10}}
+                name="phone"
+                onChange={(e) => {setPhone(e.target.value)}}
                 value={phoneUser} 
-                helperText="Введите ваш телефон"/>
+                helperText={!validatePhone() && phoneUser.length > 10 ? "Введите корректный номер" : ""}/>
               </Grid>
               <hr></hr>
               <Grid item xs={12}>
@@ -274,9 +264,8 @@ return (
             fontWeight={700}
             fontSize={24}>Дата и время доставки заказа</Box></Typography>  
             <FormGroup>
-              <Typography component="div">
               <Grid component="label" container alignItems="center" spacing={1}>
-                <Grid item>Сразу</Grid>
+                <Typography variant="body1">Сразу</Typography>
                 <Grid item>
                   <IOSSwitch
                     checked={state.checkedC}
@@ -284,9 +273,8 @@ return (
                     value="checkedC"
                   />
                 </Grid>
-                <Grid item>Предзаказ</Grid>
+                <Typography variant="body1">Предзаказ</Typography>
               </Grid>
-            </Typography>
           </FormGroup>
           </Grid>
              
@@ -449,12 +437,12 @@ return (
              value={comments}
              onChange={(e) => userCommentsFunc(e.target.value)}
              rows="4"
-             inputProps={{
-               maxLength: 230,
-               }} 
+             error={!validateTextAria() && comments.length > 2}
+             inputProps={{minLength: 3, maxLength: 230}}
              name="comments"
              variant="outlined"
              style={{marginTop: `50px`}}
+             helperText={!validateTextAria() && comments.length > 2 ? "Удалите лишние знаки и символы" : ""}
            />
            </Grid>
             <div className={classes.conatiner_info}> 
@@ -528,11 +516,22 @@ return (
                     disabled={buttonDisabled()}
                     variant="contained"
                     // classes={{root: classes.button, label: classes.label}}
-                >
+                    >
                     Заказать
                 </Button>
                 </span>
                 </Tooltip>
+
+                {buttonDisabled() === true &&
+                <>
+                    <hr></hr>
+                    <Typography style={{marginTop: 10}}>Проверте:</Typography>
+                    <ul>
+                        <li>Имя может быть только из букв</li>
+                        <li>Телефон может состоять только из цифр и должен начинаться с 8, 7 или +7 </li>
+                    </ul>
+                  </>
+                }
              </div>
 
          </form>

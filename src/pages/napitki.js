@@ -3,7 +3,6 @@ import SEO from "../components/seo"
 import { graphql} from "gatsby";
 import { connect } from 'react-redux';
 import { useStylesCart } from '../components/common/style';
-import Spinner from '../components/spinner/spinner'
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import { productLoaded} from "../reducers/app";
@@ -12,13 +11,11 @@ const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Napitki = ({data: {allContentfulProductNapitki: {edges: productsDrink}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
-  
-   const [load, setLoad] = React.useState(true)
+
    const classes = useStylesCart();
 
     useEffect(() => {
         dispatch(productLoaded(productsDrink)) // action push to reduxStore
-        setLoad(false)
     }, [productsDrink, dispatch])
 
 return ( 
@@ -31,10 +28,8 @@ return (
                fontWeight: 600}}>Напитки</h1>
        </div>
     <Grid container justify="center">
-        {
-            !load ? <CardsMenuPage titleCategory="Напитки" slugCategogy="/napitki" visibleItems={product}
-                                   image={image} product={product}/> : <Spinner />
-        }
+            <CardsMenuPage titleCategory="Напитки" slugCategogy="/napitki" visibleItems={product}
+                                   image={image} product={product}/>
     </Grid>
   </section>
     )

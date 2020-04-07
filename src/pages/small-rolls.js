@@ -13,13 +13,11 @@ const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const SmallRolls = ({data: {allContentfulProductKlassika: {edges: productsSmallRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
-  
-  const [load, setLoad] = React.useState(true)
+
   const classes = useStylesCart();
 
     useEffect(() => {
         dispatch(productLoaded(productsSmallRolls)) // action push to reduxStore
-        setLoad(false)
     }, [productsSmallRolls, dispatch])
 
 return ( 
@@ -30,10 +28,8 @@ return (
                fontWeight: 600}}>Классические роллы</h1>
        </div>
     <Grid container justify="center">
-        {
-            !load ? <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}
-                                   image={image} product={product}/> : <Spinner />
-        }
+            <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}
+                                   image={image} product={product}/>
         </Grid>
       </section>
     )

@@ -6,15 +6,11 @@ import React from "react";
 const drawerWidth = 190;
 
 export const useStylesCart = makeStyles(theme => ({
-    // root: {
-    //     border: `1px dotted #000`,
-    //     backgroundColor: `red`
-    // },
     titleH1: {
         fontFamily: 'Oswald',
         fontWeight: 700,
         padding: `25px 10px 20px 35px`,
-        fontSize: 46,
+        fontSize: 40,
         borderBottom: `1px solid lightgrey`,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
@@ -115,19 +111,19 @@ export const useStyleOrder = makeStyles(theme => ({
     conatiner_info_delivery: {
         margin: `15px auto 15px 0`
     },
-    button: {
-        background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-        color: 'white',
-        marginTop: 10,
-        textAlign: `start`,
-        padding: 20,
-        width: 350,
-        [theme.breakpoints.down('sm')]: {
-            maxWidth: '90%',
-            padding: 50,
-            marginBottom: 30
-        }
-    },
+    // button: {
+    //     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    //     color: 'white',
+    //     marginTop: 10,
+    //     textAlign: `start`,
+    //     padding: 20,
+    //     width: 350,
+    //     [theme.breakpoints.down('sm')]: {
+    //         maxWidth: '90%',
+    //         padding: 50,
+    //         marginBottom: 30
+    //     }
+    // },
     emty: {
         padding: theme.spacing(2),
         paddingLeft: theme.spacing(4),
@@ -143,10 +139,10 @@ export const useStyleOrder = makeStyles(theme => ({
             maxWidth: '97%'
         }
     },
-    label: {
-        color: `white`,
-        fontSize: 20
-    }
+    // label: {
+    //     color: `white`,
+    //     fontSize: 20
+    // }
 }))
 
 export const IOSSwitch = withStyles(theme => ({

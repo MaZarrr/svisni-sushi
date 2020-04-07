@@ -9,6 +9,7 @@ import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
+import {defFilters} from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
@@ -22,6 +23,7 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
     useEffect(() => {
         dispatch(productLoaded(productsBrandedRolls)) // action push to reduxStore
         setLoad(false)
+        dispatch(defFilters())
     }, [productsBrandedRolls, dispatch])
 
       const visibleItems = filtersProducts(product, searchText, priceFilter)
