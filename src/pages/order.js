@@ -194,7 +194,6 @@ return (
         <form  
           method="POST"
           onSubmit={handleSubmit}
-          // action='https://node-server-ten.now.sh/'
             action={process.env.GATSBY_NODE_SERVE}
           name="svisniData"
           style={{width: '100%'}}>
