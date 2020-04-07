@@ -1,14 +1,14 @@
 import React, {useState} from "react"
 import SEO from "../components/seo"
 import { connect } from 'react-redux';
-import { navigate} from 'gatsby'
-
+import { navigate } from 'gatsby'
 import FormControl from '@material-ui/core/FormControl';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
@@ -23,13 +23,13 @@ import {
     setEnhanceUser,
     setHomeUser, setLavelUser,
     setNameUser,
-    setPhoneUser, setTimeDeliveryUser
+    setPhoneUser, setTimeDeliveryUser, userCommentsFunc
 } from "../reducers/contacts-info";
 import {defaultTo} from "ramda";
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, 
-  setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery}) => {
+  setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments }) => {
 
 const [open, setOpen] = useState(false);
 
@@ -123,29 +123,53 @@ const handleSubmit = (ev) => {
           totalPrice: total,
           comments: ev.target.comments.value || "Без комментария",
         },
-        url: "https://svisni-sushi.firebaseio.com/order.json"
+        url: process.env.GATSBY_DATA_BASE
     })
  
   }
 
-const handleChange = event => setAge(event.target.value)
-const handleChangeDelivery = event => setDelivery(event.target.value);
+    const handleChange = event => setAge(event.target.value)
+    const handleChangeDelivery = event => setDelivery(event.target.value);
 
-const handleClose = () => setOpen(false)
+    const handleClose = () => setOpen(false)
 
-const handleChangeCity = city => event => {
+    const handleChangeCity = city => event => {
     setSity(`${city[event.target.value].name}`)
     setStateDeliveryPrice(city[event.target.value]);
 };
 
-const handleOpen = () => setOpen(true);
+    const handleOpen = () => setOpen(true);
 
-const isEmpty = (obj) => {
+    const isEmpty = (obj) => {
   if (Object.keys(obj).length === 0) {
     return true;
   }
   return false
 }
+
+    const validateUserName = () => {
+        const nameValidate = /^[а-я]{3,16}$/gi
+        return nameValidate.test(String(nameUser).toLowerCase())
+    }
+    const validatePhone = () => {
+        const phoneValidate = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))$/gi
+        return phoneValidate.test(phoneUser)
+    }
+    const validateTextAria = () => {
+    const commentTextArea = comments.trim().replace(/\s/g, "")
+        if(comments === '') {
+            return true
+        } else if(comments !== '') {
+            return ((/^[а-я_А-Я_0-9\-?()!,.]{3,230}$/).test(commentTextArea))
+        }
+    }
+
+    const buttonDisabled = () => {
+        if(validateUserName() === true && validatePhone() === true && validateTextAria() === true ) {
+            return false
+        }
+        return true
+    }
 
 const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
 return (
@@ -170,7 +194,8 @@ return (
         <form  
           method="POST"
           onSubmit={handleSubmit}
-          action='https://node-server-ten.now.sh/'
+          // action='https://node-server-ten.now.sh/'
+            action={process.env.GATSBY_NODE_SERVE}
           name="svisniData"
           style={{width: '100%'}}>
    
@@ -181,24 +206,26 @@ return (
          
             <Grid container >
               <TextField id="validation-outlined-input" 
-              label="Имя" 
-              variant="outlined" 
-              style={{margin: `10px auto 10px 0`}}
-              required 
-              inputProps={{
+                label="Имя"
+                error={!validateUserName() && nameUser.length > 2}
+                variant="outlined"
+                style={{margin: `10px auto 10px 0`}}
+                required
+                inputProps={{
                 maxLength: 11,
                 minLength: 2
                 }} 
                 name="name" 
                 onChange={(e) => {
                   setName(e.target.value);
-              }}  
+                }}
               value={nameUser} 
-              helperText="Введите ваше имя"/>
+              helperText={validateUserName() === false ? "Введите ваше имя" : "" } />
 
               <TextField id="validation-outlined-input" 
                 label="Телефон" 
                 variant="outlined"
+                error={!validatePhone() && phoneUser.length > 9}
                 type="tel" 
                 style={{margin: `10px auto 10px 0`}}
                 required 
@@ -420,6 +447,8 @@ return (
              id="outlined-multiline-static"
              label="Комментарий к заказу"
              multiline
+             value={comments}
+             onChange={(e) => userCommentsFunc(e.target.value)}
              rows="4"
              inputProps={{
                maxLength: 230,
@@ -488,12 +517,23 @@ return (
              </div>
              }
                 <hr></hr>
+                <Tooltip title={buttonDisabled() === true && `Проверте правильность введенных данных
+                • Имя может быть только из букв
+                • Телефон может состоять только из цифр и должен начинаться с 8, 7 или +7 
+                `}>
+                <span>
                 <Button
                     type="submit"
+                    color={'primary'}
+                    size={'large'}
+                    disabled={buttonDisabled()}
                     variant="contained"
-                    classes={{root: classes.button, label: classes.label}}>
+                    // classes={{root: classes.button, label: classes.label}}
+                >
                     Заказать
                 </Button>
+                </span>
+                </Tooltip>
              </div>
 
          </form>
@@ -507,9 +547,10 @@ return (
 }
 
 const mapStateToProps = ({shoppingCart: {cartItems, orderTotal, palochkiTotal}, contactsUser: {
-    nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber, doorPassword}}) => ({
+    nameUser, phoneUser, deliverySity, deliveryAdress, comments, homeNumber, entranceNumber, levelNumber, doorPassword}}) => ({
     items: cartItems,
     total: orderTotal,
+    comments,
     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber,
     doorPassword, palochkiTotal
 })
@@ -524,7 +565,8 @@ const mapDispatchToProps = {
     setLevel: setLavelUser,
     setDoor: setDoorUser,
     setDate: setDateDeliveryUser,
-    setTime: setTimeDeliveryUser
+    setTime: setTimeDeliveryUser,
+    userCommentsFunc
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
