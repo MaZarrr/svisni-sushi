@@ -148,7 +148,7 @@ const handleSubmit = (ev) => {
 }
 
     const validateUserName = () => {
-        const nameValidate = /^[а-я]{3,16}$/gi
+        const nameValidate = /^[а-я\ё]{3,16}$/gi
         const name = nameUser.trim().replace(/\s/g, "")
         return nameValidate.test(String(name).toLowerCase())
     }
@@ -162,7 +162,7 @@ const handleSubmit = (ev) => {
         if(comments === '') {
             return true
         } else if(comments !== '') {
-            return ((/^[а-я_А-Я_0-9\-?()!,.]{3,230}$/).test(commentTextArea.toLowerCase()))
+            return ((/^[а-я_А-Я_0-9\-?()!,.ё]{3,230}$/).test(commentTextArea.toLowerCase()))
         }
     }
 
