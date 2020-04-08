@@ -24,7 +24,7 @@ return (
     <SEO title="Соусы и различные добавки к суши и роллам" />
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Соусы</h1>
+               fontWeight: 600, fontSize: 40}}>Соусы</h1>
        </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Соус" slugCategogy="/souses" visibleItems={product}

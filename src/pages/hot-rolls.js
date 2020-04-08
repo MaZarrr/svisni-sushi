@@ -41,7 +41,7 @@ return (
     description="Закажи горячие роллы, оцени великолепный вкус японской кухни от Свисни Суши. Доставка Валуйки"/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Гриль роллы</h1>
+               fontWeight: 600, fontSize: 40}}>Гриль роллы</h1>
        </div>
   <CustomizedInputSearch />
     <Grid container justify="center">

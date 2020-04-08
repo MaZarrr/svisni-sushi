@@ -25,7 +25,7 @@ return (
     <SEO title="Вкусные недорогие роллы. Заказать доставку на дом в Валуйки" />
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Классические роллы</h1>
+               fontWeight: 600, fontSize: 40}}>Классические роллы</h1>
        </div>
     <Grid container justify="center">
             <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}

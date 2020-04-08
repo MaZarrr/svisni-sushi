@@ -8,7 +8,7 @@ import { Grid } from "@material-ui/core";
 import filtersProducts from '../utils/filtersProducts'
 import loadable from '@loadable/component'
 import {useStylesCart} from "../components/common/style";
-import {productLoaded, setLoading} from "../reducers/app";
+import {productLoaded} from "../reducers/app";
 import {defFilters} from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
@@ -17,16 +17,16 @@ const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
 })
 
 const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-                  product, searchText, priceFilter, checkboxFilter, location, dispatch, loading}) => {
+                  product, searchText, priceFilter, checkboxFilter, location, dispatch}) => {
 
     // const [ listJsx, updateLustJsx ] = React.useState('')
     const [load, setLoad] = React.useState(true)
     const classes = useStylesCart();
 
     useEffect(() => {
-        dispatch(setLoading(true))
+        // dispatch(setLoading(true))
         dispatch(productLoaded(setyProduct))
-        dispatch(setLoading(false))
+        // dispatch(setLoading(false))
         dispatch(defFilters())
         setLoad(false)
     }, [setyProduct, dispatch])
@@ -47,12 +47,12 @@ return (
    <section>
    <div className={classes.titleH1}>
     <h1 style={{fontFamily: `Oswald, cursive`,
-    fontWeight: 600, }}>Сеты</h1>
+    fontWeight: 600, fontSize: 40}}>Сеты</h1>
    </div>
   <CustomizedInputSearch location={location.pathname}/>
     <Grid container justify="center" >
-        {!loading ? <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
-                                  image={image} product={product}/> : <Spinner/> }
+        <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
+                                  image={image} product={product}/>
 
     </Grid>
     </section>
@@ -62,7 +62,6 @@ return (
 
 const mapStateToProps = (state, props) => ({
     product: state.app.product,
-    loading: state.app.loading,
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter
 })

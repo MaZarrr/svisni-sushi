@@ -149,18 +149,20 @@ const handleSubmit = (ev) => {
 
     const validateUserName = () => {
         const nameValidate = /^[а-я]{3,16}$/gi
-        return nameValidate.test(String(nameUser).toLowerCase())
+        const name = nameUser.trim().replace(/\s/g, "")
+        return nameValidate.test(String(name).toLowerCase())
     }
     const validatePhone = () => {
         const phoneValidate = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))$/gi
-        return phoneValidate.test(phoneUser)
+        const phone = phoneUser.trim().replace(/\s/g, "")
+        return phoneValidate.test(phone.toLowerCase())
     }
     const validateTextAria = () => {
     const commentTextArea = comments.trim().replace(/\s/g, "")
         if(comments === '') {
             return true
         } else if(comments !== '') {
-            return ((/^[а-я_А-Я_0-9\-?()!,.]{3,230}$/).test(commentTextArea))
+            return ((/^[а-я_А-Я_0-9\-?()!,.]{3,230}$/).test(commentTextArea.toLowerCase()))
         }
     }
 
@@ -214,7 +216,7 @@ return (
                 name="name" 
                 onChange={(e) => {setName(e.target.value)}}
                 value={nameUser}
-                helperText={validateUserName() === false ? "Введите ваше имя" : "" } />
+                helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
 
               <TextField id="validation-outlined-input" 
                 label="Телефон" 
@@ -227,7 +229,7 @@ return (
                 name="phone"
                 onChange={(e) => {setPhone(e.target.value)}}
                 value={phoneUser} 
-                helperText={!validatePhone() && phoneUser.length > 10 ? "Введите корректный номер" : ""}/>
+                helperText={!validatePhone() && phoneUser.length > 10 ? "Введите корректный номер" : "Введите ваш номер"}/>
               </Grid>
               <hr></hr>
               <Grid item xs={12}>
@@ -527,8 +529,8 @@ return (
                     <hr></hr>
                     <Typography style={{marginTop: 10}}>Проверте:</Typography>
                     <ul>
-                        <li>Имя может быть только из букв</li>
-                        <li>Телефон может состоять только из цифр и должен начинаться с 8, 7 или +7 </li>
+                        <li>Имя только из букв русского алфавита</li>
+                        <li>Телефон только из цифр, начинается с 8, 7 или +7 </li>
                     </ul>
                   </>
                 }

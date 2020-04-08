@@ -24,7 +24,7 @@ return (
     description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте. Звонок +7(904)094-92-22"/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Суши</h1>
+               fontWeight: 600, fontSize: 40}}>Суши</h1>
        </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Суши" slugCategogy="/sushi" visibleItems={product}

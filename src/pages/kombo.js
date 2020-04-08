@@ -24,7 +24,7 @@ return (
     description="Специальные комбо наборы, выгодно, заказать в Уразово с 10 до 22:00"/>
         <div className={classes.titleH1}>
             <h1 style={{fontFamily: `Oswald, cursive`,
-                fontWeight: 600}}>Комбо</h1>
+                fontWeight: 600, fontSize: 40}}>Комбо</h1>
         </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}

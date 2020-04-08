@@ -9,7 +9,7 @@ export const useStylesCart = makeStyles(theme => ({
     titleH1: {
         fontFamily: 'Oswald',
         fontWeight: 700,
-        padding: `25px 10px 20px 35px`,
+        padding: `35px 10px 15px 35px`,
         fontSize: 40,
         borderBottom: `1px solid lightgrey`,
         display: `flex`,
@@ -17,7 +17,8 @@ export const useStylesCart = makeStyles(theme => ({
             margin: 0,
         },
         [theme.breakpoints.down('475')]: {
-            fontSize: 30
+            fontSize: 30,
+            padding: `25px 10px 15px 35px`
         }
     },
     deckript: {
@@ -573,7 +574,7 @@ export const StylingInfo = styled.section `
         margin: 0 0 0 6vw;
     }
     h1 {
-    font-size: 30px;
+    font-size: 38px;
     }
 }
 `

@@ -110,7 +110,7 @@ return (
     />
     <StylingInfo>
         <div className="container">
-            <h1>Валуйский&nbsp;район - Зоны&nbsp;и стоимость доставки</h1>
+            <h1>Валуйский район&nbsp;-&nbsp;Зоны и&nbsp;стоимость доставки</h1>
         </div>
     <Grid container>
     <Grid item xs={12} sm={6}> 

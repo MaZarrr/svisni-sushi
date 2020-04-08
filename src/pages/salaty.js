@@ -24,7 +24,7 @@ return (
     <SEO title="Заказать салаты с 10:00 до 22:00 с доставкой в Валуйки. Доставка салатов на дом и офис" />
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Салаты</h1>
+               fontWeight: 600, fontSize: 40}}>Салаты</h1>
        </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}

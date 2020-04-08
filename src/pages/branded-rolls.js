@@ -41,7 +41,7 @@ return (
     description="Роллы которых вы еще не пробовали. Закажи доставку или приходи к нам в гости"/>
     <div className={classes.titleH1}>
     <h1 style={{fontFamily: `Oswald, cursive`,
-    fontWeight: 600, }}>Сложные роллы</h1>
+    fontWeight: 600, fontSize: 40 }}>Сложные роллы</h1>
    </div>
    <CustomizedInputSearch />
     <Grid container justify="center">

@@ -54,7 +54,7 @@ return (
 
       <div className={classes.titleH1}>
         <h1 style={{fontFamily: `Oswald, cursive`,
-        fontWeight: 600, }}>Пицца</h1>
+        fontWeight: 600, fontSize: 40}}>Пицца</h1>
       </div>
        <CustomizedInputSearch />
   <Grid container justify="center" >
