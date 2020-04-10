@@ -8,7 +8,9 @@ const SloghItem = ({name, description, image, count, weight, price, added}) => {
 
     return (
   <>
-    <SEO title={`Роллы ${name}`} />
+    <SEO title={`Роллы ${name}`}
+    description={`Фирменные роллы ${name}, ${price}, общий вес ${weight}`}
+         pathname="/branded-rolls"/>
         <LayoutItem name={name} image={image}>
             <p><b>Состав:</b> {description}</p>
             <p><b>Количество:</b> {count} шт</p>

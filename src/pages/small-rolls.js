@@ -22,7 +22,8 @@ const SmallRolls = ({data: {allContentfulProductKlassika: {edges: productsSmallR
 
 return ( 
    <section>
-    <SEO title="Вкусные недорогие роллы. Заказать доставку на дом в Валуйки" />
+    <SEO title="Вкусные недорогие маки роллы. Заказать доставку на дом в Валуйки"
+    description="Маленькие, жареные и темпурные классические Свисни роллы от 120 рублей"/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
                fontWeight: 600, fontSize: 40}}>Классические роллы</h1>

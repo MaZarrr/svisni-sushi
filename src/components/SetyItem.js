@@ -8,7 +8,9 @@ const SetyItem = ({name, description, image, count, weight, price, added}) => {
 
 return (
   <>
-    <SEO title={`Сет роллов ${name}`} />
+    <SEO title={`Сет роллов ${name}`}
+         description={`Набор роллов ${name}, количество ${count} с общим весом ${weight}`}
+         pathname="/sety"/>
         <LayoutItem name={name} image={image}>
             <p><b>Состав:</b> {description}</p>
             <p><b>Количество:</b> {count} шт</p>

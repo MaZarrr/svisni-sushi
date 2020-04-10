@@ -20,7 +20,8 @@ const Gunkany = ({data: {allContentfulProductGunkan: {edges: productsGunkan}, co
 
 return ( 
    <section>
-    <SEO title="Заказать гунканы с доставкой в Валуйках" />
+    <SEO title="Заказать гунканы с доставкой в Валуйках"
+    description="Гунканы с икрой, крабом, угрём. Гунканы от 55 рублей. Подробнее в нашем меню на сайте Свисни Суши "/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
                fontWeight: 600, fontSize: 40}}>Гунканы</h1>

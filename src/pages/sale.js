@@ -10,7 +10,8 @@ const Sale = ({data}) => {
 
 return (
     <>
-    <SEO title="Акции и скидки на пиццу, роллы, суши" />
+    <SEO title="Акции и скидки на пиццу, роллы, суши"
+    description="Бесплатные блюда, скидки до 60%, подарки именинникам, бесплатная пицца"/>
     <StylingInfo>
 
     <div className="container">

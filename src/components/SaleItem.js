@@ -11,7 +11,8 @@ const PizzaItem = ({image, name, description, location}) => {
 
     return (
         <>
-        <SEO title={name} />
+        <SEO title={`Акция ${name}`}
+        description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}/>
         <StylingInfo>
         <div className="container"> 
         <h1>{name}</h1>

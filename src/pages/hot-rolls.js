@@ -38,7 +38,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
 return ( 
    <section>
     <SEO title="Запечёные, гриль, жареные роллы, меню на сайте. Работаем с 10 до 22.00"   
-    description="Закажи горячие роллы, оцени великолепный вкус японской кухни от Свисни Суши. Доставка Валуйки"/>
+    description="Закажи горячие роллы, оцени великолепный вкус японской кухни от Свисни Суши. Доставка в Валуйки"/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
                fontWeight: 600, fontSize: 40}}>Гриль роллы</h1>

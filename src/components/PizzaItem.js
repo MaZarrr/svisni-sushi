@@ -8,7 +8,9 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
 
     return (
         <>
-            <SEO title={`Пицца ${name}`}/>
+            <SEO title={`Пицца ${name}`}
+                    description={`Маленькая и большая пицца ${name}, пицца от ${price} рублей`}
+                    pathname="/pizza"/>
             <LayoutItem name={name} image={image} >
                 <p><b>Состав:</b> {description}</p>
                 {/* <p><b>Количество:</b> {count} шт</p> */}

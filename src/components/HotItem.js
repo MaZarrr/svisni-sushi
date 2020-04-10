@@ -7,7 +7,8 @@ import LayoutItem from './layoutItem';
 const HotItem = ({name, description, image, count, weight, price, added}) => {
     return (
     <>
-    <SEO title={`Горячие роллы ${name}`} />
+    <SEO title={`Горячие роллы ${name}`}
+         description={`Гриль роллы ${name}, ${price}, общий вес ${weight}`}/>
         <LayoutItem name={name} image={image}>
             <p><b>Состав:</b> {description}</p>
             <p><b>Количество:</b> {count} шт</p>

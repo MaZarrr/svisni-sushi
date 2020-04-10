@@ -21,7 +21,9 @@ const Salaty = ({data: {allContentfulProductSalat: {edges: productsSalaty}, cont
 
 return ( 
    <section>
-    <SEO title="Заказать салаты с 10:00 до 22:00 с доставкой в Валуйки. Доставка салатов на дом и офис" />
+    <SEO title="Заказать популярные салаты Салаты"
+    description="Для вас предоставленна возможность заказа наиболее популярных салатов приготовленных из свежих продуктов.
+    Вашему вниманию: салаты цезарь в вариациях и чука."/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
                fontWeight: 600, fontSize: 40}}>Салаты</h1>
