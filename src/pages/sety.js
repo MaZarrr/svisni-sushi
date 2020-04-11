@@ -42,8 +42,8 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
 
 return (
   <>
-    <SEO title="Заказать наборы суши и роллов в Валуйки. Бесплатная доставка сетов от 500р"
-    description="Сеты, широкий выбор, приятные цены, бесплатная доставка по Валуйскому району. Работаем с 10 до 22:00"/>
+    <SEO title="Заказать сет роллов в Валуйки. Бесплатная доставка наборов от 500 рублей"
+    description="Суши сеты, приятные цены, бесплатная доставка по Валуйскому району. Работаем с 10 до 22:00"/>
    <section>
    <div className={classes.titleH1}>
     <h1 style={{fontFamily: `Oswald, cursive`,
