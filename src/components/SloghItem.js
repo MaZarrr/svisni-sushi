@@ -12,11 +12,13 @@ const SloghItem = ({name, description, image, count, weight, price, added}) => {
     description={`Фирменные роллы ${name}, ${price}, общий вес ${weight}`}
          pathname="/branded-rolls"/>
         <LayoutItem name={name} image={image}>
-            <p><b>Состав:</b> {description}</p>
+            <p itemprop="description"><b>Состав:</b> {description}</p>
+            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
             <p><b>Количество:</b> {count} шт</p>
             <p><b>Общий вес:</b> {weight} гр</p>
-            <p><b>Цена</b> {price} руб</p>
-        <Button 
+                <p><b>Цена</b> <span itemprop="price">{price}</span> <span itemprop="priceCurrency" content="RUR">руб</span></p>
+            </div>
+        <Button
             variant="outlined" 
             size="large"
             endIcon={<ShoppingBasketIcon/>}

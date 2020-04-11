@@ -50,7 +50,7 @@ return (
     fontWeight: 600, fontSize: 40}}>Сеты</h1>
    </div>
   <CustomizedInputSearch location={location.pathname}/>
-    <Grid container justify="center" >
+    <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
                                   image={image} product={product}/>
 

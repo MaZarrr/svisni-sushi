@@ -18,14 +18,14 @@ return (
     </div>
 
     <hr></hr>
-    <Grid container>
+    <Grid container itemscope itemtype="https://schema.org/Organization">
         <Grid item xs={11} sm={5}  style={{margin: `auto 0 auto 25px`}}>
         <Typography variant="h5">Режим работы</Typography>
         <p>c 10.00 до 22.00</p>
         <Typography variant="h5">Телефон</Typography>
-        <p>+7(904)094-92-22</p>
+        <p itemprop ="telephone">+7(904)094-92-22</p>
         <Typography variant="h5">Адрес</Typography>
-        <p>3Интернационала д.48а, Уразово</p>
+            <p><span itemprop="streetAddress">3Интернационала д.48а,</span><span itemprop="addressLocality">Уразово, Валуйский район</span></p>
         <Typography variant="caption">ИП Беженова Татьяна Викторовна</Typography>
         <p variant="caption"> ОРГНИП 318312300012678</p>
       </Grid> 

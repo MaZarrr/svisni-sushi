@@ -45,7 +45,7 @@ return (
                fontWeight: 600, fontSize: 40}}>Гриль роллы</h1>
        </div>
   <CustomizedInputSearch />
-    <Grid container justify="center">
+    <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                        image={image} product={product}/>
     </Grid>

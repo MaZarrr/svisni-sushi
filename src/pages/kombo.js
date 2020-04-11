@@ -26,7 +26,7 @@ return (
             <h1 style={{fontFamily: `Oswald, cursive`,
                 fontWeight: 600, fontSize: 40}}>Комбо</h1>
         </div>
-    <Grid container justify="center">
+    <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
                        image={image} product={product}/>
   </Grid>
