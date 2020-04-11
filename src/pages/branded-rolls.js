@@ -38,12 +38,14 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
 return ( 
    <section>
     <SEO title="Меню фирменные роллы. Доставка сложных роллов на дом в Валуйки"  
-    description="Роллы которых вы еще не пробовали. Филадельфия от 270 рублей. Закажи доставку или приходи к нам в гости"
+    description="Роллы которых вы еще не пробовали от 210 рублей. Закажи доставку или приходи к нам в гости!"
     pathname="/hot-rolls"/>
+
     <div className={classes.titleH1}>
-    <h1 style={{fontFamily: `Oswald, cursive`,
-    fontWeight: 600, fontSize: 40 }}>Сложные роллы</h1>
+        <h1 style={{fontFamily: `Oswald, cursive`,
+        fontWeight: 600, fontSize: 40 }}>Сложные роллы</h1>
    </div>
+
    <CustomizedInputSearch />
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls" visibleItems={visibleItems}

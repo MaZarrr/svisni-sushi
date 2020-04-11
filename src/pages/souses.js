@@ -22,7 +22,8 @@ const Souses = ({data: {allContentfulProductSouse: {edges: productsSouses}, cont
 return ( 
    <section>
     <SEO title="Соусы и различные добавки к суши и роллам"
-    description="Фирменный соус, барбекю соус, ореховый соус и другие у нас в меню Свисни суши"/>
+    description="Фирменный соус, барбекю соус, ореховый соус и другие у нас в меню Свисни суши"
+    noindex={true}/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
                fontWeight: 600, fontSize: 40}}>Соусы</h1>

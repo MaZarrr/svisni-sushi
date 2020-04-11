@@ -202,7 +202,8 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
 return (
   <>
   <SEO title="Корзина" 
-  description="Корзина товаров"/>
+  description="Корзина товаров"
+  noindex={true}/>
   <section>
   <div className={classes.root}>
     <Grid container>

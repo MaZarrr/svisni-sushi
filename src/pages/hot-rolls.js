@@ -37,7 +37,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
 
 return ( 
    <section>
-    <SEO title="Заказать гриль, жареные роллы от 230 рублей. Доставка по Уразово"
+    <SEO title="Заказать гриль, жареные роллы от 215 рублей. Доставка по Уразово"
     description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени великолепный вкус японской кухни от Свисни Суши"
     pathname="/sety"/>
        <div className={classes.titleH1}>

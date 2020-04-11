@@ -8,7 +8,7 @@ return (
     <>
     <SEO title="Политика обработки файлов Cookie" 
     description="Политика обработки файлов Cookie"
-    />
+    noindex={true}/>
     <section>
     <StylingInfo>
     <div className="container">

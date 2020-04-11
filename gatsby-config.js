@@ -76,8 +76,7 @@ module.exports = {
         policy: [{
           userAgent: '*',
           allow: '/',
-          disallow: ['/korzina', '/order-processed', '/order',
-            '/slozhnyeRolly', '/klassicheskieRolly', '/offer', '/zapechenyeRolly', '/cookie', '/privacy']
+          disallow: ['/slozhnyeRolly', '/klassicheskieRolly', '/zapechenyeRolly']
         }]
       }
     },

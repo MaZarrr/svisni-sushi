@@ -176,7 +176,8 @@ const handleSubmit = (ev) => {
 const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
 return (
     <section >
-    <SEO title="Оформление заказа" />
+    <SEO title="Оформление заказа"
+    noindex={true}/>
      <div className={classes.root}>
     <Grid container>
         <Grid item xs={12}>
