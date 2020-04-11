@@ -49,8 +49,9 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
 return ( 
    <section>
     <SEO title="Заказать пиццу с доставкой в Валуйки. Акция 3 + 1. -25% на самовывоз"
-      description="Доставка пиццы с 10:00 до 22:00. Свисни пиццу на дом в Валуйском районе.
-      Скидка 10% в счастливые часы, 4я пицца бесплатно. Меню с описанием и ценами"/>
+        description="Доставка пиццы с 10:00 до 22:00. Свисни пиццу на дом в Валуйском районе.
+        Скидка 10%, пицца бесплатно. Меню с описанием и ценами"
+        pathname="/sety"/>
       <div className={classes.titleH1}>
         <h1 style={{fontFamily: `Oswald, cursive`,
         fontWeight: 600, fontSize: 40}}>Пицца</h1>
