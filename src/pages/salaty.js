@@ -21,7 +21,7 @@ const Salaty = ({data: {allContentfulProductSalat: {edges: productsSalaty}, cont
 
 return ( 
    <section>
-    <SEO title="Заказать популярные салаты Салаты"
+    <SEO title="Заказать популярные салаты"
     description="Для вас предоставленна возможность заказа наиболее популярных салатов приготовленных из свежих продуктов.
     Вашему вниманию: салаты цезарь в вариациях и чука."/>
        <div className={classes.titleH1}>

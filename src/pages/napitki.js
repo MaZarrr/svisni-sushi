@@ -21,7 +21,7 @@ const Napitki = ({data: {allContentfulProductNapitki: {edges: productsDrink}, co
 return ( 
    <section>
     <SEO title="Доставка напитков на дом" 
-       description="Коктейль Голубая лагуна, Мохито. Фруктовые, охлаждающие коктейли"
+       description="Коктейль Голубая лагуна, Мохито. Фруктовые, охлаждающие коктейли, пепси от 35 рублей"
     />
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
