@@ -1,6 +1,5 @@
 import React from "react"
 // import VK, {Comments} from "react-vk";
-import SEO from "../components/seo"
 
 const Otzyvy = () => {
 

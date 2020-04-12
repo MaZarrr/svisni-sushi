@@ -7,20 +7,21 @@ import Button from '@material-ui/core/Button';
 import ReplyIcon from '@material-ui/icons/Reply';
 import {StylingInfo} from '../components/common/style'
 
-const PizzaItem = ({image, name, description, location}) => {
+const SaleItem = ({image, name, description, location}) => {
 
     return (
         <>
         <SEO title={`Акция ${name}`}
-        description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
-        pathname="/sale"/>
+             description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
+             noindex={true}
+             pathname="/sale"/>
         <StylingInfo>
         <div className="container"> 
         <h1>{name}</h1>
         <Img style={{maxWidth: 1280}} fluid={image} />
             <p style={{margin: `20px 0 1px 0`}}>{description}</p>
-            <p style={{marginTop: 20}}><b>{location.pathname === "/sale/pizza-free" && "При добавлении в корзину 3 пиццы вам будет предложено добавить " +
-            "пиццу Салями бесплатно"}</b></p>
+            <p style={{marginTop: 20}}><b>{location.pathname === "/sale/pizza-free" && "Добавте в корзину любые три пиццы. " +
+            "Оформляя заказ вам автоматически будет предложено воспользоваться акцией 3 + 1 - пицца Салями бесплатно!"}</b></p>
             <p style={{marginTop: 20}}><b>{location.pathname === "/sale/filadelfia-sale" && "При добавлении в корзину любых роллов и суши не менее чем на 785 рублей " +
             "вам будет предложено купить роллы <<Филадельфия one>> за 79 рублей"}</b></p>
         </div>
@@ -42,4 +43,4 @@ const PizzaItem = ({image, name, description, location}) => {
         )
 }
 
-export default PizzaItem
+export default SaleItem

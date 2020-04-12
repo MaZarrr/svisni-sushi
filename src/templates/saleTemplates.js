@@ -4,7 +4,7 @@ import loadable from "@loadable/component";
 
 const SaleItem = loadable(() => import('../components/SaleItem'))
 
-const PizzaTeamplate = ({
+const SaleTeamplate = ({
     data: {contentfulProductSale}, location}) => { 
       
  return  (
@@ -14,13 +14,12 @@ const PizzaTeamplate = ({
         description={contentfulProductSale.description}
         createdAt={contentfulProductSale.createdAt}
         image={contentfulProductSale.image.fluid}
-        location={location}
-    >
+        location={location}>
     </SaleItem>
     </>
     )}
 
-export default PizzaTeamplate
+export default SaleTeamplate
 
 export const query = graphql ` 
     query ($slug: String!) {
@@ -28,6 +27,7 @@ export const query = graphql `
         id
         slug
         variant
+        description
         name
         detailedDescription {
           detailedDescription

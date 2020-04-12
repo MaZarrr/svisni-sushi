@@ -148,7 +148,7 @@ const handleSubmit = (ev) => {
 }
 
     const validateUserName = () => {
-        const nameValidate = /^[а-я\ё]{3,16}$/gi
+        const nameValidate = /^[а-яё]{3,16}$/gi
         const name = nameUser.trim().replace(/\s/g, "")
         return nameValidate.test(String(name).toLowerCase())
     }

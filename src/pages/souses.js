@@ -51,6 +51,7 @@ export const query = graphql `
                   price
                   name
                   count
+                  weight
                        image {
                            fluid(maxWidth: 300, maxHeight: 300) {
                                ...GatsbyContentfulFluid

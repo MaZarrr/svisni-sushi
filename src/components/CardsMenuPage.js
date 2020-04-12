@@ -25,7 +25,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                 const {id, name, slug, description, price, weight, count, image: {fluid}} = productSets
 
                 return (
-                    <Grid itemprop itemprop="itemListElement" itemscope itemtype="http://schema.org/Product"
+                    <Grid itemscope itemprop="itemListElement"  itemtype="http://schema.org/Product"
                           item xs={12} sm={6} md={3} key={id}>
                         <Card className={classes.card}>
                             <CardHeader
@@ -55,8 +55,10 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     component="div"
                                     variant="overline"
                                     classes={{overline: classes.overline}}>
-                                    <b><p>{weight}кг</p></b>
-                                    <b><p>{slugCategogy === '/pizza' ? `${1}шт` : `${count}шт`}</p></b>
+                                    <b><p>{slugCategogy === '/pizza' ||
+                                    slugCategogy === '/sety' ? `${weight}кг` : `${weight}гр`}</p></b>
+                                    <b><p>{slugCategogy === '/pizza' ||
+                                            count === undefined ? `${1}шт` : `${count}шт`}</p></b>
                                 </Typography>
                                 <p itemprop="price">{`${price}₽`}</p>
                                 </div>

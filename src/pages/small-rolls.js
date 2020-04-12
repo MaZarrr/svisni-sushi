@@ -2,7 +2,6 @@ import React, {useEffect} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-import Spinner from '../components/spinner/spinner'
 
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style';
