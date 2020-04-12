@@ -45,6 +45,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
         price
         count
         weight
+        priceIn33cm
         color
         variant
         contentful_id
