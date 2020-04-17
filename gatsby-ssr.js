@@ -16,30 +16,38 @@ exports.wrapRootElement = ({element}) => {
         )
 }
 
-// exports.onRenderBody = ({
-//         setPreBodyComponents,
-//         setPostBodyComponents
-//     }) => {
-//     setPreBodyComponents([
+exports.onRenderBody = ({
+        setPreBodyComponents,
+        setPostBodyComponents
+     }) => {
+     setPreBodyComponents([
 
-//         <script
+        <script
 
-//         dangerouslySetInnerHTML={{
-//         __html: `
-
-//         (function(d, w, c) {
-//             w.ChatraID = 'ShmYgm6KLaFn3wbcz';
-//             var s = d.createElement('script');
-//             w[c] = w[c] || function() {
-//                 (w[c].q = w[c].q || []).push(arguments);
-//             };
-//             s.async = true;
-//             s.src = 'https://call.chatra.io/chatra.js';
-//             if (d.head) d.head.appendChild(s);
-//         })(document, window, 'Chatra');
-
-//     `
-//         }}/>
-//     ])
-// }
+         dangerouslySetInnerHTML={{
+         __html: `
+(function () {
+    window['yandexChatWidgetCallback'] = function() {
+        try {
+            window.yandexChatWidget = new Ya.ChatWidget({
+                guid: '02c1500f-bc2c-401d-957d-e332c8c69b28',
+                buttonText: 'Напишите нам',
+                title: 'Чат',
+                theme: 'light',
+                collapsedDesktop: 'hover',
+                collapsedTouch: 'always'
+            });
+        } catch(e) { }
+    };
+    var n = document.getElementsByTagName('script')[0],
+        s = document.createElement('script');
+    s.async = true;
+    s.charset = 'UTF-8';
+    s.src = 'https://yastatic.net/s3/chat/widget.js';
+    n.parentNode.insertBefore(s, n);
+})();
+        `
+         }}/>
+     ])
+ }
    
