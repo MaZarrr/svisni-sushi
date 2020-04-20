@@ -3,11 +3,20 @@ import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
 import loadable from "@loadable/component";
 import {addedCart} from "../reducers/shopping-cart";
+import * as R from 'ramda'
+
 
 const SetyItem = loadable(() => import('../components/SetyItem'))
 
-const SetyTeamplate = ({data: {contentfulProduct}, addedToCart}) => {
-
+const SetyTeamplate = ({data: {contentfulProduct,
+    allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
+    allContentfulProductKlassika: {edges: smallRoll},
+}, addedToCart}) => {
+    const product = hotRolls.concat(brandedRolls, smallRoll)
+    const nameProduct = contentfulProduct.description.toLowerCase().split(', ')
+    const kitProduct = product.filter(({node: item}) => {
+      return R.contains(item.name.toLowerCase(), nameProduct)
+    })
  return  (
      <>
     <SetyItem 
@@ -18,6 +27,7 @@ const SetyTeamplate = ({data: {contentfulProduct}, addedToCart}) => {
         weight={contentfulProduct.weight}
         count={contentfulProduct.count}
         image={contentfulProduct.image.fluid}
+        kitProduct={kitProduct}
         added={() => addedToCart({id: contentfulProduct.id, price: null,
             product: [{
                 node: {
@@ -53,6 +63,67 @@ export const query = graphql `
           image {
               fluid(maxWidth: 400, quality: 40) {
                   ...GatsbyContentfulFluid
+                }
+            }
+        }
+        allContentfulProductHotRolly {
+            edges {
+                node {
+                    id
+                    name
+                    description
+                    count
+                    image {
+                        fluid(maxWidth: 300, maxHeight: 300) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
+        allContentfulProductSlognyeRolly {
+            edges {
+                node {
+                    id
+                    name
+                    description
+                    count
+                    image {
+                        fluid(maxWidth: 300, maxHeight: 350) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
+#        allContentfulProductSushi {
+#            edges {
+#                node {
+#                    id
+#                    name
+#                    count
+#                    price
+#                    image {
+#                        fluid(maxWidth: 300, maxHeight: 300) {
+#                            ...GatsbyContentfulFluid
+#                        }
+#                    }
+#                }
+#            }
+#        }
+        allContentfulProductKlassika {
+            edges {
+                node {
+                    id
+                    name
+                    price
+                    description
+                    count
+                    image {
+                        fluid(maxWidth: 300, maxHeight: 300) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
                 }
             }
         }
