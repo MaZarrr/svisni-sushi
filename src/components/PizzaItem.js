@@ -26,8 +26,7 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
                             size="medium"
                             endIcon={<ShoppingBasketIcon/>}
                             // style={{marginBottom: `50px`}}
-                            onClick={added}
-                        ></Button>
+                            onClick={added}/>
                     </div>
                 </div>
 
@@ -42,8 +41,7 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
                             size="medium"
                             endIcon={<ShoppingBasketIcon/>}
                             style={{textAlign: `center`}}
-                            onClick={added}
-                        ></Button>
+                            onClick={added}/>
                     </div>
                 </div>
             </LayoutItem>

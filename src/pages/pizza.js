@@ -56,7 +56,7 @@ return (
         fontWeight: 600, fontSize: 40}}>Пицца</h1>
       </div>
        <CustomizedInputSearch />
-  <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
+  <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Пицца" slugCategogy="/pizza" visibleItems={visibleItems}
                        image={image} product={productPizza}/>
     </Grid>
