@@ -47,6 +47,7 @@ export const query = graphql `
               node {
                   id
                   name
+                  description
                   count
                   price
                   weight

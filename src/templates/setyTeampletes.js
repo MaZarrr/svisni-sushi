@@ -10,9 +10,10 @@ const SetyItem = loadable(() => import('../components/SetyItem'))
 
 const SetyTeamplate = ({data: {contentfulProduct,
     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
-    allContentfulProductKlassika: {edges: smallRoll},
+    allContentfulProductKlassika: {edges: smallRoll}, allContentfulProductSushi: {edges: sushi},
+    allContentfulProductGunkan: {edges: gunkan},
 }, addedToCart}) => {
-    const product = hotRolls.concat(brandedRolls, smallRoll)
+    const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan)
     const nameProduct = contentfulProduct.description.toLowerCase().split(', ')
     const kitProduct = product.filter(({node: item}) => {
       return R.contains(item.name.toLowerCase(), nameProduct)
@@ -96,21 +97,22 @@ export const query = graphql `
                 }
             }
         }
-#        allContentfulProductSushi {
-#            edges {
-#                node {
-#                    id
-#                    name
-#                    count
-#                    price
-#                    image {
-#                        fluid(maxWidth: 300, maxHeight: 300) {
-#                            ...GatsbyContentfulFluid
-#                        }
-#                    }
-#                }
-#            }
-#        }
+        allContentfulProductSushi {
+            edges {
+                node {
+                    id
+                    name
+                    count
+                    description
+                    price
+                    image {
+                       fluid(maxWidth: 300, maxHeight: 300) {
+                           ...GatsbyContentfulFluid
+                      }
+                    }
+                }
+            }
+       }
         allContentfulProductKlassika {
             edges {
                 node {
@@ -119,6 +121,23 @@ export const query = graphql `
                     price
                     description
                     count
+                    image {
+                        fluid(maxWidth: 300, maxHeight: 300) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
+        allContentfulProductGunkan {
+            edges {
+                node {
+                    id
+                    name
+                    count
+                    description
+                    price
+                    weight
                     image {
                         fluid(maxWidth: 300, maxHeight: 300) {
                             ...GatsbyContentfulFluid
