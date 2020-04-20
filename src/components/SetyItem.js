@@ -18,7 +18,7 @@ return (
         <LayoutItem name={name} image={image}>
             <Grid container >
                 <Grid item xs={12} sm={5}>
-                    <Img style={{width: 400}} fluid={image} />
+                    <Img style={{maxWidth: 400}} fluid={image} />
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={5} style={{marginLeft: 10}}>
