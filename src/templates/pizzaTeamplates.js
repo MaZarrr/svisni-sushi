@@ -9,7 +9,7 @@ const PizzaItem = loadable(() => import('../components/PizzaItem'), {
     fallback: <Spinner />
 })
 
-const PizzaTeamplate = ({data: {contentfulProductPizza}, addedToCart}) => {
+const PizzaTeamplate = ({data: {contentfulProductPizza}, addedToCart, location}) => {
 
  return  (
      <>

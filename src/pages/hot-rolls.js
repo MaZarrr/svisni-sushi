@@ -9,6 +9,7 @@ import { useStylesCart } from '../components/common/style'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
+import {defFilters} from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
@@ -22,6 +23,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
     useEffect(() => {
         dispatch(productLoaded(productsHotRolls)) // action push to reduxStore
         setLoad(false)
+        dispatch(defFilters())
     }, [productsHotRolls, dispatch])
 
     const visibleItems = filtersProducts(product, searchText, priceFilter)
@@ -35,14 +37,15 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
 
 return ( 
    <section>
-    <SEO title="Запечёные, гриль, жареные роллы, меню на сайте. Работаем с 10 до 22.00"   
-    description="Закажи горячие роллы, оцени великолепный вкус японской кухни от Свисни Суши. Доставка Валуйки"/>
+    <SEO title="Заказать гриль, жареные роллы от 215 рублей. Доставка по Уразово"
+    description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени великолепный вкус японской кухни от Свисни Суши"
+    pathname="/sety"/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Гриль роллы</h1>
+               fontWeight: 600, fontSize: 40}}>Гриль роллы</h1>
        </div>
   <CustomizedInputSearch />
-    <Grid container justify="center">
+    <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                        image={image} product={product}/>
     </Grid>

@@ -133,8 +133,8 @@ export default () => {
       }
   }
   `)
- 
-  return (
+
+return (
     <Footer>
     <FooterUl className="footer">
     <div className="footer_items foter_t">

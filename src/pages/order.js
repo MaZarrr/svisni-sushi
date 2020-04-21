@@ -148,19 +148,21 @@ const handleSubmit = (ev) => {
 }
 
     const validateUserName = () => {
-        const nameValidate = /^[а-я]{3,16}$/gi
-        return nameValidate.test(String(nameUser).toLowerCase())
+        const nameValidate = /^[а-яё]{3,16}$/gi
+        const name = nameUser.trim().replace(/\s/g, "")
+        return nameValidate.test(String(name).toLowerCase())
     }
     const validatePhone = () => {
         const phoneValidate = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))$/gi
-        return phoneValidate.test(phoneUser)
+        const phone = phoneUser.trim().replace(/\s/g, "")
+        return phoneValidate.test(phone.toLowerCase())
     }
     const validateTextAria = () => {
     const commentTextArea = comments.trim().replace(/\s/g, "")
         if(comments === '') {
             return true
         } else if(comments !== '') {
-            return ((/^[а-я_А-Я_0-9\-?()!,.]{3,230}$/).test(commentTextArea))
+            return ((/^[а-я_А-Я_0-9\-?()!,.ё]{3,230}$/).test(commentTextArea.toLowerCase()))
         }
     }
 
@@ -174,7 +176,8 @@ const handleSubmit = (ev) => {
 const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
 return (
     <section >
-    <SEO title="Оформление заказа" />
+    <SEO title="Оформление заказа"
+    noindex={true}/>
      <div className={classes.root}>
     <Grid container>
         <Grid item xs={12}>
@@ -182,7 +185,7 @@ return (
           <Typography variant="h2">
             <Box fontFamily="Oswald"
             fontWeight={900}
-            fontSize={32}>
+            fontSize={40}>
              Оформление заказа
             </Box>
           </Typography>
@@ -194,7 +197,6 @@ return (
         <form  
           method="POST"
           onSubmit={handleSubmit}
-          // action='https://node-server-ten.now.sh/'
             action={process.env.GATSBY_NODE_SERVE}
           name="svisniData"
           style={{width: '100%'}}>
@@ -211,34 +213,24 @@ return (
                 variant="outlined"
                 style={{margin: `10px auto 10px 0`}}
                 required
-                inputProps={{
-                maxLength: 11,
-                minLength: 2
-                }} 
+                inputProps={{maxLength: 11, minLength: 2}}
                 name="name" 
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              value={nameUser} 
-              helperText={validateUserName() === false ? "Введите ваше имя" : "" } />
+                onChange={(e) => {setName(e.target.value)}}
+                value={nameUser}
+                helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
 
               <TextField id="validation-outlined-input" 
                 label="Телефон" 
                 variant="outlined"
-                error={!validatePhone() && phoneUser.length > 9}
+                error={!validatePhone() && phoneUser.length > 10}
                 type="tel" 
                 style={{margin: `10px auto 10px 0`}}
                 required 
-                inputProps={{
-                  maxLength: 13,
-                  minLength: 10
-                  }} 
-                  name="phone" 
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                }}  
+                inputProps={{maxLength: 13, minLength: 10}}
+                name="phone"
+                onChange={(e) => {setPhone(e.target.value)}}
                 value={phoneUser} 
-                helperText="Введите ваш телефон"/>
+                helperText={!validatePhone() && phoneUser.length > 10 ? "Введите корректный номер" : "Введите ваш номер"}/>
               </Grid>
               <hr></hr>
               <Grid item xs={12}>
@@ -275,9 +267,8 @@ return (
             fontWeight={700}
             fontSize={24}>Дата и время доставки заказа</Box></Typography>  
             <FormGroup>
-              <Typography component="div">
               <Grid component="label" container alignItems="center" spacing={1}>
-                <Grid item>Сразу</Grid>
+                <Typography variant="body1">Сразу</Typography>
                 <Grid item>
                   <IOSSwitch
                     checked={state.checkedC}
@@ -285,9 +276,8 @@ return (
                     value="checkedC"
                   />
                 </Grid>
-                <Grid item>Предзаказ</Grid>
+                <Typography variant="body1">Предзаказ</Typography>
               </Grid>
-            </Typography>
           </FormGroup>
           </Grid>
              
@@ -450,12 +440,12 @@ return (
              value={comments}
              onChange={(e) => userCommentsFunc(e.target.value)}
              rows="4"
-             inputProps={{
-               maxLength: 230,
-               }} 
+             error={!validateTextAria() && comments.length > 2}
+             inputProps={{minLength: 3, maxLength: 230}}
              name="comments"
              variant="outlined"
              style={{marginTop: `50px`}}
+             helperText={!validateTextAria() && comments.length > 2 ? "Удалите лишние знаки и символы" : ""}
            />
            </Grid>
             <div className={classes.conatiner_info}> 
@@ -529,11 +519,22 @@ return (
                     disabled={buttonDisabled()}
                     variant="contained"
                     // classes={{root: classes.button, label: classes.label}}
-                >
+                    >
                     Заказать
                 </Button>
                 </span>
                 </Tooltip>
+
+                {buttonDisabled() === true &&
+                <>
+                    <hr></hr>
+                    <Typography style={{marginTop: 10}}>Проверте:</Typography>
+                    <ul>
+                        <li>Имя только из букв русского алфавита</li>
+                        <li>Телефон только из цифр, начинается с 8, 7 или +7 </li>
+                    </ul>
+                  </>
+                }
              </div>
 
          </form>

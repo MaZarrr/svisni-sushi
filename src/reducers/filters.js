@@ -3,6 +3,7 @@ import {createReducer, createAction} from "redux-act";
 export const searchTextFilter = createAction('SEARCH_PRODUCT')
 export const priceFilterDecInc = createAction('PRICE_FILTER_PRODUCT')
 export const checkFilterNabor = createAction('FILTER_PRODUCT_CHECKBOX')
+export const defFilters = createAction('FILTER_DEF_VALUE')
 
 export const getSearchText = (text) => (dispatch) => dispatch(searchTextFilter(text))
 export const getPriceDecInc = (value) => (dispatch) => dispatch(priceFilterDecInc(value))
@@ -18,6 +19,11 @@ export default createReducer({
     [searchTextFilter]: (state, searchText) => ({...state, searchText}),
     [priceFilterDecInc]: (state, priceFilter) => ({...state, priceFilter}),
     [checkFilterNabor]: (state, checkboxFilter) => ({...state, checkboxFilter}),
+    [defFilters]: () => ({
+        searchText: '',
+        priceFilter: "def",
+        checkboxFilter: "def"
+    })
 }, initialState)
 
 

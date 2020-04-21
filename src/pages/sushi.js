@@ -21,12 +21,12 @@ const Sushi = ({data: {allContentfulProductSushi: {edges: products}, contentfulI
 return ( 
    <section>
     <SEO title="Недорогие суши с доставкой по Валуйскому району"
-    description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте. Звонок +7(904)094-92-22"/>
+    description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте, суши от 50 рублей. Звонок +7(904)094-92-22"/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Суши</h1>
+               fontWeight: 600, fontSize: 40}}>Суши</h1>
        </div>
-    <Grid container justify="center">
+    <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Суши" slugCategogy="/sushi" visibleItems={product}
                        image={image} product={product}/>
     </Grid>
@@ -47,6 +47,7 @@ export const query = graphql `
               node {
                   id
                   name
+                  description
                   count
                   price
                   weight

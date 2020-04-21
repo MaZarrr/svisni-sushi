@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title, keywords }) {
+function SEO({ description, lang, meta, title, keywords, pathname, noindex }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -11,6 +11,7 @@ function SEO({ description, lang, meta, title, keywords }) {
           siteMetadata {
             title
             keywords
+            siteUrl
             description
             author
           }
@@ -19,8 +20,10 @@ function SEO({ description, lang, meta, title, keywords }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const metaKeywords = keywords || site.siteMetadata.keywords
+    const metaDescription = description || site.siteMetadata.description
+    const metaKeywords = keywords || site.siteMetadata.keywords
+    const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
+    const noindexTxt = noindex ?  "noindex" : null
 
   return (
     <Helmet
@@ -46,7 +49,8 @@ function SEO({ description, lang, meta, title, keywords }) {
           rel: `stylesheet`,
           integrity: `sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN`,
           crossorigin: `anonymous`
-        } 
+        },
+        canonical ? { rel: "canonical", href: canonical } : {}
       ]}
       meta={[
         {
@@ -57,6 +61,10 @@ function SEO({ description, lang, meta, title, keywords }) {
           name: `keywords`,
           content: metaKeywords
         },
+        noindexTxt ? {
+          name: "robots",
+          content: noindexTxt
+        } : {},
         {
           property: `og:title`,
           content: title,
@@ -90,7 +98,7 @@ function SEO({ description, lang, meta, title, keywords }) {
           content: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
         },
         {
-        name: `google-site-verification`, 
+        name: `google-site-verification`,
         content: `Dl5O_rAjIGCzaRIsDM6M4jsV2gz4zAePxeTghWzZbvE`,
         },
         {

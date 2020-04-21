@@ -3,7 +3,6 @@ import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
-import Spinner from '../components/spinner/spinner'
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style';
 import loadable from "@loadable/component";
@@ -13,27 +12,25 @@ const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Salaty = ({data: {allContentfulProductSalat: {edges: productsSalaty}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product}) => {
-  
- const [load, setLoad] = React.useState(true)
+
  const classes = useStylesCart();
 
     useEffect(() => {
         dispatch(productLoaded(productsSalaty)) // action push to reduxStore
-        setLoad(false)
     }, [productsSalaty, dispatch])
 
 return ( 
    <section>
-    <SEO title="Заказать салаты с 10:00 до 22:00 с доставкой в Валуйки. Доставка салатов на дом и офис" />
+    <SEO title="Заказать популярные салаты"
+    description="Для вас предоставленна возможность заказа наиболее популярных салатов приготовленных из свежих продуктов.
+    Вашему вниманию: салаты цезарь в вариациях и чука."/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Салаты</h1>
+               fontWeight: 600, fontSize: 40}}>Салаты</h1>
        </div>
     <Grid container justify="center">
-        {
-            !load ? <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}
-                                   image={image} product={product}/> : <Spinner />
-        }
+        <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}
+                                   image={image} product={product}/>
         </Grid>
       </section>
     )

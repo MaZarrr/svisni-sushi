@@ -25,7 +25,8 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                 const {id, name, slug, description, price, weight, count, image: {fluid}} = productSets
 
                 return (
-                    <Grid item xs={12} sm={6} md={3} key={id}>
+                    <Grid itemscope itemprop="itemListElement"  itemtype="http://schema.org/Product"
+                          item xs={12} sm={6} md={3} key={id}>
                         <Card className={classes.card}>
                             <CardHeader
                                 avatar={
@@ -34,23 +35,33 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     </Avatar>
                                 }
                                 title={titleCategory}
-                                subheader={name}/>
+                                subheader={<span itemprop="name">{name}</span>}/>
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
-                                <Img fluid={fluid} alt={name} style={{maxWidth: 270, maxHeight: 270}}/>
+                                <Img itemprop="image" fluid={fluid} alt={name} style={{maxWidth: 270, maxHeight: 270}}/>
                             </CardMedia>
 
                             <CardContent>
-                                <Typography className={classes.deckript} variant="caption" color="textSecondary"
+                                <Typography itemprop="description"
+                                            className={classes.deckript}
+                                            variant="caption"
+                                            color="textSecondary"
                                             component="p">
                                     {description}
                                 </Typography>
-                                <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-                                    <b><p>{weight}кг</p></b>
-                                    <b><p>{slugCategogy === '/pizza' ? `${1}шт` : `${count}шт`}</p></b>
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <Typography
+                                    component="div"
+                                    variant="overline"
+                                    classes={{overline: classes.overline}}>
+                                    <b><p>{slugCategogy === '/pizza' ||
+                                    slugCategogy === '/sety' ? `${weight}кг` : `${weight}гр`}</p></b>
+                                    <b><p>{slugCategogy === '/pizza' ||
+                                            count === undefined ? `${1}шт` : `${count}шт`}</p></b>
                                 </Typography>
-                                <p>{`${price}₽`}</p>
+                                <p itemprop="price">{`${price}₽`}</p>
+                                </div>
                             </CardContent>
 
                             <CardActions disableSpacing>
@@ -67,6 +78,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                 slugCategogy === "/branded-rolls" ||
                                 slugCategogy === "/hot-rolls" ?
                                     <Button
+                                        itemprop = "url"
                                         component={Link}
                                         to={`${slugCategogy}/${slug}`}
                                         variant="contained"

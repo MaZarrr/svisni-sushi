@@ -8,7 +8,9 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
 
     return (
         <>
-            <SEO title={`Пицца ${name}`}/>
+            <SEO title={`Пицца ${name}`}
+                    description={`Маленькая и большая пицца ${name}, пицца от ${price} рублей`}
+                    pathname="/pizza"/>
             <LayoutItem name={name} image={image} >
                 <p><b>Состав:</b> {description}</p>
                 {/* <p><b>Количество:</b> {count} шт</p> */}
@@ -24,8 +26,7 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
                             size="medium"
                             endIcon={<ShoppingBasketIcon/>}
                             // style={{marginBottom: `50px`}}
-                            onClick={added}
-                        ></Button>
+                            onClick={added}/>
                     </div>
                 </div>
 
@@ -40,8 +41,7 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
                             size="medium"
                             endIcon={<ShoppingBasketIcon/>}
                             style={{textAlign: `center`}}
-                            onClick={added}
-                        ></Button>
+                            onClick={added}/>
                     </div>
                 </div>
             </LayoutItem>

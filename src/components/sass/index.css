@@ -10,15 +10,15 @@
 }
 .title_home h1 {
   text-align: center;
-  text-transform: uppercase;
-  font-family: "Oswald", cursive;
+  font-family: "Comfortaa", cursive;
   font-style: normal;
   font-weight: 900;
+  font-size: 40px;
   letter-spacing: 2px;
 }
 @media screen and (max-width: 768px) {
   .title_home h1 {
-    max-width: 90;
+    max-width: 90%;
   }
 }
 

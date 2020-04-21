@@ -15,10 +15,12 @@ import Typography from '@material-ui/core/Typography';
 import Logo from "../images/logoPN.png"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
+
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import DetailsIcon from '@material-ui/icons/Details';
 
 import styled from 'styled-components';
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import Spinner from './spinner/spinner'
 import {useStyleCardIndexPage} from "./common/style";
 import {productLoaded} from "../reducers/app";
@@ -46,6 +48,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
         count
         weight
         color
+        slug
         variant
         contentful_id
         image {
@@ -108,6 +111,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
       </CardContent>
 
       <CardActions disableSpacing>
+        { homeProduct.slug !== 'diablo' &&
         <Button
         variant="contained"
         color="secondary"
@@ -117,6 +121,18 @@ const RecipeReviewCard = ({product, dispatch}) => {
       >
         Хочу!
       </Button>
+        }
+        { homeProduct.slug === 'diablo' &&
+          <Button
+              variant="contained"
+              component={Link}
+              color="secondary"
+              to={`/pizza/${homeProduct.slug}`}
+              className={classes.button}
+              startIcon={<DetailsIcon />}>
+            Посмотреть
+          </Button>
+        }
         <IconButton
           id={homeProduct.contentful_id}
           className={clsx(classes.expand, {

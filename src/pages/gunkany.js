@@ -20,10 +20,12 @@ const Gunkany = ({data: {allContentfulProductGunkan: {edges: productsGunkan}, co
 
 return ( 
    <section>
-    <SEO title="Заказать гунканы с доставкой в Валуйках" />
+    <SEO title="Заказать гунканы с доставкой в Валуйках"
+    description="Гунканы с икрой, крабом, угрём. Гунканы от 55 рублей. Подробнее в нашем меню на сайте Свисни Суши "
+    noindex={true} />
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Гунканы</h1>
+               fontWeight: 600, fontSize: 40}}>Гунканы</h1>
        </div>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Гункан" slugCategogy="/gunkany" visibleItems={product}
@@ -47,6 +49,7 @@ export const query = graphql `
                   id
                   name
                   count
+                  description
                   price
                   weight
                       image {

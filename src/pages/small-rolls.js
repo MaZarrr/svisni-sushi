@@ -2,7 +2,6 @@ import React, {useEffect} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-import Spinner from '../components/spinner/spinner'
 
 import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style';
@@ -13,27 +12,24 @@ const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const SmallRolls = ({data: {allContentfulProductKlassika: {edges: productsSmallRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
-  
-  const [load, setLoad] = React.useState(true)
+
   const classes = useStylesCart();
 
     useEffect(() => {
         dispatch(productLoaded(productsSmallRolls)) // action push to reduxStore
-        setLoad(false)
     }, [productsSmallRolls, dispatch])
 
 return ( 
    <section>
-    <SEO title="Вкусные недорогие роллы. Заказать доставку на дом в Валуйки" />
+    <SEO title="Вкусные недорогие маки роллы. Заказать доставку на дом в Валуйки"
+    description="Маленькие, жареные и темпурные классические Свисни роллы от 120 рублей"/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Классические роллы</h1>
+               fontWeight: 600, fontSize: 40}}>Классические роллы</h1>
        </div>
     <Grid container justify="center">
-        {
-            !load ? <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}
-                                   image={image} product={product}/> : <Spinner />
-        }
+            <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}
+                                   image={image} product={product}/>
         </Grid>
       </section>
     )

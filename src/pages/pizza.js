@@ -11,6 +11,7 @@ import * as R from 'ramda'
 
 import loadable from "@loadable/component";
 import {productPizzaLoaded} from "../reducers/app";
+import {defFilters} from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
@@ -24,6 +25,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
     useEffect(() => {
           if(!R.isEmpty(productPizza)) {
             setLoad(false)
+              dispatch(defFilters())
             return
           }
           const ProductFetch = async () => {
@@ -32,6 +34,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
           ProductFetch()
            .then((data) => dispatch(productPizzaLoaded(data)))
            .then(() => setLoad(false))
+            .then(() => dispatch(defFilters()))
       }, [productPizza, dispatch, pizzaProduct])
 
     const visibleItems = filtersProducts(productPizza, searchText, priceFilter)
@@ -45,16 +48,15 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
 
 return ( 
    <section>
-    <SEO title="Доставка пиццы в Валуйки - сытная пицца с быстрой и бесплатной доставкой от 500р"
-      description="Заказать пиццу на дом в Уразово от Свисни Суши. Меню большая и маленькая пицца
-      Скидка на пиццу 10% в счастливые часы. Свисни пицца от 235р с быстрой доставкой на дом и в офис!"/>
-
+    <SEO title="Доставка пиццы в Валуйки. Заказ с 10:00 до 22:00"
+        description="Заказать пиццу в Уразово. Посмотреть меню на сайте с описанием и ценами. Скидка 10%, пицца бесплатно"
+        pathname="/sety"/>
       <div className={classes.titleH1}>
         <h1 style={{fontFamily: `Oswald, cursive`,
-        fontWeight: 600, }}>Пицца</h1>
+        fontWeight: 600, fontSize: 40}}>Пицца</h1>
       </div>
        <CustomizedInputSearch />
-  <Grid container justify="center" >
+  <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Пицца" slugCategogy="/pizza" visibleItems={visibleItems}
                        image={image} product={productPizza}/>
     </Grid>

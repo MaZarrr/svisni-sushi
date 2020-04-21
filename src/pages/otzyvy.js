@@ -1,12 +1,11 @@
 import React from "react"
 // import VK, {Comments} from "react-vk";
-import SEO from "../components/seo"
 
 const Otzyvy = () => {
 
 return (
   <>
-    <SEO title="Отзывы" />
+    {/*<SEO title="Отзывы" />*/}
     <section>
       {/* <VK apiId={7311665} onlyWidgets="true">
         <Comments elementId="vk_comments" />

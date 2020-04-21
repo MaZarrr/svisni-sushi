@@ -76,7 +76,7 @@ module.exports = {
         policy: [{
           userAgent: '*',
           allow: '/',
-          disallow: ['/korzina', '/order-processed', '/order']
+          disallow: ['/slozhnyeRolly', '/klassicheskieRolly', '/zapechenyeRolly']
         }]
       }
     },
@@ -111,13 +111,6 @@ module.exports = {
           startDate: new Date("2020-2-2"),
           endDate: new Date(),
         },
-      },
-    },
-    {
-      resolve: `@mangoart/gatsby-plugin-purechat`,
-      options: {
-        enabled: true,
-        websiteId: `4ea5ea00-517c-43e9-bb61-33f55324d3cc`,
       },
     }
   ]

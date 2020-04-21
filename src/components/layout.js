@@ -11,10 +11,10 @@ import {clockSale} from "../reducers/shopping-cart";
 const Footer = loadable(() => import('./footer'))
 
 const Layout = ({ children, location: {pathname}, dispatch, clockSaleBool }) => {
-  const classes = useStyleLayout();
+const classes = useStyleLayout();
 
 React.useEffect(() => {
-  const time = moment().format('HH')
+const time = moment().format('HH')
   const day = moment().format('ddd')
   if(time < 16 && time > 10 && (day === 'Tue' || day === 'Mon')) {
     dispatch(clockSale())

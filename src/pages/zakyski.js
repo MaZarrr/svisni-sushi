@@ -24,10 +24,11 @@ const Zakyski = ({data: {allContentfulProductZakuski: {edges: productsZakyski}, 
 
 return ( 
    <section>
-    <SEO title="Заказать закуски с доставкой в Валуйки. Доставка закусок на дом и офис" />
+    <SEO title="Доставка закусок в Уразово | Заказать на дом или в офис"
+    description="Доставка закусок от суши-бара Свисни в Уразово ☛ Телефон для заказа ☎ +7(904)094-92-22"/>
        <div className={classes.titleH1}>
            <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600}}>Закуски</h1>
+               fontWeight: 600, fontSize: 40}}>Закуски</h1>
        </div>
     <Grid container justify="center">
         {

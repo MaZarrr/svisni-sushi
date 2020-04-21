@@ -9,7 +9,7 @@ return (
     <>
     <SEO title="Условия обработки персональных данных" 
     description="Условия обработки персональных данных"
-    />
+    noindex={true} />
     <StylingInfo>
     <div className="container">
     <article>

@@ -1,13 +1,23 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-import loadable from "@loadable/component";
+//import loadable from "@loadable/component";
+import SetyItem from "../components/SetyItem";
 import {addedCart} from "../reducers/shopping-cart";
+import * as R from 'ramda'
 
-const SetyItem = loadable(() => import('../components/SetyItem'))
+// const SetyItem = loadable(() => import('../components/SetyItem'))
 
-const SetyTeamplate = ({data: {contentfulProduct}, addedToCart}) => {
-
+const SetyTeamplate = ({data: {contentfulProduct,
+    allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
+    allContentfulProductKlassika: {edges: smallRoll}, allContentfulProductSushi: {edges: sushi},
+    allContentfulProductGunkan: {edges: gunkan},
+}, addedToCart}) => {
+    const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan)
+    const nameProduct = contentfulProduct.description.toLowerCase().split(', ')
+    const kitProduct = product.filter(({node: item}) => {
+      return R.contains(item.name.toLowerCase(), nameProduct)
+    })
  return  (
      <>
     <SetyItem 
@@ -18,6 +28,7 @@ const SetyTeamplate = ({data: {contentfulProduct}, addedToCart}) => {
         weight={contentfulProduct.weight}
         count={contentfulProduct.count}
         image={contentfulProduct.image.fluid}
+        kitProduct={kitProduct}
         added={() => addedToCart({id: contentfulProduct.id, price: null,
             product: [{
                 node: {
@@ -56,8 +67,98 @@ export const query = graphql `
                 }
             }
         }
+        allContentfulProductHotRolly {
+            edges {
+                node {
+                    id
+                    name
+                    description
+                    count
+                    image {
+                        fluid(maxWidth: 300, maxHeight: 300) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
+        allContentfulProductSlognyeRolly {
+            edges {
+                node {
+                    id
+                    name
+                    description
+                    count
+                    image {
+                        fluid(maxWidth: 300, maxHeight: 350) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
+        allContentfulProductSushi {
+            edges {
+                node {
+                    id
+                    name
+                    count
+                    description
+                    price
+                    image {
+                       fluid(maxWidth: 300, maxHeight: 300) {
+                           ...GatsbyContentfulFluid
+                      }
+                    }
+                }
+            }
+       }
+        allContentfulProductKlassika {
+            edges {
+                node {
+                    id
+                    name
+                    price
+                    description
+                    count
+                    image {
+                        fluid(maxWidth: 300, maxHeight: 300) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
+        allContentfulProductGunkan {
+            edges {
+                node {
+                    id
+                    name
+                    count
+                    description
+                    price
+                    weight
+                    image {
+                        fluid(maxWidth: 300, maxHeight: 300) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
     }
   `
+
+
+// "@mangoart/gatsby-plugin-purechat": "^1.0.2",
+// {
+//     resolve: `@mangoart/gatsby-plugin-purechat`,
+//         options: {
+//     enabled: true,
+//         websiteId: `4ea5ea00-517c-43e9-bb61-33f55324d3cc`,
+// // },
+// }
+
 
 
 // "react-virtualized-auto-sizer": "^1.0.2",
