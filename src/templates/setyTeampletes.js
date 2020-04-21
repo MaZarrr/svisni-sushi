@@ -6,7 +6,6 @@ import SetyItem from "../components/SetyItem";
 import {addedCart} from "../reducers/shopping-cart";
 import * as R from 'ramda'
 
-//
 // const SetyItem = loadable(() => import('../components/SetyItem'))
 
 const SetyTeamplate = ({data: {contentfulProduct,
