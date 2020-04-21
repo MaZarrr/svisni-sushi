@@ -1,12 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-import loadable from "@loadable/component";
+// import loadable from "@loadable/component";
 import {addedCart} from "../reducers/shopping-cart";
 import * as R from 'ramda'
+import SetyItem from "../components/SetyItem";
 
-
-const SetyItem = loadable(() => import('../components/SetyItem'))
+// const SetyItem = loadable(() => import('../components/SetyItem'))
 
 const SetyTeamplate = ({data: {contentfulProduct,
     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
