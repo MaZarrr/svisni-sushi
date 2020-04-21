@@ -14,6 +14,7 @@ const SetyTeamplate = ({data: {contentfulProduct,
     allContentfulProductKlassika: {edges: smallRoll}, allContentfulProductSushi: {edges: sushi},
     allContentfulProductGunkan: {edges: gunkan},
 }, addedToCart}) => {
+
     const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan)
     const nameProduct = contentfulProduct.description.toLowerCase().split(', ')
     const kitProduct = product.filter(({node: item}) => {
