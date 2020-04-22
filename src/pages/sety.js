@@ -33,13 +33,6 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
 
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter)
 
-    if(load) {
-        return <div style={{display: `flex`,
-            justifyContent: `center`,
-            alignItems: `center`}}>
-            <Spinner /></div>
-    }
-
 return (
   <>
     <SEO title="Заказать сет роллов в Валуйки. Бесплатная доставка наборов от 500 рублей"
@@ -49,12 +42,15 @@ return (
     <h1 style={{fontFamily: `Oswald, cursive`,
     fontWeight: 600, fontSize: 40}}>Сеты</h1>
    </div>
-  <CustomizedInputSearch location={location.pathname}/>
-    <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
-        <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
-                                  image={image} product={product}/>
-
-    </Grid>
+       { load === false ?
+       <div>
+       <CustomizedInputSearch location={location.pathname}/>
+       <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
+           <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
+           image={image} product={product}/>
+       </Grid>
+       </div> : <Spinner/>
+       }
     </section>
    </>
     )

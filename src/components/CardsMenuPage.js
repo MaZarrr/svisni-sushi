@@ -74,9 +74,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     Хочу </Button>
 
                                 {  slugCategogy === "/sety" ||
-                                slugCategogy === "/pizza" ||
-                                slugCategogy === "/branded-rolls" ||
-                                slugCategogy === "/hot-rolls" ?
+                                slugCategogy === "/pizza" ?
                                     <Button
                                         itemprop = "url"
                                         component={Link}

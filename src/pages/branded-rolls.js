@@ -28,13 +28,6 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
 
       const visibleItems = filtersProducts(product, searchText, priceFilter)
 
-      if(load) {
-      return <div style={{display: `flex`, 
-      justifyContent: `center`, 
-      alignItems: `center`}}> 
-      <Spinner /></div>
-    }
-      
 return ( 
    <section>
     <SEO title="Меню фирменные роллы. Доставка сложных роллов на дом в Валуйки"  
@@ -45,12 +38,14 @@ return (
         <h1 style={{fontFamily: `Oswald, cursive`,
         fontWeight: 600, fontSize: 40 }}>Сложные роллы</h1>
    </div>
-
-   <CustomizedInputSearch />
-    <Grid container justify="center">
-        <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls" visibleItems={visibleItems}
-                       image={image} product={product}/>
-    </Grid>
+       {load === false ? <>
+               <CustomizedInputSearch/>
+               <Grid container justify="center">
+                   <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
+                                  visibleItems={visibleItems}
+                                  image={image} product={product}/>
+               </Grid> </> : <Spinner/>
+       }
   </section>
     )
 }

@@ -39,13 +39,6 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
 
     const visibleItems = filtersProducts(productPizza, searchText, priceFilter)
 
-    if(load) {
-        return <div style={{display: `flex`,
-        justifyContent: `center`,
-        alignItems: `center`}}>
-        <Spinner /></div>
-    }
-
 return ( 
    <section>
     <SEO title="Доставка пиццы в Валуйки. Заказ с 10:00 до 22:00"
@@ -55,11 +48,15 @@ return (
         <h1 style={{fontFamily: `Oswald, cursive`,
         fontWeight: 600, fontSize: 40}}>Пицца</h1>
       </div>
-       <CustomizedInputSearch />
-  <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
-        <CardsMenuPage titleCategory="Пицца" slugCategogy="/pizza" visibleItems={visibleItems}
-                       image={image} product={productPizza}/>
-    </Grid>
+       {load === false ?
+           <div>
+               <CustomizedInputSearch/>
+               <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+                   <CardsMenuPage titleCategory="Пицца" slugCategogy="/pizza" visibleItems={visibleItems}
+                                  image={image} product={productPizza}/>
+               </Grid>
+           </div> : <Spinner/>
+       }
   </section>
     )
 }

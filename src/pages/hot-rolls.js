@@ -28,13 +28,6 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
 
     const visibleItems = filtersProducts(product, searchText, priceFilter)
 
-    if(load) {
-      return <div style={{display: `flex`, 
-      justifyContent: `center`, 
-      alignItems: `center`}}> 
-      <Spinner /></div>
-    }
-
 return ( 
    <section>
     <SEO title="Заказать гриль, жареные роллы от 215 рублей. Доставка по Уразово"
@@ -44,11 +37,14 @@ return (
            <h1 style={{fontFamily: `Oswald, cursive`,
                fontWeight: 600, fontSize: 40}}>Гриль роллы</h1>
        </div>
-  <CustomizedInputSearch />
-    <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
-        <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
-                       image={image} product={product}/>
-    </Grid>
+
+       {load === false ? <>
+           <CustomizedInputSearch/>
+           <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
+               <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
+                              image={image} product={product}/>
+           </Grid> </> : <Spinner/>
+       }
   </section>
     )
 }
