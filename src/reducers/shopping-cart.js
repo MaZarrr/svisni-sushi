@@ -49,7 +49,6 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.node.pric
 
 const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
     const {cartItems} = state
-    // console.log(categoryName)
     const sety = categoryName.find(({node: productCategory}) => productCategory.id === setId);
     const itemIndex = cartItems.findIndex(({id}) => id === setId);
     const item = cartItems[itemIndex];
@@ -99,12 +98,15 @@ export const deleteRoll = (id) => (dispatch) => dispatch(deleteRollSale(id))
 const initialState = {
     cartItems: [],
     orderTotal: 0,
+    pizzaSize: false,
     palochkiTotal: 0,
     clockSale: false
 }
 
 export default createReducer({
     [addedToCart]: (state, {id, radioValue, product}) => {
+        console.log(id, radioValue, product)
+        console.log('state - 111', state)
         const res = updateOder(state, id, 1, radioValue, product)
         return {...state, cartItems: res.cartItems, orderTotal: res.orderTotal}},
     [removeFromCart]: (state, data) => {
@@ -116,7 +118,7 @@ export default createReducer({
         const {cartItems, orderTotal} = updateOder(state, data.id, -item.count, data.radioValue, data.product)
         return { ...state, cartItems, orderTotal}
     },
-    [pizzaSize]: (state, {id, price, product}) => {
+    [pizzaSize]: (state, {id, price, product, size}) => {
         const pizza = product.find(({node: pizzaId}) => pizzaId.id === id);
         const itemIndexPizza = state.cartItems.findIndex((data) => data.id === id)
         const itemPizza = state.cartItems[itemIndexPizza]
@@ -127,6 +129,8 @@ export default createReducer({
             priceDef: pizza.node.price,
             price33: pizza.node.priceIn33cm,
             radioValue: parseInt(price) * 1,
+            size: {[size]: true},
+            slug: pizza.node.slug,
             image: {...pizza.node.image.fluid},
             count: itemPizza.count,
             total: itemPizza.count * parseInt(price)
@@ -139,6 +143,7 @@ export default createReducer({
 
         return {
             ...state,
+            pizzaSize: true,
             orderTotal: totalPrice,
             cartItems: updateItemPizza
         }

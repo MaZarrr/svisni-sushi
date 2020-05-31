@@ -45,7 +45,7 @@ return (
        { load === false ?
        <div>
        <CustomizedInputSearch location={location.pathname}/>
-       <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
+       <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
            <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
            image={image} product={product}/>
        </Grid>

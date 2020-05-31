@@ -12,13 +12,13 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Radio from '@material-ui/core/Radio';
+// import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import {useStyleKorzina} from '../components/common/style'
-
+import clsx from 'clsx';
 import Spinner from '../components/spinner/spinner'
 import {addedCart, removeCart, allRemoveCart, pizzaSized, addPribor, saleRoll, salePizza, deletePizza, deleteRoll} from "../reducers/shopping-cart";
 import {getProduct} from "../reducers/app";
@@ -34,7 +34,7 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
 
     const [value, setValue] = React.useState([]);
     const [load, setLoad] = React.useState(true)
-
+    // const [expanded, setExpanded] = React.useState({name: false});
     useEffect(() => {
     const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
      allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
@@ -47,7 +47,10 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
    allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski,
    allContentfulProductKombo
  ])
+    console.log('items-korzina', items)
+
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
+
     const disabled = () => {
         return R.contains(true, items.map((el) => el.priceSale === 0))
     }
@@ -92,10 +95,11 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
                     </Typography>
                     <Grid item>
                       <Typography variant="body2" style={{cursor: 'pointer'}}>
+                          Пицца бесплатно!
                         <button disabled={false}
                                 onClick={() => addedSalePizza(pizza())}
                                 className="btn btn-success btn-sm">
-                          Пицца бесплатно!
+                          Добавить
                         </button>
                       </Typography>
                     </Grid>
@@ -163,10 +167,11 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
                                 </Typography>
                                 <Grid item>
                                     <Typography variant="body2" style={{cursor: 'pointer'}}>
+                                        Филадельфия за <b>79₽</b>
                                         <button disabled={false}
                                                 onClick={() => addedSaleRoll(saleRoll)}
                                                 className="btn btn-success btn-sm">
-                                            Филадельфия за 79!
+                                            Добавить
                                         </button>
 
 
@@ -195,8 +200,8 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
 
     const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
 
-    const onRadioChangedd = (id, price, product) =>  {
-  onRazmer({id, price, product})
+    const onRadioChangedd = (id, price, product, size) =>  {
+  onRazmer({id, price, product, size})
 }
 //
 return (
@@ -220,8 +225,9 @@ return (
           <Typography variant="h6"><b>Товар</b></Typography>
           { !load ? items.map((item, idx) => {
 
-        const {id, name, count, total, image, price33, radioValue, priceDef, textRollSale, textPizza, pizzaSale} = item // radioPrice
-
+        const {id, name, count, total, image, price33, radioValue, priceDef,
+            textRollSale, textPizza, pizzaSale, size = {}, slug = null} = item // radioPrice
+                  // console.log(slug)
         return (
           <Paper key={id} className={classes.paper}>
           <Grid container spacing={3} className={classes.containerWrapped}>
@@ -237,9 +243,11 @@ return (
               value={value[idx]} onChange={handleChange} row>
               <FormControlLabel
                   value={name}
-                  control={<Radio color="primary" name={String(idx + 1)}
-                  onChange={() => onRadioChangedd(id, priceDef, allContentfulProductPizza.edges)}/>}
-                  label="Маленькая"
+                  control={<Button className={clsx(classes.buttonD, {
+                      [classes.buttonT]: size[slug]})}
+                      color="primary" name={String(idx + 1)}
+                      onClick={() => onRadioChangedd(id, priceDef, allContentfulProductPizza.edges, slug)}>Маленькая</Button>}
+                  // label="Маленькая"
                   labelPlacement="bottom"
                   id={id}
                   name={name}
@@ -247,10 +255,11 @@ return (
                 />
                 <FormControlLabel
                   value={name + "a"}
-                  control={<Radio color="primary"
-                  name={String(idx + 1)}
-                  onChange={() => onRadioChangedd(id, price33, allContentfulProductPizza.edges)}/>}
-                  label="Большая"
+                  control={<Button className={clsx(classes.buttonD, {
+                      [classes.buttonT]: size[`${slug}a`]})} color="primary"
+                    name={String(idx + 1)}
+                    onClick={() => onRadioChangedd(id, price33, allContentfulProductPizza.edges, `${slug}a`)}>Большая </Button>}
+                  // label="Большая"
                   labelPlacement="bottom"
                   id={id}
                   name={name}
@@ -368,7 +377,8 @@ const mapStateToProps = (state) => ({
   items: state.shoppingCart.cartItems,
   product: state.app.product,
   palochkiTotal: state.shoppingCart.palochkiTotal,
-  total: state.shoppingCart.orderTotal
+  total: state.shoppingCart.orderTotal,
+    pizzaSize: state.shoppingCart.pizzaSize
 })
 
 const mapDispatchToProps = {
@@ -406,6 +416,7 @@ export const queryKorzina = graphql `
             node {
                 id
               name
+                slug
               price
               priceIn33cm
               image {

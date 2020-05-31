@@ -22,10 +22,11 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     deckript: {
-        fontFamily: 'Comfortaa',
-        fontWeight: 800,
-        fontDisplay: `fallback`,
-        minHeight: 110,
+       // fontFamily: 'Comfortaa',
+       fontWeight: 400,
+       //  fontDisplay: `fallback`,
+        minHeight: 105,
+        fontSize: 14,
         [theme.breakpoints.down('500')]: {
             minHeight: `30px`
         }
@@ -252,7 +253,17 @@ export const useStyleKorzina = makeStyles(theme => ({
         [theme.breakpoints.down('sm')]: {
             marginBottom: 60
         }
-    }
+    },
+    buttonD: {
+        background: `lightgrey`
+    },
+    buttonF: {
+        background: `grey`
+    },
+    buttonT: {
+        background: `grey`,
+        color: 'white'
+    },
 }))
 
 export const useStyleCardIndexPage = makeStyles(theme => ({

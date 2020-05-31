@@ -109,7 +109,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
         </Typography>
        <p>{`${homeProduct.price}₽`}</p>
       </CardContent>
-
+{/*// ==================================================*/}
       <CardActions disableSpacing>
         { homeProduct.slug !== 'diablo' &&
         <Button

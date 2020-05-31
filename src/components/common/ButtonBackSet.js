@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     sizeButton: {
-        width: 40,
-        height: 40,
+        width: 45,
+        height: 45,
         opacity: 0.65,
         [theme.breakpoints.up('768')]: {
             width: 55,

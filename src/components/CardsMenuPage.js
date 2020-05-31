@@ -15,9 +15,11 @@ import {useStylesCart} from "./common/style";
 import {addedToCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 
-const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch}) => {
 
+const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch}) => {
+    // console.log(product)
     const classes = useStylesCart()
+
     return (
         <>
             {visibleItems.map(({node: productSets}) => {
@@ -25,7 +27,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                 const {id, name, slug, description, price, weight, count, image: {fluid}} = productSets
 
                 return (
-                    <Grid itemscope itemprop="itemListElement"  itemtype="http://schema.org/Product"
+                    <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                           item xs={12} sm={6} md={3} key={id}>
                         <Card className={classes.card}>
                             <CardHeader
@@ -35,22 +37,22 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     </Avatar>
                                 }
                                 title={titleCategory}
-                                subheader={<span itemprop="name">{name}</span>}/>
+                                subheader={<span itemProp="name">{name}</span>}/>
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
-                                <Img itemprop="image" fluid={fluid} alt={name} style={{maxWidth: 270, maxHeight: 270}}/>
+                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: 270, maxHeight: 270}}/>
                             </CardMedia>
 
                             <CardContent>
-                                <Typography itemprop="description"
+                                <Typography itemProp="description"
                                             className={classes.deckript}
                                             variant="caption"
                                             color="textSecondary"
                                             component="p">
                                     {description}
                                 </Typography>
-                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                 <Typography
                                     component="div"
                                     variant="overline"
@@ -60,7 +62,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     <b><p>{slugCategogy === '/pizza' ||
                                             count === undefined ? `${1}шт` : `${count}шт`}</p></b>
                                 </Typography>
-                                <p itemprop="price">{`${price}₽`}</p>
+                                <p itemProp="price">{`от ${price}₽`}</p>
                                 </div>
                             </CardContent>
 
@@ -76,7 +78,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                 {  slugCategogy === "/sety" ||
                                 slugCategogy === "/pizza" ?
                                     <Button
-                                        itemprop = "url"
+                                        itemProp = "url"
                                         component={Link}
                                         to={`${slugCategogy}/${slug}`}
                                         variant="contained"
