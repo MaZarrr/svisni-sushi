@@ -17,7 +17,6 @@ import {connect} from "react-redux";
 
 
 const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch}) => {
-    // console.log(product)
     const classes = useStylesCart()
 
     return (
@@ -41,7 +40,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
-                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: 270, maxHeight: 270}}/>
+                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
                             </CardMedia>
 
                             <CardContent>

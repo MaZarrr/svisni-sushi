@@ -39,7 +39,7 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     media: {
-        maxWidth: `70%`,
+        maxWidth: `99%`,
         margin: `0 auto`,
     },
     expand: {
@@ -289,7 +289,7 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         }
     },
     media: {
-        maxWidth: `250px`,
+        maxWidth: `99%`,
         margin: `0 auto`,
     },
     expand: {

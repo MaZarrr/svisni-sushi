@@ -52,7 +52,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
         variant
         contentful_id
         image {
-          fluid(maxWidth: 400, quality: 30) {
+          fluid(maxWidth: 800) {
             ...GatsbyContentfulFluid
           }
         }
