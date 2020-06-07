@@ -105,8 +105,7 @@ const initialState = {
 
 export default createReducer({
     [addedToCart]: (state, {id, radioValue, product}) => {
-        console.log(id, radioValue, product)
-        console.log('state - 111', state)
+
         const res = updateOder(state, id, 1, radioValue, product)
         return {...state, cartItems: res.cartItems, orderTotal: res.orderTotal}},
     [removeFromCart]: (state, data) => {

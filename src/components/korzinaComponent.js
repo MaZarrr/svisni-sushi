@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import * as R from 'ramda'
 import { connect } from 'react-redux';
-import ShoppingBasketRoundedIcon from '@material-ui/icons/ShoppingBasketRounded';
 import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
+import { withStyles } from '@material-ui/core/styles';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const KorzinaItem = styled.div `
   min-width: 90px;
@@ -65,10 +67,19 @@ const TextTotal = styled.span `
 }
 `
 
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+        right: -3,
+        top: 13,
+        border: `2px solid ${theme.palette.background.paper}`,
+        padding: '0 4px',
+    },
+}))(Badge);
+
+
 const Korzina = ({ cartItems = [], orderTotal = 0}) => {
   const [count, setCount] = useState(0);
   const prevCount = usePrevious(count); // изначально 0 и сразу заришет 0
-
   const totalCount = R.compose(
         R.sum,
         R.pluck('count')
@@ -97,15 +108,17 @@ return (
         <Link className="korzina_img" to="/korzina">
           <div className="korzina_content">
 
-            <IconButton style={{margin: 0, padding: 0, width: `60px`}} color="secondary" size='medium'>
+            <IconButton style={{margin: 0, padding: 0, width: `60px`}} color="secondary" aria-label="cart">
             <TextTotal count={count} prevCount={prevCount} >
-              <ShoppingBasketRoundedIcon/>
+                {/*<TextTotal count={count} prevCount={prevCount} >*/}
+                <StyledBadge badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
+              <ShoppingCartIcon/>
+                </StyledBadge>
             </TextTotal>
             </IconButton>
-
-            <div className="korzina_content korzina_content_txt">
-              <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>
-            </div>
+            {/*<div className="korzina_content korzina_content_txt">*/}
+            {/*  <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>*/}
+            {/*</div>*/}
           </div>
         </Link>
     </KorzinaItem>
@@ -117,9 +130,5 @@ const mapStateToProps = (state) => ({
     cartItems: state.shoppingCart.cartItems,
     orderTotal: state.shoppingCart.orderTotal
 })
-
-// const mapStateToProps = ({ shoppingCart: {cartItems, orderTotal} }) => {
-//     return {cartItems, orderTotal};
-//   }
 
 export default connect(mapStateToProps, null)(Korzina)

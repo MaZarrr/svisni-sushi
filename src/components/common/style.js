@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Switch from "@material-ui/core/Switch";
 import React from "react";
 
-const drawerWidth = 190;
-
 export const useStylesCart = makeStyles(theme => ({
     titleH1: {
         fontFamily: 'Oswald',
@@ -408,64 +406,12 @@ export const useStyleHeader = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-around',
         width: `100%`,
-        // height: `70px`,
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
         backgroundColor: "white",
-    },
-    appBarShift: {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: 36,
-        fontSize: `10px`,
-        color: `tomato`,
-        border: `1px solid tomato`,
-        [theme.breakpoints.up('769')]: {
-            display: 'none',
-            margin: 0
-        },
-    },
-    hide: {
-        display: 'none',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-        whiteSpace: 'nowrap',
-        [theme.breakpoints.up('769')]: {
-            display: 'none',
-        }
-    },
-    drawerOpen: {
-        width: drawerWidth,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    drawerClose: {
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        overflowX: 'hidden',
-        width: theme.spacing(7.2) + 1,
-    },
-    toolbar: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar,
     },
     content_header: {
         display: 'flex',
@@ -480,21 +426,6 @@ export const useStyleHeader = makeStyles(theme => ({
         [theme.breakpoints.down('769')]: {
             display: 'none',
         }
-    },
-    iconImg: {
-        height: '25px',
-        width: '25px',
-        marginRight: 17,
-    },
-    iconDiv: {
-        fontFamily: 'Neucha, Comfortaa, cursive',
-        fontWeight: 800
-    },
-    paper: {
-        border: '1px solid',
-        padding: theme.spacing(1),
-        backgroundColor: theme.palette.background.paper,
-        fontSize: `14px`
     }
 }))
 
@@ -503,13 +434,13 @@ export const useStyleLayout = makeStyles(theme => ({
         maxWidth: `1440px`,
         backgroundColor: "#fafafa",
         minHeight: `100vh`,
-        [theme.breakpoints.down('769')]: {
-            paddingLeft: '50px'
-        },
-        [theme.breakpoints.up('769')]: {
-            marginTop: '75px',
-        },
-        margin: '0 auto',
+        marginTop: '75px',
+        // [theme.breakpoints.down('769')]: {
+        //     paddingLeft: '50px'
+        // },
+        // [theme.breakpoints.up('769')]: {
+        //     marginTop: '75px',
+        // },
     },
     toolbar: {
         display: 'flex',

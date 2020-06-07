@@ -31,14 +31,20 @@ const styles = theme =>( {
     transition: '1s',
     top: '65px',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    [theme.breakpoints.down('768')]: {
-      display: 'none',
-    }
+    // [theme.breakpoints.down('768')]: {
+    //   display: 'none',
+    // }
   },
   st: {
     transition: '0.8s',
-    top: '-30%',
+    top: '-20%',
   },
+  imageMenu: {
+    width: 55,
+    [theme.breakpoints.down('600')]: {
+      display: `none`,
+    }
+  }
 });
 
 
@@ -63,7 +69,7 @@ const AppBars = (props) => {
         deck
         slug
         image {
-          fluid(maxWidth: 70) {
+          fluid(maxWidth: 100) {
             ...GatsbyContentfulFluid
           }
         }
@@ -144,7 +150,7 @@ useScrollPosition(({ prevPos, currPos }) => {
     {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index)=> (
       <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} 
       value={index + 1} label={menu.name} {...a11yProps(menu.deck)}
-          icon={<Img fluid={menu.image.fluid} style={{width: `65px`}} imgStyle={{maxWidth: 65}} alt={menu.name} />}/>
+          icon={<Img fluid={menu.image.fluid} className={classes.imageMenu} imgStyle={{maxWidth: 65}} alt={menu.name} />}/>
     ))}
     </Tabs>
   </AppBarStyle>
