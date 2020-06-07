@@ -14,13 +14,13 @@ const useStyles = makeStyles((theme) => ({
         top: theme.spacing(28),
         left: theme.spacing(2.8),
         [theme.breakpoints.down('768')]: {
-            top: theme.spacing(17),
-            left: theme.spacing(5.8),
+            top: theme.spacing(27),
+            left: theme.spacing(1.8),
         },
     },
     sizeButton: {
-        width: 45,
-        height: 45,
+        width: 55,
+        height: 55,
         opacity: 0.65,
         [theme.breakpoints.up('768')]: {
             width: 55,

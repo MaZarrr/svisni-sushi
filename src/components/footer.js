@@ -13,7 +13,7 @@ const Footer = styled.footer `
     font-weight: 400;
 
   @media screen and (max-width: 768px) {
-  padding-left: 50px;
+  padding-left: 10px;
 `
 
 const FooterUl = styled.ul `

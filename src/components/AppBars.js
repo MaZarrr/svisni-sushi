@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect, useRef} from "react"
+import React, {useState, useRef, useEffect} from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import PropTypes from 'prop-types';
 import "./header.css"
@@ -28,7 +28,7 @@ const AppBarStyle = styled(AppBar) `
 const styles = theme =>( {
   root: {
     position: 'fixed',
-    transition: '1s',
+    transition: '1.5s',
     top: '65px',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     // [theme.breakpoints.down('768')]: {
@@ -36,7 +36,7 @@ const styles = theme =>( {
     // }
   },
   st: {
-    transition: '0.8s',
+    transition: '1s',
     top: '-20%',
   },
   imageMenu: {
@@ -95,6 +95,7 @@ function getScrollPosition({ element, useWindow }) { // функция, чтоб
 }
 
 function useScrollPosition(effect, deps, element, useWindow, wait) {
+
   const position = useRef(getScrollPosition({ useWindow })) // сохранить координаты текущей позиции, введем переменную положения с состоянием.
   // Это удобно для хранения любого изменяемого значения примерно так же, как вы используете поля экземпляров в классах
   // это значение с состоянием, которое не будет вызывать повторный рендеринг при каждом изменении состояния.
@@ -108,11 +109,11 @@ function useScrollPosition(effect, deps, element, useWindow, wait) {
     throttleTimeout = null
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
-      if (wait) {
+      if (600) {
         if (throttleTimeout === null) {
-          throttleTimeout = setTimeout(callBack, wait)
+          throttleTimeout = setTimeout(callBack, 600)
         }
       } else {
         callBack()
