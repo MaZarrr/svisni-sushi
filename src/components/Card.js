@@ -43,8 +43,8 @@ const RecipeReviewCard = ({product, dispatch}) => {
         id
 #        description
         name
-#        price
-#        count
+        price
+        count
 #        weight
 #        color
         slug
