@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     },
     menuButton: {
         marginRight: 36,
-        fontSize: `10px`,
         color: `tomato`,
         borderRadius: `50px`,
         border: `1px solid tomato`,
@@ -103,8 +102,9 @@ export default function TemporaryDrawer() {
     return (
         <div className={classes.menuButton}>
                 <React.Fragment key={'left'}>
-                    <IconButton onClick={toggleDrawer('left', true)}>
-                        <MenuIcon/>
+                    <IconButton size='small' onClick={toggleDrawer('left', true)}>
+                        <MenuIcon />
+                        {/*меню*/}
                     </IconButton>
                     <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
                         {list('left')}

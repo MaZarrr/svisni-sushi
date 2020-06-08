@@ -46,19 +46,19 @@ const TextTotal = styled.span `
         transform: rotate(0deg);
       }
       20% {
-        transform: rotate(30deg) scale(1.3);
+        transform: rotate(10deg) scale(1.3);
         color: tomato;
       }
       40% {
-        transform: rotate(-30deg) scale(1.1);
+        transform: rotate(-10deg) scale(1.1);
         color: tomato;
       }
       60% {
-        transform: rotate(30deg) scale(1.3);
+        transform: rotate(10deg) scale(1.3);
         color: tomato;
       }
       80% {
-        transform: rotate(-30deg) scale(1.1);
+        transform: rotate(-10deg) scale(1.1);
         color: tomato;
       }
       100% {
@@ -108,11 +108,11 @@ return (
         <Link className="korzina_img" to="/korzina">
           <div className="korzina_content">
 
-            <IconButton style={{margin: 0, padding: 0, width: `60px`}} color="secondary" aria-label="cart">
+            <IconButton color="secondary" aria-label="cart">
             <TextTotal count={count} prevCount={prevCount} >
                 {/*<TextTotal count={count} prevCount={prevCount} >*/}
                 <StyledBadge badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
-              <ShoppingCartIcon/>
+                    <ShoppingCartIcon/>
                 </StyledBadge>
             </TextTotal>
             </IconButton>

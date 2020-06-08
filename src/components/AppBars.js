@@ -15,7 +15,7 @@ const AppBarStyle = styled(AppBar) `
 .tabs {
   font-family: Comfortaa, cursive;
   font-weight: 800;
-  color: darkslategray;
+  // color: darkslategray;
   background-color: white;
   text-decoration: none;
   letter-spacing: 1px;
@@ -28,9 +28,11 @@ const AppBarStyle = styled(AppBar) `
 const styles = theme =>( {
   root: {
     position: 'fixed',
-    transition: '1.5s',
+    transition: '1.1s',
     top: '65px',
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    // backgroundColor: theme.palette.background.paper,
+    background: `#ffd9d9`,
+    // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     // [theme.breakpoints.down('768')]: {
     //   display: 'none',
     // }
@@ -99,7 +101,7 @@ function useScrollPosition(effect, deps, element, useWindow, wait) {
   const position = useRef(getScrollPosition({ useWindow })) // сохранить координаты текущей позиции, введем переменную положения с состоянием.
   // Это удобно для хранения любого изменяемого значения примерно так же, как вы используете поля экземпляров в классах
   // это значение с состоянием, которое не будет вызывать повторный рендеринг при каждом изменении состояния.
- 
+
   let throttleTimeout = null
 
   const callBack = () => {
@@ -108,16 +110,18 @@ function useScrollPosition(effect, deps, element, useWindow, wait) {
     position.current = currPos
     throttleTimeout = null
   }
-
+// && window.screen.width > 769
   useEffect(() => {
-    const handleScroll = () => {
-      if (600) {
-        if (throttleTimeout === null) {
-          throttleTimeout = setTimeout(callBack, 600)
+      const handleScroll = () => {
+      if(window.screen.width > 769) {
+        if (wait) {
+          if (throttleTimeout === null) {
+            throttleTimeout = setTimeout(callBack, wait)
         }
       } else {
         callBack()
       }
+    }
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -139,7 +143,7 @@ useScrollPosition(({ prevPos, currPos }) => {
   }
 
   return (
-    <AppBarStyle className={clsx(!hideOnScroll ? classes.st : classes.root, className)} {...other}>
+    <AppBarStyle className={clsx(!hideOnScroll  ? classes.st : classes.root, className)} {...other}>
     <Tabs
       indicatorColor="primary"
       textColor="primary"

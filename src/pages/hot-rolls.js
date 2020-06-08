@@ -40,7 +40,7 @@ return (
 
        {load === false ? <>
            <CustomizedInputSearch/>
-           <Grid container justify="center" itemscope itemtype="http://schema.org/ItemList">
+           <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                               image={image} product={product}/>
            </Grid> </> : <Spinner/>
