@@ -102,7 +102,7 @@ export default function TemporaryDrawer() {
     return (
         <div className={classes.menuButton}>
                 <React.Fragment key={'left'}>
-                    <IconButton size='small' onClick={toggleDrawer('left', true)}>
+                    <IconButton onClick={toggleDrawer('left', true)}>
                         <MenuIcon />
                         {/*меню*/}
                     </IconButton>

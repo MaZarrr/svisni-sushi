@@ -269,7 +269,8 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         margin: `0 auto`,
         display: `flex`,
         flexDirection: `column`,
-        alignItems: `center`
+        alignItems: `center`,
+        borderRadius: `15px`
     },
     title: {
         fontFamily: 'Comfortaa',
@@ -277,17 +278,18 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         fontDisplay: `fallback`
     },
     card: {
-        maxWidth: `75%`,
+        minWidth: `85%`,
+        borderRadius: `10px`,
         marginTop: 30,
         [theme.breakpoints.down('425')]: {
-            maxWidth: `100%`,
+            maxWidth: `85%`,
         },
         [theme.breakpoints.up('768')]: {
             maxWidth: `50%`,
         }
     },
     media: {
-        maxWidth: `99%`,
+        maxWidth: `98%`,
         margin: `0 auto`,
     },
     expand: {
@@ -358,13 +360,14 @@ export const useStyleCarousel = makeStyles(theme => ({
     img: {
         height: 'inherit',
         display: 'block',
-        maxWidth: `100vw`,
+        // maxWidth: `100vw`,
         overflow: 'hidden',
         width: '100%',
         [theme.breakpoints.down('768')]: {
             margin: `0 auto`,
             maxHeight: `70vw`,
             maxWidth: `60vw`,
+            borderRadius: `10px`
         },
         [theme.breakpoints.down('580')]: {
             margin: `0 auto`,
@@ -372,8 +375,8 @@ export const useStyleCarousel = makeStyles(theme => ({
             maxWidth: `70vw`,
         },
         [theme.breakpoints.down('425')]: {
-            width: '100%',
-            maxWidth: `100vw`,
+            maxWidth: `90vw`,
+            borderRadius: `10px`
         }
     },
     h1Home: {

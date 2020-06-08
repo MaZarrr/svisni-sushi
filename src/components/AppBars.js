@@ -31,10 +31,10 @@ const styles = theme =>( {
     transition: '1.1s',
     top: '65px',
     // backgroundColor: theme.palette.background.paper,
-    background: `#ffd9d9`,
-    // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    // background: `#ffd9d9`,
+    background: 'linear-gradient(45deg, #ffbc99 20%, #ffbc99  90%)',
     // [theme.breakpoints.down('768')]: {
-    //   display: 'none',
+    //   display: 'none'#FF8E53,
     // }
   },
   st: {

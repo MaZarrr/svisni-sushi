@@ -25,12 +25,12 @@ const CarouselSvisni = () => {
         id
         slug
         imgCarouselPc {
-          fluid(maxWidth: 1680, quality: 30) {
+          fluid(maxWidth: 1680, quality: 90) {
               ...GatsbyContentfulFluid
             }
         }
         imgCarouselPhone {
-          fluid(maxWidth: 400, quality: 30) {
+          fluid(maxWidth: 400, quality: 90) {
               ...GatsbyContentfulFluid
             }
         }
@@ -49,7 +49,6 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
   return (
     <div className={classes.root}>
 
-        {/* <Typography>{tutorialSteps[activeStep].label}</Typography> */}
       <Paper square elevation={0} className={classes.header}>
       <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
       </Paper>

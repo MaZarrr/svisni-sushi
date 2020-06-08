@@ -17,7 +17,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import DetailsIcon from '@material-ui/icons/Details';
 
 import styled from 'styled-components';
 import { useStaticQuery, graphql, Link } from "gatsby"
@@ -42,12 +41,12 @@ const RecipeReviewCard = ({product, dispatch}) => {
     edges {
       node {
         id
-        description
+#        description
         name
-        price
-        count
-        weight
-        color
+#        price
+#        count
+#        weight
+#        color
         slug
         variant
         contentful_id
@@ -96,43 +95,33 @@ const RecipeReviewCard = ({product, dispatch}) => {
       <CardMedia 
         className={classes.media}
         title={homeProduct.name}
+        component={Link}
+        to={homeProduct.slug}
       > <Img fluid={homeProduct.image.fluid} />
       </CardMedia> 
 
-      <CardContent>
-        <Typography className={classes.title} variant="caption" color="textSecondary" component="p">
-        {homeProduct.description} 
-        </Typography>
-        <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-        <b><p>{homeProduct.weight !== null ? `${homeProduct.weight} кг` : ''}</p></b>
-          <b><p>{`${homeProduct.count !== null ? `${homeProduct.count} шт` : ''}`}</p></b>
-        </Typography>
-       <p>{`${homeProduct.price}₽`}</p>
-      </CardContent>
+      {/*<CardContent>*/}
+      {/*  <Typography className={classes.title} variant="caption" color="textSecondary" component="p">*/}
+      {/*  {homeProduct.description} */}
+      {/*  </Typography>*/}
+      {/*  <Typography component="div" variant="overline" classes={{overline: classes.overline}}>*/}
+      {/*  <b><p>{homeProduct.weight !== null ? `${homeProduct.weight} кг` : ''}</p></b>*/}
+      {/*    <b><p>{`${homeProduct.count !== null ? `${homeProduct.count} шт` : ''}`}</p></b>*/}
+      {/*  </Typography>*/}
+      {/* <p>{`${homeProduct.price}₽`}</p>*/}
+      {/*</CardContent>*/}
 {/*// ==================================================*/}
       <CardActions disableSpacing>
-        { homeProduct.slug !== 'diablo' &&
+
         <Button
         variant="contained"
         color="secondary"
         className={classes.button}
         startIcon={<ShoppingBasketIcon />}
-        onClick={() => dispatch(addedToCart({id: homeProduct.id, productPrice: homeProduct.price, product}))}
-      >
+        onClick={() => dispatch(addedToCart({id: homeProduct.id, productPrice: homeProduct.price, product}))}>
         Хочу!
       </Button>
-        }
-        { homeProduct.slug === 'diablo' &&
-          <Button
-              variant="contained"
-              component={Link}
-              color="secondary"
-              to={`/pizza/${homeProduct.slug}`}
-              className={classes.button}
-              startIcon={<DetailsIcon />}>
-            Посмотреть
-          </Button>
-        }
+
         <IconButton
           id={homeProduct.contentful_id}
           className={clsx(classes.expand, {
@@ -147,10 +136,10 @@ const RecipeReviewCard = ({product, dispatch}) => {
       </CardActions>
       <Collapse in={expanded[homeProduct.contentful_id]} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography variant="h6"><span role="img" aria-label="ok">😉</span>Тебе нужно знать что:</Typography>
-          {/* <Typography paragraph>
+          {/*<Typography variant="h6"><span role="img" aria-label="ok">😉</span>Тебе нужно знать что:</Typography>*/}
+          <Typography paragraph>
           <span role="img" aria-label="ok">😉</span>Тебе нужно знать что:
-          </Typography> */}
+          </Typography>
           <ul style={{ listStyle: `none`, margin: 0, padding: `8px 0 0 0`}}>
             <li><span role="img" aria-label="ok">✅</span>Есть бесплатная доставка!</li>
             <li><span role="img" aria-label="ok">✅</span>Заказать можно с 10:00 до 22:00</li>
