@@ -34,11 +34,11 @@ return (
         <Grid item xs={12} sm={6}>
             <div style={{paddingLeft: 30}}>
         <Typography variant="h5">Режим работы</Typography>
-        <p>c 10.00 до 22.00</p>
+        <p>С 10:00 до 22:00</p>
         <Typography variant="h5">Телефон</Typography>
-        <p itemProp ="telephone">+7(904)094-92-22</p>
+            <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
         <Typography variant="h5">Адрес</Typography>
-            <p><span itemProp="streetAddress">3Интернационала д.48а,</span><span itemProp="addressLocality">Уразово, Валуйский район</span></p>
+            <p><span itemProp="streetAddress">Улица 3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></p>
             </div>
             </Grid>
 

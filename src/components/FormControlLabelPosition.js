@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 import {getCheckNabor} from "../reducers/filters";
 
 function FormControlLabelPosition({setFilterCheckbox, checkboxFilter}) {
-  
+
   const handleChange = (e) => {
-    setFilterCheckbox(e.target.value)
+      setFilterCheckbox(e.target.value)
   }
   return (
     <FormControl component="fieldset">
@@ -34,16 +34,10 @@ function FormControlLabelPosition({setFilterCheckbox, checkboxFilter}) {
           label="На троих"
           labelPlacement="end"
         />
-           <FormControlLabel
-          value="fo"
-          control={<Radio color="primary" />}
-          label="На четверых"
-          labelPlacement="end"
-        />
         <FormControlLabel
           value="five"
           control={<Radio color="primary" />}
-          label="На петярых и более"
+          label="На большую компанию"
           labelPlacement="end"
         />
       </RadioGroup>

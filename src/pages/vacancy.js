@@ -62,12 +62,12 @@ const Vacancy = () => {
         {
             id: 1,
             imgSrc: edges[0].node.publicURL,
-            text: "Возможность влиять на свой уровень дохода"
+            text: "Возможность влиять на доход"
         },
         {
             id: 2,
             imgSrc: edges[1].node.publicURL,
-            text: "Обучение у профессионального наставника"
+            text: "Обучение у наставника"
         },
         {
             id: 3,
@@ -77,7 +77,7 @@ const Vacancy = () => {
         {
             id: 4,
             imgSrc: edges[3].node.publicURL,
-            text: "Выбор удобного графика работы"
+            text: "Выбор графика работы"
         }
     ]
 
@@ -88,7 +88,7 @@ const Vacancy = () => {
 return (
         <section>
             <SEO title="Работа, вакансии"
-                 description="Фирменный соус, барбекю соус, ореховый соус и другие у нас в меню Свисни суши"
+                 description="Работа в Свисни Суши. Повар сушист, пиццмейкер"
                  noindex={true}/>
             <div className={classes.titleH1}>
                 <h1 style={{fontFamily: `Oswald, cursive`,
@@ -97,9 +97,9 @@ return (
             <Grid container >
                 <Grid item xs={12} sm={6} style={{paddingLeft: 40}}>
                     <Typography style={{padding: `10px 0 10px 0`}}>
-                        Бренд Свисни-Суши — был основан в 2019 году, когда открылся первый ресторан японской кухни формата «возьми с собой»
+                        Бренд Свисни Суши — был основан в 2019 году, когда открылся первый ресторан японской кухни формата «возьми с собой»
                         в Уразово, бывшее название Тануки. С 2018 года мы начали активное развитие и сейчас мы хотим, чтобы каждый имел возможность наслаждаться вкусом лучших блюд японской кухни,
-                        поэтому планируем освоение новых территорий и открытие ресторанов в Валуйках, Волоконовке, Белгороде.
+                        поэтому планируем освоение новых территорий и открытие суши баров в Валуйках.
                     </Typography>
 
                     <section className=""><h2 style={{paddingTop: 20}}>Плюсы работы в Свисни-Суши</h2>
@@ -108,7 +108,7 @@ return (
                         { advantages.map((adva) => (
                             <div key={adva.id} style={{display: `flex`}}>
                                 <div>
-                                <img src={adva.imgSrc} style={{padding: 0, width: 50, height: 50}} alt="Преимущества работы"/>
+                                <img src={adva.imgSrc} alt="Преимущества работы"/>
                                 </div>
                                 <div style={{margin: `auto 0`, paddingLeft: 10}}>
                                 <p>{adva.text}</p>

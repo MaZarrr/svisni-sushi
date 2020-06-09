@@ -29,11 +29,9 @@
           case 'def':
             return items
           case 'two': 
-            return items.filter(({node}) => node.count < 32)
+            return items.filter(({node}) => node.count > 23 && node.count < 36)
           case 'three':
-            return items.filter(({node}) => node.count > 32 && node.count < 55 )
-          case 'fo':
-            return items.filter(({node}) => node.count > 55 && node.count < 64 )
+            return items.filter(({node}) => node.count > 35 && node.count < 65 )
           case 'five':
             return items.filter(({node}) => node.count > 63)
 

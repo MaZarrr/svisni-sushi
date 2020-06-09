@@ -19,7 +19,6 @@ const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
 const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
                   product, searchText, priceFilter, checkboxFilter, location, dispatch}) => {
 
-    // const [ listJsx, updateLustJsx ] = React.useState('')
     const [load, setLoad] = React.useState(true)
     const classes = useStylesCart();
 
@@ -35,8 +34,8 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
 
 return (
   <>
-    <SEO title="Заказать сет роллов в Валуйки. Бесплатная доставка наборов от 500 рублей"
-    description="Меню суши сеты, приятные цены, бесплатная доставка по Уразово и Валуйкам. Работаем с 10 до 22:00"/>
+    <SEO title="Заказать Cуши сет. Меню суши, роллы — доставка в Валуйки"
+    description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
    <section>
    <div className={classes.titleH1}>
     <h1 style={{fontFamily: `Oswald, cursive`,
@@ -56,10 +55,11 @@ return (
     )
 }
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state) => ({
     product: state.app.product,
     searchText: state.filters.searchText,
-    priceFilter: state.filters.priceFilter
+    priceFilter: state.filters.priceFilter,
+    checkboxFilter: state.filters.checkboxFilter
 })
 export default connect(mapStateToProps, null)(Sety)
 

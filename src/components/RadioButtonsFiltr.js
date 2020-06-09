@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import {getPriceDecInc} from "../reducers/filters";
 
 function FormControlLabelPosition({ filterPrice, priceFilter }) {
-  // const [value, setValue] = React.useState(priceFilter);
 
   const handleChange = event => {
     filterPrice(event.target.value)

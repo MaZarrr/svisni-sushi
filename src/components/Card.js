@@ -79,37 +79,17 @@ const RecipeReviewCard = ({product, dispatch}) => {
               className={classes.avatar}
               classes={{img: classes.img}}
               color={homeProduct.color}>
-          </AvatarWrapp>
-        }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
+          </AvatarWrapp>}
         title={homeProduct.variant}
-        subheader={homeProduct.name}
-      />
+        subheader={homeProduct.name}/>
       <CardMedia 
         className={classes.media}
         title={homeProduct.name}
         component={Link}
         to={`/${homeProduct.slug}`}
       > <Img fluid={homeProduct.image.fluid} />
-      </CardMedia> 
-
-      {/*<CardContent>*/}
-      {/*  <Typography className={classes.title} variant="caption" color="textSecondary" component="p">*/}
-      {/*  {homeProduct.description} */}
-      {/*  </Typography>*/}
-      {/*  <Typography component="div" variant="overline" classes={{overline: classes.overline}}>*/}
-      {/*  <b><p>{homeProduct.weight !== null ? `${homeProduct.weight} кг` : ''}</p></b>*/}
-      {/*    <b><p>{`${homeProduct.count !== null ? `${homeProduct.count} шт` : ''}`}</p></b>*/}
-      {/*  </Typography>*/}
-      {/* <p>{`${homeProduct.price}₽`}</p>*/}
-      {/*</CardContent>*/}
-{/*// ==================================================*/}
+      </CardMedia>
       <CardActions disableSpacing>
-
         <Button
         variant="contained"
         color="secondary"
@@ -126,8 +106,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
           })}
           onClick={() => handleExpandClick(homeProduct.contentful_id)}
           aria-expanded={expanded[homeProduct.contentful_id]}
-          aria-label="show more"
-        >
+          aria-label="show more">
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
