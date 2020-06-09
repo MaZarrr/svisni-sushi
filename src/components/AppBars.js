@@ -71,7 +71,7 @@ const AppBars = (props) => {
         deck
         slug
         image {
-          fluid(maxWidth: 100) {
+          fluid(maxWidth: 70) {
             ...GatsbyContentfulFluid
           }
         }

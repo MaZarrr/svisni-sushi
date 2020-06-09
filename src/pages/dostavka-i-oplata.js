@@ -5,7 +5,6 @@ import { Grid } from "@material-ui/core";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import {StylingInfo} from "../components/common/style";
-// import { makeStyles } from '@material-ui/core/styles';
 
 // const useStyles = makeStyles(theme => ({
 //   root: {
@@ -145,16 +144,16 @@ return (
      </Grid>
      <Grid item xs={12} sm={6} > 
     <hr></hr>
-     <div>
-     <iframe 
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor" 
-        width="100%" 
-        height="400" 
-        frameBorder="0"
-        title="frameMapping"
-        >
-    </iframe> 
-    </div>
+    {/* <div>*/}
+    {/* <iframe */}
+    {/*    src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor" */}
+    {/*    width="100%" */}
+    {/*    height="400" */}
+    {/*    frameBorder="0"*/}
+    {/*    title="frameMapping"*/}
+    {/*    >*/}
+    {/*</iframe> */}
+    {/*</div>*/}
     </Grid>
      <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `30px`, color: `white`}}>
           <Typography variant="subtitle2"><b>График работы: с 10:00 до 22:00</b></Typography>
@@ -170,12 +169,12 @@ return (
     </h2>
     <p>
     Заказывайте доставку суши и роллов удобным Вам способом: по телефону или через сайт. 
-    Чтобы сделать заказ через сайт, добавьте понравившийся товар в корзину, затем перейдите в соответствующую вкладку и 
-    нажмите «Оформить». В появившемся окне введите Ваши данные и 
-    способ получения заказа. Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени. 
+    Чтобы сделать заказ через сайт, добавьте понравившийся товар в корзину(нажмите кнопку Хочу!),
+        затем перейдите на соответствующую страницу(значёк Корзины в правом верхнем углу) и нажмите «Оформить заказ».
+        Далее, в появившемся окне, введите Ваши данные и способ получения заказа. Вы можете забрать заказ сами либо выбрать доставку
+        курьером к определенному времени.
     После оформления заказа вам поступит звонок с подтверждением. Если у вас нет возможности совершить заказ 
-    через интернет, звоните на нашу горячую линию или воспользуйтесь функцией «Обратный звонок» - и наш оператор сам с 
-    вами свяжется.
+    через интернет, звоните нам по телефону +7(904)094-92-22.
     </p>
     </div>
 
