@@ -12,6 +12,9 @@ import {Link} from "gatsby";
 import Icon from "@material-ui/core/Icon";
 import RoomIcon from "@material-ui/icons/Room";
 import LocalTaxiIcon from "@material-ui/icons/LocalTaxi";
+import Button from "@material-ui/core/Button";
+import Divider from '@material-ui/core/Divider';
+import WorkIcon from '@material-ui/icons/Work';
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -36,25 +39,6 @@ export default function TemporaryDrawer() {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
 
-    // const data = useStaticQuery(graphql `
-    //     {
-    //         allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
-    //             edges {
-    //                 node {
-    //                     id
-    //                     name
-    //                     slug
-    //                     image {
-    //                         fluid(maxWidth: 50) {
-    //                             ...GatsbyContentfulFluid
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // `)
-
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -73,27 +57,33 @@ export default function TemporaryDrawer() {
         >
             <List>
                 <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000",
-                    backgroundColor: `#f0ecec`,
-                    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-                }}>
+                    backgroundColor: `#f0ecec`}}>
                     <ListItemIcon>
                         <Icon className="fa fa-percent" style={{ marginLeft: `3px`}} color="secondary" />
                     </ListItemIcon>
                     <ListItemText primary="Акции" />
                 </ListItem>
                 <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000",
-                    backgroundColor: `#f0ecec`,
-                    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
-                }}>
+                    backgroundColor: `#f0ecec`}}>
                     <ListItemIcon><RoomIcon color="primary"/></ListItemIcon>
                     <ListItemText primary="Адрес" />
                 </ListItem>
                 <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000",
-                    backgroundColor: `#f0ecec`,
-                    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
-                }}>
+                    backgroundColor: `#f0ecec`}}>
                     <ListItemIcon><LocalTaxiIcon color="action"/></ListItemIcon>
                     <ListItemText primary="Доставка" />
+                </ListItem>
+                <Divider/>
+                <ListItem button component={Link} to="/vacancy" activeStyle={{ color: "#000",
+                    backgroundColor: `#f0ecec`}}>
+                    <ListItemIcon><WorkIcon color="primary"/></ListItemIcon>
+                    <ListItemText primary="Вакансии" />
+                </ListItem>
+                <Divider/>
+                <ListItem>
+                    <Button style={{margin: `8px 0 8px 0 `}} variant="contained" color="secondary">
+                        <a style={{color: `white`, fontSize: 14}} href="tel:+79040949222">Позвонить</ a>
+                    </Button>
                 </ListItem>
             </List>
         </div>

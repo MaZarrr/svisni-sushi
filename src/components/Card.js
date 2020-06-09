@@ -41,12 +41,9 @@ const RecipeReviewCard = ({product, dispatch}) => {
     edges {
       node {
         id
-#        description
         name
         price
         count
-#        weight
-#        color
         slug
         variant
         contentful_id
@@ -136,7 +133,6 @@ const RecipeReviewCard = ({product, dispatch}) => {
       </CardActions>
       <Collapse in={expanded[homeProduct.contentful_id]} timeout="auto" unmountOnExit>
         <CardContent>
-          {/*<Typography variant="h6"><span role="img" aria-label="ok">😉</span>Тебе нужно знать что:</Typography>*/}
           <Typography paragraph>
           <span role="img" aria-label="ok">😉</span>Тебе нужно знать что:
           </Typography>
@@ -160,11 +156,6 @@ const RecipeReviewCard = ({product, dispatch}) => {
 const mapStateToProps = (state) => ({
   product: state.app.product
 })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-//   addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-// })
 
 export default connect(mapStateToProps, null)(RecipeReviewCard)
 

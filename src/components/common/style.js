@@ -277,12 +277,27 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         fontWeight: 800,
         fontDisplay: `fallback`
     },
+    titleH1: {
+        fontFamily: 'Oswald',
+        fontWeight: 700,
+        padding: `35px 10px 15px 35px`,
+        fontSize: 40,
+        borderBottom: `1px solid lightgrey`,
+        display: `flex`,
+        [theme.breakpoints.down('600')]: {
+            margin: 0,
+        },
+        [theme.breakpoints.down('475')]: {
+            fontSize: 30,
+            padding: `25px 10px 15px 35px`
+        }
+    },
     card: {
-        minWidth: `88%`,
+        minWidth: `85%`,
         borderRadius: `10px`,
         marginTop: 30,
         [theme.breakpoints.down('425')]: {
-            maxWidth: `88%`,
+            maxWidth: `85%`,
         },
         [theme.breakpoints.up('768')]: {
             maxWidth: `50%`,
