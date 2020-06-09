@@ -96,7 +96,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
         className={classes.media}
         title={homeProduct.name}
         component={Link}
-        to={homeProduct.slug}
+        to={`/${homeProduct.slug}`}
       > <Img fluid={homeProduct.image.fluid} />
       </CardMedia> 
 
@@ -141,6 +141,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
           <span role="img" aria-label="ok">😉</span>Тебе нужно знать что:
           </Typography>
           <ul style={{ listStyle: `none`, margin: 0, padding: `8px 0 0 0`}}>
+              <li><span role="img" aria-label="ok"></span><p>{`Цена: ${homeProduct.price}₽`}</p></li>
             <li><span role="img" aria-label="ok">✅</span>Есть бесплатная доставка!</li>
             <li><span role="img" aria-label="ok">✅</span>Заказать можно с 10:00 до 22:00</li>
             <li><span role="img" aria-label="ok">✅</span>Готовим с любовью для каждого от Svisni-Sushi</li>

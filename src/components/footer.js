@@ -7,6 +7,7 @@ import Image from './image';
 const Footer = styled.footer `
    background-color: #303032;
    color: white;
+   margin-top: 50px;
    padding: 30px 0 30px 0;
    font-family: 'Comfortaa', cursive;
    font-style: normal;

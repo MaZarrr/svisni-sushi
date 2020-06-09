@@ -278,11 +278,11 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         fontDisplay: `fallback`
     },
     card: {
-        minWidth: `85%`,
+        minWidth: `88%`,
         borderRadius: `10px`,
         marginTop: 30,
         [theme.breakpoints.down('425')]: {
-            maxWidth: `85%`,
+            maxWidth: `88%`,
         },
         [theme.breakpoints.up('768')]: {
             maxWidth: `50%`,
@@ -375,7 +375,7 @@ export const useStyleCarousel = makeStyles(theme => ({
             maxWidth: `70vw`,
         },
         [theme.breakpoints.down('425')]: {
-            maxWidth: `90vw`,
+            maxWidth: `91vw`,
             borderRadius: `10px`
         }
     },
