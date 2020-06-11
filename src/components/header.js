@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Korzina from './korzinaComponent';
 import ProgressBar from "./common/progressBar"
 import Imgs from '../components/image';

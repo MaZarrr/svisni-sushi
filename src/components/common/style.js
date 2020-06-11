@@ -307,12 +307,11 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         minWidth: `85%`,
         borderRadius: `10px`,
         marginTop: 30,
-        marginBottom: 50,
         [theme.breakpoints.down('425')]: {
-            maxWidth: `85%`
+            maxWidth: `85%`,
         },
         [theme.breakpoints.up('768')]: {
-            maxWidth: `50%`
+            maxWidth: `50%`,
         },
     },
     media: {
@@ -352,79 +351,80 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
     }
 }))
 
-export const useStyleCarousel = makeStyles(theme => ({
-    root: {
-        maxWidth: `100vw`,
-        flexGrow: '1',
-        [theme.breakpoints.down('768')]: {
-            maxHeight: `75vw`,
-            marginBottom: 40,
-        },
-        [theme.breakpoints.down('475')]: {
-            marginBottom: 95,
-        },
-    },
-    rootPhone: {
-        display: 'none',
-        [theme.breakpoints.down('768')]: {
-            display: 'block'
-        },
-    },
-    rootPhoneNone:{
-        [theme.breakpoints.down('768')]: {
-            display: 'none',
-        }
-    },
-    header: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingTop: '8px',
-        maxWidth: `1400px`,
-        justifyContent: 'flex-start',
-        background: `#f0ecec`,
-        paddingLeft: theme.spacing(2)
-    },
-    img: {
-        height: 'inherit',
-        display: 'block',
-        // maxWidth: `100vw`,
-        overflow: 'hidden',
-        width: '100%',
-        [theme.breakpoints.down('768')]: {
-            margin: `0 auto`,
-            maxHeight: `70vw`,
-            maxWidth: `60vw`,
-            borderRadius: `10px`
-        },
-        [theme.breakpoints.down('580')]: {
-            margin: `0 auto`,
-            maxHeight: `70vw`,
-            maxWidth: `70vw`,
-        },
-        [theme.breakpoints.down('475')]: {
-            maxWidth: `91vw`,
-            borderRadius: `10px`
-        }
-    },
-    h1Home: {
-        fontFamily: 'Oswald, cursive',
-        fontWeight: '900',
-        lineHeight: 2,
-        fontSize: '46px',
-        paddingLeft: `30px`,
-        [theme.breakpoints.down('786')]: {
-            fontSize: '30px',
-            lineHeight: `14vmin`,
-            letterSpacing: `1px`,
-            color: `#000`,
-            padding: `10px 0 10px 0`
-        },
-    },
-    button: {
-        margin: `0 auto`,
-        width: `100%`
-    }
-}))
+// export const useStyleCarousel = makeStyles(theme => ({
+//     root: {
+//         maxWidth: `100vw`,
+//         flexGrow: '1',
+//         [theme.breakpoints.down('768')]: {
+//             maxHeight: `75vw`,
+//             marginBottom: 40,
+//         },
+//         [theme.breakpoints.down('475')]: {
+//             marginBottom: 95,
+//         },
+//     },
+//     rootPhone: {
+//         display: 'none',
+//         [theme.breakpoints.down('768')]: {
+//             display: 'block'
+//         },
+//     },
+//     rootPhoneNone:{
+//         [theme.breakpoints.down('768')]: {
+//             display: 'none',
+//         }
+//     },
+//     header: {
+//         display: 'flex',
+//         alignItems: 'center',
+//         paddingTop: '8px',
+//         maxWidth: `1400px`,
+//         justifyContent: 'flex-start',
+//         background: `#f0ecec`,
+//         paddingLeft: theme.spacing(2)
+//     },
+//     img: {
+//         height: 'inherit',
+//         display: 'block',
+//         // maxWidth: `100vw`,
+//         overflow: 'hidden',
+//         width: '100%',
+//         [theme.breakpoints.down('768')]: {
+//             margin: `0 auto`,
+//             maxHeight: `70vw`,
+//             maxWidth: `60vw`,
+//             borderRadius: `10px`
+//         },
+//         [theme.breakpoints.down('580')]: {
+//             margin: `0 auto`,
+//             maxHeight: `70vw`,
+//             maxWidth: `70vw`,
+//         },
+//         [theme.breakpoints.down('475')]: {
+//             maxWidth: `91vw`,
+//             borderRadius: `10px`
+//         }
+//     },
+//     h1Home: {
+//         fontFamily: 'Oswald, cursive',
+//         fontWeight: '900',
+//         lineHeight: 2,
+//         fontSize: '46px',
+//         paddingLeft: `30px`,
+//         [theme.breakpoints.down('786')]: {
+//             fontSize: '30px',
+//             lineHeight: `14vmin`,
+//             letterSpacing: `1px`,
+//             color: `#000`,
+//             padding: `10px 0 10px 0`
+//         },
+//     },
+//     button: {
+//         margin: `0 auto`,
+//         width: `100%`
+//     }
+// }))
+
 
 export const useStyleHeader = makeStyles(theme => ({
     root: {

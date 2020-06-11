@@ -1,21 +1,95 @@
 import React from 'react';
 import { graphql, useStaticQuery, Link } from "gatsby"
 import Img from 'gatsby-image';
-import { useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import {useStyleCarousel} from "./style";
+// import {useStyleCarousel} from "./style";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+const styleCarousel = makeStyles(theme => ({
+    root: {
+        maxWidth: `100vw`,
+        flexGrow: '1',
+        [theme.breakpoints.down('768')]: {
+            maxHeight: `75vw`,
+            marginBottom: 40,
+        },
+        [theme.breakpoints.down('475')]: {
+            marginBottom: 95,
+        },
+    },
+    rootPhone: {
+        display: 'none',
+        [theme.breakpoints.down('768')]: {
+            display: 'block'
+        },
+    },
+    rootPhoneNone:{
+        [theme.breakpoints.down('768')]: {
+            display: 'none',
+        }
+    },
+    header: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingTop: '8px',
+        maxWidth: `1400px`,
+        justifyContent: 'flex-start',
+        background: `#f0ecec`,
+        paddingLeft: theme.spacing(2)
+    },
+    img: {
+        height: 'inherit',
+        display: 'block',
+        // maxWidth: `100vw`,
+        overflow: 'hidden',
+        width: '100%',
+        [theme.breakpoints.down('768')]: {
+            margin: `0 auto`,
+            maxHeight: `70vw`,
+            maxWidth: `60vw`,
+            borderRadius: `10px`
+        },
+        [theme.breakpoints.down('580')]: {
+            margin: `0 auto`,
+            maxHeight: `70vw`,
+            maxWidth: `70vw`,
+        },
+        [theme.breakpoints.down('475')]: {
+            maxWidth: `91vw`,
+            borderRadius: `10px`
+        }
+    },
+    h1Home: {
+        fontFamily: 'Oswald, cursive',
+        fontWeight: '900',
+        lineHeight: 2,
+        fontSize: '46px',
+        paddingLeft: `30px`,
+        [theme.breakpoints.down('786')]: {
+            fontSize: '30px',
+            lineHeight: `14vmin`,
+            letterSpacing: `1px`,
+            color: `#000`,
+            padding: `10px 0 10px 0`
+        },
+    },
+    button: {
+        margin: `0 auto`,
+        width: `100%`
+    }
+}))
 
 const CarouselSvisni = () => {
 
   const [activeStep, setActiveStep] = React.useState(0);
 
   const theme = useTheme();
-  const classes = useStyleCarousel();
+  const classes = styleCarousel();
 
   const data = useStaticQuery(graphql `
   {
