@@ -46,7 +46,11 @@ const Vacancy = () => {
         };
         xhr.send(data);
     }
-    const {allFile: {edges}} = useStaticQuery(graphql`
+    const {
+        allFile: {edges},
+        contentfulInfoModel: {childContentfulInfoModelJobSvisniTextNode: {childMarkdownRemark: md}},
+        allContentfulInfoModel: {edges: allMd}
+    } = useStaticQuery(graphql`
         {
             allFile(filter: { extension: { eq: "svg" } }) {
                 edges {
@@ -55,9 +59,33 @@ const Vacancy = () => {
                     }
                 }
             }
+            allContentfulInfoModel {
+                edges {
+                    node {
+                        childContentfulInfoModelJobSvisniTextNode {
+                            childMarkdownRemark {
+                                id
+                                html
+                                frontmatter {
+                                    vacancy
+                                    experience
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            contentfulInfoModel {
+                childContentfulInfoModelJobSvisniTextNode {
+                    childMarkdownRemark {
+                        frontmatter {
+                            infoBrend
+                        }
+                    }
+                }
+            }
         }
     `)
-
     const advantages = [
         {
             id: 1,
@@ -94,44 +122,38 @@ return (
                 <h1 style={{fontFamily: `Oswald, cursive`,
                     fontWeight: 600, fontSize: 40}}>Вакансии Свисни Суши в Уразово</h1>
             </div>
-            <Grid container >
+            <Grid container>
                 <Grid item xs={12} sm={6} style={{paddingLeft: 40}}>
                     <Typography style={{padding: `10px 0 10px 0`}}>
-                        Бренд Свисни Суши — был основан в 2019 году, когда открылся первый ресторан японской кухни формата «возьми с собой»
-                        в Уразово, бывшее название Тануки. С 2018 года мы начали активное развитие и сейчас мы хотим, чтобы каждый имел возможность наслаждаться вкусом лучших блюд японской кухни,
-                        поэтому планируем освоение новых территорий и открытие суши баров в Валуйках.
+                        {md.frontmatter.infoBrend}
                     </Typography>
 
-                    <section className=""><h2 style={{paddingTop: 20}}>Плюсы работы в Свисни-Суши</h2>
+                    <section className=""><h2 style={{paddingTop: 20}}>Плюсы работы в Свисни Суши</h2>
                     </section>
                     <section style={{padding: `10px 0 10px 0`}}>
                         { advantages.map((adva) => (
                             <div key={adva.id} style={{display: `flex`}}>
                                 <div>
-                                <img src={adva.imgSrc} alt="Преимущества работы"/>
+                                    <img src={adva.imgSrc} alt="Преимущества работы"/>
                                 </div>
                                 <div style={{margin: `auto 0`, paddingLeft: 10}}>
-                                <p>{adva.text}</p>
+                                    <p>{adva.text}</p>
                                 </div>
-                                </div>
-                        ))}
+                            </div>))}
                     </section>
-
                 </Grid>
+
                 <Grid item xs={12} sm={6} style={{paddingRight: 20, paddingBottom: 30}}>
                     <div style={{marginLeft: 40}}>
+                        { allMd.map(({node})=> (
                         <Card>
                             <CardHeader
                                 classes={{title: classes.title}}
-                                avatar={
-                                    <AvatarWrapp alt="Sushi" src={Logo}
-                                                 className={classes.avatar}
-                                                 classes={{img: classes.img}}>
-                                    </AvatarWrapp>
-                                }
-                                title={"Суши Повар"}
-                                subheader={"Требуемый опыт работы: не важен"}
-                            />
+                                avatar={ <AvatarWrapp alt="Sushi" src={Logo} className={classes.avatar}
+                                                 classes={{img: classes.img}}></AvatarWrapp>}
+                                title={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.vacancy}
+                                subheader={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.experience}/>
+
                             <CardActions disableSpacing>
                                 <Button
                                     variant="contained"
@@ -144,42 +166,12 @@ return (
                                     aria-label="show more">
                                     Подробнее
                                 </Button>
-
                             </CardActions>
                             <Collapse in={expanded["one"]} timeout="auto" unmountOnExit>
                                 <CardContent>
-                                    <Typography paragraph>
-                                        Посёлок: Уразово
-                                    </Typography>
-                                    <Typography paragraph>
-                                        Требуемый опыт работы: Не важен
-                                    </Typography>
-                                    <ul style={{ margin: 0, padding: `8px 0 0 20px`}}>
-                                        <Typography variant="h6">
-                                            График:
-                                        </Typography>
-                                        <li>Удобный сменный график</li>
-                                        <Typography variant="h6">
-                                            Требования:
-                                        </Typography>
-                                        <li>Наличие санитарной книжки / готовность пройти санитарный минимум</li>
-                                        <li>Ответственность, трудолюбие</li>
-                                        <li> Опыт работы в аналогичной должности</li>
-                                        <Typography variant="h6">
-                                            Обязанности:
-                                        </Typography>
-                                        <li>Приготовление блюд японской кухни</li>
-                                        <li>Соблюдение всех санитарных норм и правил</li>
-                                        <Typography variant="h6">
-                                            Условия:
-                                        </Typography>
-                                        <li>Официальное трудоустройство</li>
-                                        <li>Ежемесячные премии по результатам работы </li>
-                                        <li>Возможность готовить самые вкусные роллы</li>
-                                        <li>Бесплатное питание</li>
-                                        <li>Своевременная заработная плата 2 раза в месяц </li>
-                                        <li>Дружный коллектив, готовый помочь в любую минуту </li>
-                                    </ul>
+
+                                    <div dangerouslySetInnerHTML={{__html: node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.html}} />
+
                                     <form className="d-flex flex-column"
                                           onSubmit={submitForm}
                                           action="https://formspree.io/xbjdqevk"
@@ -194,8 +186,7 @@ return (
                                             inputProps={{maxLength: 50, minLength: 3}}
                                             variant="filled"
                                             color="primary"
-                                            name="name"
-                                        />
+                                            name="name"/>
                                         <TextField
                                             id="filled-secondary"
                                             label="Телефон"
@@ -204,28 +195,26 @@ return (
                                             variant="filled"
                                             color="primary"
                                             name="phone"
-                                            style={{marginTop: 10}}
-                                        />
+                                            style={{marginTop: 10}}/>
                                         {state.status === "SUCCESS" ? <h6 style={{paddingTop: 15}}>В ближайшее время с вами свяжутся.</h6> : <Button
                                             style={{margin: `8px 0 8px 0 `}}
                                             variant="contained"
                                             color="primary"
                                             type="submit">
                                             Откликнуться
-                                        </Button>}
+                                        </Button> }
                                         {state.status === "ERROR" && <h6>Ooops! Произошла ошибка.</h6>}
                                         </form>
                                     </CardContent>
                             </Collapse>
-
                         </Card>
+                        ))}
                     </div>
                 </Grid>
             </Grid>
-
         </section>
     );
-
 }
 
 export default Vacancy
+
