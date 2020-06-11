@@ -17,8 +17,6 @@ import {StylingInfo} from "../components/common/style";
 
 const Dostavkaioplata = () => {
 
-// const classes = useStyles();
-
 const delivery = [
     {
         id: 1,
@@ -144,16 +142,15 @@ return (
      </Grid>
      <Grid item xs={12} sm={6} > 
     <hr></hr>
-    {/* <div>*/}
-    {/* <iframe */}
-    {/*    src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor" */}
-    {/*    width="100%" */}
-    {/*    height="400" */}
-    {/*    frameBorder="0"*/}
-    {/*    title="frameMapping"*/}
-    {/*    >*/}
-    {/*</iframe> */}
-    {/*</div>*/}
+     <div>
+     <iframe
+        src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor"
+        width="100%"
+        height="400"
+        frameBorder="0"
+        title="frameMapping">
+    </iframe>
+    </div>
     </Grid>
      <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `30px`, color: `white`}}>
           <Typography variant="subtitle2"><b>График работы: с 10:00 до 22:00</b></Typography>

@@ -7,10 +7,9 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-// import {useStyleCarousel} from "./style";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const styleCarousel = makeStyles(theme => ({
+const useStyleCarousel = makeStyles(theme => ({
     root: {
         maxWidth: `100vw`,
         flexGrow: '1',
@@ -89,7 +88,7 @@ const CarouselSvisni = () => {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const theme = useTheme();
-  const classes = styleCarousel();
+  const classes = useStyleCarousel();
 
   const data = useStaticQuery(graphql `
   {

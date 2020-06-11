@@ -146,7 +146,7 @@ return (
                 <Grid item xs={12} sm={6} style={{paddingRight: 20, paddingBottom: 30}}>
                     <div style={{marginLeft: 40}}>
                         { allMd.map(({node})=> (
-                        <Card>
+                        <Card key={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.id}>
                             <CardHeader
                                 classes={{title: classes.title}}
                                 avatar={ <AvatarWrapp alt="Sushi" src={Logo} className={classes.avatar}
