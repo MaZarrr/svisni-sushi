@@ -49,7 +49,7 @@ const Header = () => {
             className={classes.appBar}>
           <Toolbar>
             <DrawerMenu className={classes.menuButton}/>
-            <Typography variant="h6" noWrap className={clsx(classes.content_header)}>
+            <div className={clsx(classes.content_header)}>
               <ul className={clsx(classes.content_link)}>
                 <div className="icon_start">
                   <Link to="/">
@@ -68,7 +68,7 @@ const Header = () => {
                   ))
                 }
               </ul>
-            </Typography>
+            </div>
             <div className="icon_start_xs">
               <Link to="/">
                 <Imgs />

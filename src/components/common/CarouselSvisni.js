@@ -73,8 +73,7 @@ const maxSteps = data.allContentfulCarouselSiteImage.edges.length;
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
+        enableMouseEvents>
         {data.allContentfulCarouselSiteImage.edges.map((step, index) => {
 
         return (

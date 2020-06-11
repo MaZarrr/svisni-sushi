@@ -34,6 +34,17 @@ export const useStylesCart = makeStyles(theme => ({
         margin: `20px auto 10px auto`,
         [theme.breakpoints.down('600')]: {
             margin: `10px auto 30px auto`
+        },
+        [theme.breakpoints.up('960')]: {
+            margin: `10px 6px 30px 6px`,
+            maxWidth: `260px`,
+        },
+        [theme.breakpoints.down('959')]: {
+            margin: `10px auto 30px auto`,
+            maxWidth: `290px`,
+        },
+        [theme.breakpoints.up('1100')]: {
+            margin: `10px auto 30px auto`
         }
     },
     media: {
@@ -296,12 +307,13 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         minWidth: `85%`,
         borderRadius: `10px`,
         marginTop: 30,
+        marginBottom: 50,
         [theme.breakpoints.down('425')]: {
-            maxWidth: `85%`,
+            maxWidth: `85%`
         },
         [theme.breakpoints.up('768')]: {
-            maxWidth: `50%`,
-        }
+            maxWidth: `50%`
+        },
     },
     media: {
         maxWidth: `98%`,
@@ -389,7 +401,7 @@ export const useStyleCarousel = makeStyles(theme => ({
             maxHeight: `70vw`,
             maxWidth: `70vw`,
         },
-        [theme.breakpoints.down('425')]: {
+        [theme.breakpoints.down('475')]: {
             maxWidth: `91vw`,
             borderRadius: `10px`
         }
@@ -452,13 +464,7 @@ export const useStyleLayout = makeStyles(theme => ({
         maxWidth: `1440px`,
         backgroundColor: "#fafafa",
         minHeight: `100vh`,
-        marginTop: '75px',
-        // [theme.breakpoints.down('769')]: {
-        //     paddingLeft: '50px'
-        // },
-        // [theme.breakpoints.up('769')]: {
-        //     marginTop: '75px',
-        // },
+        margin: '75px auto 0 auto'
     },
     toolbar: {
         display: 'flex',
