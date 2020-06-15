@@ -54,7 +54,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Comfortaa", "Oswald"],
+          families: ["Roboto", "Oswald", "Comfortaa"],
         },
         typekit: {
           families: ["Oswald"],

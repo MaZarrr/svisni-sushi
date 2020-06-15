@@ -11,8 +11,7 @@ const Sale = ({data}) => {
 return (
     <>
     <SEO title="Акции и скидки на пиццу, роллы и суши"
-    description="Скидки до 60%, подарки именинникам, бесплатная пицца, -10% к любому заказу.
-    Акция 3 + 1, роллы за 79 рублей."/>
+    description="Акции на роллы суши и пиццу в Валуйках. Скидки до 60%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
     <StylingInfo>
 
     <div className="container">
@@ -26,14 +25,11 @@ return (
             <Link to={`/sale/${product.node.slug}`}>
                 <Typography variant="subtitle1"><b>{product.node.name}</b></Typography>
             </Link>
-        </Grid>
-        ))
-        }
+        </Grid> ))}
     </Grid>
       </div> 
     </StylingInfo>
     </>
-    
     )
 }
 

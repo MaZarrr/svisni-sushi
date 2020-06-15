@@ -432,8 +432,8 @@ export const useStyleSearchInput = makeStyles(theme => ({
 }))
 
 export const StylingInfo = styled.section `
-    font-family: 'Comfortaa', cursive;
-    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     margin-top: 30px;
     h1 {
         font-family: 'Oswald', cursive;
@@ -457,7 +457,7 @@ export const StylingInfo = styled.section `
         font-weight: 900;
     }
     .container {
-        margin: 20px 0 0 30px;
+        margin: 20px 0 0 35px;
         padding: 0;
         width: 90%;
     }
