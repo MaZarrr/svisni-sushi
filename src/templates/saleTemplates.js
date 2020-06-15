@@ -1,25 +1,26 @@
 import React from 'react'
-import { graphql } from 'gatsby';
-import loadable from "@loadable/component";
+import {graphql} from 'gatsby';
+import SaleItem from "../components/SaleItem";
+// import loadable from "@loadable/component";
 
-const SaleItem = loadable(() => import('../components/SaleItem'))
+// const SaleItem = loadable(() => import('../components/SaleItem'))
 
-const SaleTeamplate = ({
-    data: {contentfulProductSale}}) => {
-      
- return  (
-     <>
-   <SaleItem
-        name={contentfulProductSale.name}
-        image={contentfulProductSale.image.fluid}
-        markDeckription={contentfulProductSale.childContentfulProductSaleDetailedDescriptionTextNode.childMarkdownRemark}>
-    </SaleItem>
-    </>
-    )}
+const SaleTeamplate = ({ data: {contentfulProductSale}}) => {
+
+    return  (
+            <>
+                <SaleItem
+                    name={contentfulProductSale.name}
+                    image={contentfulProductSale.image.fluid}
+                    markDeckription={contentfulProductSale.childContentfulProductSaleDetailedDescriptionTextNode.childMarkdownRemark}>
+                </SaleItem>
+            </>
+        )
+}
 
 export default SaleTeamplate
 
-export const query = graphql ` 
+export const query = graphql `
     query ($slug: String!) {
         contentfulProductSale(slug: {eq: $slug}) {
             id
