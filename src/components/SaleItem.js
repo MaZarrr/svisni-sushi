@@ -6,9 +6,7 @@ import Button from '@material-ui/core/Button';
 import ReplyIcon from '@material-ui/icons/Reply';
 import {StylingInfo} from '../components/common/style'
 
-const SaleItem = ({image, name, markDeckription}) => {
-
-    return (
+const SaleItem = ({image, name, markDeckription}) => (
         <StylingInfo>
         <SEO title={`Акция ${name}`}
              description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
@@ -30,6 +28,5 @@ const SaleItem = ({image, name, markDeckription}) => {
         </div>
         </StylingInfo>
         )
-}
 
-export default SaleItem
+        export default SaleItem

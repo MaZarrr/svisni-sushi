@@ -5,18 +5,13 @@ import SaleItem from "../components/SaleItem";
 
 // const SaleItem = loadable(() => import('../components/SaleItem'))
 
-const SaleTeamplate = ({ data: {contentfulProductSale}}) => {
-
-    return  (
-            <>
+const SaleTeamplate = ({ data: {contentfulProductSale}}) => (
                 <SaleItem
                     name={contentfulProductSale.name}
                     image={contentfulProductSale.image.fluid}
                     markDeckription={contentfulProductSale.childContentfulProductSaleDetailedDescriptionTextNode.childMarkdownRemark}>
                 </SaleItem>
-            </>
         )
-}
 
 export default SaleTeamplate
 
