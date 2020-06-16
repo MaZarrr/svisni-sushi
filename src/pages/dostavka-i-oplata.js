@@ -2,7 +2,6 @@ import React from "react"
 import SEO from "../components/seo"
 import Avatar from '@material-ui/core/Avatar';
 import { Grid } from "@material-ui/core";
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import {StylingInfo} from "../components/common/style";
 
@@ -109,10 +108,11 @@ return (
         <div className="container">
             <h1>Валуйский район&nbsp;- стоимость доставки</h1>
         </div>
+        <hr></hr>
     <Grid container>
     <Grid item xs={12} sm={6}> 
-    <hr></hr>
-      <Container style={{overflowY: `scroll`, height: `400px`}}>
+    {/*<hr></hr>*/}
+      <div style={{overflowY: `scroll`, height: `400px`, marginLeft: 40}}>
       {delivery.map((el) => (
         <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
@@ -133,21 +133,25 @@ return (
         <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
           <Typography>Бесплатно</Typography>
         </Grid>
+            <hr></hr>
         </Grid>
         <hr></hr>
         </div>
+
       ))
       }
-      </Container>
+      </div>
+        <hr></hr>
      </Grid>
-     <Grid item xs={12} sm={6} > 
-    <hr></hr>
-     <div>
+     <Grid item xs={10} sm={5} style={{margin: `auto auto`, borderRadius: 15}}>
+    {/*<hr></hr>*/}
+     <div style={{borderRadius: 15}}>
      <iframe
         src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor"
-        width="100%"
-        height="400"
+        // width="100%"
+        // height="300"
         frameBorder="0"
+        style={{borderRadius: 15, border: `1px solid lightgrey`, width: "100%", height: 300}}
         title="frameMapping">
     </iframe>
     </div>

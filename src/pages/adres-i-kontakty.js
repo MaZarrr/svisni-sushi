@@ -24,15 +24,15 @@ return (
     <>
     <SEO title="Адрес и контакты" 
     description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"/>
-    <StylingInfo>
 
+    <StylingInfo>
     <div className="container">
-    <h1>Адрес и контакты</h1>
+        <h1>Адрес и контакты</h1>
     </div>
-    <hr></hr>
+        <hr></hr>
     <Grid container itemScope itemType="https://schema.org/Organization">
-        <Grid item xs={12} sm={6}>
-            <div style={{paddingLeft: 30}}>
+        <Grid item xs={12} sm={6} >
+            <div style={{paddingLeft: 36}}>
         <Typography variant="h5">Режим работы</Typography>
         <p>С 10:00 до 22:00</p>
         <Typography variant="h5">Телефон</Typography>
@@ -42,12 +42,16 @@ return (
             </div>
             </Grid>
 
-        <Grid item xs={12} sm={6} style={{marginBottom: 50}}>
-            <GatsbyImage style={{maxWidth: 500, borderRadius: 15}} fluid={data.placeholderImage.childImageSharp.fluid} alt="Адрес Свисни Суши"/>
-            <div style={{padding: `30px 0 0 30px`}}>
-            <Typography  variant="caption">ИП Беженова Татьяна Викторовна</Typography>
-            <p variant="caption"> ОРГНИП 318312300012678</p>
+        <Grid item xs={12} sm={6} style={{marginBottom: `50px`}}>
+            <div style={{maxWidth: 400,  margin: `0 auto 0 auto`}}>
+                <GatsbyImage style={{maxWidth: 450, maxHeight: 370, borderRadius: 18, border: `1.5px solid lightgrey`}}
+                             fluid={data.placeholderImage.childImageSharp.fluid} alt="Адрес Свисни Суши"/>
+                <div style={{padding: `30px 0 0 30px`}}>
+                    <Typography  variant="caption">ИП Беженова Татьяна Викторовна</Typography>
+                    <p variant="caption"> ОРГНИП 318312300012678</p>
                 </div>
+            </div>
+
         </Grid>
 
     </Grid>
