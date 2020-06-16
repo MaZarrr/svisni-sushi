@@ -488,7 +488,7 @@ export const StylingInfo = styled.section `
         height: 360px; 
     }
      .mapDelivery { 
-        height: 250px;
+        height: 240px;
     }
 }
 `
