@@ -8,10 +8,9 @@ import SaleItem from "../components/SaleItem";
 const SaleTeamplate = (props) => {
     return (
         <SaleItem
-            name={props.data.markdownRemark.frontmatter.name}
+            name={props.data.contentfulProductSale.name}
             image={props.data.contentfulProductSale.image.fluid}
-            description={props.data.contentfulProductSale.description}
-            markDeckription={props.data.markdownRemark}>
+            md={props.data.markdownRemark !== null ? props.data.markdownRemark : props.data.contentfulProductSale.description}>
         </SaleItem>
     )
 }
@@ -27,6 +26,7 @@ export const query = graphql `
         }
         contentfulProductSale(slug: {eq: $slug}) {
             description
+            name
             image {
                 fluid(maxWidth: 1280) {
                     ...GatsbyContentfulFluid

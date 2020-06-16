@@ -6,17 +6,19 @@ import Button from '@material-ui/core/Button';
 import ReplyIcon from '@material-ui/icons/Reply';
 import {StylingInfo} from '../components/common/style'
 
-const SaleItem = ({image, name, markDeckription, description}) => (
+const SaleItem = ({image, name, md, description}) => {
+    const title = md !== null ? md.frontmatter.name : name
+    return (
         <StylingInfo>
-        <SEO title={`Акция ${name}`}
-             description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
+        <SEO title={`Акция ${title}`}
+             description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${title}`}
              noindex={true}
              pathname="/sale"/>
         <div className="container">
-        <h1>{name}</h1>
+        <h1>{md.frontmatter.name}</h1>
         <Img style={{maxWidth: 1280, marginTop: 30}} fluid={image} />
             <div className="col-md-12 col-12 mt-4">
-                { markDeckription !== null || undefined ? <div dangerouslySetInnerHTML={{__html: markDeckription.html}} /> :
+                { md !== null || undefined ? <div dangerouslySetInnerHTML={{__html: md.html}} /> :
                     <p>{description}</p>
                 }
             </div>
@@ -29,6 +31,6 @@ const SaleItem = ({image, name, markDeckription, description}) => (
                 style={{margin: `10px 0 40px 10px`}}>Все акции</Button>
         </div>
         </StylingInfo>
-        )
+        )}
 
         export default SaleItem
