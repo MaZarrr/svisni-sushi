@@ -44,8 +44,15 @@ return (
 
         <Grid item xs={12} sm={6} style={{marginBottom: `50px`}}>
             <div className="map">
-                <GatsbyImage style={{maxWidth: 450, maxHeight: 370, borderRadius: 18, border: `1.5px solid lightgrey`}}
-                             fluid={data.placeholderImage.childImageSharp.fluid} alt="Адрес Свисни Суши"/>
+                {/*<GatsbyImage style={{maxWidth: 450, maxHeight: 370, borderRadius: 18, border: `1.5px solid lightgrey`}}*/}
+                {/*             fluid={data.placeholderImage.childImageSharp.fluid} alt="Адрес Свисни Суши"/>*/}
+                <iframe
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor"
+                    frameBorder="0"
+                    className="mapDelivery"
+                    title="frameMapping">
+                </iframe>
+
                 <div style={{padding: `30px 0 0 30px`}}>
                     <Typography  variant="caption">ИП Беженова Татьяна Викторовна</Typography>
                     <p variant="caption"> ОРГНИП 318312300012678</p>

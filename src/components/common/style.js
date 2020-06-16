@@ -436,7 +436,7 @@ export const StylingInfo = styled.section `
     font-weight: 400;
     margin-top: 30px;
      .map {
-        max-width: 400px;
+        max-width: 600px;
         margin: 0 auto 0 auto;
     }
      .mapDelivery {
