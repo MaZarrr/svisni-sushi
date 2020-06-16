@@ -485,10 +485,10 @@ export const StylingInfo = styled.section `
     }
     .map {
         max-width: 310px;
-        height: 380px; 
+        height: 360px; 
     }
      .mapDelivery { 
-        height: 280px;
+        height: 250px;
     }
 }
 `
