@@ -10,6 +10,7 @@ const SaleTeamplate = (props) => {
         <SaleItem
             name={props.data.markdownRemark.frontmatter.name}
             image={props.data.contentfulProductSale.image.fluid}
+            description={props.data.contentfulProductSale.description}
             markDeckription={props.data.markdownRemark}>
         </SaleItem>
     )
@@ -25,6 +26,7 @@ export const query = graphql `
             }
         }
         contentfulProductSale(slug: {eq: $slug}) {
+            description
             image {
                 fluid(maxWidth: 1280) {
                     ...GatsbyContentfulFluid
