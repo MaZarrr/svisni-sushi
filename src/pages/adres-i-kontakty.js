@@ -32,7 +32,7 @@ return (
         <hr></hr>
     <Grid container itemScope itemType="https://schema.org/Organization">
         <Grid item xs={12} sm={6} >
-            <div style={{paddingLeft: 36}}>
+            <div style={{paddingLeft: 25}}>
         <Typography variant="h5">Режим работы</Typography>
         <p>С 10:00 до 22:00</p>
         <Typography variant="h5">Телефон</Typography>
@@ -43,7 +43,7 @@ return (
             </Grid>
 
         <Grid item xs={12} sm={6} style={{marginBottom: `50px`}}>
-            <div style={{maxWidth: 400,  margin: `0 auto 0 auto`}}>
+            <div className="map">
                 <GatsbyImage style={{maxWidth: 450, maxHeight: 370, borderRadius: 18, border: `1.5px solid lightgrey`}}
                              fluid={data.placeholderImage.childImageSharp.fluid} alt="Адрес Свисни Суши"/>
                 <div style={{padding: `30px 0 0 30px`}}>

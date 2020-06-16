@@ -110,9 +110,8 @@ return (
         </div>
         <hr></hr>
     <Grid container>
-    <Grid item xs={12} sm={6}> 
-    {/*<hr></hr>*/}
-      <div style={{overflowY: `scroll`, height: `400px`, marginLeft: 40}}>
+    <Grid item xs={12} sm={6}>
+      <div style={{overflowY: `scroll`, height: `400px`, marginLeft: 30}}>
       {delivery.map((el) => (
         <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
@@ -133,13 +132,10 @@ return (
         <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
           <Typography>Бесплатно</Typography>
         </Grid>
-            <hr></hr>
         </Grid>
         <hr></hr>
         </div>
-
-      ))
-      }
+      ))}
       </div>
         <hr></hr>
      </Grid>
@@ -148,10 +144,8 @@ return (
      <div style={{borderRadius: 15}}>
      <iframe
         src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor"
-        // width="100%"
-        // height="300"
         frameBorder="0"
-        style={{borderRadius: 15, border: `1px solid lightgrey`, width: "100%", height: 300}}
+        className="mapDelivery"
         title="frameMapping">
     </iframe>
     </div>

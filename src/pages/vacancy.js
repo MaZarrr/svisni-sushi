@@ -123,8 +123,8 @@ return (
                     fontWeight: 600, fontSize: 40}}>Вакансии Свисни Суши в Уразово</h1>
             </div>
             <Grid container>
-                <Grid item xs={12} sm={6} style={{paddingLeft: 40}}>
-                    <Typography style={{padding: `10px 0 10px 0`}}>
+                <Grid item xs={12} sm={6} style={{paddingLeft: 35}}>
+                    <Typography style={{padding: `10px 0 10px 0`, width: `90%`}}>
                         {md.frontmatter.infoBrend}
                     </Typography>
 

@@ -435,6 +435,16 @@ export const StylingInfo = styled.section `
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     margin-top: 30px;
+     .map {
+        max-width: 400px;
+        margin: 0 auto 0 auto;
+    }
+     .mapDelivery {
+        border-radius: 15px;
+        border: 1px solid lightgrey;
+        width: 100%;
+        height: 420px;
+    }
     h1 {
         font-family: 'Oswald', cursive;
         font-style: normal;
@@ -461,13 +471,19 @@ export const StylingInfo = styled.section `
         padding: 0;
         width: 90%;
     }
-   
+
     @media screen and (max-width: 475px) {
     .container {
         margin: 0 0 0 6vw;
     }
     h1 {
     font-size: 38px;
+    }
+    .map {
+        max-width: 300px 
+    }
+     .mapDelivery { 
+        height: 250px;
     }
 }
 `
