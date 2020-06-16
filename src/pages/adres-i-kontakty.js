@@ -46,10 +46,11 @@ return (
             <div className="map">
                 {/*<GatsbyImage style={{maxWidth: 450, maxHeight: 370, borderRadius: 18, border: `1.5px solid lightgrey`}}*/}
                 {/*             fluid={data.placeholderImage.childImageSharp.fluid} alt="Адрес Свисни Суши"/>*/}
+
                 <iframe
                     src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor"
                     frameBorder="0"
-                    className="mapDelivery"
+                    className="map"
                     title="frameMapping">
                 </iframe>
 

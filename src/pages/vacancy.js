@@ -127,9 +127,7 @@ return (
                     <Typography style={{padding: `10px 0 10px 0`, width: `90%`}}>
                         {md.frontmatter.infoBrend}
                     </Typography>
-
-                    <section className=""><h2 style={{paddingTop: 20}}>Плюсы работы в Свисни Суши</h2>
-                    </section>
+                    <h2 style={{paddingTop: 20}}>Плюсы работы в Свисни Суши</h2>
                     <section style={{padding: `10px 0 10px 0`}}>
                         { advantages.map((adva) => (
                             <div key={adva.id} style={{display: `flex`}}>

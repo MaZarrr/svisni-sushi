@@ -438,6 +438,10 @@ export const StylingInfo = styled.section `
      .map {
         max-width: 600px;
         margin: 0 auto 0 auto;
+        width: 649px;
+        height: 493px;
+        border-radius: 15px;
+        border: 1px solid lightgrey; 
     }
      .mapDelivery {
         border-radius: 15px;
@@ -480,10 +484,11 @@ export const StylingInfo = styled.section `
     font-size: 38px;
     }
     .map {
-        max-width: 300px 
+        max-width: 310px;
+        height: 380px; 
     }
      .mapDelivery { 
-        height: 250px;
+        height: 280px;
     }
 }
 `
