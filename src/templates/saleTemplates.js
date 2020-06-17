@@ -4,7 +4,7 @@ import SaleItem from "../components/SaleItem";
 // import loadable from "@loadable/component";
 // const SaleItem = loadable(() => import('../components/SaleItem'))
 
-const SaleTeamplate = ({data: {contentfulProductSale: {image, description, name, slug,
+const SaleTeamplate = ({data: {contentfulProductSale: {image, description, name,
     detailedDescription: {childMarkdownRemark: mdRemark}} }}) => {
 
     return (
@@ -16,8 +16,8 @@ const SaleTeamplate = ({data: {contentfulProductSale: {image, description, name,
 }
 export default SaleTeamplate
 
-export const query = graphql `
-    query ($slug: String!) {
+export const pageQuery = graphql `
+    query PageSale ($slug: String!) {
         contentfulProductSale(slug: {eq: $slug}) {
             description
             id
