@@ -11,7 +11,7 @@ import ReplyIcon from "@material-ui/icons/Reply";
 
 const SaleTeamplate = ({data: {contentfulProductSale: {image,
     detailedDescription: {childMarkdownRemark: md}} }}) => {
-
+    console.log(md)
     return (
         <StylingInfo>
             <SEO title={`Акция ${md.frontmatter.name}`}
