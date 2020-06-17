@@ -9,21 +9,22 @@ import ReplyIcon from "@material-ui/icons/Reply";
 // import loadable from "@loadable/component";
 // const SaleItem = loadable(() => import('../components/SaleItem'))
 
-const SaleTeamplate = ({data: {contentfulProductSale: {image,
+const SaleTeamplate = ({data: {contentfulProductSale: {image, name, description,
     detailedDescription: {childMarkdownRemark: md}} }}) => {
-    console.log(md)
+    // console.log(md)
     return (
         <StylingInfo>
-            <SEO title={`Акция ${md.frontmatter.name}`}
-                 description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${md.frontmatter.name}`}
+            <SEO title={`Акция ${name}`}
+                 description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
                  noindex={true}
                  pathname="/sale"/>
             <div className="container">
-                <h1>{md.frontmatter.name}</h1>
+                <h1>{name}</h1>
                 <Img style={{maxWidth: 1280, marginTop: 30}} fluid={image.fluid} />
-                <div className="col-md-12 col-12 mt-4">
-                    <div dangerouslySetInnerHTML={{__html: md.html}} />
-                </div>
+                <p>{description}</p>
+                {/*<div className="col-md-12 col-12 mt-4">*/}
+                {/*    <div dangerouslySetInnerHTML={{__html: md.html}} />*/}
+                {/*</div>*/}
                 <Button variant="outlined"
                         component={Link}
                         to="/sale"
