@@ -7,20 +7,21 @@ import ReplyIcon from '@material-ui/icons/Reply';
 import {StylingInfo} from '../components/common/style'
 
 const SaleItem = ({image, md }) => {
-    // const title = md !== null ? md.frontmatter.name : name
+    const title = md.name || md.frontmatter.name
+    const infoSale = md === undefined ? <p>{md.description}</p> : <div dangerouslySetInnerHTML={{__html: md.html}} />
+
     return (
         <StylingInfo>
-        <SEO title={`Акция ${md.frontmatter.name}`}
-             description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${md.frontmatter.name}`}
+        <SEO title={`Акция ${title}`}
+             description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${title}`}
              noindex={true}
              pathname="/sale"/>
         <div className="container">
-        <h1>{md.frontmatter.name}</h1>
+        <h1>{title}</h1>
         <Img style={{maxWidth: 1280, marginTop: 30}} fluid={image} />
             <div className="col-md-12 col-12 mt-4">
-                <div dangerouslySetInnerHTML={{__html: md.html}} />
+                {infoSale}
             </div>
-
         <Button variant="outlined"
                 component={Link}
                 to="/sale"

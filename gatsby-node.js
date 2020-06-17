@@ -29,6 +29,7 @@ exports.createPages = async ({graphql, actions}) => {
        allContentfulProductSale {
         edges {
         node {
+        slug
         childContentfulProductSaleDetailedDescriptionTextNode {
           childMarkdownRemark {
             frontmatter {
@@ -86,9 +87,9 @@ exports.createPages = async ({graphql, actions}) => {
             // })
 
             const productssale = data.data.allContentfulProductSale.edges;
-            productssale.forEach(({node: {childContentfulProductSaleDetailedDescriptionTextNode: {childMarkdownRemark}}}) => {
+            productssale.forEach(({node: {slug, childContentfulProductSaleDetailedDescriptionTextNode: {childMarkdownRemark}}}) => {
                 createPage({
-                    path: `/sale/${childMarkdownRemark.frontmatter.slug}`,
+                    path: `/sale/${childMarkdownRemark.frontmatter.slug || slug}`,
                     component: saleTeamplates,
                     context: {
                         slug: childMarkdownRemark.frontmatter.slug
