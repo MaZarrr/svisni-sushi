@@ -21,7 +21,7 @@ return (
         {props.data.allContentfulProductSale.edges.map((product) => (
         <Grid key={product.node.id} item xs={12} sm={12} md={6}>
             <Img fluid={product.node.image.fluid} style={{maxWidth: `600px`, margin: `20px 40px 20px 0`}} />
-            <Link to={`/sale/${product.node.slug}`}>
+            <Link to={`sale${product.node.slug}`}>
                 <Typography variant="subtitle1"><b>{product.node.name}</b></Typography>
             </Link>
         </Grid> ))}

@@ -82,7 +82,7 @@ exports.createPages = async ({graphql, actions}) => {
             const productssale = data.data.allContentfulProductSale.edges;
             productssale.forEach(({node}) => {
                 createPage({
-                    path: `/sale/${node.slug}`,
+                    path: `/sale${node.slug}`,
                     component: saleTeamplates,
                     context: {
                         slug: node.slug
