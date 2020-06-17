@@ -5,12 +5,17 @@ import SaleItem from "../components/SaleItem";
 
 // const SaleItem = loadable(() => import('../components/SaleItem'))
 
-const SaleTeamplate = (props) => {
+const SaleTeamplate = ({data: {contentfulProductSale: {image, childContentfulProductSaleDetailedDescriptionTextNode} }}) => {
     return (
+        // <SaleItem
+        //     name={props.data.contentfulProductSale.childContentfulProductSaleDetailedDescriptionTextNode.childMarkdownRemark.name}
+        //     image={props.data.contentfulProductSale.image.fluid}
+        //     md={props.data.contentfulProductSale !== null ? props.data.childContentfulProductSaleDetailedDescriptionTextNode.childMarkdownRemark
+        //         : props.data.contentfulProductSale.description}>
+        // </SaleItem>
         <SaleItem
-            name={props.data.contentfulProductSale.name}
-            image={props.data.contentfulProductSale.image.fluid}
-            md={props.data.markdownRemark !== null ? props.data.markdownRemark : props.data.contentfulProductSale.description}>
+            image={image.fluid}
+            md={childContentfulProductSaleDetailedDescriptionTextNode.childMarkdownRemark}>
         </SaleItem>
     )
 }
@@ -18,22 +23,22 @@ export default SaleTeamplate
 
 export const query = graphql `
     query ($slug: String!) {
-        markdownRemark(frontmatter: {slug: {eq: $slug}}) {
-            html
-            frontmatter {
-                name
-            }
-        }
         contentfulProductSale(slug: {eq: $slug}) {
-            description
-            name
             image {
                 fluid(maxWidth: 1280) {
                     ...GatsbyContentfulFluid
                 }
             }
+            childContentfulProductSaleDetailedDescriptionTextNode {
+                childMarkdownRemark {
+                    html
+                    frontmatter {
+                        slug
+                        name
+                    }
+                }
+            }
         }
     }
-
 `
  

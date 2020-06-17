@@ -12,7 +12,7 @@ const Adresikontakty = () => {
         query {
             placeholderImage: file(relativePath: { eq: "adres.jpg" }) {
                 childImageSharp {
-                    fluid(maxWidth: 800) {
+                    fluid(maxWidth: 1280) {
                         ...GatsbyImageSharpFluid
                     }
                 }
@@ -32,7 +32,7 @@ return (
         <hr></hr>
     <Grid container itemScope itemType="https://schema.org/Organization">
         <Grid item xs={12} sm={6} >
-            <div style={{paddingLeft: 25}}>
+            <div style={{paddingLeft: 35}}>
         <Typography variant="h5">Режим работы</Typography>
         <p>С 10:00 до 22:00</p>
         <Typography variant="h5">Телефон</Typography>
@@ -40,28 +40,26 @@ return (
         <Typography variant="h5">Адрес</Typography>
             <p><span itemProp="streetAddress">Улица 3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></p>
             </div>
-            </Grid>
+
+            <div style={{padding: `0 0 0 35px`}}>
+                <Typography  variant="caption">ИП Беженова Татьяна Викторовна</Typography>
+                <p variant="caption"> ОРГНИП 318312300012678</p>
+            </div>
+        </Grid>
 
         <Grid item xs={12} sm={6} style={{marginBottom: `50px`}}>
             <div className="map">
-                {/*<GatsbyImage style={{maxWidth: 450, maxHeight: 370, borderRadius: 18, border: `1.5px solid lightgrey`}}*/}
-                {/*             fluid={data.placeholderImage.childImageSharp.fluid} alt="Адрес Свисни Суши"/>*/}
+                <GatsbyImage fluid={data.placeholderImage.childImageSharp.fluid} alt="Адрес Свисни Суши"/>
 
-                <iframe
-                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor"
-                    frameBorder="0"
-                    className="map"
-                    title="frameMapping">
-                </iframe>
+                {/*<iframe*/}
+                {/*    src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor"*/}
+                {/*    frameBorder="0"*/}
+                {/*    className="map"*/}
+                {/*    title="frameMapping">*/}
+                {/*</iframe>*/}
 
-                <div style={{padding: `30px 0 0 30px`}}>
-                    <Typography  variant="caption">ИП Беженова Татьяна Викторовна</Typography>
-                    <p variant="caption"> ОРГНИП 318312300012678</p>
-                </div>
             </div>
-
         </Grid>
-
     </Grid>
     </StylingInfo>
     </>

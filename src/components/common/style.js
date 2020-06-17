@@ -435,13 +435,8 @@ export const StylingInfo = styled.section `
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     margin-top: 30px;
-     .map {
-        max-width: 600px;
-        margin: 0 auto 0 auto;
-        width: 649px;
-        height: 493px;
-        border-radius: 15px;
-        border: 1px solid lightgrey; 
+    .map {
+        padding-right: 20px; 
     }
      .mapDelivery {
         border-radius: 15px;
@@ -483,12 +478,15 @@ export const StylingInfo = styled.section `
     h1 {
     font-size: 38px;
     }
-    .map {
-        max-width: 310px;
-        height: 360px; 
-    }
      .mapDelivery { 
         height: 240px;
     }
 }
+    @media screen and (max-width: 600px) {
+    .map {
+       padding-right: 20px;
+       padding-left: 20px;
+    } 
+}
+
 `
