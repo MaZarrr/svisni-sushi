@@ -51,7 +51,7 @@ export const queryDrink = graphql `
                 name
                 weight
                     image {
-                        fluid(maxWidth: 300, maxHeight: 300) {
+                        fluid(maxWidth: 400) {
                             ...GatsbyContentfulFluid
                         }
                     }

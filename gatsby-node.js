@@ -25,21 +25,14 @@ exports.createPages = async ({graphql, actions}) => {
             slug
           }
         }
-      }  
-       allContentfulProductSale {
+      } 
+      allContentfulProductSale {
         edges {
-        node {
-        slug
-        childContentfulProductSaleDetailedDescriptionTextNode {
-          childMarkdownRemark {
-            frontmatter {
-              slug
-            }
-          }
+            node {
+            slug
         }
-      }
-    }
-  }
+        }
+    }  
     }
     `).then((data) => {
             const productssets = data.data.allContentfulProduct.edges;
@@ -87,12 +80,12 @@ exports.createPages = async ({graphql, actions}) => {
             // })
 
             const productssale = data.data.allContentfulProductSale.edges;
-            productssale.forEach(({node: {slug, childContentfulProductSaleDetailedDescriptionTextNode: {childMarkdownRemark}}}) => {
+            productssale.forEach(({node}) => {
                 createPage({
-                    path: `/sale/${childMarkdownRemark.frontmatter.slug || slug}`,
+                    path: `/sale/${node.slug}`,
                     component: saleTeamplates,
                     context: {
-                        slug: childMarkdownRemark.frontmatter.slug
+                        slug: node.slug
                     }
                 })
             })

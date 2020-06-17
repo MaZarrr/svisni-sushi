@@ -2,16 +2,15 @@ import React from 'react'
 import {graphql} from 'gatsby';
 import SaleItem from "../components/SaleItem";
 // import loadable from "@loadable/component";
-
 // const SaleItem = loadable(() => import('../components/SaleItem'))
 
-const SaleTeamplate = ({data: {contentfulProductSale: {image, description, name,
-    childContentfulProductSaleDetailedDescriptionTextNode: txtNode} }}) => {
+const SaleTeamplate = ({data: {contentfulProductSale: {image, description, name, slug,
+    detailedDescription: {childMarkdownRemark: mdRemark}} }}) => {
 
     return (
         <SaleItem
             image={image.fluid}
-            md={txtNode.childMarkdownRemark !== undefined ? txtNode.childMarkdownRemark : {description, name}}>
+            md={mdRemark !== undefined ? mdRemark : {description, name}}>
         </SaleItem>
     )
 }
@@ -21,17 +20,18 @@ export const query = graphql `
     query ($slug: String!) {
         contentfulProductSale(slug: {eq: $slug}) {
             description
+            id
             name
+            slug
             image {
                 fluid(maxWidth: 1280) {
                     ...GatsbyContentfulFluid
                 }
             }
-            childContentfulProductSaleDetailedDescriptionTextNode {
+            detailedDescription {
                 childMarkdownRemark {
                     html
                     frontmatter {
-                        slug
                         name
                     }
                 }
