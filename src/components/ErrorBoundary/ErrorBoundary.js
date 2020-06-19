@@ -9,9 +9,7 @@ class ErrorBoundary extends Component {
     }
 
     componentDidCatch() {
-        // if(this.state.hasError) {
             this.setState({hasError: true})
-        // }
     }
 
     reload = () => window.location.reload()
@@ -23,7 +21,7 @@ class ErrorBoundary extends Component {
             return (
                     <div className="d-flex flex-column items-center" >
                         <div style={{margin: `20% auto 0 auto`}}>
-                            <Typography variant={`h5`}>Упс! Проблемы с интернетом...</Typography>
+                            <Typography variant={`h5`}>Упс! Непредвиденная ошибка. Возможна проблема с интернетом...</Typography>
                             <Button style={{margin: `8px 0 8px 0 `}} variant="contained" color="primary" onClick={this.reload}>
                                 Оффлай версия
                             </Button>
