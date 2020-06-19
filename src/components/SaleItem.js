@@ -18,7 +18,7 @@ const SaleItem = ({image, md }) => {
              pathname="/sale"/>
         <div className="container">
         <h1>{title}</h1>
-        <Img style={{maxWidth: 1280, marginTop: 30}} fluid={image} />
+        {/*<Img style={{maxWidth: 1280, marginTop: 30}} fluid={image} />*/}
             <div className="col-md-12 col-12 mt-4">
                 {infoSale}
             </div>
