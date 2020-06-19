@@ -1,53 +1,42 @@
 import React, {useState, useEffect} from 'react'
-import {graphql, Link} from 'gatsby';
-import {StylingInfo} from "../components/common/style";
-import SEO from "../components/seo";
-import Img from "gatsby-image";
-import Button from "@material-ui/core/Button";
-import ReplyIcon from "@material-ui/icons/Reply";
+import {graphql} from 'gatsby';
 import Spinner from  "../components/spinner/spinner"
+import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
+import SaleItem from "../components/SaleItem";
 
 const SaleTeamplate = ({data: {contentfulProductSale: {image, name,
-    detailedDescription: {childMarkdownRemark: md}} }}) => {
+    detailedDescription} }}) => {
 
     const [load, setLoad] = useState(true)
     const [mdr, setMdr] = useState(null)
 
     useEffect(() => {
         async function fetchData() {
-            const mdRemark = await md
-            setMdr({mdRemark, image})
+            const mdRemark = await detailedDescription
+            setMdr(mdRemark)
+            // setMdr({contentfulProductSale: {detailedDescription: undefined}})
             setLoad(false)
         }
         fetchData()
-    }, [image, md])
+    }, [image, detailedDescription])
 
     return (
-        <StylingInfo>
-            <SEO title={`Акция ${name}`}
-                 description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
-                 noindex={true}
-                 pathname="/sale"/>
-            <div className="container">
-                <h1>{name}</h1>
+        // <StylingInfo>
+        //     <SEO title={`Акция ${name}`}
+        //          description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
+        //          noindex={true}
+        //          pathname="/sale"/>
+        //     <div className="container">
+                <ErrorBoundary>
+                    { load === false ?
+                    <SaleItem
+                        name={name}
+                        image={image.fluid}
+                        md={mdr}
+                        // loading={load}
+                    /> : <Spinner/> }
+                </ErrorBoundary>
 
-                { load === false ?
-                    <div>
-                        <Img style={{maxWidth: 1280, marginTop: 30}} fluid={mdr.image.fluid} />
-                        {/*<p>{mdr.description}</p>*/}
-                    {/*<div className="col-12 mt-4">*/}
-                        <div className="col-12 mt-4" dangerouslySetInnerHTML={{__html: mdr.mdRemark.html}} />
-                    {/*</div>*/}
-                <Button variant="outlined"
-                        component={Link}
-                        to="/sale"
-                        size="large"
-                        endIcon={<ReplyIcon/>}
-                        style={{margin: `10px 0 40px 10px`}}>Все акции</Button>
-                </div> : <Spinner/>
-                    }
-                </div>
-        </StylingInfo>
     )
 }
 export default SaleTeamplate
