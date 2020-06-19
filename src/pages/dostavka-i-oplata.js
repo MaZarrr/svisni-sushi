@@ -81,7 +81,7 @@ const delivery = [
         color: '#11161b',
         price: 150,
     },
-  {
+    {
         id: 9,
         adress: 'Валуйки',
         do: 1399,
@@ -89,14 +89,62 @@ const delivery = [
         color: '#d2143a',
         price: 300,
     },
- {
+  {
         id: 10,
-        adress: 'Борки',
+        adress: 'Логачёвка',
         do: 1399,
         posle: 1400,
-        color: '#fde601',
+        color: '#ABD689',
         price: 300,
     },
+ {
+        id: 11,
+        adress: 'Казинка',
+        do: 2300,
+        posle: 2400,
+        color: '#DADEA6',
+        price: 500,
+    },
+    {
+        id: 12,
+        adress: 'Колосково',
+        do: 2300,
+        posle: 2400,
+        color: '#DA288F',
+        price: 500,
+    },
+    {
+        id: 13,
+        adress: 'Кукуевка',
+        do: 999,
+        posle: 1000,
+        color: '#A6CCDE',
+        price: 300,
+    },
+    {
+        id: 14,
+        adress: 'Насоново',
+        do: 2300,
+        posle: 2400,
+        color: '#DA282A',
+        price: 500,
+    },
+    {
+        id: 15,
+        adress: 'Рождественно',
+        do: 2300,
+        posle: 2400,
+        color: '#D9D827',
+        price: 500,
+    },
+    {
+        id: 16,
+        adress: 'Яблоново',
+        do: 2300,
+        posle: 2400,
+        color: '#27D943',
+        price: 500,
+    }
 ]
 
 return (

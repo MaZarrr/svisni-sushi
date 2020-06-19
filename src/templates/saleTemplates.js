@@ -14,29 +14,20 @@ const SaleTeamplate = ({data: {contentfulProductSale: {image, name,
         async function fetchData() {
             const mdRemark = await detailedDescription
             setMdr(mdRemark)
-            // setMdr({contentfulProductSale: {detailedDescription: undefined}})
             setLoad(false)
         }
         fetchData()
     }, [image, detailedDescription])
 
     return (
-        // <StylingInfo>
-        //     <SEO title={`Акция ${name}`}
-        //          description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
-        //          noindex={true}
-        //          pathname="/sale"/>
-        //     <div className="container">
                 <ErrorBoundary>
                     { load === false ?
                     <SaleItem
                         name={name}
                         image={image.fluid}
                         md={mdr}
-                        // loading={load}
                     /> : <Spinner/> }
                 </ErrorBoundary>
-
     )
 }
 export default SaleTeamplate
@@ -67,7 +58,6 @@ export const pageQuery = graphql `
 
 
 
-
 // class SaleTeamplate extends Component {
 //
 //     state = {
@@ -90,19 +80,9 @@ export const pageQuery = graphql `
 //     }
 //
 //     reload = () => window.location.reload()
-//
-//     // componentDidUpdate(prevProps, prevState, snapshot) {
-//     //     if(prevProps.mdr !== this.props.mdr) {
-//     //         this.setState({mdr: this.props.data})
-//     //     }
-//     // }
-//
+
 //     render() {
-//         // console.log(this.state)
-//         // console.log(this.props)
-//         const {mdr, hasError} = this.state
-//         // {contentfulProductSale: {detailedDescription: {childMarkdownRemark}},
-//         //     description, name, image }
+//     const {mdr, hasError} = this.state
 //     if(hasError) {
 //       return (
 //           <StylingInfo>
@@ -123,10 +103,8 @@ export const pageQuery = graphql `
 //     }
 //         return (
 //             <SaleItem
-//                 // image={mdr.contentfulProductSale.image.fluid}
 //                 md={mdr.contentfulProductSale.detailedDescription}
 //             />
-//
 //         )
 //     }
 // }

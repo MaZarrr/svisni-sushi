@@ -468,15 +468,12 @@ export const StylingInfo = styled.section `
     .container {
         margin: 20px 0 0 35px;
         padding: 0;
-        width: 90%;
+        width: 89%;
     }
 
     @media screen and (max-width: 475px) {
-    .container {
-        margin: 0 0 0 6vw;
-    }
     h1 {
-    font-size: 38px;
+        font-size: 38px;
     }
      .mapDelivery { 
         height: 240px;
