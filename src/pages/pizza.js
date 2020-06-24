@@ -17,8 +17,7 @@ const CustomizedInputSearch = loadable(() => import('../components/CustomizedInp
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image}},
-    productPizza, searchText, priceFilter, dispatch }) => {
-
+    productPizza, searchText, priceFilter, dispatch}) => {
     const [load, setLoad] = React.useState(true)
     const classes = useStylesCart();
 
@@ -75,6 +74,7 @@ export const queryPizza = graphql `
           edges {
             node {
                 id
+                contentful_id
                 slug
                 name
                 price
@@ -94,47 +94,9 @@ export const queryPizza = graphql `
          image {
            fluid(maxWidth: 35) {
              ...GatsbyContentfulFluid
-           }
-         }
-       }
+                    }
+                }
+            }
         }
     `
 
-
-
-// const [load, setLoad] = React.useState(true)
-// const classes = useStylesCart();
-// // const initialState = React.useMemo(() => productRequested(), [])
-// //   console.log(initialState);
-
-// // React.useCallback(() => Request(pizzaProduct), productPizza)
-
-// const getProduct = (products) => {
-//   const ProductFetch = async () => {
-//     return await products
-//   }
-//   return ProductFetch()
-//     .then((data) => producPizzaLoad(data))
-//     .then(() => setLoad(false))
-// }
-
-// const useRequest = (request) => {
-//   const initialState = React.useMemo(() => ({
-//     productPizza
-//   }), [productPizza])
-
-//   const [sss, setSss] = React.useState(initialState.productPizza)
-//   useEffect(() => {
-//     request()
-//       .then((data) => setSss(data))
-//     console.log('pizza');
-
-//   }, [request, productPizza])
-//   return sss
-// }
-// const useProductInfo = (pizzaProduct) => {
-//   const request = React.useCallback(
-//     () => getProduct(pizzaProduct), [pizzaProduct])
-//   return useRequest(request)
-// }
-// useProductInfo(pizzaProduct);

@@ -10,7 +10,7 @@ const addedSaleRoll = createAction('ADD_SALE_ROLL')
 const addedSalePizza = createAction('ADD_SALE_PIZZA')
 const deletePizzaDarom = createAction('DEL_PIZZA_DAROM')
 const deleteRollSale = createAction('DEL_ROLL_SALE')
-export const clockSale = createAction('CLOCK_HAPPY_SALE')
+// export const clockSale = createAction('CLOCK_HAPPY_SALE')
 // =====
 const updateCartItems = (cartItems, item, idx) => {
     // обновлуние уже существующего элемсента в корзине
@@ -28,28 +28,39 @@ const updateCartItems = (cartItems, item, idx) => {
     return R.update(idx, item, cartItems)
 }
 
-const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.node.price) => { // добавление в корзину
-    const { id = setу.node.id, count = 0, name = setу.node.name, total = 0,
-        image = setу.node.image.fluid, price33 = setу.node.priceIn33cm, pribor = 0,
-    } = item
+const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) => { // добавление в корзину
+    const { id = setу.id,
+        count = 0,
+        name = setу.name,
+        total = 0,
+        image = setу.image.fluid,
+        size = {[setу.slug]: true},
+        priceDef = setу.price,
+        price33 = setу.priceIn33cm,
+        pribor = 0,
+        } = item
 
     return {
         id,
         name,
         price33,
         pribor,
-        priceDef: setу.node.price,
-        radioPrice: setу.node.price,
+        radioPrice: price33,
+        priceDef,
         radioValue: priceRadio,
+        contentful_id: setу.contentful_id,
+        size,
+        slug: setу.slug,
         image: {...image},
         count: count + quantity,
-        total: priceRadio > setу.node.price ? total + quantity * price33 : total + quantity * setу.node.price
+        total: priceRadio > priceDef ? total + quantity * price33 : total + quantity * priceDef
     }
 }
 
 const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
     const {cartItems} = state
-    const sety = categoryName.find(({node: productCategory}) => productCategory.id === setId);
+
+    const sety = categoryName.find((productCategory) => productCategory.id === setId);
     const itemIndex = cartItems.findIndex(({id}) => id === setId);
     const item = cartItems[itemIndex];
 
@@ -60,7 +71,7 @@ const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
 
     const newItem = updateCartItem(sety, item, quantity, priceRadioPizza);
     return {
-        orderTotal: priceRadioPizza > sety.node.price ? totalPrice + priceRadioPizza * quantity : totalPrice + sety.node.price * quantity ,
+        orderTotal: priceRadioPizza > (sety.price || item.priceDef) ? totalPrice + priceRadioPizza * quantity : totalPrice + (sety.price || item.priceDef) * quantity,
         cartItems: updateCartItems(cartItems, newItem, itemIndex)
     };
 
@@ -77,18 +88,11 @@ export const pizzaSized = (data) => (dispatch) => dispatch(pizzaSize(data))
 
 export const addPribor = (count) => (dispatch) => {
     // const {shoppingCart: {palochkiTotal}} = getStore()
-
     // const priborTotal = palochkiTotal >= 2 ? palochkiTotal + parseInt(count) : palochkiTotal * 1 + 1
     dispatch(addedPribor(count))
 }
 
 export const saleRoll = (objRoll) => async (dispatch) => {
-   //  const {app: {product}} = getStore()
-   // const rr = R.append({node: {
-   //      ...objRoll,
-   //      id: `${objRoll.id}saleRoll`
-   //  }}, product)
-   //  console.log(rr)
     await dispatch(addedSaleRoll(objRoll))
 }
 export const salePizza = (objPizza) => async (dispatch) => await dispatch(addedSalePizza(objPizza))
@@ -98,14 +102,13 @@ export const deleteRoll = (id) => (dispatch) => dispatch(deleteRollSale(id))
 const initialState = {
     cartItems: [],
     orderTotal: 0,
-    pizzaSize: false,
+    pizzaSize: true,
     palochkiTotal: 0,
-    clockSale: false
+    // clockSale: false
 }
 
 export default createReducer({
     [addedToCart]: (state, {id, radioValue, product}) => {
-
         const res = updateOder(state, id, 1, radioValue, product)
         return {...state, cartItems: res.cartItems, orderTotal: res.orderTotal}},
     [removeFromCart]: (state, data) => {
@@ -118,7 +121,8 @@ export default createReducer({
         return { ...state, cartItems, orderTotal}
     },
     [pizzaSize]: (state, {id, price, product, size}) => {
-        const pizza = product.find(({node: pizzaId}) => pizzaId.id === id);
+
+        const pizza = product.find((pizzaId) => pizzaId.node.id === id);
         const itemIndexPizza = state.cartItems.findIndex((data) => data.id === id)
         const itemPizza = state.cartItems[itemIndexPizza]
 
@@ -130,6 +134,7 @@ export default createReducer({
             radioValue: parseInt(price) * 1,
             size: {[size]: true},
             slug: pizza.node.slug,
+            contentful_id: pizza.node.contentful_id,
             image: {...pizza.node.image.fluid},
             count: itemPizza.count,
             total: itemPizza.count * parseInt(price)
@@ -142,7 +147,6 @@ export default createReducer({
 
         return {
             ...state,
-            pizzaSize: true,
             orderTotal: totalPrice,
             cartItems: updateItemPizza
         }
@@ -192,10 +196,10 @@ export default createReducer({
             cartItems: R.remove(rollSaleIndex, 1, state.cartItems)
         }
     },
-    [clockSale]: (state) => {
-        console.log('clockSaleReducer')
-        return {...state, clockSale: true}
-    }
+    // [clockSale]: (state) => {
+    //     console.log('clockSaleReducer')
+    //     return {...state, clockSale: true}
+    // }
 }, initialState)
 
 

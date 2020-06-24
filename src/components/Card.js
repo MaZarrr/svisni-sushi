@@ -70,7 +70,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
   return (
     <>
     <div className={classes.root}>
-    { !load ? product.map(({node: homeProduct}) => (
+    { !load ? product.map((homeProduct) => (
       <Card key={homeProduct.id} className={classes.card}>
       <CardHeader
       classes={{title: classes.title}}

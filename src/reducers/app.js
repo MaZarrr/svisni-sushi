@@ -25,8 +25,14 @@ const initialState = {
 }
 
 export default createReducer({
-    [productLoaded]: (state, product) => ({...state, product}),
-    [productPizzaLoaded]: (state, productPizza) => ({...state, productPizza}),
+    [productLoaded]: (state, productCategory) => {
+        const product = productCategory.map(({node: el}) => el)
+        return {...state, product}
+    },
+    [productPizzaLoaded]: (state, productCategory) => {
+        const productPizza = productCategory.map(({node: el}) => el)
+        return {...state, productPizza}
+    },
     [_setLoading]: (state, loading) => {
         return {...state, loading}
     }

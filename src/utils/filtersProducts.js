@@ -4,7 +4,7 @@
         if(txt === undefined) {
           return items
         }
-        return items.filter(({node}) => {
+        return items.filter((node) => {
           
           return node.name.toLowerCase().indexOf(txt.toLowerCase()) > -1
         })
@@ -15,9 +15,9 @@
         case 'def':
           return items
         case 'inc':
-          return items.sort((a, b)=> a.node.price - b.node.price)
+          return items.sort((a, b)=> a.price - b.price)
         case 'dec':
-          return items.sort((a, b)=> b.node.price - a.node.price)
+          return items.sort((a, b)=> b.price - a.price)
 
         default:
           return items
@@ -29,11 +29,11 @@
           case 'def':
             return items
           case 'two': 
-            return items.filter(({node}) => node.count > 23 && node.count < 36)
+            return items.filter((node) => node.count > 23 && node.count < 36)
           case 'three':
-            return items.filter(({node}) => node.count > 35 && node.count < 65 )
+            return items.filter((node) => node.count > 35 && node.count < 65 )
           case 'five':
-            return items.filter(({node}) => node.count > 63)
+            return items.filter((node) => node.count > 63)
 
           default:
             return items

@@ -266,14 +266,11 @@ export const useStyleKorzina = makeStyles(theme => ({
         }
     },
     buttonD: {
-        background: `lightgrey`
-    },
-    buttonF: {
-        background: `grey`
+        background: `lightgrey`,
     },
     buttonT: {
-        background: `grey`,
-        color: 'white'
+        background: `#FFAE40`,
+        transform: `scale(1.11)`
     },
 }))
 

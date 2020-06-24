@@ -21,9 +21,9 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
 
     return (
         <>
-            {visibleItems.map(({node: productSets}) => {
+            {visibleItems.map((products) => {
 
-                const {id, name, slug, description, price, weight, count, image: {fluid}} = productSets
+                const {id, name, slug, description, price, weight, count, image: {fluid}} = products
                 return (
                     <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                           item xs={12} sm={6} md={3} key={id}>

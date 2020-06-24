@@ -1,59 +1,38 @@
-import React, {useEffect} from "react"
+import React from "react"
 import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
 import  Img  from 'gatsby-image';
 
 import * as R from 'ramda'
-
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import {useStyleKorzina} from '../components/common/style'
 import clsx from 'clsx';
-import Spinner from '../components/spinner/spinner'
 import {addedCart, removeCart, allRemoveCart, pizzaSized, addPribor, saleRoll, salePizza, deletePizza, deleteRoll} from "../reducers/shopping-cart";
 import {getProduct} from "../reducers/app";
 
-const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPizza, allContentfulHomePageCarts,
-  allContentfulProductKlassika, allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
-  allContentfulProductSalat, allContentfulProductNapitki, allContentfulProductGunkan, allContentfulProductZakuski,
-  allContentfulProductSouse, allContentfulProductKombo},
-    producSetsLoad,
-    items = [], product,
+const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
+    allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
+    allContentfulProductGunkan},
+    items = [],
     total = 0, palochkiTotal,
-    onIncrease, onDecrise, onDelete, addedPriborCount, onRazmer, addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
+    onIncrease, onDecrise, onDelete, addedPriborCount,
+    onRazmer, addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
 
     const [value, setValue] = React.useState([]);
-    const [load, setLoad] = React.useState(true)
-    // const [expanded, setExpanded] = React.useState({name: false});
-    useEffect(() => {
-    const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
-     allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
-     allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
-     allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges, allContentfulProductKombo.edges)
-      producSetsLoad(data); // action push to reduxStore
-      setLoad(false)
-    }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts, allContentfulProductNapitki,
-   allContentfulProductHotRolly, allContentfulProductGunkan, allContentfulProductKlassika, allContentfulProductSalat,
-   allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski,
-   allContentfulProductKombo
- ])
-    console.log('items-korzina', items)
 
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
 
-    const disabled = () => {
-        return R.contains(true, items.map((el) => el.priceSale === 0))
-    }
+    const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0))
 
     const pizzaDarom = () => {
       const cart = items.filter((el) => {
@@ -200,15 +179,13 @@ const ShoppingCartTable = ({data: {allContentfulProduct, allContentfulProductPiz
 
     const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
 
-    const onRadioChangedd = (id, price, product, size) =>  {
-  onRazmer({id, price, product, size})
-}
-//
+    const onRadioChangedd = (id, price, product, size) => onRazmer({id, price, product, size})
+
 return (
   <>
   <SEO title="Корзина" 
-  description="Корзина товаров"
-  noindex={true}/>
+       description="Корзина товаров"
+       noindex={true}/>
   <section>
   <div className={classes.root}>
     <Grid container>
@@ -223,17 +200,17 @@ return (
            { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
            Похоже, что в вашей корзине нет товаров, давайте добавим их :) </Box> : <div className={classes.paperDiv}>
           <Typography variant="h6"><b>Товар</b></Typography>
-          { !load ? items.map((item, idx) => {
+          { items.map((item, idx) => {
 
         const {id, name, count, total, image, price33, radioValue, priceDef,
-            textRollSale, textPizza, pizzaSale, size = {}, slug = null} = item // radioPrice
-                  // console.log(slug)
+            textRollSale, textPizza, pizzaSale, size, slug = null, contentful_id = "sizeBig"} = item
+
         return (
           <Paper key={id} className={classes.paper}>
           <Grid container spacing={3} className={classes.containerWrapped}>
           <Grid item >
             <ButtonBase className={classes.image}>
-            <Img style={{width: 128, height: 128, margin: 0, padding: 0}} fluid={image}> </Img> 
+            <Img style={{width: 128, height: 128, margin: 0, padding: 0}} fluid={image}> </Img>
          
             </ButtonBase>
             { !!price33 &&
@@ -244,27 +221,27 @@ return (
               <FormControlLabel
                   value={name}
                   control={<Button className={clsx(classes.buttonD, {
-                      [classes.buttonT]: size[slug]})}
-                      color="primary" name={String(idx + 1)}
-                      onClick={() => onRadioChangedd(id, priceDef, allContentfulProductPizza.edges, slug)}>Маленькая</Button>}
-                  // label="Маленькая"
-                  labelPlacement="bottom"
-                  id={id}
-                  name={name}
-                  style={{margin: 5, padding: 0}}
-                />
+                        [classes.buttonT]: size[slug]})}
+                        name={String(idx + 1)}
+                        onClick={() => onRadioChangedd(id, priceDef, allContentfulProductPizza.edges, slug)}>
+                        Маленькая</Button>}
+                        labelPlacement="bottom"
+                        id={id}
+                        size='small'
+                        name={name}
+                        style={{margin: 5, padding: 0}}/>
                 <FormControlLabel
                   value={name + "a"}
                   control={<Button className={clsx(classes.buttonD, {
-                      [classes.buttonT]: size[`${slug}a`]})} color="primary"
-                    name={String(idx + 1)}
-                    onClick={() => onRadioChangedd(id, price33, allContentfulProductPizza.edges, `${slug}a`)}>Большая </Button>}
-                  // label="Большая"
-                  labelPlacement="bottom"
-                  id={id}
-                  name={name}
-                  style={{margin: 5, padding: 0}}
-                />
+                        [classes.buttonT]: size[contentful_id]})}
+                        name={String(idx + 1)}
+                        onClick={() => onRadioChangedd(id, price33, allContentfulProductPizza.edges, contentful_id)}>
+                        Большая </Button>}
+                        labelPlacement="bottom"
+                        id={id}
+                        size='small'
+                        name={name}
+                        style={{margin: 5, padding: 0}}/>
               </RadioGroup>
             </FormControl>
              }
@@ -285,18 +262,18 @@ return (
                   {radioValue !== 79 && priceDef !== 0 ?
                       <>
                       <button disabled={false}
-                              onClick={()=> onIncrease( {id, radioValue, product} )} // priceDef
+                              onClick={()=> onIncrease( {id, radioValue, product: items} )}
                               className="btn btn-outline-success btn-sm">
                         <i className="fa fa-plus-circle fa-lg"></i>
                       </button>
-                      <button onClick={()=> onDecrise({ id, radioValue, product})}
+                      <button onClick={()=> onDecrise({ id, radioValue, product: items})}
                     className="btn btn-outline-warning btn-sm ml-2">
                     <i className="fa fa-minus-circle fa-lg"></i>
                       </button> </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
 
                       { radioValue > 78 &&
                       <button
-                          onClick={radioValue !== 79 ? ()=> onDelete( { id, radioValue, product } ) : () => deleteFilaSale(id)}
+                          onClick={radioValue !== 79 ? ()=> onDelete( { id, radioValue, product: items } ) : () => deleteFilaSale(id)}
                           className="btn btn-outline-danger btn-sm ml-2">
                           <i className="fa fa-trash-o fa-lg"></i>
                       </button>
@@ -321,8 +298,7 @@ return (
         </Grid>
        </Paper>
                 )
-            })
-    : <Spinner />}
+            })}
 
     {saleRollFunc()}
     {pizzaDarom()}
@@ -361,23 +337,23 @@ return (
       <b>Оформить заказ</b>
       </Button>
      </Paper>
-    </Grid>
-    </Grid>
-    </div>         
+                </Grid>
+            </Grid>
+        </div>
     }
-  </Grid>
-  </Grid>
-  </div>
-  </section>
+                </Grid>
+            </Grid>
+        </div>
+    </section>
   </>
     )
 }
 
 const mapStateToProps = (state) => ({
-  items: state.shoppingCart.cartItems,
-  product: state.app.product,
-  palochkiTotal: state.shoppingCart.palochkiTotal,
-  total: state.shoppingCart.orderTotal,
+    items: state.shoppingCart.cartItems,
+    // product: state.app.product,
+    palochkiTotal: state.shoppingCart.palochkiTotal,
+    total: state.shoppingCart.orderTotal,
     pizzaSize: state.shoppingCart.pizzaSize
 })
 
@@ -397,29 +373,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
 
 export const queryKorzina = graphql `
     {
-        allContentfulProduct {
-          edges {
-            node {
-                id
-              name
-              price
-              image {
-                  fluid(maxWidth: 300) {
-                    ...GatsbyContentfulFluid
-                  }
-              }
-              }
-            }
-          }
           allContentfulProductPizza  {
           edges {
             node {
                 id
-              name
+                contentful_id
+                name
                 slug
-              price
-              priceIn33cm
-              image {
+                price
+                priceIn33cm
+                image {
                   fluid(maxWidth: 300) {
                     ...GatsbyContentfulFluid
                   }
@@ -427,20 +390,6 @@ export const queryKorzina = graphql `
               }
             }
           }
-          allContentfulHomePageCarts {
-            edges {
-              node {
-                id
-                name
-                price
-                image {
-                  fluid(maxWidth: 300) {
-                    ...GatsbyContentfulFluid
-                  }
-                }
-              }
-            }
-    }
     allContentfulProductKlassika {
       edges {
         node {
@@ -497,34 +446,6 @@ export const queryKorzina = graphql `
                    }
                  }
                }
-                 allContentfulProductSalat {
-                   edges {
-                     node {
-                       id
-                       name
-                       price
-                       image {
-                         fluid(maxWidth: 300) {
-                           ...GatsbyContentfulFluid
-                         }
-                       }
-                     }
-                   }
-                 }
-                allContentfulProductNapitki {
-                  edges {
-                    node {
-                      id
-                      price
-                      name
-                      image {
-                        fluid(maxWidth: 300) {
-                          ...GatsbyContentfulFluid
-                        }
-                      }
-                    }
-                  }
-              }
               allContentfulProductGunkan {
                 edges {
                   node {
@@ -539,47 +460,18 @@ export const queryKorzina = graphql `
                   }
                 }
               }
-              allContentfulProductZakuski {
-                edges {
-                  node {
-                    id
-                    name
-                    price
-                    image {
-                      fluid(maxWidth: 300) {
-                        ...GatsbyContentfulFluid
-                      }
-                    }
-                  }
-                }
-              }
-            allContentfulProductSouse {
-              edges {
-                node {
-                  id
-                  price
-                  name
-                  image {
-                    fluid(maxWidth: 300) {
-                      ...GatsbyContentfulFluid
-                    }
-                  }
-                }
-              }
-            }
-         allContentfulProductKombo {
-           edges {
-             node {
-               id
-               name
-               price
-               image {
-                 fluid(maxWidth: 300) {
-                   ...GatsbyContentfulFluid
-                 }
-               }
-             }
-           }
-         }
         }
     `
+
+//    useEffect(() => {
+//    // const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
+//    //  allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
+//    //  allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
+//    //  allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges, allContentfulProductKombo.edges)
+//      producSetsLoad(data); // action push to reduxStore
+//      setLoad(false)
+//    }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts, allContentfulProductNapitki,
+//   allContentfulProductHotRolly, allContentfulProductGunkan, allContentfulProductKlassika, allContentfulProductSalat,
+//   allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski,
+//   allContentfulProductKombo
+// ])
