@@ -5,6 +5,8 @@ export const addedToCart = createAction('SET_ADDED_TO_CART')
 const removeFromCart = createAction('SET_REMOVE_FROM_CART')
 const allRemoveFromCart = createAction('ALL_SET_REMOVE_FROM_CART')
 const pizzaSize = createAction('PRODUCT_RAZMER')
+export const pizzaCart = createAction('SIZE_CART')
+
 const addedPribor = createAction('PALOCHKI_ADDED')
 const addedSaleRoll = createAction('ADD_SALE_ROLL')
 const addedSalePizza = createAction('ADD_SALE_PIZZA')
@@ -29,12 +31,15 @@ const updateCartItems = (cartItems, item, idx) => {
 }
 
 const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) => { // добавление в корзину
+
+    const sizePizza = R.defaultTo({[setу.slug]: true}, setу.size)
+
     const { id = setу.id,
         count = 0,
         name = setу.name,
         total = 0,
         image = setу.image.fluid,
-        size = {[setу.slug]: true},
+        size = sizePizza,
         priceDef = setу.price,
         price33 = setу.priceIn33cm,
         pribor = 0,
@@ -85,6 +90,7 @@ export const removeCart = (data) => (dispatch) => dispatch(removeFromCart(data))
 export const allRemoveCart = (data) => (dispatch) => dispatch(allRemoveFromCart(data))
 
 export const pizzaSized = (data) => (dispatch) => dispatch(pizzaSize(data))
+// export const sizePizzaCart = (data) => (dispatch) => dispatch(pizzaCart(data))
 
 export const addPribor = (count) => (dispatch) => {
     // const {shoppingCart: {palochkiTotal}} = getStore()
@@ -102,8 +108,8 @@ export const deleteRoll = (id) => (dispatch) => dispatch(deleteRollSale(id))
 const initialState = {
     cartItems: [],
     orderTotal: 0,
-    pizzaSize: true,
     palochkiTotal: 0,
+    newPizza: null
     // clockSale: false
 }
 
@@ -148,7 +154,27 @@ export default createReducer({
         return {
             ...state,
             orderTotal: totalPrice,
-            cartItems: updateItemPizza
+            cartItems: updateItemPizza,
+        }
+    },
+    [pizzaCart]: (state, {id, productPizza, total, priceDefault, size, mass}) => {
+        const pizzaProduct = R.defaultTo(productPizza, state.newPizza)
+        const pizza = pizzaProduct.find((pizzaId) => pizzaId.id === id);
+        const itemIndexPizza = pizzaProduct.findIndex((data) => data.id === id)
+
+        const updateItemPizza = R.update(itemIndexPizza, {
+           ...pizza,
+            price: total,
+            priceDefault,
+            size: {[size]: true},
+            slug: pizza.slug,
+            mass,
+            contentful_id: pizza.contentful_id,
+        })(pizzaProduct)
+
+        return {
+            ...state,
+            newPizza: updateItemPizza
         }
     },
     [addedPribor]: (state, count) => {

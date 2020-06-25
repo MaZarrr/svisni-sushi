@@ -16,8 +16,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import {useStyleKorzina} from '../components/common/style'
-import clsx from 'clsx';
-import {addedCart, removeCart, allRemoveCart, pizzaSized, addPribor, saleRoll, salePizza, deletePizza, deleteRoll} from "../reducers/shopping-cart";
+import ButtonSize from "../components/common/ButtonSizePizza";
+import {addedCart, removeCart, allRemoveCart, addPribor, saleRoll, salePizza, deletePizza, deleteRoll} from "../reducers/shopping-cart";
 import {getProduct} from "../reducers/app";
 
 const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
@@ -26,8 +26,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     items = [],
     total = 0, palochkiTotal,
     onIncrease, onDecrise, onDelete, addedPriborCount,
-    onRazmer, addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
-
+    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
     const [value, setValue] = React.useState([]);
 
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
@@ -179,8 +178,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
 
     const addPanelPribors = R.contains(true, R.map(({price33}) => price33 === undefined, items))
 
-    const onRadioChangedd = (id, price, product, size) => onRazmer({id, price, product, size})
-
 return (
   <>
   <SEO title="Корзина" 
@@ -220,26 +217,28 @@ return (
               value={value[idx]} onChange={handleChange} row>
               <FormControlLabel
                   value={name}
-                  control={<button className={clsx(classes.buttonD, {
-                        [classes.buttonT]: size[slug]})}
-                        // name={String(idx + 1)}
-                        onClick={() => onRadioChangedd(id, priceDef, allContentfulProductPizza.edges, slug)}>
-                        Маленькая</button>}
+                  control={<ButtonSize
+                          sizePizzaStyle={slug}
+                          title="Маленькая"
+                          pizzaSize={size}
+                          id={id}
+                          edges={allContentfulProductPizza.edges}
+                          pricePizza={priceDef}/>}
                         labelPlacement="bottom"
                         id={id}
-                        size='small'
                         name={name}
                         style={{margin: 5, padding: 0}}/>
                 <FormControlLabel
                   value={name + "a"}
-                  control={<button className={clsx(classes.buttonD, {
-                        [classes.buttonT]: size[contentful_id]})}
-                        name={String(idx + 1)}
-                        onClick={() => onRadioChangedd(id, price33, allContentfulProductPizza.edges, contentful_id)}>
-                        Большая </button>}
+                  control={<ButtonSize
+                        sizePizzaStyle={contentful_id}
+                        title="Большая"
+                        pizzaSize={size}
+                        id={id}
+                        edges={allContentfulProductPizza.edges}
+                        pricePizza={price33}/>}
                         labelPlacement="bottom"
                         id={id}
-                        size='small'
                         name={name}
                         style={{margin: 5, padding: 0}}/>
               </RadioGroup>
@@ -351,10 +350,8 @@ return (
 
 const mapStateToProps = (state) => ({
     items: state.shoppingCart.cartItems,
-    // product: state.app.product,
     palochkiTotal: state.shoppingCart.palochkiTotal,
     total: state.shoppingCart.orderTotal,
-    pizzaSize: state.shoppingCart.pizzaSize
 })
 
 const mapDispatchToProps = {
@@ -362,7 +359,6 @@ const mapDispatchToProps = {
         onDecrise: removeCart,
         onIncrease: addedCart,
         onDelete: allRemoveCart,
-        onRazmer: pizzaSized,
         addedPriborCount: addPribor,
         addedSaleRoll: saleRoll,
         addedSalePizza: salePizza,

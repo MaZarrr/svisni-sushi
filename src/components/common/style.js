@@ -20,31 +20,54 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     deckript: {
-       // fontFamily: 'Comfortaa',
-       fontWeight: 400,
+       fontWeight: 500,
        //  fontDisplay: `fallback`,
         minHeight: 105,
         fontSize: 14,
         [theme.breakpoints.down('500')]: {
-            minHeight: `30px`
+            minHeight: `70px`
         }
     },
+    buttonD: {
+        background: `lightgrey`,
+        textTransform: `uppercase`,
+        color: `dark`,
+        borderRadius: 10,
+        fontSize: 12,
+        width: 95,
+        fontWeight: 500,
+        padding: `8px 5px`,
+        // margin: `0 12%`
+    },
+    buttonT: {
+        background: `#FFAE40`,
+        transform: `scale(1.07)`,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
+        textTransform: `uppercase`,
+        color: `white`,
+        fontWeight: 700,
+        borderRadius: 10,
+        width: 95,
+        fontSize: 12,
+        // margin: `0 12%`,
+        padding: `8px 5px`
+    },
     card: {
-        maxWidth: `260px`,
+        maxWidth: `290px`,
         margin: `20px auto 10px auto`,
         [theme.breakpoints.down('600')]: {
             margin: `10px auto 30px auto`
         },
         [theme.breakpoints.up('960')]: {
-            margin: `10px 6px 30px 6px`,
-            maxWidth: `260px`,
+            margin: `10px 5% 30px 5%`,
+            // maxWidth: `260px`,
         },
         [theme.breakpoints.down('959')]: {
             margin: `10px auto 30px auto`,
-            maxWidth: `290px`,
+            // maxWidth: `290px`,
         },
         [theme.breakpoints.up('1100')]: {
-            margin: `10px auto 30px auto`
+            margin: `10px 10px 30px 10px`
         }
     },
     media: {
@@ -80,6 +103,12 @@ export const useStylesCart = makeStyles(theme => ({
         borderRadius: 3,
     },
     overline: {
+        minHeight: 55,
+        display: `flex`,
+        justifyContent: 'space-between',
+    },
+    overlinePizza: {
+        paddingTop: 10,
         minHeight: 55,
         display: `flex`,
         justifyContent: 'space-between',
@@ -122,19 +151,6 @@ export const useStyleOrder = makeStyles(theme => ({
     conatiner_info_delivery: {
         margin: `15px auto 15px 0`
     },
-    // button: {
-    //     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-    //     color: 'white',
-    //     marginTop: 10,
-    //     textAlign: `start`,
-    //     padding: 20,
-    //     width: 350,
-    //     [theme.breakpoints.down('sm')]: {
-    //         maxWidth: '90%',
-    //         padding: 50,
-    //         marginBottom: 30
-    //     }
-    // },
     emty: {
         padding: theme.spacing(2),
         paddingLeft: theme.spacing(4),
