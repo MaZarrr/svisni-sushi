@@ -32,8 +32,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                 avatar={
                                     <Avatar aria-label="menu">
                                         <Img style={{width: 50}} fluid={image.fluid} alt={name} />
-                                    </Avatar>
-                                }
+                                    </Avatar>}
                                 title={titleCategory}
                                 subheader={<span itemProp="name">{name}</span>}/>
                             <CardMedia

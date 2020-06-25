@@ -267,10 +267,25 @@ export const useStyleKorzina = makeStyles(theme => ({
     },
     buttonD: {
         background: `lightgrey`,
+        textTransform: `uppercase`,
+        color: `dark`,
+        borderRadius: 10,
+        fontSize: 12,
+        width: 100,
+        fontWeight: 700,
+        padding: `8px 5px`
     },
     buttonT: {
         background: `#FFAE40`,
-        transform: `scale(1.11)`
+        transform: `scale(1.07)`,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
+        textTransform: `uppercase`,
+        color: `white`,
+        fontWeight: 700,
+        borderRadius: 10,
+        width: 100,
+        fontSize: 12,
+        padding: `8px 5px`
     },
 }))
 

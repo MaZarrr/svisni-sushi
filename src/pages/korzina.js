@@ -220,11 +220,11 @@ return (
               value={value[idx]} onChange={handleChange} row>
               <FormControlLabel
                   value={name}
-                  control={<Button className={clsx(classes.buttonD, {
+                  control={<button className={clsx(classes.buttonD, {
                         [classes.buttonT]: size[slug]})}
-                        name={String(idx + 1)}
+                        // name={String(idx + 1)}
                         onClick={() => onRadioChangedd(id, priceDef, allContentfulProductPizza.edges, slug)}>
-                        Маленькая</Button>}
+                        Маленькая</button>}
                         labelPlacement="bottom"
                         id={id}
                         size='small'
@@ -232,11 +232,11 @@ return (
                         style={{margin: 5, padding: 0}}/>
                 <FormControlLabel
                   value={name + "a"}
-                  control={<Button className={clsx(classes.buttonD, {
+                  control={<button className={clsx(classes.buttonD, {
                         [classes.buttonT]: size[contentful_id]})}
                         name={String(idx + 1)}
                         onClick={() => onRadioChangedd(id, price33, allContentfulProductPizza.edges, contentful_id)}>
-                        Большая </Button>}
+                        Большая </button>}
                         labelPlacement="bottom"
                         id={id}
                         size='small'
