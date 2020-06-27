@@ -33,6 +33,7 @@ const updateCartItems = (cartItems, item, idx) => {
 const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) => { // добавление в корзину
 
     const sizePizza = R.defaultTo({[setу.slug]: true}, setу.size)
+    const pricePizza = R.defaultTo(setу.price, setу.priceDef)
 
     const { id = setу.id,
         count = 0,
@@ -40,7 +41,7 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
         total = 0,
         image = setу.image.fluid,
         size = sizePizza,
-        priceDef = setу.price,
+        priceDef = pricePizza,
         price33 = setу.priceIn33cm,
         pribor = 0,
         } = item
@@ -157,7 +158,7 @@ export default createReducer({
             cartItems: updateItemPizza,
         }
     },
-    [pizzaCart]: (state, {id, productPizza, total, priceDefault, size, mass}) => {
+    [pizzaCart]: (state, {id, productPizza, total, priceDef, size, mass}) => {
         const pizzaProduct = R.defaultTo(productPizza, state.newPizza)
         const pizza = pizzaProduct.find((pizzaId) => pizzaId.id === id);
         const itemIndexPizza = pizzaProduct.findIndex((data) => data.id === id)
@@ -165,7 +166,7 @@ export default createReducer({
         const updateItemPizza = R.update(itemIndexPizza, {
            ...pizza,
             price: total,
-            priceDefault,
+            priceDef,
             size: {[size]: true},
             slug: pizza.slug,
             mass,
@@ -223,7 +224,6 @@ export default createReducer({
         }
     },
     // [clockSale]: (state) => {
-    //     console.log('clockSaleReducer')
     //     return {...state, clockSale: true}
     // }
 }, initialState)
