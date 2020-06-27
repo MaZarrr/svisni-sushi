@@ -91,7 +91,7 @@ return (
                                        title={name}>
                                        <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
                                    </CardMedia>
-                                    <SplitButton/>
+                                    {/*<SplitButton/>*/}
                                    <CardContent>
                                        <Typography itemProp="description"
                                                    className={classes.deckript}
