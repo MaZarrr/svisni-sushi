@@ -24,13 +24,15 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import {addedToCart, pizzaCart} from "../reducers/shopping-cart";
 import clsx from "clsx";
 import Paper from "@material-ui/core/Paper";
+import SplitButton from "../components/SplitButton";
+import TransferList from "../components/TransferList";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 // const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
-const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image}},
+const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct, nodes}, contentfulIconMenuLeftPanel: {image}},
      productPizza, searchText, priceFilter, dispatch, updatePizza: pizza}) => {
-
+    // console.log(nodes.map((el) => el.ing).map((el) => Object.keys(el)))
     const [load, setLoad] = React.useState(true)
     const classes = useStylesCart();
 
@@ -90,7 +92,7 @@ return (
                                        title={name}>
                                        <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
                                    </CardMedia>
-
+                                    {/*<SplitButton/>*/}
                                    <CardContent>
                                        <Typography itemProp="description"
                                                    className={classes.deckript}
@@ -99,7 +101,7 @@ return (
                                                    component="p">
                                            {description}
                                        </Typography>
-                                       <Grid container justify="center" alignItems="center">
+                                       <Grid  container alignItems="center">
                                            <Grid item xs={5}>
                                        <button onClick={() => dispatch(pizzaCart({id,
                                            productPizza,
@@ -114,7 +116,7 @@ return (
                                            <Grid item xs={2}>
                                                <p style={{padding: `auto 4px auto 4px`, fontSize: 16}}>{`${mass}г`}</p>
                                            </Grid>
-                                           <Grid item={true} justify='center' xs={5}>
+                                           <Grid item xs={5}>
                                            <button onClick={() => dispatch(pizzaCart({id, productPizza,
                                             total: priceIn33cm,
                                             priceDefault: price,
@@ -199,6 +201,54 @@ export const queryPizza = graphql `
               }
               }
             }
+            nodes {
+                ing {
+                    ingrideent1 {
+                        name
+                        price
+                    }
+                    ingrideent2 {
+                        name
+                        price
+                    }
+                    ingrideent3 {
+                        name
+                        price
+                    }
+                    ingrideent4 {
+                        name
+                        price
+                    }
+                    ingrideent5 {
+                        name
+                        price
+                    }
+                    ingrideent6 {
+                        name
+                        price
+                    }
+                    ingrideent7 {
+                        name
+                        price
+                    }
+                    ingrideent8 {
+                        name
+                        price
+                    }
+                    ingrideent9 {
+                        name
+                        price
+                    }
+                    ingrideent10 {
+                        name
+                        price
+                    }
+                    ingrideent11 {
+                        name
+                        price
+                    }
+                }
+            }
           }
         contentfulIconMenuLeftPanel(name: {eq: "Пицца"}) {
          image {
@@ -209,4 +259,8 @@ export const queryPizza = graphql `
             }
         }
     `
+
+
+
+
 

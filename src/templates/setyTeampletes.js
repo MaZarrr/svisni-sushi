@@ -33,13 +33,12 @@ const SetyTeamplate = ({data: {contentfulProduct,
         kitProduct={kitProduct}
         added={() => addedToCart({id: contentfulProduct.id, price: null,
             product: [{
-                node: {
                     id: contentfulProduct.id,
                     name: contentfulProduct.name,
                     price: contentfulProduct.price,
                     count: contentfulProduct.count,
                     image: contentfulProduct.image
-                }
+
             }
             ]}
         )}
