@@ -19,6 +19,7 @@ import {useStyleKorzina} from '../components/common/style'
 import ButtonSize from "../components/common/ButtonSizePizza";
 import {addedCart, removeCart, allRemoveCart, addPribor, saleRoll, salePizza, deletePizza, deleteRoll} from "../reducers/shopping-cart";
 import {getProduct} from "../reducers/app";
+import SplitButton from "../components/SplitButton";
 
 const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
     allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
@@ -26,11 +27,10 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     items = [],
     total = 0, palochkiTotal,
     onIncrease, onDecrise, onDelete, addedPriborCount,
-    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
+    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale, path }) => {
     const [value, setValue] = React.useState([]);
-
+    console.log(items)
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
-
     const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0))
 
     const pizzaDarom = () => {
@@ -199,9 +199,10 @@ return (
           <Typography variant="h6"><b>Товар</b></Typography>
           { items.map((item, idx) => {
 
-        const {id, name, count, total, image, price33, radioValue, priceDef,
-            textRollSale, textPizza, pizzaSale, size, slug = null, contentful_id = "sizeBig"} = item
 
+        const {id, name, count, total, image, price33, radioValue, priceDef,
+            textRollSale, textPizza, pizzaSale, size, slug = null, contentful_id = "sizeBig", ingrideents, sostav} = item
+              // console.log(ingrideents)
         return (
           <Paper key={id} className={classes.paper}>
           <Grid container spacing={3} className={classes.containerWrapped}>
@@ -218,30 +219,31 @@ return (
               <FormControlLabel
                   value={name}
                   control={<ButtonSize
-                          sizePizzaStyle={slug}
-                          title="Маленькая"
-                          pizzaSize={size}
-                          id={id}
-                          edges={allContentfulProductPizza.edges}
-                          pricePizza={priceDef}/>}
-                        labelPlacement="bottom"
-                        id={id}
-                        name={name}
-                        style={{margin: 5, padding: 0}}/>
+                            sizePizzaStyle={slug}
+                            title="Маленькая"
+                            pizzaSize={size}
+                            id={id}
+                            edges={items}
+                            pricePizza={priceDef}/>}
+                            labelPlacement="bottom"
+                            id={id}
+                            name={name}
+                            style={{margin: 5, padding: 0}}/>
                 <FormControlLabel
                   value={name + "a"}
                   control={<ButtonSize
-                        sizePizzaStyle={contentful_id}
-                        title="Большая"
-                        pizzaSize={size}
-                        id={id}
-                        edges={allContentfulProductPizza.edges}
-                        pricePizza={price33}/>}
-                        labelPlacement="bottom"
-                        id={id}
-                        name={name}
-                        style={{margin: 5, padding: 0}}/>
+                            sizePizzaStyle={contentful_id}
+                            title="Большая"
+                            pizzaSize={size}
+                            id={id}
+                            edges={items}
+                            pricePizza={price33}/>}
+                            labelPlacement="bottom"
+                            id={id}
+                            name={name}
+                            style={{margin: 5, padding: 0}}/>
               </RadioGroup>
+                  <SplitButton id={id} pizzaIng={items} sostav={sostav} ingrideents={ingrideents} path={path}/>
             </FormControl>
              }
           </Grid>
