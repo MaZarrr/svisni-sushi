@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Grow from '@material-ui/core/Grow';
-import {makeStyles, withStyles} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import clsx from "clsx";

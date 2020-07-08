@@ -21,15 +21,11 @@ export const useStylesCart = makeStyles(theme => ({
     },
     deckript: {
        fontWeight: 500,
-       //  fontDisplay: `fallback`,
         height: 95,
         overflowY: `scroll`,
         margin: `auto 0`,
         textAlign: 'center',
         padding: 14,
-        // letterSpacing: `50%`,
-        // lineHeight: `150%`,
-        // fontSize: 14,
         [theme.breakpoints.down('500')]: {
             height: `70px`,
             padding: 10

@@ -21,7 +21,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import {addedToCart, pizzaCart} from "../reducers/shopping-cart";
 import clsx from "clsx";
 import Paper from "@material-ui/core/Paper";
