@@ -15,7 +15,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import {Typography} from "@material-ui/core";
 import {connect} from "react-redux";
 import {addedIngrideent} from "../reducers/shopping-cart";
-
+//
 export const useStyles = makeStyles(theme => ({
     buttonD: {
         background: `lightgrey`,

@@ -36,12 +36,22 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     </Avatar>}
                                 title={titleCategory}
                                 subheader={<span itemProp="name">{name}</span>}/>
+                            {slugCategogy === "/sety" &&
+                            <CardMedia
+                                className={classes.media}
+                                title={name}>
+                                <Link to={`${slugCategogy}/${slug}`}>
+                                    <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
+                                </Link>
+                            </CardMedia>
+                            }
+                            {slugCategogy !== "/sety" &&
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
                                 <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
                             </CardMedia>
-
+                            }
                             <CardContent style={{marginBottom: 0, paddingBottom: 0}}>
                                 <Typography itemProp="description"
                                             className={classes.deckript}
