@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    'gatsby-transformer-remark',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -53,7 +54,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Comfortaa", "Oswald"],
+          families: ["Roboto", "Oswald", "Comfortaa"],
         },
         typekit: {
           families: ["Oswald"],
@@ -96,6 +97,7 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        // downloadLocal: true
       },
     },
     {

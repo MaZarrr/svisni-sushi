@@ -36,7 +36,6 @@ export default function SwipeableTemporaryDrawer({location}) {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ ...state, [side]: open });
   };
 

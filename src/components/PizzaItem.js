@@ -3,6 +3,7 @@ import SEO from "./seo"
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import LayoutItem from './layoutItem';
+import ButtonBackSet from "./common/ButtonBackSet";
 
 const PizzaItem = ({name, description, image, price, added, priceIn33, weight, weight33}) => {
 
@@ -12,6 +13,7 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
                     description={`Маленькая и большая пицца ${name}, пицца от ${price} рублей`}
                     pathname="/pizza"/>
             <LayoutItem name={name} image={image} >
+                <ButtonBackSet back="/pizza" />
                 <p><b>Состав:</b> {description}</p>
                 {/* <p><b>Количество:</b> {count} шт</p> */}
                 {/* <p><b>Общий вес:</b> {weight} гр</p> */}

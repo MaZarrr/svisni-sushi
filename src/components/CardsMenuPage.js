@@ -8,59 +8,74 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import {Link} from "gatsby";
 import React from "react";
 import {useStylesCart} from "./common/style";
 import {addedToCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
+import Paper from "@material-ui/core/Paper";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import MoreIcon from '@material-ui/icons/More';
 
 const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch}) => {
-
     const classes = useStylesCart()
+
     return (
         <>
-            {visibleItems.map(({node: productSets}) => {
+            {visibleItems.map((products) => {
 
-                const {id, name, slug, description, price, weight, count, image: {fluid}} = productSets
-
+                const {id, name, slug, description, price, weight, count, image: {fluid}} = products
                 return (
-                    <Grid itemscope itemprop="itemListElement"  itemtype="http://schema.org/Product"
+                    <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                           item xs={12} sm={6} md={3} key={id}>
                         <Card className={classes.card}>
                             <CardHeader
                                 avatar={
                                     <Avatar aria-label="menu">
                                         <Img style={{width: 50}} fluid={image.fluid} alt={name} />
-                                    </Avatar>
-                                }
+                                    </Avatar>}
                                 title={titleCategory}
-                                subheader={<span itemprop="name">{name}</span>}/>
+                                subheader={<span itemProp="name">{name}</span>}/>
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
-                                <Img itemprop="image" fluid={fluid} alt={name} style={{maxWidth: 270, maxHeight: 270}}/>
+                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
                             </CardMedia>
 
-                            <CardContent>
-                                <Typography itemprop="description"
+                            <CardContent style={{marginBottom: 0, paddingBottom: 0}}>
+                                <Typography itemProp="description"
                                             className={classes.deckript}
                                             variant="caption"
                                             color="textSecondary"
                                             component="p">
                                     {description}
                                 </Typography>
-                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                                <Typography
-                                    component="div"
-                                    variant="overline"
-                                    classes={{overline: classes.overline}}>
-                                    <b><p>{slugCategogy === '/pizza' ||
-                                    slugCategogy === '/sety' ? `${weight}кг` : `${weight}гр`}</p></b>
-                                    <b><p>{slugCategogy === '/pizza' ||
-                                            count === undefined ? `${1}шт` : `${count}шт`}</p></b>
-                                </Typography>
-                                <p itemprop="price">{`${price}₽`}</p>
+                                <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
+                                    {/*total, count*/}
+                                    <Grid style={{padding: 10}} container itemProp="offers" itemScope itemType="http://schema.org/Offer">
+                                        <Grid item xs={6}>
+                                            <Paper style={{width: `50%`, margin: `0 auto`}}>
+                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{`${weight}кг`}</Typography>
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Paper style={{width: `50%`, margin: `0 auto`}}>
+                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{`${count}шт`}</Typography>
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Typography
+                                                component="p"
+                                                variant="overline"
+                                                style={{fontSize: 16, margin: `0 auto`, width: `50%`, textAlign: `center`}}
+                                                itemProp="price"
+                                                // classes={{overline: classes.overline}}
+                                            >
+                                                {slugCategogy === '/pizza' ? `от ${price}₽` : `${price}₽`}
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+
                                 </div>
                             </CardContent>
 
@@ -69,22 +84,24 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     variant="contained"
                                     color="secondary"
                                     className={classes.button}
-                                    startIcon={<ShoppingBasketIcon/>}
+                                    // startIcon={<ShoppingBasketIcon/>}
                                     onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
-                                    Хочу </Button>
+                                    {/*Хочу */}
+                                <ShoppingCartIcon/>
+                                </Button>
 
                                 {  slugCategogy === "/sety" ||
-                                slugCategogy === "/pizza" ||
-                                slugCategogy === "/branded-rolls" ||
-                                slugCategogy === "/hot-rolls" ?
+                                slugCategogy === "/pizza" ?
                                     <Button
-                                        itemprop = "url"
+                                        itemProp = "url"
                                         component={Link}
                                         to={`${slugCategogy}/${slug}`}
                                         variant="contained"
                                         color="secondary"
                                         className={classes.buttonInfo}>
-                                        Подробнее </Button> : null
+                                        {/*Подробнее */}
+                                    <MoreIcon/>
+                                    </Button> : null
                                 }
                             </CardActions>
                         </Card>

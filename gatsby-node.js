@@ -5,9 +5,9 @@ exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js')
     const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js')
-    const slognyeTeamplates = path.resolve('./src/templates/slognyeTeamplates.js')
+    // const slognyeTeamplates = path.resolve('./src/templates/slognyeTeamplates.js')
     // const klassikaTeamplates = path.resolve('./src/templates/klassikaTeamplates.js')
-    const hotTeamplates = path.resolve('./src/templates/hotTeamplates.js')
+    // const hotTeamplates = path.resolve('./src/templates/hotTeamplates.js')
     const saleTeamplates = path.resolve('./src/templates/saleTemplates.js')
 
     await graphql(`
@@ -25,28 +25,14 @@ exports.createPages = async ({graphql, actions}) => {
             slug
           }
         }
-      }
-      allContentfulProductSlognyeRolly {
+      } 
+      allContentfulProductSale {
         edges {
-          node {
-            slug
-          }
-        }
-      }
-        allContentfulProductHotRolly {
-         edges {
-           node {
-             slug
-           }
-         }
-       }
-        allContentfulProductSale {
-          edges {
             node {
-              slug
-            }
-          }
+            slug
         }
+        }
+    }  
     }
     `).then((data) => {
             const productssets = data.data.allContentfulProduct.edges;
@@ -71,37 +57,35 @@ exports.createPages = async ({graphql, actions}) => {
                 })
             })
 
-            const productslognye = data.data.allContentfulProductSlognyeRolly.edges;
-            productslognye.forEach(({node: product}) => {
-                createPage({
-                    path: `/branded-rolls/${product.slug}`,
-                    component: slognyeTeamplates,
-                    context: {
-                        slug: product.slug
-                    }
-                })
-            })
+            // const productslognye = data.data.allContentfulProductSlognyeRolly.edges;
+            // productslognye.forEach(({node: product}) => {
+            //     createPage({
+            //         path: `/branded-rolls/${product.slug}`,
+            //         component: slognyeTeamplates,
+            //         context: {
+            //             slug: product.slug
+            //         }
+            //     })
+            // })
 
-            const productshot = data.data.allContentfulProductHotRolly.edges;
-            productshot.forEach(({node: product}) => {
-                createPage({
-                    path: `/hot-rolls/${product.slug}`,
-                    component: hotTeamplates,
-                    context: {
-                        slug: product.slug
-                    }
-                })
-            })
+            // const productshot = data.data.allContentfulProductHotRolly.edges;
+            // productshot.forEach(({node: product}) => {
+            //     createPage({
+            //         path: `/hot-rolls/${product.slug}`,
+            //         component: hotTeamplates,
+            //         context: {
+            //             slug: product.slug
+            //         }
+            //     })
+            // })
 
             const productssale = data.data.allContentfulProductSale.edges;
-            productssale.forEach(({
-                                      node: product
-                                  }) => {
+            productssale.forEach(({node}) => {
                 createPage({
-                    path: `/sale/${product.slug}`,
+                    path: `/sale${node.slug}`,
                     component: saleTeamplates,
                     context: {
-                        slug: product.slug
+                        slug: node.slug
                     }
                 })
             })

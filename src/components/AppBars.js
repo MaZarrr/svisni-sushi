@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect, useRef} from "react"
+import React, {useState, useRef, useEffect} from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import PropTypes from 'prop-types';
 import "./header.css"
@@ -15,7 +15,7 @@ const AppBarStyle = styled(AppBar) `
 .tabs {
   font-family: Comfortaa, cursive;
   font-weight: 800;
-  color: darkslategray;
+  // color: darkslategray;
   background-color: white;
   text-decoration: none;
   letter-spacing: 1px;
@@ -28,17 +28,25 @@ const AppBarStyle = styled(AppBar) `
 const styles = theme =>( {
   root: {
     position: 'fixed',
-    transition: '1s',
+    transition: '1.1s',
     top: '65px',
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    [theme.breakpoints.down('768')]: {
-      display: 'none',
-    }
+    // backgroundColor: theme.palette.background.paper,
+    // background: `#ffd9d9`,
+    background: 'linear-gradient(45deg, #ffbc99 20%, #ffbc99  90%)',
+    // [theme.breakpoints.down('768')]: {
+    //   display: 'none'#FF8E53,
+    // }
   },
   st: {
-    transition: '0.8s',
-    top: '-30%',
+    transition: '1s',
+    top: '-20%',
   },
+  imageMenu: {
+    width: 55,
+    [theme.breakpoints.down('600')]: {
+      display: `none`,
+    }
+  }
 });
 
 
@@ -89,10 +97,11 @@ function getScrollPosition({ element, useWindow }) { // функция, чтоб
 }
 
 function useScrollPosition(effect, deps, element, useWindow, wait) {
+
   const position = useRef(getScrollPosition({ useWindow })) // сохранить координаты текущей позиции, введем переменную положения с состоянием.
   // Это удобно для хранения любого изменяемого значения примерно так же, как вы используете поля экземпляров в классах
   // это значение с состоянием, которое не будет вызывать повторный рендеринг при каждом изменении состояния.
- 
+
   let throttleTimeout = null
 
   const callBack = () => {
@@ -101,16 +110,18 @@ function useScrollPosition(effect, deps, element, useWindow, wait) {
     position.current = currPos
     throttleTimeout = null
   }
-
-  useLayoutEffect(() => {
-    const handleScroll = () => {
-      if (wait) {
-        if (throttleTimeout === null) {
-          throttleTimeout = setTimeout(callBack, wait)
+// && window.screen.width > 769
+  useEffect(() => {
+      const handleScroll = () => {
+      if(window.screen.width > 769) {
+        if (wait) {
+          if (throttleTimeout === null) {
+            throttleTimeout = setTimeout(callBack, wait)
         }
       } else {
         callBack()
       }
+    }
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -132,7 +143,7 @@ useScrollPosition(({ prevPos, currPos }) => {
   }
 
   return (
-    <AppBarStyle className={clsx(!hideOnScroll ? classes.st : classes.root, className)} {...other}>
+    <AppBarStyle className={clsx(!hideOnScroll  ? classes.st : classes.root, className)} {...other}>
     <Tabs
       indicatorColor="primary"
       textColor="primary"
@@ -144,7 +155,7 @@ useScrollPosition(({ prevPos, currPos }) => {
     {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index)=> (
       <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} 
       value={index + 1} label={menu.name} {...a11yProps(menu.deck)}
-          icon={<Img fluid={menu.image.fluid} style={{width: `65px`}} imgStyle={{maxWidth: 65}} alt={menu.name} />}/>
+          icon={<Img fluid={menu.image.fluid} className={classes.imageMenu} imgStyle={{maxWidth: 65}} alt={menu.name} />}/>
     ))}
     </Tabs>
   </AppBarStyle>

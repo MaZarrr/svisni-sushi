@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import SEO from "../components/seo"
+import SEO from "../../components/seo"
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby'
 import FormControl from '@material-ui/core/FormControl';
@@ -16,15 +16,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import axios from "axios";
-import {useStyleOrder, IOSSwitch} from '../components/common/style'
+import {useStyleOrder, IOSSwitch} from '../../components/common/style'
 import {
-    setAdresUser,
-    setCityUser, setDateDeliveryUser, setDoorUser,
-    setEnhanceUser,
-    setHomeUser, setLavelUser,
-    setNameUser,
+    setAdresUser, setCityUser,
+    setDateDeliveryUser, setDoorUser,
+    setEnhanceUser, setHomeUser,
+    setLavelUser, setNameUser,
     setPhoneUser, setTimeDeliveryUser, userCommentsFunc
-} from "../reducers/contacts-info";
+} from "../../reducers/contacts-info";
 import {defaultTo} from "ramda";
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
@@ -67,12 +66,16 @@ const handleSubmit = (ev) => {
 
     items.forEach((elem) => {
       return data.append(
-        'product', 
-        `
-        Товар: ${elem.name},
-        Общая цена ${elem.total},
-        Количество: ${elem.count}`);
-    });
+        'product', ` <div style="display: flex; flex-direction: column; align-items: center;
+                border: 1px solid lightgrey; margin-bottom: 10px; border-radius: 8px; padding: 10px;">
+                <p style="text-align: center"><b>Toвар: </b> ${elem.name}</p>
+                <p style="text-align: center"><b>Состав: </b> ${elem.description}</p> 
+                <p style="text-align: center"><b>Размер: </b> ${elem.productSize}</p>
+                <p style="text-align: center"><b>Доп.Ингидеенты: </b> ${elem.descriptionIngrideents}
+                <p style="text-align: center"><b>Цена: </b> ${elem.total}</p>
+                <p style="text-align: center"><b>Штук: </b> ${elem.count}</p></div>`);
+});
+
     data.append('chopsticks', palochkiTotal);
      const def = defaultTo({itemCartSale:{
          priceDef: 1,
@@ -112,7 +115,7 @@ const handleSubmit = (ev) => {
             adress: stateDeliveryPrice.name || "Самовывоз",
             street: ev.target.street.value || "Самовывоз",
             home: ev.target.home.value || "Самовывоз" } : "Самовывоз",
-            products: 
+            products:
             items.map((elem) => {
               return {
                 product: elem.name,
@@ -126,7 +129,7 @@ const handleSubmit = (ev) => {
         url: process.env.GATSBY_DATA_BASE
     })
  
-  }
+  };
 
     const handleChange = event => setAge(event.target.value)
     const handleChangeDelivery = event => setDelivery(event.target.value);
@@ -197,7 +200,8 @@ return (
         <form  
           method="POST"
           onSubmit={handleSubmit}
-            action={process.env.GATSBY_NODE_SERVE}
+          // action="http://localhost:3000/"
+          action={process.env.GATSBY_NODE_SERVE}
           name="svisniData"
           style={{width: '100%'}}>
    

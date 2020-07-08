@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Switch from "@material-ui/core/Switch";
 import React from "react";
 
-const drawerWidth = 190;
-
 export const useStylesCart = makeStyles(theme => ({
     titleH1: {
         fontFamily: 'Oswald',
@@ -22,23 +20,67 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     deckript: {
-        fontFamily: 'Comfortaa',
-        fontWeight: 800,
-        fontDisplay: `fallback`,
-        minHeight: 110,
+       fontWeight: 500,
+       //  fontDisplay: `fallback`,
+        height: 95,
+        overflowY: `scroll`,
+        margin: `auto 0`,
+        textAlign: 'center',
+        padding: 14,
+        // letterSpacing: `50%`,
+        // lineHeight: `150%`,
+        // fontSize: 14,
         [theme.breakpoints.down('500')]: {
-            minHeight: `30px`
-        }
+            height: `70px`,
+            padding: 10
+        },
+        [theme.breakpoints.down('425')]: {
+            height: `70px`,
+            margin: `auto 0`,
+            padding: 6
+        },
+    },
+    buttonD: {
+        background: `lightgrey`,
+        textTransform: `uppercase`,
+        color: `dark`,
+        borderRadius: 10,
+        fontSize: 12,
+        width: 95,
+        fontWeight: 500,
+        padding: `8px 5px`,
+    },
+    buttonT: {
+        background: `#FFAE40`,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
+        textTransform: `uppercase`,
+        color: `white`,
+        fontWeight: 700,
+        borderRadius: 10,
+        width: 95,
+        fontSize: 12,
+        padding: `8px 5px`
     },
     card: {
-        maxWidth: `260px`,
+        maxWidth: `290px`,
         margin: `20px auto 10px auto`,
         [theme.breakpoints.down('600')]: {
+            margin: `10px auto 30px auto`
+        },
+        [theme.breakpoints.up('960')]: {
+            margin: `10px 5% 30px 5%`,
+            // maxWidth: `260px`,
+        },
+        [theme.breakpoints.down('959')]: {
+            margin: `10px auto 30px auto`,
+            // maxWidth: `290px`,
+        },
+        [theme.breakpoints.up('1100')]: {
             margin: `10px auto 30px auto`
         }
     },
     media: {
-        maxWidth: `70%`,
+        maxWidth: `99%`,
         margin: `0 auto`,
     },
     expand: {
@@ -63,13 +105,23 @@ export const useStylesCart = makeStyles(theme => ({
         color: 'white',
     },
     buttonInfo: {
-        margin: theme.spacing(1),
+        // margin: theme.spacing(1),
+        marginLeft: `auto`,
         background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         color: 'white',
         borderRadius: 3,
     },
     overline: {
+        minHeight: 55,
+        display: `flex`,
+        justifyContent: 'space-between',
+        [theme.breakpoints.down('425')]: {
+            minHeight: 0
+        },
+    },
+    overlinePizza: {
+        paddingTop: 10,
         minHeight: 55,
         display: `flex`,
         justifyContent: 'space-between',
@@ -112,19 +164,6 @@ export const useStyleOrder = makeStyles(theme => ({
     conatiner_info_delivery: {
         margin: `15px auto 15px 0`
     },
-    // button: {
-    //     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-    //     color: 'white',
-    //     marginTop: 10,
-    //     textAlign: `start`,
-    //     padding: 20,
-    //     width: 350,
-    //     [theme.breakpoints.down('sm')]: {
-    //         maxWidth: '90%',
-    //         padding: 50,
-    //         marginBottom: 30
-    //     }
-    // },
     emty: {
         padding: theme.spacing(2),
         paddingLeft: theme.spacing(4),
@@ -199,6 +238,8 @@ export const IOSSwitch = withStyles(theme => ({
     );
 });
 
+
+
 export const useStyleKorzina = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -209,6 +250,10 @@ export const useStyleKorzina = makeStyles(theme => ({
         paddingLeft: theme.spacing(4),
         marginBottom: 20,
         textAlign: 'left',
+        [theme.breakpoints.down('425')]: {
+            marginBottom: 65,
+        },
+        zIndex: 99,
         color: theme.palette.text.secondary,
     },
     paperDiv: {
@@ -219,6 +264,7 @@ export const useStyleKorzina = makeStyles(theme => ({
     },
     image: {
         width: 128,
+        zIndex: 50,
         height: 128,
     },
     img: {
@@ -252,7 +298,29 @@ export const useStyleKorzina = makeStyles(theme => ({
         [theme.breakpoints.down('sm')]: {
             marginBottom: 60
         }
-    }
+    },
+    buttonD: {
+        background: `lightgrey`,
+        textTransform: `uppercase`,
+        color: `dark`,
+        borderRadius: 10,
+        fontSize: 12,
+        width: 100,
+        fontWeight: 700,
+        padding: `8px 5px`
+    },
+    buttonT: {
+        background: `#FFAE40`,
+        transform: `scale(1.07)`,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
+        textTransform: `uppercase`,
+        color: `white`,
+        fontWeight: 700,
+        borderRadius: 10,
+        width: 100,
+        fontSize: 12,
+        padding: `8px 5px`
+    },
 }))
 
 export const useStyleCardIndexPage = makeStyles(theme => ({
@@ -260,25 +328,42 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         margin: `0 auto`,
         display: `flex`,
         flexDirection: `column`,
-        alignItems: `center`
+        alignItems: `center`,
+        borderRadius: `15px`
     },
     title: {
         fontFamily: 'Comfortaa',
         fontWeight: 800,
         fontDisplay: `fallback`
     },
+    titleH1: {
+        fontFamily: 'Oswald',
+        fontWeight: 700,
+        padding: `35px 10px 15px 35px`,
+        fontSize: 40,
+        borderBottom: `1px solid lightgrey`,
+        display: `flex`,
+        [theme.breakpoints.down('600')]: {
+            margin: 0,
+        },
+        [theme.breakpoints.down('475')]: {
+            fontSize: 30,
+            padding: `25px 10px 15px 35px`
+        }
+    },
     card: {
-        maxWidth: `75%`,
+        minWidth: `85%`,
+        borderRadius: `10px`,
         marginTop: 30,
         [theme.breakpoints.down('425')]: {
-            maxWidth: `100%`,
+            maxWidth: `85%`,
         },
         [theme.breakpoints.up('768')]: {
             maxWidth: `50%`,
-        }
+        },
     },
     media: {
-        maxWidth: `250px`,
+        maxWidth: `98%`,
         margin: `0 auto`,
     },
     expand: {
@@ -314,79 +399,6 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
     }
 }))
 
-export const useStyleCarousel = makeStyles(theme => ({
-    root: {
-        maxWidth: `100vw`,
-        flexGrow: '1',
-        [theme.breakpoints.down('768')]: {
-            maxHeight: `75vw`,
-            marginBottom: 40,
-        },
-        [theme.breakpoints.down('475')]: {
-            marginBottom: 95,
-        },
-    },
-    rootPhone: {
-        display: 'none',
-        [theme.breakpoints.down('768')]: {
-            display: 'block'
-        },
-    },
-    rootPhoneNone:{
-        [theme.breakpoints.down('768')]: {
-            display: 'none',
-        }
-    },
-    header: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingTop: '8px',
-        maxWidth: `1400px`,
-        justifyContent: 'flex-start',
-        background: `#f0ecec`,
-        paddingLeft: theme.spacing(2)
-    },
-    img: {
-        height: 'inherit',
-        display: 'block',
-        maxWidth: `100vw`,
-        overflow: 'hidden',
-        width: '100%',
-        [theme.breakpoints.down('768')]: {
-            margin: `0 auto`,
-            maxHeight: `70vw`,
-            maxWidth: `60vw`,
-        },
-        [theme.breakpoints.down('580')]: {
-            margin: `0 auto`,
-            maxHeight: `70vw`,
-            maxWidth: `70vw`,
-        },
-        [theme.breakpoints.down('425')]: {
-            width: '100%',
-            maxWidth: `100vw`,
-        }
-    },
-    h1Home: {
-        fontFamily: 'Oswald, cursive',
-        fontWeight: '900',
-        lineHeight: 2,
-        fontSize: '46px',
-        paddingLeft: `30px`,
-        [theme.breakpoints.down('786')]: {
-            fontSize: '30px',
-            lineHeight: `14vmin`,
-            letterSpacing: `1px`,
-            color: `#000`,
-            padding: `10px 0 10px 0`
-        },
-    },
-    button: {
-        margin: `0 auto`,
-        width: `100%`
-    }
-}))
-
 export const useStyleHeader = makeStyles(theme => ({
     root: {
         display: 'flex',
@@ -397,64 +409,12 @@ export const useStyleHeader = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-around',
         width: `100%`,
-        // height: `70px`,
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
         backgroundColor: "white",
-    },
-    appBarShift: {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: 36,
-        fontSize: `10px`,
-        color: `tomato`,
-        border: `1px solid tomato`,
-        [theme.breakpoints.up('769')]: {
-            display: 'none',
-            margin: 0
-        },
-    },
-    hide: {
-        display: 'none',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-        whiteSpace: 'nowrap',
-        [theme.breakpoints.up('769')]: {
-            display: 'none',
-        }
-    },
-    drawerOpen: {
-        width: drawerWidth,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    drawerClose: {
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        overflowX: 'hidden',
-        width: theme.spacing(7.2) + 1,
-    },
-    toolbar: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar,
     },
     content_header: {
         display: 'flex',
@@ -469,21 +429,6 @@ export const useStyleHeader = makeStyles(theme => ({
         [theme.breakpoints.down('769')]: {
             display: 'none',
         }
-    },
-    iconImg: {
-        height: '25px',
-        width: '25px',
-        marginRight: 17,
-    },
-    iconDiv: {
-        fontFamily: 'Neucha, Comfortaa, cursive',
-        fontWeight: 800
-    },
-    paper: {
-        border: '1px solid',
-        padding: theme.spacing(1),
-        backgroundColor: theme.palette.background.paper,
-        fontSize: `14px`
     }
 }))
 
@@ -492,13 +437,7 @@ export const useStyleLayout = makeStyles(theme => ({
         maxWidth: `1440px`,
         backgroundColor: "#fafafa",
         minHeight: `100vh`,
-        [theme.breakpoints.down('769')]: {
-            paddingLeft: '50px'
-        },
-        [theme.breakpoints.up('769')]: {
-            marginTop: '75px',
-        },
-        margin: '0 auto',
+        margin: '75px auto 0 auto'
     },
     toolbar: {
         display: 'flex',
@@ -539,9 +478,18 @@ export const useStyleSearchInput = makeStyles(theme => ({
 }))
 
 export const StylingInfo = styled.section `
-    font-family: 'Comfortaa', cursive;
-    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     margin-top: 30px;
+    .map {
+        padding-right: 20px; 
+    }
+     .mapDelivery {
+        border-radius: 15px;
+        border: 1px solid lightgrey;
+        width: 100%;
+        height: 420px;
+    }
     h1 {
         font-family: 'Oswald', cursive;
         font-style: normal;
@@ -564,17 +512,24 @@ export const StylingInfo = styled.section `
         font-weight: 900;
     }
     .container {
-        margin: 20px 0 0 30px;
+        margin: 20px 0 0 35px;
         padding: 0;
-        width: 90%;
+        width: 89%;
     }
-   
+
     @media screen and (max-width: 475px) {
-    .container {
-        margin: 0 0 0 6vw;
-    }
     h1 {
-    font-size: 38px;
+        font-size: 38px;
+    }
+     .mapDelivery { 
+        height: 240px;
     }
 }
+    @media screen and (max-width: 600px) {
+    .map {
+       padding-right: 20px;
+       padding-left: 20px;
+    } 
+}
+
 `

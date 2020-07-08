@@ -2,10 +2,8 @@ import React from "react"
 import SEO from "../components/seo"
 import Avatar from '@material-ui/core/Avatar';
 import { Grid } from "@material-ui/core";
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import {StylingInfo} from "../components/common/style";
-// import { makeStyles } from '@material-ui/core/styles';
 
 // const useStyles = makeStyles(theme => ({
 //   root: {
@@ -17,8 +15,6 @@ import {StylingInfo} from "../components/common/style";
 // }));
 
 const Dostavkaioplata = () => {
-
-// const classes = useStyles();
 
 const delivery = [
     {
@@ -85,7 +81,7 @@ const delivery = [
         color: '#11161b',
         price: 150,
     },
-  {
+    {
         id: 9,
         adress: 'Валуйки',
         do: 1399,
@@ -93,14 +89,62 @@ const delivery = [
         color: '#d2143a',
         price: 300,
     },
- {
+  {
         id: 10,
-        adress: 'Борки',
+        adress: 'Логачёвка',
         do: 1399,
         posle: 1400,
-        color: '#fde601',
+        color: '#ABD689',
         price: 300,
     },
+ {
+        id: 11,
+        adress: 'Казинка',
+        do: 2300,
+        posle: 2400,
+        color: '#DADEA6',
+        price: 500,
+    },
+    {
+        id: 12,
+        adress: 'Колосково',
+        do: 2300,
+        posle: 2400,
+        color: '#DA288F',
+        price: 500,
+    },
+    {
+        id: 13,
+        adress: 'Кукуевка',
+        do: 999,
+        posle: 1000,
+        color: '#A6CCDE',
+        price: 300,
+    },
+    {
+        id: 14,
+        adress: 'Насоново',
+        do: 2300,
+        posle: 2400,
+        color: '#DA282A',
+        price: 500,
+    },
+    {
+        id: 15,
+        adress: 'Рождественно',
+        do: 2300,
+        posle: 2400,
+        color: '#D9D827',
+        price: 500,
+    },
+    {
+        id: 16,
+        adress: 'Яблоново',
+        do: 2300,
+        posle: 2400,
+        color: '#27D943',
+        price: 500,
+    }
 ]
 
 return (
@@ -110,12 +154,12 @@ return (
     />
     <StylingInfo>
         <div className="container">
-            <h1>Валуйский район&nbsp;-&nbsp;Зоны и&nbsp;стоимость доставки</h1>
+            <h1>Валуйский район&nbsp;- стоимость доставки</h1>
         </div>
+        <hr></hr>
     <Grid container>
-    <Grid item xs={12} sm={6}> 
-    <hr></hr>
-      <Container style={{overflowY: `scroll`, height: `400px`}}>
+    <Grid item xs={12} sm={6}>
+      <div style={{overflowY: `scroll`, height: `400px`, marginLeft: 30}}>
       {delivery.map((el) => (
         <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
@@ -139,22 +183,16 @@ return (
         </Grid>
         <hr></hr>
         </div>
-      ))
-      }
-      </Container>
+      ))}
+      </div>
+        <hr></hr>
      </Grid>
-     <Grid item xs={12} sm={6} > 
-    <hr></hr>
-     <div>
-     <iframe 
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A5890352ad60fb8387e1c5fd4bb4b006f6a978ed56444d0b0ec143b5caffa6608&amp;source=constructor" 
-        width="100%" 
-        height="400" 
-        frameBorder="0"
-        title="frameMapping"
-        >
-    </iframe> 
-    </div>
+     <Grid item xs={10} sm={5} style={{margin: `auto auto`, borderRadius: 15}}>
+
+         <div style={{borderRadius: 15}}>
+             <img src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A6c9654ff4500960caa168410dc7e08e8c8364690cf5a89b544e20cd237dc3970&amp;width=592&amp;height=422&amp;lang=ru_RU"
+                  alt="Адрес Свисни суши" className="mapDelivery" />
+         </div>
     </Grid>
      <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `30px`, color: `white`}}>
           <Typography variant="subtitle2"><b>График работы: с 10:00 до 22:00</b></Typography>
@@ -163,22 +201,23 @@ return (
     <Grid item xs={6} style={{backgroundColor: `#000`, padding: `30px`, color: `white`}}>
           <Typography  variant="subtitle2"><b>Доставка от 60 до 90 мин</b></Typography>
     </Grid>
+
     <div style={{padding: `30px`}}>
-    
     <h2>
     Как заказать
     </h2>
-    <p>
-    Заказывайте доставку суши и роллов удобным Вам способом: по телефону или через сайт. 
-    Чтобы сделать заказ через сайт, добавьте понравившийся товар в корзину, затем перейдите в соответствующую вкладку и 
-    нажмите «Оформить». В появившемся окне введите Ваши данные и 
-    способ получения заказа. Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени. 
-    После оформления заказа вам поступит звонок с подтверждением. Если у вас нет возможности совершить заказ 
-    через интернет, звоните на нашу горячую линию или воспользуйтесь функцией «Обратный звонок» - и наш оператор сам с 
-    вами свяжется.
-    </p>
+    <p>Заказывайте доставку суши и роллов удобным Вам способом: по телефону или через сайт.</p>
+    <p>Чтобы сделать заказ через сайт:</p>
+        <ul>
+            <li>добавьте товар в корзину (кнопка Хочу!)</li>
+            <li>перейдите в корзину (значёк в правом верхнем углу)</li>
+            <li>нажмите кнопку «Оформить заказ»</li>
+            <li>введите Ваши данные и способ получения заказа</li>
+            <li>нажмите кнопку «Заказать»</li>
+        </ul>
+    <p>Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени<strong>. После оформления заказа вам поступит звонок с подтверждением</strong>. Если у вас нет возможности совершить заказ
+    через интернет, звоните нам по телефону +7(904)094-92-22.</p>
     </div>
-
     </Grid>
     </StylingInfo>
     </>

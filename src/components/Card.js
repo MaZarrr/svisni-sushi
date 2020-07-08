@@ -17,7 +17,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import DetailsIcon from '@material-ui/icons/Details';
 
 import styled from 'styled-components';
 import { useStaticQuery, graphql, Link } from "gatsby"
@@ -42,17 +41,14 @@ const RecipeReviewCard = ({product, dispatch}) => {
     edges {
       node {
         id
-        description
         name
         price
         count
-        weight
-        color
         slug
         variant
         contentful_id
         image {
-          fluid(maxWidth: 400, quality: 30) {
+          fluid(maxWidth: 800) {
             ...GatsbyContentfulFluid
           }
         }
@@ -74,7 +70,7 @@ const RecipeReviewCard = ({product, dispatch}) => {
   return (
     <>
     <div className={classes.root}>
-    { !load ? product.map(({node: homeProduct}) => (
+    { !load ? product.map((homeProduct) => (
       <Card key={homeProduct.id} className={classes.card}>
       <CardHeader
       classes={{title: classes.title}}
@@ -83,56 +79,26 @@ const RecipeReviewCard = ({product, dispatch}) => {
               className={classes.avatar}
               classes={{img: classes.img}}
               color={homeProduct.color}>
-          </AvatarWrapp>
-        }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
+          </AvatarWrapp>}
         title={homeProduct.variant}
-        subheader={homeProduct.name}
-      />
+        subheader={homeProduct.name}/>
       <CardMedia 
         className={classes.media}
         title={homeProduct.name}
+        component={Link}
+        to={`/${homeProduct.slug}`}
       > <Img fluid={homeProduct.image.fluid} />
-      </CardMedia> 
-
-      <CardContent>
-        <Typography className={classes.title} variant="caption" color="textSecondary" component="p">
-        {homeProduct.description} 
-        </Typography>
-        <Typography component="div" variant="overline" classes={{overline: classes.overline}}>
-        <b><p>{homeProduct.weight !== null ? `${homeProduct.weight} кг` : ''}</p></b>
-          <b><p>{`${homeProduct.count !== null ? `${homeProduct.count} шт` : ''}`}</p></b>
-        </Typography>
-       <p>{`${homeProduct.price}₽`}</p>
-      </CardContent>
-
+      </CardMedia>
       <CardActions disableSpacing>
-        { homeProduct.slug !== 'diablo' &&
         <Button
         variant="contained"
         color="secondary"
         className={classes.button}
         startIcon={<ShoppingBasketIcon />}
-        onClick={() => dispatch(addedToCart({id: homeProduct.id, productPrice: homeProduct.price, product}))}
-      >
+        onClick={() => dispatch(addedToCart({id: homeProduct.id, productPrice: homeProduct.price, product}))}>
         Хочу!
       </Button>
-        }
-        { homeProduct.slug === 'diablo' &&
-          <Button
-              variant="contained"
-              component={Link}
-              color="secondary"
-              to={`/pizza/${homeProduct.slug}`}
-              className={classes.button}
-              startIcon={<DetailsIcon />}>
-            Посмотреть
-          </Button>
-        }
+
         <IconButton
           id={homeProduct.contentful_id}
           className={clsx(classes.expand, {
@@ -140,18 +106,17 @@ const RecipeReviewCard = ({product, dispatch}) => {
           })}
           onClick={() => handleExpandClick(homeProduct.contentful_id)}
           aria-expanded={expanded[homeProduct.contentful_id]}
-          aria-label="show more"
-        >
+          aria-label="show more">
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded[homeProduct.contentful_id]} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography variant="h6"><span role="img" aria-label="ok">😉</span>Тебе нужно знать что:</Typography>
-          {/* <Typography paragraph>
+          <Typography paragraph>
           <span role="img" aria-label="ok">😉</span>Тебе нужно знать что:
-          </Typography> */}
+          </Typography>
           <ul style={{ listStyle: `none`, margin: 0, padding: `8px 0 0 0`}}>
+              <li><span role="img" aria-label="ok"></span><p>{`Цена: ${homeProduct.price}₽`}</p></li>
             <li><span role="img" aria-label="ok">✅</span>Есть бесплатная доставка!</li>
             <li><span role="img" aria-label="ok">✅</span>Заказать можно с 10:00 до 22:00</li>
             <li><span role="img" aria-label="ok">✅</span>Готовим с любовью для каждого от Svisni-Sushi</li>
@@ -170,11 +135,6 @@ const RecipeReviewCard = ({product, dispatch}) => {
 const mapStateToProps = (state) => ({
   product: state.app.product
 })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   loadProduct: (newProduct) => dispatch(getProduct(newProduct)),
-//   addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-// })
 
 export default connect(mapStateToProps, null)(RecipeReviewCard)
 

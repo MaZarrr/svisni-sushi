@@ -1,16 +1,25 @@
 import * as R from 'ramda'
+import uniqid from 'uniqid'
 import {createReducer, createAction} from "redux-act";
 
-export const addedToCart = createAction('SET_ADDED_TO_CART')
-const removeFromCart = createAction('SET_REMOVE_FROM_CART')
-const allRemoveFromCart = createAction('ALL_SET_REMOVE_FROM_CART')
-const pizzaSize = createAction('PRODUCT_RAZMER')
-const addedPribor = createAction('PALOCHKI_ADDED')
-const addedSaleRoll = createAction('ADD_SALE_ROLL')
-const addedSalePizza = createAction('ADD_SALE_PIZZA')
-const deletePizzaDarom = createAction('DEL_PIZZA_DAROM')
-const deleteRollSale = createAction('DEL_ROLL_SALE')
-export const clockSale = createAction('CLOCK_HAPPY_SALE')
+export const addedToCart = createAction('SET_ADDED_TO_CART');
+const removeFromCart = createAction('SET_REMOVE_FROM_CART');
+const allRemoveFromCart = createAction('ALL_SET_REMOVE_FROM_CART');
+
+const pizzaSize = createAction('PRODUCT_RAZMER');
+export const pizzaCart = createAction('SIZE_CART');
+
+export const addedIngrideents = createAction('ADDED_TO_INGRIREENT');
+export const ingrideentPlus = createAction('INGRIDEENT_PLUS');
+export const ingrideentMinus = createAction('INGRIREENT_MINUS');
+export const checker = createAction('CHECKED_INGRIDEENT_PIZZA');
+
+const addedPribor = createAction('PALOCHKI_ADDED');
+const addedSaleRoll = createAction('ADD_SALE_ROLL');
+const addedSalePizza = createAction('ADD_SALE_PIZZA');
+const deletePizzaDarom = createAction('DEL_PIZZA_DAROM');
+const deleteRollSale = createAction('DEL_ROLL_SALE');
+
 // =====
 const updateCartItems = (cartItems, item, idx) => {
     // обновлуние уже существующего элемсента в корзине
@@ -25,43 +34,82 @@ const updateCartItems = (cartItems, item, idx) => {
         return R.append(item, cartItems)
     }
 
+    if(!R.isNil(item.priceIn33cm) && cartItems[idx].price !== item.price) {
+        const newItem = R.merge(item, {id: uniqid(), count: 1, total: item.price});
+        return R.append(newItem, cartItems)
+    }
     return R.update(idx, item, cartItems)
-}
+};
 
-const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.node.price) => { // добавление в корзину
-    const { id = setу.node.id, count = 0, name = setу.node.name, total = 0,
-        image = setу.node.image.fluid, price33 = setу.node.priceIn33cm, pribor = 0,
-    } = item
+const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) => { // добавление в корзину
 
+    const sizePizza = R.defaultTo({[setу.slug]: true}, setу.size);
+    const pricePizza = R.defaultTo(setу.price, setу.priceDef);
+    const {
+        id = setу.id,
+        count = 0,
+        name = setу.name,
+        total = 0,
+        image = setу.image.fluid,
+        priceDef = pricePizza,
+        priceIn33cm = setу.priceIn33cm,
+        pribor = 0,
+        } = item;
+
+    if(!R.isNil(setу.priceIn33cm)) {
+        const descriptionIngrideents = R.pluck('nameI', setу.sostav).join(", ");
+        return {
+            id,
+            name,
+            priceIn33cm: setу.priceIn33cm,
+            pribor,
+            priceDef: pricePizza,
+            ingrideents: setу.ingrideents,
+            sostav: setу.sostav,
+            price: priceRadio,
+            description: setу.description,
+            productSize: R.isNil(setу.size) ? "Маленькая" : Object.keys(setу.size).toString() === setу.slug ? "Маленькая" : "Большая",
+            descriptionIngrideents,
+            contentful_id: setу.contentful_id,
+            size: sizePizza,
+            slug: setу.slug,
+            image: {...image},
+            count: count + quantity,
+            total: priceRadio > priceDef ? total + quantity * priceIn33cm : total + quantity * priceDef
+        }
+    }
     return {
         id,
         name,
-        price33,
+        priceIn33cm: setу.priceIn33cm,
         pribor,
-        priceDef: setу.node.price,
-        radioPrice: setу.node.price,
-        radioValue: priceRadio,
+        priceDef: pricePizza,
+        ingrideents: setу.ingrideents,
+        sostav: setу.sostav,
+        price: priceRadio,
+        description: setу.description,
+        contentful_id: setу.contentful_id,
+        size: sizePizza,
+        slug: setу.slug,
         image: {...image},
         count: count + quantity,
-        total: priceRadio > setу.node.price ? total + quantity * price33 : total + quantity * setу.node.price
+        total: priceRadio > priceDef ? total + quantity * priceIn33cm : total + quantity * priceDef
     }
 }
 
 const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
-    const {cartItems} = state
-    // console.log(categoryName)
-    const sety = categoryName.find(({node: productCategory}) => productCategory.id === setId);
+    const {cartItems} = state;
+    const sety = categoryName.find((productCategory) => productCategory.id === setId);
     const itemIndex = cartItems.findIndex(({id}) => id === setId);
     const item = cartItems[itemIndex];
 
     const totalPrice = R.compose(
         R.sum,
         R.pluck('total')
-    )(cartItems)
-
+    )(cartItems);
     const newItem = updateCartItem(sety, item, quantity, priceRadioPizza);
     return {
-        orderTotal: priceRadioPizza > sety.node.price ? totalPrice + priceRadioPizza * quantity : totalPrice + sety.node.price * quantity ,
+        orderTotal: priceRadioPizza > (sety.price || item.priceDef) ? totalPrice + priceRadioPizza * quantity : totalPrice + (sety.price || item.priceDef) * quantity,
         cartItems: updateCartItems(cartItems, newItem, itemIndex)
     };
 
@@ -78,64 +126,67 @@ export const pizzaSized = (data) => (dispatch) => dispatch(pizzaSize(data))
 
 export const addPribor = (count) => (dispatch) => {
     // const {shoppingCart: {palochkiTotal}} = getStore()
-
     // const priborTotal = palochkiTotal >= 2 ? palochkiTotal + parseInt(count) : palochkiTotal * 1 + 1
     dispatch(addedPribor(count))
 }
 
 export const saleRoll = (objRoll) => async (dispatch) => {
-   //  const {app: {product}} = getStore()
-   // const rr = R.append({node: {
-   //      ...objRoll,
-   //      id: `${objRoll.id}saleRoll`
-   //  }}, product)
-   //  console.log(rr)
     await dispatch(addedSaleRoll(objRoll))
 }
 export const salePizza = (objPizza) => async (dispatch) => await dispatch(addedSalePizza(objPizza))
 export const deletePizza = (id) => (dispatch) => dispatch(deletePizzaDarom(id))
 export const deleteRoll = (id) => (dispatch) => dispatch(deleteRollSale(id))
+export const addedIngrideent = ({id, sostav, name, ingrideents, check, path = null, pizzaIng}) => (dispatch, getStore) => {
+    const {app: {productPizza}, shoppingCart: {newPizza}} = getStore();
+    const ingrideent = ingrideents.find((el) => el.title === name)
+    const ingrideentIndex = sostav.findIndex((el) => el.id === ingrideent.id)
+    if(ingrideentIndex === -1) {
+        dispatch(ingrideentPlus({id, path, pizzaIng, add: ingrideent.plus, name, check, ingrideents, sostav, productPizza: newPizza, defaultPizza: productPizza}))
+    } else {
+        const ingrideentSostav = R.remove(ingrideentIndex, 1, sostav)
+        dispatch(ingrideentMinus({id, path, pizzaIng, decrice: ingrideent.plus, name, check, ingrideentSostav, ingrideents, productPizza}))
+    }
+}
 
 const initialState = {
     cartItems: [],
     orderTotal: 0,
     palochkiTotal: 0,
-    clockSale: false
-}
+    newPizza: null
+    };
 
 export default createReducer({
-    [addedToCart]: (state, {id, radioValue, product}) => {
-        const res = updateOder(state, id, 1, radioValue, product)
+    [addedToCart]: (state, {id, price, product}) => {
+        const res = updateOder(state, id, 1, price, product)
+        // const pizzaNew = R.defaultTo(product, state.newPizza)
         return {...state, cartItems: res.cartItems, orderTotal: res.orderTotal}},
-    [removeFromCart]: (state, data) => {
-        const {cartItems, orderTotal} = updateOder(state, data.id, -1, data.radioValue, data.product)
+    [removeFromCart]: (state, {id, price, product}) => {
+        const {cartItems, orderTotal} = updateOder(state, id, -1, price, product)
         return { ...state, cartItems, orderTotal }
     },
-    [allRemoveFromCart]: (state, data) => {
-        const item = state.cartItems.find((el) => el.id === data.id)
-        const {cartItems, orderTotal} = updateOder(state, data.id, -item.count, data.radioValue, data.product)
+    [allRemoveFromCart]: (state, {id, price, product}) => {
+        const item = state.cartItems.find((el) => el.id === id)
+        const {cartItems, orderTotal} = updateOder(state, id, -item.count, price, product)
         return { ...state, cartItems, orderTotal}
     },
-    [pizzaSize]: (state, {id, price, product}) => {
-        const pizza = product.find(({node: pizzaId}) => pizzaId.id === id);
-        const itemIndexPizza = state.cartItems.findIndex((data) => data.id === id)
-        const itemPizza = state.cartItems[itemIndexPizza]
+    [pizzaSize]: (state, {id, price, product, size}) => {
+        const pizza = product.find((pizzaId) => pizzaId.id === id);
+        const itemIndexPizza = state.cartItems.findIndex((data) => data.id === id);
+        const itemPizza = state.cartItems[itemIndexPizza];
 
         const updateItemPizza = R.update(itemIndexPizza, {
-            id: id,
-            name: pizza.node.name,
-            priceDef: pizza.node.price,
-            price33: pizza.node.priceIn33cm,
-            radioValue: parseInt(price) * 1,
-            image: {...pizza.node.image.fluid},
+            ...pizza,
+            price: parseInt(price) * 1, // передача цены пиццы большая или маленькая
+            size: {[size]: true},
             count: itemPizza.count,
+            productSize: size === pizza.slug ? "Маленькая" : "Большая",
             total: itemPizza.count * parseInt(price)
-        })(state.cartItems)
+        })(state.cartItems);
 
         const totalPrice = R.compose(
             R.sum,
             R.pluck('total')
-        )(updateItemPizza)
+        )(updateItemPizza);
 
         return {
             ...state,
@@ -143,6 +194,27 @@ export default createReducer({
             cartItems: updateItemPizza
         }
     },
+
+    [pizzaCart]: (state, {id, productPizza, total, priceDef, size, mass}) => {
+        const pizzaProduct = R.defaultTo(productPizza, state.newPizza)
+        const pizza = pizzaProduct.find((pizzaId) => pizzaId.id === id);
+        const itemIndexPizza = pizzaProduct.findIndex((data) => data.id === id)
+        const updateItemPizza = R.update(itemIndexPizza, {
+           ...pizza,
+            price: total,
+            priceDef,
+            // priceIn33cm: pizza.priceIn33cm,
+            size: {[size]: true},
+            slug: pizza.slug,
+            mass,
+            contentful_id: pizza.contentful_id
+        })(pizzaProduct)
+        return {
+            ...state,
+            newPizza: updateItemPizza
+            }
+    },
+
     [addedPribor]: (state, count) => {
         const priborTotal = state.palochkiTotal > 1 ? state.palochkiTotal + parseInt(count) : state.palochkiTotal * 1 + 1
         return {
@@ -188,9 +260,179 @@ export default createReducer({
             cartItems: R.remove(rollSaleIndex, 1, state.cartItems)
         }
     },
-    [clockSale]: (state) => {
-        console.log('clockSaleReducer')
-        return {...state, clockSale: true}
+
+    [addedIngrideents]: (state) => ({...state}),
+
+    [ingrideentPlus]: (state, {path, pizzaIng, id, add, name, check, ingrideents, sostav, productPizza, defaultPizza}) => {
+        const pizza = pizzaIng.find((pizza) => pizza.id === id);
+        const itemIndexPizza = pizzaIng.findIndex((data) => data.id === id);
+        // установка чекбоксов
+        const checker = ingrideents.find((el) => el.title === name);
+        const indexIngrideent = ingrideents.findIndex((el) => el.title === name);
+        const updateCheck = R.update(indexIngrideent, {
+            ...checker,
+            [name]: check
+        })(ingrideents);
+        // добавление в состав
+        const updateIngrideents = R.append(checker, sostav);
+        // обновление пиццы в массиве и в path pizza
+        const updateItemPizza = R.update(itemIndexPizza, {
+            ...pizza,
+            price: pizza.price + add,
+            ingrideentButtonStyle: R.length(updateIngrideents) > 0 ? true : false,
+            priceIn33cm: pizza.priceIn33cm + add,
+            priceDef: R.isNil(pizza.priceDef) ? pizza.price + add : pizza.priceDef + add,
+            ingrideents: updateCheck,
+            sostav: updateIngrideents
+        })(pizzaIng);
+
+        // обновление пиццы в корзине
+        if(path === '/korzina/') {
+            const pizzaz = pizzaIng.find((pizza) => pizza.id === id);
+            const itemIndexPizzaz = pizzaIng.findIndex((data) => data.id === id)
+
+            const descriptionIngrideents = R.pluck('nameI', updateIngrideents).join(", ");
+            const updateItem = R.update(itemIndexPizzaz, {
+                ...pizzaz,
+                priceDef: R.isNil(pizzaz.priceDef) ? pizzaz.price + add : pizzaz.priceDef + add,
+                priceIn33cm: pizzaz.priceIn33cm + add,
+                price: pizzaz.price + add,
+                descriptionIngrideents,
+                total: pizzaz.count > 1 ? pizzaz.total + add * pizzaz.count : pizzaz.total + add,
+                ingrideents: updateCheck,
+                sostav: updateIngrideents,
+            })(state.cartItems);
+
+            // productPizza из getStore() массив newPizza
+            // const pizz = R.defaultTo(defaultPizza, productPizza);
+            // const pizzaNew = pizz.find((pizza) => pizza.id === id);
+            // const itemIndexNewPizza = pizz.findIndex((data) => data.id === id);
+            // // обновление масства newPizza когда я нахожусь в корзине
+            // const newPizzaUpdate = R.update(itemIndexNewPizza, {
+            //     ...pizzaNew,
+            //     priceDef: pizzaNew.price + add,
+            //     priceIn33cm: pizzaNew.priceIn33cm + add,
+            //     price: pizzaNew.price + add,
+            //     ingrideents: updateCheck,
+            //     sostav: updateIngrideents
+            // })(pizz);
+
+            const totalPrice = R.compose(
+                R.sum,
+                R.pluck('total')
+            )(updateItem);
+
+            return {
+                ...state,
+                orderTotal: totalPrice,
+                cartItems: updateItem
+                // newPizza: newPizzaUpdate
+            }
+        }
+
+        // проверяю что возвращаю
+        // если корзина пустая то просто изменяю массив newPizza
+        // в остальных случаях обновляю и массив cartItems(корзину) и array newPizza
+        if(R.isEmpty(state.cartItems) || path === '/pizza/') {
+            return {
+                ...state,
+                newPizza: updateItemPizza,
+            }
+         } else {
+            const pizzazz = state.cartItems.find((pizza) => pizza.id === id);
+            const itemIndexPizzazz = state.cartItems.findIndex((data) => data.id === id);
+            const updateItem = R.update(itemIndexPizzazz, {
+                ...pizzazz,
+                priceDef: R.isNil(pizzazz.priceDef) ? pizzazz.price + add : pizzazz.priceDef + add,
+                priceIn33cm: pizzazz.priceIn33cm + add,
+                // price: pizzazz.count > 1 ? pizzazz.price + add * pizzazz.count : pizzazz.price + add,
+                ingrideents: updateCheck,
+                sostav: updateIngrideents,
+                total: pizzazz.count > 1 ? pizzazz.total + add * pizzazz.count : pizzazz.total + add
+            })(state.cartItems);
+
+            return {
+                ...state,
+                newPizza: updateItemPizza,
+                cartItems: updateItem,
+            }
+        }
+
+    },
+    [ingrideentMinus]: (state, {path, pizzaIng, id, decrice, name, check, ingrideentSostav, ingrideents, productPizza} ) => {
+        const pizza = pizzaIng.find((pizza) => pizza.id === id);
+        const itemIndexPizza = pizzaIng.findIndex((data) => data.id === id);
+
+        const checker = ingrideents.find((el) => el.title === name);
+        const indexIngrideent = ingrideents.findIndex((el) => el.title === name);
+        const updateCheck = R.update(indexIngrideent, {
+            ...checker,
+            [name]: check
+        })(ingrideents);
+
+        const updateItemPizza = R.update(itemIndexPizza, {
+            ...pizza,
+            price: pizza.price - decrice,
+            priceIn33cm: pizza.priceIn33cm - decrice,
+            ingrideentButtonStyle: R.length(ingrideentSostav) > 0 ? true : false,
+            priceDef: R.isNil(pizza.price) ? pizza.price - decrice : pizza.priceDef - decrice,
+            ingrideents: updateCheck,
+            sostav: ingrideentSostav
+        })(pizzaIng);
+
+        if(path === '/korzina/') {
+            const pizzaz = pizzaIng.find((pizza) => pizza.id === id);
+            const itemIndexPizzaz = pizzaIng.findIndex((data) => data.id === id);
+            const descriptionIngrideents = R.pluck('nameI', ingrideentSostav).join(", ");
+            const updateItem = R.update(itemIndexPizzaz, {
+                ...pizzaz,
+                descriptionIngrideents,
+                priceDef: R.isNil(pizzaz.priceDef) ? pizzaz.price - decrice : pizzaz.priceDef - decrice,
+                priceIn33cm: pizzaz.priceIn33cm - decrice,
+                total: pizzaz.count > 1 ? pizzaz.total - decrice * pizzaz.count : pizzaz.total - decrice,
+                ingrideents: updateCheck,
+                sostav: ingrideentSostav,
+            })(state.cartItems);
+            const totalPrice = R.compose(
+                R.sum,
+                R.pluck('total')
+            )(updateItem);
+
+            return {
+                ...state,
+                orderTotal: totalPrice,
+                cartItems: updateItem
+            }
+        }
+
+        if(R.isEmpty(state.cartItems) || path === '/pizza/') {
+        return {
+            ...state,
+            newPizza: updateItemPizza,
+        }
+    } else {
+            const pizzazz = state.cartItems.find((pizza) => pizza.id === id);
+            const itemIndexPizzazz = state.cartItems.findIndex((data) => data.id === id);
+            const updateItem = R.update(itemIndexPizzazz, {
+                ...pizzazz,
+                priceDef: R.isNil(pizzazz.priceDef) ? pizzazz.price - decrice : pizzazz.priceDef - decrice,
+                priceIn33cm: pizzazz.priceIn33cm - decrice,
+                ingrideents: updateCheck,
+                sostav: ingrideentSostav,
+                total: pizzazz.count > 1 ? pizzazz.total - decrice * pizzazz.count : pizzazz.total - decrice
+            })(state.cartItems);
+            return {
+                ...state,
+                newPizza: updateItemPizza,
+                cartItems: updateItem,
+            }
+        }
+},
+
+    [checker]: (state, {name, checked}) => {
+        return {
+            checked: {[name]: checked}
+        }
     }
 }, initialState)
 

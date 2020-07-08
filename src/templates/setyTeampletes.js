@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
+
 //import loadable from "@loadable/component";
 import SetyItem from "../components/SetyItem";
 import {addedCart} from "../reducers/shopping-cart";
@@ -13,6 +14,7 @@ const SetyTeamplate = ({data: {contentfulProduct,
     allContentfulProductKlassika: {edges: smallRoll}, allContentfulProductSushi: {edges: sushi},
     allContentfulProductGunkan: {edges: gunkan},
 }, addedToCart}) => {
+
     const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan)
     const nameProduct = contentfulProduct.description.toLowerCase().split(', ')
     const kitProduct = product.filter(({node: item}) => {
@@ -31,13 +33,12 @@ const SetyTeamplate = ({data: {contentfulProduct,
         kitProduct={kitProduct}
         added={() => addedToCart({id: contentfulProduct.id, price: null,
             product: [{
-                node: {
                     id: contentfulProduct.id,
                     name: contentfulProduct.name,
                     price: contentfulProduct.price,
                     count: contentfulProduct.count,
                     image: contentfulProduct.image
-                }
+
             }
             ]}
         )}
@@ -62,7 +63,7 @@ export const query = graphql `
             count
             description
           image {
-              fluid(maxWidth: 400, quality: 40) {
+              fluid(maxWidth: 400) {
                   ...GatsbyContentfulFluid
                 }
             }
@@ -148,6 +149,29 @@ export const query = graphql `
         }
     }
   `
+
+
+
+// import VK, {Comments} from "react-vk";
+// const Otzyvy = () => {
+//     return (
+//         <>
+//             {/*<SEO title="Отзывы" />*/}
+//             <section>
+//                 {/* <VK apiId={7311665} onlyWidgets="true">
+//         <Comments elementId="vk_comments" />
+//       </VK> */}
+//                 <div
+//                     id="vk_comments"
+//                     className="vk_comments"
+//                     style={{ width: `85%`, height: `400px` }}
+//                 >
+//                 </div>
+//             </section>
+//         </>
+//     )
+// }
+
 
 
 // "@mangoart/gatsby-plugin-purechat": "^1.0.2",

@@ -5,16 +5,20 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import LayoutItem from './layoutItem';
 import {Grid, Paper} from "@material-ui/core";
 import Img from "gatsby-image";
+import ButtonBackSet from "./common/ButtonBackSet";
 
-const SetyItem = ({name, image, count, weight, price, added, kitProduct}) => {
+const SetyItem = ({name, image, count, weight, price, added, kitProduct, location}) => {
 
 return (
   <>
     <SEO title={`Сет роллов ${name}`}
          description={`Набор роллов ${name}, количество ${count} с общим весом ${weight}`}
          pathname="/sety"/>
-        <LayoutItem name={name} image={null}>
+        <LayoutItem name={name} image={null} location={location}>
+            <ButtonBackSet back="/sety" />
             <Grid container >
+                {/*<ButtonBackSet/>*/}
+
                 <Grid item xs={12} sm={5} >
                     <Img style={{maxWidth: 400}} fluid={image} />
                 </Grid>
