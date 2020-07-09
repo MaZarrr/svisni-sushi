@@ -3,14 +3,13 @@ import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
 import  Img  from 'gatsby-image';
-
+import Divider from "@material-ui/core/Divider";
 import * as R from 'ramda'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import ButtonBase from '@material-ui/core/ButtonBase';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -20,6 +19,9 @@ import ButtonSize from "../components/common/ButtonSizePizza";
 import {addedCart, removeCart, allRemoveCart, addPribor, saleRoll, salePizza, deletePizza, deleteRoll} from "../reducers/shopping-cart";
 import {getProduct} from "../reducers/app";
 import SplitButton from "../components/SplitButton";
+// import TextField from "@material-ui/core/TextField";
+import {Container} from "@material-ui/core";
+import uniqid from 'uniqid'
 
 const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
     allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
@@ -37,7 +39,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     const pizzaDarom = () => {
         const cart = items.filter((el) => {
             return el.priceIn33cm !== undefined
-            // return items.find((data) => el.priceIn33cm !== undefined)
       });
        const countPizza = R.compose(
           R.sum,
@@ -45,10 +46,10 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
       )(cart);
 
       const pizza = () => {
-          // const {node: pizzaSale} = items.find((el) => el.node.name === 'Салями' )
+          // const pizzaSale = items.find((el) => el.node.name === 'Салями' )
           const {node: pizzaSale} = allContentfulProductPizza.edges.find((el) => el.node.name === 'Салями' )
           return {
-              id: pizzaSale.id,
+              id: uniqid(),
               name: pizzaSale.name,
               priceDef: 0,
               image: pizzaSale.image.fluid,
@@ -59,39 +60,39 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
       };
         if(countPizza > 2 && pizzaSaleFlag === false ) {
             return (
-                <Paper className={classes.paper}>
-                    <Grid container spacing={3} className={classes.containerWrapped}>
-                    <ButtonBase className={classes.image}>
-                        <Img style={{width: 128, height: 128, margin: 0, padding: 0}} fluid={pizza().image}> </Img>
-                    </ButtonBase>
-              <Grid item xs={12} sm={6} container>
-                <Grid item xs={12} sm={9} container direction="column" spacing={2}>
-                  <Grid item xs>
-                    <Typography gutterBottom variant="subtitle1">
-                      {pizza().name}
-                    </Typography>
-
-                    <Typography variant="body2" color="textSecondary" style={{padding: `0 5px 7px 0`}}>
-                      <b>{pizza().count} шт</b>
-                    </Typography>
-                    <Grid item>
-                      <Typography variant="body2" style={{cursor: 'pointer'}}>
-                          Пицца бесплатно!
-                        <button disabled={false}
-                                onClick={() => addedSalePizza(pizza())}
-                                className="btn btn-success btn-sm">
-                          Добавить
-                        </button>
-                      </Typography>
+                <Paper style={{maxWidth: 400}} className="mb-4 p-2">
+                <Grid container  spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        <div className="d-flex">
+                            <div style={{margin: `auto 0`, zIndex: 10}}>
+                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={pizza().image}> </Img>
+                            </div>
+                            <div className="ml-4">
+                                <Typography gutterBottom variant="subtitle1">
+                                    {pizza().name}
+                                </Typography>
+                                <div className="d-flex">
+                                    <Typography variant="subtitle2">
+                                        <b>{pizza().count}шт</b>
+                                    </Typography>
+                                    <Typography style={{marginLeft: 50}} variant="subtitle2"><b>{pizza().total}₽</b></Typography>
+                                </div>
+                                <Grid item>
+                                    <Typography variant="body2">
+                                        Пицца бесплатно!
+                                    </Typography>
+                                    <button style={{cursor: 'pointer'}}
+                                            disabled={false}
+                                            onClick={() => addedSalePizza(pizza())}
+                                            className="btn btn-success btn-sm">
+                                        Добавить
+                                    </button>
+                                </Grid>
+                            </div>
+                        </div>
+                        <Divider/>
                     </Grid>
-                  </Grid>
                 </Grid>
-                <Grid item style={{margin: `0 5px 5px 0`}}>
-                  <Typography style={{color: '#000', textAlign: 'center', padding: `10px 5px 0 0`, fontSize: 20}}
-                              variant="subtitle1"><b>{pizza().total} ₽</b></Typography>
-                        </Grid>
-                        </Grid>
-                    </Grid>
                 </Paper>
       )
     } else if(countPizza < 3 && pizzaSaleFlag === true) {
@@ -121,7 +122,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     const saleRollFunc = () => {
       const {node} = allContentfulProductSlognyeRolly.edges.find((el) => el.node.name === 'Филадельфия one' )
         const saleRoll = {
-            id: node.id,
+            id: uniqid(),
             name: node.name,
             price: 79,
             total: 79,
@@ -131,43 +132,37 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
 
         if(test() > 789 && !disabled()) {
             return (
-                <Paper className={classes.paper}>
-                    <Grid container spacing={3} className={classes.containerWrapped}>
-                    <ButtonBase className={classes.image}>
-                        <Img style={{width: 128, height: 128, margin: 0, padding: 0}} fluid={saleRoll.image}> </Img>
-                    </ButtonBase>
-                    <Grid item xs={12} sm={6} container>
-                        <Grid item xs={12} sm={9} container direction="column" spacing={2}>
-                            <Grid item xs>
-                                <Typography gutterBottom variant="subtitle1">
-                                    {saleRoll.name}
+                <Paper style={{maxWidth: 400}} className="mb-4 p-2">
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        <div className="d-flex">
+                            <div style={{margin: `auto 0`, zIndex: 10}}>
+                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={saleRoll.image}> </Img>
+                            </div>
+                            <div className="ml-4">
+                                <Typography variant="subtitle1">
+                                    Акция
+                                </Typography>
+                                <Typography variant="subtitle2">
+                                    {saleRoll.name} за 79₽
                                 </Typography>
 
-                                <Typography variant="body2" color="textSecondary" style={{padding: `0 5px 7px 0`}}>
-                                    <b>{saleRoll.count} шт</b>
-                                </Typography>
-                                <Grid item>
-                                    <Typography variant="body2" style={{cursor: 'pointer'}}>
-                                        Филадельфия за <b>79₽</b>
-                                        <button disabled={false}
-                                                onClick={() => addedSaleRoll(saleRoll)}
-                                                className="btn btn-success btn-sm">
-                                            Добавить
-                                        </button>
-
-
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </Grid>
+                                <button style={{cursor: 'pointer'}} disabled={false}
+                                        onClick={() => addedSaleRoll(saleRoll)}
+                                        className="btn btn-success btn-sm">
+                                    Добавить
+                                </button>
+                            </div>
+                        </div>
+                        <Divider/>
                     </Grid>
-                    </Grid>
+                </Grid>
                 </Paper>
             )
         } else if (test() < 790 && disabled()) {
         deleteFilaSale(node.id)
     }
-  }
+  };
 
     const classes = useStyleKorzina();
 
@@ -188,164 +183,165 @@ return (
        noindex={true}/>
   <section>
   <div className={classes.root}>
-    <Grid container>
+    <Container>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
+          <Container className={classes.paper}>
           <Typography variant="h2">
-            <Box fontFamily="Oswald" fontWeight={900} fontSize={40}>
+            <Box fontFamily="Oswald" fontWeight={900} fontSize={39}>
                 Корзина
             </Box>
           </Typography>
-          </Paper>
+              {/*<div className="mt-3">*/}
+              {/*<TextField id="outlined-basic" label="Промокод" style={{maxWidth: 180}} size={"small"} variant="outlined" />*/}
+              {/*<Button style={{backgroundColor: "orange", color: "white", maxWidth: 90, padding: 9, fontSize: 13}} variant={"contained"}>Применить</Button>*/}
+              {/*</div>*/}
+              <Divider className="mt-3"/>
+          </Container>
            { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
            Похоже, что в вашей корзине нет товаров, давайте добавим их :) </Box> : <div className={classes.paperDiv}>
-          <Typography variant="h6"><b>Товар</b></Typography>
-          { items.map((item, idx) => {
-
-
+          {/*<Typography variant="h6"><b>Товар</b></Typography>*/}
+       <Grid className="mb-3" container spacing={2}>
+           <div className="d-flex flex-column">
+       { items.map((item, idx) => {
         const {id, name, count, total, image, priceIn33cm, price, priceDef,
             textRollSale, textPizza, pizzaSale, size, slug = null, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
-        return (
-          <Paper key={id} className={classes.paper}>
-          <Grid container spacing={3} className={classes.containerWrapped}>
-              <Grid item xs={12} sm={6} container>
-                  <Grid item xs={12} sm={6} container direction="column" spacing={2}>
-                      {/*<ButtonBase className={classes.image}>*/}
-                          <Img style={{width: 128, height: 128, margin: 0, padding: 0}} fluid={image}> </Img>
-                      {/*</ButtonBase>*/}
-                      <Grid container alignItems={"center"}>
-                          <Typography gutterBottom variant="subtitle1">
-                              {name}
-                          </Typography>
-                            <Grid container alignItems={"center"}>
-                          <Typography variant="body2" color="textSecondary" style={{padding: `0 5px 7px 0`}}>
-                              <b>{priceDef === 0 ? "1 шт" : `${count} шт`}</b>
-                          </Typography>
-                          {/*<Grid item style={{margin: `0 5px 5px 0`}}>*/}
-                              <Typography
-                                  // style={{ color: '#000', textAlign: 'center', padding: `10px 5px 0 0`, fontSize: 20}}
-                                          variant="subtitle1"><b>{price === 79 ? null : `${total} ₽`} </b></Typography>
-                          </Grid>
-                          <Grid container justify="flex-start">
-                              {price !== 79 && priceDef !== 0 ?
-                                  <>
-                                      <button disabled={false}
-                                              onClick={()=> onIncrease( {id, price, product: items} )}
-                                              className="btn btn-outline-success btn-sm">
-                                          <i className="fa fa-plus-circle fa-lg"></i>
-                                      </button>
-                                      <button onClick={()=> onDecrise({ id, price, product: items})}
-                                              className="btn btn-outline-warning btn-sm ml-2">
-                                          <i className="fa fa-minus-circle fa-lg"></i>
-                                      </button> </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
 
-                              { price > 78 &&
-                              <button
-                                  onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } ) : () => deleteFilaSale(id)}
-                                  className="btn btn-outline-danger btn-sm ml-2">
-                                  <i className="fa fa-trash-o fa-lg"></i>
-                              </button>
-                              }
-                              {pizzaSale &&
-                              <button
-                                  onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
-                                  className="btn btn-outline-danger btn-sm ml-2">
-                                  <i className="fa fa-trash-o fa-lg"></i>
-                              </button>
-                              }
-                              <CssBaseline />
-                          </Grid>
-                      </Grid>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                      { !!priceIn33cm &&
-                      <FormControl component="fieldset" style={{marginTop: 20}}>
-                          {/* <FormLabel component="legend" style={{textAlign: 'center'}}>Размер</FormLabel> */}
-                          <SplitButton style={{float: `left`}} id={id} pizzaIng={items} sostav={sostav} ingrideents={ingrideents} dir={"start"} path={path} height={120}/>
-                          <Typography><b>Доп:</b> {descriptionIngrideents}</Typography>
-                          <RadioGroup aria-label="position" name="position"
-                                      value={value[idx]} onChange={handleChange} row>
-                              <FormControlLabel
-                                  value={name}
-                                  control={<ButtonSize
-                                      sizePizzaStyle={slug}
-                                      title="Маленькая"
-                                      pizzaSize={size}
-                                      id={id}
-                                      edges={items}
-                                      pricePizza={priceDef}/>}
-                                  labelPlacement="bottom"
-                                  id={id}
-                                  name={name}
-                                  style={{margin: 5, padding: 0}}/>
-                              <FormControlLabel
-                                  value={name + "a"}
-                                  control={<ButtonSize
-                                      sizePizzaStyle={contentful_id}
-                                      title="Большая"
-                                      pizzaSize={size}
-                                      id={id}
-                                      edges={items}
-                                      pricePizza={priceIn33cm}/>}
-                                  labelPlacement="bottom"
-                                  id={id}
-                                  name={name}
-                                  style={{margin: 5, padding: 0}}/>
-                          </RadioGroup>
-                      </FormControl>
-                      }
-                  </Grid>
-              </Grid>
+           return (
+               <Paper key={id} style={{maxWidth: 400}} className="mb-4 p-2">
+                   <Grid item xs={12} sm={7}>
+                       <div className="d-flex">
+                           <div style={{margin: `auto 0`, zIndex: 10}}>
+                               <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
+                               {/*<ButtonBase className={classes.image}>*/}
+                               {/*</ButtonBase>*/}
+                           </div>
+                           <div className="ml-4">
+                               <Typography gutterBottom variant="subtitle1">
+                                   {name}
+                               </Typography>
+                               <div className="d-flex">
+                                   <Typography variant="subtitle2" color="textSecondary" >
+                                       <b>{priceDef === 0 ? "1шт" : `${count}шт`}</b>
+                                   </Typography>
+                                   <Typography style={{marginLeft: 50, paddingBottom: 7}}
+                                               variant="subtitle2"><b>{price === 79 ? null : `${total}₽`} </b></Typography>
+                               </div>
 
+                               {/*button added count product*/}
+                               <div className="d-flex mb-2">
+                                   {price !== 79 && priceDef !== 0 ?
+                                       <>
+                                           <button disabled={false}
+                                                   onClick={()=> onIncrease( {id, price, product: items} )}
+                                                   className="btn btn-outline-success btn-sm">
+                                               <i className="fa fa-plus-circle fa-lg"></i>
+                                           </button>
+                                           <button onClick={()=> onDecrise({ id, price, product: items})}
+                                                   className="btn btn-outline-warning btn-sm ml-2">
+                                               <i className="fa fa-minus-circle fa-lg"></i>
+                                           </button> </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
 
-        </Grid>
-       </Paper>
-                )
-            })}
+                                   { price > 78 &&
+                                   <button
+                                       onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } ) : () => deleteFilaSale(id)}
+                                       className="btn btn-outline-danger btn-sm ml-2">
+                                       <i className="fa fa-trash-o fa-lg"></i>
+                                   </button>
+                                   }
+                                   {pizzaSale &&
+                                   <button
+                                       onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
+                                       className="btn btn-outline-danger btn-sm ml-2">
+                                       <i className="fa fa-trash-o fa-lg"></i>
+                                   </button>
+                                   }
+                               </div>
+                               { !!priceIn33cm &&
+                               <>
+                                   <FormControl component="fieldset">
+                                       <RadioGroup aria-label="position" name="position"
+                                                   value={value[idx]} onChange={handleChange} row>
+                                           <FormControlLabel
+                                               value={name}
+                                               control={<ButtonSize
+                                                   sizePizzaStyle={slug}
+                                                   title="Маленькая"
+                                                   pizzaSize={size}
+                                                   id={id}
+                                                   edges={items}
+                                                   pricePizza={priceDef}/>}
+                                               labelPlacement="bottom"
+                                               id={id}
+                                               name={name}
+                                               style={{margin: `0 6px 0 0`, padding: 0}}/>
+                                           <FormControlLabel
+                                               value={name + "a"}
+                                               control={<ButtonSize
+                                                   sizePizzaStyle={contentful_id}
+                                                   title="Большая"
+                                                   pizzaSize={size}
+                                                   id={id}
+                                                   edges={items}
+                                                   pricePizza={priceIn33cm}/>}
+                                               labelPlacement="bottom"
+                                               id={id}
+                                               name={name}
+                                               style={{margin: `0 0 5px 0`, padding: 0}}/>
+                                       </RadioGroup>
+                                   </FormControl>
+                                   <SplitButton id={id} pizzaIng={items} sostav={sostav} ingrideents={ingrideents} dir={"flex-start"} path={path} height={130}/>
+                                   <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Доп:</b> {descriptionIngrideents}</Typography>
+                               </>
+                               }
+                           </div>
+                       </div>
 
-    {saleRollFunc()}
-    {pizzaDarom()}
+                   </Grid>
+               </Paper>
+                )})}
+               {saleRollFunc()}
+               {pizzaDarom()}
+           </div>
+           <Grid style={{margin: `0 auto`, padding: 0}} item xs={12} sm={5}>
+               <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`}}>
+                   { addPanelPribors  &&
+                   <div className="container_pribor mb-2" >
+                       <div className="d-flex flex-column">
+                           <p style={{fontSize: `14px`}}>Количество <br></br> приборов(палочки)</p>
+                           <div className="d-flex">
+                               <button
+                                   onClick={()=> addedPriborCount(1)}
+                                   className="btn btn-outline-success btn-sm">
+                                   <i className="fa fa-plus-circle fa-lg"></i>
+                               </button>
+                               <b className="ml-3 mr-3" style={{fontSize: 16}}>{palochkiTotal}</b>
+                               <button
+                                   onClick={()=> addedPriborCount(-1) }
+                                   className="btn btn-outline-warning btn-sm">
+                                   <i className="fa fa-minus-circle fa-lg"></i>
+                               </button>
+                           </div>
+                       </div>
+                   </div>
+                   }
+                   <Typography variant="h6" className={classes.typography}>Итого </Typography>
+                   <Typography variant="subtitle2" className={classes.typography}><b>Сумма заказа {total} ₽</b></Typography>
+                   <Button
+                       component={Link}
+                       to={`${path}order`}
+                       color={'primary'}
+                       size={'large'}
+                       variant="contained" >
+                       <b>Продолжить</b>
+                   </Button>
+               </Paper>
+           </Grid>
 
-    <Grid container className={classes.bottomHead}>
-    <Grid item xs={12}>
-     <Paper elevation={3} style={{padding: 20}}>
-        { addPanelPribors  &&
-          <div className="container_pribor mb-2" >
-            <div className="d-flex flex-column">
-              <p style={{fontSize: `16px`}}>Количество <br></br> приборов(палочки)</p>
-              <div className="d-flex">
-              <button 
-              onClick={()=> addedPriborCount(1)}
-              className="btn btn-outline-success btn-sm">
-                <i className="fa fa-plus-circle fa-lg"></i>
-              </button>
-              <b className="ml-3 mr-3" style={{fontSize: 18}}>{palochkiTotal}</b>
-              <button 
-              onClick={()=> addedPriborCount(-1) }
-              className="btn btn-outline-warning btn-sm">
-                <i className="fa fa-minus-circle fa-lg"></i>
-              </button> 
-            </div> 
-            </div>
-          </div>
-    }
-     <Typography variant="subtitle2" className={classes.typography}>Товары: {total} ₽ </Typography>
-     <Typography variant="subtitle2" className={classes.typography}><b>Итого {total} ₽</b></Typography>
-     <Button
-         component={Link}
-         to={`${path}order`}
-         color={'primary'}
-         size={'large'}
-         variant="contained" >
-      <b>Оформить заказ</b>
-      </Button>
-     </Paper>
-                </Grid>
-            </Grid>
-        </div>
+       </Grid>
+           </div>
     }
                 </Grid>
-            </Grid>
+            </Container>
         </div>
     </section>
   </>

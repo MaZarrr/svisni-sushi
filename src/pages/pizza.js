@@ -94,10 +94,9 @@ return (
                                    </CardMedia>
                                    <CardContent>
                                        <SplitButton id={id} pizzaIng={updatePizza} ingrideents={ingrideents} sostav={sostav} path={path} ingrideentButtonStyle={ingrideentButtonStyle} dir={"center"}/>
-                                       <div className={classes.deckript}>
+                                       <div className={ classes.deckript}>
                                        <Typography itemProp="description"
-                                                   // className={classes.deckript}
-                                                    style={{fontSize: 15}}
+                                                   style={{fontSize: 15}}
                                                    variant="caption"
                                                    color="textSecondary"
                                                    component="p">
@@ -112,8 +111,8 @@ return (
                                                    priceDef,
                                                    size: slug,
                                                    mass: 0.45}))}
-                                                       className={clsx(classes.buttonD, {
-                                                           [classes.buttonT]: size[slug]})}>
+                                                   className={clsx(classes.buttonD, {
+                                                            [classes.buttonT]: size[slug]})}>
                                                    Маленькая</button> </Grid>
                                            <Grid item xs={2}>
                                                <p style={{fontSize: 14, margin: `auto 0`}}>{`${mass}кг`}</p>
@@ -135,7 +134,7 @@ return (
                                    <Grid container itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                        <Grid item xs={6}>
                                            <Paper style={{width: `50%`, margin: `0 auto`}}>
-                                               <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{`${total}₽`}</Typography>
+                                               <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{`от ${total}₽`}</Typography>
                                            </Paper>
                                            </Grid>
                                        <Grid item xs={6}>

@@ -19,16 +19,32 @@ export const useStylesCart = makeStyles(theme => ({
             padding: `25px 10px 15px 35px`
         }
     },
+    deckriptSmall: {
+        fontWeight: 600,
+        minHeight: 50,
+        // overflowY: `auto`,
+        margin: `auto 0`,
+        textAlign: 'center',
+        padding: 14,
+        [theme.breakpoints.down('500')]: {
+            minHeight: `20px`,
+            padding: 10,
+        },
+        [theme.breakpoints.down('425')]: {
+            margin: `auto 0`,
+            padding: 6
+        },
+    },
     deckript: {
        fontWeight: 500,
         height: 95,
-        overflowY: `scroll`,
+        overflowY: `auto`,
         margin: `auto 0`,
         textAlign: 'center',
         padding: 14,
         [theme.breakpoints.down('500')]: {
             height: `70px`,
-            padding: 10
+            padding: 10,
         },
         [theme.breakpoints.down('425')]: {
             height: `70px`,
@@ -242,12 +258,10 @@ export const useStyleKorzina = makeStyles(theme => ({
         marginTop: 10
     },
     paper: {
-        padding: theme.spacing(2),
-        paddingLeft: theme.spacing(4),
-        marginBottom: 20,
-        textAlign: 'left',
+        paddingTop: 10,
+        textAlign: 'start',
         [theme.breakpoints.down('425')]: {
-            marginBottom: 65,
+            marginBottom: 20,
         },
         zIndex: 99,
         color: theme.palette.text.secondary,
@@ -283,6 +297,7 @@ export const useStyleKorzina = makeStyles(theme => ({
         }
     },
     emty: {
+        textAlign: "start",
         padding: theme.spacing(2),
         paddingLeft: theme.spacing(4),
     },

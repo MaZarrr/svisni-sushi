@@ -225,10 +225,10 @@ export default createReducer({
     [addedSaleRoll]: (state, objRoll) => {
        return {
            ...state,
-           orderTotal: state.orderTotal + objRoll.radioValue,
+           orderTotal: state.orderTotal + objRoll.price,
            cartItems: R.append({
                ...objRoll,
-               // id: `${objRoll.id}saleRoll`,
+               id: uniqid(),
                priceSale: 0,
                textRollSale: "Филадельфия за 79!"
            }, state.cartItems)
@@ -241,7 +241,7 @@ export default createReducer({
                 ...objPizza,
                 pizzaSale: true,
                 textPizza: "Бесплатная пицца!",
-                count: 0
+                count: 1
             }, state.cartItems)
         }
     },

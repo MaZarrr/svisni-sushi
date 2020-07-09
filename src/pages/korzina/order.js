@@ -524,7 +524,7 @@ return (
                     variant="contained"
                     // classes={{root: classes.button, label: classes.label}}
                     >
-                    Заказать
+                    Сделать заказ
                 </Button>
                 </span>
                 </Tooltip>

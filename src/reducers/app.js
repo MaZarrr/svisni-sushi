@@ -55,7 +55,7 @@ export default createReducer({
             },
             {
                     id: 3,
-                    nameI: "Барбекю соус",
+                    nameI: "барбекю соус",
                     barbeky : false,
                     value: 29,
                     minus: -29,

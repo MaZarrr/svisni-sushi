@@ -24,17 +24,17 @@ export const useStyles = makeStyles(theme => ({
         fontSize: 12,
         fontWeight: 500,
         zIndex: 99,
-        padding: `8px 5px`,
+        padding: `6px 5px`,
     },
     buttonT: {
         background: `#FFAE40`,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
         textTransform: `uppercase`,
         color: `white`,
-        fontWeight: 700,
-        fontSize: 12,
+        fontWeight: 600,
+        fontSize: 11,
         zIndex: 99,
-        padding: `8px 5px`
+        padding: `6px 5px`
     },
 }));
 
@@ -72,7 +72,7 @@ const SplitButton = ({id, pizzaIng, ingrideents, path, sostav, addedIngrideents,
                         <Grow {...TransitionProps} style={{transformOrigin: 'bottom'}}>
                             <div>
                             <Paper style={{overflowY: `scroll`, height: `${height}px`}}>
-                            <FormGroup style={{width: 240}}>
+                            <FormGroup style={{width: 200}}>
                                 {ingrideents.map((el) => {
                                 return (
                                 <div key={String(el.id)}>
@@ -85,10 +85,10 @@ const SplitButton = ({id, pizzaIng, ingrideents, path, sostav, addedIngrideents,
                                                 onChange={handleChange}
                                                 name={el.title}
                                                 color="primary"/>}
-                                                label={<Typography style={{fontSize: 14}}>{el.nameI}</Typography>}/>
+                                                label={<Typography style={{fontSize: 13}}>{el.nameI}</Typography>}/>
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <Typography style={{textAlign: `center`,fontSize: 15}} variant={"h6"}>
+                                            <Typography style={{textAlign: `center`,fontSize: 13}} variant={"h6"}>
                                                 {`${el.value}₽`}</Typography>
                                         </Grid>
                                         </Grid>
@@ -96,7 +96,7 @@ const SplitButton = ({id, pizzaIng, ingrideents, path, sostav, addedIngrideents,
                                 </div>)})}
                             </FormGroup>
                             </Paper>
-                            <Button style={{width: `100%`}} variant={"contained"}
+                            <Button size={"small"} style={{width: `100%`, fontSize: 12}} variant={"contained"}
                                     onClick={() => addedIngrideent({sostav, pizzaIng, id})}>Применить</Button>
                             </div>
                         </Grow>

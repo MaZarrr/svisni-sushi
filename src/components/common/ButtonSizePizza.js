@@ -9,23 +9,22 @@ const useStyleButtonSize = makeStyles(theme => ({
         background: `lightgrey`,
         textTransform: `uppercase`,
         color: `dark`,
-        borderRadius: 10,
-        fontSize: 12,
-        width: 100,
-        fontWeight: 700,
-        padding: `8px 5px`,
-        zIndex: 99
+        borderRadius: 5,
+        fontSize: 10,
+        width: 70,
+        fontWeight: 500,
+        padding: `7px 2px`
     },
     buttonT: {
         background: `#FFAE40`,
         textTransform: `uppercase`,
         color: `white`,
         zIndex: 99,
-        fontWeight: 700,
-        borderRadius: 10,
-        width: 100,
-        fontSize: 12,
-        padding: `8px 5px`
+        fontWeight: 500,
+        borderRadius: 5,
+        width: 70,
+        fontSize: 10,
+        padding: `7px 2px`
     },
 }))
 
