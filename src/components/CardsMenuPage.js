@@ -54,23 +54,25 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                             }
                             <CardContent style={{marginBottom: 0, paddingBottom: 0}}>
                                 <Typography itemProp="description"
-                                            className={slugCategogy === "/small-rolls" || slugCategogy === "/souses" ? classes.deckriptSmall : classes.deckript}
+                                            className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
+                                            slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" ? classes.deckript : classes.deckriptSmall}
                                             variant="caption"
                                             color="textSecondary"
                                             component="p">
                                     {description}
                                 </Typography>
+
                                 <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                     {/*total, count*/}
                                     <Grid style={{padding: 10}} container itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                         <Grid item xs={6}>
-                                            <Paper style={{width: `50%`, margin: `0 auto`}}>
+                                            <Paper style={{width: `60%`, margin: `0 auto`}}>
                                                 <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{slugCategogy ===
                                                 "/sety" || slugCategogy === "/napitki" ? `${weight}кг` : `${weight}гр`}</Typography>
                                             </Paper>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Paper style={{width: `50%`, margin: `0 auto`}}>
+                                            <Paper style={{width: `60%`, margin: `0 auto`}}>
                                                 <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
                                                 "/souses" || "/napitki" ? "1шт" : `${count}шт`}</Typography>
                                             </Paper>

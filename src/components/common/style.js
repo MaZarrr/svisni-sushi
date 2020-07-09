@@ -21,8 +21,8 @@ export const useStylesCart = makeStyles(theme => ({
     },
     deckriptSmall: {
         fontWeight: 600,
-        minHeight: 50,
-        // overflowY: `auto`,
+        height: 65,
+        overflowY: `auto`,
         margin: `auto 0`,
         textAlign: 'center',
         padding: 14,
@@ -32,7 +32,8 @@ export const useStylesCart = makeStyles(theme => ({
         },
         [theme.breakpoints.down('425')]: {
             margin: `auto 0`,
-            padding: 6
+            padding: 6,
+            height: 25,
         },
     },
     deckript: {
@@ -43,11 +44,11 @@ export const useStylesCart = makeStyles(theme => ({
         textAlign: 'center',
         padding: 14,
         [theme.breakpoints.down('500')]: {
-            height: `70px`,
+            height: `60px`,
             padding: 10,
         },
         [theme.breakpoints.down('425')]: {
-            height: `70px`,
+            height: `60px`,
             margin: `auto 0`,
             padding: 6
         },
@@ -157,7 +158,7 @@ export const useStyleOrder = makeStyles(theme => ({
     paper: {
         padding: theme.spacing(2),
         paddingLeft: theme.spacing(4),
-        marginBottom: 20,
+        // marginBottom: 20,
         textAlign: 'left',
         color: theme.palette.text.secondary,
     },

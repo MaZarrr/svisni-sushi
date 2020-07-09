@@ -25,22 +25,24 @@ import {
     setPhoneUser, setTimeDeliveryUser, userCommentsFunc
 } from "../../reducers/contacts-info";
 import {defaultTo} from "ramda";
+import {Container} from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, 
   setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments }) => {
 
-const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
-const [age, setAge] = useState('');
-const [delivery, setDelivery] = useState('');
+    const [age, setAge] = useState('');
+    const [delivery, setDelivery] = useState('');
 
-const classes = useStyleOrder();
+    const classes = useStyleOrder();
 
-const inputLabel = React.useRef(null);
- const [state, setState] = React.useState({checkedC: false});
+    const inputLabel = React.useRef(null);
+    const [state, setState] = React.useState({checkedC: false});
 
-const [city, ] = useState({
+    const [city, ] = useState({
 kol: {id: 1, priceDel: 150, deliverySalePrice: 1000, name: "Колыхалино"},          
 dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},            
 val: {id: 3, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки"},                    
@@ -54,11 +56,11 @@ znamenk: {id: 10, priceDel: 100, deliverySalePrice: 500, name: "Знаменка
 kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
 });
 
-const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
+    const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
 
-const handleChangee = name => event => setState({ ...state, [name]: event.target.checked });
+    const handleChangee = name => event => setState({ ...state, [name]: event.target.checked });
 
-const handleSubmit = (ev) => {
+    const handleSubmit = (ev) => {
     ev.preventDefault();
     const form = ev.target;
     const data = new FormData(form);
@@ -133,14 +135,12 @@ const handleSubmit = (ev) => {
 
     const handleChange = event => setAge(event.target.value)
     const handleChangeDelivery = event => setDelivery(event.target.value);
+    const handleChangeCity = city => event => {
+        setSity(`${city[event.target.value].name}`)
+        setStateDeliveryPrice(city[event.target.value]);
+    };
 
     const handleClose = () => setOpen(false)
-
-    const handleChangeCity = city => event => {
-    setSity(`${city[event.target.value].name}`)
-    setStateDeliveryPrice(city[event.target.value]);
-};
-
     const handleOpen = () => setOpen(true);
 
     const isEmpty = (obj) => {
@@ -182,20 +182,13 @@ return (
     <SEO title="Оформление заказа"
     noindex={true}/>
      <div className={classes.root}>
-    <Grid container>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-          <Typography variant="h2">
-            <Box fontFamily="Oswald"
-            fontWeight={900}
-            fontSize={40}>
-             Оформление заказа
-            </Box>
-          </Typography>
-          </Paper>
-          </Grid>
-          </Grid>
-
+    <Container className={classes.paper}>
+            <Typography variant="h2">
+                <Box fontFamily="Oswald" fontWeight={900} fontSize={39}>Оформление заказа</Box>
+            </Typography>
+              <Divider className="mt-3"/>
+          </Container>
+    <Container>
         { !isEmpty(items) ? <Grid container className={classes.gridContainer}>
         <form  
           method="POST"
@@ -206,8 +199,8 @@ return (
           style={{width: '100%'}}>
    
           <Grid item xs={12}>
-          <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
-          fontSize={24}>Контактные данные</Box></Typography>  
+          <Typography variant="h6">
+              <Box fontFamily="Oswald" fontWeight={900} fontSize={24}>Контактные данные</Box></Typography>
           </Grid>
          
             <Grid container >
@@ -238,24 +231,20 @@ return (
               </Grid>
               <hr></hr>
               <Grid item xs={12}>
-                <Typography variant="h6"><Box fontFamily="Oswald" fontWeight={900} 
-                fontSize={24}>Доставка</Box></Typography>  
+                <Typography variant="h6">
+                    <Box fontFamily="Oswald" fontWeight={900} fontSize={24}>Доставка</Box>
+                </Typography>
               </Grid>
           
-              <Grid container >
+              <Grid container>
                <div>
               <FormControl required variant="outlined" className={classes.formControl}>
                   <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                     Способ доставки
                   </InputLabel>
-                  <Select
-                        native
-                        value={delivery} // 
-                        onChange={handleChangeDelivery}
-                        inputProps={{
-                          name: 'delivery',
-                          id: 'outlined-age-native-simple',
-                        }}>
+                  <Select native value={delivery} onChange={handleChangeDelivery} inputProps={{
+                            name: 'delivery',
+                            id: 'outlined-age-native-simple'}}>
                     <option value=""></option>
                     <option value="Самовывоз">Самовывоз</option>
                     <option value="Доставка курьером">Доставка курьером</option>
@@ -263,23 +252,21 @@ return (
                 </FormControl>
                </div>
             </Grid>
-              
+
             <hr></hr>
+
             <Grid item xs={12}>
             <Typography variant="h6"> 
-            <Box fontFamily = "Oswald"
-            fontWeight={700}
-            fontSize={24}>Дата и время доставки заказа</Box></Typography>  
+            <Box fontFamily = "Oswald" fontWeight={700} fontSize={24}>Дата и время доставки заказа</Box>
+            </Typography>
             <FormGroup>
               <Grid component="label" container alignItems="center" spacing={1}>
                 <Typography variant="body1">Сразу</Typography>
+
                 <Grid item>
-                  <IOSSwitch
-                    checked={state.checkedC}
-                    onChange={handleChangee('checkedC')}
-                    value="checkedC"
-                  />
+                  <IOSSwitch checked={state.checkedC} onChange={handleChangee('checkedC')} value="checkedC"/>
                 </Grid>
+
                 <Typography variant="body1">Предзаказ</Typography>
               </Grid>
           </FormGroup>
@@ -323,14 +310,9 @@ return (
                   <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                     Населённый пункт
                   </InputLabel>
-                  <Select
-                    native
-                    value={deliverySity.city} //
-                    onChange={handleChangeCity(city)}
-                    inputProps={{
+                  <Select native value={deliverySity.city} onChange={handleChangeCity(city)} inputProps={{
                       name: 'city',
-                      id: 'outlined-age-native-simple',
-                    }}>
+                      id: 'outlined-age-native-simple'}}>
                     <option value=""></option>
                     <option value="yraz">Уразово</option>
                     <option style={{background: `#f0ecec`}} value="val">Валуйки</option>
@@ -349,13 +331,9 @@ return (
 
                <div className={classes.conatiner_info_delivery}>
                <TextField id="validation-outlined-input"
-                 label="Улица"
-                 variant="outlined"
-                 required
-                 inputProps={{
+                 label="Улица" variant="outlined" required inputProps={{
                     maxLength: 20,
-                    minLength: 4
-                   }}
+                    minLength: 4}}
                    name="street"
                    onChange={(e) => {
                      setAdress(e.target.value);
@@ -373,9 +351,7 @@ return (
                  size="small"
                  type="text"
                  required
-                 inputProps={{
-                   maxLength: 5,
-                   }}
+                 inputProps={{maxLength: 5}}
                    name="home"
                    onChange={(e) => {
                      setHome(e.target.value);
@@ -515,7 +491,7 @@ return (
                 • Имя может быть только из букв
                 • Телефон может состоять только из цифр и должен начинаться с 8, 7 или +7 
                 `}>
-                <span>
+
                 <Button
                     type="submit"
                     color={'primary'}
@@ -526,7 +502,6 @@ return (
                     >
                     Сделать заказ
                 </Button>
-                </span>
                 </Tooltip>
 
                 {buttonDisabled() === true &&
@@ -543,9 +518,10 @@ return (
 
          </form>
          </Grid> :
-            <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={34}>
+            <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
            Ваша корзина пуста </Box>
-         } 
+         }
+    </Container>
          </div>
 </section>
   )

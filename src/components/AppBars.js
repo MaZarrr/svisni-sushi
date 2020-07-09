@@ -15,6 +15,7 @@ const AppBarStyle = styled(AppBar) `
 .tabs {
   font-family: Comfortaa, cursive;
   font-weight: 800;
+  font-size: 13px;
   // color: darkslategray;
   background-color: white;
   text-decoration: none;
@@ -30,14 +31,16 @@ const styles = theme =>( {
     position: 'fixed',
     transition: '1.1s',
     top: '65px',
-    // backgroundColor: theme.palette.background.paper,
-    // background: `#ffd9d9`,
-    background: 'linear-gradient(45deg, #ffbc99 20%, #ffbc99  90%)',
+    // height: 100,
+    // backgroundColor: theme.palette.background.default,
+    background: `#e0e0e0`,
+    // background: 'linear-gradient(45deg, #ffbc99 20%, #ffbc99  90%)',
     // [theme.breakpoints.down('768')]: {
     //   display: 'none'#FF8E53,
     // }
   },
   st: {
+    background: `#e0e0e0`,
     transition: '1s',
     top: '-20%',
   },
@@ -148,11 +151,12 @@ useScrollPosition(({ prevPos, currPos }) => {
       indicatorColor="primary"
       textColor="primary"
       variant="scrollable"
+      centered={true}
       value={value}
       onChange={handleChange}
       scrollButtons="on"
     >
-    {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index)=> (
+    {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
       <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} 
       value={index + 1} label={menu.name} {...a11yProps(menu.deck)}
           icon={<Img fluid={menu.image.fluid} className={classes.imageMenu} imgStyle={{maxWidth: 65}} alt={menu.name} />}/>
