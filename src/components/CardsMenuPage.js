@@ -74,7 +74,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                         <Grid item xs={6}>
                                             <Paper style={{width: `60%`, margin: `0 auto`}}>
                                                 <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
-                                                "/souses" || "/napitki" ? "1шт" : `${count}шт`}</Typography>
+                                                "/souses" || slugCategogy === "/napitki" ? "1шт" : `${count}шт`}</Typography>
                                             </Paper>
                                         </Grid>
                                         <Grid item xs={6}>
