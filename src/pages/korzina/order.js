@@ -176,7 +176,7 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
         return true
     }
 
-const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
+    const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
 return (
     <section >
     <SEO title="Оформление заказа"
