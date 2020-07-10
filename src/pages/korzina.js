@@ -32,7 +32,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale, path }) => {
 
     const [value, setValue] = React.useState([]);
-
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
     const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0))
 
@@ -199,7 +198,6 @@ return (
           </Container>
            { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
            Похоже, что в вашей корзине нет товаров, давайте добавим их :) </Box> : <div className={classes.paperDiv}>
-          {/*<Typography variant="h6"><b>Товар</b></Typography>*/}
        <Grid className="mb-3" container spacing={2}>
            <div className="d-flex flex-column">
        { items.map((item, idx) => {

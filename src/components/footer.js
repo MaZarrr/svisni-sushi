@@ -2,7 +2,7 @@ import React from "react"
 import styled  from 'styled-components';
 import Img  from 'gatsby-image';
 import { graphql, useStaticQuery, Link } from "gatsby"
-import Image from './image';
+import useImageHook from './image';
 
 const Footer = styled.footer `
    background-color: #303032;
@@ -114,7 +114,7 @@ const FooterUl = styled.ul `
 `
 
 export default () => {
- 
+ const [{placeholderImage}, ] = useImageHook();
  const data = useStaticQuery(graphql `
   {
       allContentfulSocial {
@@ -140,7 +140,7 @@ return (
     <div className="footer_items foter_t">
       <li className="footer_item foooter_logo">
         <Link to="/">
-          <Image />
+            <Img fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
         </Link>
       </li>
       <li><strong>Свисни Суши</strong></li>

@@ -12,10 +12,10 @@ import {Link} from "gatsby";
 import Icon from "@material-ui/core/Icon";
 import RoomIcon from "@material-ui/icons/Room";
 import LocalTaxiIcon from "@material-ui/icons/LocalTaxi";
-import Button from "@material-ui/core/Button";
 import Divider from '@material-ui/core/Divider';
 import WorkIcon from '@material-ui/icons/Work';
 import {SwipeableDrawer} from "@material-ui/core";
+import GatsbyImage from "gatsby-image";
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function TemporaryDrawer({image: ImageLogo}) {
+export default function TemporaryDrawer({image}) {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
 
@@ -56,9 +56,9 @@ export default function TemporaryDrawer({image: ImageLogo}) {
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}>
-            <div style={{background: `linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,124,124,1) 100%)`, width: `100%`, height: 100}}>
-                <div style={{maxWidth: 75, height: 70, margin: `0 auto 0 auto`, paddingTop: 15 }}>
-                    <ImageLogo />
+            <div style={{background: `linear-gradient(90deg, #FF6D4C 0%, #FF6D71 100%)`, width: `100%`, height: 120}}>
+                <div style={{maxWidth: 90, height: 90, margin: `0 auto 0 auto`, paddingTop: 15 }}>
+                    <GatsbyImage fixed={image.fixed} alt={"аватар свисни бар"}/>
                 </div>
             </div>
             <List>
@@ -71,7 +71,7 @@ export default function TemporaryDrawer({image: ImageLogo}) {
                 </ListItem>
                 <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
-                    <ListItemIcon><RoomIcon color="primary"/></ListItemIcon>
+                    <ListItemIcon><RoomIcon style={{maxWidth: 30}} color="primary"/></ListItemIcon>
                     <ListItemText primary="Адрес" />
                 </ListItem>
                 <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000",

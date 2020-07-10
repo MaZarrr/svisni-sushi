@@ -116,10 +116,10 @@ const delivery = [
     {
         id: 13,
         adress: 'Кукуевка',
-        do: 999,
-        posle: 1000,
+        do: 1399,
+        posle: 1400,
         color: '#A6CCDE',
-        price: 300,
+        price: 250,
     },
     {
         id: 14,

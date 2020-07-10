@@ -6,16 +6,19 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Korzina from './korzinaComponent';
 import ProgressBar from "./common/progressBar"
-import Imgs from '../components/image';
+import useImageHook from '../components/image';
 import AppBars from './AppBars'
+
 import ScrollTop from "./common/ScrollTop"
 
 import "./header.css"
 import {useStyleHeader} from "./common/style";
 import DrawerMenu from './DrawerMenu'
+import GatsbyImage from "gatsby-image";
 
 const Header = () => {
   const classes = useStyleHeader()
+   const [{avatarImage, placeholderImage},] = useImageHook();
 
   const links = [
     {
@@ -39,7 +42,6 @@ const Header = () => {
       link: '/adres-i-kontakty'
     }
   ]
-
   return (
       <div className={classes.root}>
         <CssBaseline />
@@ -47,12 +49,12 @@ const Header = () => {
             position="fixed"
             className={classes.appBar}>
           <Toolbar>
-            <DrawerMenu className={classes.menuButton} image={Imgs}/>
+            <DrawerMenu className={classes.menuButton} image={avatarImage.childImageSharp}/>
             <div className={clsx(classes.content_header)}>
               <ul className={clsx(classes.content_link)}>
                 <div className="icon_start">
                   <Link to="/">
-                    <Imgs />
+                    <GatsbyImage fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
                   </Link>
                 </div>
                 {
@@ -70,7 +72,7 @@ const Header = () => {
             </div>
             <div className="icon_start_xs">
               <Link to="/">
-                <Imgs />
+                <GatsbyImage fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
               </Link>
             </div>
 
