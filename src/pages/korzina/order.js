@@ -3,7 +3,6 @@ import SEO from "../../components/seo"
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby'
 import FormControl from '@material-ui/core/FormControl';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -189,7 +188,8 @@ return (
               <Divider className="mt-3"/>
           </Container>
     <Container>
-        { !isEmpty(items) ? <Grid container className={classes.gridContainer}>
+        {/*{ !isEmpty(items) ? */}
+            <Grid container className={classes.gridContainer}>
         <form  
           method="POST"
           onSubmit={handleSubmit}
@@ -487,11 +487,11 @@ return (
              </div>
              }
                 <hr></hr>
-                <Tooltip title={buttonDisabled() === true && `Проверте правильность введенных данных
+                                    <Tooltip title={buttonDisabled() === true && `Проверте правильность введенных данных
                 • Имя может быть только из букв
                 • Телефон может состоять только из цифр и должен начинаться с 8, 7 или +7 
                 `}>
-
+                <span>
                 <Button
                     type="submit"
                     color={'primary'}
@@ -502,6 +502,7 @@ return (
                     >
                     Сделать заказ
                 </Button>
+                </span>
                 </Tooltip>
 
                 {buttonDisabled() === true &&
@@ -517,10 +518,11 @@ return (
              </div>
 
          </form>
-         </Grid> :
-            <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
-           Ваша корзина пуста </Box>
-         }
+         </Grid>
+        {/*:*/}
+        {/*    <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>*/}
+        {/*   Ваша корзина пуста </Box>*/}
+        {/* }*/}
     </Container>
          </div>
 </section>
