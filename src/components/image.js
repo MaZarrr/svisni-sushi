@@ -34,4 +34,3 @@ export default () => {
   return [data]
 }
 
-// export default Image
