@@ -33,7 +33,7 @@ const styles = theme =>( {
     top: '65px',
     // height: 100,
     // backgroundColor: theme.palette.background.default,
-    background: `#e0e0e0`,
+    background: `#ffcccc`,
     // background: 'linear-gradient(45deg, #ffbc99 20%, #ffbc99  90%)',
     // [theme.breakpoints.down('768')]: {
     //   display: 'none'#FF8E53,

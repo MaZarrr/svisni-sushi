@@ -254,7 +254,6 @@ export const IOSSwitch = withStyles(theme => ({
 });
 
 
-
 export const useStyleKorzina = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -509,6 +508,7 @@ export const StylingInfo = styled.section `
         font-style: normal;
         font-weight: 900;
         font-size: 40px;
+        color: #018786;
     }
     h3 {
         font-family: 'Oswald', cursive;

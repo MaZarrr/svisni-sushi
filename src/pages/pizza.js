@@ -52,9 +52,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
 
     const updatePizza = R.defaultTo(productPizza, pizza);
     const visibleItems = filtersProducts(updatePizza, searchText, priceFilter);
-//     const s = [{id: '1a', name: 'sdaasd'}, {id: '2a', name: 'ass222'}];
-//     const newValue = R.indexBy(R.prop('id'), s);
-//     const newObj = R.merge({}, newValue);
+
 return (
    <section>
     <SEO title="Заказать пиццу в Валуйки, доставка пиццы с 10:00 до 22:00"

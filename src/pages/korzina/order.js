@@ -37,7 +37,7 @@ function TextMaskCustom(props) {
             ref={(ref) => {
                 inputRef(ref ? ref.inputElement : null);
             }}
-            mask={['7', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
             placeholderChar={'\u2000'}
             showMask
         />
@@ -290,7 +290,7 @@ return (
                 </Grid>
                 <Grid item xs={12} sm={6} className="d-flex justify-content-center">
                     <TextField id="standard-full-width"
-                               helperText="Введите ваш телефон"
+                               helperText="Введите ваш телефон с цифры 9"
                                fullWidth
                                variant="filled"
                                type="tel"
