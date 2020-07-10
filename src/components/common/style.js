@@ -9,6 +9,7 @@ export const useStylesCart = makeStyles(theme => ({
         fontWeight: 700,
         padding: `35px 10px 15px 35px`,
         fontSize: 40,
+        color: theme.palette.text.secondary,
         borderBottom: `1px solid lightgrey`,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
@@ -148,18 +149,18 @@ export const useStyleOrder = makeStyles(theme => ({
     },
     gridContainer: {
         flexGrow: 1,
-        paddingLeft: theme.spacing(3),
-        width: `98%`
+        // paddingLeft: theme.spacing(3),
+        // width: `1%`
     },
     formControl: {
         marginTop: 10,
-        width: `220px`,
+        width: `90%`,
     },
     paper: {
         padding: theme.spacing(2),
-        paddingLeft: theme.spacing(4),
+        // paddingLeft: theme.spacing(4),
         // marginBottom: 20,
-        textAlign: 'left',
+        textAlign: 'center',
         color: theme.palette.text.secondary,
     },
     infoGrid: {
@@ -168,14 +169,15 @@ export const useStyleOrder = makeStyles(theme => ({
         width: `99%`
     },
     conatiner_info: {
-        margin: `15px auto 15px 0`,
+        // margin: `15px auto 15px 0`,
         border: `2px solid blue`,
-        padding: 10,
+        padding: 5,
         borderRadius: 10,
-        maxWidth: `250px`,
+        width: `150px`,
     },
     conatiner_info_delivery: {
-        margin: `15px auto 15px 0`
+        margin: `15px auto 15px 0`,
+        width: `100%`
     },
     emty: {
         padding: theme.spacing(2),
@@ -188,9 +190,9 @@ export const useStyleOrder = makeStyles(theme => ({
         padding: 20,
         boxShadow: `0px 4px 8px rgba(0, 0, 0, 0.5)`,
         maxWidth: '65%',
-        [theme.breakpoints.down('sm')]: {
-            maxWidth: '97%'
-        }
+        // [theme.breakpoints.down('sm')]: {
+        //     maxWidth: '97%'
+        // }
     },
     // label: {
     //     color: `white`,
