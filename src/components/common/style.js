@@ -33,7 +33,7 @@ export const useStylesCart = makeStyles(theme => ({
         [theme.breakpoints.down('425')]: {
             margin: `auto 0`,
             padding: 6,
-            height: 25,
+            height: `auto`,
         },
     },
     deckript: {
@@ -48,7 +48,7 @@ export const useStylesCart = makeStyles(theme => ({
             padding: 10,
         },
         [theme.breakpoints.down('425')]: {
-            height: `60px`,
+            height: `auto`,
             margin: `auto 0`,
             padding: 6
         },

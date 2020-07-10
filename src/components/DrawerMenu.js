@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
+import PhoneIcon from '@material-ui/icons/Phone';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -15,6 +15,7 @@ import LocalTaxiIcon from "@material-ui/icons/LocalTaxi";
 import Button from "@material-ui/core/Button";
 import Divider from '@material-ui/core/Divider';
 import WorkIcon from '@material-ui/icons/Work';
+import {SwipeableDrawer} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -33,16 +34,17 @@ const useStyles = makeStyles(theme => ({
             margin: 0
         },
     },
-}))
+}));
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer({image: ImageLogo}) {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
 
     const toggleDrawer = (anchor, open) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
+
         setState({ ...state, [anchor]: open });
     };
 
@@ -53,8 +55,12 @@ export default function TemporaryDrawer() {
             })}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-        >
+            onKeyDown={toggleDrawer(anchor, false)}>
+            <div style={{background: `linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,124,124,1) 100%)`, width: `100%`, height: 100}}>
+                <div style={{maxWidth: 75, height: 70, margin: `0 auto 0 auto`, paddingTop: 15 }}>
+                    <ImageLogo />
+                </div>
+            </div>
             <List>
                 <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
@@ -80,10 +86,9 @@ export default function TemporaryDrawer() {
                     <ListItemText primary="Вакансии" />
                 </ListItem>
                 <Divider/>
-                <ListItem>
-                    <Button style={{margin: `8px 0 8px 0 `}} variant="contained" color="secondary">
-                        <a style={{color: `white`, fontSize: 14}} href="tel:+79040949222">Позвонить</ a>
-                    </Button>
+                <ListItem button component={"a"} href="tel:+79040949222" >
+                    <ListItemIcon><PhoneIcon /></ListItemIcon>
+                    <ListItemText primary="Позвоните нам" />
                 </ListItem>
             </List>
         </div>
@@ -94,11 +99,15 @@ export default function TemporaryDrawer() {
                 <React.Fragment key={'left'}>
                     <IconButton onClick={toggleDrawer('left', true)}>
                         <MenuIcon />
-                        {/*меню*/}
                     </IconButton>
-                    <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
+                    <SwipeableDrawer
+                        anchor={'left'}
+                        open={state['left']}
+                        onClose={toggleDrawer('left', false)}
+                        onOpen={toggleDrawer('left', true)}
+                    >
                         {list('left')}
-                    </Drawer>
+                    </SwipeableDrawer>
                 </React.Fragment>
         </div>
     );

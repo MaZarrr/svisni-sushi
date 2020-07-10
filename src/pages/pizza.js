@@ -94,7 +94,7 @@ return (
                                    </CardMedia>
                                    <CardContent>
                                        <SplitButton id={id} pizzaIng={updatePizza} ingrideents={ingrideents} sostav={sostav} path={path} ingrideentButtonStyle={ingrideentButtonStyle} dir={"center"}/>
-                                       <div className={ classes.deckript}>
+                                       <div className={classes.deckript}>
                                        <Typography itemProp="description"
                                                    style={{fontSize: 15}}
                                                    variant="caption"

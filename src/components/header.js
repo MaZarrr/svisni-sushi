@@ -47,7 +47,7 @@ const Header = () => {
             position="fixed"
             className={classes.appBar}>
           <Toolbar>
-            <DrawerMenu className={classes.menuButton}/>
+            <DrawerMenu className={classes.menuButton} image={Imgs}/>
             <div className={clsx(classes.content_header)}>
               <ul className={clsx(classes.content_link)}>
                 <div className="icon_start">

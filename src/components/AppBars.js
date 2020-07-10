@@ -151,7 +151,6 @@ useScrollPosition(({ prevPos, currPos }) => {
       indicatorColor="primary"
       textColor="primary"
       variant="scrollable"
-      centered={true}
       value={value}
       onChange={handleChange}
       scrollButtons="on"
