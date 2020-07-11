@@ -321,7 +321,6 @@ return (
                             id: 'outlined-age-native-simple'}}>
                             <option value=""></option>
                             <option value="Самовывоз">Заберу из Суши Бара</option>
-                            <Divider/>
                             <option value="Доставка курьером">Оформить доставку</option>
                         </Select>
                     </FormControl>
