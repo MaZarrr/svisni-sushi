@@ -62,8 +62,22 @@
   text-transform: uppercase;
 }
 
-.tabs {
-  font-size: 12px;
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.container {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.card {
+  flex-shrink: 0;
+  maxWidth: 150px;
+  border-radius: 10px;
+  margin-left: 50px;
 }
 
 /*# sourceMappingURL=header.css.map */

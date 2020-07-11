@@ -150,7 +150,8 @@ export const query = graphql `
     }
   `
 
-
+// "express": "^4.17.1",
+//     "moment": "^2.24.0",
 
 // import VK, {Comments} from "react-vk";
 // const Otzyvy = () => {

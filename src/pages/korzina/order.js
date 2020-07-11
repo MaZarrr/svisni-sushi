@@ -26,7 +26,6 @@ import {
 } from "../../reducers/contacts-info";
 import {defaultTo} from "ramda";
 import {Container, Paper} from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
 
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -321,7 +320,6 @@ return (
                             id: 'outlined-age-native-simple'}}>
                             <option value=""></option>
                             <option value="Самовывоз">Заберу из Суши Бара</option>
-                            <Divider/>
                             <option value="Доставка курьером">Оформить доставку</option>
                         </Select>
                     </FormControl>
