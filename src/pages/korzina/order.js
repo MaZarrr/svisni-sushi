@@ -25,8 +25,8 @@ import {
     setPhoneUser, setTimeDeliveryUser, userCommentsFunc
 } from "../../reducers/contacts-info";
 import {defaultTo} from "ramda";
-import {Container} from "@material-ui/core";
-// import Divider from "@material-ui/core/Divider";
+import {Container, Paper} from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -203,7 +203,6 @@ return (
             <Typography variant="h2">
                 <Box fontFamily="Oswald" fontWeight={900} fontSize={39}>Оформление заказа</Box>
             </Typography>
-              {/*<Divider className="mt-3"/>*/}
           </Container>
     <Container>
         { !isEmpty(items) ?
@@ -312,7 +311,7 @@ return (
                         Как вы хотите получить заказ?
                     </Typography>
                 </Grid>
-                <Grid item xs={12} className="d-flex justify-content-center">
+                <Grid item xs={12} className="d-flex justify-content-center mt-3">
                     <FormControl required variant="outlined" className={classes.formControl}>
                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                             Способ получения заказа
@@ -322,6 +321,7 @@ return (
                             id: 'outlined-age-native-simple'}}>
                             <option value=""></option>
                             <option value="Самовывоз">Заберу из Суши Бара</option>
+                            <Divider/>
                             <option value="Доставка курьером">Оформить доставку</option>
                         </Select>
                     </FormControl>
@@ -329,9 +329,9 @@ return (
 
                 {delivery === "Доставка курьером" &&
                 <>
-                    <Grid item xs={12} sm={6} className="d-flex justify-content-center mt-4">
+                    <Grid item xs={12} sm={6} className="d-flex justify-content-center mt-3">
                         {/*<div className={classes.conatiner_info_delivery}>*/}
-                        <FormControl required variant="outlined" className={`${classes.formControl} mt-2`}>
+                        <FormControl required variant="filled" className={`${classes.formControl} mt-2`}>
                             <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                                 Населённый пункт
                             </InputLabel>
@@ -356,7 +356,7 @@ return (
 
                     </Grid>
 
-                    <Grid item xs={12} sm={6} className="d-flex justify-content-center mt-4">
+                    <Grid item xs={12} sm={6} className="d-flex justify-content-center mt-3">
                         {/*<div className={classes.conatiner_info_delivery}>*/}
                         <TextField id="validation-outlined-input"
                                    label="Улица"
@@ -452,7 +452,7 @@ return (
                     </Grid>
                 </>
                 }
-                <Grid item xs={12} className="d-flex justify-content-center">
+                <Grid item xs={12} className="d-flex justify-content-center mt-4">
                     <TextField
                         id="outlined-multiline-static"
                         label="Комментарий к заказу"
@@ -474,26 +474,27 @@ return (
 
             {/*Кнопка заказать*/}
             <Grid container>
-                <Grid item xs={12} style={{ margin: `8px auto`, maxWidth: `90%`}}>
+                <Grid item xs={12} style={{ margin: `12px auto 8px auto`, maxWidth: `90%`}}>
+                    <Paper elevation={3} className={classes.paperEndOrder}>
                         { delivery !== "Самовывоз" && !isEmpty(stateDeliveryPrice) &&
                         <>
                             <div>
                                 { itemCartSale === undefined &&
-                                <p>{total <= stateDeliveryPrice.deliverySalePrice ? <>
+                                <Typography variant={"h5"} style={{fontSize: 22}}>{total <= stateDeliveryPrice.deliverySalePrice ? <>
+                                    Доставка: + <strong>{stateDeliveryPrice.priceDel} ₽</strong></> : <strong>Доставка бесплатно</strong>}</Typography>
+                                }
+                                { itemCartSale === undefined &&
+                                <Typography variant={"body2"}>{total <= stateDeliveryPrice.deliverySalePrice ? <>
                                         Для бесплатной доставки в {stateDeliveryPrice.name} сделайте заказ еще минимум
-                                        на <b> + {stateDeliveryPrice.deliverySalePrice - total} ₽</b></>
-                                    : ""}</p>
+                                        на <strong> + {stateDeliveryPrice.deliverySalePrice - total} ₽</strong></>
+                                    : ""}</Typography>
                                 }
                                 { itemCartSale !== undefined &&
-                                <p>{`Доставка с акцией + ${stateDeliveryPrice.priceDel}`}</p>
+                                <Typography variant={"subtitle2"} style={{fontSize: 20}}>Доставка вместе с акцией + <strong>{stateDeliveryPrice.priceDel}</strong></Typography>
                                 }
                             </div>
                             <div>
-                                { itemCartSale === undefined &&
-                                <p>{total <= stateDeliveryPrice.deliverySalePrice ? <>
-                                    <b>Доставка:</b> + {stateDeliveryPrice.priceDel} ₽</> : <b>Доставка бесплатно</b>}</p>
-                                }
-                                <Grid item xs={12}>
+                                <Grid item className="mt-4 mb-2" xs={12}>
                                     <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
                                     <Select
                                         labelId="demo-controlled-open-select-label"
@@ -517,21 +518,20 @@ return (
                                 </Grid>
 
                                 { itemCartSale !== undefined &&
-                                <b>{`Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
+                                <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{` ${total + stateDeliveryPrice.priceDel} ₽`}</b> </Typography>
                                 }
                                 { itemCartSale === undefined &&
-                                <b>{total >= stateDeliveryPrice.deliverySalePrice ?
-                                    `Итого к оплате: ${total} ₽` : `Итого к оплате: ${total + stateDeliveryPrice.priceDel} ₽`}</b>
+                                <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{total >= stateDeliveryPrice.deliverySalePrice ?
+                                    `${total} ₽` : `${total + stateDeliveryPrice.priceDel} ₽`}</b></Typography>
                                 }
                             </div>
                         </>
                         }
                         { isEmpty(stateDeliveryPrice) &&
                         <div>
-                            <b>Итого к оплате: {total} ₽</b>
+                            <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
                         </div>
                         }
-                        <hr></hr>
                         <Tooltip title={buttonDisabled() === true && `Проверте правильность введенных данных
                          • Имя может быть только из букв`}>
                 <span>
@@ -557,6 +557,7 @@ return (
                             </ul>
                         </>
                         }
+                    </Paper>
                 </Grid>
             </Grid>
 

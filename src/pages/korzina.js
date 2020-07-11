@@ -198,14 +198,14 @@ return (
           </Container>
            { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
            Похоже, что в вашей корзине нет товаров, давайте добавим их :) </Box> : <div className={classes.paperDiv}>
-       <Grid className="mb-3" container spacing={2}>
+       <Grid className="mb-3" justify={"center"} container spacing={2}>
            <div className="d-flex flex-column">
        { items.map((item, idx) => {
         const {id, name, count, total, image, priceIn33cm, price, priceDef,
             textRollSale, textPizza, pizzaSale, size, slug = null, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
 
            return (
-               <Paper key={id} style={{maxWidth: 400}} className="mb-4 p-2">
+               <Paper key={id} style={{maxWidth: 400}} className="mt-3 mb-4 p-2">
                    <Grid item xs={12} sm={7}>
                        <div className="d-flex">
                            <div style={{margin: `auto 0`, zIndex: 10}}>
@@ -213,8 +213,8 @@ return (
                                {/*<ButtonBase className={classes.image}>*/}
                                {/*</ButtonBase>*/}
                            </div>
-                           <div className="ml-4">
-                               <Typography gutterBottom variant="subtitle1">
+                           <div className="ml-3">
+                               <Typography gutterBottom style={{fontSize: 15}} variant="h6">
                                    {name}
                                </Typography>
                                <div className="d-flex">
@@ -300,12 +300,12 @@ return (
                {saleRollFunc()}
                {pizzaDarom()}
            </div>
-           <Grid style={{margin: `0 auto`, padding: 0}} item xs={12} sm={5}>
+           <Grid style={{margin: `20px auto 0 auto`, padding: 0}} item xs={12} sm={5}>
                <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`}}>
                    { addPanelPribors  &&
                    <div className="container_pribor mb-2" >
                        <div className="d-flex flex-column">
-                           <p style={{fontSize: `14px`}}>Количество <br></br> приборов(палочки)</p>
+                           <Typography variant={"subtitle2"} style={{fontSize: `13px`}}>Количество <br></br> приборов(палочки)</Typography>
                            <div className="d-flex">
                                <button
                                    onClick={()=> addedPriborCount(1)}
@@ -323,7 +323,7 @@ return (
                    </div>
                    }
                    <Typography variant="h6" className={classes.typography}>Итого </Typography>
-                   <Typography variant="subtitle2" className={classes.typography}><b>Сумма заказа {total} ₽</b></Typography>
+                   <Typography variant="body1" className={classes.typography}>Сумма заказа <b>{total} ₽</b></Typography>
                    <Button
                        component={Link}
                        to={`${path}order`}

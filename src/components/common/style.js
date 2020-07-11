@@ -147,10 +147,14 @@ export const useStyleOrder = makeStyles(theme => ({
         flexGrow: 1,
         marginTop: 10
     },
+    paperEndOrder: {
+        padding: `10px 50px`,
+        [theme.breakpoints.down('500')]: {
+            padding: `10px 10px`
+        }
+    },
     gridContainer: {
-        flexGrow: 1,
-        // paddingLeft: theme.spacing(3),
-        // width: `1%`
+        flexGrow: 1
     },
     formControl: {
         marginTop: 10,
@@ -261,9 +265,9 @@ export const useStyleKorzina = makeStyles(theme => ({
     },
     paper: {
         paddingTop: 10,
-        textAlign: 'start',
+        textAlign: 'center',
         [theme.breakpoints.down('425')]: {
-            marginBottom: 20,
+            marginBottom: 10,
         },
         zIndex: 99,
         color: theme.palette.text.secondary,
@@ -299,13 +303,12 @@ export const useStyleKorzina = makeStyles(theme => ({
         }
     },
     emty: {
-        textAlign: "start",
+        textAlign: "center",
         padding: theme.spacing(2),
         paddingLeft: theme.spacing(4),
     },
     typography: {
-        fontSize: 18,
-        padding: 5
+        fontSize: 22
     },
     bottomHead: {
         [theme.breakpoints.down('sm')]: {

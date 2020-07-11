@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Korzina from './korzinaComponent';
 import ProgressBar from "./common/progressBar"
-import useImageHook from '../components/image';
+import useImageStaticHook from '../components/image';
 import AppBars from './AppBars'
 
 import ScrollTop from "./common/ScrollTop"
@@ -18,7 +18,7 @@ import GatsbyImage from "gatsby-image";
 
 const Header = () => {
   const classes = useStyleHeader()
-   const [{avatarImage, placeholderImage},] = useImageHook();
+   const [{avatarImage, placeholderImage},] = useImageStaticHook();
 
   const links = [
     {
