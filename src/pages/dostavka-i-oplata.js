@@ -1,9 +1,10 @@
 import React from "react"
 import SEO from "../components/seo"
 import Avatar from '@material-ui/core/Avatar';
-import { Grid } from "@material-ui/core";
+import {Container, Grid} from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import {StylingInfo} from "../components/common/style";
+import Divider from "@material-ui/core/Divider";
 
 // const useStyles = makeStyles(theme => ({
 //   root: {
@@ -153,13 +154,12 @@ return (
        description="Доставка осуществляется с 10:00 до 22:00 в Валуйки и Уразово. Бесплатная доставка от 500 рублей"
     />
     <StylingInfo>
-        <div className="container">
+        <Container>
             <h1>Валуйский район&nbsp;- стоимость доставки</h1>
-        </div>
-        <hr></hr>
+            <Divider/>
     <Grid container>
     <Grid item xs={12} sm={6}>
-      <div style={{overflowY: `scroll`, height: `400px`, marginLeft: 30}}>
+      <div style={{overflowY: `scroll`, height: `400px`}}>
       {delivery.map((el) => (
         <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
@@ -219,6 +219,7 @@ return (
     через интернет, звоните нам по телефону +7(904)094-92-22.</p>
     </div>
     </Grid>
+    </Container>
     </StylingInfo>
     </>
     

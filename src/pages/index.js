@@ -22,7 +22,8 @@ const HomePageMenu = loadable(() => import('../components/common/HomePageMenu'),
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        width: `100%`
+        width: `100%`,
+        marginBottom: 70
     }
 }));
 
@@ -48,7 +49,7 @@ return (
 
    <CarouselSvisni />
     <div className="title_home">
-    <h1>Заказывайте роллы, суши и пиццу с доставкой</h1>
+        <h1>Заказывайте роллы, суши и пиццу с доставкой</h1>
     </div>
       <Hidden smUp>
           <Grid item xs={12} className={classes.root}>

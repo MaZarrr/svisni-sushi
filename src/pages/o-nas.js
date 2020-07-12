@@ -2,6 +2,8 @@ import React from "react"
 import SEO from "../components/seo"
 import {Link}  from 'gatsby';
 import { StylingInfo } from '../components/common/style';
+import {Container} from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 
 const onas = () => {
@@ -12,10 +14,10 @@ return (
     description="Мы готовим роллы, суши, пиццу для наших клиентов. Узнай подробнее о Свисни Суши на сайте"
     />
     <StylingInfo>
-    <div className="container">
+    <Container>
             <h1>О нас</h1>
 		<div className="text">
-          <hr></hr>
+            <Divider/>
             <p>
             Svisni Sushi - это профессиональная служба доставки блюд японской кухни в п.Уразово 
             Мы предлагаем своим покупателям превосходные суши, готовим вкусные салаты и <Link to="/pizza"><b>пиццу</b></Link>, а также предоставляем напитки от 
@@ -32,7 +34,7 @@ return (
             наших клиентов. Мы - те, кто удивит вас изысканной подачей блюд и незабываемым вкусом.
             </p>
         </div>
-    </div>
+    </Container>
 </StylingInfo>
 </>
     )
