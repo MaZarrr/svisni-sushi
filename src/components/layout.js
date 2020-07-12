@@ -5,6 +5,7 @@ import "./layout.css"
 import {useStyleLayout} from "./common/style";
 import loadable from '@loadable/component'
 import {connect} from "react-redux";
+import {Hidden} from "@material-ui/core";
 
 const Footer = loadable(() => import('./footer'))
 
@@ -21,15 +22,16 @@ const classes = useStyleLayout();
           {children}
         </main>
       </div>
+
       <div>
       </div>
-      {
-        pathname !== "/korzina" && pathname !== "/order" ?
-        <Footer/> : ''
-      }
+
+      <Hidden xsDown>
+              <Footer/>
+      </Hidden>
     </>
   )
-}
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
@@ -43,3 +45,8 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, null)(Layout)
 
 
+// {/*{*/}
+// {/*  pathname !== "/korzina" && pathname !== "/order" ?*/}
+// <Footer/>
+// {/*: ''*/}
+// // }

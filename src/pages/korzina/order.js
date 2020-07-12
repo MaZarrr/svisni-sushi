@@ -192,6 +192,8 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
         return true
     }
 
+    console.log(isEmpty(stateDeliveryPrice))
+    console.log(stateDeliveryPrice)
     const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
 return (
     <section >
@@ -268,7 +270,6 @@ return (
                 <Grid item xs={12} >
                     <Typography style={{textAlign: `center`}} variant="h6">
                         Укажите ваши личные данные </Typography>
-                        {/*<Box fontFamily="Oswald"  fontWeight={900} fontSize={24}>Контактные данные</Box></Typography>*/}
                 </Grid>
                 <Grid item xs={12} sm={6} className="d-flex justify-content-center">
                     <TextField id="standard-full-width"
@@ -525,10 +526,10 @@ return (
                             </div>
                         </>
                         }
-                        { isEmpty(stateDeliveryPrice) &&
+                        { isEmpty(stateDeliveryPrice) || delivery === "Самовывоз" ?
                         <div>
                             <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
-                        </div>
+                        </div> : ''
                         }
                         <Tooltip title={buttonDisabled() === true && `Проверте правильность введенных данных
                          • Имя может быть только из букв`}>
