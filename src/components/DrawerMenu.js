@@ -50,45 +50,46 @@ export default function TemporaryDrawer({image}) {
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}>
+
             <div style={{background: `linear-gradient(90deg, #FF6D4C 0%, #FF6D71 100%)`, width: `100%`, height: 120}}>
                 <div style={{maxWidth: 90, height: 90, margin: `0 auto 0 auto`, paddingTop: 15 }}>
                     <GatsbyImage fixed={image.fixed} alt={"аватар свисни бар"}/>
                 </div>
             </div>
-            <List>
+            <List style={{margin: 0, padding: 0}}>
                 <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
                     <ListItemIcon>
-                        <Icon className="fa fa-percent" style={{ marginLeft: `3px`}} color="secondary" />
+                        <Icon className="fa fa-percent" style={{  marginLeft: `5px`}} color="secondary" />
                     </ListItemIcon>
                     <ListItemText primary="Акции" />
                 </ListItem>
                 <Divider/>
                 <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
-                    <ListItemIcon><RoomIcon style={{maxWidth: 30}} color="primary"/></ListItemIcon>
+                    <ListItemIcon><RoomIcon color={"secondary"} style={{maxWidth: 30}}/></ListItemIcon>
                     <ListItemText primary="Адрес" />
                 </ListItem>
                 <Divider/>
                 <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
-                    <ListItemIcon><LocalTaxiIcon color="action"/></ListItemIcon>
+                    <ListItemIcon><LocalTaxiIcon color={"secondary"}/></ListItemIcon>
                     <ListItemText primary="Доставка" />
                 </ListItem>
                 <Divider/>
                 <ListItem button component={Link} to="/vacancy" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
-                    <ListItemIcon><WorkIcon color="primary"/></ListItemIcon>
+                    <ListItemIcon><WorkIcon color={"secondary"}/></ListItemIcon>
                     <ListItemText primary="Вакансии" />
                 </ListItem>
                 <Divider/>
                 <ListItem button component={"a"} href="tel:+79040949222" >
-                    <ListItemIcon><PhoneIcon /></ListItemIcon>
+                    <ListItemIcon><PhoneIcon color={"secondary"}/></ListItemIcon>
                     <ListItemText primary="Позвоните нам" />
                 </ListItem>
                 <Divider/>
             </List>
-            <div className="d-flex justify-content-around w-75 ml-auto mr-auto mt-2">
+            <div className="d-flex justify-content-around w-75 ml-auto mr-auto mt-5">
                 <div>
                     <a className="btn btn-sm btn-outline-warning rounded-pill" href="https://ok.ru/group/55132913991911"><i className="fa fa-2x fa-odnoklassniki-square" aria-hidden="true"></i></a>
                 </div>

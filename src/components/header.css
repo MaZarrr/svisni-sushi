@@ -63,10 +63,11 @@
   text-transform: uppercase;
 }
 
-::-webkit-scrollbar {
-  width: 0;
+@media screen and (max-width: 600px) {
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 }
-
 .container {
   display: flex;
   overflow-x: scroll;

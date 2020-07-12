@@ -6,7 +6,6 @@ import Img from 'gatsby-image';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Container} from "@material-ui/core";
-import {node} from "prop-types";
 import Divider from "@material-ui/core/Divider";
 
 const Sale = (props) => {
