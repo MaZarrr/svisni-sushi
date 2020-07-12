@@ -442,11 +442,8 @@ export const useStyleHeader = makeStyles(theme => ({
         justifyContent: 'space-around',
         margin: 'auto 0',
         width: '100%',
-        [theme.breakpoints.down('769')]: {
-            display: 'none',
-        }
     }
-}))
+}));
 
 export const useStyleLayout = makeStyles(theme => ({
     root: {

@@ -26,7 +26,6 @@ import {
 } from "../../reducers/contacts-info";
 import {defaultTo} from "ramda";
 import {Container, Paper} from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
 
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;

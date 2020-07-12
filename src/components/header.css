@@ -12,11 +12,6 @@
   min-width: 75px;
   margin: 0 auto;
 }
-@media screen and (min-width: 769px) {
-  .icon_start_xs {
-    display: none;
-  }
-}
 @media screen and (max-width: 768px) {
   .icon_start_xs {
     min-width: 60px;
@@ -52,6 +47,12 @@
   font-weight: 900;
   color: white;
 }
+@media screen and (max-width: 755px) {
+  .nav-item {
+    font-size: 10px;
+    letter-spacing: -0.5px;
+  }
+}
 
 .nav-link:focus {
   border-left: 4px solid #F99C9C;
@@ -60,6 +61,24 @@
 
 .nav-link {
   text-transform: uppercase;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.container {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.card {
+  flex-shrink: 0;
+  maxWidth: 150px;
+  border-radius: 10px;
+  margin-left: 50px;
 }
 
 /*# sourceMappingURL=header.css.map */

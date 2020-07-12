@@ -9,8 +9,6 @@
 .icon_start_xs
     min-width: 75px
     margin: 0 auto
-    @media screen and (min-width: 769px)
-        display: none
     @media screen and (max-width: 768px)
         min-width: 60px
         margin: 0 25% 0 25%
@@ -33,6 +31,9 @@
     font-family: 'Comfortaa', cursive
     font-weight: 900
     color: white
+    @media screen and (max-width: 755px)
+        font-size: 10px
+        letter-spacing: -0.5px
 
 .nav-link:focus
     border-left: 4px solid #F99C9C
@@ -40,4 +41,21 @@
 
 .nav-link
     text-transform: uppercase
+
+
+::-webkit-scrollbar
+    width: 0
+
+.container
+    display: flex
+    overflow-x: scroll
+    width: 100%
+    margin-top: 50px
+
+.card
+    flex-shrink: 0
+    maxWidth: 150px
+    //height: 500px
+    border-radius: 10px
+    margin-left: 50px
 

@@ -28,12 +28,8 @@ const useStyles = makeStyles(theme => ({
         marginRight: 36,
         color: `tomato`,
         borderRadius: `50px`,
-        border: `1px solid tomato`,
-        [theme.breakpoints.up('769')]: {
-            display: 'none',
-            margin: 0
-        },
-    },
+        border: `1px solid tomato`
+    }
 }));
 
 export default function TemporaryDrawer({image}) {

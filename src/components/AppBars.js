@@ -10,21 +10,18 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 
 import styled  from 'styled-components';
+import {Hidden} from "@material-ui/core";
 
 const AppBarStyle = styled(AppBar) `
 .tabs {
   font-family: Comfortaa, cursive;
   font-weight: 800;
   font-size: 13px;
-  // color: darkslategray;
   background-color: white;
   text-decoration: none;
   letter-spacing: 1px;
   }
-  @media screen and(max-width: 768px) {
-      display: none;
-  }
-`
+`;
   // We can inject some CSS into the DOM.
 const styles = theme =>( {
   root: {
@@ -39,10 +36,7 @@ const styles = theme =>( {
     top: '-20%',
   },
   imageMenu: {
-    width: 55,
-    [theme.breakpoints.down('600')]: {
-      display: `none`,
-    }
+    width: 55
   }
 });
 
@@ -151,7 +145,7 @@ useScrollPosition(({ prevPos, currPos }) => {
     {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
       <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} 
       value={index + 1} label={menu.name} {...a11yProps(menu.deck)}
-          icon={<Img fluid={menu.image.fluid} className={classes.imageMenu} imgStyle={{maxWidth: 65}} alt={menu.name} />}/>
+           icon={<Hidden xsDown><Img fluid={menu.image.fluid} className={classes.imageMenu} imgStyle={{maxWidth: 65}} alt={menu.name} /></Hidden>}/>
     ))}
     </Tabs>
   </AppBarStyle>
