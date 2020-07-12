@@ -60,31 +60,31 @@ export default function TemporaryDrawer({image}) {
                 <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
                     <ListItemIcon>
-                        <Icon className="fa fa-percent" style={{  marginLeft: `5px`}} color="secondary" />
+                        <Icon className="fa fa-percent" style={{  marginLeft: `5px`}} color="action" />
                     </ListItemIcon>
                     <ListItemText primary="Акции" />
                 </ListItem>
                 <Divider/>
                 <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
-                    <ListItemIcon><RoomIcon color={"secondary"} style={{maxWidth: 30}}/></ListItemIcon>
+                    <ListItemIcon><RoomIcon color={"action"} style={{maxWidth: 30}}/></ListItemIcon>
                     <ListItemText primary="Адрес" />
                 </ListItem>
                 <Divider/>
                 <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
-                    <ListItemIcon><LocalTaxiIcon color={"secondary"}/></ListItemIcon>
+                    <ListItemIcon><LocalTaxiIcon color={"action"}/></ListItemIcon>
                     <ListItemText primary="Доставка" />
                 </ListItem>
                 <Divider/>
                 <ListItem button component={Link} to="/vacancy" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
-                    <ListItemIcon><WorkIcon color={"secondary"}/></ListItemIcon>
+                    <ListItemIcon><WorkIcon color={"action"}/></ListItemIcon>
                     <ListItemText primary="Вакансии" />
                 </ListItem>
                 <Divider/>
                 <ListItem button component={"a"} href="tel:+79040949222" >
-                    <ListItemIcon><PhoneIcon color={"secondary"}/></ListItemIcon>
+                    <ListItemIcon><PhoneIcon color={"action"}/></ListItemIcon>
                     <ListItemText primary="Позвоните нам" />
                 </ListItem>
                 <Divider/>
