@@ -150,8 +150,8 @@ useScrollPosition(({ prevPos, currPos }) => {
     </Tabs>
   </AppBarStyle>
   );
-}
-//
+};
+
 AppBars.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired,
@@ -159,6 +159,12 @@ AppBars.propTypes = {
 };
 
 export default withStyles(styles)(AppBars);
+
+
+
+
+
+
 
 //   const [scrolled, setScrolled] = useState(ins)
 //   const [lastScrollTop, setLastScrollTop] = useState(inst)

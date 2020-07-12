@@ -5,6 +5,9 @@ import { graphql, Link} from "gatsby"
 import Img from 'gatsby-image';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import {Container} from "@material-ui/core";
+import {node} from "prop-types";
+import Divider from "@material-ui/core/Divider";
 
 const Sale = (props) => {
 return (
@@ -13,20 +16,22 @@ return (
     description="Акции на роллы суши и пиццу в Валуйках. Скидки до 60%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
     <StylingInfo>
 
-    <div className="container">
+    <Container>
     <h1>Акции</h1>
-    <hr></hr>
+    <Divider/>
 
     <Grid container style={{margin: `0 0 50px 0`}}>
         {props.data.allContentfulProductSale.edges.map((product) => (
         <Grid key={product.node.id} item xs={12} sm={12} md={6}>
-            <Img fluid={product.node.image.fluid} style={{maxWidth: `600px`, margin: `20px 40px 20px 0`}} />
-            <Link to={`/sale${product.node.slug}`}>
-                <Typography variant="subtitle1"><b>{product.node.name}</b></Typography>
+            <Link to={`/sale${product.node.slug}`} style={{textDecoration: `none`, color: '#000'}}>
+                <Img fluid={product.node.image.fluid}
+                     style={{cursor: `pointer`, maxWidth: `600px`, margin: `20px 40px 5px 0`, borderRadius: 12}}
+                     alt={`Акция ${product.node.name}`} />
+                <Typography style={{fontSize: 18}} variant="h4">{product.node.name}</Typography>
             </Link>
         </Grid> ))}
     </Grid>
-    </div>
+    </Container>
     </StylingInfo>
     </>
     )

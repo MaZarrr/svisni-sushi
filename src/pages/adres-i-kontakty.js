@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import { StylingInfo } from '../components/common/style';
 import {graphql, useStaticQuery} from "gatsby";
 import GatsbyImage from "gatsby-image";
+import {Container} from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 const Adresikontakty = () => {
 
@@ -26,13 +28,12 @@ return (
     description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"/>
 
     <StylingInfo>
-    <div className="container">
+    <Container>
         <h1>Адрес и контакты</h1>
-    </div>
-        <hr></hr>
+       <Divider/>
     <Grid container itemScope itemType="https://schema.org/Organization">
         <Grid item xs={12} sm={6} >
-            <div style={{paddingLeft: 35}}>
+            <div>
         <Typography variant="h5">Режим работы</Typography>
         <p>С 10:00 до 22:00</p>
         <Typography variant="h5">Телефон</Typography>
@@ -41,7 +42,7 @@ return (
             <p><span itemProp="streetAddress">Улица 3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></p>
             </div>
 
-            <div style={{padding: `0 0 0 35px`}}>
+            <div>
                 <Typography  variant="caption">ИП Беженова Татьяна Викторовна</Typography>
                 <p variant="caption"> ОРГНИП 318312300012678</p>
             </div>
@@ -61,6 +62,7 @@ return (
             </div>
         </Grid>
     </Grid>
+    </Container>
     </StylingInfo>
     </>
     )

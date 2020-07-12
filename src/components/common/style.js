@@ -503,6 +503,11 @@ export const StylingInfo = styled.section `
         width: 100%;
         height: 420px;
     }
+      .imgSale {
+        max-width: 60vw; 
+        margin-top: 30px; 
+        borderRadius: 12px;
+    }
     h1 {
         font-family: 'Oswald', cursive;
         font-style: normal;
@@ -530,13 +535,18 @@ export const StylingInfo = styled.section `
         padding: 0;
         width: 89%;
     }
-
+    
     @media screen and (max-width: 475px) {
     h1 {
         font-size: 38px;
     }
      .mapDelivery { 
         height: 240px;
+    }
+    .imgSale {
+        max-width: 90vw; 
+        margin-top: 30px; 
+        borderRadius: 12px;
     }
 }
     @media screen and (max-width: 600px) {
@@ -545,5 +555,4 @@ export const StylingInfo = styled.section `
        padding-left: 20px;
     } 
 }
-
-`
+`;

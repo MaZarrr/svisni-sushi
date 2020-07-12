@@ -2,6 +2,8 @@
   margin-top: 50px;
   display: flex;
   justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 @media screen and (max-width: 768px) {
   .title_home {
@@ -50,6 +52,12 @@
     height: 230px;
   }
 }
+@media screen and (max-width: 750px) {
+  .cart_item {
+    width: 180px;
+    height: 180px;
+  }
+}
 .cart_item:hover {
   transition: 0.1s ease-in;
   transform: scale(1.03);
@@ -68,6 +76,11 @@
   font-family: "Comfortaa", cursive;
   font-weight: 700;
   font-size: 26px;
+}
+@media screen and (max-width: 750px) {
+  .cart_title h3 {
+    font-size: 20px;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

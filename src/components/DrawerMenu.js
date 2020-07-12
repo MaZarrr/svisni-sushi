@@ -46,9 +46,7 @@ export default function TemporaryDrawer({image}) {
 
     const list = (anchor) => (
         <div
-            className={clsx(classes.list, {
-                [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-            })}
+            className={clsx(classes.list, {[classes.fullList]: anchor === 'top' || anchor === 'bottom'})}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}>
@@ -65,11 +63,13 @@ export default function TemporaryDrawer({image}) {
                     </ListItemIcon>
                     <ListItemText primary="Акции" />
                 </ListItem>
+                <Divider/>
                 <ListItem button component={Link} to="/adres-i-kontakty" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
                     <ListItemIcon><RoomIcon style={{maxWidth: 30}} color="primary"/></ListItemIcon>
                     <ListItemText primary="Адрес" />
                 </ListItem>
+                <Divider/>
                 <ListItem button component={Link} to="/dostavka-i-oplata" activeStyle={{ color: "#000",
                     backgroundColor: `#f0ecec`}}>
                     <ListItemIcon><LocalTaxiIcon color="action"/></ListItemIcon>
@@ -86,7 +86,19 @@ export default function TemporaryDrawer({image}) {
                     <ListItemIcon><PhoneIcon /></ListItemIcon>
                     <ListItemText primary="Позвоните нам" />
                 </ListItem>
+                <Divider/>
             </List>
+            <div className="d-flex justify-content-around w-75 ml-auto mr-auto mt-2">
+                <div>
+                    <a className="btn btn-sm btn-outline-warning rounded-pill" href="https://ok.ru/group/55132913991911"><i className="fa fa-2x fa-odnoklassniki-square" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                    <a className="btn btn-sm btn-outline-warning rounded-pill" href="https://vk.com/sushi_urazovo"><i className="fa fa-2x fa-vk text-gradient-dark" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                    <a className="btn btn-sm btn-outline-warning rounded-pill" href="https://www.instagram.com/svisni_sushi/"><i className="fa fa-2x fa-instagram text-gradient-dark" aria-hidden="true"></i></a>
+                </div>
+            </div>
         </div>
     );
 
