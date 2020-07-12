@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import loadable from '@loadable/component'
 import {makeStyles} from "@material-ui/core/styles";
 import Spinner from '../components/spinner/spinner'
+import {Hidden} from "@material-ui/core";
 
 const Card = loadable(() => import('../components/Card'), {
     fallback: <Spinner/>
@@ -21,19 +22,9 @@ const HomePageMenu = loadable(() => import('../components/common/HomePageMenu'),
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        width: `100%`,
-        [theme.breakpoints.up('768')]: {
-            display: 'none'
-        }
-    },
-    menuPc: {
-        maxWidth: 1368,
-        marginTop: 40,
-        [theme.breakpoints.down('768')]: {
-            display: 'none',
-        }
+        width: `100%`
     }
-}))
+}));
 
 const IndexPage = (props) => {
 
@@ -59,12 +50,16 @@ return (
     <div className="title_home">
     <h1>Заказывайте роллы, суши и пиццу с доставкой</h1>
     </div>
-      <Grid item xs={12} className={classes.root}>
-        <Card />
-      </Grid>
-      <Grid container className={classes.menuPc}>
-            <HomePageMenu dataIndex={dataIndex}/>
-    </Grid>
+      <Hidden smUp>
+          <Grid item xs={12} className={classes.root}>
+              <Card />
+          </Grid>
+      </Hidden>
+      <Hidden xsDown>
+          <Grid container>
+              <HomePageMenu dataIndex={dataIndex}/>
+          </Grid>
+      </Hidden>
   </section>
   )
 }

@@ -15,6 +15,7 @@ import "./header.css"
 import {useStyleHeader} from "./common/style";
 import DrawerMenu from './DrawerMenu'
 import GatsbyImage from "gatsby-image";
+import Hidden from "@material-ui/core/Hidden";
 
 const Header = () => {
   const classes = useStyleHeader()
@@ -49,8 +50,12 @@ const Header = () => {
             position="fixed"
             className={classes.appBar}>
           <Toolbar>
-            <DrawerMenu className={classes.menuButton} image={avatarImage.childImageSharp}/>
+            <Hidden smUp>
+              <DrawerMenu className={classes.menuButton} image={avatarImage.childImageSharp}/>
+            </Hidden>
+
             <div className={clsx(classes.content_header)}>
+              <Hidden xsDown>
               <ul className={clsx(classes.content_link)}>
                 <div className="icon_start">
                   <Link to="/">
@@ -69,16 +74,20 @@ const Header = () => {
                   ))
                 }
               </ul>
+              </Hidden>
             </div>
-            <div className="icon_start_xs">
-              <Link to="/">
-                <GatsbyImage fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
-              </Link>
-            </div>
+
+            <Hidden smUp>
+              <div className="icon_start_xs">
+                <Link to="/">
+                  <GatsbyImage fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
+                </Link>
+              </div>
+            </Hidden>
 
             <Korzina />
           </Toolbar>
-          <AppBars/>
+            <AppBars/>
         </AppBar>
 
         <ScrollTop/>
