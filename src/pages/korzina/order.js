@@ -36,9 +36,9 @@ function TextMaskCustom(props) {
             ref={(ref) => {
                 inputRef(ref ? ref.inputElement : null);
             }}
-            mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            mask={[/[7, 8]/, '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
             placeholderChar={'\u2000'}
-            showMask
+            guide={false}
         />
     );
 }
@@ -78,6 +78,7 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
 
     const handleSubmit = (ev) => {
     ev.preventDefault();
+
     const form = ev.target;
     const data = new FormData(form);
     const xhr = new XMLHttpRequest();
@@ -167,10 +168,10 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
 }
 
     const validateUserName = () => {
-        const nameValidate = /^[а-яё]{3,16}$/gi
-        const name = nameUser.trim().replace(/\s/g, "")
+        const nameValidate = /^[а-яё]{3,16}$/gi;
+        const name = nameUser.trim().replace(/\s/g, "");
         return nameValidate.test(String(name).toLowerCase())
-    }
+    };
     const validateTextAria = () => {
     const commentTextArea = comments.trim().replace(/\s/g, "")
         if(comments === '') {
@@ -179,21 +180,21 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
             return ((/^[а-я_А-Я_0-9\-?()!,.ё]{3,230}$/).test(commentTextArea.toLowerCase()))
         }
     }
-    // const validatePhone = () => {
-    //     const phoneValidate = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))$/gi
-    //     const phone = phoneUser.trim().replace(/\s/g, "")
-    //     return phoneValidate.test(phone.toLowerCase())
-    // }
+    const validatePhone = () => {
+        const phoneValidate =  /^\+?(\d{1,3})?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/
+        // const phoneValidate = /(^8|7|\+7)[)(-]((\d{15})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))$/gi
+        const phone = phoneUser.trim().replace(/\s/g, "")
+        return phoneValidate.test(phone.toLowerCase())
+    };
+
 
     const buttonDisabled = () => {
-        if(validateUserName() === true && validateTextAria() === true ) {
+        if(validateUserName() === true && validatePhone() === true && validateTextAria() === true ) {
             return false
         }
         return true
-    }
+    };
 
-    console.log(isEmpty(stateDeliveryPrice))
-    console.log(stateDeliveryPrice)
     const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
 return (
     <section >
@@ -289,14 +290,15 @@ return (
                 </Grid>
                 <Grid item xs={12} sm={6} className="d-flex justify-content-center">
                     <TextField id="standard-full-width"
-                               helperText="Введите ваш телефон с цифры 9"
+                               helperText={validatePhone() === false ? "Ваш телефон, должен начинаться с 7 или 8" : "Ваш телефон" }
                                fullWidth
                                variant="filled"
                                type="tel"
                                style={{ margin: `8px auto`, maxWidth: `90%`}}
                                margin="normal"
                                required
-                               InputProps={{inputComponent: TextMaskCustom}}
+                               inputProps={{minLength: 14}}
+                               InputProps={{inputComponent: TextMaskCustom, minLength: 14}}
                                name="phone"
                                onChange={(e) => {setPhone(e.target.value)}}
                                value={phoneUser}/>
@@ -532,7 +534,8 @@ return (
                         </div> : ''
                         }
                         <Tooltip title={buttonDisabled() === true && `Проверте правильность введенных данных
-                         • Имя может быть только из букв`}>
+                         • Имя может быть только из букв русского алфавита
+                         • Введите корректный номер, должен начинаться с 7 или 8`}>
                 <span>
                 <Button
                     type="submit"
