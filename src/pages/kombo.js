@@ -53,7 +53,7 @@ export const queryKombo = graphql `
               count
               description
               image {
-                  fluid(maxWidth: 310) {
+                  fluid(maxWidth: 370) {
                     ...GatsbyContentfulFluid
                   }
               }
