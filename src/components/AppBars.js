@@ -36,7 +36,7 @@ const styles = theme =>( {
     top: '-20%',
   },
   imageMenu: {
-    width: 55
+    width: 48
   }
 });
 
