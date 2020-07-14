@@ -6,28 +6,29 @@ import { Grid } from "@material-ui/core";
 import { useStylesCart } from '../components/common/style'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
+import {defaultTo} from "ramda";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Wok = ({data: {allContentfulProductWok: {edges: productsWok}, contentfulIconMenuLeftPanel: {image}},
-                   dispatch, product }) => {
+                   dispatch, product: wok, productWok }) => {
 
     const classes = useStylesCart();
-
+    const product = defaultTo(wok, productWok);
     useEffect(() => {
         dispatch(productLoaded(productsWok)) // action push to reduxStore
-    }, [productsWok, dispatch])
+    }, [productsWok, dispatch]);
 
     return (
         <section>
-            <SEO title="Доставка комбо наборов из суши, роллов, пиццы и лапши Вок"
-                 description="Специальные комбо наборы, выгодно, заказать в Уразово с 10 до 22:00"/>
+            <SEO title="Доставка лапши Вок. Заказать лапшу wok в Валуйки"
+                 description="Заказать wok с доставкой. Вок с морепродуктами, овощами, курицей, свининой всего от 190 руб"/>
             <div className={classes.titleH1}>
                 <h1 style={{fontFamily: `Oswald, cursive`,
-                    fontWeight: 600, fontSize: 40}}>Лапша Wok</h1>
+                    fontWeight: 600, fontSize: 40}}>Вок</h1>
             </div>
             <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
-                <CardsMenuPage titleCategory="Вок" slugCategogy="/wok" visibleItems={product}
+                <CardsMenuPage titleCategory="Wok" slugCategogy="/wok" visibleItems={product}
                                image={image} product={product}/>
             </Grid>
         </section>
@@ -35,8 +36,9 @@ const Wok = ({data: {allContentfulProductWok: {edges: productsWok}, contentfulIc
 }
 
 const mapStateToProps = (state) => ({
-    product: state.app.product
-})
+    product: state.app.product,
+    productWok: state.shoppingCart.newWok
+});
 
 export default connect(mapStateToProps, null)(Wok)
 
@@ -51,8 +53,9 @@ export const queryWok = graphql `
                     weight
                     count
                     description
+                    private
                     image {
-                        fluid(maxWidth: 550) {
+                        fluid(maxWidth: 400) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -61,7 +64,7 @@ export const queryWok = graphql `
         }
         contentfulIconMenuLeftPanel(name: {eq: "Вок"}) {
             image {
-                fluid {
+                fluid(maxWidth: 50) {
                     ...GatsbyContentfulFluid
                 }
             }

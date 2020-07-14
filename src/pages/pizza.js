@@ -25,6 +25,7 @@ import {addedToCart, pizzaCart} from "../reducers/shopping-cart";
 import clsx from "clsx";
 import Paper from "@material-ui/core/Paper";
 import SplitButton from "../components/SplitButton";
+import {BootstrapButton} from "../components/common/ToogleButton";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 // const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
@@ -79,10 +80,7 @@ return (
                            <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                                  item xs={12} sm={6} md={"auto"} lg={3} key={id}>
                                <Card className={classes.card}>
-                                   <CardHeader avatar={
-                                        <Avatar aria-label="menu">
-                                           <Img style={{width: 50}} fluid={image.fluid} alt={name} />
-                                        </Avatar>}
+                                   <CardHeader avatar={<Img style={{width: 40}} fluid={image.fluid} alt={name} />}
                                        title={"Пицца"}
                                        subheader={<span itemProp="name">{name}</span>}/>
                                    <CardMedia
@@ -92,18 +90,16 @@ return (
                                    </CardMedia>
                                    <CardContent>
                                        <SplitButton id={id} pizzaIng={updatePizza} ingrideents={ingrideents} sostav={sostav} path={path} ingrideentButtonStyle={ingrideentButtonStyle} dir={"center"}/>
-                                       <div className={classes.deckript}>
                                        <Typography itemProp="description"
-                                                   style={{fontSize: 15}}
-                                                   variant="caption"
+                                                   className={classes.deckript}
+                                                   variant="body2"
                                                    color="textSecondary"
                                                    component="p">
                                            {description}
                                        </Typography>
-                                       </div>
-                                       <Grid container alignItems="center" style={{padding: `13px 0`}}>
-                                           <Grid item xs={5}>
-                                               <button onClick={() => dispatch(pizzaCart({id,
+                                       <Grid container justify={"center"} style={{padding: `10px 0 0 0`}}>
+                                           <Grid style={{padding: `0`, margin: 0}} item xs={5}>
+                                               <BootstrapButton onClick={() => dispatch(pizzaCart({id,
                                                    productPizza: updatePizza,
                                                    total: priceDef,
                                                    priceDef,
@@ -111,12 +107,11 @@ return (
                                                    mass: 0.45}))}
                                                    className={clsx(classes.buttonD, {
                                                             [classes.buttonT]: size[slug]})}>
-                                                   Маленькая</button> </Grid>
-                                           <Grid item xs={2}>
-                                               <p style={{fontSize: 14, margin: `auto 0`}}>{`${mass}кг`}</p>
-                                           </Grid>
+                                                   Маленькая</BootstrapButton> </Grid>
+                                           {/*<Grid item xs={2}>*/}
+                                           {/*</Grid>*/}
                                            <Grid item xs={5}>
-                                               <button onClick={() => dispatch(pizzaCart({id,
+                                               <BootstrapButton onClick={() => dispatch(pizzaCart({id,
                                                    productPizza: updatePizza,
                                                    total: priceIn33cm,
                                                    priceDef,
@@ -124,7 +119,10 @@ return (
                                                    mass: 0.65}))}
                                                        className={clsx(classes.buttonD, {
                                                            [classes.buttonT]: size[contentful_id]})}>
-                                                   Большая</button></Grid>
+                                                   Большая</BootstrapButton></Grid>
+                                       </Grid>
+                                       <Grid item xs={12} style={{textAlign: "center", padding: 0}}>
+                                           <p style={{fontSize: 14, margin: `0 auto`}}>{`${mass}кг`}</p>
                                        </Grid>
                                    </CardContent>
 

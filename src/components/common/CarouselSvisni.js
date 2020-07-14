@@ -150,6 +150,7 @@ const useStyleCarousel = makeStyles(theme => ({
         borderRadius: `10px`,
         // maxWidth: `100vw`,
         overflow: 'hidden',
+        maxHeight: `350px`,
         width: '95vw',
         [theme.breakpoints.down('768')]: {
             margin: `0 auto`,

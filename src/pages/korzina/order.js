@@ -91,6 +91,7 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
                 <p style="text-align: center"><b>Состав: </b> ${elem.description}</p> 
                 <p style="text-align: center"><b>Размер: </b> ${elem.productSize}</p>
                 <p style="text-align: center"><b>Доп.Ингидеенты: </b> ${elem.descriptionIngrideents}
+                <p style="text-align: center"><b>Лапша: </b> ${elem.descriptionWok}
                 <p style="text-align: center"><b>Цена: </b> ${elem.total}</p>
                 <p style="text-align: center"><b>Штук: </b> ${elem.count}</p></div>`);
 });

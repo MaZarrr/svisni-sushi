@@ -14,7 +14,7 @@ const Adresikontakty = () => {
         query {
             placeholderImage: file(relativePath: { eq: "adres.jpg" }) {
                 childImageSharp {
-                    fluid(maxWidth: 1280) {
+                    fluid(maxWidth: 1400) {
                         ...GatsbyImageSharpFluid
                     }
                 }
@@ -32,18 +32,18 @@ return (
         <h1>Адрес и контакты</h1>
        <Divider/>
     <Grid container itemScope itemType="https://schema.org/Organization">
-        <Grid item xs={12} sm={6} >
-            <div>
-        <Typography variant="h5">Режим работы</Typography>
-        <p>С 10:00 до 22:00</p>
-        <Typography variant="h5">Телефон</Typography>
-            <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
-        <Typography variant="h5">Адрес</Typography>
-            <p><span itemProp="streetAddress">Улица 3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></p>
-            </div>
+        <Grid item xs={12} sm={6}>
+        <Typography className="mt-2" variant="h5">Режим работы</Typography>
+        <Typography variant={"subtitle2"}>С 10:00 до 22:00</Typography>
+        <Typography className="mt-2" variant="h5">Телефон</Typography>
+            <Typography variant={"subtitle2"}>
+                <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
+            </Typography>
+        <Typography className="mt-2" variant="h5">Адрес</Typography>
+            <Typography variant={"subtitle2"}><span itemProp="streetAddress">Улица 3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
 
-            <div>
-                <Typography  variant="caption">ИП Беженова Татьяна Викторовна</Typography>
+            <div className="mt-4">
+                <Typography variant="caption">ИП Беженова Татьяна Викторовна</Typography>
                 <p variant="caption"> ОРГНИП 318312300012678</p>
             </div>
         </Grid>

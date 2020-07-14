@@ -14,10 +14,6 @@ export const getProduct = (product) => async (dispatch) => {
 }
 
 const initialState = {
-    // product: {
-    //     sety: [],
-    //     pizza: []
-    // },
     product: [],
     productPizza: [],
     loading: false,

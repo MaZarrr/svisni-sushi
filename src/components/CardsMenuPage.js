@@ -16,24 +16,22 @@ import {connect} from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import MoreIcon from '@material-ui/icons/More';
+import ToggleButton from "./common/ToogleButton";
 
-const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch}) => {
-    const classes = useStylesCart()
+const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
+    const classes = useStylesCart();
 
     return (
         <>
             {visibleItems.map((products) => {
 
-                const {id, name, slug, description, price, weight, count, image: {fluid}} = products
+                const {id, name, slug, description, price, weight, count, image: {fluid}} = products;
                 return (
                     <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                           item xs={12} sm={6} md={3} key={id}>
                         <Card className={classes.card}>
                             <CardHeader
-                                avatar={
-                                    <Avatar aria-label="menu">
-                                        <Img style={{width: 50}} fluid={image.fluid} alt={name} />
-                                    </Avatar>}
+                                avatar={slugCategogy !== "/wok" ? <Img style={{width: 40}} fluid={image.fluid} alt={name} /> : ''}
                                 title={titleCategory}
                                 subheader={<span itemProp="name">{name}</span>}/>
                             {slugCategogy === "/sety" &&
@@ -49,18 +47,30 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
-                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
+                                <div style={{position: `relative`}}>
+                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`, margin: 0}}/>
+                                {slugCategogy === "/wok" &&
+                                <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
+                                            <Img style={{maxWidth: 50, bottom: 45, marginLeft: 15}} fluid={image.fluid} alt={"Коробка wok box"}/>
+                                            <div style={{position: `absolute`, bottom: 60, left: 55, width: 180}}>
+                                                <Typography style={{fontSize: 13}} variant={"subtitle2"}>Доставим в коробке</Typography>
+                                            </div>
+                                </div>
+                                }
+                                </div>
                             </CardMedia>
                             }
-                            <CardContent style={{marginBottom: 0, paddingBottom: 0}}>
+                            <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
                                 <Typography itemProp="description"
                                             className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
-                                            slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" ? classes.deckript : classes.deckriptSmall}
-                                            variant="caption"
-                                            color="textSecondary"
-                                            component="p">
+                                            slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" || slugCategogy === "/wok" ? classes.deckript : classes.deckriptSmall}
+                                            variant="body2"
+                                            color="textSecondary">
                                     {description}
                                 </Typography>
+
+                                {/*Кнопки выбора wok*/}
+                                {slugCategogy === "/wok" && <ToggleButton id={id} productWok={visibleItems}/>}
 
                                 <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                     {/*total, count*/}
@@ -83,7 +93,6 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                                 variant="overline"
                                                 style={{fontSize: 16, margin: `0 auto`, width: `50%`, textAlign: `center`}}
                                                 itemProp="price"
-                                                // classes={{overline: classes.overline}}
                                             >
                                                 {slugCategogy === "/pizza" ? `от ${price}₽` : `${price}₽`}
                                             </Typography>
@@ -98,10 +107,8 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     variant="contained"
                                     color="secondary"
                                     className={classes.button}
-                                    // startIcon={<ShoppingBasketIcon/>}
                                     onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
-                                    {/*Хочу */}
-                                <ShoppingCartIcon/>
+                                    <ShoppingCartIcon/>
                                 </Button>
 
                                 {  slugCategogy === "/sety" ||
@@ -114,7 +121,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                         color="secondary"
                                         className={classes.buttonInfo}>
                                         {/*Подробнее */}
-                                    <MoreIcon/>
+                                        <MoreIcon/>
                                     </Button> : null
                                 }
                             </CardActions>

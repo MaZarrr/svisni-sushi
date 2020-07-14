@@ -3,41 +3,30 @@ import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {pizzaSized} from "../../reducers/shopping-cart";
 import {connect} from "react-redux";
+import {BootstrapButton} from "./ToogleButton";
 
 const useStyleButtonSize = makeStyles(theme => ({
     buttonD: {
-        background: `lightgrey`,
-        textTransform: `uppercase`,
-        color: `dark`,
-        borderRadius: 5,
-        fontSize: 10,
-        width: 70,
-        fontWeight: 500,
-        padding: `7px 2px`
+        width: 71,
+        fontSize: 10
     },
     buttonT: {
-        background: `#FFAE40`,
-        textTransform: `uppercase`,
-        color: `white`,
-        zIndex: 99,
-        fontWeight: 500,
-        borderRadius: 5,
-        width: 70,
-        fontSize: 10,
-        padding: `7px 2px`
+        backgroundColor: `orange`,
+        width: 71,
+        fontSize: 10
     },
-}))
+}));
 
 const ButtonSize = ({ sizePizzaStyle, title, onRazmer, id, pricePizza, edges, pizzaSize = {}}) => {
     const classes = useStyleButtonSize();
 
     // const onRadioChangedd = (id, price, product, size) => onRazmer({id, price, product, size})
     return (
-     <button className={clsx(classes.buttonD, {
+     <BootstrapButton className={clsx(classes.buttonD, {
         [classes.buttonT]: pizzaSize[sizePizzaStyle]})}
              // onClick={() => onRadioChangedd(id, pricePizza, edges, sizePizzaStyle)}>
          onClick={() => onRazmer({id, price: pricePizza, product: edges, size: sizePizzaStyle})}>
-         {title}</button>
+         {title}</BootstrapButton>
  )
 }
 

@@ -14,6 +14,8 @@ export const ingrideentPlus = createAction('INGRIDEENT_PLUS');
 export const ingrideentMinus = createAction('INGRIREENT_MINUS');
 export const checker = createAction('CHECKED_INGRIDEENT_PIZZA');
 
+export const checkedWok = createAction('CHECKED_WOK');
+
 const addedPribor = createAction('PALOCHKI_ADDED');
 const addedSaleRoll = createAction('ADD_SALE_ROLL');
 const addedSalePizza = createAction('ADD_SALE_PIZZA');
@@ -38,6 +40,12 @@ const updateCartItems = (cartItems, item, idx) => {
         const newItem = R.merge(item, {id: uniqid(), count: 1, total: item.price});
         return R.append(newItem, cartItems)
     }
+
+    if(!R.isNil(item.descriptionWok) && item.descriptionWok !== cartItems[idx].descriptionWok) {
+        const newItem = R.merge(item, {id: uniqid(), count: 1, total: item.price});
+        return R.append(newItem, cartItems)
+    }
+
     return R.update(idx, item, cartItems)
 };
 
@@ -54,15 +62,15 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
         priceDef = pricePizza,
         priceIn33cm = setу.priceIn33cm,
         pribor = 0,
-        } = item;
+    } = item;
 
-    if(!R.isNil(setу.priceIn33cm)) {
+    // добавление пиццы
+    if (!R.isNil(setу.priceIn33cm)) {
         const descriptionIngrideents = R.pluck('nameI', setу.sostav).join(", ");
         return {
             id,
             name,
             priceIn33cm: setу.priceIn33cm,
-            pribor,
             priceDef: pricePizza,
             ingrideents: setу.ingrideents,
             sostav: setу.sostav,
@@ -78,24 +86,42 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
             total: priceRadio > priceDef ? total + quantity * priceIn33cm : total + quantity * priceDef
         }
     }
+
+    // добавление вока // setу.private - это sety.wok только в CMS в каждом товаре.
+    // нужно для def вока. Проверка, действительно добавлен вок или нет
+    if (setу.private === false || setу.wok === true) {
+        const wok = R.isNil(setу.wok) ? true : setу.wok;
+        const descriptionWok = R.isNil(setу.descriptionWok) ? "Удон" : setу.descriptionWok;
+        return {
+            id,
+            name,
+            pribor,
+            wok,
+            descriptionWok,
+            priceDef: pricePizza,
+            price: priceRadio,
+            description: setу.description,
+            slug: setу.slug,
+            image: {...image},
+            count: count + quantity,
+            total: total + quantity * priceDef
+        }
+    }
+
+    // Добавление всех остальных товаров
     return {
         id,
         name,
-        priceIn33cm: setу.priceIn33cm,
         pribor,
         priceDef: pricePizza,
-        ingrideents: setу.ingrideents,
-        sostav: setу.sostav,
         price: priceRadio,
         description: setу.description,
-        contentful_id: setу.contentful_id,
-        size: sizePizza,
         slug: setу.slug,
         image: {...image},
         count: count + quantity,
-        total: priceRadio > priceDef ? total + quantity * priceIn33cm : total + quantity * priceDef
-    }
-}
+        total: total + quantity * priceDef
+    };
+};
 
 const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
     const {cartItems} = state;
@@ -116,13 +142,13 @@ const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
 }
 
 // action func
-export const addedCart = (data) => (dispatch) => dispatch(addedToCart(data))
+export const addedCart = (data) => (dispatch) => dispatch(addedToCart(data));
 
-export const removeCart = (data) => (dispatch) => dispatch(removeFromCart(data))
+export const removeCart = (data) => (dispatch) => dispatch(removeFromCart(data));
 
-export const allRemoveCart = (data) => (dispatch) => dispatch(allRemoveFromCart(data))
+export const allRemoveCart = (data) => (dispatch) => dispatch(allRemoveFromCart(data));
 
-export const pizzaSized = (data) => (dispatch) => dispatch(pizzaSize(data))
+export const pizzaSized = (data) => (dispatch) => dispatch(pizzaSize(data));
 
 export const addPribor = (count) => (dispatch) => {
     // const {shoppingCart: {palochkiTotal}} = getStore()
@@ -152,7 +178,8 @@ const initialState = {
     cartItems: [],
     orderTotal: 0,
     palochkiTotal: 0,
-    newPizza: null
+    newPizza: null,
+    newWok: null
     };
 
 export default createReducer({
@@ -429,6 +456,19 @@ export default createReducer({
         }
 },
 
+    [checkedWok]: (state, {id, variant, productWok}) => {
+        const wok = productWok.find((el) => el.id === id);
+        const wokIndex = productWok.findIndex((el) => el.id === id)
+        const newProductsWok = R.update(wokIndex, {
+            ...wok,
+            descriptionWok: variant,
+            wok: true
+        })(productWok)
+    return {
+          ...state,
+            newWok: newProductsWok,
+      }
+    },
     [checker]: (state, {name, checked}) => {
         return {
             checked: {[name]: checked}

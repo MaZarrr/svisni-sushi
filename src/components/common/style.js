@@ -21,10 +21,9 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     deckriptSmall: {
-        fontWeight: 600,
+        fontWeight: 400,
         height: 65,
         overflowY: `auto`,
-        margin: `auto 0`,
         textAlign: 'center',
         padding: 14,
         [theme.breakpoints.down('500')]: {
@@ -38,10 +37,9 @@ export const useStylesCart = makeStyles(theme => ({
         },
     },
     deckript: {
-       fontWeight: 500,
+        fontWeight: 400,
         height: 95,
         overflowY: `auto`,
-        margin: `auto 0`,
         textAlign: 'center',
         padding: 14,
         [theme.breakpoints.down('500')]: {
@@ -55,25 +53,11 @@ export const useStylesCart = makeStyles(theme => ({
         },
     },
     buttonD: {
-        background: `lightgrey`,
-        textTransform: `uppercase`,
-        color: `dark`,
-        borderRadius: 10,
-        fontSize: 12,
-        width: 95,
-        fontWeight: 500,
-        padding: `8px 5px`,
+        width: 105,
     },
     buttonT: {
-        background: `#FFAE40`,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
-        textTransform: `uppercase`,
-        color: `white`,
-        fontWeight: 700,
-        borderRadius: 10,
-        width: 95,
-        fontSize: 12,
-        padding: `8px 5px`
+        width: 105,
+        backgroundColor: 'orange'
     },
     card: {
         maxWidth: `290px`,
@@ -94,7 +78,7 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     media: {
-        maxWidth: `99%`,
+        width: `99%`,
         margin: `0 auto`,
     },
     expand: {
@@ -554,5 +538,4 @@ export const StylingInfo = styled.section `
        padding-right: 20px;
        padding-left: 20px;
     } 
-}
-`;
+}`;

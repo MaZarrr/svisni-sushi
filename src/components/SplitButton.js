@@ -27,10 +27,9 @@ export const useStyles = makeStyles(theme => ({
         padding: `6px 5px`,
     },
     buttonT: {
-        background: `#FFAE40`,
+        background: `orange`,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
         textTransform: `uppercase`,
-        color: `white`,
         fontWeight: 600,
         fontSize: 11,
         zIndex: 99,
@@ -41,7 +40,7 @@ export const useStyles = makeStyles(theme => ({
 const SplitButton = ({id, pizzaIng, ingrideents, path, sostav, addedIngrideents, ingrideentButtonStyle, height = 210, dir = "center"}) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
-    const classes = useStyles()
+    const classes = useStyles();
 
     const handleChange = (event) =>  {
         addedIngrideents({id, sostav, name: event.target.name, ingrideents, check: event.target.checked, pizzaIng, path})

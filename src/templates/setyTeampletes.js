@@ -63,7 +63,7 @@ export const query = graphql `
             count
             description
           image {
-              fluid(maxWidth: 400) {
+              fluid(maxWidth: 450) {
                   ...GatsbyContentfulFluid
                 }
             }
@@ -76,7 +76,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                        fluid(maxWidth: 300, maxHeight: 300) {
+                        fluid(maxWidth: 200, maxHeight: 200) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -91,7 +91,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                        fluid(maxWidth: 300, maxHeight: 350) {
+                        fluid(maxWidth: 200, maxHeight: 200) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -107,7 +107,7 @@ export const query = graphql `
                     description
                     price
                     image {
-                       fluid(maxWidth: 300, maxHeight: 300) {
+                       fluid(maxWidth: 200, maxHeight: 200) {
                            ...GatsbyContentfulFluid
                       }
                     }
@@ -123,7 +123,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                        fluid(maxWidth: 300, maxHeight: 300) {
+                        fluid(maxWidth: 200, maxHeight: 200) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -140,7 +140,7 @@ export const query = graphql `
                     price
                     weight
                     image {
-                        fluid(maxWidth: 300, maxHeight: 300) {
+                        fluid(maxWidth: 200, maxHeight: 200) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -148,10 +148,14 @@ export const query = graphql `
             }
         }
     }
-  `
+  `;
 
+// "react-use-gesture": "^7.0.15",
+// "react-spring": "^8.0.27",
 // "express": "^4.17.1",
 //     "moment": "^2.24.0",
+// "@material-ui/lab": "^4.0.0-alpha.56",
+
 
 // import VK, {Comments} from "react-vk";
 // const Otzyvy = () => {
