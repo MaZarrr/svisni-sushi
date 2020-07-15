@@ -38,7 +38,7 @@ export const useStylesCart = makeStyles(theme => ({
     },
     deckript: {
         fontWeight: 400,
-        height: 95,
+        height: 100,
         overflowY: `auto`,
         textAlign: 'center',
         padding: 14,
@@ -480,6 +480,8 @@ export const StylingInfo = styled.section `
     margin-top: 30px;
     .map {
         padding-right: 20px; 
+        width: 95%;
+       height: 400px;
     }
      .mapDelivery {
         border-radius: 15px;
@@ -504,11 +506,11 @@ export const StylingInfo = styled.section `
         font-style: normal;
         font-weight: 900;
     }
-      h5 {
-        font-family: 'Oswald', cursive;
-        font-style: normal;
-        font-weight: 900;
-    }
+    //   h5 {
+    //     font-family: 'Oswald', cursive;
+    //     font-style: normal;
+    //     font-weight: 900;
+    // }
     h2 {
         font-family: 'Oswald', cursive;
         font-style: normal;
@@ -537,5 +539,7 @@ export const StylingInfo = styled.section `
     .map {
        padding-right: 20px;
        padding-left: 20px;
+       // width: 95%;
+       height: 250px;
     } 
 }`;

@@ -154,11 +154,11 @@ export const addPribor = (count) => (dispatch) => {
     // const {shoppingCart: {palochkiTotal}} = getStore()
     // const priborTotal = palochkiTotal >= 2 ? palochkiTotal + parseInt(count) : palochkiTotal * 1 + 1
     dispatch(addedPribor(count))
-}
+};
 
 export const saleRoll = (objRoll) => async (dispatch) => {
     await dispatch(addedSaleRoll(objRoll))
-}
+};
 export const salePizza = (objPizza) => async (dispatch) => await dispatch(addedSalePizza(objPizza))
 export const deletePizza = (id) => (dispatch) => dispatch(deletePizzaDarom(id))
 export const deleteRoll = (id) => (dispatch) => dispatch(deleteRollSale(id))
@@ -172,7 +172,7 @@ export const addedIngrideent = ({id, sostav, name, ingrideents, check, path = nu
         const ingrideentSostav = R.remove(ingrideentIndex, 1, sostav)
         dispatch(ingrideentMinus({id, path, pizzaIng, decrice: ingrideent.plus, name, check, ingrideentSostav, ingrideents, productPizza}))
     }
-}
+};
 
 const initialState = {
     cartItems: [],
@@ -184,16 +184,20 @@ const initialState = {
 
 export default createReducer({
     [addedToCart]: (state, {id, price, product}) => {
-        const res = updateOder(state, id, 1, price, product)
+        const res = updateOder(state, id, 1, price, product);
+        console.log(res)
+        localStorage.setItem('basketProduct', res);
+       const rr = JSON.parse(localStorage.getItem('basketProduct'));
+        console.log( rr)
         // const pizzaNew = R.defaultTo(product, state.newPizza)
         return {...state, cartItems: res.cartItems, orderTotal: res.orderTotal}},
     [removeFromCart]: (state, {id, price, product}) => {
-        const {cartItems, orderTotal} = updateOder(state, id, -1, price, product)
+        const {cartItems, orderTotal} = updateOder(state, id, -1, price, product);
         return { ...state, cartItems, orderTotal }
     },
     [allRemoveFromCart]: (state, {id, price, product}) => {
-        const item = state.cartItems.find((el) => el.id === id)
-        const {cartItems, orderTotal} = updateOder(state, id, -item.count, price, product)
+        const item = state.cartItems.find((el) => el.id === id);
+        const {cartItems, orderTotal} = updateOder(state, id, -item.count, price, product);
         return { ...state, cartItems, orderTotal}
     },
     [pizzaSize]: (state, {id, price, product, size}) => {
@@ -223,9 +227,9 @@ export default createReducer({
     },
 
     [pizzaCart]: (state, {id, productPizza, total, priceDef, size, mass}) => {
-        const pizzaProduct = R.defaultTo(productPizza, state.newPizza)
+        const pizzaProduct = R.defaultTo(productPizza, state.newPizza);
         const pizza = pizzaProduct.find((pizzaId) => pizzaId.id === id);
-        const itemIndexPizza = pizzaProduct.findIndex((data) => data.id === id)
+        const itemIndexPizza = pizzaProduct.findIndex((data) => data.id === id);
         const updateItemPizza = R.update(itemIndexPizza, {
            ...pizza,
             price: total,
@@ -235,7 +239,7 @@ export default createReducer({
             slug: pizza.slug,
             mass,
             contentful_id: pizza.contentful_id
-        })(pizzaProduct)
+        })(pizzaProduct);
         return {
             ...state,
             newPizza: updateItemPizza
@@ -243,7 +247,7 @@ export default createReducer({
     },
 
     [addedPribor]: (state, count) => {
-        const priborTotal = state.palochkiTotal > 1 ? state.palochkiTotal + parseInt(count) : state.palochkiTotal * 1 + 1
+        const priborTotal = state.palochkiTotal > 1 ? state.palochkiTotal + parseInt(count) : state.palochkiTotal * 1 + 1;
         return {
             ...state,
             palochkiTotal: priborTotal
