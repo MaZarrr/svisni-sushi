@@ -27,6 +27,7 @@ import {
 import {defaultTo} from "ramda";
 import {Container, Paper} from "@material-ui/core";
 
+
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;
 
@@ -97,16 +98,13 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
 });
 
     data.append('chopsticks', palochkiTotal);
-     const def = defaultTo({itemCartSale:{
-         priceDef: 1,
-         radioValue: 80
-         }}, itemCartSale)
+     const def = defaultTo(false, itemCartPizza)
 
-    const deliveryTotalPrice = total + stateDeliveryPrice.priceDel
-    if(delivery !== "Самовывоз" && (def.priceDef === 0 || def.radioValue === 79) ) {
-      data.append('totalPrice', `Цена с доставкой ${deliveryTotalPrice} руб.`);
+    const deliveryTotalPrice = total + stateDeliveryPrice.priceDel;
+    if(delivery !== "Самовывоз" && (def === true) ) {
+      data.append('totalPrice', `Цена с доставкой и акцией ${deliveryTotalPrice} руб.`);
     } else if(delivery !== "Самовывоз" && total <= stateDeliveryPrice.deliverySalePrice) {
-        data.append('totalPrice', `Цена + c доставкой ${deliveryTotalPrice} руб.`);
+        data.append('totalPrice', `Цена вместе c доставкой ${deliveryTotalPrice} руб.`);
     } else {
         data.append('totalPrice', total);
     }
@@ -188,7 +186,6 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
         return phoneValidate.test(phone.toLowerCase())
     };
 
-
     const buttonDisabled = () => {
         if(validateUserName() === true && validatePhone() === true && validateTextAria() === true ) {
             return false
@@ -196,8 +193,9 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
         return true
     };
 
-    const itemCartSale = items.find((data) => data.total === 79 || data.priceDef === 0)
-return (
+    const itemCartPizza = items.includes(items.find((data) => data.priceDef === 0));
+
+    return (
     <section >
     <SEO title="Оформление заказа"
     noindex={true}/>
@@ -481,18 +479,18 @@ return (
                         { delivery !== "Самовывоз" && !isEmpty(stateDeliveryPrice) &&
                         <>
                             <div>
-                                { itemCartSale === undefined &&
-                                <Typography variant={"h5"} style={{fontSize: 22}}>{total <= stateDeliveryPrice.deliverySalePrice ? <>
+                                { !itemCartPizza &&
+                                <Typography variant={"h5"} style={{fontSize: 18}}>{total <= stateDeliveryPrice.deliverySalePrice ? <>
                                     Доставка: + <strong>{stateDeliveryPrice.priceDel} ₽</strong></> : <strong>Доставка бесплатно</strong>}</Typography>
                                 }
-                                { itemCartSale === undefined &&
+                                { !itemCartPizza &&
                                 <Typography variant={"body2"}>{total <= stateDeliveryPrice.deliverySalePrice ? <>
                                         Для бесплатной доставки в {stateDeliveryPrice.name} сделайте заказ еще минимум
                                         на <strong> + {stateDeliveryPrice.deliverySalePrice - total} ₽</strong></>
                                     : ""}</Typography>
                                 }
-                                { itemCartSale !== undefined &&
-                                <Typography variant={"subtitle2"} style={{fontSize: 20}}>Доставка вместе с акцией + <strong>{stateDeliveryPrice.priceDel}</strong></Typography>
+                                { itemCartPizza &&
+                                <Typography variant={"subtitle2"} style={{fontSize: 16}}>Доставка с бесплатной пиццей Салями + <strong>{stateDeliveryPrice.priceDel} ₽</strong></Typography>
                                 }
                             </div>
                             <div>
@@ -519,10 +517,10 @@ return (
                                     </Select>
                                 </Grid>
 
-                                { itemCartSale !== undefined &&
+                                { itemCartPizza &&
                                 <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{` ${total + stateDeliveryPrice.priceDel} ₽`}</b> </Typography>
                                 }
-                                { itemCartSale === undefined &&
+                                { !itemCartPizza &&
                                 <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{total >= stateDeliveryPrice.deliverySalePrice ?
                                     `${total} ₽` : `${total + stateDeliveryPrice.priceDel} ₽`}</b></Typography>
                                 }
