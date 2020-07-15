@@ -175,32 +175,39 @@ export const addedIngrideent = ({id, sostav, name, ingrideents, check, path = nu
 };
 
 const initialState = {
-    cartItems: R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? [] : JSON.parse(localStorage.getItem('basketProduct')).cartItems,
-    orderTotal: R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? 0 : JSON.parse(localStorage.getItem('basketProduct')).orderTotal,
-    palochkiTotal: 0,
-    newPizza: null,
-    newWok: null
-    };
+        cartItems: typeof window !== `undefined` ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? [] : JSON.parse(localStorage.getItem('basketProduct')).cartItems : [],
+        orderTotal: typeof window !== `undefined` ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? 0 : JSON.parse(localStorage.getItem('basketProduct')).orderTotal : 0,
+        palochkiTotal: 0,
+        newPizza: null,
+        newWok: null
+};
 
 export default createReducer({
     [addedToCart]: (state, {id, price, product}) => {
         const res = updateOder(state, id, 1, price, product);
-        localStorage.setItem('basketProduct', JSON.stringify(res));
-        const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
-        return {...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}},
+        if (typeof window !== `undefined`) {
+            localStorage.setItem('basketProduct', JSON.stringify(res));
+            const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
+            return {...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}
+        }
+    },
     [removeFromCart]: (state, {id, price, product}) => {
         const {cartItems, orderTotal} = updateOder(state, id, -1, price, product);
+        if (typeof window !== `undefined`) {
         localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
         const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
         return { ...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal }
+        }
     },
     [allRemoveFromCart]: (state, {id, price, product}) => {
         const item = state.cartItems.find((el) => el.id === id);
         const {cartItems, orderTotal} = updateOder(state, id, -item.count, price, product);
-        localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
-        const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
-        return { ...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}
-    },
+        if (typeof window !== `undefined`) {
+            localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
+            const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
+            return {...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}
+        }
+        },
     [pizzaSize]: (state, {id, price, product, size}) => {
         const pizza = product.find((pizzaId) => pizzaId.id === id);
         const itemIndexPizza = state.cartItems.findIndex((data) => data.id === id);
@@ -235,7 +242,6 @@ export default createReducer({
            ...pizza,
             price: total,
             priceDef,
-            // priceIn33cm: pizza.priceIn33cm,
             size: {[size]: true},
             slug: pizza.slug,
             mass,
