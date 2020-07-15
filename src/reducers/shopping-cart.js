@@ -175,8 +175,8 @@ export const addedIngrideent = ({id, sostav, name, ingrideents, check, path = nu
 };
 
 const initialState = {
-    cartItems: [],
-    orderTotal: 0,
+    cartItems: R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? [] : JSON.parse(localStorage.getItem('basketProduct')).cartItems,
+    orderTotal: R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? 0 : JSON.parse(localStorage.getItem('basketProduct')).orderTotal,
     palochkiTotal: 0,
     newPizza: null,
     newWok: null
@@ -185,20 +185,21 @@ const initialState = {
 export default createReducer({
     [addedToCart]: (state, {id, price, product}) => {
         const res = updateOder(state, id, 1, price, product);
-        console.log(res)
-        localStorage.setItem('basketProduct', res);
-       const rr = JSON.parse(localStorage.getItem('basketProduct'));
-        console.log( rr)
-        // const pizzaNew = R.defaultTo(product, state.newPizza)
-        return {...state, cartItems: res.cartItems, orderTotal: res.orderTotal}},
+        localStorage.setItem('basketProduct', JSON.stringify(res));
+        const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
+        return {...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}},
     [removeFromCart]: (state, {id, price, product}) => {
         const {cartItems, orderTotal} = updateOder(state, id, -1, price, product);
-        return { ...state, cartItems, orderTotal }
+        localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
+        const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
+        return { ...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal }
     },
     [allRemoveFromCart]: (state, {id, price, product}) => {
         const item = state.cartItems.find((el) => el.id === id);
         const {cartItems, orderTotal} = updateOder(state, id, -item.count, price, product);
-        return { ...state, cartItems, orderTotal}
+        localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
+        const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
+        return { ...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}
     },
     [pizzaSize]: (state, {id, price, product, size}) => {
         const pizza = product.find((pizzaId) => pizzaId.id === id);

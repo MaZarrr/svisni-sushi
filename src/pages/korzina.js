@@ -174,7 +174,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
   };
 
     const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items))
-    console.log(items)
 return (
   <>
   <SEO title="Корзина" 
@@ -203,7 +202,6 @@ return (
        { items.map((item, idx) => {
         const {id, name, count, total, image, priceIn33cm, price, priceDef,
             textRollSale, textPizza, pizzaSale, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
-           console.log(descriptionIngrideents)
            return (
                <Paper key={id} style={{maxWidth: 400}} className="mt-3 mb-4 p-2">
                    <Grid item xs={12} sm={7}>
