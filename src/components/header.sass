@@ -21,26 +21,37 @@
         margin: 0 10vw 0 10vw
 
 .nav-item
-    font-size: 13px
+    font-size: 14px
     text-decoration: none
     min-width: 70px
     list-style: none
-    margin: auto 0 
-    padding: 0
-    border-radius: 5px
+    margin: auto 0
     font-family: 'Comfortaa', cursive
-    font-weight: 900
-    color: white
+    font-weight: 800
     @media screen and (max-width: 755px)
         font-size: 10px
         letter-spacing: -0.5px
 
-.nav-link:focus
-    border-left: 4px solid #F99C9C
-    border-radius: 10px
-
 .nav-link
-    text-transform: uppercase
+    border: solid 0 #FC5185
+    border-bottom-width: 0px
+    transition: border-bottom-width 0.2s, transform 0.2s
+    &:hover
+        border: solid 1px #FC5185
+        border-bottom-width: 3px
+        border-radius: 10px
+        color: blueviolet
+        transform: scale(1.04)
+
+.active
+    border: solid 1px #FC5185
+    border-bottom-width: 3px
+    border-radius: 10px
+    color: blueviolet
+    transform: scale(1.04)
+
+//.nav-link
+//    text-transform: uppercase
 
 @media screen and (max-width: 600px)
     ::-webkit-scrollbar

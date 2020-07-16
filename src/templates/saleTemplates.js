@@ -5,7 +5,7 @@ import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import SaleItem from "../components/SaleItem";
 
 const SaleTeamplate = ({data: {contentfulProductSale: {image, name,
-    detailedDescription} }}) => {
+    detailedDescription, slug}}, path}) => {
 
     const [load, setLoad] = useState(true)
     const [mdr, setMdr] = useState(null)
@@ -26,6 +26,7 @@ const SaleTeamplate = ({data: {contentfulProductSale: {image, name,
                         name={name}
                         image={image.fluid}
                         md={mdr}
+                        path={slug}
                     /> : <Spinner/> }
                 </ErrorBoundary>
     )
