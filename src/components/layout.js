@@ -6,6 +6,7 @@ import {useStyleLayout} from "./common/style";
 import loadable from '@loadable/component'
 import {connect} from "react-redux";
 import {Hidden} from "@material-ui/core";
+import Transition from "./common/transitionPage";
 
 const Footer = loadable(() => import('./footer'))
 
@@ -19,7 +20,9 @@ const classes = useStyleLayout();
       <div className={classes.root}>
         <main>
           <div className={classes.toolbar} />
-          {children}
+          <Transition location={pathname}>
+            {children}
+          </Transition>
         </main>
       </div>
 

@@ -20,6 +20,14 @@ export const useStylesCart = makeStyles(theme => ({
             padding: `25px 10px 15px 35px`
         }
     },
+    imgCarts: {
+        maxWidth: `100%`,
+        margin: 0,
+        transition: `transform 0.4s`,
+        '&:active, &:hover': {
+          transform: `scale(1.25)`
+        }
+    },
     deckriptSmall: {
         fontWeight: 400,
         height: 65,

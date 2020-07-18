@@ -85,7 +85,7 @@ return (
                                    <CardMedia
                                        className={classes.media}
                                        title={name}>
-                                       <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
+                                       <Img itemProp="image" fluid={fluid} alt={name} className={classes.imgCarts}/>
                                    </CardMedia>
                                    <CardContent>
                                        <SplitButton id={id} pizzaIng={updatePizza} ingrideents={ingrideents} sostav={sostav} path={path} ingrideentButtonStyle={ingrideentButtonStyle} dir={"center"}/>

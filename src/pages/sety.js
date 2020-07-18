@@ -14,12 +14,12 @@ import {defFilters} from "../reducers/filters";
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner/>
-})
+});
 
 const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
                   product, searchText, priceFilter, checkboxFilter, location, dispatch}) => {
 
-    const [load, setLoad] = React.useState(true)
+    // const [load, setLoad] = React.useState(true)
     const classes = useStylesCart();
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
         dispatch(productLoaded(setyProduct))
         // dispatch(setLoading(false))
         dispatch(defFilters())
-        setLoad(false)
+        // setLoad(false)
     }, [setyProduct, dispatch])
 
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter)
@@ -41,15 +41,15 @@ return (
     <h1 style={{fontFamily: `Oswald, cursive`,
     fontWeight: 600, fontSize: 40}}>Сеты</h1>
    </div>
-       { load === false ?
+       {/*{ load === false ?*/}
        <div>
        <CustomizedInputSearch location={location.pathname}/>
        <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
            <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
            image={image} product={product}/>
        </Grid>
-       </div> : <Spinner/>
-       }
+       </div>
+       {/*: <Spinner/>}*/}
     </section>
    </>
     )
