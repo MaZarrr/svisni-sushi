@@ -48,19 +48,19 @@ return (
   />
 
    <CarouselSvisni />
-    <div className="title_home">
-        <h1>Заказывайте роллы, суши и пиццу с доставкой</h1>
-    </div>
-      <Hidden smUp>
-          <Grid item xs={12} className={classes.root}>
-              <Card />
-          </Grid>
-      </Hidden>
-      <Hidden xsDown>
-          <Grid container>
-              <HomePageMenu dataIndex={dataIndex}/>
-          </Grid>
-      </Hidden>
+    {/*<div className="title_home">*/}
+    {/*    <h1>Заказывайте роллы, суши и пиццу с доставкой</h1>*/}
+    {/*</div>*/}
+    {/*  <Hidden smUp>*/}
+    {/*      <Grid item xs={12} className={classes.root}>*/}
+    {/*          <Card />*/}
+    {/*      </Grid>*/}
+    {/*  </Hidden>*/}
+    {/*  <Hidden xsDown>*/}
+    {/*      <Grid container>*/}
+    {/*          <HomePageMenu dataIndex={dataIndex}/>*/}
+    {/*      </Grid>*/}
+    {/*  </Hidden>*/}
   </section>
   )
 }

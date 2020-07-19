@@ -1,6 +1,6 @@
 import React from 'react'
 import {TransitionGroup, Transition as ReactTransition} from "react-transition-group";
-const timeout = 200;
+const timeout = 400;
 const getTransitionStyles = {
     entering: {
         position: `absolute`,

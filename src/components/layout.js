@@ -23,6 +23,11 @@ const classes = useStyleLayout();
           <Transition location={pathname}>
             {children}
           </Transition>
+          {/*{ pathname === "/sale" || pathname === "/o-nas" || pathname === "/order-processed" || pathname === "/dostavka-i-oplata" ||*/}
+          {/*pathname === "adres-i-kontakty" || pathname === "/korzina" || pathname === "/order" &&  <Transition location={pathname}>*/}
+          {/*  {children} </Transition>*/}
+          {/*}*/}
+          {/*{children}*/}
         </main>
       </div>
 
