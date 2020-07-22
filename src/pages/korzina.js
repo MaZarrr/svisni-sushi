@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import ButtonBase from '@material-ui/core/ButtonBase';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -19,7 +18,6 @@ import ButtonSize from "../components/common/ButtonSizePizza";
 import {addedCart, removeCart, allRemoveCart, addPribor, saleRoll, salePizza, deletePizza, deleteRoll} from "../reducers/shopping-cart";
 import {getProduct} from "../reducers/app";
 import SplitButton from "../components/SplitButton";
-// import TextField from "@material-ui/core/TextField";
 import {Container} from "@material-ui/core";
 import uniqid from 'uniqid'
 
@@ -201,7 +199,7 @@ return (
            <div className="d-flex flex-column">
        { items.map((item, idx) => {
         const {id, name, count, total, image, priceIn33cm, price, priceDef,
-            textRollSale, textPizza, pizzaSale, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
+            textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
            return (
                <Paper key={id} style={{maxWidth: 400}} className="mt-3 mb-4 p-2">
                    <Grid item xs={12} sm={7}>
@@ -290,8 +288,12 @@ return (
                                </>
                                }
                                {wok &&
-                               <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
+                                <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
                                }
+                               {edit !== null &&
+                               <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
+                               }
+
                            </div>
                        </div>
 

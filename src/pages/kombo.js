@@ -49,11 +49,12 @@ export const queryKombo = graphql `
               slug
               name
               price
+                edit
               weight
               count
               description
               image {
-                  fluid(maxWidth: 370) {
+                  fluid(maxWidth: 380) {
                     ...GatsbyContentfulFluid
                   }
               }

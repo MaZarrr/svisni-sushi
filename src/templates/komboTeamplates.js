@@ -1,19 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby';
-import { connect } from 'react-redux';
 import KomboItem from "../components/KomboItem";
-// import {addedCart} from "../reducers/shopping-cart";
-import * as R from 'ramda'
 
 const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
-    console.log(contentfulProductKombo)
-    // const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan)
-    // const nameProduct = contentfulProduct.description.toLowerCase().split(', ')
-    // const kitProduct = product.filter(({node: item}) => {
-    //     return R.contains(item.name.toLowerCase(), nameProduct)
-    // })
     return  (
         <KomboItem
+                id={contentfulProductKombo.id}
                 name={contentfulProductKombo.name}
                 price={contentfulProductKombo.price}
                 description={contentfulProductKombo.description}
@@ -21,42 +13,20 @@ const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
                 count={contentfulProductKombo.count}
                 image={contentfulProductKombo.image.fluid}
                 edit={contentfulProductKombo.edit}
+                slug={contentfulProductKombo.slug}
                 products={{sostavDefault: contentfulProductKombo.sostavDefault,
+                    ContentfulProductHotRolly: contentfulProductKombo.productsKomboRolls,
                     ContentfulProductSlognyeRolly: contentfulProductKombo.productsKomboRolls,
                     ContentfulProductWok: contentfulProductKombo.productsKomboWok,
                     ContentfulProductNapitki: contentfulProductKombo.productsKomboNapitki,
-                    ContentfulProductPizza: contentfulProductKombo.productsCombo
-
-                }}
-
-                // sostavDefault={contentfulProductKombo.sostavDefault}
-                // productsKomboRolls={contentfulProductKombo.productsKomboRolls}
-                // productsKomboWok={contentfulProductKombo.productsKomboWok}
-                // productsKomboNapitki={contentfulProductKombo.productsKomboNapitki}
-                // productsComboPizza={contentfulProductKombo.productsCombo}
-        >
-
+                    ContentfulProductPizza: contentfulProductKombo.productsCombo,
+                    ContentfulProductKlassika: contentfulProductKombo.contentfulProductKlassika,
+                    ContentfulProductSouse: contentfulProductKombo.contentfulProductSouses,
+                    ContentfulProductZakuski: contentfulProductKombo.productsKomboZakuski
+                }}>
         </KomboItem>
-
-            //     added={() => addedToCart({id: contentfulProduct.id, price: null,
-            //         product: [{
-            //             id: contentfulProduct.id,
-            //             name: contentfulProduct.name,
-            //             price: contentfulProduct.price,
-            //             count: contentfulProduct.count,
-            //             image: contentfulProduct.image
-            //
-            //         }
-            //         ]}
-            //     )}
-
     )};
 
-// const mapDispatchToProps = (dispatch) => ({
-//     addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))
-// })
-
-// export default connect(null, mapDispatchToProps)(KomboTeamplate)
 export default KomboTeamplate
 
 export const query = graphql `
@@ -71,11 +41,39 @@ export const query = graphql `
                     slug
                     weight
                     image {
-                        fluid(maxWidth: 390) {
+                        fluid(maxWidth: 600) {
                             ...GatsbyContentfulFluid
                         }
                     }
                     sostavDefault {
+                        ... on ContentfulProductZakuski {
+                            id
+                            name
+                            image {
+                                fluid(maxWidth: 250) {
+                                    ...GatsbyContentfulFluid
+                                }
+                            }
+                        }
+                        ... on ContentfulProductSouse {
+                            id
+                            name
+                            image {
+                                fluid(maxWidth: 250) {
+                                    ...GatsbyContentfulFluid
+                                }
+                            } 
+                        }
+                        ... on ContentfulProductKlassika {
+                            id
+                            name
+                            description
+                            image {
+                                fluid(maxWidth: 250) {
+                                    ...GatsbyContentfulFluid
+                                }
+                            } 
+                        }
                         ... on ContentfulProductHotRolly {
                             id
                             name
@@ -184,5 +182,39 @@ export const query = graphql `
                         count
                         description
                     }
+                    contentfulProductKlassika {
+                id
+                name
+                price
+                image {
+                    fluid(maxWidth: 250) {
+                        ...GatsbyContentfulFluid
+                    }
+                }
+                count
+                description
+            }
+                    contentfulProductSouses {
+                id
+                name
+                price
+                image {
+                    fluid(maxWidth: 250) {
+                        ...GatsbyContentfulFluid
+                    }
+                }
+                count
+            }
+                    productsKomboZakuski {
+                id
+                name
+                price
+                count
+                image {
+                    fluid(maxWidth: 250) {
+                        ...GatsbyContentfulFluid
+                    }
+                }
+            }
         }
     }`;

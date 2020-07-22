@@ -24,7 +24,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
         <>
             {visibleItems.map((products) => {
 
-                const {id, name, slug, description, price, weight, count, image: {fluid}} = products;
+                const {id, name, slug, description, price, weight, count, edit, image: {fluid}} = products;
                 return (
                     <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                           item xs={12} sm={6} md={3} key={id}>
@@ -102,6 +102,9 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                             </CardContent>
 
                             <CardActions disableSpacing>
+
+                                {/* Проверка - комбо редактируется или нет */}
+                                {edit === false &&
                                 <Button
                                     variant="contained"
                                     color="secondary"
@@ -109,9 +112,34 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
                                     <ShoppingCartIcon/>
                                 </Button>
+                                }
 
-                                {  slugCategogy === "/sety" ||
-                                slugCategogy === "/pizza" || slugCategogy === "/kombo" ?
+                                {/*Показывать кнопку редактирования комбо*/}
+                                { edit === true ?
+                                    <Button
+                                        itemProp="url"
+                                        component={Link}
+                                        to={`${slugCategogy}/${slug}`}
+                                        variant="contained"
+                                        style={{backgroundColor: "orange"}}>
+                                        Выбрать
+                                    </Button> : null
+                                }
+
+                                {/*Показывать корзину для всех путей*/}
+                                { slugCategogy !== "/kombo" &&
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.button}
+                                    onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
+                                    <ShoppingCartIcon/>
+                                </Button>
+                                }
+
+                                {/*Показывать переход на эти пути*/}
+                                { slugCategogy === "/sety" ||
+                                slugCategogy === "/pizza" ?
                                     <Button
                                         itemProp = "url"
                                         component={Link}
@@ -123,6 +151,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                         <MoreIcon/>
                                     </Button> : null
                                 }
+
                             </CardActions>
                         </Card>
                     </Grid>
@@ -130,6 +159,6 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
             })}
         </>
     )
-}
+};
 
 export default connect(null, null)(CardsMenuPage)

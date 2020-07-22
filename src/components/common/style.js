@@ -482,7 +482,7 @@ export const useStyleSearchInput = makeStyles(theme => ({
     }
 }))
 
-export const StylingInfo = styled.section `
+export const StylingInfo = styled.section ` 
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     margin-top: 30px;
