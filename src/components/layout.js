@@ -6,10 +6,6 @@ import {useStyleLayout} from "./common/style";
 import loadable from '@loadable/component'
 import {connect} from "react-redux";
 import {Hidden} from "@material-ui/core";
-<<<<<<< HEAD
-=======
-// import Transition from "./common/transitionPage";
->>>>>>> develop
 
 const Footer = loadable(() => import('./footer'))
 
@@ -48,9 +44,3 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, null)(Layout)
 
-
-// {/*{*/}
-// {/*  pathname !== "/korzina" && pathname !== "/order" ?*/}
-// <Footer/>
-// {/*: ''*/}
-// // }
