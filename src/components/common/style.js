@@ -367,13 +367,6 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         width: `98%`,
         margin: `0 auto`,
     },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
     buttonCombo: {
         margin: theme.spacing(1),
         backgroundColor: `orange`,
@@ -381,14 +374,6 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         borderRadius: 3,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         color: 'white',
-    },
-    overline: {
-        display: `flex`,
-        justifyContent: 'space-between',
-    },
-    img: {
-        margin: 0,
-        padding: 0
     }
 }))
 

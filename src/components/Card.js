@@ -12,9 +12,33 @@ import Typography from "@material-ui/core/Typography";
 import ItemsCarousel from 'react-items-carousel';
 import Grid from "@material-ui/core/Grid";
 import {Hidden} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+
+const useStylesCard = makeStyles(theme => ({
+    titleIndex: {
+        textAlign: "center",
+        fontSize: '36px',
+        width: `100%`,
+        padding: `20px 10px`,
+        [theme.breakpoints.down('600')]: {
+            fontSize: '30px',
+            padding: `10px 10px`
+        },
+    },
+    buttonCombo: {
+        margin: theme.spacing(1),
+        backgroundColor: `orange`,
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+    },
+}));
 
 const RecipeReviewCard = () => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
+    const classes = useStyleCardIndexPage();
+    const classesCard = useStylesCard()
 
   const {allContentfulContentIndex: {edges}, allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(graphql `
     {
@@ -53,11 +77,11 @@ const RecipeReviewCard = () => {
       }
     }
   `);
-  const classes = useStyleCardIndexPage();
+
 
   return (
       <div className={`mt-4 ${classes.root}`}>
-        <Typography className={classes.titleIndex} variant={"h2"}>Собери свой комбо набор из пиццы, суши и роллов</Typography>
+        <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо набор из пиццы, суши и роллов</Typography>
        <Typography variant={'button'}>
          <Link to={"/kombo"}>Все комбо</Link>
        </Typography>
@@ -94,7 +118,7 @@ const RecipeReviewCard = () => {
                 <CardActions disableSpacing>
                   <Button
                       variant="contained"
-                      className={classes.buttonCombo}
+                      className={classesCard.buttonCombo}
                       component={Link}
                       to={`/kombo/${homeProduct.slug}`}>
                     Выбрать
@@ -126,7 +150,7 @@ const RecipeReviewCard = () => {
                  <CardActions disableSpacing>
                    <Button
                        variant="contained"
-                       className={classes.buttonCombo}
+                       className={classesCard.buttonCombo}
                        component={Link}
                        to={`/kombo/${homeProduct.slug}`}>
                      Выбрать
@@ -141,7 +165,7 @@ const RecipeReviewCard = () => {
 
         {/*Меню выбор*/}
         <Grid container className="mt-4">
-          <Typography className={classes.titleIndex}
+          <Typography className={classesCard.titleIndex}
             variant={"h2"}>Заказывайте роллы, суши и пиццу с доставкой</Typography>
           {menu.map(({node: homeMenu}) => (
               <Grid item xs={6} sm={4} key={homeMenu.id} >
