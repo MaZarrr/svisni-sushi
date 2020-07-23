@@ -99,6 +99,7 @@ const RecipeReviewCard = () => {
                       to={`/kombo/${homeProduct.slug}`}>
                     Выбрать
                   </Button>
+                    <Typography style={{fontSize: 22}} className="ml-auto mr-2" variant={"body1"}>{homeProduct.price} ₽</Typography>
                 </CardActions>
 
               </Card>
@@ -130,6 +131,7 @@ const RecipeReviewCard = () => {
                        to={`/kombo/${homeProduct.slug}`}>
                      Выбрать
                    </Button>
+                     <Typography style={{fontSize: 22}} className="ml-auto mr-2" variant={"body1"}>{homeProduct.price} ₽</Typography>
                  </CardActions>
                </Card>
                </Grid>

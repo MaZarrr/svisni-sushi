@@ -130,7 +130,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                         <div style={{ overflowY: `scroll`, background: `lightgrey`, height: `460px`,
                             padding: `0 30px 30px 7px`, borderRadius: 10}}>
                         { productSostav.map((el, idx) => (
-                            <div role="button" key={el.id}
+                            <div aria-hidden={true} onKeyPress={onActiveItem} key={el.id}
                                  className={clsx(classes.defItem, {
                                      [classes.activeItem]: activeItem[el.id],
                                  })}
@@ -147,7 +147,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             <div className="d-flex mt-2" >
                                 <Typography style={{fontSize: 20}} variant={"body1"}>
                                     Стоимость:</Typography>
-                                <Typography style={{fontSize: 20}} className="ml-auto" variant={"subtitle2"}> <s>{priceSale()}</s> ₽ {price} ₽</Typography>
+                                <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()}</s> ₽ {price} ₽</Typography>
                             </div>
                             <Button className="mt-3" variant={"contained"}
                                     color={"primary"}
@@ -161,9 +161,10 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                     <Grid item xs={12} sm={7}>
                         <Grid className="d-flex flex-wrap justify-content-around" style={{overflowY: `scroll`, height: `460px`, borderRadius: 10, border: `1px solid lightgrey`}}>
                         { activeType !== '' ? items.map((el) => (
-                            <div key={el.id}  className={clsx(classes.defItem, {
-                                [classes.activeItem]: activeItems[el.id],
-                            })} onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
+                            <div  role="button" tabindex="0" aria-roledescription="attachment button"
+                                  onKeyPress={onActiveItems} key={el.id}  className={clsx(classes.defItem, {
+                                [classes.activeItem]: activeItems[el.id]})}
+                                onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
                                 name: el.name, image: el.image, __typename: activeType, price: el.price })}
                                  style={{ width: `120px`, cursor: 'pointer',
                                     margin: 7, border: `1px solid lightgrey`,
@@ -188,6 +189,8 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                         <Grid item xs={12}>
                             { productSostav.map((el, idx) => (
                                 <div key={el.id}
+                                     role="button" tabindex="0" aria-roledescription="attachment button"
+                                     onKeyPress={onActiveItem}
                                      className={classes.activeItem}
                                      onClick={() => onActiveItem(el.id, el.__typename, idx)}>
                                     <Img style={{width: 100}} fluid={el.image.fluid} alt={el.name}/>
@@ -201,7 +204,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             <div className="d-flex mt-2" >
                             <Typography style={{fontSize: 20}} variant={"body1"}>
                                 Стоимость:</Typography>
-                            <Typography style={{fontSize: 20}} className="ml-auto" variant={"subtitle2"}> <s>{priceSale()}</s> ₽ {price} ₽</Typography>
+                            <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()}</s> ₽ {price} ₽</Typography>
                             </div>
                             <Button className="mt-3" variant={"contained"}
                                     color={"primary"}

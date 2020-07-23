@@ -329,7 +329,8 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
     titleIndex: {
         textAlign: "center",
         fontSize: '36px',
-        padding: `0 10px`,
+        width: `100%`,
+        padding: `20px 10px`,
         [theme.breakpoints.down('600')]: {
             fontSize: '30px',
             padding: `10px 10px`
