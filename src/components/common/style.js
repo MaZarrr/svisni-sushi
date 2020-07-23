@@ -99,9 +99,6 @@ export const useStylesCart = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    // colorDefault: {
-    //     backgroundColor: `red`
-    // },
     button: {
         margin: theme.spacing(1),
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -111,7 +108,6 @@ export const useStylesCart = makeStyles(theme => ({
         color: 'white',
     },
     buttonInfo: {
-        // margin: theme.spacing(1),
         marginLeft: `auto`,
         background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -154,8 +150,6 @@ export const useStyleOrder = makeStyles(theme => ({
     },
     paper: {
         padding: theme.spacing(2),
-        // paddingLeft: theme.spacing(4),
-        // marginBottom: 20,
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
@@ -186,14 +180,7 @@ export const useStyleOrder = makeStyles(theme => ({
         padding: 20,
         boxShadow: `0px 4px 8px rgba(0, 0, 0, 0.5)`,
         maxWidth: '65%',
-        // [theme.breakpoints.down('sm')]: {
-        //     maxWidth: '97%'
-        // }
-    },
-    // label: {
-    //     color: `white`,
-    //     fontSize: 20
-    // }
+    }
 }))
 
 export const IOSSwitch = withStyles(theme => ({
@@ -339,25 +326,30 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         alignItems: `center`,
         borderRadius: `15px`
     },
-    title: {
-        fontFamily: 'Comfortaa',
-        fontWeight: 800,
-        fontDisplay: `fallback`
-    },
-    titleH1: {
-        fontFamily: 'Oswald',
-        fontWeight: 700,
-        padding: `35px 10px 15px 35px`,
-        fontSize: 40,
-        borderBottom: `1px solid lightgrey`,
-        display: `flex`,
+    titleIndex: {
+        textAlign: "center",
+        fontSize: '36px',
+        padding: `0 10px`,
         [theme.breakpoints.down('600')]: {
-            margin: 0,
+            fontSize: '30px',
+            padding: `10px 10px`
         },
-        [theme.breakpoints.down('475')]: {
-            fontSize: 30,
-            padding: `25px 10px 15px 35px`
-        }
+    },
+    cardCombo: {
+        minWidth: `85%`,
+        borderRadius: `10px`,
+        margin: `10px auto 0 auto`,
+        [theme.breakpoints.up('500')]: {
+            maxWidth: `75%`,
+        },
+    },
+    cardComboPc: {
+        borderRadius: `10px`,
+        width: `100%`,
+        margin: `10px auto 0 auto`,
+        [theme.breakpoints.up('500')]: {
+            maxWidth: `75%`,
+        },
     },
     card: {
         minWidth: `85%`,
@@ -371,7 +363,7 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         },
     },
     media: {
-        maxWidth: `98%`,
+        width: `98%`,
         margin: `0 auto`,
     },
     expand: {
@@ -381,17 +373,9 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
             duration: theme.transitions.duration.shortest,
         }),
     },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-    avatar: {
-        border: `1px solid #000`,
-        width: `50px`,
-        height: `50px`
-    },
-    button: {
+    buttonCombo: {
         margin: theme.spacing(1),
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        backgroundColor: `orange`,
         border: 0,
         borderRadius: 3,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',

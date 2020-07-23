@@ -3,6 +3,31 @@ import { graphql } from 'gatsby';
 import KomboItem from "../components/KomboItem";
 
 const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
+
+    const pizzas = () => {
+    if(contentfulProductKombo.largePizza === null) return;
+
+      if(!!contentfulProductKombo.largePizza) {
+          return contentfulProductKombo.productsCombo.map(el => {
+              return {...el, price: el.priceIn33cm}
+          })
+      }
+      return contentfulProductKombo.productsCombo
+    };
+    const sostavDefault = () => {
+        if (!!contentfulProductKombo.largePizza) {
+            const pizzas = contentfulProductKombo.sostavDefault.filter(el => el.__typename === "ContentfulProductPizza");
+            const newPizzas = pizzas.map(el => {
+                return {...el, price: el.priceIn33cm}
+            });
+
+            const notPizza = contentfulProductKombo.sostavDefault.filter(el => el.__typename !== "ContentfulProductPizza");
+            return newPizzas.concat(notPizza)
+
+        }
+        return contentfulProductKombo.sostavDefault
+    };
+
     return  (
         <KomboItem
                 id={contentfulProductKombo.id}
@@ -13,13 +38,14 @@ const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
                 count={contentfulProductKombo.count}
                 image={contentfulProductKombo.image.fluid}
                 edit={contentfulProductKombo.edit}
+                largePizza={contentfulProductKombo.largePizza}
                 slug={contentfulProductKombo.slug}
-                products={{sostavDefault: contentfulProductKombo.sostavDefault,
+                products={{sostavDefault: sostavDefault(),
                     ContentfulProductHotRolly: contentfulProductKombo.productsKomboRolls,
                     ContentfulProductSlognyeRolly: contentfulProductKombo.productsKomboRolls,
                     ContentfulProductWok: contentfulProductKombo.productsKomboWok,
                     ContentfulProductNapitki: contentfulProductKombo.productsKomboNapitki,
-                    ContentfulProductPizza: contentfulProductKombo.productsCombo,
+                    ContentfulProductPizza: pizzas(),
                     ContentfulProductKlassika: contentfulProductKombo.contentfulProductKlassika,
                     ContentfulProductSouse: contentfulProductKombo.contentfulProductSouses,
                     ContentfulProductZakuski: contentfulProductKombo.productsKomboZakuski
@@ -38,6 +64,7 @@ export const query = graphql `
                     description
                     price
                     edit
+                    largePizza
                     slug
                     weight
                     image {
@@ -49,6 +76,7 @@ export const query = graphql `
                         ... on ContentfulProductZakuski {
                             id
                             name
+                            price
                             image {
                                 fluid(maxWidth: 250) {
                                     ...GatsbyContentfulFluid
@@ -58,6 +86,7 @@ export const query = graphql `
                         ... on ContentfulProductSouse {
                             id
                             name
+                            price
                             image {
                                 fluid(maxWidth: 250) {
                                     ...GatsbyContentfulFluid
@@ -67,6 +96,7 @@ export const query = graphql `
                         ... on ContentfulProductKlassika {
                             id
                             name
+                            price
                             description
                             image {
                                 fluid(maxWidth: 250) {
@@ -77,6 +107,7 @@ export const query = graphql `
                         ... on ContentfulProductHotRolly {
                             id
                             name
+                            price
                             description
                             image {
                                 fluid(maxWidth: 250) {
@@ -87,6 +118,7 @@ export const query = graphql `
                         ... on ContentfulProductNapitki {
                             id
                             name
+                            price
                             description
                             image {
                                 fluid(maxWidth: 250) {
@@ -97,6 +129,8 @@ export const query = graphql `
                         ... on ContentfulProductPizza {
                             id
                             name
+                            price
+                            priceIn33cm
                             description
                             image {
                                 fluid(maxWidth: 250) {
@@ -107,6 +141,7 @@ export const query = graphql `
                         ... on ContentfulProductSlognyeRolly {
                             id
                             name
+                            price
                             description
                             image {
                                 fluid(maxWidth: 250) {
@@ -117,6 +152,7 @@ export const query = graphql `
                         ... on ContentfulProductWok {
                             id
                             name
+                            price
                             description
                             image {
                                 fluid(maxWidth: 250) {
@@ -174,6 +210,7 @@ export const query = graphql `
                         id
                         name
                         price
+                        priceIn33cm
                         image {
                             fluid(maxWidth: 250) {
                                 ...GatsbyContentfulFluid
@@ -194,7 +231,7 @@ export const query = graphql `
                 count
                 description
             }
-                    contentfulProductSouses {
+            contentfulProductSouses {
                 id
                 name
                 price
@@ -205,7 +242,7 @@ export const query = graphql `
                 }
                 count
             }
-                    productsKomboZakuski {
+            productsKomboZakuski {
                 id
                 name
                 price
