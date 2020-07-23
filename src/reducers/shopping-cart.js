@@ -46,6 +46,11 @@ const updateCartItems = (cartItems, item, idx) => {
         return R.append(newItem, cartItems)
     }
 
+    if(!R.isNil(item.edit) && item.description !== cartItems[idx].description) {
+        const newItem = R.merge(item, {id: uniqid(), count: 1, total: item.price});
+        return R.append(newItem, cartItems)
+    }
+
     return R.update(idx, item, cartItems)
 };
 
@@ -114,6 +119,7 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
         name,
         pribor,
         priceDef: pricePizza,
+        edit: setу.edit,
         price: priceRadio,
         description: setу.description,
         slug: setу.slug,
@@ -139,7 +145,7 @@ const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
         cartItems: updateCartItems(cartItems, newItem, itemIndex)
     };
 
-}
+};
 
 // action func
 export const addedCart = (data) => (dispatch) => dispatch(addedToCart(data));

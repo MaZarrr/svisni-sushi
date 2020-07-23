@@ -19,7 +19,7 @@ const SetyTeamplate = ({data: {contentfulProduct,
     const nameProduct = contentfulProduct.description.toLowerCase().split(', ')
     const kitProduct = product.filter(({node: item}) => {
       return R.contains(item.name.toLowerCase(), nameProduct)
-    })
+    });
  return  (
      <>
     <SetyItem 

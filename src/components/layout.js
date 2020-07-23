@@ -6,10 +6,14 @@ import {useStyleLayout} from "./common/style";
 import loadable from '@loadable/component'
 import {connect} from "react-redux";
 import {Hidden} from "@material-ui/core";
+<<<<<<< HEAD
+=======
+// import Transition from "./common/transitionPage";
+>>>>>>> develop
 
 const Footer = loadable(() => import('./footer'))
 
-const Layout = ({ children, location: {pathname} }) => {
+const Layout = ({ children }) => {
 
 const classes = useStyleLayout();
 

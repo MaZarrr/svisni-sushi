@@ -58,7 +58,7 @@ return (
     </LayoutItem>
     </>
     )
-}
+};
 
 export default SetyItem
 
