@@ -21,29 +21,6 @@ const styles = {
 
 function DemoWidth() {
 
-=======
-    header: {
-        paddingTop: '8px',
-        background: `#f0ecec`,
-    },
-    h1Home: {
-        fontFamily: 'Oswald, cursive',
-        fontWeight: '800',
-        lineHeight: 2,
-        fontSize: '46px',
-        padding: `0 0 0 35px`,
-        [theme.breakpoints.down('600')]: {
-            fontSize: '32px',
-            color: `#000`,
-            textAlign: `center`,
-            padding: 0
-        },
-    },
-    button: {
-        margin: `0 auto`,
-        width: `100%`
-    }
-}));
 
 const styles = {
     root: {
