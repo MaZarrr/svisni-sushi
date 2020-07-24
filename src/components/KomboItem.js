@@ -9,7 +9,7 @@ import uniqid from 'uniqid'
 import {StylingInfo} from "./common/style";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
-import {pluck, sum, compose} from "ramda";
+import {pluck, sum, compose, product} from "ramda";
 import Backdrop from "@material-ui/core/Backdrop";
 import Hidden from "@material-ui/core/Hidden";
 import ItemsCarousel from 'react-items-carousel';
@@ -235,12 +235,26 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                         disableSwipe={false}
                                         alwaysShowChevrons={false}
                                         numberOfCards={1}
+                                        // isFirstScroll={() => setActiveItemIndex(0)}
+                                        // isLastScroll={() => setActiveItemIndex(items.length)}
                                         slidesToScroll={1}
                                         outsideChevron={false}
                                         showSlither={true}
                                         firstAndLastGutter={true}
                                         activeItemIndex={activeItemIndex}
-                                        requestToChangeActive={value => setActiveItemIndex(value)}>
+                                        requestToChangeActive={value =>  {
+                                            // const lastIndex = activeItemIndex >= products[activeType].length
+                                            // console.log(lastIndex)
+                                            // const firsIndex = activeItemIndex === 0;
+                                            // if(lastIndex === true) {
+                                            //     setActiveItemIndex(0)
+                                            // }
+                                            // // else if(firsIndex === true) {
+                                            // //     setActiveItemIndex(0)
+                                            // // } else {
+                                                setActiveItemIndex(value)
+                                            // }
+                                        }}>
                                         { items.map((el) => (
                                             <Card key={el.id} style={{borderRadius: 10}}>
                                                 <CardMedia

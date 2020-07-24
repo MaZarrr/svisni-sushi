@@ -1,12 +1,15 @@
 import React from 'react';
-import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { graphql, useStaticQuery, Link } from "gatsby"
 import Img from 'gatsby-image';
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+import SwipeableViews from 'react-swipeable-views';
+import { virtualize } from 'react-swipeable-views-utils';
+import { mod } from 'react-swipeable-views-core';
+
+const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
 const useStyleCarousel = makeStyles(theme => ({
     root: {
@@ -17,6 +20,7 @@ const useStyleCarousel = makeStyles(theme => ({
         },
         [theme.breakpoints.down('475')]: {
             marginBottom: 0,
+            minHeight: 170
         },
     },
     header: {
@@ -32,12 +36,15 @@ const useStyleCarousel = makeStyles(theme => ({
         [theme.breakpoints.down('600')]: {
             fontSize: '36px',
             color: `#000`,
-            padding: `0 0 0 20px`,
+            padding: `0 0 0 34px`,
         },
     },
-    button: {
-        margin: `0 auto`,
-        width: `100%`
+    image: {
+        borderRadius: 13,
+        [theme.breakpoints.down('600')]: {
+            borderRadius: 5,
+            height: 90,
+        },
     }
 }));
 
@@ -47,11 +54,6 @@ const styles = {
     },
     slideContainer: {
         padding: '0 10px',
-    },
-    slide: {
-        padding: 15,
-        minHeight: 100,
-        color: '#fff',
     }
 };
 
@@ -81,20 +83,54 @@ function DemoWidth() {
         }
     `)
 
+    function slideRenderer(params) {
+        const { index, key } = params;
+
+        switch (mod(index, 3)) {
+            case 0:
+                return (
+                    <div key={key}>
+                        <Link to={data.allContentfulCarouselSiteImage.edges[0].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[0].node.imgCarouselPc.fluid}
+                                 className={classes.image} imgStyle={{maxWidth: 1300}}
+                                 alt={data.allContentfulCarouselSiteImage.edges[0].node.name} />
+                        </Link>
+                    </div>
+                );
+
+            case 1:
+                return (
+                    <div key={key}>
+                        <Link to={data.allContentfulCarouselSiteImage.edges[1].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[1].node.imgCarouselPc.fluid}
+                                 className={classes.image} imgStyle={{maxWidth: 1300}}
+                                 alt={data.allContentfulCarouselSiteImage.edges[1].node.name} />
+                        </Link>
+                    </div>
+                );
+
+            case 2:
+                return (
+                    <div key={key}>
+                        <Link to={data.allContentfulCarouselSiteImage.edges[2].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[2].node.imgCarouselPc.fluid}
+                                 className={classes.image} imgStyle={{maxWidth: 1300}}
+                                 alt={data.allContentfulCarouselSiteImage.edges[2].node.name} />
+                        </Link>
+                    </div>
+                );
+
+            default:
+                return null;
+        }
+    }
+
     return (
         <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
             <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
         </Paper>
-        <AutoPlaySwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-            {data.allContentfulCarouselSiteImage.edges.map((step, index) => (
-                <div key={step.node.id}>
-                    <Link to={step.node.slug}>
-                        <Img fluid={step.node.imgCarouselPc.fluid} style={{borderRadius: 13, marginTop: 5}} imgStyle={{maxWidth: 1300}} alt={step.node.id} />
-                    </Link>
-                </div>
-            ))}
-        </AutoPlaySwipeableViews>
+            <VirtualizeSwipeableViews style={styles.root} slideRenderer={slideRenderer} slideStyle={styles.slideContainer}/>
         </div>
     )
 }
