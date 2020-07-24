@@ -17,10 +17,9 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import {
-    addedCart
-} from "../reducers/shopping-cart";
+import {addedCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
+import CloseIcon from '@material-ui/icons/Close';
 
 export const useStyleKombo = makeStyles(theme => ({
     defItem: {
@@ -63,6 +62,8 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
     const onActiveItems = (id, item) => {
 
         setActiveItems({[id]: true});
+        setActiveItemIndex(0);
+
             const newProducts = [
                 ...productSostav.slice(0, activeIndexSostav), // все элементы до нужного
                 {...item, id: uniqid()},
@@ -86,9 +87,9 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
         }
     };
 
-    // const handleClose = () => {
-    //     setOpen(false);
-    // };
+    const handleClose = () => {
+        setOpen(false);
+    };
     const handleToggle = () => {
         setOpen(!open);
     };
@@ -147,7 +148,8 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             <div className="d-flex mt-2" >
                                 <Typography style={{fontSize: 20}} variant={"body1"}>
                                     Стоимость:</Typography>
-                                <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()}</s> ₽ {price} ₽</Typography>
+                                <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}>
+                                    <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
                             </div>
                             <Button className="mt-3" variant={"contained"}
                                     color={"primary"}
@@ -158,6 +160,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                         </div>
                     </Grid>
 
+                    {/*Выбор товаров из предложенных компьютер*/}
                     <Grid item xs={12} sm={7}>
                         <Grid className="d-flex flex-wrap justify-content-around" style={{overflowY: `scroll`, height: `460px`, borderRadius: 10, border: `1px solid lightgrey`}}>
                         { activeType !== '' ? items.map((el) => (
@@ -174,15 +177,15 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                     <Typography  style={{fontSize: 14, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
                                 </div>
                             </div>
-
                         )) : <div style={{width: `460px`}}><Img fluid={image} alt={name}/></div> }
                         </Grid>
                     </Grid>
-
                     </Grid>
                     </Hidden>
+
                     </div>
 
+                    {/*Карусель товаров телефон*/}
                     <Hidden smUp>
                     <Grid container direction={"column"}>
                         <ButtonBack back="/kombo" />
@@ -204,7 +207,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             <div className="d-flex mt-2" >
                             <Typography style={{fontSize: 20}} variant={"body1"}>
                                 Стоимость:</Typography>
-                            <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()}</s> ₽ {price} ₽</Typography>
+                            <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
                             </div>
                             <Button className="mt-3" variant={"contained"}
                                     color={"primary"}
@@ -237,11 +240,11 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                     <Card key={el.id} style={{borderRadius: 10}}>
                                         <CardMedia
                                             title={el.name}>
-                                            <Img fluid={el.image.fluid} alt={el.name} />
+                                            <Img style={{width: `80%`, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name} />
                                         </CardMedia>
                                         <CardContent>
                                             <Typography variant={"h6"}>{el.name}</Typography>
-                                            <Typography style={{minHeight: 90}} variant={"subtitle1"}>{el.description}</Typography>
+                                            <Typography style={{height: 80, overflowY: `auto` }} variant={"subtitle1"}>{el.description}</Typography>
                                         </CardContent>
                                         <CardActions disableSpacing>
                                             <Button
@@ -256,10 +259,20 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                     </Card>
                                 ))}
                                 </ItemsCarousel>
-                            </div>
+                                <div style={{width: `100%`, margin: `10px 0 0 0`, textAlign: `center`}}>
+                                    <div>
+                                <Typography style={{fontSize: 20}} variant={"caption"}>{activeItemIndex} / {items.length}</Typography>
+                                    </div>
+                                <div>
+                                    <CloseIcon fontSize="large" onClick={handleClose}/>
+                                </div>
+
+                                </div>
+                    </div>
                         </Backdrop>
                     </Grid>
                     </Hidden>
+
                 </Container>
             </StylingInfo>
         </>

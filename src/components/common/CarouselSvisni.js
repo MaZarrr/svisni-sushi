@@ -30,10 +30,9 @@ const useStyleCarousel = makeStyles(theme => ({
         fontSize: '46px',
         padding: `0 0 0 35px`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '32px',
+            fontSize: '36px',
             color: `#000`,
-            textAlign: `center`,
-            padding: 0
+            padding: `0 0 0 20px`,
         },
     },
     button: {

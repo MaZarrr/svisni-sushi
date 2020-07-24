@@ -340,8 +340,8 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         minWidth: `85%`,
         borderRadius: `10px`,
         margin: `10px auto 0 auto`,
-        [theme.breakpoints.up('500')]: {
-            maxWidth: `75%`,
+        [theme.breakpoints.down('500')]: {
+            maxHeight: `96%`
         },
     },
     cardComboPc: {
@@ -365,7 +365,7 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
     },
     media: {
         width: `98%`,
-        margin: `0 auto`,
+        margin: `0 auto`
     },
     expand: {
         transform: 'rotate(0deg)',
