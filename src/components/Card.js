@@ -91,7 +91,7 @@ const RecipeReviewCard = () => {
 
     return (
         <div className={`mt-1 ${classes.root}`}>
-            <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо набор из пиццы, суши и роллов</Typography>
+            <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
             <Typography variant={'button'}>
                 <Link to={"/kombo"}>Все комбо</Link>
             </Typography>

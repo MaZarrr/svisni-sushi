@@ -91,7 +91,7 @@ function DemoWidth() {
     function slideRenderer(params) {
         const { index, key } = params;
 
-        switch (mod(index, 3)) {
+        switch (mod(index, 4)) {
             case 0:
                 return (
                     <div key={key}>
