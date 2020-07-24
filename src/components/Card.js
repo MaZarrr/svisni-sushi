@@ -21,7 +21,7 @@ const useStylesCard = makeStyles(theme => ({
         textAlign: `center`,
         [theme.breakpoints.down('600')]: {
             fontSize: '26px',
-            padding: `10px 0 10px 20px`,
+            padding: `10px 30px 10px 35px`,
             textAlign: `start`,
         },
     },
@@ -79,9 +79,8 @@ const RecipeReviewCard = () => {
         }
     `);
 
-
     return (
-        <div className={`mt-4 ${classes.root}`}>
+        <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо набор из пиццы, суши и роллов</Typography>
             <Typography variant={'button'}>
                 <Link to={"/kombo"}>Все комбо</Link>
