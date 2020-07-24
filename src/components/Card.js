@@ -15,14 +15,14 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStylesCard = makeStyles(theme => ({
     titleIndex: {
-    fontSize: '36px',
-    width: `100%`,
-    padding: `20px 10px`,
-    textAlign: `center`,
-    [theme.breakpoints.down('600')]: {
-        fontSize: '26px',
-        padding: `10px 0 10px 20px`,
-        textAlign: `start`,
+        fontSize: '36px',
+        width: `100%`,
+        padding: `20px 10px`,
+        textAlign: `center`,
+        [theme.breakpoints.down('600')]: {
+            fontSize: '26px',
+            padding: `10px 0 10px 20px`,
+            textAlign: `start`,
         },
     },
     buttonCombo: {
@@ -77,109 +77,6 @@ const RecipeReviewCard = () => {
                 }
             }
         }
-      }
-    }
-  `);
-
-
-  return (
-      <div className={`mt-4 ${classes.root}`}>
-        <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо набор из пиццы, суши и роллов</Typography>
-       <Typography variant={'button'}>
-         <Link to={"/kombo"}>Все комбо</Link>
-       </Typography>
-
-        {/*Карусель комбо телефон*/}
-        <Hidden smUp>
-        <div style={{maxWidth: `100%`, margin: `0 auto`}}>
-          <ItemsCarousel
-              infiniteLoop={false}
-              gutter={12}
-              activePosition={'center'}
-              chevronWidth={60}
-              disableSwipe={false}
-              alwaysShowChevrons={false}
-              numberOfCards={1}
-              slidesToScroll={1}
-              outsideChevron={false}
-              showSlither={true}
-              firstAndLastGutter={true}
-              activeItemIndex={activeItemIndex}
-              requestToChangeActive={value => setActiveItemIndex(value)}
-          >
-          { edges[0].node.combos.map((homeProduct) => (
-              <Card key={homeProduct.id} className={classes.cardCombo}>
-                <CardMedia
-                    className={classes.media}
-                    title={homeProduct.name}>
-                  <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
-                </CardMedia>
-                <CardContent>
-                  <Typography variant={"h6"}>{homeProduct.name}</Typography>
-                  <Typography variant={"subtitle1"}>{homeProduct.description}</Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                  <Button
-                      variant="contained"
-                      className={classesCard.buttonCombo}
-                      component={Link}
-                      to={`/kombo/${homeProduct.slug}`}>
-                    Выбрать
-                  </Button>
-                    <Typography style={{fontSize: 22}} className="ml-auto mr-2" variant={"body1"}>{homeProduct.price} ₽</Typography>
-                </CardActions>
-
-              </Card>
-          ))}
-          </ItemsCarousel>
-        </div>
-        </Hidden>
-
-        {/*Комбо компьютер*/}
-        <Hidden xsDown>
-         <Grid container style={{width: `85%`}}>
-           { edges[0].node.combos.map((homeProduct) => (
-               <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
-               <Card className={classes.cardComboPc}>
-                 <CardMedia
-                     className={classes.media}
-                     title={homeProduct.name}>
-                   <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
-                 </CardMedia>
-                 <CardContent>
-                   <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                   <Typography style={{fontSize: 14}} variant={"subtitle1"}>{homeProduct.description}</Typography>
-                 </CardContent>
-                 <CardActions disableSpacing>
-                   <Button
-                       variant="contained"
-                       className={classesCard.buttonCombo}
-                       component={Link}
-                       to={`/kombo/${homeProduct.slug}`}>
-                     Выбрать
-                   </Button>
-                     <Typography style={{fontSize: 22}} className="ml-auto mr-2" variant={"body1"}>{homeProduct.price} ₽</Typography>
-                 </CardActions>
-               </Card>
-               </Grid>
-           ))}
-         </Grid>
-        </Hidden>
-
-        {/*Меню выбор*/}
-        <Grid container className="mt-4">
-          <Typography className={classesCard.titleIndex}
-            variant={"h2"}>Заказывайте роллы, суши и пиццу с доставкой</Typography>
-          {menu.map(({node: homeMenu}) => (
-              <Grid item xs={6} sm={4} key={homeMenu.id} >
-                <div className="cart_item">
-                  <Link to={`/${homeMenu.slug}`}>
-                    <div className="cart_title">
-                        <h3><b>{homeMenu.category}</b></h3>
-                    </div>
-                    <Img fluid={homeMenu.image.fluid} className="cart_img" imgStyle={{maxWidth: 300}} />
-                  </Link>
-=======
     `);
 
 
@@ -234,7 +131,6 @@ const RecipeReviewCard = () => {
                             </Card>
                         ))}
                     </ItemsCarousel>
->>>>>>> develop
                 </div>
             </Hidden>
 
@@ -293,112 +189,3 @@ const RecipeReviewCard = () => {
 };
 
 export default RecipeReviewCard
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// useEffect(() => {
-//   dispatch(productLoaded(edges))
-// }, [edges, dispatch])
-
-//   const [expanded, setExpanded] = React.useState({nameCart: false});
-//   const [load, setLoad] = React.useState(true)
-
-//   // const handleExpandClick = (id) => {
-//   //   setExpanded({[id]: !expanded[id]});
-//   // };
-//
-//   return (
-//       <>
-//         <div className={classes.root}>
-//           { !load ? product.map((homeProduct) => (
-//               <Card key={homeProduct.id} className={classes.card}>
-//                 <CardHeader
-//                     classes={{title: classes.title}}
-//                     avatar={
-//                       <AvatarWrapp alt="Sushi" src={Logo}
-//                                    className={classes.avatar}
-//                                    classes={{img: classes.img}}
-//                                    color={homeProduct.color}>
-//                       </AvatarWrapp>}
-//                     // title={homeProduct.variant}
-//                     subheader={homeProduct.name}/>
-//                 <CardMedia
-//                     className={classes.media}
-//                     title={homeProduct.name}
-//                     component={Link}
-//                     to={`/${homeProduct.slug}`}
-//                 > <Img fluid={homeProduct.image.fluid} />
-//                 </CardMedia>
-//                 <CardActions disableSpacing>
-//                   <Button
-//                       variant="contained"
-//                       color="secondary"
-//                       className={classes.button}
-//                       startIcon={<ShoppingBasketIcon />}
-//                       component={Link}
-//                       to="/kombo"
-//                       onClick={() => dispatch(addedToCart({id: homeProduct.id, productPrice: homeProduct.price, product}))}
-//                       // onClick={() => dispatch(addedToCart({id: homeProduct.id, productPrice: homeProduct.price, product}))}
-//                   >
-//                     Хочу!
-//                   </Button>
-//
-//                   {/*<IconButton*/}
-//                   {/*  id={homeProduct.contentful_id}*/}
-//                   {/*  className={clsx(classes.expand, {*/}
-//                   {/*  [classes.expandOpen]: expanded[homeProduct.contentful_id],*/}
-//                   {/*  })}*/}
-//                   {/*  onClick={() => handleExpandClick(homeProduct.contentful_id)}*/}
-//                   {/*  aria-expanded={expanded[homeProduct.contentful_id]}*/}
-//                   {/*  aria-label="show more">*/}
-//                   {/*  <ExpandMoreIcon />*/}
-//                   {/*</IconButton>*/}
-//                 </CardActions>
-//                 {/*<Collapse in={expanded[homeProduct.contentful_id]} timeout="auto" unmountOnExit>*/}
-//                 <CardContent>
-//                   {/*<Typography paragraph>*/}
-//                   {/*<span role="img" aria-label="ok">😉</span>Тебе нужно знать что:*/}
-//                   {/*</Typography>*/}
-//                   {/*<ul style={{ listStyle: `none`, margin: 0, padding: `8px 0 0 0`}}>*/}
-//                   {/*    <li><span role="img" aria-label="ok"></span><p>{`Цена: ${homeProduct.price}₽`}</p></li>*/}
-//                   {/*  <li><span role="img" aria-label="ok">✅</span>Есть бесплатная доставка!</li>*/}
-//                   {/*  <li><span role="img" aria-label="ok">✅</span>Заказать можно с 10:00 до 22:00</li>*/}
-//                   {/*  <li><span role="img" aria-label="ok">✅</span>Готовим с любовью для каждого от Svisni-Sushi</li>*/}
-//                   {/*</ul>*/}
-//                 </CardContent>
-//                 {/*</Collapse>*/}
-//
-//               </Card>
-//           )) : <Spinner />}
-//         </div>
-//       </>
-//   );
-//
-// }
-//
-// const mapStateToProps = (state) => ({
-//   product: state.app.product
-// })
-//
-// export default connect(mapStateToProps, null)(RecipeReviewCard)
-
-
