@@ -9,10 +9,9 @@ import uniqid from 'uniqid'
 import {StylingInfo} from "./common/style";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
-import {pluck, sum, compose, product} from "ramda";
+import {pluck, sum, compose } from "ramda";
 import Backdrop from "@material-ui/core/Backdrop";
 import Hidden from "@material-ui/core/Hidden";
-import ItemsCarousel from 'react-items-carousel';
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -20,6 +19,20 @@ import CardActions from "@material-ui/core/CardActions";
 import {addedCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 import CloseIcon from '@material-ui/icons/Close';
+import SwipeableViews from 'react-swipeable-views';
+
+const styles = {
+    root: {
+        padding: '0 50px',
+        maxWidth: `100%`
+    },
+    slideContainer: {
+        padding: '0 20px',
+    },
+    img: {
+        maxWidth: 350
+    }
+};
 
 export const useStyleKombo = makeStyles(theme => ({
     defItem: {
@@ -198,7 +211,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             <Grid item xs={12}>
                                 { productSostav.map((el, idx) => (
                                     <div key={el.id}
-                                         role="button" tabindex="0" aria-roledescription="attachment button"
+                                         role="button" tabIndex="0" aria-roledescription="attachment button"
                                          onKeyPress={onActiveItem}
                                          className={classes.activeItem}
                                          onClick={() => onActiveItem(el.id, el.__typename, idx)}>
@@ -210,10 +223,14 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                     </div>
                                 ))}
                                 <div style={{borderRadius: 10, border: `1px solid lightgrey`, padding: 9, marginTop: 20, width: `75%`}}>
-                                    <div className="d-flex mt-2" >
-                                        <Typography style={{fontSize: 20}} variant={"body1"}>
-                                            Стоимость:</Typography>
-                                        <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
+                                    <div className="d-flex flex-wrap mt-2" >
+                                        <div>
+                                            <Typography style={{fontSize: 20}} variant={"body1"}>
+                                                Стоимость:</Typography>
+                                        </div>
+                                        <div>
+                                            <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
+                                        </div>
                                     </div>
                                     <Button className="mt-3" variant={"contained"}
                                             color={"primary"}
@@ -226,38 +243,13 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                         </Grid>
                         <Grid container>
                             <Backdrop className={classes.backdrop} open={open}>
-
-                                <div style={{maxWidth: `100%`, margin: `0 auto`}}>
-                                    <ItemsCarousel
-                                        infiniteLoop={false}
-                                        gutter={12}
-                                        activePosition={'center'}
-                                        chevronWidth={60}
-                                        disableSwipe={false}
-                                        alwaysShowChevrons={false}
-                                        numberOfCards={1}
-                                        // isFirstScroll={() => setActiveItemIndex(0)}
-                                        // isLastScroll={() => setActiveItemIndex(items.length)}
-                                        slidesToScroll={1}
-                                        outsideChevron={false}
-                                        showSlither={true}
-                                        firstAndLastGutter={true}
-                                        activeItemIndex={activeItemIndex}
-                                        requestToChangeActive={value =>  {
-                                            // const lastIndex = activeItemIndex >= products[activeType].length
-                                            // console.log(lastIndex)
-                                            // const firsIndex = activeItemIndex === 0;
-                                            // if(lastIndex === true) {
-                                            //     setActiveItemIndex(0)
-                                            // }
-                                            // // else if(firsIndex === true) {
-                                            // //     setActiveItemIndex(0)
-                                            // // } else {
-                                                setActiveItemIndex(value)
-                                            // }
-                                        }}>
+                                <div style={{width: `100%`}}>
+                                <SwipeableViews style={styles.root}
+                                                slideStyle={styles.slideContainer}
+                                                index={activeItemIndex}
+                                                onChangeIndex={value => setActiveItemIndex(value)}>
                                         { items.map((el) => (
-                                            <Card key={el.id} style={{borderRadius: 10}}>
+                                            <Card key={el.id} style={{borderRadius: 10, height: 400}}>
                                                 <CardMedia
                                                     title={el.name}>
                                                     <Img style={{width: `80%`, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name} />
@@ -278,7 +270,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
 
                                             </Card>
                                         ))}
-                                    </ItemsCarousel>
+                                    </SwipeableViews>
                                     <div style={{width: `100%`, margin: `10px 0 0 0`, textAlign: `center`}}>
                                         <div>
                                             <Typography style={{fontSize: 20}} variant={"caption"}>{activeItemIndex} / {items.length}</Typography>
@@ -286,9 +278,9 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                         <div>
                                             <CloseIcon fontSize="large" onClick={handleClose}/>
                                         </div>
-
                                     </div>
                                 </div>
+
                             </Backdrop>
                         </Grid>
                     </Hidden>

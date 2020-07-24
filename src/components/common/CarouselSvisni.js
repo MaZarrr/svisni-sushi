@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
+import {Hidden} from "@material-ui/core";
 
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
@@ -20,7 +21,7 @@ const useStyleCarousel = makeStyles(theme => ({
         },
         [theme.breakpoints.down('475')]: {
             marginBottom: 0,
-            minHeight: 170
+            marginTop: 18
         },
     },
     header: {
@@ -41,19 +42,23 @@ const useStyleCarousel = makeStyles(theme => ({
     },
     image: {
         borderRadius: 13,
+        maxWidth: 780,
         [theme.breakpoints.down('600')]: {
             borderRadius: 5,
-            height: 90,
+            // height: 90,
         },
-    }
+    },
+    rootAutoSwipeable: {
+        padding: '0 10vw 0 20vw',
+    },
 }));
 
 const styles = {
     root: {
-        padding: '0 30px',
+        padding: '0 10vw 0 20vw',
     },
     slideContainer: {
-        padding: '0 10px',
+        padding: '0 20px',
     }
 };
 
@@ -92,7 +97,7 @@ function DemoWidth() {
                     <div key={key}>
                         <Link to={data.allContentfulCarouselSiteImage.edges[0].node.slug}>
                             <Img fluid={data.allContentfulCarouselSiteImage.edges[0].node.imgCarouselPc.fluid}
-                                 className={classes.image} imgStyle={{maxWidth: 1300}}
+                                 className={classes.image} imgStyle={{maxWidth: 1800}}
                                  alt={data.allContentfulCarouselSiteImage.edges[0].node.name} />
                         </Link>
                     </div>
@@ -103,7 +108,7 @@ function DemoWidth() {
                     <div key={key}>
                         <Link to={data.allContentfulCarouselSiteImage.edges[1].node.slug}>
                             <Img fluid={data.allContentfulCarouselSiteImage.edges[1].node.imgCarouselPc.fluid}
-                                 className={classes.image} imgStyle={{maxWidth: 1300}}
+                                 className={classes.image} imgStyle={{maxWidth: 1800}}
                                  alt={data.allContentfulCarouselSiteImage.edges[1].node.name} />
                         </Link>
                     </div>
@@ -114,8 +119,19 @@ function DemoWidth() {
                     <div key={key}>
                         <Link to={data.allContentfulCarouselSiteImage.edges[2].node.slug}>
                             <Img fluid={data.allContentfulCarouselSiteImage.edges[2].node.imgCarouselPc.fluid}
-                                 className={classes.image} imgStyle={{maxWidth: 1300}}
+                                 className={classes.image} imgStyle={{maxWidth: 1800}}
                                  alt={data.allContentfulCarouselSiteImage.edges[2].node.name} />
+                        </Link>
+                    </div>
+                );
+
+            case 3:
+                return (
+                    <div key={key}>
+                        <Link to={data.allContentfulCarouselSiteImage.edges[3].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[3].node.imgCarouselPc.fluid}
+                                 className={classes.image} imgStyle={{maxWidth: 1800}}
+                                 alt={data.allContentfulCarouselSiteImage.edges[3].node.name} />
                         </Link>
                     </div>
                 );
@@ -127,9 +143,12 @@ function DemoWidth() {
 
     return (
         <div className={classes.root}>
+            <Hidden xsDown>
             <Paper square elevation={0} className={classes.header}>
                 <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
             </Paper>
+            </Hidden>
+
             <VirtualizeSwipeableViews style={styles.root} slideRenderer={slideRenderer} slideStyle={styles.slideContainer}/>
         </div>
     )

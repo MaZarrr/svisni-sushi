@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Img from 'gatsby-image';
 import { useStaticQuery, graphql, Link } from "gatsby"
 import {useStyleCardIndexPage} from "./common/style";
@@ -8,10 +8,10 @@ import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import ItemsCarousel from 'react-items-carousel';
 import Grid from "@material-ui/core/Grid";
 import {Hidden} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import SwipeableViews from 'react-swipeable-views';
 
 const useStylesCard = makeStyles(theme => ({
     titleIndex: {
@@ -22,7 +22,6 @@ const useStylesCard = makeStyles(theme => ({
         [theme.breakpoints.down('600')]: {
             fontSize: '26px',
             padding: `10px 30px 10px 35px`,
-            textAlign: `start`,
         },
     },
     buttonCombo: {
@@ -34,9 +33,20 @@ const useStylesCard = makeStyles(theme => ({
         color: 'white',
     },
 }));
+const styles = {
+    root: {
+        padding: '0 50px',
+        maxWidth: `100%`
+    },
+    slideContainer: {
+        padding: '0 20px',
+    },
+    img: {
+        maxWidth: 350
+    }
+};
 
 const RecipeReviewCard = () => {
-    const [activeItemIndex, setActiveItemIndex] = useState(0);
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
@@ -88,32 +98,16 @@ const RecipeReviewCard = () => {
 
             {/*Карусель комбо телефон*/}
             <Hidden smUp>
-                <div style={{maxWidth: `100%`, margin: `0 auto`}}>
-                    <ItemsCarousel
-                        infiniteLoop={false}
-                        gutter={12}
-                        activePosition={'center'}
-                        chevronWidth={60}
-                        disableSwipe={false}
-                        alwaysShowChevrons={false}
-                        numberOfCards={1}
-                        slidesToScroll={1}
-                        outsideChevron={false}
-                        showSlither={true}
-                        firstAndLastGutter={true}
-                        activeItemIndex={activeItemIndex}
-                        requestToChangeActive={value => setActiveItemIndex(value)}
-                    >
+                <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
                         { edges[0].node.combos.map((homeProduct) => (
                             <Card key={homeProduct.id} className={classes.cardCombo}>
                                 <CardMedia
-                                    className={classes.media}
                                     title={homeProduct.name}>
-                                    <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+                                    <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                 </CardMedia>
                                 <CardContent>
-                                    <Typography variant={"h6"}>{homeProduct.name}</Typography>
-                                    <Typography style={{fontSize: 14, height: 50, width: `100%`, overflowY: `auto`}}
+                                    <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                    <Typography style={{fontSize: 13, height: 50, width: `100%`, overflowY: `auto`}}
                                                 variant={"subtitle1"}>{homeProduct.description}</Typography>
                                 </CardContent>
                                 <CardActions disableSpacing>
@@ -129,8 +123,7 @@ const RecipeReviewCard = () => {
                                 </CardActions>
                             </Card>
                         ))}
-                    </ItemsCarousel>
-                </div>
+                    </SwipeableViews>
             </Hidden>
 
             {/*Комбо компьютер*/}

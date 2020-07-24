@@ -326,22 +326,11 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         alignItems: `center`,
         borderRadius: `15px`
     },
-    titleIndex: {
-        textAlign: "center",
-        fontSize: '36px',
-        width: `100%`,
-        padding: `20px 10px`,
-        [theme.breakpoints.down('600')]: {
-            fontSize: '30px',
-            padding: `10px 10px`
-        },
-    },
     cardCombo: {
-        minWidth: `85%`,
+        maxWidth: 350,
         borderRadius: `10px`,
-        margin: `10px auto 0 auto`,
         [theme.breakpoints.down('500')]: {
-            maxHeight: `96%`
+            maxHeight: `98%`
         },
     },
     cardComboPc: {
@@ -362,20 +351,8 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         [theme.breakpoints.up('768')]: {
             maxWidth: `50%`,
         },
-    },
-    media: {
-        width: `98%`,
-        margin: `0 auto`
-    },
-    buttonCombo: {
-        margin: theme.spacing(1),
-        backgroundColor: `orange`,
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
     }
-}))
+}));
 
 export const useStyleHeader = makeStyles(theme => ({
     root: {

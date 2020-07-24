@@ -43,8 +43,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
       )(cart);
 
       const pizza = () => {
-          // const pizzaSale = items.find((el) => el.node.name === 'Салями' )
-          const {node: pizzaSale} = allContentfulProductPizza.edges.find((el) => el.node.name === 'Салями' )
+          const {node: pizzaSale} = allContentfulProductPizza.edges.find((el) => el.node.name === 'Ветчина-Грибы-Бекон' )
           return {
               id: uniqid(),
               name: pizzaSale.name,
@@ -65,7 +64,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                                 <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={pizza().image}> </Img>
                             </div>
                             <div className="ml-4">
-                                <Typography gutterBottom variant="subtitle1">
+                                <Typography gutterBottom variant="subtitle2">
                                     {pizza().name}
                                 </Typography>
                                 <div className="d-flex">
@@ -87,7 +86,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                                 </Grid>
                             </div>
                         </div>
-                        <Divider/>
                     </Grid>
                 </Grid>
                 </Paper>
