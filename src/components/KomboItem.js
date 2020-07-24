@@ -161,10 +161,15 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                     </Grid>
 
                     {/*Выбор товаров из предложенных компьютер*/}
-                    <Grid item xs={12} sm={7}>
-                        <Grid className="d-flex flex-wrap justify-content-around" style={{overflowY: `scroll`, height: `460px`, borderRadius: 10, border: `1px solid lightgrey`}}>
+                    <Grid item xs={12} sm={7} >
+                        <Grid container justify={"space-around"} style={{
+                            borderRadius: 10,
+                            height: 460, overflowY: `scroll`,
+                            border: `1px solid lightgrey`,
+                            margin: `0 auto`}}>
                         { activeType !== '' ? items.map((el) => (
-                            <div  role="button" tabindex="0" aria-roledescription="attachment button"
+                            <Grid item xs={2}
+                                  role="button" tabindex="0" aria-roledescription="attachment button"
                                   onKeyPress={onActiveItems} key={el.id}  className={clsx(classes.defItem, {
                                 [classes.activeItem]: activeItems[el.id]})}
                                 onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
@@ -176,7 +181,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                 <div>
                                     <Typography  style={{fontSize: 14, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
                                 </div>
-                            </div>
+                            </Grid>
                         )) : <div style={{width: `460px`}}><Img fluid={image} alt={name}/></div> }
                         </Grid>
                     </Grid>
