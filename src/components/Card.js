@@ -177,7 +177,7 @@ const RecipeReviewCard = ({addedCart}) => {
                                     to={`/kombo/${homeProduct.slug}`}>
                                     Выбрать
                                 </Button>
-                                <Typography style={{fontSize: 22}} className="ml-auto mr-2"
+                                <Typography style={{fontSize: 20}} className="ml-auto mr-1"
                                             variant={"body1"}>{homeProduct.price} ₽</Typography>
                             </CardActions>
                         </Card>
@@ -206,6 +206,7 @@ const RecipeReviewCard = ({addedCart}) => {
                                         variant="contained"
                                         className={classesCard.buttonCombo}
                                         component={Link}
+                                        style={{fontSize: 12}}
                                         to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
                                         Посмотреть
                                     </Button> : <Button
@@ -217,7 +218,7 @@ const RecipeReviewCard = ({addedCart}) => {
                                     </Button>
                                 }
 
-                                <Typography style={{fontSize: 22}} className="ml-auto mr-2"
+                                <Typography style={{fontSize: 20}} className="ml-auto mr-1"
                                             variant={"body1"}>{homeProduct.price} ₽</Typography>
                             </CardActions>
                         </Card>
@@ -238,7 +239,8 @@ const RecipeReviewCard = ({addedCart}) => {
                                 </CardMedia>
                                 <CardContent>
                                     <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                                    <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
+                                    <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}}
+                                                variant={"subtitle1"}>{homeProduct.description}</Typography>
                                 </CardContent>
                                 <CardActions disableSpacing>
                                     <Button
@@ -249,6 +251,45 @@ const RecipeReviewCard = ({addedCart}) => {
                                         Выбрать
                                     </Button>
                                     <Typography style={{fontSize: 22}} className="ml-auto mr-2" variant={"body1"}>{homeProduct.price} ₽</Typography>
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                    ))}
+
+                    {/* Новинки компьютер  */}
+                    <Typography className={classesCard.titleIndex} variant={"h2"}>{titleNewProduct}</Typography>
+                    { newProducts.map((homeProduct) => (
+                        <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
+                            <Card className={classes.cardComboPc}>
+                                <CardMedia
+                                    className={classes.media}
+                                    title={homeProduct.name}>
+                                    <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+                                </CardMedia>
+                                <CardContent>
+                                    <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                    <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
+                                </CardContent>
+                                <CardActions disableSpacing>
+                                    { homeProduct.__typename === "ContentfulProduct" ||
+                                    homeProduct.__typename === "ContentfulProductPizza" ?
+                                        <Button
+                                            variant="contained"
+                                            className={classesCard.buttonCombo}
+                                            component={Link}
+                                            to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                            Посмотреть
+                                        </Button> : <Button
+                                            variant="contained"
+                                            className={classesCard.button}
+                                            onClick={() => addedCart({id: homeProduct.id,
+                                                productPrice: null, product: newProducts})}>
+                                            <ShoppingCartIcon/>
+                                        </Button>
+                                    }
+
+                                    <Typography style={{fontSize: 22}} className="ml-auto mr-2"
+                                                variant={"body1"}>{homeProduct.price} ₽</Typography>
                                 </CardActions>
                             </Card>
                         </Grid>

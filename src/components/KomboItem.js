@@ -6,11 +6,9 @@ import ButtonBack from "./common/ButtonBackSet";
 import {Container, Grid} from "@material-ui/core";
 import Img from "gatsby-image";
 import uniqid from 'uniqid'
-import {StylingInfo} from "./common/style";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import {pluck, sum, compose } from "ramda";
-import Backdrop from "@material-ui/core/Backdrop";
 import Hidden from "@material-ui/core/Hidden";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -21,6 +19,7 @@ import {connect} from "react-redux";
 import CloseIcon from '@material-ui/icons/Close';
 import SwipeableViews from 'react-swipeable-views';
 import Modal from "@material-ui/core/Modal";
+import Divider from "@material-ui/core/Divider";
 
 const styles = {
     root: {
@@ -42,15 +41,48 @@ export const useStyleKombo = makeStyles(theme => ({
 
     },
     activeItem: {
-        cursor: 'pointer', marginTop: 10, background: `white`,
-        maxWidth: `75%`,  padding: 10, borderRadius: 10, boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .6)',
+        cursor: 'pointer',
+        marginTop: 10,
+        background: `white`,
+        maxWidth: `80%`,
+        padding: 5,
+        borderRadius: 10,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .6)',
         transition: `transform 0.2s`,
-        transform: `scale(1.02)`
+        margin: `0 auto`,
+        transform: `scale(1.01)`,
+        minHeight: 220
+    },
+    activeItemPc: {
+        cursor: 'pointer',
+        marginTop: 5,
+        background: `white`,
+        maxWidth: `80%`,
+        padding: 5,
+        borderRadius: 10,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .6)',
+        transition: `transform 0.2s`,
+        margin: `0 auto`,
+        transform: `scale(1.03)`,
     },
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
     },
+    titleClass: {
+        fontFamily: `Oswald, cursive`,
+        fontStyle: `normal`,
+        fontSize: 39,
+        color: `#018786`,
+        fontWeight: 800,
+        paddingTop: 22,
+        margin: 0,
+        textAlign: `center`,
+        [theme.breakpoints.down('600')]: {
+            paddingTop: 10,
+            fontSize: 38,
+        },
+    }
 }));
 
 const KomboItem = React.memo(( {id, name, description, addedCart, image, price, slug, weight, edit, products} ) => {
@@ -130,14 +162,14 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
             <SEO title={`Комбо набор ${name}`}
                  description={`Доставка комбо наборов в Валуйки. Комбо набор ${name}, цена ${price} рублей`}
                  pathname="/kombo"/>
-            <StylingInfo>
-                <Container style={{height: `700px`, paddingBottom: 100}}>
-                    <h1 itemProp="name" style={{fontFamily: `Oswald, cursive`,
-                        fontWeight: 600, fontSize: 39}}>{name}</h1>
-                    <div>
-                        <Typography variant={"body1"}>{description}</Typography>
+                    <h1 itemProp="name" className={classes.titleClass}>{name}</h1>
 
+                    <div>
+                        <Typography style={{textAlign: `center`, fontSize: 20, padding: `0 15px 5px 15px`}}
+                                    variant={"body1"}>{description}</Typography>
+                        <Divider/>
                         <Hidden xsDown>
+                            <Container style={{height: `700px`, paddingBottom: 100}}>
                             <Grid container style={{height: `20%`}}>
                                 <Grid item xs={12} sm={5}>
                                     <ButtonBack back="/kombo" />
@@ -185,7 +217,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                             <Grid item xs={2}
                                                   role="button" tabIndex="0" aria-roledescription="attachment button"
                                                   onKeyPress={onActiveItems} key={el.id}  className={clsx(classes.defItem, {
-                                                [classes.activeItem]: activeItems[el.id]})}
+                                                [classes.activeItemPc]: activeItems[el.id]})}
                                                   onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
                                                       name: el.name, image: el.image, __typename: activeType, price: el.price })}
                                                   style={{ width: `120px`, cursor: 'pointer',
@@ -200,99 +232,102 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                     </Grid>
                                 </Grid>
                             </Grid>
+                            </Container>
                         </Hidden>
-
-
                     </div>
 
                     {/*Карусель товаров телефон*/}
                     <Hidden smUp>
-                        <Grid container direction={"column"}>
-                            <ButtonBack back="/kombo" />
-                            <Grid item xs={12}>
+                        <ButtonBack back="/kombo" />
+                        <Grid container style={{overflowY: "scroll", height: `450px`, paddingBottom: 60}}>
                                 { productSostav.map((el, idx) => (
+                                    <Grid item xs={6}>
                                     <div key={el.id}
-                                         role="button" tabIndex="0" aria-roledescription="attachment button"
+                                         role="button" tabIndex="0"
+                                         aria-roledescription="attachment button"
                                          onKeyPress={onActiveItem}
                                          className={classes.activeItem}
                                          onClick={() => onActiveItem(el.id, el.__typename, idx)}>
-                                        <Img style={{width: 100}} fluid={el.image.fluid} alt={el.name}/>
+                                        <Img style={{width: 100, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
                                         <div style={{maxWidth: 200, marginLeft: 10}}>
-                                            <Typography variant={"subtitle2"}>{el.name}</Typography>
-                                            <Typography style={{fontSize: 14}} variant={"body2"}>{el.description}</Typography>
+                                            <Typography style={{fontSize: 14, textAlign: `center`}} variant={"subtitle2"}>{el.name}</Typography>
+                                            <Divider/>
+                                            <Typography style={{fontSize: 13, textAlign: `center`, height: 70, overflowY: `auto`}} variant={"body2"}>{el.description}</Typography>
                                         </div>
                                     </div>
+                                    </Grid>
                                 ))}
-                                <div style={{borderRadius: 10, border: `1px solid lightgrey`, padding: 9, marginTop: 20, width: `75%`}}>
-                                    <div className="d-flex flex-wrap mt-2" >
-                                        <div>
-                                            <Typography style={{fontSize: 20}} variant={"body1"}>
-                                                Стоимость:</Typography>
-                                        </div>
-                                        <div>
-                                            <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
-                                        </div>
+
+                            <div style={{borderRadius: 10,
+                                border: `1px solid lightgrey`,
+                                padding: `9px 9px 9px 60px`,
+                                width: `100%`,
+                                position: `fixed`,
+                                backgroundColor: `white`,
+                                bottom: 0}}>
+                                <div className="d-flex flex-wrap mt-2">
+                                    <div>
+                                        <Typography style={{fontSize: 20}} variant={"body1"}>
+                                            Стоимость:</Typography>
                                     </div>
-                                    <Button className="mt-3" variant={"contained"}
-                                            color={"primary"}
-                                            onClick={() => addedCart({id, price,
-                                                product: [addedProductKomboToBacket()]}
-                                            )}>
-                                        В корзину</Button>
+                                    <div>
+                                        <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
+                                    </div>
                                 </div>
-                            </Grid>
+                                <Button className="mt-3" variant={"contained"}
+                                        color={"primary"}
+                                        onClick={() => addedCart({id, price, product: [addedProductKomboToBacket()]})}>
+                                    В корзину</Button>
+                            </div>
                         </Grid>
                         <Grid container>
-<Modal
-    open={open}
-    className={classes.backdrop}
-    aria-labelledby="simple-modal-title"
-    aria-describedby="simple-modal-description"
->
-    <div style={{width: `100%`, margin: `50% 0`}}>
-        <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}
-                        index={activeItemIndex}
-                        onChangeIndex={value => setActiveItemIndex(value)}>
-            { items.map((el) => (
-                <Card key={el.id} style={{borderRadius: 10, height: 330}}>
-                    <CardMedia
-                        style={{padding: 8}}
-                        title={el.name}>
-                        <Img style={{maxWidth: 150, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name} />
-                    </CardMedia>
-                    <CardContent style={{padding: 5}}>
-                        <Typography style={{fontSize: 14}} variant={"h6"}>{el.name}</Typography>
-                        <Typography style={{height: 70, fontSize: 13, overflowY: `auto`}} variant={"subtitle1"}>{el.description}</Typography>
-                    </CardContent>
-                    <CardActions disableSpacing>
-                        <Button
-                            onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
-                                name: el.name, image: el.image, __typename: activeType, price: el.price })}
-                            variant="contained"
-                            style={{backgroundColor: "orange"}}>
-                            Выбрать
-                        </Button>
-                    </CardActions>
+                            <Modal
+                                open={open}
+                                className={classes.backdrop}
+                                aria-labelledby="simple-modal-title"
+                                aria-describedby="simple-modal-description"
+                            >
+                                <div style={{width: `100%`, margin: `50% 0`}}>
+                                    <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}
+                                                    index={activeItemIndex}
+                                                    onChangeIndex={value => setActiveItemIndex(value)}>
+                                        { items.map((el) => (
+                                            <Card key={el.id} style={{borderRadius: 10, height: 330, maxWidth: 220}}>
+                                                <CardMedia
+                                                    style={{padding: 8}}
+                                                    title={el.name}>
+                                                    <Img style={{maxWidth: 150, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name} />
+                                                </CardMedia>
+                                                <CardContent style={{padding: 5}}>
+                                                    <Typography style={{fontSize: 14, textAlign: `center`}} variant={"h6"}>{el.name}</Typography>
+                                                    <Typography style={{height: 70, fontSize: 13, overflowY: `auto`, textAlign: `center`}}
+                                                                variant={"subtitle1"}>{el.description}</Typography>
+                                                </CardContent>
+                                                <CardActions disableSpacing>
+                                                    <Button
+                                                        onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
+                                                            name: el.name, image: el.image, __typename: activeType, price: el.price })}
+                                                        variant="contained"
+                                                        style={{backgroundColor: "orange"}}>
+                                                        Выбрать
+                                                    </Button>
+                                                </CardActions>
 
-                </Card>
-            ))}
-        </SwipeableViews>
-        <div style={{width: `100%`, margin: `10px 0 0 0`, textAlign: `center`}}>
-            <div>
-                <Typography style={{fontSize: 20}} variant={"caption"}>{activeItemIndex} / {items.length}</Typography>
-            </div>
-            <div>
-                <CloseIcon fontSize="large" onClick={handleClose}/>
-            </div>
-        </div>
-    </div>
-</Modal>
-
-        </Grid>
+                                            </Card>
+                                        ))}
+                                    </SwipeableViews>
+                                    <div style={{width: `100%`, margin: `10px 0 0 0`, textAlign: `center`}}>
+                                        <div>
+                                            <Typography style={{fontSize: 20}} variant={"caption"}>{activeItemIndex} / {items.length}</Typography>
+                                        </div>
+                                        <div>
+                                            <CloseIcon fontSize="large" onClick={handleClose}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Modal>
+                        </Grid>
                     </Hidden>
-
-                </Container>
-            </StylingInfo>
         </>
     );
 });
