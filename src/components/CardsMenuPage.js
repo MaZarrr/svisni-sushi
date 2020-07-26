@@ -76,8 +76,13 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     <Grid style={{padding: 10}} container itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                         <Grid item xs={6}>
                                             <Paper style={{width: `60%`, margin: `0 auto`}}>
+                                                { slugCategogy !== "/napitki" &&
                                                 <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{slugCategogy ===
-                                                "/sety" || slugCategogy === "/napitki" ? `${weight}кг` : `${weight}гр`}</Typography>
+                                                "/sety" ? `${weight}кг` : `${weight}гр`}</Typography>
+                                                }
+                                                { slugCategogy === "/napitki" &&
+                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{weight}л</Typography>
+                                                }
                                             </Paper>
                                         </Grid>
                                         <Grid item xs={6}>
@@ -90,7 +95,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                             <Typography
                                                 component="p"
                                                 variant="overline"
-                                                style={{fontSize: 16, margin: `0 auto`, width: `50%`, textAlign: `center`}}
+                                                style={{fontSize: 20, margin: `0 auto`, width: `70%`, textAlign: `center`}}
                                                 itemProp="price"
                                             >
                                                 {slugCategogy === "/pizza" ? `от ${price}₽` : `${price}₽`}
