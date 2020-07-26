@@ -20,6 +20,7 @@ import {addedCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 import CloseIcon from '@material-ui/icons/Close';
 import SwipeableViews from 'react-swipeable-views';
+import Modal from "@material-ui/core/Modal";
 
 const styles = {
     root: {
@@ -182,7 +183,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                         margin: `0 auto`}}>
                                         { activeType !== '' ? items.map((el) => (
                                             <Grid item xs={2}
-                                                  role="button" tabindex="0" aria-roledescription="attachment button"
+                                                  role="button" tabIndex="0" aria-roledescription="attachment button"
                                                   onKeyPress={onActiveItems} key={el.id}  className={clsx(classes.defItem, {
                                                 [classes.activeItem]: activeItems[el.id]})}
                                                   onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
@@ -242,47 +243,52 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             </Grid>
                         </Grid>
                         <Grid container>
-                            <Backdrop className={classes.backdrop} open={open}>
-                                <div style={{width: `100%`}}>
-                                <SwipeableViews style={styles.root}
-                                                slideStyle={styles.slideContainer}
-                                                index={activeItemIndex}
-                                                onChangeIndex={value => setActiveItemIndex(value)}>
-                                        { items.map((el) => (
-                                            <Card key={el.id} style={{borderRadius: 10, height: 400}}>
-                                                <CardMedia
-                                                    title={el.name}>
-                                                    <Img style={{width: `80%`, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name} />
-                                                </CardMedia>
-                                                <CardContent>
-                                                    <Typography variant={"h6"}>{el.name}</Typography>
-                                                    <Typography style={{height: 80, overflowY: `auto` }} variant={"subtitle1"}>{el.description}</Typography>
-                                                </CardContent>
-                                                <CardActions disableSpacing>
-                                                    <Button
-                                                        onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
-                                                            name: el.name, image: el.image, __typename: activeType, price: el.price })}
-                                                        variant="contained"
-                                                        style={{backgroundColor: "orange"}}>
-                                                        Выбрать
-                                                    </Button>
-                                                </CardActions>
+<Modal
+    open={open}
+    className={classes.backdrop}
+    aria-labelledby="simple-modal-title"
+    aria-describedby="simple-modal-description"
+>
+    <div style={{width: `100%`, margin: `50% 0`}}>
+        <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}
+                        index={activeItemIndex}
+                        onChangeIndex={value => setActiveItemIndex(value)}>
+            { items.map((el) => (
+                <Card key={el.id} style={{borderRadius: 10, height: 330}}>
+                    <CardMedia
+                        style={{padding: 8}}
+                        title={el.name}>
+                        <Img style={{maxWidth: 150, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name} />
+                    </CardMedia>
+                    <CardContent style={{padding: 5}}>
+                        <Typography style={{fontSize: 14}} variant={"h6"}>{el.name}</Typography>
+                        <Typography style={{height: 70, fontSize: 13, overflowY: `auto`}} variant={"subtitle1"}>{el.description}</Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                        <Button
+                            onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
+                                name: el.name, image: el.image, __typename: activeType, price: el.price })}
+                            variant="contained"
+                            style={{backgroundColor: "orange"}}>
+                            Выбрать
+                        </Button>
+                    </CardActions>
 
-                                            </Card>
-                                        ))}
-                                    </SwipeableViews>
-                                    <div style={{width: `100%`, margin: `10px 0 0 0`, textAlign: `center`}}>
-                                        <div>
-                                            <Typography style={{fontSize: 20}} variant={"caption"}>{activeItemIndex} / {items.length}</Typography>
-                                        </div>
-                                        <div>
-                                            <CloseIcon fontSize="large" onClick={handleClose}/>
-                                        </div>
-                                    </div>
-                                </div>
+                </Card>
+            ))}
+        </SwipeableViews>
+        <div style={{width: `100%`, margin: `10px 0 0 0`, textAlign: `center`}}>
+            <div>
+                <Typography style={{fontSize: 20}} variant={"caption"}>{activeItemIndex} / {items.length}</Typography>
+            </div>
+            <div>
+                <CloseIcon fontSize="large" onClick={handleClose}/>
+            </div>
+        </div>
+    </div>
+</Modal>
 
-                            </Backdrop>
-                        </Grid>
+        </Grid>
                     </Hidden>
 
                 </Container>

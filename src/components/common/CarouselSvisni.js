@@ -144,9 +144,9 @@ function DemoWidth() {
     return (
         <div className={classes.root}>
             <Hidden xsDown>
-            <Paper square elevation={0} className={classes.header}>
-                <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
-            </Paper>
+<Paper square elevation={0} className={classes.header}>
+    <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
+</Paper>
             </Hidden>
 
             <VirtualizeSwipeableViews style={styles.root} slideRenderer={slideRenderer} slideStyle={styles.slideContainer}/>

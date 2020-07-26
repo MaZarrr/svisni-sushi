@@ -99,31 +99,30 @@ const RecipeReviewCard = () => {
             {/*Карусель комбо телефон*/}
             <Hidden smUp>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                        { edges[0].node.combos.map((homeProduct) => (
-                            <Card key={homeProduct.id} className={classes.cardCombo}>
-                                <CardMedia
-                                    title={homeProduct.name}>
-                                    <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
-                                </CardMedia>
-                                <CardContent>
-                                    <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                                    <Typography style={{fontSize: 13, height: 50, width: `100%`, overflowY: `auto`}}
-                                                variant={"subtitle1"}>{homeProduct.description}</Typography>
-                                </CardContent>
-                                <CardActions disableSpacing>
-                                    <Button
-                                        variant="contained"
-                                        className={classesCard.buttonCombo}
-                                        component={Link}
-                                        to={`/kombo/${homeProduct.slug}`}>
-                                        Выбрать
-                                    </Button>
-                                    <Typography style={{fontSize: 22}} className="ml-auto mr-2"
-                                                variant={"body1"}>{homeProduct.price} ₽</Typography>
-                                </CardActions>
-                            </Card>
-                        ))}
-                    </SwipeableViews>
+    { edges[0].node.combos.map((homeProduct) => (
+        <Card key={homeProduct.id} className={classes.cardCombo}>
+            <CardMedia
+                title={homeProduct.name}>
+                <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+            </CardMedia>
+            <CardContent>
+                <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+                <Button
+                    variant="contained"
+                    className={classesCard.buttonCombo}
+                    component={Link}
+                    to={`/kombo/${homeProduct.slug}`}>
+                    Выбрать
+                </Button>
+                <Typography style={{fontSize: 22}} className="ml-auto mr-2"
+                            variant={"body1"}>{homeProduct.price} ₽</Typography>
+            </CardActions>
+        </Card>
+    ))}
+                </SwipeableViews>
+
             </Hidden>
 
             {/*Комбо компьютер*/}

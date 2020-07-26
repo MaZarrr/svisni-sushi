@@ -68,7 +68,7 @@ export const query = graphql `
                     slug
                     weight
                     image {
-                        fluid(maxWidth: 600) {
+                        fluid(maxWidth: 500) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -78,7 +78,7 @@ export const query = graphql `
                             name
                             price
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
@@ -88,7 +88,7 @@ export const query = graphql `
                             name
                             price
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             } 
@@ -99,7 +99,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             } 
@@ -110,7 +110,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
@@ -121,7 +121,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
@@ -133,7 +133,7 @@ export const query = graphql `
                             priceIn33cm
                             description
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
@@ -144,7 +144,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
@@ -155,7 +155,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
@@ -167,7 +167,7 @@ export const query = graphql `
                         description
                         price
                         image {
-                            fluid(maxWidth: 250) {
+                            fluid(maxWidth: 150) {
                                 ...GatsbyContentfulFluid
                             }
                         }
@@ -179,7 +179,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
@@ -190,7 +190,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                                fluid(maxWidth: 250) {
+                                fluid(maxWidth: 150) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
@@ -199,7 +199,7 @@ export const query = graphql `
                     productsKomboNapitki {
                         id
                         image {
-                            fluid(maxWidth: 250) {
+                            fluid(maxWidth: 150) {
                                 ...GatsbyContentfulFluid
                             }
                         }
@@ -212,7 +212,7 @@ export const query = graphql `
                         price
                         priceIn33cm
                         image {
-                            fluid(maxWidth: 250) {
+                            fluid(maxWidth: 150) {
                                 ...GatsbyContentfulFluid
                             }
                         }
@@ -224,7 +224,7 @@ export const query = graphql `
                 name
                 price
                 image {
-                    fluid(maxWidth: 250) {
+                    fluid(maxWidth: 150) {
                         ...GatsbyContentfulFluid
                     }
                 }
@@ -236,7 +236,7 @@ export const query = graphql `
                 name
                 price
                 image {
-                    fluid(maxWidth: 250) {
+                    fluid(maxWidth: 150) {
                         ...GatsbyContentfulFluid
                     }
                 }
@@ -248,7 +248,7 @@ export const query = graphql `
                 price
                 count
                 image {
-                    fluid(maxWidth: 250) {
+                    fluid(maxWidth: 150) {
                         ...GatsbyContentfulFluid
                     }
                 }
