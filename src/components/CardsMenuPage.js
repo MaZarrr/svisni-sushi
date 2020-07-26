@@ -47,15 +47,15 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                 className={classes.media}
                                 title={name}>
                                 <div style={{position: `relative`}}>
-                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`, margin: 0}}/>
-                                {slugCategogy === "/wok" &&
-                                <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
-                                            <Img style={{maxWidth: 50, bottom: 45, marginLeft: 15}} fluid={image.fluid} alt={"Коробка wok box"}/>
-                                            <div style={{position: `absolute`, bottom: 60, left: 55, width: 180}}>
-                                                <Typography style={{fontSize: 13}} variant={"subtitle2"}>Доставим в коробке</Typography>
-                                            </div>
-                                </div>
-                                }
+                                    <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`, margin: 0}}/>
+                                    {slugCategogy === "/wok" &&
+                                    <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
+                                        <Img style={{maxWidth: 50, bottom: 45, marginLeft: 15}} fluid={image.fluid} alt={"Коробка wok box"}/>
+                                        <div style={{position: `absolute`, bottom: 60, left: 55, width: 180}}>
+                                            <Typography style={{fontSize: 13}} variant={"subtitle2"}>Доставим в коробке</Typography>
+                                        </div>
+                                    </div>
+                                    }
                                 </div>
                             </CardMedia>
                             }
@@ -76,8 +76,13 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                     <Grid style={{padding: 10}} container itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                         <Grid item xs={6}>
                                             <Paper style={{width: `60%`, margin: `0 auto`}}>
+                                                { slugCategogy !== "/napitki" &&
                                                 <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{slugCategogy ===
-                                                "/sety" || slugCategogy === "/napitki" ? `${weight}кг` : `${weight}гр`}</Typography>
+                                                "/sety" ? `${weight}кг` : `${weight}гр`}</Typography>
+                                                }
+                                                { slugCategogy === "/napitki" &&
+                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{weight}л</Typography>
+                                                }
                                             </Paper>
                                         </Grid>
                                         <Grid item xs={6}>
@@ -90,7 +95,7 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                             <Typography
                                                 component="p"
                                                 variant="overline"
-                                                style={{fontSize: 16, margin: `0 auto`, width: `50%`, textAlign: `center`}}
+                                                style={{fontSize: 20, margin: `0 auto`, width: `70%`, textAlign: `center`}}
                                                 itemProp="price"
                                             >
                                                 {slugCategogy === "/pizza" ? `от ${price}₽` : `${price}₽`}
