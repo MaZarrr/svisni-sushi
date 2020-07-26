@@ -12,6 +12,9 @@ import Grid from "@material-ui/core/Grid";
 import {Hidden} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import SwipeableViews from 'react-swipeable-views';
+import {addedCart} from "../reducers/shopping-cart";
+import {connect} from "react-redux";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const useStylesCard = makeStyles(theme => ({
     titleIndex: {
@@ -32,6 +35,10 @@ const useStylesCard = makeStyles(theme => ({
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         color: 'white',
     },
+    button: {
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        color: 'white',
+    }
 }));
 const styles = {
     root: {
@@ -46,12 +53,13 @@ const styles = {
     }
 };
 
-const RecipeReviewCard = () => {
+const RecipeReviewCard = ({addedCart}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
     const {allContentfulContentIndex: {edges},
-        allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(graphql `
+        allContentfulHomePageImageMenu: {edges: menu},
+        allContentfulContentIndex: {edges: newProduct}} = useStaticQuery(graphql `
         {
             allContentfulContentIndex {
                 edges {
@@ -65,6 +73,56 @@ const RecipeReviewCard = () => {
                             image {
                                 fluid(maxWidth: 300) {
                                     ...GatsbyContentfulFluid
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            allContentfulContentIndex {
+                edges {
+                    node {
+                        id
+                        title
+                        new {
+                            ... on ContentfulProduct {
+                                id
+                                name
+                                count
+                                price
+                                description
+                                slug
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                            ... on ContentfulProductPizza {
+                                id
+                                name
+                                price
+                                priceIn33cm
+                                slug
+                                description
+                                count
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                            ... on ContentfulProductSlognyeRolly {
+                                id
+                                name
+                                description
+                                slug
+                                count
+                                price
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
                                 }
                             }
                         }
@@ -89,6 +147,9 @@ const RecipeReviewCard = () => {
         }
     `);
 
+    const titleNewProduct = newProduct[1].node.title;
+    const newProducts = newProduct[1].node.new;
+    console.log(newProducts)
     return (
         <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
@@ -124,6 +185,47 @@ const RecipeReviewCard = () => {
                         </Card>
                     ))}
                 </SwipeableViews>
+
+            {/* Новинки */}
+                <Typography className={classesCard.titleIndex} variant={"h2"}>{titleNewProduct}</Typography>
+                <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
+                    { newProducts.map((homeProduct) => (
+
+                        <Card key={homeProduct.id} className={classes.cardCombo}>
+                            <CardMedia
+                                title={homeProduct.name}>
+                                <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+                            </CardMedia>
+                            <CardContent>
+                                <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                <Typography style={{fontSize: 13, height: 60, overflowY: `auto`}}
+                                            variant={"subtitle1"}>{homeProduct.description}</Typography>
+                            </CardContent>
+                            <CardActions disableSpacing>
+                                { homeProduct.__typename === "ContentfulProduct" ||
+                                    homeProduct.__typename === "ContentfulProductPizza" ?
+                                    <Button
+                                        variant="contained"
+                                        className={classesCard.buttonCombo}
+                                        component={Link}
+                                        to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                        Посмотреть
+                                    </Button> : <Button
+                                        variant="contained"
+                                        className={classesCard.button}
+                                        onClick={() => addedCart({id: homeProduct.id,
+                                            productPrice: null, product: newProducts})}>
+                                        <ShoppingCartIcon/>
+                                    </Button>
+                                }
+
+                                <Typography style={{fontSize: 22}} className="ml-auto mr-2"
+                                            variant={"body1"}>{homeProduct.price} ₽</Typography>
+                            </CardActions>
+                        </Card>
+                    ))}
+                </SwipeableViews>
+
             </Hidden>
 
             {/*Комбо компьютер*/}
@@ -180,4 +282,8 @@ const RecipeReviewCard = () => {
 
 };
 
-export default RecipeReviewCard
+const mapDispatchToProps = {
+    addedCart,
+};
+
+export default connect(null, mapDispatchToProps)(RecipeReviewCard)

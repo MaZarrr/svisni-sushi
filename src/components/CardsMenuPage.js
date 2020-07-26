@@ -107,7 +107,6 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                 {edit === false &&
                                 <Button
                                     variant="contained"
-                                    color="secondary"
                                     className={classes.button}
                                     onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
                                     <ShoppingCartIcon/>
