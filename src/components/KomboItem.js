@@ -165,7 +165,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                     <h1 itemProp="name" className={classes.titleClass}>{name}</h1>
 
                     <div>
-                        <Typography style={{textAlign: `center`, fontSize: 20, padding: `0 15px 5px 15px`}}
+                        <Typography style={{textAlign: `center`, fontSize: 16, padding: `0 15px 5px 15px`}}
                                     variant={"body1"}>{description}</Typography>
                         <Divider/>
                         <Hidden xsDown>
