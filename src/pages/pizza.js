@@ -103,19 +103,17 @@ return (
                                                    total: priceDef,
                                                    priceDef,
                                                    size: slug,
-                                                   mass: 0.45}))}
+                                                   mass: 0.5}))}
                                                    className={clsx(classes.buttonD, {
                                                             [classes.buttonT]: size[slug]})}>
-                                                   Маленькая</BootstrapButton> </Grid>
-                                           {/*<Grid item xs={2}>*/}
-                                           {/*</Grid>*/}
+                                                   Средняя</BootstrapButton> </Grid>
                                            <Grid item xs={5}>
                                                <BootstrapButton onClick={() => dispatch(pizzaCart({id,
                                                    productPizza: updatePizza,
                                                    total: priceIn33cm,
                                                    priceDef,
                                                    size: contentful_id,
-                                                   mass: 0.65}))}
+                                                   mass: 0.75}))}
                                                        className={clsx(classes.buttonD, {
                                                            [classes.buttonT]: size[contentful_id]})}>
                                                    Большая</BootstrapButton></Grid>

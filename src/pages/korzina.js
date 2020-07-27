@@ -204,8 +204,6 @@ return (
                        <div className="d-flex">
                            <div style={{margin: `auto 0`, zIndex: 10}}>
                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
-                               {/*<ButtonBase className={classes.image}>*/}
-                               {/*</ButtonBase>*/}
                            </div>
                            <div className="ml-3">
                                <Typography gutterBottom style={{fontSize: 15}} variant="h6">
@@ -257,7 +255,7 @@ return (
                                                value={name}
                                                control={<ButtonSize
                                                    sizePizzaStyle={slug}
-                                                   title="Маленькая"
+                                                   title="Средняя"
                                                    pizzaSize={size}
                                                    id={id}
                                                    edges={items}
