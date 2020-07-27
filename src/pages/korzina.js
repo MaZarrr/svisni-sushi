@@ -259,7 +259,7 @@ return (
                                                value={name}
                                                control={<ButtonSize
                                                    sizePizzaStyle={slug}
-                                                   title="Маленькая"
+                                                   title="Средняя"
                                                    pizzaSize={size}
                                                    id={id}
                                                    edges={items}
