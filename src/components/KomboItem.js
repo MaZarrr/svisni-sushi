@@ -85,7 +85,7 @@ export const useStyleKombo = makeStyles(theme => ({
     }
 }));
 
-const KomboItem = React.memo(( {id, name, description, addedCart, image, price, slug, weight, edit, products} ) => {
+const KomboItem = React.memo(( {id, name, description, addedCart, image, price, slug, edit, products} ) => {
 
     const [activeItem, setActiveItem] = React.useState({nameItem: false});
     const [activeItems, setActiveItems] = React.useState({nameItem: false});
@@ -241,9 +241,8 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                 <ButtonBack back="/kombo" />
                 <Grid container style={{overflowY: "scroll", height: `70vh`, paddingBottom: 40}}>
                     { productSostav.map((el, idx) => (
-                        <Grid item xs={6}>
-                            <div key={el.id}
-                                 role="button" tabIndex="0"
+                        <Grid key={el.id} item xs={6}>
+                            <div role="button" tabIndex="0"
                                  aria-roledescription="attachment button"
                                  onKeyPress={onActiveItem}
                                  className={classes.activeItem}

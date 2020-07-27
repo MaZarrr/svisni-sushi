@@ -1,29 +1,30 @@
 import {createReducer, createAction} from "redux-act";
 
-export const productLoaded = createAction('PRODUCT_LOADED')
-export const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA')
-const _setLoading = createAction(`SET_LOADING`)
+export const productLoaded = createAction('PRODUCT_LOADED');
+export const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA');
+const productLoadedIndex = createAction('PRODUCT_LOADED_INDEX');
 
-export const setLoading = (isLoading) => {
-    const action = _setLoading(isLoading)
-    return action
-}
-
+export const loadIndexItems = (data) => (dispatch) => dispatch(productLoadedIndex(data));
 export const getProduct = (product) => async (dispatch) => {
     await dispatch(productLoaded(product))
-}
+};
 
 const initialState = {
     product: [],
     productPizza: [],
+    indexProduct: [],
+    indexMenu: [],
     loading: false,
     error: false
-}
+};
 
 export default createReducer({
     [productLoaded]: (state, productCategory) => {
         const product = productCategory.map(({node: el}) => el)
         return {...state, product}
+    },
+    [productLoadedIndex]: (state, {edges, menu}) => {
+        return {...state, indexProduct: edges, indexMenu: menu}
     },
     [productPizzaLoaded]: (state, productCategory) => {
         const productPizza = productCategory.map(({node: el}) => {
@@ -165,14 +166,24 @@ export default createReducer({
                 minus: -49,
                 plus: 49,
                 title: "vetchina"
-            }]}})
+            }]}});
         return {...state, productPizza}
     },
-    [_setLoading]: (state, loading) => {
-        return {...state, loading}
-    }
+
 }, initialState)
 
+
+// const _setLoading = createAction(`SET_LOADING`)
+
+// export const setLoading = (isLoading) => {
+//     const action = _setLoading(isLoading)
+//     return action
+// }
+
+
+// [_setLoading]: (state, loading) => {
+//     return {...state, loading}
+// }
 
 // export const productGet = () => (dispatch, getState) => {
 //     const state = getState()
