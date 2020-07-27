@@ -253,7 +253,8 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                     <Typography style={{fontSize: 14, textAlign: `center`}} variant={"subtitle2"}>{el.name}</Typography>
                                     <Divider/>
                                     <div >
-                                        <Typography style={{fontSize: 12, textAlign: `center`, height: `95%`, overflowY: `auto`}} variant={"body2"}>{el.description}</Typography>
+<                                   Typography style={{fontSize: 12, textAlign: `center`, height: `95%`, overflowY: `auto`}} variant={"body2"}>{el.description}</Typography>
+
                                     </div>
                                 </div>
                             </div>

@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Tooltip from '@material-ui/core/Tooltip';
 import MaskedInput from 'react-text-mask';
 
 import FormGroup from '@material-ui/core/FormGroup';
@@ -59,19 +58,23 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const [state, setState] = React.useState({checkedC: false});
 
     const [city, ] = useState({
-net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
-kol: {id: 1, priceDel: 150, deliverySalePrice: 1000, name: "Колыхалино"},          
-dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},            
-val: {id: 3, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки"},                    
-yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},                 
-shel: {id: 5, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
-gera: {id: 6, priceDel: 200, deliverySalePrice: 1000, name: "Герасимовка"},
-sobo: {id: 7, priceDel: 100, deliverySalePrice: 500, name: "Соболёвка"},
-sved: {id: 8, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"},
-borki: {id: 9, priceDel: 300, deliverySalePrice: 1400, name: "Борки"},
-znamenk: {id: 10, priceDel: 100, deliverySalePrice: 500, name: "Знаменка"},
-kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
-});
+            net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
+            kol: {id: 1, priceDel: 250, deliverySalePrice: 1400, name: "Колыхалино"},
+            dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},
+            val: {id: 3, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки"},
+            yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},
+            shel: {id: 5, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
+            gera: {id: 6, priceDel: 250, deliverySalePrice: 1400, name: "Герасимовка"},
+            sobo: {id: 7, priceDel: 150, deliverySalePrice: 700, name: "Соболёвка"},
+            sved: {id: 8, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"},
+            borki: {id: 9, priceDel: 300, deliverySalePrice: 1400, name: "Борки"},
+            znamenk: {id: 10, priceDel: 150, deliverySalePrice: 700, name: "Знаменка"},
+            loga: {id: 11, priceDel: 250, deliverySalePrice: 1400, name: "Логачевка"},
+            kyky: {id: 12, priceDel: 250, deliverySalePrice: 1400, name: "Кукуевка"},
+            kolos: {id: 13, priceDel: 500, deliverySalePrice: 2400, name: "Колосково"},
+            kazink: {id: 14, priceDel: 400, deliverySalePrice: 2300, name: "Казинка"},
+
+    });
 
     const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
 
@@ -330,7 +333,6 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
                 {delivery === "Доставка курьером" &&
                 <>
                     <Grid item xs={12} sm={6} className="d-flex justify-content-center mt-3">
-                        {/*<div className={classes.conatiner_info_delivery}>*/}
                         <FormControl required variant="filled" className={`${classes.formControl} mt-2`}>
                             <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                                 Населённый пункт
@@ -350,9 +352,11 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
                                 <option value="znamenk">Знаменка</option>
                                 <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
                                 <option value="kazink">Казинка</option>
+                                <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
+                                <option value="kyky">Кукуевка</option>
+                                <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
                             </Select>
                         </FormControl>
-                        {/*</div>*/}
 
                     </Grid>
 
@@ -532,9 +536,6 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
                             <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
                         </div> : ''
                         }
-                        <Tooltip title={buttonDisabled() === true && `Проверте правильность введенных данных
-                         • Имя может быть только из букв русского алфавита
-                         • Введите корректный номер, должен начинаться с 7 или 8`}>
                 <span>
                 <Button
                     type="submit"
@@ -542,19 +543,17 @@ kazink: {id: 11, priceDel: 300, deliverySalePrice: 1500, name: "Казинка"}
                     size={'large'}
                     disabled={buttonDisabled()}
                     variant="contained"
-                    // classes={{root: classes.button, label: classes.label}}
                 >
                     Сделать заказ
                 </Button>
                 </span>
-                        </Tooltip>
-
                         {buttonDisabled() === true &&
                         <>
                             <hr></hr>
-                            <Typography style={{marginTop: 10}}>Проверте:</Typography>
+                            <Typography style={{marginTop: 10}}>*Обязательно:</Typography>
                             <ul>
-                                <li>Имя только из букв русского алфавита</li>
+                                <li>Введите ваше имя - из букв русского алфавита</li>
+                                <li>Введите ваш телефон - начинается 7 или 8</li>
                             </ul>
                         </>
                         }
