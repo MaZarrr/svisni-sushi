@@ -58,45 +58,37 @@ const RecipeReviewCard = ({addedCart}) => {
     const classesCard = useStylesCard();
 
     const {allContentfulContentIndex: {edges},
-        allContentfulHomePageImageMenu: {edges: menu},
-        allContentfulContentIndex: {edges: newProduct}} = useStaticQuery(graphql `
+        allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(graphql `
         {
             allContentfulContentIndex {
                 edges {
                     node {
+                        title
                         combos {
                             id
                             description
                             name
-                            price
-                            slug
                             image {
                                 fluid(maxWidth: 300) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
+                            price
+                            slug
                         }
-                        }
-                    }
-                }
-        allContentfulContentIndex {
-                edges {
-                    node {
-                        id
-                        title
                         new {
                             ... on ContentfulProduct {
                                 id
                                 name
-                                count
                                 price
-                                description
                                 slug
                                 image {
                                     fluid(maxWidth: 300) {
                                         ...GatsbyContentfulFluid
                                     }
                                 }
+                                count
+                                description
                             }
                             ... on ContentfulProductPizza {
                                 id
@@ -104,26 +96,26 @@ const RecipeReviewCard = ({addedCart}) => {
                                 price
                                 priceIn33cm
                                 slug
-                                description
-                                count
                                 image {
                                     fluid(maxWidth: 300) {
                                         ...GatsbyContentfulFluid
                                     }
                                 }
+                                count
+                                description
                             }
                             ... on ContentfulProductSlognyeRolly {
                                 id
                                 name
-                                description
-                                slug
                                 count
+                                description
                                 price
                                 image {
                                     fluid(maxWidth: 300) {
                                         ...GatsbyContentfulFluid
                                     }
                                 }
+                                slug
                             }
                         }
                     }
@@ -147,8 +139,12 @@ const RecipeReviewCard = ({addedCart}) => {
         }
     `);
 
-    const titleNewProduct = newProduct[0].node.title;
-    const newProducts = newProduct[0].node.new;
+
+    const titleNewProduct = edges[0].node.title;
+    const newProducts = edges[0].node.new;
+    console.log(newProducts)
+    // console.log(edges)
+
     return (
         <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
