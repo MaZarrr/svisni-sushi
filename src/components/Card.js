@@ -66,20 +66,20 @@ const RecipeReviewCard = ({addedCart}) => {
                     node {
                         combos {
                             id
+                            description
                             name
                             price
                             slug
-                            description
                             image {
                                 fluid(maxWidth: 300) {
                                     ...GatsbyContentfulFluid
                                 }
                             }
                         }
+                        }
                     }
                 }
-            }
-            allContentfulContentIndex {
+        allContentfulContentIndex {
                 edges {
                     node {
                         id
@@ -147,9 +147,8 @@ const RecipeReviewCard = ({addedCart}) => {
         }
     `);
 
-    const titleNewProduct = newProduct[1].node.title;
-    const newProducts = newProduct[1].node.new;
-
+    const titleNewProduct = newProduct[0].node.title;
+    const newProducts = newProduct[0].node.new;
     return (
         <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
@@ -160,7 +159,7 @@ const RecipeReviewCard = ({addedCart}) => {
             {/*Карусель комбо телефон*/}
             <Hidden smUp>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                    { edges[0].node.combos.map((homeProduct) => (
+                    { edges[1].node.combos.map((homeProduct) => (
                         <Card key={homeProduct.id} className={classes.cardCombo}>
                             <CardMedia
                                 title={homeProduct.name}>
@@ -229,7 +228,7 @@ const RecipeReviewCard = ({addedCart}) => {
             {/*Комбо компьютер*/}
             <Hidden xsDown>
                 <Grid container style={{width: `85%`}}>
-                    { edges[0].node.combos.map((homeProduct) => (
+                    { edges[1].node.combos.map((homeProduct) => (
                         <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
                             <Card className={classes.cardComboPc}>
                                 <CardMedia
