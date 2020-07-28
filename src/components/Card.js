@@ -12,8 +12,8 @@ import Grid from "@material-ui/core/Grid";
 import {Hidden} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import SwipeableViews from 'react-swipeable-views';
-import {addedCart} from "../reducers/shopping-cart";
-import {connect} from "react-redux";
+// import {addedCart} from "../reducers/shopping-cart";
+// import {connect} from "react-redux";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const useStylesCard = makeStyles(theme => ({
@@ -56,11 +56,13 @@ const styles = {
 const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
+    console.log(indexProduct)
 
     const titleNewProduct = indexProduct[0].node.title;
     const newProducts = indexProduct[0].node.new;
     const productsCombo = indexProduct[1].node.combos;
     // console.log(productsCombo)
+    // console.log(newProducts)
     return (
         <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
@@ -68,7 +70,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
                 <Link to={"/kombo"}>Все комбо</Link>
             </Typography>
 
-            {/*Карусель комбо телефон*/}
+            Карусель комбо телефон
             <Hidden smUp>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
                     { productsCombo.map((homeProduct) => (
@@ -231,13 +233,14 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
 
 };
 
-const mapStateToProps = (state) => ({
-    indexProduct: state.app.indexProduct,
-    indexMenu: state.app.indexMenu
-});
+// const mapStateToProps = (state) => ({
+//     indexProduct: state.app.indexProduct,
+//     indexMenu: state.app.indexMenu
+// });
+//
+// const mapDispatchToProps = {
+//     addedCart,
+// };
 
-const mapDispatchToProps = {
-    addedCart,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CardIndex)
+export default CardIndex
+// export default connect(mapStateToProps, mapDispatchToProps)(CardIndex)
