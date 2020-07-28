@@ -233,7 +233,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
 const mapStateToProps = (state) => ({
     indexProduct: state.app.indexProduct,
     indexMenu: state.app.indexMenu
-})
+});
 
 const mapDispatchToProps = {
     addedCart,

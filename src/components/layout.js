@@ -8,12 +8,13 @@ import {connect} from "react-redux";
 import {Hidden} from "@material-ui/core";
 import {loadIndexItems} from "../reducers/app";
 import {graphql, useStaticQuery} from "gatsby";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 const Footer = loadable(() => import('./footer'));
 
 const Layout = ({ children, loadIndexItems}) => {
 
-const classes = useStyleLayout();
+  const classes = useStyleLayout();
 
   const {allContentfulContentIndex: {edges},
     allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(graphql `
@@ -40,6 +41,18 @@ const classes = useStyleLayout();
                 name
                 price
                 slug
+                image {
+                  fluid(maxWidth: 300) {
+                    ...GatsbyContentfulFluid
+                  }
+                }
+                count
+                description
+              }
+              ... on ContentfulProductGunkan {
+                id
+                name
+                price
                 image {
                   fluid(maxWidth: 300) {
                     ...GatsbyContentfulFluid
@@ -101,34 +114,39 @@ const classes = useStyleLayout();
     loadIndexItems({edges, menu})
   }, [edges, loadIndexItems, menu]);
 
+
+  React.useEffect(() => {
+    loadIndexItems({edges, menu})
+  }, [edges, loadIndexItems, menu]);
+
   return (
-    <>
-    <Header/>
-      <div className={classes.root}>
-        <main>
-          <div className={classes.toolbar} />
+      <>
+        <Header/>
+        <ErrorBoundary>
+        <div className={classes.root}>
+          <main>
+            <div className={classes.toolbar} />
             {children}
-        </main>
-      </div>
+          </main>
+        </div>
+        </ErrorBoundary>
+        <div>
+        </div>
 
-      <div>
-      </div>
-
-      <Hidden xsDown>
-              <Footer/>
-      </Hidden>
-    </>
+        <Hidden xsDown>
+          <Footer/>
+        </Hidden>
+      </>
   )
 };
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   pathname: PropTypes.string
-}
+};
 
 const mapDispatchToProps = {
   loadIndexItems
 };
 
 export default connect(null, mapDispatchToProps)(Layout)
-
