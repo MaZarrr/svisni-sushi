@@ -28,15 +28,15 @@ const IndexPage = ({data: {allContentfulContentIndex: {edges}, allContentfulHome
         loadIndexItems({edges, menu})
     }, [edges, menu, loadIndexItems]);
 
-    // console.log("edges", edges);
-    // console.log("menu", menu);
+    console.log("edges", edges);
+    console.log("menu", menu);
 
     const indexProduct = isEmpty(product) ? edges : product;
     const indexMenu = isEmpty(menus) ? menu : menus;
     console.log(product);
-    // console.log(menus);
-    // console.log(indexProduct);
-    // console.log(indexMenu);
+    console.log(menus);
+    console.log(indexProduct);
+    console.log(indexMenu);
 return (
   <section>
   <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"

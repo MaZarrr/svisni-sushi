@@ -13,7 +13,7 @@ import {Hidden} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import SwipeableViews from 'react-swipeable-views';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import {isNil} from "ramda";
+import {isNil, isEmpty} from "ramda";
 // import {addedCart} from "../reducers/shopping-cart";
 // import {connect} from "react-redux";
 
@@ -61,12 +61,16 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
     // const titleNewProduct = indexProduct[0].node.title;
     // const newProducts = indexProduct[0].node.new;
     // const productsCombo = indexProduct[1].node.combos;
-
+    console.log("indexProduct", indexProduct)
+    console.log("indexMenu", indexMenu)
     // console.log(productsCombo)
     // console.log(newProducts)
-
+    const prod = isNil(indexProduct) || isEmpty(indexProduct)
+    console.log(prod)
     return (
         <div className={`mt-1 ${classes.root}`}>
+            { prod === true ? '' :
+            <>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
             <Typography variant={'button'}>
                 <Link to={"/kombo"}>Все комбо</Link>
@@ -211,6 +215,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
                     ))}
                 </Grid>
             </Hidden>
+            </> }
 
             {/*Меню выбор*/}
             <Grid container className="mt-4">
