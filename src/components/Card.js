@@ -59,7 +59,8 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
 
     const titleNewProduct = indexProduct[0].node.title;
     const newProducts = indexProduct[0].node.new;
-
+    const productsCombo = indexProduct[1].node.combos;
+    // console.log(productsCombo)
     return (
         <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
@@ -70,7 +71,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
             {/*Карусель комбо телефон*/}
             <Hidden smUp>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                    { indexProduct[1].node.combos.map((homeProduct) => (
+                    { productsCombo.map((homeProduct) => (
                         <Card key={homeProduct.id} className={classes.cardCombo}>
                             <CardMedia
                                 title={homeProduct.name}>
@@ -139,7 +140,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
             {/*Комбо компьютер*/}
             <Hidden xsDown>
                 <Grid container style={{width: `85%`}}>
-                    { indexProduct[1].node.combos.map((homeProduct) => (
+                    { productsCombo.map((homeProduct) => (
                         <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
                             <Card className={classes.cardComboPc}>
                                 <CardMedia
