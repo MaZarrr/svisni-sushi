@@ -1,6 +1,6 @@
 import React from 'react';
 import Img from 'gatsby-image';
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { Link } from "gatsby"
 import {useStyleCardIndexPage} from "./common/style";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -53,102 +53,13 @@ const styles = {
     }
 };
 
-const RecipeReviewCard = ({addedCart}) => {
+const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
-    const {allContentfulContentIndex: {edges},
-        allContentfulHomePageImageMenu: {edges: menu},
-        allContentfulContentIndex: {edges: newProduct}} = useStaticQuery(graphql `
-        {
-            allContentfulContentIndex {
-                edges {
-                    node {
-                        combos {
-                            id
-                            name
-                            price
-                            slug
-                            description
-                            image {
-                                fluid(maxWidth: 300) {
-                                    ...GatsbyContentfulFluid
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            allContentfulContentIndex {
-                edges {
-                    node {
-                        id
-                        title
-                        new {
-                            ... on ContentfulProduct {
-                                id
-                                name
-                                count
-                                price
-                                description
-                                slug
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                            ... on ContentfulProductPizza {
-                                id
-                                name
-                                price
-                                priceIn33cm
-                                slug
-                                description
-                                count
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                            ... on ContentfulProductSlognyeRolly {
-                                id
-                                name
-                                description
-                                slug
-                                count
-                                price
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            allContentfulHomePageImageMenu(sort: {fields: desc}) {
-                edges {
-                    node {
-                        id
-                        slug
-                        category
-                        desc
-                        image {
-                            fluid(maxWidth: 300) {
-                                ...GatsbyContentfulFluid
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `);
+    const titleNewProduct = indexProduct[0].node.title;
+    const newProducts = indexProduct[0].node.new;
 
-    const titleNewProduct = newProduct[1].node.title;
-    const newProducts = newProduct[1].node.new;
     return (
         <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
@@ -159,7 +70,7 @@ const RecipeReviewCard = ({addedCart}) => {
             {/*Карусель комбо телефон*/}
             <Hidden smUp>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                    { edges[0].node.combos.map((homeProduct) => (
+                    { indexProduct[1].node.combos.map((homeProduct) => (
                         <Card key={homeProduct.id} className={classes.cardCombo}>
                             <CardMedia
                                 title={homeProduct.name}>
@@ -167,8 +78,6 @@ const RecipeReviewCard = ({addedCart}) => {
                             </CardMedia>
                             <CardContent>
                                 <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                                {/*<Typography style={{fontSize: 13, height: 50, width: `100%`, overflowY: `auto`}}*/}
-                                {/*            variant={"subtitle1"}>{homeProduct.description}</Typography>*/}
                             </CardContent>
                             <CardActions disableSpacing>
                                 <Button
@@ -185,7 +94,7 @@ const RecipeReviewCard = ({addedCart}) => {
                     ))}
                 </SwipeableViews>
 
-            {/* Новинки */}
+                {/* Новинки */}
                 <Typography className={classesCard.titleIndex} variant={"h2"}>{titleNewProduct}</Typography>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
                     { newProducts.map((homeProduct) => (
@@ -202,7 +111,7 @@ const RecipeReviewCard = ({addedCart}) => {
                             </CardContent>
                             <CardActions disableSpacing>
                                 { homeProduct.__typename === "ContentfulProduct" ||
-                                    homeProduct.__typename === "ContentfulProductPizza" ?
+                                homeProduct.__typename === "ContentfulProductPizza" ?
                                     <Button
                                         variant="contained"
                                         className={classesCard.buttonCombo}
@@ -230,7 +139,7 @@ const RecipeReviewCard = ({addedCart}) => {
             {/*Комбо компьютер*/}
             <Hidden xsDown>
                 <Grid container style={{width: `85%`}}>
-                    { edges[0].node.combos.map((homeProduct) => (
+                    { indexProduct[1].node.combos.map((homeProduct) => (
                         <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
                             <Card className={classes.cardComboPc}>
                                 <CardMedia
@@ -296,17 +205,13 @@ const RecipeReviewCard = ({addedCart}) => {
                         </Grid>
                     ))}
                 </Grid>
-
-
-
-
             </Hidden>
 
             {/*Меню выбор*/}
             <Grid container className="mt-4">
                 <Typography className={`mb-2 ${classesCard.titleIndex}`}
                             variant={"h2"}>Заказывайте роллы, суши и пиццу с доставкой</Typography>
-                {menu.map(({node: homeMenu}) => (
+                {indexMenu.map(({node: homeMenu}) => (
                     <Grid item xs={6} sm={4} key={homeMenu.id} >
                         <div className="cart_item">
                             <Link to={`/${homeMenu.slug}`}>
@@ -325,8 +230,13 @@ const RecipeReviewCard = ({addedCart}) => {
 
 };
 
+const mapStateToProps = (state) => ({
+    indexProduct: state.app.indexProduct,
+    indexMenu: state.app.indexMenu
+});
+
 const mapDispatchToProps = {
     addedCart,
 };
 
-export default connect(null, mapDispatchToProps)(RecipeReviewCard)
+export default connect(mapStateToProps, mapDispatchToProps)(CardIndex)
