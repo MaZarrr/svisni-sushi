@@ -4,14 +4,8 @@ import "../components/sass/index.css"
 import Grid from '@material-ui/core/Grid';
 import loadable from '@loadable/component'
 import {makeStyles} from "@material-ui/core/styles";
-import Spinner from '../components/spinner/spinner'
-
-const Card = loadable(() => import('../components/Card'), {
-    fallback: <Spinner/>
-})
-const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'), {
-    fallback: <Spinner/>
-})
+import CardIndex from "../components/Card";
+import CarouselSvisni from '../components/common/CarouselSvisni'
 
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -33,7 +27,7 @@ return (
 
    <CarouselSvisni />
           <Grid item xs={12} className={classes.root}>
-              <Card />
+              <CardIndex/>
           </Grid>
   </section>
   )
