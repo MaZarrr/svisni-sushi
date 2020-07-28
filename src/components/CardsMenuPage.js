@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import {Link} from "gatsby";
-import React from "react";
+import React, {memo} from "react";
 import {useStylesCart} from "./common/style";
 import {addedToCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
@@ -17,9 +17,9 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import MoreIcon from '@material-ui/icons/More';
 import ToggleButton from "./common/ToogleButton";
 
-const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
+const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
     const classes = useStylesCart();
-
+    console.log("render")
     return (
         <>
             {visibleItems.map((products) => {
@@ -166,6 +166,6 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
             })}
         </>
     )
-};
+});
 
 export default connect(null, null)(CardsMenuPage)

@@ -33,8 +33,8 @@ const IndexPage = ({data: {allContentfulContentIndex: {edges}, allContentfulHome
 
     const indexProduct = isEmpty(product) ? edges : product;
     const indexMenu = isEmpty(menus) ? menu : menus;
-    console.log(product);
-    console.log(menus);
+    // console.log(product);
+    // console.log(menus);
     console.log(indexProduct);
     console.log(indexMenu);
 return (

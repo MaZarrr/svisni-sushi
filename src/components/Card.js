@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import Img from 'gatsby-image';
 import { Link } from "gatsby"
 import {useStyleCardIndexPage} from "./common/style";
@@ -54,7 +54,7 @@ const styles = {
     }
 };
 
-const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
+const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
@@ -62,11 +62,11 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
     // const newProducts = indexProduct[0].node.new;
     // const productsCombo = indexProduct[1].node.combos;
     console.log("indexProduct", indexProduct)
-    console.log("indexMenu", indexMenu)
+    // console.log("indexMenu", indexMenu)
     // console.log(productsCombo)
     // console.log(newProducts)
     const prod = isNil(indexProduct) || isEmpty(indexProduct)
-    console.log(prod)
+    // console.log(prod)
     return (
         <div className={`mt-1 ${classes.root}`}>
             { prod === true ? '' :
@@ -238,7 +238,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
         </div>
     );
 
-};
+});
 
 // const mapStateToProps = (state) => ({
 //     indexProduct: state.app.indexProduct,
