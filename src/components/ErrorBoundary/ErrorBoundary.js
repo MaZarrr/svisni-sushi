@@ -6,13 +6,13 @@ import {Typography} from "@material-ui/core";
 class ErrorBoundary extends Component {
     state = {
         hasError: false
-    }
+    };
 
     componentDidCatch() {
             this.setState({hasError: true})
     }
 
-    reload = () => window.location.reload()
+    reload = () => window.location.reload();
 
     render() {
         const {hasError} = this.state
@@ -21,9 +21,9 @@ class ErrorBoundary extends Component {
             return (
                     <div className="d-flex flex-column items-center" >
                         <div style={{margin: `20% auto 0 auto`}}>
-                            <Typography variant={`h5`}>Упс! Непредвиденная ошибка. Возможна проблема с интернетом...</Typography>
+                            <Typography variant={`h5`}>Упс! Непредвиденная ошибка...</Typography>
                             <Button style={{margin: `8px 0 8px 0 `}} variant="contained" color="primary" onClick={this.reload}>
-                                Оффлай версия
+                                Перезагрузить
                             </Button>
                         </div>
                     </div>

@@ -9,6 +9,7 @@ import {addedCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 import {graphql} from "gatsby";
 import {loadIndexItems} from "../reducers/app";
+import {isEmpty} from "ramda";
 
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -19,12 +20,15 @@ const useStyleIndexPage = makeStyles(theme => ({
 }));
 
 const IndexPage = ({data: {allContentfulContentIndex: {edges},
-    allContentfulHomePageImageMenu: {edges: menu}}, addedCart, indexProduct, indexMenu}) => {
+    allContentfulHomePageImageMenu: {edges: menu}}, addedCart, indexProduct: product, indexMenu: menus}) => {
 
   const classes = useStyleIndexPage();
     React.useEffect(() => {
         loadIndexItems({edges, menu})
     }, [edges, menu]);
+
+    const indexProduct = isEmpty(product) ? edges : product;
+    const indexMenu = isEmpty(menus) ? menu : menus;
 
 return (
   <section>
@@ -35,8 +39,8 @@ return (
    <CarouselSvisni />
           <Grid item xs={12} className={classes.root}>
               <CardIndex addedCart={addedCart}
-                         indexProduct={edges}
-                         indexMenu={menu} />
+                         indexProduct={indexProduct}
+                         indexMenu={indexMenu} />
           </Grid>
   </section>
   )
@@ -52,8 +56,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
-
-// export default IndexPage
 
 export const query = graphql `
     {

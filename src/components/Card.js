@@ -12,9 +12,9 @@ import Grid from "@material-ui/core/Grid";
 import {Hidden} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import SwipeableViews from 'react-swipeable-views';
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 // import {addedCart} from "../reducers/shopping-cart";
 // import {connect} from "react-redux";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const useStylesCard = makeStyles(theme => ({
     titleIndex: {
@@ -56,13 +56,11 @@ const styles = {
 const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
-    console.log(indexProduct)
 
     const titleNewProduct = indexProduct[0].node.title;
     const newProducts = indexProduct[0].node.new;
     const productsCombo = indexProduct[1].node.combos;
-    // console.log(productsCombo)
-    // console.log(newProducts)
+
     return (
         <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
