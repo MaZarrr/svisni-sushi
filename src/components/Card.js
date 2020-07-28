@@ -13,6 +13,7 @@ import {Hidden} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import SwipeableViews from 'react-swipeable-views';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import {isNil} from "ramda";
 // import {addedCart} from "../reducers/shopping-cart";
 // import {connect} from "react-redux";
 
@@ -57,9 +58,9 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
-    const titleNewProduct = indexProduct[0].node.title;
-    const newProducts = indexProduct[0].node.new;
-    const productsCombo = indexProduct[1].node.combos;
+    // const titleNewProduct = indexProduct[0].node.title;
+    // const newProducts = indexProduct[0].node.new;
+    // const productsCombo = indexProduct[1].node.combos;
 
     // console.log(productsCombo)
     // console.log(newProducts)
@@ -74,7 +75,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
             {/*Карусель комбо телефон*/}
             <Hidden smUp>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                    { productsCombo.map((homeProduct) => (
+                    {  isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
                         <Card key={homeProduct.id} className={classes.cardCombo}>
                             <CardMedia
                                 title={homeProduct.name}>
@@ -99,9 +100,9 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
                 </SwipeableViews>
 
                 {/* Новинки */}
-                <Typography className={classesCard.titleIndex} variant={"h2"}>{titleNewProduct}</Typography>
+                <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                    { newProducts.map((homeProduct) => (
+                    { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
 
                         <Card key={homeProduct.id} className={classes.cardCombo}>
                             <CardMedia
@@ -127,7 +128,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
                                         variant="contained"
                                         className={classesCard.button}
                                         onClick={() => addedCart({id: homeProduct.id,
-                                            productPrice: null, product: newProducts})}>
+                                            productPrice: null, product: indexProduct[0].node.new})}>
                                         <ShoppingCartIcon/>
                                     </Button>
                                 }
@@ -143,7 +144,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
             {/*Комбо компьютер*/}
             <Hidden xsDown>
                 <Grid container style={{width: `85%`}}>
-                    { productsCombo.map((homeProduct) => (
+                    { isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
                         <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
                             <Card className={classes.cardComboPc}>
                                 <CardMedia
@@ -171,8 +172,8 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
                     ))}
 
                     {/* Новинки компьютер  */}
-                    <Typography className={classesCard.titleIndex} variant={"h2"}>{titleNewProduct}</Typography>
-                    { newProducts.map((homeProduct) => (
+                    <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
+                    { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
                         <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
                             <Card className={classes.cardComboPc}>
                                 <CardMedia
@@ -197,7 +198,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
                                             variant="contained"
                                             className={classesCard.button}
                                             onClick={() => addedCart({id: homeProduct.id,
-                                                productPrice: null, product: newProducts})}>
+                                                productPrice: null, product: indexProduct[0].node.new})}>
                                             <ShoppingCartIcon/>
                                         </Button>
                                     }
