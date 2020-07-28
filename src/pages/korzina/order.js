@@ -494,7 +494,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                     : ""}</Typography>
                                 }
                                 { itemCartPizza &&
-                                <Typography variant={"subtitle2"} style={{fontSize: 16}}>Доставка с бесплатной пиццей Салями + <strong>{stateDeliveryPrice.priceDel} ₽</strong></Typography>
+                                <Typography variant={"subtitle2"} style={{fontSize: 16}}>Доставка с бесплатной пиццей Ветчина-Грибы-Бекон + <strong>{stateDeliveryPrice.priceDel} ₽</strong></Typography>
                                 }
                             </div>
                             <div>

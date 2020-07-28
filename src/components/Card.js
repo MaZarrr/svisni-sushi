@@ -16,6 +16,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {isNil, isEmpty} from "ramda";
 // import {addedCart} from "../reducers/shopping-cart";
 // import {connect} from "react-redux";
+// yarn add gatsby-cli
 
 const useStylesCard = makeStyles(theme => ({
     titleIndex: {
@@ -62,9 +63,6 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     // const newProducts = indexProduct[0].node.new;
     // const productsCombo = indexProduct[1].node.combos;
     console.log("indexProduct", indexProduct)
-    // console.log("indexMenu", indexMenu)
-    // console.log(productsCombo)
-    // console.log(newProducts)
     const prod = isNil(indexProduct) || isEmpty(indexProduct)
     // console.log(prod)
     return (
