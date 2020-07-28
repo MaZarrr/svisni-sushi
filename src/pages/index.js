@@ -19,17 +19,24 @@ const useStyleIndexPage = makeStyles(theme => ({
     }
 }));
 
-const IndexPage = ({data: {allContentfulContentIndex: {edges},
-    allContentfulHomePageImageMenu: {edges: menu}}, addedCart, indexProduct: product, indexMenu: menus}) => {
+const IndexPage = ({data: {allContentfulContentIndex: {edges}, allContentfulHomePageImageMenu: {edges: menu}},
+                       loadIndexItems, addedCart,
+                       indexProduct: product, indexMenu: menus}) => {
 
   const classes = useStyleIndexPage();
     React.useEffect(() => {
         loadIndexItems({edges, menu})
-    }, [edges, menu]);
+    }, [edges, menu, loadIndexItems]);
+
+    // console.log("edges", edges);
+    // console.log("menu", menu);
 
     const indexProduct = isEmpty(product) ? edges : product;
     const indexMenu = isEmpty(menus) ? menu : menus;
-
+    console.log(product);
+    // console.log(menus);
+    // console.log(indexProduct);
+    // console.log(indexMenu);
 return (
   <section>
   <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
@@ -53,6 +60,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     addedCart,
+    loadIndexItems,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
@@ -76,57 +84,60 @@ export const query = graphql `
                         slug
                     }
                     new {
-                        ... on ContentfulProduct {
-                            id
-                            name
-                            price
-                            slug
-                            image {
-                                fluid(maxWidth: 300) {
-                                    ...GatsbyContentfulFluid
+                        __typename
+                        ... on Node {
+                            ... on ContentfulProduct {
+                                id
+                                name
+                                price
+                                slug
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
                                 }
+                                count
+                                description
                             }
-                            count
-                            description
-                        }
-                        ... on ContentfulProductGunkan {
-                            id
-                            name
-                            price
-                            image {
-                                fluid(maxWidth: 300) {
-                                    ...GatsbyContentfulFluid
+                            ... on ContentfulProductGunkan {
+                                id
+                                name
+                                price
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
                                 }
+                                count
+                                description
                             }
-                            count
-                            description
-                        }
-                        ... on ContentfulProductPizza {
-                            id
-                            name
-                            price
-                            priceIn33cm
-                            slug
-                            image {
-                                fluid(maxWidth: 300) {
-                                    ...GatsbyContentfulFluid
+                            ... on ContentfulProductPizza {
+                                id
+                                name
+                                price
+                                priceIn33cm
+                                slug
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
                                 }
+                                count
+                                description
                             }
-                            count
-                            description
-                        }
-                        ... on ContentfulProductSlognyeRolly {
-                            id
-                            name
-                            count
-                            description
-                            price
-                            image {
-                                fluid(maxWidth: 300) {
-                                    ...GatsbyContentfulFluid
+                            ... on ContentfulProductSlognyeRolly {
+                                id
+                                name
+                                count
+                                description
+                                price
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
                                 }
+                                slug
                             }
-                            slug
                         }
                     }
                 }

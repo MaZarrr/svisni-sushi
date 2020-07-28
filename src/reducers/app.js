@@ -24,6 +24,7 @@ export default createReducer({
         return {...state, product}
     },
     [productLoadedIndex]: (state, {edges, menu}) => {
+        // console.log(edges)
         return {...state, indexProduct: edges, indexMenu: menu}
     },
     [productPizzaLoaded]: (state, productCategory) => {

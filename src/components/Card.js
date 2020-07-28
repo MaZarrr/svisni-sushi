@@ -61,6 +61,9 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
     const newProducts = indexProduct[0].node.new;
     const productsCombo = indexProduct[1].node.combos;
 
+    // console.log(productsCombo)
+    // console.log(newProducts)
+
     return (
         <div className={`mt-1 ${classes.root}`}>
             <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
@@ -68,7 +71,7 @@ const CardIndex = ({addedCart, indexProduct, indexMenu}) => {
                 <Link to={"/kombo"}>Все комбо</Link>
             </Typography>
 
-            Карусель комбо телефон
+            {/*Карусель комбо телефон*/}
             <Hidden smUp>
                 <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
                     { productsCombo.map((homeProduct) => (
