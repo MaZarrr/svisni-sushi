@@ -20,10 +20,6 @@ const useStyleIndexPage = makeStyles(theme => ({
     }
 }));
 
-// const IndexPage = ({data: {allContentfulContentIndex: {edges}, allContentfulHomePageImageMenu: {edges: menu}},
-//                        loadIndexItems, addedCart,
-//                        indexProduct: product, indexMenu: menus}) => {
-
     const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
 
         const { allContentfulContentIndex: {edges}, allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(graphql`
@@ -85,8 +81,33 @@ const useStyleIndexPage = makeStyles(theme => ({
                                        }
                                        count
                                        description
-                                   }
+                                   } 
                                    ... on ContentfulProductSlognyeRolly {
+                                       id
+                                       name
+                                       count
+                                       description
+                                       price
+                                       image {
+                                           fluid(maxWidth: 300) {
+                                               ...GatsbyContentfulFluid
+                                           }
+                                       }
+                                       slug
+                                   }
+                                   ... on ContentfulProductZakuski {
+                                       id
+                                       name
+                                       count
+                                       description
+                                       price
+                                       image {
+                                           fluid(maxWidth: 300) {
+                                               ...GatsbyContentfulFluid
+                                           }
+                                       }
+                                   }
+                                   ... on ContentfulProductKombo {
                                        id
                                        name
                                        count
@@ -128,13 +149,10 @@ const useStyleIndexPage = makeStyles(theme => ({
         }, [edges, menu, loadIndexItems]);
 
         console.log("edges", edges);
-        console.log("menu", menu);
 
         const indexProduct = isEmpty(product) ? edges : product;
         const indexMenu = isEmpty(menus) ? menu : menus;
 
-        console.log(indexProduct);
-        console.log(indexMenu);
         return (
             <section>
                 <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"

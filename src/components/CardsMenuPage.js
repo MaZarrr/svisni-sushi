@@ -19,7 +19,6 @@ import ToggleButton from "./common/ToogleButton";
 
 const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
     const classes = useStylesCart();
-    console.log("render")
     return (
         <>
             {visibleItems.map((products) => {
