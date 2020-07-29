@@ -37,10 +37,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
             <SEO title="Заказать Cуши сет. Меню суши, роллы — доставка в Валуйки"
                  description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
             <section>
-                <div className={classes.titleH1}>
-                    <h1 style={{fontFamily: `Oswald, cursive`,
-                        fontWeight: 600, fontSize: 40}}>Сеты</h1>
-                </div>
+                <h1 className={classes.titleH1}>Сеты</h1>
                 {/*{ load === false ?*/}
                 <div>
                     <CustomizedInputSearch location={location.pathname}/>

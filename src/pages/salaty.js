@@ -24,10 +24,7 @@ return (
     <SEO title="Заказать популярные салаты"
     description="Для вас предоставленна возможность заказа наиболее популярных салатов приготовленных из свежих продуктов.
     Вашему вниманию: салаты цезарь в вариациях и чука."/>
-       <div className={classes.titleH1}>
-           <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600, fontSize: 40}}>Салаты</h1>
-       </div>
+       <h1 className={classes.titleH1}>Салаты</h1>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}
                                    image={image} product={product}/>

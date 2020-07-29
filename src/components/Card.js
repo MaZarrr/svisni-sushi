@@ -60,6 +60,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     // const newProducts = indexProduct[0].node.new;
     // const productsCombo = indexProduct[1].node.combos;
     const prod = isNil(indexProduct) || isEmpty(indexProduct)
+    console.log(indexProduct)
     return (
         <div className={`mt-1 ${classes.root}`}>
             { prod === true ? '' :

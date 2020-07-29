@@ -205,7 +205,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             <div className={classes.root}>
                 <Container className={classes.paper}>
                     <Typography variant="h2">
-                        <Box fontFamily="Oswald" fontWeight={900} fontSize={39}>Оформление заказа</Box>
+                        <Box  style={{textTransform: "uppercase"}} fontFamily="Oswald" fontWeight={800} fontSize={34}>Оформление заказа</Box>
                     </Typography>
                 </Container>
                 <Container>

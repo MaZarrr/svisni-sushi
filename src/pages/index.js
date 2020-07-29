@@ -20,138 +20,143 @@ const useStyleIndexPage = makeStyles(theme => ({
     }
 }));
 
+const QUERY_INDEX_DATA = graphql`
+        query {
+            allContentfulContentIndex {
+                edges {
+                    node {
+                        title
+                        combos {
+                            id
+                            description
+                            name
+                            price
+                            slug
+                            image {
+                                fluid(maxWidth: 300) {
+                                    ...GatsbyContentfulFluid
+                                }
+                            }
+                        }
+                        new {
+                            __typename
+                            ... on Node {
+                                ... on ContentfulProduct {
+                                    id
+                                    name
+                                    price
+                                    slug
+                                    count
+                                    description
+                                    image {
+                                        fluid(maxWidth: 300) {
+                                            ...GatsbyContentfulFluid
+                                        }
+                                    }
+                                }
+                                ... on ContentfulProductGunkan {
+                                    id
+                                    name
+                                    price
+                                    count
+                                    description
+                                    image {
+                                        fluid(maxWidth: 300) {
+                                            ...GatsbyContentfulFluid
+                                        }
+                                    }
+                                }
+                                ... on ContentfulProductPizza {
+                                    id
+                                    name
+                                    price
+                                    priceIn33cm
+                                    slug
+                                    count
+                                    description
+                                    image {
+                                        fluid(maxWidth: 300) {
+                                            ...GatsbyContentfulFluid
+                                        }
+                                    }
+                                }
+                                ... on ContentfulProductSlognyeRolly {
+                                    id
+                                    name
+                                    count
+                                    description
+                                    price
+                                    image {
+                                        fluid(maxWidth: 300) {
+                                            ...GatsbyContentfulFluid
+                                        }
+                                    }
+                                }
+                                ... on ContentfulProductZakuski {
+                                    id
+                                    name
+                                    count
+                                    description
+                                    price
+                                    image {
+                                        fluid(maxWidth: 300) {
+                                            ...GatsbyContentfulFluid
+                                        }
+                                    }
+                                }
+                                ... on ContentfulProductKombo {
+                                    id
+                                    name
+                                    count
+                                    description
+                                    price
+                                    slug
+                                    image {
+                                        fluid(maxWidth: 300) {
+                                            ...GatsbyContentfulFluid
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            allContentfulHomePageImageMenu(sort: {fields: desc}) {
+                edges {
+                    node {
+                        id
+                        slug
+                        category
+                        desc
+                        image {
+                            fluid(maxWidth: 300) {
+                                ...GatsbyContentfulFluid
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `
+
 const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
 
-    const { allContentfulContentIndex: {edges}, allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(graphql`
-         query {
-               allContentfulContentIndex {
-                   edges {
-                       node {
-                           title
-                           combos {
-                               id
-                               description
-                               name
-                               image {
-                                   fluid(maxWidth: 300) {
-                                       ...GatsbyContentfulFluid
-                                   }
-                               }
-                               price
-                               slug
-                           }
-                           new {
-                               __typename
-                               ... on Node {
-                                   ... on ContentfulProduct {
-                                       id
-                                       name
-                                       price
-                                       slug
-                                       image {
-                                           fluid(maxWidth: 300) {
-                                               ...GatsbyContentfulFluid
-                                           }
-                                       }
-                                       count
-                                       description
-                                   }
-                                   ... on ContentfulProductGunkan {
-                                       id
-                                       name
-                                       price
-                                       image {
-                                           fluid(maxWidth: 300) {
-                                               ...GatsbyContentfulFluid
-                                           }
-                                       }
-                                       count
-                                       description
-                                   }
-                                   ... on ContentfulProductPizza {
-                                       id
-                                       name
-                                       price
-                                       priceIn33cm
-                                       slug
-                                       image {
-                                           fluid(maxWidth: 300) {
-                                               ...GatsbyContentfulFluid
-                                           }
-                                       }
-                                       count
-                                       description
-                                   } 
-                                   ... on ContentfulProductSlognyeRolly {
-                                       id
-                                       name
-                                       count
-                                       description
-                                       price
-                                       image {
-                                           fluid(maxWidth: 300) {
-                                               ...GatsbyContentfulFluid
-                                           }
-                                       }
-                                       slug
-                                   }
-                                   ... on ContentfulProductZakuski {
-                                       id
-                                       name
-                                       count
-                                       description
-                                       price
-                                       image {
-                                           fluid(maxWidth: 300) {
-                                               ...GatsbyContentfulFluid
-                                           }
-                                       }
-                                   }
-                                   ... on ContentfulProductKombo {
-                                       id
-                                       name
-                                       count
-                                       description
-                                       price
-                                       image {
-                                           fluid(maxWidth: 300) {
-                                               ...GatsbyContentfulFluid
-                                           }
-                                       }
-                                       slug
-                                   }
-                               }
-                           }
-                       }
-                   }
-               }
-               allContentfulHomePageImageMenu(sort: {fields: desc}) {
-                   edges {
-                       node {
-                           id
-                           slug
-                           category
-                           desc
-                           image {
-                               fluid(maxWidth: 300) {
-                                   ...GatsbyContentfulFluid
-                               }
-                           }
-                       }
-                   }
-               }
-            }
-        `);
+    const { allContentfulContentIndex: {edges},
+        allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(QUERY_INDEX_DATA);
 
     const classes = useStyleIndexPage();
     React.useEffect(() => {
         loadIndexItems({edges, menu})
     }, [edges, menu, loadIndexItems]);
 
-    console.log("edges", edges);
-
-    const indexProduct = isEmpty(product) ? edges : product;
-    const indexMenu = isEmpty(menus) ? menu : menus;
+    // console.log("edges", edges);
+    // console.log("product", product);
+    // const indexProduct = isEmpty(product) ? edges : product;
+    // const indexMenu = isEmpty(menus) ? menu : menus;
+    // console.log(indexProduct)
+    const indexProduct = edges;
+    const indexMenu = menu;
 
     return (
         <section>
@@ -274,5 +279,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
 //             }
 //         }
 //     }
-// `
-//

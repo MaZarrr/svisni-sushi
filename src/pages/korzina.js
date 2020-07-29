@@ -183,7 +183,7 @@ return (
         <Grid item xs={12}>
           <Container className={classes.paper}>
           <Typography variant="h2">
-            <Box fontFamily="Oswald" fontWeight={900} fontSize={39}>
+            <Box style={{textTransform: "uppercase"}} fontFamily="Oswald" fontWeight={800} fontSize={34}>
                 Корзина
             </Box>
           </Typography>

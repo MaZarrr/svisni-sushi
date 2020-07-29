@@ -23,10 +23,7 @@ return (
     <SEO title="Заказать гунканы с доставкой в Валуйках"
     description="Гунканы с икрой, крабом, угрём. Гунканы от 55 рублей. Подробнее в нашем меню на сайте Свисни Суши "
     noindex={true} />
-       <div className={classes.titleH1}>
-           <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600, fontSize: 40}}>Гунканы</h1>
-       </div>
+       <h1 className={classes.titleH1}>Гунканы</h1>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Гункан" slugCategogy="/gunkany" visibleItems={product}
                        image={image} product={product}/>

@@ -71,17 +71,16 @@ export const useStyleKombo = makeStyles(theme => ({
     },
     titleClass: {
         fontFamily: `Oswald, cursive`,
-        fontStyle: `normal`,
-        fontSize: 39,
-        color: `#018786`,
         fontWeight: 800,
-        paddingTop: 22,
-        margin: 0,
+        marginTop: 80,
+        textTransform: `uppercase`,
+        fontSize: 34,
         textAlign: `center`,
-        [theme.breakpoints.down('600')]: {
-            paddingTop: 10,
-            fontSize: 34,
-        },
+        [theme.breakpoints.down('475')]: {
+            fontSize: 26,
+            marginTop: 40,
+            marginLeft: 35
+        }
     }
 }));
 

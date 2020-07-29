@@ -21,7 +21,7 @@ const useStyleCarousel = makeStyles(theme => ({
         },
         [theme.breakpoints.down('475')]: {
             marginBottom: 0,
-            marginTop: 18
+            marginTop: 32
         },
     },
     header: {
@@ -32,10 +32,10 @@ const useStyleCarousel = makeStyles(theme => ({
         fontFamily: 'Oswald, cursive',
         fontWeight: '800',
         lineHeight: 2,
-        fontSize: '46px',
+        fontSize: '30px',
         padding: `0 0 0 35px`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '36px',
+            fontSize: '22px',
             color: `#000`,
             padding: `0 0 0 34px`,
         },

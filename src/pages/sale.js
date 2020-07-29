@@ -6,7 +6,6 @@ import Img from 'gatsby-image';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Container} from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
 
 const Sale = (props) => {
 return (
@@ -17,7 +16,6 @@ return (
 
     <Container>
     <h1>Акции</h1>
-    <Divider/>
 
     <Grid container style={{margin: `0 0 50px 0`}}>
         {props.data.allContentfulProductSale.edges.map((product) => (

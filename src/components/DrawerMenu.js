@@ -107,7 +107,7 @@ export default function TemporaryDrawer({image}) {
         <div className={classes.menuButton}>
                 <React.Fragment key={'left'}>
                     <IconButton onClick={toggleDrawer('left', true)}>
-                        <MenuIcon />
+                        <MenuIcon fontSize={"small"} />
                     </IconButton>
                     <SwipeableDrawer
                         anchor={'left'}

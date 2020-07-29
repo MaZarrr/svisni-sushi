@@ -5,19 +5,23 @@ import React from "react";
 
 export const useStylesCart = makeStyles(theme => ({
     titleH1: {
-        fontFamily: 'Oswald',
-        fontWeight: 700,
-        padding: `35px 10px 15px 35px`,
-        fontSize: 40,
-        color: theme.palette.text.secondary,
-        borderBottom: `1px solid lightgrey`,
+        fontFamily: `Oswald, cursive`,
+        fontWeight: 800,
+        // padding: `35px 10px 15px 35px`,
+        marginTop: 80,
+        textTransform: `uppercase`,
+        marginLeft: 35,
+        fontSize: 34,
+        // color: theme.palette.text.secondary,
+        // borderBottom: `1px solid lightgrey`,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
             margin: 0,
         },
         [theme.breakpoints.down('475')]: {
-            fontSize: 30,
-            padding: `25px 10px 15px 35px`
+            fontSize: 26,
+            marginTop: 40,
+            marginLeft: 35
         }
     },
     imgCarts: {
@@ -151,7 +155,7 @@ export const useStyleOrder = makeStyles(theme => ({
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        color: theme.palette.text.secondary,
+        paddingTop: 80,
     },
     infoGrid: {
         display: `flex`,
@@ -243,13 +247,12 @@ export const useStyleKorzina = makeStyles(theme => ({
         marginTop: 10
     },
     paper: {
-        paddingTop: 10,
+        paddingTop: 80,
         textAlign: 'center',
         [theme.breakpoints.down('425')]: {
             marginBottom: 10,
         },
         zIndex: 99,
-        color: theme.palette.text.secondary,
     },
     paperDiv: {
         padding: theme.spacing(2),
@@ -332,9 +335,23 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         width: `100%`,
         padding: `20px 10px`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '30px',
+            fontSize: '26px',
             padding: `10px 10px`
         },
+    },
+    titleIndexVacancy: {
+        fontFamily: `Oswald, cursive`,
+        fontWeight: 800,
+        marginTop: 80,
+        textTransform: `uppercase`,
+        marginLeft: 35,
+        fontSize: 34,
+        display: `flex`,
+        [theme.breakpoints.down('475')]: {
+            fontSize: 26,
+            marginTop: 40,
+            marginLeft: 35
+        }
     },
     cardCombo: {
         minWidth: `85%`,
@@ -433,10 +450,10 @@ export const useStyleLayout = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar,
+        height: 0,
+        // ...theme.mixins.toolbar,
     }
-}))
+}));
 
 export const useStyleSearchInput = makeStyles(theme => ({
     root: {
@@ -470,7 +487,14 @@ export const useStyleSearchInput = makeStyles(theme => ({
 export const StylingInfo = styled.section ` 
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    margin-top: 30px;
+    margin-top: 80px;
+     h1 {
+        font-family: 'Oswald', cursive;
+        font-style: normal;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 34px;
+    }
     .map {
         padding-right: 20px; 
         width: 95%;
@@ -487,23 +511,12 @@ export const StylingInfo = styled.section `
         margin-top: 30px; 
         borderRadius: 12px;
     }
-    h1 {
-        font-family: 'Oswald', cursive;
-        font-style: normal;
-        font-weight: 900;
-        font-size: 40px;
-        color: #018786;
-    }
+   
     h3 {
         font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 900;
-    }
-    //   h5 {
-    //     font-family: 'Oswald', cursive;
-    //     font-style: normal;
-    //     font-weight: 900;
-    // }
+    } 
     h2 {
         font-family: 'Oswald', cursive;
         font-style: normal;
@@ -517,7 +530,8 @@ export const StylingInfo = styled.section `
     
     @media screen and (max-width: 475px) {
     h1 {
-        font-size: 38px;
+        font-size: 26px;
+        text-transform: uppercase;
     }
      .mapDelivery { 
         height: 240px;

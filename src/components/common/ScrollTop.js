@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
   scrollToPanel: {
     position: 'absolute',
     top: theme.spacing(0),
-    maxHeight: '5px'
   },
 }));
 

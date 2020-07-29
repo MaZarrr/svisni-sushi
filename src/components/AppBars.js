@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react"
+import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import PropTypes from 'prop-types';
 import "./header.css"
@@ -6,159 +6,316 @@ import Img  from 'gatsby-image';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import AppBar from '@material-ui/core/AppBar';
-import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
-import styled  from 'styled-components';
 import {Hidden} from "@material-ui/core";
+import Slide from "@material-ui/core/Slide";
+import Typography from "@material-ui/core/Typography";
 
-const AppBarStyle = styled(AppBar) `
-.tabs {
-  font-family: Comfortaa, cursive;
-  font-weight: 800;
-  font-size: 13px;
-  background-color: white;
-  text-decoration: none;
-  letter-spacing: 1px;
-  }
-`;
-  // We can inject some CSS into the DOM.
 const styles = theme =>( {
-  root: {
-    position: 'fixed',
-    transition: '1.1s',
-    top: '65px',
-    background: `#ffcccc`,
-  },
-  st: {
-    background: `#e0e0e0`,
-    transition: '1s',
-    top: '-20%',
-  },
-  imageMenu: {
-    width: 48
-  }
+    root: {
+        top: '60px',
+        background: `#ffcccc`,
+        [theme.breakpoints.up('600')]: {
+            top: '65px',
+        },
+    },
+    imageMenu: {
+        width: 35
+    },
+    tabs: {
+        height: 50,
+        backgroundColor: `white`,
+        textDecoration: `none`,
+        [theme.breakpoints.up('600')]: {
+            height: '78px',
+        },
+    },
+    tabsPc: {
+        backgroundColor: `white`,
+    },
+    labelIcon: {
+        minHeight: 0,
+        textDecoration: `none`,
+        [theme.breakpoints.up('600')]: {
+            minHeight: '72px',
+        },
+    }
 });
 
+function HideOnScroll(props) {
+    console.log(props);
+    const trigger = useScrollTrigger();
+
+    return (
+        <Slide appear={false} direction="down" in={!trigger}>
+            {props.children}
+        </Slide>
+    );
+}
+
 const AppBars = (props) => {
-  const { classes, children, className, ...other 
-  } = props;
+    // const { classes, children, className, ...other
+    // } = props;
+    console.log(props)
+    const [value, setValue] = React.useState(1);
 
-  const [hideOnScroll, setHideOnScroll] = useState(true)
-  const [value, setValue] = React.useState(1);
-
-   const handleChange = (event, newValue) => {
-     setValue(newValue);
-   };
-
-  const data = useStaticQuery(graphql `
-  {
-    allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
-    edges {
-      node {
-        id
-        name
-        deck
-        slug
-        image {
-          fluid(maxWidth: 70) {
-            ...GatsbyContentfulFluid
-          }
-        }
-      }
-    }
-  }
-  }
-  `)
-
-  const isBrowser = typeof window !== `undefined` // проверить, готов ли DOM и существует ли контекст окна. Самый простой способ сделать 
-  // это - проверить, определено ли окно.
-
-function getScrollPosition({ element, useWindow }) { // функция, чтобы получить текущую позицию прокрутки
-  if (!isBrowser) return { x: 0, y: 0 } // проверяем, работает ли он в браузере иначе, просто возвращаем {x: 0, y: 0} значения по умолчанию.
-
-  const target = element ? element.current : document.body // мы проверяем, запрашивал ли пользователь 
-  // положение прокрутки всей страницы или какого-либо конкретного элемента внутри нее.
-  const position = target.getBoundingClientRect()
-  
-  return useWindow
-    ? { x: window.scrollX, y: window.scrollY }
-    : { x: position.left, y: position.top }
-}
-
-function useScrollPosition(effect, deps, element, useWindow, wait) {
-
-  const position = useRef(getScrollPosition({ useWindow })) // сохранить координаты текущей позиции, введем переменную положения с состоянием.
-  // Это удобно для хранения любого изменяемого значения примерно так же, как вы используете поля экземпляров в классах
-  // это значение с состоянием, которое не будет вызывать повторный рендеринг при каждом изменении состояния.
-
-  let throttleTimeout = null
-
-  const callBack = () => {
-    const currPos = getScrollPosition({ element, useWindow }) 
-    effect({ prevPos: position.current, currPos })
-    position.current = currPos
-    throttleTimeout = null
-  }
-// && window.screen.width > 769
-  useEffect(() => {
-      const handleScroll = () => {
-      if(window.screen.width > 769) {
-        if (wait) {
-          if (throttleTimeout === null) {
-            throttleTimeout = setTimeout(callBack, wait)
-        }
-      } else {
-        callBack()
-      }
-    }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, deps)
-}
-
-useScrollPosition(({ prevPos, currPos }) => {
-  const isShow = currPos.y > prevPos.y
-  if (isShow !== hideOnScroll) setHideOnScroll(isShow)
-}, [hideOnScroll])
-  
-  function a11yProps(index){
-    return {
-      id: `scrollable-auto-tab-${index}`,
-      'aria-controls': `scrollable-auto-tabpanel-${index}`,
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
-  }
 
-  return (
-    <AppBarStyle className={clsx(!hideOnScroll  ? classes.st : classes.root, className)} {...other}>
-    <Tabs
-      indicatorColor="primary"
-      textColor="primary"
-      variant="scrollable"
-      value={value}
-      onChange={handleChange}
-      scrollButtons="on"
-    >
-    {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
-      <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`} 
-      value={index + 1} label={menu.name} {...a11yProps(menu.deck)}
-           icon={<Hidden xsDown><Img fluid={menu.image.fluid} className={classes.imageMenu} imgStyle={{maxWidth: 65}} alt={menu.name} /></Hidden>}/>
-    ))}
-    </Tabs>
-  </AppBarStyle>
-  );
+    const data = useStaticQuery(graphql `
+        query {
+            allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
+                edges {
+                    node {
+                        id
+                        name
+                        deck
+                        slug
+                        image {
+                            fluid(maxWidth: 70) {
+                                ...GatsbyContentfulFluid
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `)
+
+    function a11yProps(index){
+        return {
+            id: `scrollable-auto-tab-${index}`,
+            'aria-controls': `scrollable-auto-tabpanel-${index}`,
+        };
+    }
+
+    return (
+        <HideOnScroll {...props}>
+            <AppBar className={props.classes.root}>
+                {/*<AppBarStyle className={clsx(!hideOnScroll  ? props.classes.st : props.classes.root, props.className)} {...props.other}>*/}
+            <Tabs
+                indicatorColor="primary"
+                textColor="primary"
+                variant="scrollable"
+                value={value}
+                onChange={handleChange}
+                // scrollButtons="on"
+                scrollButtons="auto">
+
+                {/*<Hidden smUp>*/}
+                {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
+                        <Tab key={menu.id}
+                             textColor={"primary"}
+                             classes={{ labelIcon: props.classes.labelIcon }}
+                             className={props.classes.tabs}
+                             component={Link}
+                             to={`/${menu.slug}`}
+                             value={index + 1}
+                             icon={<Hidden xsDown><Img fluid={menu.image.fluid}
+                                                       className={props.classes.imageMenu}
+                                                       imgStyle={{maxWidth: 55}}
+                                                       alt={menu.name} /></Hidden>}
+                             label={<Typography style={{fontSize: 16}} variant={"subtitle2"}>{menu.name}
+                             </Typography>} {...a11yProps(menu.deck)}/>
+                ))}
+            </Tabs>
+        </AppBar>
+        </HideOnScroll>
+    );
 };
 
 AppBars.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
+    children: PropTypes.node,
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
 };
 
 export default withStyles(styles)(AppBars);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, {useState, useRef, useEffect} from "react"
+// import { Link, graphql, useStaticQuery } from "gatsby"
+// import PropTypes from 'prop-types';
+// import "./header.css"
+// import Img  from 'gatsby-image';
+// import Tab from '@material-ui/core/Tab';
+// import Tabs from '@material-ui/core/Tabs';
+// import AppBar from '@material-ui/core/AppBar';
+// import clsx from 'clsx';
+// import { withStyles } from '@material-ui/core/styles';
+// import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+//
+//
+// import styled  from 'styled-components';
+// import {Hidden} from "@material-ui/core";
+//
+// const AppBarStyle = styled(AppBar) `
+// .tabs {
+//   font-family: Comfortaa, cursive;
+//   font-weight: 800;
+//   font-size: 13px;
+//   background-color: white;
+//   text-decoration: none;
+//   letter-spacing: 1px;
+//   }
+// `;
+//   // We can inject some CSS into the DOM.
+// const styles = theme =>( {
+//   root: {
+//     position: 'fixed',
+//     transition: '1.1s',
+//     top: '65px',
+//     background: `#ffcccc`,
+//   },
+//   st: {
+//     background: `#e0e0e0`,
+//     transition: '1s',
+//     top: '-20%',
+//   },
+//   imageMenu: {
+//     width: 48
+//   }
+// });
+//
+// const AppBars = (props) => {
+//   const { classes, children, className, ...other
+//   } = props;
+//
+//   const [hideOnScroll, setHideOnScroll] = useState(true)
+//   const [value, setValue] = React.useState(1);
+//
+//    const handleChange = (event, newValue) => {
+//      setValue(newValue);
+//    };
+//
+//   const data = useStaticQuery(graphql `
+//     query {
+//         allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
+//             edges {
+//             node {
+//                 id
+//                 name
+//                 deck
+//                 slug
+//                 image {
+//                     fluid(maxWidth: 70) {
+//                     ...GatsbyContentfulFluid
+//           }
+//         }
+//       }
+//     }
+//   }
+//   }
+//   `)
+//
+//   const isBrowser = typeof window !== `undefined` // проверить, готов ли DOM и существует ли контекст окна. Самый простой способ сделать
+//   // это - проверить, определено ли окно.
+//
+// function getScrollPosition({ element, useWindow }) { // функция, чтобы получить текущую позицию прокрутки
+//   if (!isBrowser) return { x: 0, y: 0 } // проверяем, работает ли он в браузере иначе, просто возвращаем {x: 0, y: 0} значения по умолчанию.
+//
+//   const target = element ? element.current : document.body // мы проверяем, запрашивал ли пользователь
+//   // положение прокрутки всей страницы или какого-либо конкретного элемента внутри нее.
+//   const position = target.getBoundingClientRect()
+//
+//   return useWindow
+//     ? { x: window.scrollX, y: window.scrollY }
+//     : { x: position.left, y: position.top }
+// }
+//
+// function useScrollPosition(effect, deps, element, useWindow, wait) {
+//
+//   const position = useRef(getScrollPosition({ useWindow })) // сохранить координаты текущей позиции, введем переменную положения с состоянием.
+//   // Это удобно для хранения любого изменяемого значения примерно так же, как вы используете поля экземпляров в классах
+//   // это значение с состоянием, которое не будет вызывать повторный рендеринг при каждом изменении состояния.
+//
+//   let throttleTimeout = null
+//
+//   const callBack = () => {
+//     const currPos = getScrollPosition({ element, useWindow })
+//     effect({ prevPos: position.current, currPos })
+//     position.current = currPos
+//     throttleTimeout = null
+//   }
+// // && window.screen.width > 769
+//   useEffect(() => {
+//       const handleScroll = () => {
+//       if(window.screen.width > 769) {
+//         if (wait) {
+//           if (throttleTimeout === null) {
+//             throttleTimeout = setTimeout(callBack, wait)
+//         }
+//       } else {
+//         callBack()
+//       }
+//     }
+//     }
+//
+//     window.addEventListener('scroll', handleScroll)
+//
+//     return () => window.removeEventListener('scroll', handleScroll)
+//   }, deps)
+// }
+//
+// useScrollPosition(({ prevPos, currPos }) => {
+//   const isShow = currPos.y > prevPos.y
+//   if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+// }, [hideOnScroll])
+//
+//   function a11yProps(index){
+//     return {
+//       id: `scrollable-auto-tab-${index}`,
+//       'aria-controls': `scrollable-auto-tabpanel-${index}`,
+//     };
+//   }
+//
+//   return (
+//     <AppBarStyle className={clsx(!hideOnScroll  ? classes.st : classes.root, className)} {...other}>
+//     <Tabs
+//       indicatorColor="primary"
+//       textColor="primary"
+//       variant="scrollable"
+//       value={value}
+//       onChange={handleChange}
+//       scrollButtons="on"
+//     >
+//     {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
+//       <Tab key={menu.id} className="tabs" component={Link} to={`/${menu.slug}`}
+//       value={index + 1} label={menu.name} {...a11yProps(menu.deck)}
+//            icon={<Hidden xsDown><Img fluid={menu.image.fluid} className={classes.imageMenu} imgStyle={{maxWidth: 65}} alt={menu.name} /></Hidden>}/>
+//     ))}
+//     </Tabs>
+//   </AppBarStyle>
+//   );
+// };
+//
+// AppBars.propTypes = {
+//   children: PropTypes.node,
+//   classes: PropTypes.object.isRequired,
+//   className: PropTypes.string,
+// };
+//
+// export default withStyles(styles)(AppBars);
 
 
 

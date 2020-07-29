@@ -24,10 +24,7 @@ return (
     <SEO title="Соусы и различные добавки к суши и роллам"
     description="Фирменный соус, барбекю соус, ореховый соус и другие у нас в меню Свисни суши"
     noindex={true}/>
-       <div className={classes.titleH1}>
-           <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600, fontSize: 40}}>Соусы</h1>
-       </div>
+       <h1 className={classes.titleH1}>Соусы</h1>
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Соус" slugCategogy="/souses" visibleItems={product}
                        image={image} product={product}/>

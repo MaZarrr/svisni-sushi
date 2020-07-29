@@ -43,7 +43,9 @@ const Header = () => {
       link: '/adres-i-kontakty'
     }
   ]
+
   return (
+      <>
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
@@ -87,13 +89,13 @@ const Header = () => {
 
             <Korzina />
           </Toolbar>
-            <AppBars/>
         </AppBar>
 
         <ScrollTop/>
         <ProgressBar/>
       </div>
-
+      <AppBars/>
+</>
   );
 }
 
