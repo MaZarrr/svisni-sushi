@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import {Link} from "gatsby";
-import React from "react";
+import React, {memo} from "react";
 import {useStylesCart} from "./common/style";
 import {addedToCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
@@ -17,9 +17,8 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import MoreIcon from '@material-ui/icons/More';
 import ToggleButton from "./common/ToogleButton";
 
-const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
+const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
     const classes = useStylesCart();
-
     return (
         <>
             {visibleItems.map((products) => {
@@ -47,17 +46,17 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
                                 className={classes.media}
                                 title={name}>
                                 <div style={{position: `relative`}}>
-                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`, margin: 0}}/>
-                                {slugCategogy === "/wok" &&
-                                <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
-                                            <Img style={{maxWidth: 50, bottom: 45, marginLeft: 15}} fluid={image.fluid}
-                                                 alt={"Коробка wok box"}/>
-                                            <div style={{position: `absolute`, bottom: 60, left: 55, width: 180}}>
-                                                <Typography style={{fontSize: 13}} variant={"subtitle2"}>
-                                                    Доставим в коробке</Typography>
-                                            </div>
-                                </div>
-                                }
+                                    <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`, margin: 0}}/>
+                                    {slugCategogy === "/wok" &&
+                                    <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
+                                        <Img style={{maxWidth: 50, bottom: 45, marginLeft: 15}} fluid={image.fluid}
+                                             alt={"Коробка wok box"}/>
+                                        <div style={{position: `absolute`, bottom: 60, left: 55, width: 180}}>
+                                            <Typography style={{fontSize: 13}} variant={"subtitle2"}>
+                                                Доставим в коробке</Typography>
+                                        </div>
+                                    </div>
+                                    }
                                 </div>
                             </CardMedia>
                             }
@@ -166,6 +165,6 @@ const CardsMenuPage = ({titleCategory, slugCategogy, visibleItems, image, produc
             })}
         </>
     )
-};
+});
 
 export default connect(null, null)(CardsMenuPage)
