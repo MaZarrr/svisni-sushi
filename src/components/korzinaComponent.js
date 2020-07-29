@@ -110,25 +110,22 @@ return (
 
             <IconButton color="secondary" aria-label="cart">
             <TextTotal count={count} prevCount={prevCount} >
-                {/*<TextTotal count={count} prevCount={prevCount} >*/}
                 <StyledBadge badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
-                    <ShoppingCartIcon/>
+                    <ShoppingCartIcon fontSize={"large"}/>
                 </StyledBadge>
             </TextTotal>
             </IconButton>
-            {/*<div className="korzina_content korzina_content_txt">*/}
-            {/*  <b><TextTotal styledAdded={totalCount} className="txt_total">{totalCount} ({orderTotal} ₽)</TextTotal></b>*/}
-            {/*</div>*/}
+
           </div>
         </Link>
     </KorzinaItem>
     </>
         )
-}
+};
 
 const mapStateToProps = (state) => ({
     cartItems: state.shoppingCart.cartItems,
     orderTotal: state.shoppingCart.orderTotal
-})
+});
 
 export default connect(mapStateToProps, null)(Korzina)

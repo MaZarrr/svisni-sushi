@@ -33,10 +33,7 @@ return (
     <SEO title="Заказать гриль, жареные роллы от 215 рублей. Доставка по Уразово"
     description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени великолепный вкус японской кухни от Свисни Суши"
     pathname="/sety"/>
-       <div className={classes.titleH1}>
-           <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600, fontSize: 40}}>Гриль роллы</h1>
-       </div>
+       <h1 className={classes.titleH1}>Гриль роллы</h1>
 
        {load === false ? <>
            <CustomizedInputSearch/>

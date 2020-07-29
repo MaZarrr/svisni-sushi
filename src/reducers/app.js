@@ -24,7 +24,6 @@ export default createReducer({
         return {...state, product}
     },
     [productLoadedIndex]: (state, {edges, menu}) => {
-        // console.log(edges)
         return {...state, indexProduct: edges, indexMenu: menu}
     },
     [productPizzaLoaded]: (state, productCategory) => {
@@ -172,50 +171,3 @@ export default createReducer({
     },
 
 }, initialState)
-
-
-// const _setLoading = createAction(`SET_LOADING`)
-
-// export const setLoading = (isLoading) => {
-//     const action = _setLoading(isLoading)
-//     return action
-// }
-
-
-// [_setLoading]: (state, loading) => {
-//     return {...state, loading}
-// }
-
-// export const productGet = () => (dispatch, getState) => {
-//     const state = getState()
-//  dispatch(getProduct())
-//   graphql(querySets`
-// {
-//                 allContentfulProductPizza  {
-//                 edges {
-//                         node {
-//                                 id
-//                                 slug
-//                                 name
-//                                 price
-//                                 priceIn33cm
-//                                 description
-//                                 image {
-//                                         fluid(maxWidth: 300, maxHeight: 300, quality: 30) {
-//                                                 ...GatsbyContentfulFluid
-//                                         }
-//                                 }
-//                         }
-//                 }
-//                 }
-//                 contentfulIconMenuLeftPanel(name: {eq: "Пицца"}) {
-//                         image {
-//                                 fluid(maxWidth: 35) {
-//                                         ...GatsbyContentfulFluid
-//                                 }
-//                         }
-//                 }
-//         }
-//         `)
-//     // console.log(res)
-// }

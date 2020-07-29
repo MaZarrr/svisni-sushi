@@ -23,10 +23,7 @@ return (
     <SEO title="Доставка напитков на дом" 
        description="Коктейль Голубая лагуна, Мохито. Фруктовые, охлаждающие коктейли, пепси от 35 рублей"
     />
-       <div className={classes.titleH1}>
-           <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600, fontSize: 40}}>Напитки</h1>
-       </div>
+       <h1 className={classes.titleH1}>Напитки</h1>
     <Grid container justify="center">
             <CardsMenuPage titleCategory="Напитки" slugCategogy="/napitki" visibleItems={product}
                                    image={image} product={product}/>

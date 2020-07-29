@@ -23,10 +23,7 @@ return (
    <section>
     <SEO title="Вкусные недорогие маки роллы. Заказать доставку на дом в Валуйки"
     description="Маленькие, жареные и темпурные классические Свисни роллы от 120 рублей"/>
-       <div className={classes.titleH1}>
-           <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600, fontSize: 40}}>Классические роллы</h1>
-       </div>
+       <h1 className={classes.titleH1}>Классические роллы</h1>
     <Grid container justify="center">
             <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}
                                    image={image} product={product}/>

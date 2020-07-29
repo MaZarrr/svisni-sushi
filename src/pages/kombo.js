@@ -22,10 +22,7 @@ return (
     <section>
     <SEO title="Доставка комбо наборов из суши, роллов, пиццы и лапши Вок"
     description="Специальные комбо наборы, выгодно, заказать в Уразово с 10 до 22:00"/>
-        <div className={classes.titleH1}>
-            <h1 style={{fontFamily: `Oswald, cursive`,
-                fontWeight: 600, fontSize: 40}}>Комбо</h1>
-        </div>
+            <h1 className={classes.titleH1}>Комбо</h1>
     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
                        image={image} product={product}/>

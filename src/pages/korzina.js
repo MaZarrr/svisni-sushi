@@ -181,7 +181,7 @@ return (
         <Grid item xs={12}>
           <Container className={classes.paper}>
           <Typography variant="h2">
-            <Box fontFamily="Oswald" fontWeight={900} fontSize={39}>
+            <Box style={{textTransform: "uppercase"}} fontFamily="Oswald" fontWeight={800} fontSize={34}>
                 Корзина
             </Box>
           </Typography>
@@ -456,15 +456,3 @@ export const queryKorzina = graphql `
         }
     `
 
-//    useEffect(() => {
-//    // const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
-//    //  allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
-//    //  allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
-//    //  allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges, allContentfulProductKombo.edges)
-//      producSetsLoad(data); // action push to reduxStore
-//      setLoad(false)
-//    }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts, allContentfulProductNapitki,
-//   allContentfulProductHotRolly, allContentfulProductGunkan, allContentfulProductKlassika, allContentfulProductSalat,
-//   allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski,
-//   allContentfulProductKombo
-// ])

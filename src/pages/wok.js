@@ -23,10 +23,7 @@ const Wok = ({data: {allContentfulProductWok: {edges: productsWok}, contentfulIc
         <section>
             <SEO title="Доставка лапши Вок. Заказать лапшу wok в Валуйки"
                  description="Заказать wok с доставкой. Вок с морепродуктами, овощами, курицей, свининой всего от 190 руб"/>
-            <div className={classes.titleH1}>
-                <h1 style={{fontFamily: `Oswald, cursive`,
-                    fontWeight: 600, fontSize: 40}}>Вок</h1>
-            </div>
+            <h1 className={classes.titleH1}>Вок</h1>
             <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                 <CardsMenuPage titleCategory="Wok" slugCategogy="/wok" visibleItems={product}
                                image={image} product={product}/>

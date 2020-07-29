@@ -17,12 +17,12 @@ import {isNil, isEmpty} from "ramda";
 
 const useStylesCard = makeStyles(theme => ({
     titleIndex: {
-        fontSize: '36px',
+        fontSize: '32px',
         width: `100%`,
         padding: `20px 10px`,
         textAlign: `center`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '26px',
+            fontSize: '22px',
             padding: `10px 30px 10px 35px`,
         },
     },
@@ -56,159 +56,157 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
-    // const titleNewProduct = indexProduct[0].node.title;
-    // const newProducts = indexProduct[0].node.new;
-    // const productsCombo = indexProduct[1].node.combos;
     const prod = isNil(indexProduct) || isEmpty(indexProduct)
+    console.log(indexProduct)
     return (
         <div className={`mt-1 ${classes.root}`}>
             { prod === true ? '' :
-            <>
-            <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
-            <Typography variant={'button'}>
-                <Link to={"/kombo"}>Все комбо</Link>
-            </Typography>
+                <>
+                <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
+                <Typography variant={'button'}>
+                    <Link to={"/kombo"}>Все комбо</Link>
+                </Typography>
 
-            {/*Карусель комбо телефон*/}
-            <Hidden smUp>
-                <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                    {  isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
-                        <Card key={homeProduct.id} className={classes.cardCombo}>
-                            <CardMedia
-                                title={homeProduct.name}>
-                                <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
-                            </CardMedia>
-                            <CardContent>
-                                <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                            </CardContent>
-                            <CardActions disableSpacing>
-                                <Button
-                                    variant="contained"
-                                    className={classesCard.buttonCombo}
-                                    component={Link}
-                                    to={`/kombo/${homeProduct.slug}`}>
-                                    Выбрать
-                                </Button>
-                                <Typography style={{fontSize: 20}} className="ml-auto mr-1"
-                                            variant={"body1"}>{homeProduct.price} ₽</Typography>
-                            </CardActions>
-                        </Card>
-                    ))}
-                </SwipeableViews>
-
-                {/* Новинки */}
-                <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
-                <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                    { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
-
-                        <Card key={homeProduct.id} className={classes.cardCombo}>
-                            <CardMedia
-                                title={homeProduct.name}>
-                                <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
-                            </CardMedia>
-                            <CardContent>
-                                <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                                <Typography style={{fontSize: 13, height: 60, overflowY: `auto`}}
-                                            variant={"subtitle1"}>{homeProduct.description}</Typography>
-                            </CardContent>
-                            <CardActions disableSpacing>
-                                { homeProduct.__typename === "ContentfulProduct" ||
-                                homeProduct.__typename === "ContentfulProductPizza" ?
-                                    <Button
-                                        variant="contained"
-                                        className={classesCard.buttonCombo}
-                                        component={Link}
-                                        style={{fontSize: 12}}
-                                        to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
-                                        Посмотреть
-                                    </Button> : <Button
-                                        variant="contained"
-                                        className={classesCard.button}
-                                        onClick={() => addedCart({id: homeProduct.id,
-                                            productPrice: null, product: indexProduct[0].node.new})}>
-                                        <ShoppingCartIcon/>
-                                    </Button>
-                                }
-
-                                <Typography style={{fontSize: 20}} className="ml-auto mr-1"
-                                            variant={"body1"}>{homeProduct.price} ₽</Typography>
-                            </CardActions>
-                        </Card>
-                    ))}
-                </SwipeableViews>
-            </Hidden>
-
-            {/*Комбо компьютер*/}
-            <Hidden xsDown>
-                <Grid container style={{width: `85%`}}>
-                    { isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
-                        <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
-                            <Card className={classes.cardComboPc}>
+                {/*Карусель комбо телефон*/}
+                <Hidden smUp>
+                    <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
+                        {  isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
+                            <Card key={homeProduct.id} className={classes.cardCombo}>
                                 <CardMedia
-                                    className={classes.media}
                                     title={homeProduct.name}>
-                                    <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+                                    <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                 </CardMedia>
                                 <CardContent>
                                     <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                                    <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}}
-                                                variant={"subtitle1"}>{homeProduct.description}</Typography>
                                 </CardContent>
                                 <CardActions disableSpacing>
-                                    <Button
-                                        variant="contained"
-                                        className={classesCard.buttonCombo}
-                                        component={Link}
-                                        to={`/kombo/${homeProduct.slug}`}>
-                                        Выбрать
-                                    </Button>
-                                    <Typography style={{fontSize: 22}} className="ml-auto mr-2" variant={"body1"}>{homeProduct.price} ₽</Typography>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
-
-                    {/* Новинки компьютер  */}
-                    <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
-                    { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
-                        <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
-                            <Card className={classes.cardComboPc}>
-                                <CardMedia
-                                    className={classes.media}
-                                    title={homeProduct.name}>
-                                    <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
-                                </CardMedia>
-                                <CardContent>
-                                    <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                                    <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
-                                </CardContent>
-                                <CardActions disableSpacing>
-                                    { homeProduct.__typename === "ContentfulProduct" ||
-                                    homeProduct.__typename === "ContentfulProductPizza" ?
                                         <Button
                                             variant="contained"
                                             className={classesCard.buttonCombo}
                                             component={Link}
-                                            to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
-                                            Посмотреть
-                                        </Button> : <Button
-                                            variant="contained"
-                                            className={classesCard.button}
-                                            onClick={() => addedCart({id: homeProduct.id,
-                                                productPrice: null, product: indexProduct[0].node.new})}>
-                                            <ShoppingCartIcon/>
+                                            to={`/kombo/${homeProduct.slug}`}>
+                                            Выбрать
                                         </Button>
-                                    }
+                                        <Typography style={{fontSize: 20}} className="ml-auto mr-1"
+                                                    variant={"body1"}>{homeProduct.price} ₽</Typography>
+                                    </CardActions>
+                                </Card>
+                            ))}
+                        </SwipeableViews>
 
-                                    <Typography style={{fontSize: 22}} className="ml-auto mr-2"
-                                                variant={"body1"}>{homeProduct.price} ₽</Typography>
-                                </CardActions>
-                            </Card>
+                        {/* Новинки */}
+                        <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
+                        <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
+                            { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
+
+                                <Card key={homeProduct.id} className={classes.cardCombo}>
+                                    <CardMedia
+                                        title={homeProduct.name}>
+                                        <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+                                    </CardMedia>
+                                    <CardContent>
+                                        <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                        <Typography style={{fontSize: 13, height: 60, overflowY: `auto`}}
+                                                    variant={"subtitle1"}>{homeProduct.description}</Typography>
+                                    </CardContent>
+                                    <CardActions disableSpacing>
+                                        { homeProduct.__typename === "ContentfulProduct" ||
+                                        homeProduct.__typename === "ContentfulProductPizza" ?
+                                            <Button
+                                                variant="contained"
+                                                className={classesCard.buttonCombo}
+                                                component={Link}
+                                                style={{fontSize: 12}}
+                                                to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                Посмотреть
+                                            </Button> : <Button
+                                                variant="contained"
+                                                className={classesCard.button}
+                                                onClick={() => addedCart({id: homeProduct.id,
+                                                    productPrice: null, product: indexProduct[0].node.new})}>
+                                                <ShoppingCartIcon/>
+                                            </Button>
+                                        }
+
+                                        <Typography style={{fontSize: 20}} className="ml-auto mr-1"
+                                                    variant={"body1"}>{homeProduct.price} ₽</Typography>
+                                    </CardActions>
+                                </Card>
+                            ))}
+                        </SwipeableViews>
+                    </Hidden>
+
+                    {/*Комбо компьютер*/}
+                    <Hidden xsDown>
+                        <Grid container style={{width: `85%`}}>
+                            { isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
+                                <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
+                                    <Card className={classes.cardComboPc}>
+                                        <CardMedia
+                                            className={classes.media}
+                                            title={homeProduct.name}>
+                                            <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+                                        </CardMedia>
+                                        <CardContent>
+                                            <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                            <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}}
+                                                        variant={"subtitle1"}>{homeProduct.description}</Typography>
+                                        </CardContent>
+                                        <CardActions disableSpacing>
+                                            <Button
+                                                variant="contained"
+                                                className={classesCard.buttonCombo}
+                                                component={Link}
+                                                to={`/kombo/${homeProduct.slug}`}>
+                                                Выбрать
+                                            </Button>
+                                            <Typography style={{fontSize: 22}} className="ml-auto mr-2" variant={"body1"}>{homeProduct.price} ₽</Typography>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>
+                            ))}
+
+                            {/* Новинки компьютер  */}
+                            <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
+                            { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
+                                <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
+                                    <Card className={classes.cardComboPc}>
+                                        <CardMedia
+                                            className={classes.media}
+                                            title={homeProduct.name}>
+                                            <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+                                        </CardMedia>
+                                        <CardContent>
+                                            <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                            <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
+                                        </CardContent>
+                                        <CardActions disableSpacing>
+                                            { homeProduct.__typename === "ContentfulProduct" ||
+                                            homeProduct.__typename === "ContentfulProductPizza" ?
+                                                <Button
+                                                    variant="contained"
+                                                    className={classesCard.buttonCombo}
+                                                    component={Link}
+                                                    to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                    Посмотреть
+                                                </Button> : <Button
+                                                    variant="contained"
+                                                    className={classesCard.button}
+                                                    onClick={() => addedCart({id: homeProduct.id,
+                                                        productPrice: null, product: indexProduct[0].node.new})}>
+                                                    <ShoppingCartIcon/>
+                                                </Button>
+                                            }
+
+                                            <Typography style={{fontSize: 22}} className="ml-auto mr-2"
+                                                        variant={"body1"}>{homeProduct.price} ₽</Typography>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>
+                            ))}
                         </Grid>
-                    ))}
-                </Grid>
-            </Hidden>
-            </> }
+                    </Hidden>
+                </> }
 
             {/*Меню выбор*/}
             <Grid container className="mt-4">
@@ -233,14 +231,4 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
 
 });
 
-// const mapStateToProps = (state) => ({
-//     indexProduct: state.app.indexProduct,
-//     indexMenu: state.app.indexMenu
-// });
-//
-// const mapDispatchToProps = {
-//     addedCart,
-// };
-
 export default CardIndex
-// export default connect(mapStateToProps, mapDispatchToProps)(CardIndex)

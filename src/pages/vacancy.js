@@ -10,12 +10,11 @@ import Logo from "../images/logoPN.png"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
-
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
 import {useStyleCardIndexPage} from "../components/common/style";
 import SEO from "../components/seo";
-import {Grid} from "@material-ui/core";
+import {Container, Grid} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 
 const AvatarWrapp = styled(Avatar) `
@@ -51,7 +50,7 @@ const Vacancy = () => {
         contentfulInfoModel: {childContentfulInfoModelJobSvisniTextNode: {childMarkdownRemark: md}},
         allContentfulInfoModel: {edges: allMd}
     } = useStaticQuery(graphql`
-        {
+     query {
             allFile(filter: { extension: { eq: "svg" } }) {
                 edges {
                     node {
@@ -118,10 +117,8 @@ return (
             <SEO title="Работа, вакансии"
                  description="Работа в Свисни Суши. Повар сушист, пиццмейкер"
                  noindex={true}/>
-            <div className={classes.titleH1}>
-                <h1 style={{fontFamily: `Oswald, cursive`,
-                    fontWeight: 600, fontSize: 40}}>Вакансии Свисни Суши в Уразово</h1>
-            </div>
+                 <Container>
+            <h1 className={classes.titleIndexVacancy}>Вакансии Свисни Суши в Уразово</h1>
             <Grid container>
                 <Grid item xs={12} sm={6} style={{paddingLeft: 35}}>
                     <Typography style={{padding: `10px 0 10px 0`, width: `90%`}}>
@@ -210,6 +207,8 @@ return (
                     </div>
                 </Grid>
             </Grid>
+                 </Container>
+
         </section>
     );
 }

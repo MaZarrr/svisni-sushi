@@ -26,10 +26,7 @@ return (
    <section>
     <SEO title="Доставка закусок в Уразово | Заказать на дом или в офис"
     description="Доставка закусок от суши-бара Свисни в Уразово ☛ Телефон для заказа ☎ +7(904)094-92-22"/>
-       <div className={classes.titleH1}>
-           <h1 style={{fontFamily: `Oswald, cursive`,
-               fontWeight: 600, fontSize: 40}}>Закуски</h1>
-       </div>
+       <h1 className={classes.titleH1}>Закуски</h1>
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Закуски" slugCategogy="/zakyski" visibleItems={product}
@@ -38,11 +35,11 @@ return (
         </Grid>
       </section>
     )
-}
+};
 
 const mapStateToProps = (state) => ({
     product: state.app.product
-})
+});
   
 export default connect(mapStateToProps, null)(Zakyski)
 
