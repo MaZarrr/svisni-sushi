@@ -123,12 +123,12 @@ return (
                                    {/*total, count*/}
                                    <Grid container itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                        <Grid item xs={6}>
-                                           <Paper style={{width: `50%`, margin: `0 auto`}}>
+                                           <Paper style={{width: `85%`, margin: `0 auto`}}>
                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{`от ${total}₽`}</Typography>
                                            </Paper>
                                            </Grid>
                                        <Grid item xs={6}>
-                                       <Paper style={{width: `50%`, margin: `0 auto`}}>
+                                       <Paper style={{width: `85%`, margin: `0 auto`}}>
                                            <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{`${count}шт`}</Typography>
                                        </Paper>
                                    </Grid>

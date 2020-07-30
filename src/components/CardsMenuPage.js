@@ -76,7 +76,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                     {/*total, count*/}
                                     <Grid style={{padding: 10}} container itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                         <Grid item xs={6}>
-                                            <Paper style={{width: `60%`, margin: `0 auto`}}>
+                                            <Paper style={{width: `90%`, margin: `0 auto`}}>
                                                 { slugCategogy !== "/napitki" &&
                                                 <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{slugCategogy ===
                                                 "/sety" ? `${weight}кг` : `${weight}гр`}</Typography>
@@ -87,7 +87,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             </Paper>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Paper style={{width: `60%`, margin: `0 auto`}}>
+                                            <Paper style={{width: `90%`, margin: `0 auto`}}>
                                                 <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
                                                 "/souses" || slugCategogy === "/napitki" || slugCategogy === "/salaty" ? "1шт" : `${count}шт`}
                                                 </Typography>
@@ -97,7 +97,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             <Typography
                                                 component="p"
                                                 variant="overline"
-                                                style={{fontSize: 20, margin: `0 auto`, width: `70%`, textAlign: `center`}}
+                                                style={{fontSize: 20, margin: `0 auto`, width: `85%`, textAlign: `center`}}
                                                 itemProp="price"
                                             >
                                                 {slugCategogy === "/pizza" ? `от ${price}₽` : `${price}₽`}

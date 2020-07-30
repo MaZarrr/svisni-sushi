@@ -12,16 +12,15 @@ export const useStylesCart = makeStyles(theme => ({
         textTransform: `uppercase`,
         marginLeft: 35,
         fontSize: 34,
-        // color: theme.palette.text.secondary,
-        // borderBottom: `1px solid lightgrey`,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
-            margin: 0,
+            marginTop: 45,
         },
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
-            marginTop: 40,
-            marginLeft: 35
+            marginTop: 45,
+            marginBottom: 10,
+            marginLeft: `10vw`
         }
     },
     imgCarts: {
@@ -423,7 +422,6 @@ export const useStyleLayout = makeStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         height: 0,
-        // ...theme.mixins.toolbar,
     }
 }));
 
@@ -454,7 +452,7 @@ export const useStyleSearchInput = makeStyles(theme => ({
             border: `1px solid tomato`,
         }
     }
-}))
+}));
 
 export const StylingInfo = styled.section ` 
     font-family: 'Roboto', sans-serif;

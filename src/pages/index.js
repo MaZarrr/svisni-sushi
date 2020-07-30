@@ -10,7 +10,6 @@ import {connect} from "react-redux";
 import { graphql, useStaticQuery } from "gatsby"
 
 import {loadIndexItems} from "../reducers/app";
-import {isEmpty} from "ramda";
 
 const useStyleIndexPage = makeStyles(theme => ({
     root: {

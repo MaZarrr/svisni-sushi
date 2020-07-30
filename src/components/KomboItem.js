@@ -44,14 +44,15 @@ export const useStyleKombo = makeStyles(theme => ({
         cursor: 'pointer',
         marginTop: 10,
         background: `white`,
-        maxWidth: `80%`,
-        padding: 5,
+        maxWidth: `85%`,
+        padding: 3,
+        overflowY: `auto`,
         borderRadius: 10,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .6)',
-        transition: `transform 0.2s`,
+        transition: `transform 0.3s`,
         margin: `0 auto`,
         transform: `scale(1.01)`,
-        minHeight: 220
+        height: 190
     },
     activeItemPc: {
         cursor: 'pointer',
@@ -79,7 +80,6 @@ export const useStyleKombo = makeStyles(theme => ({
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
             marginTop: 40,
-            marginLeft: 35
         }
     }
 }));
@@ -238,7 +238,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
             {/*Карусель товаров телефон*/}
             <Hidden smUp>
                 <ButtonBack back="/kombo" />
-                <Grid container style={{overflowY: "scroll", height: `70vh`, paddingBottom: 40}}>
+                <Grid container style={{overflowY: "scroll", height: `60vh`, paddingBottom: 40}}>
                     { productSostav.map((el, idx) => (
                         <Grid key={el.id} item xs={6}>
                             <div role="button" tabIndex="0"
@@ -246,12 +246,13 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                  onKeyPress={onActiveItem}
                                  className={classes.activeItem}
                                  onClick={() => onActiveItem(el.id, el.__typename, idx)}>
-                                <Img style={{width: 80, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
+                                <Img style={{width: 75, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
                                 <div>
                                     <Typography style={{fontSize: 14, textAlign: `center`}} variant={"subtitle2"}>{el.name}</Typography>
                                     <Divider/>
-                                    <div>
-                                        <Typography style={{fontSize: 12, textAlign: `center`, height: `95%`, overflowY: `auto`}} variant={"body2"}>{el.description}</Typography>
+                                    <div >
+                                        <Typography style={{fontSize: 12, textAlign: `center`, height: `95%`, overflowY: `auto`}}
+                                                    variant={"body2"}>{el.description}</Typography>
                                     </div>
                                 </div>
                             </div>
@@ -280,6 +281,8 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             В корзину</Button>
                     </div>
                 </Grid>
+
+                {/*Modal carousel items phone*/}
                 <Grid container>
                     <Modal
                         open={open}
@@ -287,7 +290,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                         aria-labelledby="simple-modal-title"
                         aria-describedby="simple-modal-description"
                     >
-                        <div style={{width: `100%`, margin: `50% 0`}}>
+                        <div style={{width: `100%`, marginTop: `39%`}}>
                             <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}
                                             index={activeItemIndex}
                                             onChangeIndex={value => setActiveItemIndex(value)}>
