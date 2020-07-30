@@ -16,12 +16,13 @@ export const useStylesCart = makeStyles(theme => ({
         // borderBottom: `1px solid lightgrey`,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
-            margin: 0,
+            marginTop: 45,
         },
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
-            marginTop: 40,
-            marginLeft: 35
+            marginTop: 45,
+            marginBottom: 10,
+            marginLeft: `10vw`
         }
     },
     imgCarts: {

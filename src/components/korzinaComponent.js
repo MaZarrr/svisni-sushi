@@ -112,7 +112,7 @@ return (
             <TextTotal count={count} prevCount={prevCount} >
                 {/*<TextTotal count={count} prevCount={prevCount} >*/}
                 <StyledBadge badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
-                    <ShoppingCartIcon/>
+                    <ShoppingCartIcon fontSize={"large"}/>
                 </StyledBadge>
             </TextTotal>
             </IconButton>
