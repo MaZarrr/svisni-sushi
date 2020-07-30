@@ -42,7 +42,8 @@ const useStylesCard = makeStyles(theme => ({
 const styles = {
     root: {
         padding: '0 50px',
-        maxWidth: `100%`
+        maxWidth: `100%`,
+        backgroundColor: `#ebebeb`
     },
     slideContainer: {
         padding: '0 20px',
@@ -98,7 +99,9 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                         </SwipeableViews>
 
                         {/* Новинки */}
+                        {/*<div style={{backgroundColor: `tomato`, width: `100%`}}>*/}
                         <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
+                        {/*</div>*/}
                         <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
                             { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
 
@@ -137,11 +140,12 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                 </Card>
                             ))}
                         </SwipeableViews>
+
                     </Hidden>
 
                     {/*Комбо компьютер*/}
                     <Hidden xsDown>
-                        <Grid container style={{width: `85%`}}>
+                        <Grid container style={{width: `100%`}}>
                             { isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
                                 <Grid key={homeProduct.id} item sm={6} md={4} style={{width: `300px`}}>
                                     <Card className={classes.cardComboPc}>
@@ -212,7 +216,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                 </> }
 
             {/*Меню выбор*/}
-            <Grid container className="mt-4">
+            <Grid container className="mt-4" >
                 <Typography className={`mb-2 ${classesCard.titleIndex}`}
                             variant={"h2"}>Заказывайте роллы, суши и пиццу с доставкой</Typography>
                 {indexMenu.map(({node: homeMenu}) => (
@@ -233,6 +237,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     );
 
 });
+export default CardIndex
 
 // const mapStateToProps = (state) => ({
 //     indexProduct: state.app.indexProduct,
@@ -243,5 +248,4 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
 //     addedCart,
 // };
 
-export default CardIndex
 // export default connect(mapStateToProps, mapDispatchToProps)(CardIndex)

@@ -8,6 +8,7 @@ import CarouselSvisni from "../components/common/CarouselSvisni"
 import {addedCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 import { graphql, useStaticQuery } from "gatsby"
+import {isEmpty} from "ramda"
 
 import {loadIndexItems} from "../reducers/app";
 
@@ -20,137 +21,136 @@ const useStyleIndexPage = makeStyles(theme => ({
 }));
 
 const QUERY_INDEX_DATA = graphql`
-        query {
-            allContentfulContentIndex {
-                edges {
-                    node {
-                        title
-                        combos {
-                            id
-                            description
-                            name
-                            price
-                            slug
-                            image {
-                                fluid(maxWidth: 300) {
-                                    ...GatsbyContentfulFluid
-                                }
-                            }
-                        }
-                        new {
-                            __typename
-                            ... on Node {
-                                ... on ContentfulProduct {
-                                    id
-                                    name
-                                    price
-                                    slug
-                                    count
-                                    description
-                                    image {
-                                        fluid(maxWidth: 300) {
-                                            ...GatsbyContentfulFluid
-                                        }
-                                    }
-                                }
-                                ... on ContentfulProductGunkan {
-                                    id
-                                    name
-                                    price
-                                    count
-                                    description
-                                    image {
-                                        fluid(maxWidth: 300) {
-                                            ...GatsbyContentfulFluid
-                                        }
-                                    }
-                                }
-                                ... on ContentfulProductPizza {
-                                    id
-                                    name
-                                    price
-                                    priceIn33cm
-                                    slug
-                                    count
-                                    description
-                                    image {
-                                        fluid(maxWidth: 300) {
-                                            ...GatsbyContentfulFluid
-                                        }
-                                    }
-                                }
-                                ... on ContentfulProductSlognyeRolly {
-                                    id
-                                    name
-                                    count
-                                    description
-                                    price
-                                    image {
-                                        fluid(maxWidth: 300) {
-                                            ...GatsbyContentfulFluid
-                                        }
-                                    }
-                                }
-                                ... on ContentfulProductZakuski {
-                                    id
-                                    name
-                                    count
-                                    description
-                                    price
-                                    image {
-                                        fluid(maxWidth: 300) {
-                                            ...GatsbyContentfulFluid
-                                        }
-                                    }
-                                }
-                                ... on ContentfulProductKombo {
-                                    id
-                                    name
-                                    count
-                                    description
-                                    price
-                                    slug
-                                    image {
-                                        fluid(maxWidth: 300) {
-                                            ...GatsbyContentfulFluid
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            allContentfulHomePageImageMenu(sort: {fields: desc}) {
-                edges {
-                    node {
+    query {
+        allContentfulContentIndex {
+            edges {
+                node {
+                    title
+                    combos {
                         id
+                        description
+                        name
+                        price
                         slug
-                        category
-                        desc
                         image {
                             fluid(maxWidth: 300) {
                                 ...GatsbyContentfulFluid
                             }
                         }
                     }
+                    new {
+                        __typename
+                        ... on Node {
+                            ... on ContentfulProduct {
+                                id
+                                name
+                                price
+                                slug
+                                count
+                                description
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                            ... on ContentfulProductGunkan {
+                                id
+                                name
+                                price
+                                count
+                                description
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                            ... on ContentfulProductPizza {
+                                id
+                                name
+                                price
+                                priceIn33cm
+                                slug
+                                count
+                                description
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                            ... on ContentfulProductSlognyeRolly {
+                                id
+                                name
+                                count
+                                description
+                                price
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                            ... on ContentfulProductZakuski {
+                                id
+                                name
+                                count
+                                description
+                                price
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                            ... on ContentfulProductKombo {
+                                id
+                                name
+                                count
+                                description
+                                price
+                                slug
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
-    `
+        allContentfulHomePageImageMenu(sort: {fields: desc}) {
+            edges {
+                node {
+                    id
+                    slug
+                    category
+                    desc
+                    image {
+                        fluid(maxWidth: 300) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
 
 const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
 
     const { allContentfulContentIndex: {edges},
         allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(QUERY_INDEX_DATA);
-
     const classes = useStyleIndexPage();
     React.useEffect(() => {
         loadIndexItems({edges, menu})
     }, [edges, menu, loadIndexItems]);
 
-    const indexProduct = edges;
-    const indexMenu = menu;
+    const indexProduct = isEmpty(product) ? edges : product;
+    const indexMenu = isEmpty(menus) ? menu : menus;
 
     return (
         <section>
@@ -178,4 +178,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
-
