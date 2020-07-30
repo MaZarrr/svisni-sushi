@@ -8,6 +8,7 @@ import CarouselSvisni from "../components/common/CarouselSvisni"
 import {addedCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 import { graphql, useStaticQuery } from "gatsby"
+import {isEmpty} from "ramda"
 
 import {loadIndexItems} from "../reducers/app";
 
