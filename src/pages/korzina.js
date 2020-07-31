@@ -27,7 +27,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     items = [],
     total = 0, palochkiTotal,
     onIncrease, onDecrise, onDelete, addedPriborCount,
-    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale, path }) => {
+    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
 
     const [value, setValue] = React.useState([]);
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
@@ -279,7 +279,7 @@ return (
                                                style={{margin: `0 0 5px 0`, padding: 0}}/>
                                        </RadioGroup>
                                    </FormControl>
-                                   <SplitButton id={id} pizzaIng={items} sostav={sostav} ingrideents={ingrideents} dir={"flex-start"} path={path} height={130}/>
+                                   <SplitButton id={id} pizzaIng={items} sostav={sostav} ingrideents={ingrideents} dir={"flex-start"} path={"/korzina/"} height={130}/>
                                    <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Доп:</b> {descriptionIngrideents}</Typography>
                                </>
                                }
@@ -325,11 +325,11 @@ return (
                    <Typography variant="body1" className={classes.typography}>Сумма заказа <b>{total} ₽</b></Typography>
                    <Button
                        component={Link}
-                       to={`${path}order`}
+                       to="/korzina/order"
                        color={'primary'}
                        size={'large'}
                        variant="contained" >
-                       <b>Продолжить</b>
+                       Продолжить
                    </Button>
                </Paper>
            </Grid>

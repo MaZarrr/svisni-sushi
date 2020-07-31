@@ -146,6 +146,10 @@ export const query = graphql `
     }
   `;
 
+
+
+
+// "react-window": "^1.8.5",
 // "react-use-gesture": "^7.0.15",
 // "react-spring": "^8.0.27",
 // "express": "^4.17.1",
