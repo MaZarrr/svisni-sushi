@@ -117,7 +117,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                                 className={classesCard.buttonCombo}
                                                 component={Link}
                                                 style={{fontSize: 12}}
-                                                to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                to={homeProduct.slug === "enjoyment" || homeProduct.slug === "zvezdnyi" ? `/sety/${homeProduct.slug}` : "/pizza"}>
                                                 Посмотреть
                                             </Button> : <Button
                                                 variant="contained"
