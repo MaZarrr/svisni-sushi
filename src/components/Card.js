@@ -56,8 +56,8 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
-    const prod = isNil(indexProduct) || isEmpty(indexProduct)
-    console.log(indexProduct)
+    const prod = isNil(indexProduct) || isEmpty(indexProduct);
+
     return (
         <div className={`mt-1 ${classes.root}`}>
             { prod === true ? '' :
@@ -187,7 +187,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                                     variant="contained"
                                                     className={classesCard.buttonCombo}
                                                     component={Link}
-                                                    to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                    to={homeProduct.slug === "enjoyment" || homeProduct.slug === "zvezdnyi" ? `/sety/${homeProduct.slug}` : "/pizza"}>
                                                     Посмотреть
                                                 </Button> : <Button
                                                     variant="contained"
