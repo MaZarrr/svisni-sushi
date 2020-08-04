@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ScrollTop(props) {
-  const { children, window } = props;
+  const { window, children } = props;
   const classes = useStyles();
   
   const trigger = useScrollTrigger({
@@ -55,7 +55,7 @@ export default function BackToTop(props) {
     return (
       <React.Fragment>
         <Toolbar className={classes.scrollToPanel} id="back-to-top-anchor" />
-        <ScrollTop {...props}>
+        <ScrollTop windows={props.windows}>
           <Fab color="secondary" size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>

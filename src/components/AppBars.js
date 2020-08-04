@@ -86,7 +86,7 @@ const AppBars = (props) => {
     }
 
     return (
-        <HideOnScroll {...props}>
+        <HideOnScroll>
             <AppBar className={props.classes.root}>
             <Tabs
                 indicatorColor="primary"

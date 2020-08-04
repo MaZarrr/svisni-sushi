@@ -3,14 +3,19 @@ import SEO from "../components/seo"
 import "../components/sass/index.css"
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from "@material-ui/core/styles";
-import CardIndex from "../components/Card";
-import CarouselSvisni from "../components/common/CarouselSvisni"
 import {addedCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 import { graphql, useStaticQuery } from "gatsby"
 import {isEmpty} from "ramda"
+import loadable from "@loadable/component";
 
 import {loadIndexItems} from "../reducers/app";
+import Spinner from "../components/spinner/spinner"
+
+const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
+const CardIndex = loadable(() => import('../components/Card'), {
+    fallback: <Spinner/>});
+
 
 const useStyleIndexPage = makeStyles(theme => ({
     root: {

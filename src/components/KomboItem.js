@@ -2,7 +2,6 @@ import React, {useState} from "react"
 import SEO from "./seo"
 import Button from '@material-ui/core/Button';
 import clsx from "clsx";
-import ButtonBack from "./common/ButtonBackSet";
 import {Container, Grid} from "@material-ui/core";
 import Img from "gatsby-image";
 import uniqid from 'uniqid'
@@ -20,6 +19,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import SwipeableViews from 'react-swipeable-views';
 import Modal from "@material-ui/core/Modal";
 import Divider from "@material-ui/core/Divider";
+
+// my components
+import ButtonBack from "./common/ButtonBackSet";
 
 const styles = {
     root: {

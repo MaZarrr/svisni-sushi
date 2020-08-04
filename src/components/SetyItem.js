@@ -2,10 +2,13 @@ import React from "react"
 import SEO from "./seo"
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import LayoutItem from './layoutItem';
 import {Grid, Paper} from "@material-ui/core";
 import Img from "gatsby-image";
-import ButtonBackSet from "./common/ButtonBackSet";
+import loadable from "@loadable/component";
+
+// my components
+const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
+const LayoutItem = loadable(() => import('./layoutItem'));
 
 const SetyItem = ({name, image, count, weight, price, added, kitProduct, location}) => {
 

@@ -1,6 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby';
-import KomboItem from "../components/KomboItem";
+import loadable from "@loadable/component";
+import Spinner from "../components/spinner/spinner"
+
+const KomboItem = loadable(() => import('../components/KomboItem'), {
+    fallback: <Spinner/>});
 
 const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
 
