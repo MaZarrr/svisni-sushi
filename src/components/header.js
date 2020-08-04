@@ -4,18 +4,19 @@ import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Korzina from './korzinaComponent';
-import ProgressBar from "./common/progressBar"
 import useImageStaticHook from '../components/image';
-import AppBars from './AppBars'
-
-import ScrollTop from "./common/ScrollTop"
-
 import "./header.css"
 import {useStyleHeader} from "./common/style";
-import DrawerMenu from './DrawerMenu'
 import GatsbyImage from "gatsby-image";
 import Hidden from "@material-ui/core/Hidden";
+import loadable from "@loadable/component";
+
+// my components
+import Korzina from './korzinaComponent'
+import DrawerMenu from './DrawerMenu'
+const AppBars = loadable(() => import('./AppBars'));
+const ScrollTop = loadable(() => import('./common/ScrollTop'));
+const ProgressBar = loadable(() => import('./common/progressBar'));
 
 const Header = () => {
   const classes = useStyleHeader()
@@ -91,12 +92,15 @@ const Header = () => {
           </Toolbar>
         </AppBar>
 
-        <ScrollTop/>
+        <Hidden smDown>
+          <ScrollTop/>
+        </Hidden>
+
         <ProgressBar/>
       </div>
       <AppBars/>
 </>
   );
-}
+};
 
 export default Header

@@ -12,7 +12,7 @@ import { productLoaded } from "../reducers/app";
 import {defFilters} from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
-const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
+const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'))
 
 const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter}) => {

@@ -1,9 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-import SetyItem from "../components/SetyItem";
 import {addedCart} from "../reducers/shopping-cart";
 import * as R from 'ramda'
+import loadable from '@loadable/component'
+import Spinner from  "../components/spinner/spinner"
+const ProductItem = loadable(() => import('../components/SetyItem'), {
+    fallback: <Spinner/>});
 
 const SetyTeamplate = ({data: {contentfulProduct,
     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
@@ -18,7 +21,7 @@ const SetyTeamplate = ({data: {contentfulProduct,
     });
  return  (
      <>
-    <SetyItem 
+    <ProductItem
         name={contentfulProduct.name}
         price={contentfulProduct.price}
         description={contentfulProduct.description}
@@ -38,9 +41,9 @@ const SetyTeamplate = ({data: {contentfulProduct,
             }
             ]}
         )}
-    > </SetyItem>
+    > </ProductItem>
     </>
-    )}
+    )};
 
 const mapDispatchToProps = (dispatch) => ({
     addedToCart: (id, price, product) => dispatch(addedCart(id, price, product))

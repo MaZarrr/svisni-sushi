@@ -2,7 +2,10 @@ import React, {useState, useEffect} from 'react'
 import {graphql} from 'gatsby';
 import Spinner from  "../components/spinner/spinner"
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
-import SaleItem from "../components/SaleItem";
+import loadable from "@loadable/component";
+
+const SaleItem = loadable(() => import('../components/SaleItem'), {
+    fallback: <Spinner/>});
 
 const SaleTeamplate = ({data: {contentfulProductSale: {image, name,
     detailedDescription, slug}}, path}) => {
