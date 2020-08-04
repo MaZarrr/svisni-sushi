@@ -12,8 +12,6 @@ export const useStylesCart = makeStyles(theme => ({
         textTransform: `uppercase`,
         marginLeft: 35,
         fontSize: 34,
-        // color: theme.palette.text.secondary,
-        // borderBottom: `1px solid lightgrey`,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
             marginTop: 45,
@@ -355,11 +353,10 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         }
     },
     cardCombo: {
-        minWidth: `85%`,
+        maxWidth: 350,
         borderRadius: `10px`,
-        margin: `10px auto 0 auto`,
         [theme.breakpoints.down('500')]: {
-            maxHeight: `96%`
+            maxHeight: `98%`
         },
     },
     cardComboPc: {
@@ -380,35 +377,8 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         [theme.breakpoints.up('768')]: {
             maxWidth: `50%`,
         },
-    },
-    media: {
-        width: `98%`,
-        margin: `0 auto`
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    buttonCombo: {
-        margin: theme.spacing(1),
-        backgroundColor: `orange`,
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-    },
-    overline: {
-        display: `flex`,
-        justifyContent: 'space-between',
-    },
-    img: {
-        margin: 0,
-        padding: 0
     }
-}))
+}));
 
 export const useStyleHeader = makeStyles(theme => ({
     root: {
@@ -452,7 +422,6 @@ export const useStyleLayout = makeStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         height: 0,
-        // ...theme.mixins.toolbar,
     }
 }));
 
@@ -483,7 +452,7 @@ export const useStyleSearchInput = makeStyles(theme => ({
             border: `1px solid tomato`,
         }
     }
-}))
+}));
 
 export const StylingInfo = styled.section ` 
     font-family: 'Roboto', sans-serif;
@@ -547,7 +516,6 @@ export const StylingInfo = styled.section `
     .map {
        padding-right: 20px;
        padding-left: 20px;
-       // width: 95%;
        height: 250px;
     } 
 }`;

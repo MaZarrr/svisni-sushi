@@ -17,12 +17,12 @@ import {isNil, isEmpty} from "ramda";
 
 const useStylesCard = makeStyles(theme => ({
     titleIndex: {
-        fontSize: '36px',
+        fontSize: '32px',
         width: `100%`,
         padding: `20px 10px`,
         textAlign: `center`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '26px',
+            fontSize: '22px',
             padding: `10px 30px 10px 35px`,
         },
     },
@@ -57,33 +57,30 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
-    // const titleNewProduct = indexProduct[0].node.title;
-    // const newProducts = indexProduct[0].node.new;
-    // const productsCombo = indexProduct[1].node.combos;
-    const prod = isNil(indexProduct) || isEmpty(indexProduct)
-    console.log(indexProduct)
+    const prod = isNil(indexProduct) || isEmpty(indexProduct);
+
     return (
         <div className={`mt-1 ${classes.root}`}>
             { prod === true ? '' :
                 <>
-                    <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
-                    <Typography variant={'button'}>
-                        <Link to={"/kombo"}>Все комбо</Link>
-                    </Typography>
+                <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
+                <Typography variant={'button'}>
+                    <Link to={"/kombo"}>Все комбо</Link>
+                </Typography>
 
-                    {/*Карусель комбо телефон*/}
-                    <Hidden smUp>
-                        <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                            {  isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
-                                <Card key={homeProduct.id} className={classes.cardCombo}>
-                                    <CardMedia
-                                        title={homeProduct.name}>
-                                        <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
-                                    </CardMedia>
-                                    <CardContent>
-                                        <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
-                                    </CardContent>
-                                    <CardActions disableSpacing>
+                {/*Карусель комбо телефон*/}
+                <Hidden smUp>
+                    <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
+                        {  isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
+                            <Card key={homeProduct.id} className={classes.cardCombo}>
+                                <CardMedia
+                                    title={homeProduct.name}>
+                                    <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
+                                </CardMedia>
+                                <CardContent>
+                                    <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                </CardContent>
+                                <CardActions disableSpacing>
                                         <Button
                                             variant="contained"
                                             className={classesCard.buttonCombo}
@@ -123,7 +120,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                                 className={classesCard.buttonCombo}
                                                 component={Link}
                                                 style={{fontSize: 12}}
-                                                to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                to={homeProduct.slug === "enjoyment" || homeProduct.slug === "zvezdnyi" ? `/sety/${homeProduct.slug}` : "/pizza"}>
                                                 Посмотреть
                                             </Button> : <Button
                                                 variant="contained"
@@ -194,7 +191,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                                     variant="contained"
                                                     className={classesCard.buttonCombo}
                                                     component={Link}
-                                                    to={homeProduct.slug === "enjoyment" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                    to={homeProduct.slug === "enjoyment" || homeProduct.slug === "zvezdnyi" ? `/sety/${homeProduct.slug}` : "/pizza"}>
                                                     Посмотреть
                                                 </Button> : <Button
                                                     variant="contained"
@@ -238,14 +235,3 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
 
 });
 export default CardIndex
-
-// const mapStateToProps = (state) => ({
-//     indexProduct: state.app.indexProduct,
-//     indexMenu: state.app.indexMenu
-// });
-//
-// const mapDispatchToProps = {
-//     addedCart,
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(CardIndex)

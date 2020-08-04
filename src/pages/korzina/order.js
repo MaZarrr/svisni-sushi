@@ -188,9 +188,19 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         const phone = phoneUser.trim().replace(/\s/g, "")
         return phoneValidate.test(phone.toLowerCase())
     };
+    const validateDelivery = () => {
+        if(delivery === "Доставка курьером" && deliverySity !== "Не выбрано" && deliverySity !== "") {
+            return true
+        } else if (delivery === "Самовывоз") {
+            return true
+        }
+
+        return false
+    };
 
     const buttonDisabled = () => {
-        if(validateUserName() === true && validatePhone() === true && validateTextAria() === true ) {
+        if(validateUserName() === true && validatePhone() === true &&
+            validateTextAria() === true && validateDelivery() === true ) {
             return false
         }
         return true
@@ -337,9 +347,10 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                 <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                                                     Населённый пункт
                                                 </InputLabel>
-                                                <Select native value={deliverySity.city} onChange={handleChangeCity(city)} inputProps={{
-                                                    name: 'city',
-                                                    id: 'outlined-age-native-simple'}}>
+                                                <Select native value={deliverySity.city}
+                                                        onChange={handleChangeCity(city)}
+                                                        inputProps={{ name: 'city',
+                                                        id: 'outlined-age-native-simple'}}>
                                                     <option value="net"></option>
                                                     <option value="yraz">Уразово</option>
                                                     <option style={{background: `#f0ecec`}} value="val">Валуйки</option>
@@ -550,10 +561,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             {buttonDisabled() === true &&
                                             <>
                                                 <hr></hr>
-                                                <Typography style={{marginTop: 10}}>*Обязательно:</Typography>
+                                                <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
                                                 <ul>
-                                                    <li>Введите ваше имя - из букв русского алфавита</li>
-                                                    <li>Введите ваш телефон - начинается 7 или 8</li>
+                                                    { !validateUserName() && <li>Введите ваше имя - из букв русского алфавита</li>}
+                                                    { !validatePhone() && <li>Введите ваш телефон - начинается 7 или 8</li>}
+                                                    { !validateDelivery() && delivery === "Доставка курьером"
+                                                    && <li>Выберите населенный пункт</li>}
                                                 </ul>
                                             </>
                                             }
@@ -570,7 +583,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             </div>
         </section>
     )
-}
+};
 
 const mapStateToProps = ({shoppingCart: {cartItems, orderTotal, palochkiTotal}, contactsUser: {
     nameUser, phoneUser, deliverySity, deliveryAdress, comments, homeNumber, entranceNumber, levelNumber, doorPassword}}) => ({

@@ -27,7 +27,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     items = [],
     total = 0, palochkiTotal,
     onIncrease, onDecrise, onDelete, addedPriborCount,
-    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale, path }) => {
+    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
 
     const [value, setValue] = React.useState([]);
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
@@ -43,8 +43,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
       )(cart);
 
       const pizza = () => {
-          // const pizzaSale = items.find((el) => el.node.name === 'Салями' )
-          const {node: pizzaSale} = allContentfulProductPizza.edges.find((el) => el.node.name === 'Салями' )
+          const {node: pizzaSale} = allContentfulProductPizza.edges.find((el) => el.node.name === 'Ветчина-Грибы-Бекон' )
           return {
               id: uniqid(),
               name: pizzaSale.name,
@@ -65,7 +64,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                                 <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={pizza().image}> </Img>
                             </div>
                             <div className="ml-4">
-                                <Typography gutterBottom variant="subtitle1">
+                                <Typography gutterBottom variant="subtitle2">
                                     {pizza().name}
                                 </Typography>
                                 <div className="d-flex">
@@ -87,7 +86,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                                 </Grid>
                             </div>
                         </div>
-                        <Divider/>
                     </Grid>
                 </Grid>
                 </Paper>
@@ -206,8 +204,6 @@ return (
                        <div className="d-flex">
                            <div style={{margin: `auto 0`, zIndex: 10}}>
                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
-                               {/*<ButtonBase className={classes.image}>*/}
-                               {/*</ButtonBase>*/}
                            </div>
                            <div className="ml-3">
                                <Typography gutterBottom style={{fontSize: 15}} variant="h6">
@@ -283,7 +279,7 @@ return (
                                                style={{margin: `0 0 5px 0`, padding: 0}}/>
                                        </RadioGroup>
                                    </FormControl>
-                                   <SplitButton id={id} pizzaIng={items} sostav={sostav} ingrideents={ingrideents} dir={"flex-start"} path={path} height={130}/>
+                                   <SplitButton id={id} pizzaIng={items} sostav={sostav} ingrideents={ingrideents} dir={"flex-start"} path={"/korzina/"} height={130}/>
                                    <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Доп:</b> {descriptionIngrideents}</Typography>
                                </>
                                }
@@ -329,11 +325,11 @@ return (
                    <Typography variant="body1" className={classes.typography}>Сумма заказа <b>{total} ₽</b></Typography>
                    <Button
                        component={Link}
-                       to={`${path}order`}
+                       to="/korzina/order"
                        color={'primary'}
                        size={'large'}
                        variant="contained" >
-                       <b>Продолжить</b>
+                       Продолжить
                    </Button>
                </Paper>
            </Grid>
@@ -460,15 +456,3 @@ export const queryKorzina = graphql `
         }
     `
 
-//    useEffect(() => {
-//    // const data = allContentfulProduct.edges.concat(allContentfulProductPizza.edges, allContentfulHomePageCarts.edges,
-//    //  allContentfulProductKlassika.edges, allContentfulProductSlognyeRolly.edges, allContentfulProductSushi.edges,
-//    //  allContentfulProductHotRolly.edges, allContentfulProductSalat.edges, allContentfulProductNapitki.edges,
-//    //  allContentfulProductGunkan.edges, allContentfulProductZakuski.edges, allContentfulProductSouse.edges, allContentfulProductKombo.edges)
-//      producSetsLoad(data); // action push to reduxStore
-//      setLoad(false)
-//    }, [allContentfulProduct, allContentfulProductPizza, producSetsLoad, allContentfulHomePageCarts, allContentfulProductNapitki,
-//   allContentfulProductHotRolly, allContentfulProductGunkan, allContentfulProductKlassika, allContentfulProductSalat,
-//   allContentfulProductSlognyeRolly, allContentfulProductSouse, allContentfulProductSushi, allContentfulProductZakuski,
-//   allContentfulProductKombo
-// ])

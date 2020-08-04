@@ -35,11 +35,11 @@ return (
         </Grid>
       </section>
     )
-}
+};
 
 const mapStateToProps = (state) => ({
     product: state.app.product
-})
+});
   
 export default connect(mapStateToProps, null)(Zakyski)
 

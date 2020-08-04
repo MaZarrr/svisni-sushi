@@ -15,8 +15,7 @@ const PizzaItem = ({name, description, image, price, added, priceIn33, weight, w
             <LayoutItem name={name} image={image} >
                 <ButtonBackSet back="/pizza" />
                 <p><b>Состав:</b> {description}</p>
-                {/* <p><b>Количество:</b> {count} шт</p> */}
-                {/* <p><b>Общий вес:</b> {weight} гр</p> */}
+
                 <div style={{width: `80%`}}>
                     <div style={{display: `inline-block`, marginRight: `15px`}}>
                         <p style={{margin: 0}}><b>Средняя</b> {price} руб</p>

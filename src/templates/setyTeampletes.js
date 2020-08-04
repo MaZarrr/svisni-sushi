@@ -1,13 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-
-//import loadable from "@loadable/component";
 import SetyItem from "../components/SetyItem";
 import {addedCart} from "../reducers/shopping-cart";
 import * as R from 'ramda'
-
-// const SetyItem = loadable(() => import('../components/SetyItem'))
 
 const SetyTeamplate = ({data: {contentfulProduct,
     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
@@ -150,6 +146,10 @@ export const query = graphql `
     }
   `;
 
+
+
+
+// "react-window": "^1.8.5",
 // "react-use-gesture": "^7.0.15",
 // "react-spring": "^8.0.27",
 // "express": "^4.17.1",

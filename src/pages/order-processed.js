@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Link } from 'gatsby';
 
-// export default ({location}) => {
 export default () => {
 
 return (
