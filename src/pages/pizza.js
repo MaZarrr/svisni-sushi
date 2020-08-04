@@ -71,7 +71,7 @@ return (
                            ingrideentButtonStyle = false,
                            image: {fluid}, ingrideents, sostav,
                            contentful_id, priceDef = price, size={[slug]: true,
-                           }} = products
+                           }} = products;
                        return (
                            <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                                  item xs={12} sm={6} md={"auto"} lg={3} key={id}>
@@ -82,7 +82,7 @@ return (
                                    <CardMedia
                                        className={classes.media}
                                        title={name}>
-                                       <Img itemProp="image" fluid={fluid} alt={name} className={classes.imgCarts}/>
+                                       <Img itemProp="image" fluid={fluid} alt={name}/>
                                    </CardMedia>
                                    <CardContent>
                                        <SplitButton id={id} pizzaIng={updatePizza} ingrideents={ingrideents} sostav={sostav} path={path} ingrideentButtonStyle={ingrideentButtonStyle} dir={"center"}/>
