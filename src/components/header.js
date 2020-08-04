@@ -14,12 +14,12 @@ import loadable from "@loadable/component";
 // my components
 import Korzina from './korzinaComponent'
 import DrawerMenu from './DrawerMenu'
-const AppBars = loadable(() => import('./AppBars'));
+import AppBars from './AppBars'
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 
 const Header = () => {
-  const classes = useStyleHeader()
+  const classes = useStyleHeader();
    const [{avatarImage, placeholderImage},] = useImageStaticHook();
 
   const links = [

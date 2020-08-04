@@ -7,7 +7,6 @@ export const useStylesCart = makeStyles(theme => ({
     titleH1: {
         fontFamily: `Oswald, cursive`,
         fontWeight: 800,
-        // padding: `35px 10px 15px 35px`,
         marginTop: 80,
         textTransform: `uppercase`,
         marginLeft: 35,
@@ -21,14 +20,6 @@ export const useStylesCart = makeStyles(theme => ({
             marginTop: 45,
             marginBottom: 10,
             marginLeft: `10vw`
-        }
-    },
-    imgCarts: {
-        maxWidth: `100%`,
-        margin: 0,
-        transition: `transform 0.4s`,
-        '&:active, &:hover': {
-          transform: `scale(1.25)`
         }
     },
     deckriptSmall: {

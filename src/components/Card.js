@@ -43,7 +43,6 @@ const styles = {
     root: {
         padding: '0 50px',
         maxWidth: `100%`,
-        backgroundColor: `#ebebeb`
     },
     slideContainer: {
         padding: '0 20px',
