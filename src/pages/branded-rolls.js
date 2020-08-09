@@ -11,8 +11,8 @@ import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 import {defFilters} from "../reducers/filters";
 
-const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
-const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
+const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
+const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'));
 
 const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter }) => {
@@ -75,7 +75,7 @@ export const queryBrandedRolls = graphql `
               }
             }
           }
-          contentfulIconMenuLeftPanel(name: {eq: "Фирменные"}) {
+          contentfulIconMenuLeftPanel(name: {eq: "Сложные роллы"}) {
           image {
              fluid(maxWidth: 35) {
                ...GatsbyContentfulFluid

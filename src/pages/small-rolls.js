@@ -58,7 +58,7 @@ export const query = graphql `
                }
            }
        }
-         contentfulIconMenuLeftPanel(name: {eq: "Классические"}) {
+         contentfulIconMenuLeftPanel(name: {eq: "Классические роллы"}) {
             image {
                 fluid(maxWidth: 35) {
                     ...GatsbyContentfulFluid

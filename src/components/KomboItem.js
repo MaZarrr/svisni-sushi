@@ -240,7 +240,9 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
             {/*Карусель товаров телефон*/}
             <Hidden smUp>
                 <ButtonBack back="/kombo" />
-                <Grid container style={{overflowY: "scroll", height: `60vh`, paddingBottom: 40}}>
+
+                {/* active sostav product */}
+                <Grid container style={{marginBottom: 150}}>
                     { productSostav.map((el, idx) => (
                         <Grid key={el.id} item xs={6}>
                             <div role="button" tabIndex="0"
