@@ -68,7 +68,7 @@ export const queryBrandedRolls = graphql `
               weight
               count
               image {
-                 fluid(maxWidth: 390, maxHeight: 390) {
+                 fluid(maxWidth: 400, maxHeight: 400, quality: 100) {
                      ...GatsbyContentfulFluid
                   }
               }

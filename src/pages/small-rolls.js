@@ -51,7 +51,7 @@ export const query = graphql `
                    weight
                    count
                      image {
-                         fluid(maxWidth: 360, maxHeight: 360) {
+                         fluid(maxWidth: 400, maxHeight: 400, quality: 100) {
                              ...GatsbyContentfulFluid
                          }
                      }

@@ -68,7 +68,7 @@ export const query = graphql `
               variant
               count
               image {
-                  fluid(maxWidth: 400, maxHeight: 400) {
+                  fluid(maxWidth: 400, maxHeight: 400, quality: 100) {
                       ...GatsbyContentfulFluid
                   }
               }
