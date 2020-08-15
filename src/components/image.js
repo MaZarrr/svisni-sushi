@@ -6,14 +6,14 @@ export default () => {
     query {
       placeholderImage: file(relativePath: { eq: "logosvisni.png" }) {
         childImageSharp {
-          fluid(maxWidth: 120) {
+          fluid(maxWidth: 120, quality: 100) {
             ...GatsbyImageSharpFluid
           }
         }
       },
       avatarImage: file(relativePath: { eq: "avatar.jpg" }) {
         childImageSharp {
-          fixed(width: 90) {
+          fixed(width: 90, quality: 100) {
             ...GatsbyImageSharpFixed
           }
         }

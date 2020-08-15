@@ -69,7 +69,7 @@ export const query = graphql `
               count
               image {
                   fluid(maxWidth: 400, maxHeight: 400, quality: 100) {
-                      ...GatsbyContentfulFluid
+                      ...GatsbyContentfulFluid_withWebp
                   }
               }
               }
