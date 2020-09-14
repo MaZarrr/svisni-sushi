@@ -22,7 +22,8 @@ const Layout = ({ children }) => {
             maxWidth: `1440px`,
             backgroundColor: "#fafafa",
             minHeight: `100vh`,
-            margin: '75px auto 0 auto'
+            margin: '75px auto 0 auto',
+            padding: '75px auto 0 auto'
         }}>
           <main>
             <div className={classes.toolbar} />

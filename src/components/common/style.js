@@ -7,19 +7,19 @@ export const useStylesCart = makeStyles(theme => ({
     titleH1: {
         fontFamily: `Oswald, cursive`,
         fontWeight: 800,
-        marginTop: 80,
+        paddingTop: 80,
         textTransform: `uppercase`,
-        marginLeft: 35,
+        paddingLeft: 35,
         fontSize: 34,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
-            marginTop: 45,
+            paddingTop: 45,
         },
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
-            marginTop: 45,
-            marginBottom: 10,
-            marginLeft: `10vw`
+            paddingTop: 45,
+            paddingBottom: 10,
+            paddingLeft: `10vw`
         }
     },
     deckriptSmall: {
