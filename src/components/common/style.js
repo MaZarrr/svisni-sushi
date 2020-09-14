@@ -175,7 +175,7 @@ export const useStyleOrder = makeStyles(theme => ({
         boxShadow: `0px 4px 8px rgba(0, 0, 0, 0.5)`,
         maxWidth: '65%',
     }
-}))
+}));
 
 export const IOSSwitch = withStyles(theme => ({
     root: {
@@ -309,7 +309,7 @@ export const useStyleKorzina = makeStyles(theme => ({
         fontSize: 12,
         padding: `8px 5px`
     },
-}))
+}));
 
 export const useStyleCardIndexPage = makeStyles(theme => ({
     root: {
@@ -453,6 +453,26 @@ export const StyleH1Layout = styled.h1 `
         font-size: 34px;
      @media screen and (max-width: 475px) { 
         font-size: 26px; 
+    }
+`;
+
+export const H1ProductsList = styled.h1 `
+        font-family: 'Oswald', cursive;
+        font-style: normal;
+        font-weight: 800;
+        margin-top: 80px;
+        text-transform: uppercase;
+        margin-left: 35px;
+        font-size: 34px;
+        // display: flex;
+      @media screen and (max-width: 600px) { 
+         margin-top: 45px;
+    }
+      @media screen and (max-width: 475px) { 
+            font-size: 26px;
+            margin-top: 45px;
+            margin-bottom: 10px;
+            margin-left: 10vw;
     }
 `;
 
