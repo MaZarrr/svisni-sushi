@@ -401,20 +401,14 @@ export const useStyleHeader = makeStyles(theme => ({
     }
 }));
 
-export const useStyleLayout = makeStyles(theme => ({
-    root: {
-        maxWidth: `1440px`,
-        backgroundColor: "#fafafa",
-        minHeight: `100vh`,
-        margin: '75px auto 0 auto'
-    },
+export const useStyleLayout = makeStyles({
     toolbar: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         height: 0,
     }
-}));
+});
 
 export const useStyleSearchInput = makeStyles(theme => ({
     root: {

@@ -2,7 +2,7 @@ import React from "react"
 import SEO from "../components/seo"
 import "../components/sass/index.css"
 import Grid from '@material-ui/core/Grid';
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {addedCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 import { graphql, useStaticQuery } from "gatsby"
@@ -15,7 +15,6 @@ import Spinner from "../components/spinner/spinner"
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
 const CardIndex = loadable(() => import('../components/Card'), {
     fallback: <Spinner/>});
-
 
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -161,7 +160,8 @@ const QUERY_INDEX_DATA = graphql`
 const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
 
     const { allContentfulContentIndex: {edges},
-        allContentfulHomePageImageMenu: {edges: menu}} = useStaticQuery(QUERY_INDEX_DATA);
+            allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
+
     const classes = useStyleIndexPage();
     React.useEffect(() => {
         loadIndexItems({edges, menu})
@@ -174,7 +174,7 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
         <section>
             <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
                  description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
-  Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
+                    Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
 
             <CarouselSvisni />
             <Grid item xs={12} className={classes.root}>

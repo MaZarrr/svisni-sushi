@@ -18,7 +18,12 @@ const Layout = ({ children }) => {
       <>
         <Header/>
           <ErrorBoundary>
-        <div className={classes.root}>
+        <div style={{
+            maxWidth: `1440px`,
+            backgroundColor: "#fafafa",
+            minHeight: `100vh`,
+            margin: '75px auto 0 auto'
+        }}>
           <main>
             <div className={classes.toolbar} />
               {children}

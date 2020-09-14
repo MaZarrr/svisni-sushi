@@ -11,7 +11,7 @@ import { H1ProductsList } from "../components/common/style";
 import {productLoaded} from "../reducers/app";
 import {defFilters} from "../reducers/filters";
 
-const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
+const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner/>
 });
