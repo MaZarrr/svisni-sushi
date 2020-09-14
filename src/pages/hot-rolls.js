@@ -5,34 +5,55 @@ import { connect } from 'react-redux';
 
 import { Grid } from "@material-ui/core";
 import Spinner from '../components/spinner/spinner'
-import { useStylesCart } from '../components/common/style'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 import {defFilters} from "../reducers/filters";
+import {makeStyles} from "@material-ui/core/styles";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
-const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'))
+const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'));
+
+const useStyle = makeStyles(theme=> ({
+    titleH1: {
+        fontFamily: `Oswald, cursive`,
+        fontWeight: 800,
+        marginTop: 80,
+        textTransform: `uppercase`,
+        marginLeft: 35,
+        fontSize: 34,
+        display: `flex`,
+        [theme.breakpoints.down('600')]: {
+            marginTop: 45,
+        },
+        [theme.breakpoints.down('475')]: {
+            fontSize: 26,
+            marginTop: 45,
+            marginBottom: 10,
+            marginLeft: `10vw`
+        }
+    },
+}));
 
 const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter}) => {
 
-  const [load, setLoad] = React.useState(true)
-  const classes = useStylesCart();
+  const [load, setLoad] = React.useState(true);
+  const classes = useStyle();
 
     useEffect(() => {
-        dispatch(productLoaded(productsHotRolls)) // action push to reduxStore
-        setLoad(false)
+        dispatch(productLoaded(productsHotRolls)); // action push to reduxStore
+        setLoad(false);
         dispatch(defFilters())
-    }, [productsHotRolls, dispatch])
+    }, [productsHotRolls, dispatch]);
 
-    const visibleItems = filtersProducts(product, searchText, priceFilter)
+    const visibleItems = filtersProducts(product, searchText, priceFilter);
 
 return ( 
    <section>
     <SEO title="Заказать гриль, жареные роллы от 215 рублей. Доставка по Уразово"
-    description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени великолепный вкус японской кухни от Свисни Суши"
-    pathname="/sety"/>
+        description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени великолепный вкус японской кухни от Свисни Суши"
+        pathname="/sety"/>
        <h1 className={classes.titleH1}>Гриль роллы</h1>
 
        {load === false ? <>

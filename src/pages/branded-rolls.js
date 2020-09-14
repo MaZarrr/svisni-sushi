@@ -4,21 +4,42 @@ import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
 import { Grid } from "@material-ui/core";
-import { useStylesCart } from '../components/common/style';
 import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 import {defFilters} from "../reducers/filters";
+import { makeStyles } from "@material-ui/core/styles";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'));
 
+const useStyle = makeStyles(theme=> ({
+    titleH1: {
+        fontFamily: `Oswald, cursive`,
+        fontWeight: 800,
+        marginTop: 80,
+        textTransform: `uppercase`,
+        marginLeft: 35,
+        fontSize: 34,
+        display: `flex`,
+        [theme.breakpoints.down('600')]: {
+            marginTop: 45,
+        },
+        [theme.breakpoints.down('475')]: {
+            fontSize: 26,
+            marginTop: 45,
+            marginBottom: 10,
+            marginLeft: `10vw`
+        }
+    },
+}));
+
 const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter }) => {
   
-  const classes = useStylesCart();
-  const [load, setLoad] = React.useState(true)
+  const classes = useStyle();
+  const [load, setLoad] = React.useState(true);
 
     useEffect(() => {
         dispatch(productLoaded(productsBrandedRolls)) // action push to reduxStore

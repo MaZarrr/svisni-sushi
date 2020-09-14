@@ -460,19 +460,18 @@ export const H1ProductsList = styled.h1 `
         font-family: 'Oswald', cursive;
         font-style: normal;
         font-weight: 800;
-        margin-top: 80px;
+        padding-top: 80px;
         text-transform: uppercase;
         margin-left: 35px;
         font-size: 34px;
-        // display: flex;
       @media screen and (max-width: 600px) { 
-         margin-top: 45px;
+         padding-top: 45px;
     }
       @media screen and (max-width: 475px) { 
             font-size: 26px;
-            margin-top: 45px;
-            margin-bottom: 10px;
-            margin-left: 10vw;
+            padding-top: 45px;
+            padding-bottom: 10px;
+            padding-left: 10vw;
     }
 `;
 
