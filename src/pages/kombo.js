@@ -3,7 +3,7 @@ import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
-import { useStylesCart } from '../components/common/style'
+import {useStyleH1} from '../components/common/style'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 
@@ -12,28 +12,28 @@ const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
 
-  const classes = useStylesCart();
+    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productLoaded(productsKombo)) // action push to reduxStore
-    }, [productsKombo, dispatch])
+    }, [productsKombo, dispatch]);
 
 return (
     <section>
     <SEO title="Доставка комбо наборов из суши, роллов, пиццы и лапши Вок"
     description="Специальные комбо наборы, выгодно, заказать в Уразово с 10 до 22:00"/>
-            <h1 className={classes.titleH1}>Комбо</h1>
+            <h1 className={title}>Комбо</h1>
     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
                        image={image} product={product}/>
   </Grid>
 </section>
     )
-}
+};
 
 const mapStateToProps = (state) => ({
     product: state.app.product
-})
+});
   
 export default connect(mapStateToProps, null)(Kombo)
 

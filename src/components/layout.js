@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Header from "./header"
 import "./layout.css"
-import {useStyleLayout} from "./common/style";
+import { useStyleLayout } from "./common/style";
 import loadable from '@loadable/component'
 import {Hidden} from "@material-ui/core";
 
@@ -21,10 +21,10 @@ const Layout = ({ children }) => {
         <div style={{
             maxWidth: `1440px`,
             backgroundColor: "#fafafa",
-            minHeight: `100vh`,
-            margin: '75px auto 0 auto',
-            padding: '75px auto 0 auto'
+            minHeight: `100vh`
         }}>
+            {/* switch margin*/}
+            <div style={{height: 75, width: 100}}></div>
           <main>
             <div className={classes.toolbar} />
               {children}

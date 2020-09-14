@@ -37,8 +37,8 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
 
     useEffect(() => {
           if(!R.isEmpty(productPizza)) {
-            setLoad(false)
-              dispatch(defFilters())
+            setLoad(false);
+              dispatch(defFilters());
             return
           }
           const ProductFetch = async () => {
@@ -78,7 +78,7 @@ return (
                                <Card className={classes.card}>
                                    <CardHeader avatar={<Img style={{width: 40}} fluid={image.fluid} alt={name} />}
                                        title={"Пицца"}
-                                       subheader={<span itemProp="name">{name}</span>}/>
+                                               subheader={<span itemProp="name"><strong>{name}</strong></span>}/>
                                    <CardMedia
                                        className={classes.media}
                                        title={name}>
@@ -139,18 +139,8 @@ return (
                                            variant="contained"
                                            color="secondary"
                                            className={classes.button}
-                                           // startIcon={<ShoppingBasketIcon/>}
                                            onClick={() => dispatch(addedToCart({id, productPrice: null, product: updatePizza}))}>
                                            <ShoppingCartIcon/></Button>
-
-                                           {/*<Button*/}
-                                           {/*    itemProp = "url"*/}
-                                           {/*    component={Link}*/}
-                                           {/*    to={`/pizza/${slug}`}*/}
-                                           {/*    variant="contained"*/}
-                                           {/*    color="secondary"*/}
-                                           {/*    className={classes.buttonInfo}>*/}
-                                           {/*    Подробнее </Button>*/}
                                    </CardActions>
                                </Card>
                            </Grid>

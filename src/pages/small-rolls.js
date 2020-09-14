@@ -4,26 +4,26 @@ import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
 import { Grid } from "@material-ui/core";
-import { useStylesCart } from '../components/common/style';
 import loadable from "@loadable/component";
 import {productLoaded} from "../reducers/app";
+import {useStyleH1} from "../components/common/style";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const SmallRolls = ({data: {allContentfulProductKlassika: {edges: productsSmallRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
 
-  const classes = useStylesCart();
+    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productLoaded(productsSmallRolls)) // action push to reduxStore
-    }, [productsSmallRolls, dispatch])
+    }, [productsSmallRolls, dispatch]);
 
 return ( 
    <section>
     <SEO title="Вкусные недорогие маки роллы. Заказать доставку на дом в Валуйки"
     description="Маленькие, жареные и темпурные классические Свисни роллы от 120 рублей"/>
-       <h1 className={classes.titleH1}>Классические роллы</h1>
+       <h1 className={title}>Классические роллы</h1>
     <Grid container justify="center">
             <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}
                                    image={image} product={product}/>

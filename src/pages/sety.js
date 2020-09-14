@@ -7,9 +7,9 @@ import Spinner from '../components/spinner/spinner'
 import { Grid } from "@material-ui/core";
 import filtersProducts from '../utils/filtersProducts'
 import loadable from '@loadable/component'
-import { H1ProductsList } from "../components/common/style";
-import {productLoaded} from "../reducers/app";
-import {defFilters} from "../reducers/filters";
+import { useStyleH1 } from "../components/common/style";
+import { productLoaded } from "../reducers/app";
+import { defFilters } from "../reducers/filters";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
@@ -20,6 +20,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
                   product, searchText, priceFilter, checkboxFilter, location, dispatch}) => {
 
     const [load, setLoad] = React.useState(true);
+    const { title } = useStyleH1();
 
     useEffect(() => {
         // dispatch(setLoading(true))
@@ -36,7 +37,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
             <SEO title="Заказать Cуши сет. Меню суши, роллы — доставка в Валуйки"
                  description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
             <section>
-                <H1ProductsList>Сеты</H1ProductsList>
+                <h1 className={title}>Сеты</h1>
                 { load === false ?
                 <div>
                     <CustomizedInputSearch location={location.pathname}/>

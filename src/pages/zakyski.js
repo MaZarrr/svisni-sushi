@@ -3,11 +3,11 @@ import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
-import { useStylesCart } from '../components/common/style'
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import Spinner from "../components/spinner/spinner";
 import {productLoaded} from "../reducers/app";
+import {useStyleH1} from "../components/common/style";
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
@@ -15,7 +15,7 @@ const Zakyski = ({data: {allContentfulProductZakuski: {edges: productsZakyski}, 
                      dispatch, product}) => {
 
     const [load, setLoad] = React.useState(true)
-    const classes = useStylesCart();
+    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productLoaded(productsZakyski)) // action push to reduxStore
@@ -26,7 +26,7 @@ return (
    <section>
     <SEO title="Доставка закусок в Уразово | Заказать на дом или в офис"
     description="Доставка закусок от суши-бара Свисни в Уразово ☛ Телефон для заказа ☎ +7(904)094-92-22"/>
-       <h1 className={classes.titleH1}>Закуски</h1>
+       <h1 className={title}>Закуски</h1>
     <Grid container justify="center">
         {
             !load ? <CardsMenuPage titleCategory="Закуски" slugCategogy="/zakyski" visibleItems={product}

@@ -9,36 +9,15 @@ import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 import {defFilters} from "../reducers/filters";
-import { makeStyles } from "@material-ui/core/styles";
+import {useStyleH1} from "../components/common/style";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'));
 
-const useStyle = makeStyles(theme=> ({
-    titleH1: {
-        fontFamily: `Oswald, cursive`,
-        fontWeight: 800,
-        marginTop: 80,
-        textTransform: `uppercase`,
-        marginLeft: 35,
-        fontSize: 34,
-        display: `flex`,
-        [theme.breakpoints.down('600')]: {
-            marginTop: 45,
-        },
-        [theme.breakpoints.down('475')]: {
-            fontSize: 26,
-            marginTop: 45,
-            marginBottom: 10,
-            marginLeft: `10vw`
-        }
-    },
-}));
-
 const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter }) => {
   
-  const classes = useStyle();
+  const { title } = useStyleH1();
   const [load, setLoad] = React.useState(true);
 
     useEffect(() => {
@@ -55,7 +34,7 @@ return (
     description="Роллы которых вы еще не пробовали от 210 рублей. Закажи доставку или приходи к нам в гости!"
     pathname="/hot-rolls"/>
 
-       <h1 className={classes.titleH1}>Сложные роллы</h1>
+       <h1 className={title}>Сложные роллы</h1>
        {load === false ? <>
                <CustomizedInputSearch/>
                <Grid container justify="center">

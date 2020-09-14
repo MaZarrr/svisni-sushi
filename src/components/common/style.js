@@ -3,6 +3,27 @@ import styled from 'styled-components';
 import Switch from "@material-ui/core/Switch";
 import React from "react";
 
+export const useStyleH1 = makeStyles(theme => ({
+    title: {
+        fontFamily: `Oswald, cursive`,
+        fontWeight: 800,
+        paddingTop: 80,
+        textTransform: `uppercase`,
+        paddingLeft: 35,
+        fontSize: 34,
+        display: `flex`,
+        [theme.breakpoints.down('600')]: {
+            paddingTop: 45,
+        },
+        [theme.breakpoints.down('475')]: {
+            fontSize: 26,
+            paddingTop: 45,
+            paddingBottom: 10,
+            paddingLeft: `10vw`
+        }
+    }
+}));
+
 export const useStylesCart = makeStyles(theme => ({
     titleH1: {
         fontFamily: `Oswald, cursive`,
@@ -447,25 +468,6 @@ export const StyleH1Layout = styled.h1 `
         font-size: 34px;
      @media screen and (max-width: 475px) { 
         font-size: 26px; 
-    }
-`;
-
-export const H1ProductsList = styled.h1 `
-        font-family: 'Oswald', cursive;
-        font-style: normal;
-        font-weight: 800;
-        padding-top: 80px;
-        text-transform: uppercase;
-        margin-left: 35px;
-        font-size: 34px;
-      @media screen and (max-width: 600px) { 
-         padding-top: 45px;
-    }
-      @media screen and (max-width: 475px) { 
-            font-size: 26px;
-            padding-top: 45px;
-            padding-bottom: 10px;
-            padding-left: 10vw;
     }
 `;
 
