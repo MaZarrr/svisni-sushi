@@ -7,15 +7,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {Typography} from "@material-ui/core";
 
 const KorzinaItem = styled.div `
   min-width: 90px;
   margin-left: auto;
   padding: 0 auto;
-&:hover {
-  transition: 0.1s ease-in;
-  transform: scale(1.09);
-} 
+
 .gatsby-image-wrapper {
   margin: 0;
   padding: 0;
@@ -113,7 +111,11 @@ return (
                 <StyledBadge badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
                     <ShoppingCartIcon fontSize={"large"}/>
                 </StyledBadge>
+
             </TextTotal>
+                <Typography variant={"subtitle2"} style={{position: `absolute`, bottom: 6, right: -15, fontSize: 13}}>
+                    {orderTotal}
+                </Typography>
             </IconButton>
 
           </div>

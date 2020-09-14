@@ -14,8 +14,8 @@ import {addedToCart} from "../reducers/shopping-cart";
 import {connect} from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import MoreIcon from '@material-ui/icons/More';
 import ToggleButton from "./common/ToogleButton";
+import {take} from "ramda";
 
 const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
     const classes = useStylesCart();
@@ -32,7 +32,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                 avatar={slugCategogy !== "/wok" ? <Img style={{width: 40}} fluid={image.fluid} alt={name} /> : ''}
                                 title={titleCategory}
                                 subheader={<span itemProp="name"><strong>{name}</strong></span>}/>
-                            {slugCategogy === "/sety" &&
+                            { slugCategogy === "/sety" &&
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
@@ -41,7 +41,25 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                 </Link>
                             </CardMedia>
                             }
-                            {slugCategogy !== "/sety" &&
+
+                            { slugCategogy === "/kombo" &&
+                            <CardMedia
+                                className={classes.media}
+                                title={name}>
+
+                                {edit &&
+                                <Link to={`${slugCategogy}/${slug}`}>
+                                    <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
+                                </Link>
+                                }
+                                {!edit &&
+                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
+                                }
+                            </CardMedia>
+                            }
+
+
+                            {slugCategogy !== "/sety" && slugCategogy !== "/kombo" &&
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
@@ -66,7 +84,16 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" || slugCategogy === "/wok" ? classes.deckript : classes.deckriptSmall}
                                             variant="body2"
                                             color="textSecondary">
-                                    {description}
+
+                                    { slugCategogy === "/sety"  &&
+                                    <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
+                                    }
+                                    { slugCategogy === "/kombo" &&
+                                    <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
+                                    }
+                                    {slugCategogy !== "/sety" && slugCategogy !== "/kombo" &&
+                                        description
+                                    }
                                 </Typography>
 
                                 {/*Кнопки выбора wok*/}
@@ -78,11 +105,11 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                         <Grid item xs={6}>
                                             <Paper style={{width: `90%`, margin: `0 auto`}}>
                                                 { slugCategogy !== "/napitki" &&
-                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{slugCategogy ===
+                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
                                                 "/sety" ? `${weight}кг` : `${weight}гр`}</Typography>
                                                 }
                                                 { slugCategogy === "/napitki" &&
-                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{weight}л</Typography>
+                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{weight}л</Typography>
                                                 }
                                             </Paper>
                                         </Grid>
@@ -94,13 +121,49 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             </Paper>
                                         </Grid>
                                         <Grid item xs={6}>
+                                            {/*Показывать корзину для всех путей*/}
+                                            { slugCategogy !== "/kombo" &&
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                className={classes.button}
+                                                onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
+                                                <ShoppingCartIcon/>
+                                            </Button>
+                                            }
+
+                                            {/*Показывать кнопку редактирования комбо*/}
+                                            { edit === true ?
+                                                <Button
+                                                    itemProp="url"
+                                                    component={Link}
+                                                    to={`${slugCategogy}/${slug}`}
+                                                    variant="contained"
+                                                    style={{backgroundColor: "orange", color: 'white', marginTop: 10}}>
+                                                    Выбрать
+                                                </Button> : null
+                                            }
+
+                                            {/* Проверка - комбо редактируется или нет */}
+                                            {edit === false &&
+                                            <Button
+                                                variant="contained"
+                                                className={classes.button}
+                                                style={{color: 'white'}}
+                                                onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
+                                                <ShoppingCartIcon/>
+                                            </Button>
+                                            }
+
+                                        </Grid>
+                                        <Grid item xs={6}>
                                             <Typography
                                                 component="p"
                                                 variant="overline"
                                                 style={{fontSize: 20, margin: `0 auto`, width: `85%`, textAlign: `center`}}
                                                 itemProp="price"
                                             >
-                                                {slugCategogy === "/pizza" ? `от ${price}₽` : `${price}₽`}
+                                                {`${price}₽`}
                                             </Typography>
                                         </Grid>
                                     </Grid>
@@ -109,54 +172,6 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                             </CardContent>
 
                             <CardActions disableSpacing>
-
-                                {/* Проверка - комбо редактируется или нет */}
-                                {edit === false &&
-                                <Button
-                                    variant="contained"
-                                    className={classes.button}
-                                    onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
-                                    <ShoppingCartIcon/>
-                                </Button>
-                                }
-
-                                {/*Показывать кнопку редактирования комбо*/}
-                                { edit === true ?
-                                    <Button
-                                        itemProp="url"
-                                        component={Link}
-                                        to={`${slugCategogy}/${slug}`}
-                                        variant="contained"
-                                        style={{backgroundColor: "orange"}}>
-                                        Выбрать
-                                    </Button> : null
-                                }
-
-                                {/*Показывать корзину для всех путей*/}
-                                { slugCategogy !== "/kombo" &&
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    className={classes.button}
-                                    onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
-                                    <ShoppingCartIcon/>
-                                </Button>
-                                }
-
-                                {/*Показывать переход на эти пути*/}
-                                { slugCategogy === "/sety" ||
-                                slugCategogy === "/pizza" ?
-                                    <Button
-                                        itemProp = "url"
-                                        component={Link}
-                                        to={`${slugCategogy}/${slug}`}
-                                        variant="contained"
-                                        color="secondary"
-                                        className={classes.buttonInfo}>
-                                        {/*Подробнее */}
-                                        <MoreIcon/>
-                                    </Button> : null
-                                }
 
                             </CardActions>
                         </Card>
