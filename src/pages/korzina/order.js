@@ -61,7 +61,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
         kol: {id: 1, priceDel: 250, deliverySalePrice: 1400, name: "Колыхалино"},
         dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},
-        val: {id: 3, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки"},
+        val: {id: 3, priceDel: 350, deliverySalePrice: 1400, name: "Валуйки(центр)"},
         yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},
         shel: {id: 5, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
         gera: {id: 6, priceDel: 250, deliverySalePrice: 1400, name: "Герасимовка"},
@@ -73,7 +73,11 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         kyky: {id: 12, priceDel: 250, deliverySalePrice: 1400, name: "Кукуевка"},
         kolos: {id: 13, priceDel: 500, deliverySalePrice: 2400, name: "Колосково"},
         kazink: {id: 14, priceDel: 400, deliverySalePrice: 2300, name: "Казинка"},
-
+        soloti: {id: 15, priceDel: 500, deliverySalePrice: 2400, name: "Солоти"},
+        rogdestv: {id: 16, priceDel: 500, deliverySalePrice: 2400, name: "Рождественно"},
+        samar: {id: 17, priceDel: 600, deliverySalePrice: 2500, name: "Самарино"},
+        valsoshgor: {id: 18, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки(соц.городок)"},
+        valrazdol: {id: 19, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки(раздолье)"},
     });
 
     const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
@@ -224,7 +228,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                             <form
                                 method="POST"
                                 onSubmit={handleSubmit}
-                                // action="http://localhost:3000/"
                                 action={process.env.GATSBY_NODE_SERVE}
                                 name="svisniData"
                                 style={{width: '100%'}}>
@@ -353,7 +356,9 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                         id: 'outlined-age-native-simple'}}>
                                                     <option value="net"></option>
                                                     <option value="yraz">Уразово</option>
-                                                    <option style={{background: `#f0ecec`}} value="val">Валуйки</option>
+                                                    <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
+                                                    <option value="valsoshgor">Валуйки(соц.городок)</option>
+                                                    <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
                                                     <option value="dvyl">Двулучное</option>
                                                     <option style={{background: `#f0ecec`}} value="shel">Шелаево</option>
                                                     <option value="sobo">Соболевка</option>
@@ -366,6 +371,9 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                     <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
                                                     <option value="kyky">Кукуевка</option>
                                                     <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
+                                                    <option value="soloti">Солоти</option>
+                                                    <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
+                                                    <option value="samar">Самарино</option>
                                                 </Select>
                                             </FormControl>
 
@@ -592,7 +600,7 @@ const mapStateToProps = ({shoppingCart: {cartItems, orderTotal, palochkiTotal}, 
     comments,
     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber,
     doorPassword, palochkiTotal
-})
+});
 
 const mapDispatchToProps = {
     setName: setNameUser,

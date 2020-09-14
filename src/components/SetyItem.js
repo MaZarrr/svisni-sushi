@@ -5,6 +5,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import {Grid, Paper} from "@material-ui/core";
 import Img from "gatsby-image";
 import loadable from "@loadable/component";
+import Typography from "@material-ui/core/Typography";
 
 // my components
 const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
@@ -45,14 +46,15 @@ return (
                 </Paper>
             ))}
             <div style={{marginTop: 20}}>
-                    <p><b>Количество:</b> {count} шт</p>
-                    <p><b>Общий вес:</b> {weight} кг</p>
-                    <p><b>Цена</b> {price} руб</p>
+                    <Typography variant={"body1"}>Количество: {count} шт</Typography>
+                    <Typography className="mt-2 mb-2" variant={"body1"}>Общий вес: {weight} кг</Typography>
+                    <Typography className="mb-2" variant={"body1"}>Цена: {price} руб</Typography>
                     <Button
-                        variant="outlined"
+                        variant="contained"
                         size="large"
                         endIcon={<ShoppingBasketIcon/>}
                         style={{marginBottom: `50px`}}
+                        color={"primary"}
                         onClick={added}
                     >В корзину</Button>
             </div>

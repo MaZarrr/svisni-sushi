@@ -6,15 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import {StylingInfo} from "../components/common/style";
 import Divider from "@material-ui/core/Divider";
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     display: 'flex',
-//     '& > *': {
-//       margin: theme.spacing(1),
-//     },
-//   }
-// }));
-
 const Dostavkaioplata = () => {
 
 const delivery = [
@@ -36,11 +27,11 @@ const delivery = [
     },
       {
         id: 3,
-        adress: 'Знаменка',
-        do: 699,
-        posle: 700,
+        adress: 'Солоти',
+        do: 2399,
+        posle: 2400,
         color: '#5c3c35',
-        price: 150,
+        price: 500,
     },
       {
         id: 4,
@@ -153,6 +144,22 @@ const delivery = [
         posle: 2400,
         color: '#27D943',
         price: 500,
+    },
+    {
+        id: 18,
+        adress: 'Знаменка',
+        do: 699,
+        posle: 700,
+        color: '#5c3c35',
+        price: 150,
+    },
+    {
+        id: 19,
+        adress: 'Самарино',
+        do: 2499,
+        posle: 2500,
+        color: '#DA282A',
+        price: 600,
     },
 ];
 
