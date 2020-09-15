@@ -156,14 +156,14 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
     };
 
-    const handleChange = event => setAge(event.target.value)
+    const handleChange = event => setAge(event.target.value);
     const handleChangeDelivery = event => setDelivery(event.target.value);
     const handleChangeCity = city => event => {
         setSity(`${city[event.target.value].name}`)
         setStateDeliveryPrice(city[event.target.value]);
     };
 
-    const handleClose = () => setOpen(false)
+    const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
 
     const isEmpty = (obj) => {
@@ -171,7 +171,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             return true;
         }
         return false
-    }
+    };
 
     const validateUserName = () => {
         const nameValidate = /^[а-яё]{3,16}$/gi;
@@ -185,7 +185,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         } else if(comments !== '') {
             return ((/^[а-я_А-Я_0-9\-?()!,.ё]{3,230}$/).test(commentTextArea.toLowerCase()))
         }
-    }
+    };
     const validatePhone = () => {
         const phoneValidate =  /^\+?(\d{1,3})?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/
         // const phoneValidate = /(^8|7|\+7)[)(-]((\d{15})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))$/gi
@@ -213,7 +213,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const itemCartPizza = items.includes(items.find((data) => data.priceDef === 0));
 
     return (
-        <section >
+        <section>
             <SEO title="Оформление заказа"
                  noindex={true}/>
             <div className={classes.root}>
@@ -240,13 +240,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             Дата и время доставки заказа
                                         </Typography>
                                         <FormGroup>
-
                                             <Grid component="label" className="mt-1" container justify="center">
-                                                <Typography variant="body1">Сразу</Typography>
+                                                <Typography style={{marginRight: 5}} variant="body1">Сразу</Typography>
                                                 <Grid item>
                                                     <IOSSwitch checked={state.checkedC} onChange={handleChangee('checkedC')} value="checkedC"/>
                                                 </Grid>
-                                                <Typography variant="body1">Предзаказ</Typography>
+                                                <Typography style={{marginLeft: 5}} variant="body1">Предзаказ</Typography>
                                             </Grid>
                                         </FormGroup>
                                     </Grid>

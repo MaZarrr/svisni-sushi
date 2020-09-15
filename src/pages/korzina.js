@@ -20,6 +20,10 @@ import {getProduct} from "../reducers/app";
 import SplitButton from "../components/SplitButton";
 import {Container} from "@material-ui/core";
 import uniqid from 'uniqid'
+import IconButton from "@material-ui/core/IconButton";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 
 const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
     allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
@@ -149,7 +153,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                                 </button>
                             </div>
                         </div>
-                        <Divider/>
                     </Grid>
                 </Grid>
                 </Paper>
@@ -221,29 +224,46 @@ return (
                                <div className="d-flex mb-2">
                                    {price !== 79 && priceDef !== 0 ?
                                        <>
-                                           <button disabled={false}
-                                                   onClick={()=> onIncrease( {id, price, product: items} )}
-                                                   className="btn btn-outline-success btn-sm">
-                                               <i className="fa fa-plus-circle fa-lg"></i>
-                                           </button>
-                                           <button onClick={()=> onDecrise({ id, price, product: items})}
-                                                   className="btn btn-outline-warning btn-sm ml-2">
-                                               <i className="fa fa-minus-circle fa-lg"></i>
-                                           </button> </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
+                                           <IconButton color="primary" aria-label="plus" component="span"
+                                                       onClick={()=> onIncrease( {id, price, product: items} )}>
+                                              <AddCircleOutlineIcon />
+                                           </IconButton>
+                                           <IconButton color="primary" aria-label="remove" component="span"
+                                               onClick={()=> onDecrise({ id, price, product: items})}>
+                                               <RemoveCircleOutlineOutlinedIcon/>
+                                           </IconButton>
+                                           {/*<button disabled={false}*/}
+                                           {/*        className="btn btn-outline-success btn-sm">*/}
+                                           {/*    <i className="fa fa-plus-circle fa-lg"></i>*/}
+                                           {/*</button>*/}
+                                           {/*<button onClick={()=> onDecrise({ id, price, product: items})}*/}
+                                           {/*        className="btn btn-outline-warning btn-sm ml-2">*/}
+                                           {/*    <i className="fa fa-minus-circle fa-lg"></i>*/}
+                                           {/*</button>*/}
+                                       </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
 
                                    { price > 78 &&
-                                   <button
-                                       onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } ) : () => deleteFilaSale(id)}
-                                       className="btn btn-outline-danger btn-sm ml-2">
-                                       <i className="fa fa-trash-o fa-lg"></i>
-                                   </button>
+
+                                   <IconButton color="primary" aria-label="remove" component="span"
+                                               onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } ) : () => deleteFilaSale(id)}>
+                                       <DeleteOutlineOutlinedIcon/>
+                                       </IconButton>
+                                   // <button
+                                   //     onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } ) : () => deleteFilaSale(id)}
+                                   //     className="btn btn-outline-danger btn-sm ml-2">
+                                   //     <i className="fa fa-trash-o fa-lg"></i>
+                                   // </button>
                                    }
                                    {pizzaSale &&
-                                   <button
-                                       onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
-                                       className="btn btn-outline-danger btn-sm ml-2">
-                                       <i className="fa fa-trash-o fa-lg"></i>
-                                   </button>
+                                   <IconButton color="primary" aria-label="remove" component="span"
+                                               onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }>
+                                       <DeleteOutlineOutlinedIcon/>
+                                   </IconButton>
+                                   // <button
+                                   //     onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
+                                   //     className="btn btn-outline-danger btn-sm ml-2">
+                                   //     <i className="fa fa-trash-o fa-lg"></i>
+                                   // </button>
                                    }
                                </div>
                                { !!priceIn33cm &&

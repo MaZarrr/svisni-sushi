@@ -86,11 +86,17 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             color="textSecondary">
 
                                     { slugCategogy === "/sety"  &&
-                                    <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
+                                        <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
                                     }
-                                    { slugCategogy === "/kombo" &&
-                                    <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
+
+                                    { slugCategogy === "/kombo" && edit &&
+                                        <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
                                     }
+
+                                    { slugCategogy === "/kombo" && !edit &&
+                                        description
+                                    }
+
                                     {slugCategogy !== "/sety" && slugCategogy !== "/kombo" &&
                                         description
                                     }
