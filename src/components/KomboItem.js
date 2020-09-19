@@ -54,7 +54,7 @@ export const useStyleKombo = makeStyles(theme => ({
         transition: `transform 0.3s`,
         margin: `0 auto`,
         transform: `scale(1.01)`,
-        height: 190
+        // height: 190
     },
     activeItemPc: {
         cursor: 'pointer',
@@ -71,6 +71,11 @@ export const useStyleKombo = makeStyles(theme => ({
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
+    },
+    button: {
+        backgroundColor: 'orange',
+        padding: 7,
+        marginBottom: 12,
     },
     titleClass: {
         fontFamily: `Oswald, cursive`,
@@ -170,12 +175,12 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             variant={"body1"}>{description}</Typography>
                 <Divider/>
                 <Hidden xsDown>
-                    <Container style={{height: `700px`, paddingBottom: 100}}>
+                    <Container style={{paddingBottom: 50}}>
                         <Grid container style={{height: `20%`}}>
                             <Grid item xs={12} sm={5}>
                                 <ButtonBack back="/kombo" />
 
-                                <div style={{ overflowY: `scroll`, background: `lightgrey`, height: `460px`,
+                                <div style={{ overflowY: `scroll`, background: `lightgrey`,
                                     padding: `0 30px 30px 7px`, borderRadius: 10}}>
                                     { productSostav.map((el, idx) => (
                                         <div aria-hidden={true} onKeyPress={onActiveItem} key={el.id}
@@ -208,10 +213,13 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             </Grid>
 
                             {/*Выбор товаров из предложенных компьютер*/}
-                            <Grid item xs={12} sm={7} >
+                            <Grid item xs={12} sm={7}>
                                 <Grid container justify={"space-around"} style={{
                                     borderRadius: 10,
-                                    height: 460, overflowY: `scroll`,
+                                    height: 400,
+                                    position: `sticky`,
+                                    top: 160,
+                                    overflowY: `scroll`,
                                     border: `1px solid lightgrey`,
                                     margin: `0 auto`}}>
                                     { activeType !== '' ? items.map((el) => (
@@ -242,7 +250,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                 <ButtonBack back="/kombo" />
 
                 {/* active sostav product */}
-                <Grid container style={{marginBottom: 150}}>
+                <Grid container style={{marginBottom: 140}}>
                     { productSostav.map((el, idx) => (
                         <Grid key={el.id} item xs={6}>
                             <div role="button" tabIndex="0"
@@ -250,14 +258,17 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                  onKeyPress={onActiveItem}
                                  className={classes.activeItem}
                                  onClick={() => onActiveItem(el.id, el.__typename, idx)}>
-                                <Img style={{width: 75, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
+                                <Img style={{width: 105, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
                                 <div>
-                                    <Typography style={{fontSize: 14, textAlign: `center`}} variant={"subtitle2"}>{el.name}</Typography>
-                                    <Divider/>
-                                    <div >
-                                        <Typography style={{fontSize: 12, textAlign: `center`, height: `95%`, overflowY: `auto`}}
-                                                    variant={"body2"}>{el.description}</Typography>
+                                    <Typography style={{fontSize: 15, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
+                                    <div style={{display: `flex`, justifyContent: `center`}}>
+                                        <Button className={classes.button} variant={"contained"}>
+                                            Поменять</Button>
                                     </div>
+                                    {/*<div>*/}
+                                    {/*    <Typography style={{fontSize: 12, textAlign: `center`, height: `95%`, overflowY: `auto`}}*/}
+                                    {/*                variant={"body2"}>{el.description}</Typography>*/}
+                                    {/*</div>*/}
                                 </div>
                             </div>
                         </Grid>
