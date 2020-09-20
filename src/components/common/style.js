@@ -463,6 +463,13 @@ export const StyleH1Layout = styled.h1 `
     }
 `;
 
+export const WrappedContentLayout = styled.div `
+       margin-top: 80px;
+     @media screen and (max-width: 475px) { 
+        margin-top: 45px; 
+    }
+`;
+
 export const StylingInfo = styled.section ` 
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -473,6 +480,12 @@ export const StylingInfo = styled.section `
         font-weight: 800;
         text-transform: uppercase;
         font-size: 34px;
+    }
+    .info-block {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-left: 5px solid lightgrey;
+        padding: 7px 5px 7px 14px;
     }
     .map {
         padding-right: 20px; 
@@ -508,6 +521,7 @@ export const StylingInfo = styled.section `
     }
     
     @media screen and (max-width: 475px) {
+    margin-top: 45px;
     h1 {
         font-size: 26px;
         text-transform: uppercase;

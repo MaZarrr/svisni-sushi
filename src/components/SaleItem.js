@@ -7,7 +7,6 @@ import ReplyIcon from '@material-ui/icons/Reply';
 import {StylingInfo} from '../components/common/style'
 import {Container} from "@material-ui/core";
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
-import Divider from "@material-ui/core/Divider";
 
 const SaleItem = ({image, md, name, path }) => {
 
@@ -19,7 +18,6 @@ const SaleItem = ({image, md, name, path }) => {
              pathname="/sale"/>
         <Container>
         <h1>{name}</h1>
-            <Divider/>
                 <Img className="imgSale" style={{borderRadius: 12}} fluid={image} />
                 <div dangerouslySetInnerHTML={{__html: md.childMarkdownRemark.html}} />
                 <div className="mb-5">

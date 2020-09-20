@@ -27,7 +27,7 @@ return (
 
                 <Grid item xs={12} sm={6} md={5}>
                     <div style={{maxWidth: `100%`, height: `20px`}}>
-                        <p style={{marginTop: 10}}><b>Состав:</b></p>
+                        <Typography variant={"h6"} style={{marginTop: 10}}>Состав:</Typography>
                     </div>
                 { kitProduct.map(({node: product}) => (
                 <Paper key={product.id} style={{marginTop: 10}}>
@@ -46,9 +46,9 @@ return (
                 </Paper>
             ))}
             <div style={{marginTop: 20}}>
-                    <Typography variant={"body1"}>Количество: {count} шт</Typography>
-                    <Typography className="mt-2 mb-2" variant={"body1"}>Общий вес: {weight} кг</Typography>
-                    <Typography className="mb-2" variant={"body1"}>Цена: {price} руб</Typography>
+                <Typography variant={"body1"}>Количество: <strong>{count} шт</strong></Typography>
+                    <Typography className="mt-2 mb-2" variant={"body1"}>Общий вес: <strong>{weight} кг</strong></Typography>
+                    <Typography className="mb-2" variant={"body1"}>Цена: <strong>{price} руб</strong></Typography>
                     <Button
                         variant="contained"
                         size="large"
