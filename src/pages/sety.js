@@ -72,6 +72,8 @@ export const querySet = graphql `
                     weight
                     count
                     description
+                    komboSale
+                    sale
                     image {
                         fluid(maxWidth: 400, maxHeight: 400, quality: 100) {
                             ...GatsbyContentfulFluid_withWebp

@@ -21,9 +21,10 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
     const classes = useStylesCart();
     return (
         <>
-            {visibleItems.map((products) => {
+            { visibleItems.map((products) => {
 
-                const {id, name, slug, description, price, weight, count, edit, image: {fluid}} = products;
+                const {id, name, slug, description, price, weight, count, edit, komboSale, sale, image: {fluid}} = products;
+
                 return (
                     <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                           item xs={12} sm={6} md={3} key={id}>
@@ -36,9 +37,19 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                             <CardMedia
                                 className={classes.media}
                                 title={name}>
-                                <Link to={`${slugCategogy}/${slug}`}>
+
+                                {!komboSale &&
+                                    <Link to={`${slugCategogy}/${slug}`}>
+                                        <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
+                                    </Link>
+                                }
+
+                                {komboSale &&
+                                <Link to={`/${slug}`}>
                                     <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
                                 </Link>
+                                }
+
                             </CardMedia>
                             }
 
@@ -85,8 +96,12 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             variant="body2"
                                             color="textSecondary">
 
-                                    { slugCategogy === "/sety"  &&
+                                    { slugCategogy === "/sety" && !komboSale &&
                                         <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
+                                    }
+
+                                    { komboSale && slugCategogy === "/sety" &&
+                                    <Link to={`/${slug}`}> {`${take(50, description)}...` }</Link>
                                     }
 
                                     { slugCategogy === "/kombo" && edit &&
@@ -128,11 +143,11 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                         </Grid>
                                         <Grid item xs={6}>
                                             {/*Показывать корзину для всех путей*/}
-                                            { slugCategogy !== "/kombo" &&
+                                            { slugCategogy !== "/kombo" && !komboSale &&
                                             <Button
                                                 variant="contained"
-                                                color="secondary"
                                                 className={classes.button}
+                                                style={{color: `white`}}
                                                 onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
                                                 <ShoppingCartIcon/>
                                             </Button>
@@ -148,6 +163,17 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                                     style={{backgroundColor: "orange", color: 'white', marginTop: 10}}>
                                                     Выбрать
                                                 </Button> : null
+                                            }
+
+                                            { slugCategogy === "/sety" && komboSale &&
+                                            <Button
+                                                itemProp="url"
+                                                component={Link}
+                                                to={`/${slug}`}
+                                                variant="contained"
+                                                style={{backgroundColor: "orange", color: 'white', marginTop: 10}}>
+                                                Выбрать
+                                            </Button>
                                             }
 
                                             {/* Проверка - комбо редактируется или нет */}
