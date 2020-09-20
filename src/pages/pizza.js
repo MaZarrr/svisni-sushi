@@ -66,7 +66,7 @@ return (
                    {visibleItems.map((products) => {
                        const {id, name, pizzaSale,
                            slug, description,
-                           price, weight, mass = weight, priceIn33cm,
+                           price, weight, weight33, mass = weight, priceIn33cm,
                            count, total = price,
                            ingrideentButtonStyle = false,
                            image: {fluid}, ingrideents, sostav,
@@ -108,7 +108,7 @@ return (
                                                    total: priceDef,
                                                    priceDef,
                                                    size: slug,
-                                                   mass: 0.5}))}
+                                                   mass: weight}))}
                                                    className={clsx(classes.buttonD, {
                                                             [classes.buttonT]: size[slug]})}>
                                                    Средняя</BootstrapButton> </Grid>
@@ -118,7 +118,7 @@ return (
                                                    total: priceIn33cm,
                                                    priceDef,
                                                    size: contentful_id,
-                                                   mass: 0.75}))}
+                                                   mass: weight33}))}
                                                        className={clsx(classes.buttonD, {
                                                            [classes.buttonT]: size[contentful_id]})}>
                                                    Большая</BootstrapButton></Grid>
@@ -184,6 +184,7 @@ export const queryPizza = graphql `
                 priceIn33cm
                 pizzaSale
                 weight
+                weight33
                 description
                 image {
                   fluid(maxWidth: 400, maxHeight: 400) {
