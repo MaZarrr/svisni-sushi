@@ -64,7 +64,7 @@ return (
                <CustomizedInputSearch/>
                <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                    {visibleItems.map((products) => {
-                       const {id, name,
+                       const {id, name, pizzaSale,
                            slug, description,
                            price, weight, mass = weight, priceIn33cm,
                            count, total = price,
@@ -85,7 +85,15 @@ return (
                                        <Img itemProp="image" fluid={fluid} alt={name}/>
                                    </CardMedia>
                                    <CardContent>
-                                       <SplitButton id={id} pizzaIng={updatePizza} ingrideents={ingrideents} sostav={sostav} path={path} ingrideentButtonStyle={ingrideentButtonStyle} dir={"center"}/>
+                                       {!pizzaSale &&
+                                       <SplitButton id={id}
+                                                    pizzaIng={updatePizza}
+                                                    ingrideents={ingrideents}
+                                                    sostav={sostav}
+                                                    path={path}
+                                                    ingrideentButtonStyle={ingrideentButtonStyle}
+                                                    dir={"center"}/>
+                                       }
                                        <Typography itemProp="description"
                                                    className={classes.deckript}
                                                    variant="body2"
@@ -174,6 +182,7 @@ export const queryPizza = graphql `
                 price
                 count
                 priceIn33cm
+                pizzaSale
                 weight
                 description
                 image {
