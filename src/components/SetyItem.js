@@ -21,8 +21,8 @@ return (
         <LayoutItem name={name} image={null} location={location}>
             <ButtonBackSet back="/sety" />
             <Grid container>
-                <Grid item xs={12} sm={5} style={{margin: `0 auto`}}>
-                    <Img style={{maxWidth: 400, margin: `0 auto`, borderRadius: 15}} fluid={image} />
+                <Grid item xs={12} sm={5} >
+                    <Img style={{maxWidth: 400, borderRadius: 15, position: `sticky`, top: 150}} fluid={image} />
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={5}>
