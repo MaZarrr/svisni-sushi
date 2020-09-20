@@ -30,7 +30,7 @@ return (
         </Grid>
       </section>
     )
-}
+};
 
 const mapStateToProps = (state) => ({
     product: state.app.product

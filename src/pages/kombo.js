@@ -20,9 +20,9 @@ const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, conten
 
 return (
     <section>
-    <SEO title="Доставка комбо наборов из суши, роллов, пиццы и лапши Вок"
-    description="Специальные комбо наборы, выгодно, заказать в Уразово с 10 до 22:00"/>
-            <h1 className={title}>Комбо</h1>
+    <SEO title="Доставка комбо наборов из суши, роллов и пиццы в Валуйки"
+    description="Заказать специальные комбо наборы, собирай свои блюда из суши и пиццы выгодно. Работаем с 10 до 22:00"/>
+            <h1 className={title}>Комбо из суши, роллов и пиццы</h1>
     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
                        image={image} product={product}/>

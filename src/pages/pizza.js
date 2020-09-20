@@ -56,9 +56,9 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
 return (
    <section>
     <SEO title="Заказать пиццу в Валуйки, доставка пиццы с 10:00 до 22:00"
-        description="Заказать пиццу в Валуйках с доставкой на дом. Меню свисни пицца в Валуйки от 235 руб"
+        description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно. Меню на сайте, пицца от 235 руб"
         pathname="/sety"/>
-       <h1 className={classes.titleH1}>Пицца</h1>
+       <h1 className={classes.titleH1}>Доставка пиццы в Валуйки</h1>
        { load === false ?
            <div>
                <CustomizedInputSearch/>
@@ -78,7 +78,7 @@ return (
                                <Card className={classes.card}>
                                    <CardHeader avatar={<Img style={{width: 40}} fluid={image.fluid} alt={name} />}
                                        title={"Пицца"}
-                                               subheader={<span itemProp="name"><strong>{name}</strong></span>}/>
+                                               subheader={<span itemProp="name"><Typography style={{fontSize: 18}} variant={"subtitle2"}>{name}</Typography></span>}/>
                                    <CardMedia
                                        className={classes.media}
                                        title={name}>
