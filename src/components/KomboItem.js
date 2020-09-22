@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import clsx from "clsx";
 import {Container, Grid} from "@material-ui/core";
 import Img from "gatsby-image";
-import uniqid from 'uniqid'
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import {pluck, sum, compose } from "ramda";
@@ -19,6 +18,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import SwipeableViews from 'react-swipeable-views';
 import Modal from "@material-ui/core/Modal";
 import Divider from "@material-ui/core/Divider";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 // my components
 import ButtonBack from "./common/ButtonBackSet";
@@ -44,7 +45,6 @@ export const useStyleKombo = makeStyles(theme => ({
     },
     activeItem: {
         cursor: 'pointer',
-        marginTop: 10,
         background: `white`,
         maxWidth: `85%`,
         padding: 3,
@@ -52,9 +52,8 @@ export const useStyleKombo = makeStyles(theme => ({
         borderRadius: 10,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .6)',
         transition: `transform 0.3s`,
-        margin: `0 auto`,
+        margin: `10px auto 0 auto`,
         transform: `scale(1.01)`,
-        // height: 190
     },
     activeItemPc: {
         cursor: 'pointer',
@@ -83,13 +82,17 @@ export const useStyleKombo = makeStyles(theme => ({
         marginTop: 80,
         textTransform: `uppercase`,
         fontSize: 34,
-        textAlign: `center`,
+        marginLeft: 35,
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
-            marginTop: 40,
+            marginTop: 40
         }
     }
 }));
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const KomboItem = React.memo(( {id, name, description, addedCart, image, price, slug, edit, products} ) => {
 
@@ -99,11 +102,24 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
     const [items, switchItems] = React.useState([]);
     const [productSostav, setProduct] = React.useState([]);
     const [activeIndexSostav, setActiveIndexSosvav] = React.useState(0);
+    const [openAlert, setOpenAlert] = React.useState(false);
     const [open, setOpen] = React.useState(false);
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
     const classes = useStyleKombo();
+
+    const handleClickAlert = () => {
+        setOpenAlert(true);
+    };
+
+    const handleCloseAlert = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenAlert(false);
+    };
 
     const onActiveItem = (id, type, idx) => {
         setActiveItem({[id]: true});
@@ -112,17 +128,22 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
         handleToggle()
     };
     const onActiveItems = (id, item) => {
+        const productInDefault = productSostav.find(el => el.id === id);
 
         setActiveItems({[id]: true});
         setActiveItemIndex(0);
 
-        const newProducts = [
-            ...productSostav.slice(0, activeIndexSostav), // все элементы до нужного
-            {...item, id: uniqid()},
-            ...productSostav.slice(activeIndexSostav + 1), // все элементы после нужного
-        ];
-        setProduct(newProducts);
-        handleToggle()
+        if(productInDefault === undefined) {
+            const newProducts = [
+                ...productSostav.slice(0, activeIndexSostav), // все элементы до нужного
+                item,
+                ...productSostav.slice(activeIndexSostav + 1), // все элементы после нужного
+            ];
+            setProduct(newProducts);
+            handleToggle()
+        } else {
+            handleClickAlert();
+        }
     };
 
     const addedProductKomboToBacket = () => {
@@ -170,8 +191,9 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                  pathname="/kombo"/>
             <h1 itemProp="name" className={classes.titleClass}>{name}</h1>
 
+            <div style={{width: `100%`}}>
             <div>
-                <Typography style={{textAlign: `center`, fontSize: 15, padding: `0 15px 5px 15px`}}
+                <Typography style={{marginLeft: 35, fontSize: 15, padding: `0 15px 5px 0`}}
                             variant={"body1"}>{description}</Typography>
                 <Divider/>
                 <Hidden xsDown>
@@ -258,17 +280,13 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                  onKeyPress={onActiveItem}
                                  className={classes.activeItem}
                                  onClick={() => onActiveItem(el.id, el.__typename, idx)}>
-                                <Img style={{width: 105, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
+                                <Img style={{width: `90%`, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
                                 <div>
-                                    <Typography style={{fontSize: 15, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
+                                    <Typography style={{fontSize: 14, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
                                     <div style={{display: `flex`, justifyContent: `center`}}>
                                         <Button className={classes.button} variant={"contained"}>
                                             Поменять</Button>
                                     </div>
-                                    {/*<div>*/}
-                                    {/*    <Typography style={{fontSize: 12, textAlign: `center`, height: `95%`, overflowY: `auto`}}*/}
-                                    {/*                variant={"body2"}>{el.description}</Typography>*/}
-                                    {/*</div>*/}
                                 </div>
                             </div>
                         </Grid>
@@ -346,10 +364,18 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                     </Modal>
                 </Grid>
             </Hidden>
+
+                <Snackbar open={openAlert} autoHideDuration={2500} style={{bottom: 90}} onClose={handleCloseAlert}>
+                    <Alert onClose={handleCloseAlert} severity="error">
+                       В составе такой товар есть, выберите другой.
+                    </Alert>
+                </Snackbar>
+
+            </div>
+
         </>
     );
 });
-
 
 const mapDispatchToProps = {
     addedCart,

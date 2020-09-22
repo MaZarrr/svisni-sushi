@@ -19,8 +19,9 @@ const Layout = ({ children }) => {
         <Header/>
           <ErrorBoundary>
         <div style={{
-            maxWidth: `1440px`,
+            maxWidth: `1680px`,
             backgroundColor: "#fafafa",
+            margin: `0 auto`,
             minHeight: `100vh`
         }}>
             {/* switch margin*/}
