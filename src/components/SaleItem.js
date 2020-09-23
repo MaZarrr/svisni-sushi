@@ -18,8 +18,8 @@ const SaleItem = ({image, md, name, path }) => {
              pathname="/sale"/>
         <Container>
         <h1>{name}</h1>
-                <Img className="imgSale" style={{borderRadius: 12}} fluid={image} />
-                <div dangerouslySetInnerHTML={{__html: md.childMarkdownRemark.html}} />
+                <Img className="imgSale" style={{borderRadius: 12, maxWidth: 500}} fluid={image} />
+                <div style={{maxWidth: `90%`}} dangerouslySetInnerHTML={{__html: md.childMarkdownRemark.html}} />
                 <div className="mb-5">
             <Button variant="contained"
                 component={Link}

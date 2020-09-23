@@ -21,7 +21,7 @@ return (
         <LayoutItem name={name} image={null} location={location}>
             <ButtonBackSet back="/sety" />
             <Grid container>
-                <Grid item xs={12} sm={5} >
+                <Grid item xs={12} sm={5} style={{width: `100%`}} >
                     <Img style={{maxWidth: 400, borderRadius: 15, position: `sticky`, top: 150}} fluid={image} />
                 </Grid>
 
@@ -36,11 +36,12 @@ return (
                             <Img style={{maxWidth: 70}} fluid={product.image.fluid} alt={product.name} />
                         </Grid>
                     <Grid item xs={8} style={{paddingLeft: 8, margin: `auto 0`}}>
-                        <p style={{fontSize: 14, margin: 0, padding: 0}}>{product.name}</p>
-                        <p style={{fontSize: 12, margin: `auto`}}>{product.description}</p>
+                        <Typography variant={"subtitle2"} style={{fontSize: 14, margin: 0, padding: 0}}>{product.name}</Typography>
+                        <Typography variant={"body1"} style={{fontSize: 12, margin: `auto`}}>{product.description}</Typography>
                     </Grid>
-                    <Grid item xs={2}>
-                        <p style={{fontSize: 12, margin: 0, padding: 0}}><b>{product.count}шт</b></p>
+
+                    <Grid item xs={2} style={{margin: `auto auto`, textAlign: `center`}}>
+                        <Typography variant={"caption"} style={{fontSize: 12}}>{product.count}шт</Typography>
                     </Grid>
                     </Grid>
                 </Paper>
