@@ -3,8 +3,7 @@ import SEO from "../components/seo"
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { StylingInfo } from '../components/common/style';
-// import {graphql, useStaticQuery} from "gatsby";
-// import GatsbyImage from "gatsby-image";
+
 
 import {Container} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
@@ -15,17 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 const Adresikontakty = () => {
-    // const data = useStaticQuery(graphql`
-    //     query {
-    //         placeholderImage: file(relativePath: { eq: "adres.jpg" }) {
-    //             childImageSharp {
-    //                 fluid(maxWidth: 1400) {
-    //                     ...GatsbyImageSharpFluid
-    //                 }
-    //             }
-    //         }
-    //     }
-    // `);
+
 return (
     <>
     <SEO title="Адрес и контакты" 

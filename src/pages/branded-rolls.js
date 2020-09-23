@@ -34,7 +34,7 @@ return (
     description="Роллы которых вы еще не пробовали от 210 рублей. Закажи доставку или приходи к нам в гости!"
     pathname="/hot-rolls"/>
 
-       <h1 className={title}>Заказать сложные роллы</h1>
+       <h1 className={title}>Сложные роллы</h1>
        {load === false ? <>
                <CustomizedInputSearch/>
                <Grid container justify="center">

@@ -58,7 +58,7 @@ return (
     <SEO title="Заказать пиццу в Валуйки, доставка пиццы с 10:00 до 22:00"
         description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно. Меню на сайте, пицца от 235 руб"
         pathname="/sety"/>
-       <h1 className={classes.titleH1}>Доставка пиццы в Валуйки</h1>
+       <h1 className={classes.titleH1}>Доставка пиццы</h1>
        { load === false ?
            <div>
                <CustomizedInputSearch/>

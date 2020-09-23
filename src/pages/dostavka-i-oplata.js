@@ -174,7 +174,7 @@ return (
             <Divider/>
     <Grid container>
     <Grid item xs={12} sm={6}>
-      <div style={{overflowY: `scroll`, height: `400px`}}>
+      <div style={{overflowY: `scroll`, height: `450px`}}>
       {delivery.map((el) => (
         <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
@@ -202,19 +202,19 @@ return (
       </div>
         <Divider/>
      </Grid>
-     <Grid item xs={10} sm={5} style={{margin: `auto auto`, borderRadius: 15}}>
+     <Grid item xs={12} sm={5} style={{margin: `14px auto 0 auto`, borderRadius: 15}}>
 
          <div style={{borderRadius: 15}}>
              <img src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A6c9654ff4500960caa168410dc7e08e8c8364690cf5a89b544e20cd237dc3970&amp;width=592&amp;height=422&amp;lang=ru_RU"
                   alt="Адрес Свисни суши" className="mapDelivery" />
          </div>
     </Grid>
-     <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `30px`, color: `white`}}>
-          <Typography variant="subtitle2"><b>График работы: с 10:00 до 22:00</b></Typography>
-          <Typography variant="subtitle2">Телефон: +7(904)094-92-22</Typography>
+     <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `15px`, color: `white`}}>
+          <Typography variant="body1"><strong>График работы: с 10:00 до 22:00</strong></Typography>
+          <Typography variant="body1"><strong>+7(904)094-92-22</strong></Typography>
     </Grid>
-    <Grid item xs={6} style={{backgroundColor: `#000`, padding: `30px`, color: `white`}}>
-          <Typography  variant="subtitle2"><b>Доставка от 60 до 90 мин</b></Typography>
+    <Grid item xs={6} style={{backgroundColor: `#000`, padding: `15px`, color: `white`}}>
+          <Typography  variant="body1"><strong>Доставка от 60 до 90 мин</strong></Typography>
     </Grid>
 
     <div style={{padding: `30px`}}>
@@ -231,7 +231,7 @@ return (
             <li>нажмите кнопку «Сделать заказ»</li>
         </ul>
     <p>Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени<strong>. После оформления заказа вам поступит звонок с подтверждением</strong>. Если у вас нет возможности совершить заказ
-    через интернет, звоните нам по телефону +7(904)094-92-22.</p>
+    через интернет, звоните нам по телефону <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>.</p>
     </div>
     </Grid>
     </Container>
