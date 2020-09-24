@@ -46,7 +46,7 @@ export const useStyleKombo = makeStyles(theme => ({
     activeItem: {
         cursor: 'pointer',
         background: `white`,
-        maxWidth: `85%`,
+        maxWidth: `80%`,
         padding: 3,
         overflowY: `auto`,
         borderRadius: 10,
@@ -73,7 +73,7 @@ export const useStyleKombo = makeStyles(theme => ({
     },
     button: {
         backgroundColor: 'orange',
-        padding: 7,
+        padding: 5,
         marginBottom: 12,
     },
     titleClass: {
@@ -203,7 +203,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                                 <ButtonBack back="/kombo" />
 
                                 <div style={{ overflowY: `scroll`, background: `lightgrey`,
-                                    padding: `0 30px 30px 7px`, borderRadius: 10}}>
+                                    padding: `0 30px 30px 7px`, height: 450, borderRadius: 10}}>
                                     { productSostav.map((el, idx) => (
                                         <div aria-hidden={true} onKeyPress={onActiveItem} key={el.id}
                                              className={clsx(classes.defItem, {
@@ -238,9 +238,9 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                             <Grid item xs={12} sm={7}>
                                 <Grid container justify={"space-around"} style={{
                                     borderRadius: 10,
-                                    height: 400,
+                                    height: 450,
                                     position: `sticky`,
-                                    top: 160,
+                                    top: 150,
                                     overflowY: `scroll`,
                                     border: `1px solid lightgrey`,
                                     margin: `0 auto`}}>
@@ -299,7 +299,7 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                         position: `fixed`,
                         backgroundColor: `white`,
                         bottom: 0}}>
-                        <div className="d-flex flex-wrap mt-1">
+                        <div style={{marginTop: 10}}>
                             <div>
                                 <Typography style={{fontSize: 20}} variant={"body1"}>
                                     Стоимость:</Typography>

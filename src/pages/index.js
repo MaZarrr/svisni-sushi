@@ -161,7 +161,6 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
 
     const { allContentfulContentIndex: {edges},
             allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
-
     const classes = useStyleIndexPage();
     React.useEffect(() => {
         loadIndexItems({edges, menu})

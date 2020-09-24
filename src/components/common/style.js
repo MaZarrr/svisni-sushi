@@ -357,7 +357,7 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
         }
     },
     cardCombo: {
-        maxWidth: 350,
+        maxWidth: 280,
         borderRadius: `10px`,
         [theme.breakpoints.down('500')]: {
             maxHeight: `98%`
@@ -365,21 +365,21 @@ export const useStyleCardIndexPage = makeStyles(theme => ({
     },
     cardComboPc: {
         borderRadius: `10px`,
-        width: `100%`,
+        maxWidth: `280px`,
         margin: `10px auto 0 auto`,
         [theme.breakpoints.up('500')]: {
-            maxWidth: `75%`,
+            maxWidth: `280px`,
         },
     },
     card: {
-        minWidth: `85%`,
+        minWidth: `280px`,
         borderRadius: `10px`,
         marginTop: 30,
         [theme.breakpoints.down('425')]: {
             maxWidth: `85%`,
         },
         [theme.breakpoints.up('768')]: {
-            maxWidth: `50%`,
+            maxWidth: `280px`,
         },
     }
 }));
