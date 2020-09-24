@@ -48,7 +48,7 @@ const styles = {
         padding: '0 20px',
     },
     img: {
-        maxWidth: 300
+        maxWidth: 350
     }
 };
 
@@ -70,7 +70,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                 {/*Карусель комбо телефон*/}
                 <Hidden smUp>
                     <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                        {  isNil(indexProduct[0].node.combos) ? '' : indexProduct[0].node.combos.map((homeProduct) => (
+                        {  isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
                             <Card key={homeProduct.id} className={classes.cardCombo}>
                                 <CardMedia
                                     title={homeProduct.name}>
@@ -99,7 +99,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                         <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
                         {/*</div>*/}
                         <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-                            { isNil(indexProduct[1].node.new) ? '' :  indexProduct[1].node.new.map((homeProduct) => (
+                            { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
 
                                 <Card key={homeProduct.id} className={classes.cardCombo}>
                                     <CardMedia
@@ -142,7 +142,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                     {/*Комбо компьютер*/}
                     <Hidden xsDown>
                         <Grid container justify={"center"} style={{width: `100%`}}>
-                            { isNil(indexProduct[0].node.combos) ? '' : indexProduct[0].node.combos.map((homeProduct) => (
+                            { isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
                                 <Grid key={homeProduct.id} item sm={6} md={4} style={{maxWidth: `300px`}}>
                                     <Card className={classes.cardComboPc}>
                                         <CardMedia
@@ -170,8 +170,8 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                             ))}
 
                             {/* Новинки компьютер  */}
-                            <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[1].node.title) ? "" : indexProduct[1].node.title}</Typography>
-                            { isNil(indexProduct[1].node.new) ? '' :  indexProduct[1].node.new.map((homeProduct) => (
+                            <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
+                            { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
                                 <Grid key={homeProduct.id} item sm={6} md={4} style={{maxWidth: `300px`}}>
                                     <Card className={classes.cardComboPc}>
                                         <CardMedia
