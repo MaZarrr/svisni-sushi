@@ -12,24 +12,7 @@ const KorzinaItem = styled.div `
   min-width: 90px;
   margin-left: auto;
   padding: 0 auto;
-
-.gatsby-image-wrapper {
-  margin: 0;
-  padding: 0;
-}
-
-.korzina_img {
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-}
-
-.korzina_content {
-  text-align: center;
-  font-size: 14px;
-
-}
-`
+`;
 
 const TextTotal = styled.span `
   ${({count, prevCount}) => count > prevCount ? `animation-duration: 0.5s;
@@ -62,7 +45,7 @@ const TextTotal = styled.span `
         transform: rotate(0deg) scale(1.00);
       }
 }
-`
+`;
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -94,23 +77,20 @@ const Korzina = ({ cartItems = [], orderTotal = 0}) => {
   useEffect(() => {
     setCount(totalCount) // записываем количестов товара в корзине в count // при первом добавлении count = 1
     // в count запишем 1 и при СЛЕДУЮЩЕМ РЕНДЕРИНГЕ ПОЛУЧИМ в prevCount 1 а в count уже будет 2(2й клик)
-  }, [totalCount])
+  }, [totalCount]);
 
 return (
-    <>
     <KorzinaItem >
-        <Link className="korzina_img" to="/korzina">
-          <div className="korzina_content">
-
+        <Link to="/korzina">
             <IconButton color="secondary" aria-label="cart">
             <TextTotal count={count} prevCount={prevCount} >
                 <StyledBadge anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'right',
-                }} badgeContent={0} badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
+                }}  badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
 
                     <ShoppingCartIcon fontSize={"large"}/>
-                    <Badge badgeContent={orderTotal === 0 ? 0 : orderTotal} max={9999} anchorOrigin={{
+                    <StyledBadge badgeContent={!orderTotal ? "0" : orderTotal} max={9999} anchorOrigin={{
                         vertical: 'bottom',
                         horizontal: 'right',
                     }} color="error"/>
@@ -118,10 +98,8 @@ return (
 
             </TextTotal>
             </IconButton>
-          </div>
         </Link>
     </KorzinaItem>
-    </>
         )
 };
 

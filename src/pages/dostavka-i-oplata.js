@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import {StylingInfo} from "../components/common/style";
 import Divider from "@material-ui/core/Divider";
 
-const Dostavkaioplata = () => {
-
 const delivery = [
     {
         id: 1,
@@ -17,7 +15,7 @@ const delivery = [
         price: 100,
         color: '#ff5733'
     },
-      {
+    {
         id: 2,
         adress: 'Соболёвка',
         do: 699,
@@ -25,7 +23,7 @@ const delivery = [
         color: '#dc9484',
         price: 150,
     },
-      {
+    {
         id: 3,
         adress: 'Солоти',
         do: 2399,
@@ -33,7 +31,7 @@ const delivery = [
         color: '#5c3c35',
         price: 500,
     },
-      {
+    {
         id: 4,
         adress: 'Шелаево',
         do: 999,
@@ -41,7 +39,7 @@ const delivery = [
         color: '#6aa241',
         price: 150,
     },
-   {
+    {
         id: 5,
         adress: 'Двулучное',
         do: 999,
@@ -49,7 +47,7 @@ const delivery = [
         color: '#3099f0',
         price: 150,
     },
-      {
+    {
         id: 6,
         adress: 'Шведуновка',
         do: 999,
@@ -89,7 +87,7 @@ const delivery = [
         color: '#27G943',
         price: 300,
     },
-  {
+    {
         id: 11,
         adress: 'Логачёвка',
         do: 1399,
@@ -162,6 +160,8 @@ const delivery = [
         price: 600,
     },
 ];
+
+const Dostavkaioplata = () => {
 
 return (
     <>

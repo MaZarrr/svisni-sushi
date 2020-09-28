@@ -352,7 +352,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                 <Select native value={deliverySity.city}
                                                         onChange={handleChangeCity(city)}
                                                         inputProps={{ name: 'city',
-                                                        id: 'outlined-age-native-simple'}}>
+                                                            id: 'outlined-age-native-simple'}}>
                                                     <option value="net"></option>
                                                     <option value="yraz">Уразово</option>
                                                     <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
@@ -564,27 +564,27 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                     Сделать заказ
                 </Button>
                 </span>
-                {buttonDisabled() === true &&
-                <>
-                    <hr></hr>
-                    <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
-                    <ul>
-                        { !validateUserName() && <li>Введите ваше имя - из букв русского алфавита</li>}
-                        { !validatePhone() && <li>Введите ваш телефон - начинается 7 или 8</li>}
-                        { !validateDelivery() && delivery === "Доставка курьером"
-                        && <li>Выберите населенный пункт</li>}
-                    </ul>
-                </>
-                }
-            </Paper>
-        </Grid>
-    </Grid>
+                                            {buttonDisabled() === true &&
+                                            <>
+                                                <hr></hr>
+                                                <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
+                                                <ul>
+                                                    { !validateUserName() && <li>Введите ваше имя - из букв русского алфавита</li>}
+                                                    { !validatePhone() && <li>Введите ваш телефон - начинается 7 или 8</li>}
+                                                    { !validateDelivery() && delivery === "Доставка курьером"
+                                                    && <li>Выберите населенный пункт</li>}
+                                                </ul>
+                                            </>
+                                            }
+                                        </Paper>
+                                    </Grid>
+                                </Grid>
 
-            </form>
-        </Grid> : <EmptyBasket/> }
-</Container>
-</div>
-</section>
+                            </form>
+                        </Grid> : <EmptyBasket/> }
+                </Container>
+            </div>
+        </section>
     )
 };
 

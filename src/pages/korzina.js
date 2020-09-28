@@ -185,7 +185,7 @@ return (
           <Container className={classes.paper}>
           <Typography variant="h2">
             <Box style={{textTransform: "uppercase"}} fontFamily="Oswald" fontWeight={800} fontSize={34}>
-                {R.isEmpty(items) ? <div>Корзина пустая<span role="img">😕</span></div> : "Корзина товаров" }
+                {R.isEmpty(items) ? <div>Корзина пустая<span role="img" aria-label="accessible-emoji">😕</span></div> : "Корзина товаров" }
             </Box>
           </Typography>
               {/*<div className="mt-3">*/}

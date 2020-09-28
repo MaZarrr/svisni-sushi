@@ -11,17 +11,13 @@ const useStyles = makeStyles(theme => ({
   list: {
     width: 250,
   },
-  fullList: {
-    width: 'auto'
-  },
   iconButton: {
     padding: 10,
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     color: `white`,
     [theme.breakpoints.down('500')]: {
       color: `grey`,
-      background: `white`,
-      border: `1px solid tomato`
+      background: `white`
     }
 }
 }));
@@ -65,7 +61,6 @@ export default function SwipeableTemporaryDrawer({location}) {
       className={classes.iconButton} aria-label="menu">
       <FilterListIcon />
     </IconButton>
-    {/* <Divider className={classes.divider} orientation="vertical" /> */}
       <SwipeableDrawer
         anchor="left"
         open={state.left}

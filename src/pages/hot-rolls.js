@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useCallback} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
@@ -8,10 +8,9 @@ import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
-import {defFilters, sortBy, setCategory} from "../reducers/filters";
+import {defFilters, setCategory} from "../reducers/filters";
 import {useStyleH1} from "../components/common/style";
 import Categories from "../components/Categories";
-
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'));
@@ -20,7 +19,7 @@ const categoryNames = ['с крабом', 'с лососем', 'с угрем', 
 
 
 const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
-    dispatch, product, searchText, priceFilter, category, sort}) => {
+    dispatch, product, searchText, priceFilter, category}) => {
 
     const [load, setLoad] = React.useState(true);
     const { title } = useStyleH1();
@@ -31,17 +30,10 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
         dispatch(defFilters())
     }, [productsHotRolls, dispatch]);
 
-    useEffect(() => {
-        dispatch(setCategory(null));
-        dispatch(sortBy({type: 'popular', order: 'desc'}))
-    }, [setCategory, sortBy, dispatch]);
-
     const visibleItems = filtersProducts(product, searchText, priceFilter);
-    //
-    const onSelectCategory = React.useCallback((index) => {
+    const onSelectCategory = useCallback((index) => {
         dispatch(setCategory(index));
     }, []);
-
 
 return ( 
    <section>
@@ -53,7 +45,6 @@ return (
        {load === false ? <>
                 <CustomizedInputSearch/>
                 <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
-
 
            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
@@ -79,8 +70,7 @@ const mapStateToProps = (state) => ({
     product: productList(state),
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter,
-    category: state.filters.category,
-    // sort: state.filters.sortBy
+    category: state.filters.category
 });
   
 export default connect(mapStateToProps, null)(HotRolls)

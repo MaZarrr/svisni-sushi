@@ -16,24 +16,9 @@ import Paper from "@material-ui/core/Paper";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ToggleButton from "./common/ToogleButton";
 import { take } from "ramda";
-//
-import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
-//
+
 const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
     const classes = useStylesCart();
-const [seccess, setSussess] = React.useState(false)
-    const handleDelete = () => {
-        setSussess(false);
-        return <FaceIcon/>
-        // console.info('You clicked the delete icon.');
-    };
-
-    const handleClick = () => {
-        setSussess(true)
-        console.info('You clicked the Chip.');
-    };
 
     return (
         <>

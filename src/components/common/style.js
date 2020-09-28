@@ -9,7 +9,7 @@ export const useStyleH1 = makeStyles(theme => ({
         fontWeight: 800,
         paddingTop: 80,
         textTransform: `uppercase`,
-        paddingLeft: 35,
+        paddingLeft: `3vw`,
         fontSize: 34,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
@@ -19,7 +19,7 @@ export const useStyleH1 = makeStyles(theme => ({
             fontSize: 26,
             paddingTop: 45,
             paddingBottom: 10,
-            paddingLeft: `10vw`
+            paddingLeft: `5vw`
         }
     }
 }));
@@ -30,7 +30,7 @@ export const useStylesCart = makeStyles(theme => ({
         fontWeight: 800,
         paddingTop: 80,
         textTransform: `uppercase`,
-        paddingLeft: 35,
+        paddingLeft: `3vw`,
         fontSize: 34,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
@@ -40,7 +40,7 @@ export const useStylesCart = makeStyles(theme => ({
             fontSize: 26,
             paddingTop: 45,
             paddingBottom: 10,
-            paddingLeft: `10vw`
+            paddingLeft: `5vw`
         }
     },
     deckriptSmall: {
@@ -439,16 +439,6 @@ export const useStyleSearchInput = makeStyles(theme => ({
     divider: {
         height: 28,
         margin: 4,
-    },
-    iconButton: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        color: `white`,
-        padding: 10,
-        [theme.breakpoints.down('500')]: {
-            color: `grey`,
-            background: `white`,
-            border: `1px solid tomato`,
-        }
     }
 }));
 

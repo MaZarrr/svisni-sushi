@@ -27,7 +27,6 @@ import SplitButton from "../components/SplitButton";
 import {BootstrapButton} from "../components/common/ToogleButton";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
-// const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image}},
                    productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path}) => {
