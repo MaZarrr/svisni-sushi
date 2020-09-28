@@ -15,7 +15,7 @@ import Categories from "../components/Categories";
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'));
 
-const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с мидиями'];
+const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с мидиями', 'c курицей', 'веган'];
 
 
 const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
