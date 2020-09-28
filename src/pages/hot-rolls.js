@@ -61,6 +61,12 @@ return (
        {load === false ? <>
                 <CustomizedInputSearch/>
                 <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
+
+           {/*<div className="content__top">*/}
+           {/*    /!*<SortPopup items={sortItems} onClickSortType={onSelectSortType} activeSortType={sort.type}/>*!/*/}
+           {/*</div>*/}
+           {/*</div>*/}
+
            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                               image={image} product={product}/>
