@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import {Typography} from "@material-ui/core";
 
 const KorzinaItem = styled.div `
   min-width: 90px;
@@ -67,11 +66,8 @@ const TextTotal = styled.span `
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
-        right: -3,
-        top: 13,
         border: `2px solid ${theme.palette.background.paper}`,
-        padding: '0 4px',
-    },
+    }
 }))(Badge);
 
 
@@ -108,16 +104,20 @@ return (
 
             <IconButton color="secondary" aria-label="cart">
             <TextTotal count={count} prevCount={prevCount} >
-                <StyledBadge badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
+                <StyledBadge anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }} badgeContent={0} badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
+
                     <ShoppingCartIcon fontSize={"large"}/>
+                    <Badge badgeContent={orderTotal === 0 ? 0 : orderTotal} max={9999} anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                    }} color="error"/>
                 </StyledBadge>
 
             </TextTotal>
-                <Typography variant={"subtitle2"} style={{position: `absolute`, bottom: 6, right: -15, fontSize: 13}}>
-                    {orderTotal}
-                </Typography>
             </IconButton>
-
           </div>
         </Link>
     </KorzinaItem>

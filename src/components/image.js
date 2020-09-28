@@ -1,4 +1,4 @@
-// import React from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 export default () => {
@@ -15,6 +15,13 @@ export default () => {
         childImageSharp {
           fixed(width: 90, quality: 100) {
             ...GatsbyImageSharpFixed
+          }
+        }
+      },
+      emptyBasketImage: file(relativePath: { eq: "emptyCart.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 400, quality: 100) {
+            ...GatsbyImageSharpFluid
           }
         }
       }

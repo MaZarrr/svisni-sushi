@@ -37,7 +37,7 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-const SplitButton = ({id, pizzaIng, ingrideents, path, sostav, addedIngrideents, ingrideentButtonStyle, height = 210, dir = "center"}) => {
+const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedIngrideents, ingrideentButtonStyle, height = 210, dir = "center"}) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const classes = useStyles();
@@ -104,11 +104,11 @@ const SplitButton = ({id, pizzaIng, ingrideents, path, sostav, addedIngrideents,
             </Grid>
         </Grid>
     );
-};
+});
 
 const mapDispatchToProps = {
     addedIngrideents: addedIngrideent
-}
+};
 export default connect(null, mapDispatchToProps)(SplitButton)
 
 

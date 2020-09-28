@@ -3,7 +3,6 @@ import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
 import  Img  from 'gatsby-image';
-import Divider from "@material-ui/core/Divider";
 import * as R from 'ramda'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -24,6 +23,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import EmptyBasket from "../components/EmptyBasket";
 
 const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
     allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
@@ -185,17 +185,15 @@ return (
           <Container className={classes.paper}>
           <Typography variant="h2">
             <Box style={{textTransform: "uppercase"}} fontFamily="Oswald" fontWeight={800} fontSize={34}>
-                Корзина
+                {R.isEmpty(items) ? <div>Корзина пустая<span role="img">😕</span></div> : "Корзина товаров" }
             </Box>
           </Typography>
               {/*<div className="mt-3">*/}
               {/*<TextField id="outlined-basic" label="Промокод" style={{maxWidth: 180}} size={"small"} variant="outlined" />*/}
               {/*<Button style={{backgroundColor: "orange", color: "white", maxWidth: 90, padding: 9, fontSize: 13}} variant={"contained"}>Применить</Button>*/}
               {/*</div>*/}
-              <Divider className="mt-3"/>
           </Container>
-           { R.isEmpty(items) ? <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
-           Похоже, что в вашей корзине нет товаров, давайте добавим их :) </Box> : <div className={classes.paperDiv}>
+           { R.isEmpty(items) ? <EmptyBasket/> : <div className={classes.paperDiv}>
        <Grid className="mb-3" justify={"center"} container spacing={2}>
            <div className="d-flex flex-column">
        { items.map((item, idx) => {
@@ -324,19 +322,17 @@ return (
                    { addPanelPribors  &&
                    <div className="container_pribor mb-2" >
                        <div className="d-flex flex-column">
-                           <Typography variant={"subtitle2"} style={{fontSize: `13px`}}>Количество <br></br> приборов(палочки)</Typography>
-                           <div className="d-flex">
-                               <button
-                                   onClick={()=> addedPriborCount(1)}
-                                   className="btn btn-outline-success btn-sm">
-                                   <i className="fa fa-plus-circle fa-lg"></i>
-                               </button>
-                               <b className="ml-3 mr-3" style={{fontSize: 16}}>{palochkiTotal}</b>
-                               <button
-                                   onClick={()=> addedPriborCount(-1) }
-                                   className="btn btn-outline-warning btn-sm">
-                                   <i className="fa fa-minus-circle fa-lg"></i>
-                               </button>
+                           <Typography variant={"subtitle2"}>Количество <br></br> приборов(палочки)</Typography>
+                           <div style={{display: `flex`}}>
+                               <IconButton color="primary" aria-label="plus" component="span"
+                                           onClick={()=> addedPriborCount(1)}>
+                                <AddCircleOutlineIcon aria-label="plus" />
+                               </IconButton>
+                               <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
+                               <IconButton color="primary" aria-label="remove" component="span"
+                                           onClick={()=> addedPriborCount(-1)}>
+                                   <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
+                               </IconButton>
                            </div>
                        </div>
                    </div>
@@ -346,7 +342,7 @@ return (
                    <Button
                        component={Link}
                        to="/korzina/order"
-                       color={'primary'}
+                       color={"secondary"}
                        size={'large'}
                        variant="contained" >
                        Продолжить
@@ -363,13 +359,13 @@ return (
     </section>
   </>
     )
-}
+};
 
 const mapStateToProps = (state) => ({
     items: state.shoppingCart.cartItems,
     palochkiTotal: state.shoppingCart.palochkiTotal,
     total: state.shoppingCart.orderTotal,
-})
+});
 
 const mapDispatchToProps = {
         producSetsLoad: getProduct,

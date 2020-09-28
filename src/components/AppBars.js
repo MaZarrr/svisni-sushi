@@ -27,16 +27,15 @@ const styles = theme =>( {
     tabs: {
         height: 50,
         backgroundColor: `white`,
-        textDecoration: `none`,
         [theme.breakpoints.up('600')]: {
-            height: '78px',
+            height: '78px'
         },
     },
     labelIcon: {
         minHeight: 0,
         textDecoration: `none`,
         [theme.breakpoints.up('600')]: {
-            minHeight: '72px',
+            minHeight: '72px'
         },
     }
 });
@@ -99,6 +98,7 @@ const AppBars = (props) => {
                 {/*<Hidden smUp>*/}
                 {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
                         <Tab key={menu.id}
+                             style={{textDecoration: `none`}}
                              textColor={"primary"}
                              classes={{ labelIcon: props.classes.labelIcon }}
                              className={props.classes.tabs}

@@ -1,0 +1,101 @@
+$black: #232323
+$background: #ffdf8c
+$gray-line: #f6f6f6
+$orange: #fe5f1e
+
+$container-width: 90%
+
+$duration: 0.15s
+
+//.containe
+//  width: $container-width
+//  margin: 0 auto
+//
+//.content__top
+//  display: flex
+//  align-items: center
+//  justify-content: space-between
+//  @media (max-width: 768px)
+//    flex-direction: column
+
+
+//.sort
+//  margin-left: 20px
+//  position: relative
+//  &__label
+//    display: flex
+//    align-items: center
+//    svg
+//      margin-right: 8px
+//      transform: rotate(180deg)
+//      &.rotated
+//        transform: rotate(0)
+//    b
+//      margin-right: 8px
+//    span
+//      color: $orange
+//      border-bottom: 1px dashed $orange
+//      cursor: pointer
+//  &__popup
+//    position: absolute
+//    //right: 0
+//    margin-top: 15px
+//    background: #ffffff
+//    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09)
+//    border-radius: 10px
+//    //overflow: hidden
+//    padding: 10px 0
+//    width: 160px
+//    ul
+//      overflow: hidden
+//      li
+//        padding: 12px 20px
+//        cursor: pointer
+//        list-style: none
+//        &.active,
+//        &:hover
+//          background: rgba(254, 95, 30, 0.05)
+//        &.active
+//          font-weight: bold
+//          color: $orange
+
+
+.categories
+  flex: 1
+  max-width: 80%
+  overflow: auto
+  margin-left: 10px
+  margin-top: 30px
+  @media (max-width: 768px)
+    max-width: 100%
+    margin-left: 0
+    //margin-bottom: 15px
+  ul
+    display: flex
+    @media (max-width: 768px)
+      display: block
+    li
+      background-color: #f9f9f9
+      padding: 6px 18px
+      border-radius: 30px
+      margin-right: 8px
+      font-weight: bold
+      cursor: pointer
+      list-style: none
+      transition: background-color 0.1s ease-in-out
+      &:hover
+        background-color: darken(#f9f9f9, 2%)
+      &:active
+        background-color: darken(#f9f9f9, 5%)
+      &.active
+        background-color: #282828
+        color: #fff
+
+
+.nonactive_category
+  border: 1px solid lightgray
+
+
+
+
+

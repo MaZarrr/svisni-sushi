@@ -15,15 +15,32 @@ import {connect} from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ToggleButton from "./common/ToogleButton";
-import {take} from "ramda";
-
+import { take } from "ramda";
+//
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
+import DoneIcon from '@material-ui/icons/Done';
+//
 const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
     const classes = useStylesCart();
+const [seccess, setSussess] = React.useState(false)
+    const handleDelete = () => {
+        setSussess(false);
+        return <FaceIcon/>
+        // console.info('You clicked the delete icon.');
+    };
+
+    const handleClick = () => {
+        setSussess(true)
+        console.info('You clicked the Chip.');
+    };
+
     return (
         <>
+
             { visibleItems.map((products) => {
 
-                const {id, name, slug, description, price, weight, count, edit, komboSale, sale, image: {fluid}} = products;
+                const {id, name, slug, description, price, weight, count, edit, komboSale, variant = false, image: {fluid}} = products;
 
                 return (
                     <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
@@ -31,7 +48,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                         <Card className={classes.card}>
                             <CardHeader
                                 avatar={slugCategogy !== "/wok" ? <Img style={{width: 40}} fluid={image.fluid} alt={name} /> : ''}
-                                title={titleCategory}
+                                title={variant ? variant : titleCategory}
                                 subheader={<span itemProp="name"><Typography style={{fontSize: 18}} variant={"subtitle2"}>{name}</Typography></span>}/>
                             { slugCategogy === "/sety" &&
                             <CardMedia

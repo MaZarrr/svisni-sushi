@@ -25,7 +25,7 @@ import {
 } from "../../reducers/contacts-info";
 import {defaultTo} from "ramda";
 import {Container, Paper} from "@material-ui/core";
-
+import EmptyBasket from '../../components/EmptyBasket';
 
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -43,6 +43,29 @@ function TextMaskCustom(props) {
     );
 }
 
+const city = {
+    net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
+    kol: {id: 1, priceDel: 250, deliverySalePrice: 1400, name: "Колыхалино"},
+    dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},
+    val: {id: 3, priceDel: 350, deliverySalePrice: 1400, name: "Валуйки(центр)"},
+    yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},
+    shel: {id: 5, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
+    gera: {id: 6, priceDel: 250, deliverySalePrice: 1400, name: "Герасимовка"},
+    sobo: {id: 7, priceDel: 150, deliverySalePrice: 700, name: "Соболёвка"},
+    sved: {id: 8, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"},
+    borki: {id: 9, priceDel: 300, deliverySalePrice: 1400, name: "Борки"},
+    znamenk: {id: 10, priceDel: 150, deliverySalePrice: 700, name: "Знаменка"},
+    loga: {id: 11, priceDel: 250, deliverySalePrice: 1400, name: "Логачевка"},
+    kyky: {id: 12, priceDel: 250, deliverySalePrice: 1400, name: "Кукуевка"},
+    kolos: {id: 13, priceDel: 500, deliverySalePrice: 2400, name: "Колосково"},
+    kazink: {id: 14, priceDel: 400, deliverySalePrice: 2300, name: "Казинка"},
+    soloti: {id: 15, priceDel: 500, deliverySalePrice: 2400, name: "Солоти"},
+    rogdestv: {id: 16, priceDel: 500, deliverySalePrice: 2400, name: "Рождественно"},
+    samar: {id: 17, priceDel: 600, deliverySalePrice: 2500, name: "Самарино"},
+    valsoshgor: {id: 18, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки(соц.городок)"},
+    valrazdol: {id: 19, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки(раздолье)"},
+}
+
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
                    entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance,
                    setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments }) => {
@@ -56,29 +79,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
     const inputLabel = React.useRef(null);
     const [state, setState] = React.useState({checkedC: false});
-
-    const [city, ] = useState({
-        net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
-        kol: {id: 1, priceDel: 250, deliverySalePrice: 1400, name: "Колыхалино"},
-        dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},
-        val: {id: 3, priceDel: 350, deliverySalePrice: 1400, name: "Валуйки(центр)"},
-        yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},
-        shel: {id: 5, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
-        gera: {id: 6, priceDel: 250, deliverySalePrice: 1400, name: "Герасимовка"},
-        sobo: {id: 7, priceDel: 150, deliverySalePrice: 700, name: "Соболёвка"},
-        sved: {id: 8, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"},
-        borki: {id: 9, priceDel: 300, deliverySalePrice: 1400, name: "Борки"},
-        znamenk: {id: 10, priceDel: 150, deliverySalePrice: 700, name: "Знаменка"},
-        loga: {id: 11, priceDel: 250, deliverySalePrice: 1400, name: "Логачевка"},
-        kyky: {id: 12, priceDel: 250, deliverySalePrice: 1400, name: "Кукуевка"},
-        kolos: {id: 13, priceDel: 500, deliverySalePrice: 2400, name: "Колосково"},
-        kazink: {id: 14, priceDel: 400, deliverySalePrice: 2300, name: "Казинка"},
-        soloti: {id: 15, priceDel: 500, deliverySalePrice: 2400, name: "Солоти"},
-        rogdestv: {id: 16, priceDel: 500, deliverySalePrice: 2400, name: "Рождественно"},
-        samar: {id: 17, priceDel: 600, deliverySalePrice: 2500, name: "Самарино"},
-        valsoshgor: {id: 18, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки(соц.городок)"},
-        valrazdol: {id: 19, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки(раздолье)"},
-    });
 
     const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
 
@@ -105,7 +105,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         });
 
         data.append('chopsticks', palochkiTotal);
-        const def = defaultTo(false, itemCartPizza)
+        const def = defaultTo(false, itemCartPizza);
 
         const deliveryTotalPrice = total + stateDeliveryPrice.priceDel;
         if(delivery !== "Самовывоз" && (def === true) ) {
@@ -557,38 +557,34 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             <span>
                 <Button
                     type="submit"
-                    color={'primary'}
+                    color={"secondary"}
                     size={'large'}
                     disabled={buttonDisabled()}
-                    variant="contained"
-                >
+                    variant="contained">
                     Сделать заказ
                 </Button>
                 </span>
-                                            {buttonDisabled() === true &&
-                                            <>
-                                                <hr></hr>
-                                                <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
-                                                <ul>
-                                                    { !validateUserName() && <li>Введите ваше имя - из букв русского алфавита</li>}
-                                                    { !validatePhone() && <li>Введите ваш телефон - начинается 7 или 8</li>}
-                                                    { !validateDelivery() && delivery === "Доставка курьером"
-                                                    && <li>Выберите населенный пункт</li>}
-                                                </ul>
-                                            </>
-                                            }
-                                        </Paper>
-                                    </Grid>
-                                </Grid>
+                {buttonDisabled() === true &&
+                <>
+                    <hr></hr>
+                    <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
+                    <ul>
+                        { !validateUserName() && <li>Введите ваше имя - из букв русского алфавита</li>}
+                        { !validatePhone() && <li>Введите ваш телефон - начинается 7 или 8</li>}
+                        { !validateDelivery() && delivery === "Доставка курьером"
+                        && <li>Выберите населенный пункт</li>}
+                    </ul>
+                </>
+                }
+            </Paper>
+        </Grid>
+    </Grid>
 
-                            </form>
-                        </Grid> :
-                        <Box className={classes.emty} fontFamily="Comfortaa" fontWeight={700} fontSize={22}>
-                            Ваша корзина пуста </Box>
-                    }
-                </Container>
-            </div>
-        </section>
+            </form>
+        </Grid> : <EmptyBasket/> }
+</Container>
+</div>
+</section>
     )
 };
 

@@ -18,32 +18,32 @@ import AppBars from './AppBars'
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 
-const Header = () => {
-  const classes = useStyleHeader();
-   const [{avatarImage, placeholderImage},] = useImageStaticHook();
+const links = [
+  {
+    id: 1,
+    name: 'Акции',
+    link: '/sale'
+  },
+  {
+    id: 2,
+    name: 'О нас',
+    link: '/o-nas'
+  },
+  {
+    id: 4,
+    name: 'Доставка и оплата',
+    link: '/dostavka-i-oplata'
+  },
+  {
+    id: 5,
+    name: 'Адрес и контакты',
+    link: '/adres-i-kontakty'
+  }
+];
 
-  const links = [
-    {
-      id: 1,
-      name: 'Акции',
-      link: '/sale'
-    },
-    {
-      id: 2,
-      name: 'О нас',
-      link: '/o-nas'
-    },
-    {
-      id: 4,
-      name: 'Доставка и оплата',
-      link: '/dostavka-i-oplata'
-    },
-    {
-      id: 5,
-      name: 'Адрес и контакты',
-      link: '/adres-i-kontakty'
-    }
-  ]
+const Header = () => {
+    const classes = useStyleHeader();
+    const [{avatarImage, placeholderImage},] = useImageStaticHook();
 
   return (
       <>
