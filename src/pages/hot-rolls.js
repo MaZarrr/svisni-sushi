@@ -12,17 +12,12 @@ import {defFilters, sortBy, setCategory} from "../reducers/filters";
 import {useStyleH1} from "../components/common/style";
 import Categories from "../components/Categories";
 
-// import SortPopup from "../components/SortPopup";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'));
 
 const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с мидиями'];
-// const sortItems = [
-//     { name: 'популярности', type: 'popular', order: 'desc' },
-//     { name: 'цене', type: 'price', order: 'desc' },
-//     { name: 'алфавит', type: 'name', order: 'asc' },
-// ];
+
 
 const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter, category, sort}) => {
@@ -47,9 +42,6 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
         dispatch(setCategory(index));
     }, []);
 
-    // const onSelectSortType = React.useCallback((type) => {
-    //     dispatch(sortBy(type));
-    // }, []);
 
 return ( 
    <section>
@@ -62,10 +54,6 @@ return (
                 <CustomizedInputSearch/>
                 <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
 
-           {/*<div className="content__top">*/}
-           {/*    /!*<SortPopup items={sortItems} onClickSortType={onSelectSortType} activeSortType={sort.type}/>*!/*/}
-           {/*</div>*/}
-           {/*</div>*/}
 
            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
