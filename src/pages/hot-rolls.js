@@ -11,6 +11,7 @@ import { productLoaded } from "../reducers/app";
 import {defFilters, setCategory} from "../reducers/filters";
 import {useStyleH1} from "../components/common/style";
 import Categories from "../components/Categories";
+import {productList} from "../reducers/selectors";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'));
@@ -35,7 +36,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
         dispatch(setCategory(index));
     }, []);
 
-return ( 
+return (
    <section>
     <SEO title="Заказать гриль, жареные роллы от 215 рублей. Доставка по Уразово"
         description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени великолепный вкус японской кухни от Свисни Суши"
@@ -53,17 +54,6 @@ return (
        }
   </section>
     )
-};
-
-export const productList = (state) => {
-    const category = state.filters.category;
-    const product = state.app.product;
-
-    if(category) {
-        return product.filter(el => el.filter.toLowerCase() === category)
-    }
-
-    return product
 };
 
 const mapStateToProps = (state) => ({

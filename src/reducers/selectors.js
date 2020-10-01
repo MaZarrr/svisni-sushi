@@ -1,5 +1,10 @@
-export const getProduct = (state) => {
+export const productList = (state) => {
+    const category = state.filters.category;
+    const product = state.app.product;
 
+    if(category) {
+        return product.filter(({filter = category}) => filter.toLowerCase() === category)
+    }
 
-    return state.app.product
-}
+    return product
+};

@@ -11,7 +11,7 @@ import { productLoaded } from "../reducers/app";
 import {defFilters, setCategory} from "../reducers/filters";
 import {useStyleH1} from "../components/common/style";
 import Categories from "../components/Categories";
-import {productList} from "./hot-rolls";
+import {productList} from "../reducers/selectors";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'));
@@ -30,10 +30,10 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
         dispatch(defFilters())
     }, [productsBrandedRolls, dispatch]);
 
-      const visibleItems = filtersProducts(product, searchText, priceFilter);
-    const onSelectCategory = useCallback((index) => {
-        dispatch(setCategory(index));
-    }, []);
+        const visibleItems = filtersProducts(product, searchText, priceFilter);
+        const onSelectCategory = useCallback((index) => {
+            dispatch(setCategory(index));
+        }, []);
 
 
 return ( 
@@ -43,15 +43,14 @@ return (
     pathname="/hot-rolls"/>
 
        <h1 className={title}>Сложные роллы</h1>
-       {load === false ? <>
-                <CustomizedInputSearch/>
-                <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
-
+       <CustomizedInputSearch/>
+       <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
+       {load === false ?
                <Grid container justify="center">
                    <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
                                   visibleItems={visibleItems}
                                   image={image} product={product}/>
-               </Grid> </> : <Spinner/>
+               </Grid> : <Spinner/>
        }
   </section>
     )
