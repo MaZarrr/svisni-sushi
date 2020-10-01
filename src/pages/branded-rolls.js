@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useCallback, useEffect} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
@@ -8,25 +8,33 @@ import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
-import {defFilters} from "../reducers/filters";
+import {defFilters, setCategory} from "../reducers/filters";
 import {useStyleH1} from "../components/common/style";
+import Categories from "../components/Categories";
+import {productList} from "./hot-rolls";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'));
 
+const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с беконом', 'с курицей', 'веган'];
+
 const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
-    dispatch, product, searchText, priceFilter }) => {
+    dispatch, product, searchText, priceFilter, category }) => {
   
   const { title } = useStyleH1();
   const [load, setLoad] = React.useState(true);
 
     useEffect(() => {
         dispatch(productLoaded(productsBrandedRolls)) // action push to reduxStore
-        setLoad(false)
+        setLoad(false);
         dispatch(defFilters())
-    }, [productsBrandedRolls, dispatch])
+    }, [productsBrandedRolls, dispatch]);
 
-      const visibleItems = filtersProducts(product, searchText, priceFilter)
+      const visibleItems = filtersProducts(product, searchText, priceFilter);
+    const onSelectCategory = useCallback((index) => {
+        dispatch(setCategory(index));
+    }, []);
+
 
 return ( 
    <section>
@@ -36,7 +44,9 @@ return (
 
        <h1 className={title}>Сложные роллы</h1>
        {load === false ? <>
-               <CustomizedInputSearch/>
+                <CustomizedInputSearch/>
+                <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
+
                <Grid container justify="center">
                    <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
                                   visibleItems={visibleItems}
@@ -45,13 +55,14 @@ return (
        }
   </section>
     )
-}
+};
 
 const mapStateToProps = (state, props) => ({
-    product: state.app.product,
+    product: productList(state),
+    category: state.filters.category,
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter
-})
+});
   
 export default connect(mapStateToProps, null)(BrandedRolls)
 
@@ -64,6 +75,7 @@ export const queryBrandedRolls = graphql `
               slug
               name
               price
+            filter
               description
               weight
               count

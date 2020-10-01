@@ -55,7 +55,7 @@ return (
     )
 };
 
-const productList = (state) => {
+export const productList = (state) => {
     const category = state.filters.category;
     const product = state.app.product;
 
