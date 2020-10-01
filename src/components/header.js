@@ -15,6 +15,7 @@ import loadable from "@loadable/component";
 import Korzina from './korzinaComponent'
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
+import Typography from "@material-ui/core/Typography";
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 
@@ -71,7 +72,9 @@ const Header = () => {
                         <Link to={link}
                               activeClassName="active"
                               className="nav-link">
-                          {name}
+                          <Typography variant={"body2"}>
+                            {name}
+                          </Typography>
                         </Link>
                       </li>
                   ))

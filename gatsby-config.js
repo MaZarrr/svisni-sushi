@@ -1,4 +1,4 @@
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 
 if(process.env.NODE_ENV !== 'production') {
   dotenv.config()
@@ -42,6 +42,8 @@ module.exports = {
         icon: `src/images/logosvisni.png`, 
       },
     },
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-plugin-offline`,
       options: {
@@ -54,13 +56,11 @@ module.exports = {
       ],
       },
     },
-    `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Roboto", "Oswald", "Comfortaa"],
+          families: ["Roboto", "Oswald"],
         },
         typekit: {
           families: ["Oswald"],

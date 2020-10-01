@@ -15,14 +15,14 @@
     "cli": "^1.0.1",
     "core-js": "^3.6.4",
     "gatsby": "^2.24.25",
-    "gatsby-cli": "^2.12.70",
+    "gatsby-cli": "^2.12.101",
     "gatsby-image": "^2.2.39",
     "gatsby-plugin-favicon": "^3.1.6",
     "gatsby-plugin-google-analytics": "^2.1.35",
     "gatsby-plugin-google-tagmanager": "^2.1.25",
     "gatsby-plugin-guess-js": "^1.1.30",
     "gatsby-plugin-manifest": "^2.2.30",
-    "gatsby-plugin-material-ui": "^2.1.6",
+    "gatsby-plugin-material-ui": "^2.1.10",
     "gatsby-plugin-offline": "3.0.35",
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-react-redux": "^1.1.0-0",
@@ -82,7 +82,7 @@
   "engines": {
     "node": "14.7.0",
     "npm": "6.4.1",
-    "yarn": "1.22.4"
+    "yarn": "1.22.5"
   },
   "resolutions": {
     "react-transition-group": "4.0.0"

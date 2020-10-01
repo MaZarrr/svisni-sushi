@@ -1,19 +1,21 @@
-const createStore = require('./src/state/createStore').default
+const createStore = require('./src/state/createStore').default;
 const { Provider } = require('react-redux'); 
 const React = require('react');
-const Layout = require('./src/components/layout').default
+const Layout = require('./src/components/layout').default;
 
 exports.wrapPageElement = ({element, props}) => {
     return <Layout {...props}>{element}</Layout>
-}
+};
 
-exports.wrapRootElement = ({element}) => {
+exports.wrapRootElement = ({element, props}) => {
     return (
         <Provider store={createStore}>
-            {element}
+            {/*<Layout {...props}>*/}
+                {element}
+            {/*</Layout>*/}
         </Provider>
         )
-}
+};
 
 exports.onRenderBody = ({
         setPreBodyComponents, setHeadComponents

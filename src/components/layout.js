@@ -5,6 +5,9 @@ import "./layout.css"
 import { useStyleLayout } from "./common/style";
 import loadable from '@loadable/component'
 import {Hidden} from "@material-ui/core";
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from '../../src/theme';
 
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
@@ -27,8 +30,11 @@ const Layout = ({ children }) => {
             {/* switch margin*/}
             <div style={{height: 75, width: 100}}></div>
           <main>
-            <div className={classes.toolbar} />
-              {children}
+              <ThemeProvider theme={theme}>
+                  <CssBaseline/>
+                  <div className={classes.toolbar} />
+                  {children}
+              </ThemeProvider>
           </main>
         </div>
         </ErrorBoundary>
