@@ -26,7 +26,8 @@ import Paper from "@material-ui/core/Paper";
 import SplitButton from "../components/SplitButton";
 import {BootstrapButton} from "../components/common/ToogleButton";
 
-const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'))
+const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
+
 
 const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image}},
                    productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path}) => {

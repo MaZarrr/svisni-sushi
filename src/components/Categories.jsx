@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Typography} from "@material-ui/core";
+import '../components/sass/filterStyle.css'
 
 const Categories = React.memo(function Categories({ activeCategory, items, onClickCategory }) {
     return (

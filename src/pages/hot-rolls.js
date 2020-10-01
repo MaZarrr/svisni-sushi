@@ -2,7 +2,6 @@ import React, {useEffect, useCallback} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-import '../components/sass/filterStyle.css'
 import { Grid } from "@material-ui/core";
 import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'

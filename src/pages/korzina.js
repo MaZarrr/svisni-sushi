@@ -61,14 +61,14 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
         if(countPizza > 2 && pizzaSaleFlag === false ) {
             return (
                 <Paper style={{maxWidth: 400}} className="mb-4 p-2">
-                <Grid container  spacing={2}>
+                <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
-                        <div className="d-flex">
+                        <div style={{display: `flex`}}>
                             <div style={{margin: `auto 0`, zIndex: 10}}>
                                 <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={pizza().image}> </Img>
                             </div>
                             <div className="ml-4">
-                                <Typography gutterBottom variant="subtitle2">
+                                <Typography gutterBottom variant="h6" style={{fontSize: 15}}>
                                     {pizza().name}
                                 </Typography>
                                 <div className="d-flex">
@@ -188,29 +188,26 @@ return (
                 {R.isEmpty(items) ? <div>Корзина пустая<span role="img" aria-label="accessible-emoji">😕</span></div> : "Корзина товаров" }
             </Box>
           </Typography>
-              {/*<div className="mt-3">*/}
-              {/*<TextField id="outlined-basic" label="Промокод" style={{maxWidth: 180}} size={"small"} variant="outlined" />*/}
-              {/*<Button style={{backgroundColor: "orange", color: "white", maxWidth: 90, padding: 9, fontSize: 13}} variant={"contained"}>Применить</Button>*/}
-              {/*</div>*/}
+
           </Container>
            { R.isEmpty(items) ? <EmptyBasket/> : <div className={classes.paperDiv}>
-       <Grid className="mb-3" justify={"center"} container spacing={2}>
-           <div className="d-flex flex-column">
+       <Grid justify={"center"} container spacing={2}>
+           <div style={{display: `flex`, flexDirection: `column`}}>
        { items.map((item, idx) => {
         const {id, name, count, total, image, priceIn33cm, price, priceDef,
             textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
            return (
-               <Paper key={id} style={{maxWidth: 400}} className="mt-3 mb-4 p-2">
+               <Paper key={id} style={{maxWidth: 400}} style={{marginTop: 20, marginBottom: 30, padding: 10}}>
                    <Grid item xs={12} sm={7}>
-                       <div className="d-flex">
+                       <div style={{display: `flex`}}>
                            <div style={{margin: `auto 0`, zIndex: 10}}>
                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
                            </div>
-                           <div className="ml-3">
+                           <div style={{marginLeft: 30}}>
                                <Typography gutterBottom style={{fontSize: 15}} variant="h6">
                                    {name}
                                </Typography>
-                               <div className="d-flex">
+                               <div style={{display: `flex`}}>
                                    <Typography variant="subtitle2" color="textSecondary" >
                                        <b>{priceDef === 0 ? "1шт" : `${count}шт`}</b>
                                    </Typography>
@@ -219,7 +216,7 @@ return (
                                </div>
 
                                {/*button added count product*/}
-                               <div className="d-flex mb-2">
+                               <div style={{display: `flex`, marginBottom: 20}}>
                                    {price !== 79 && priceDef !== 0 ?
                                        <>
                                            <IconButton color="primary" aria-label="plus" component="span"
@@ -230,14 +227,6 @@ return (
                                                onClick={()=> onDecrise({ id, price, product: items})}>
                                                <RemoveCircleOutlineOutlinedIcon/>
                                            </IconButton>
-                                           {/*<button disabled={false}*/}
-                                           {/*        className="btn btn-outline-success btn-sm">*/}
-                                           {/*    <i className="fa fa-plus-circle fa-lg"></i>*/}
-                                           {/*</button>*/}
-                                           {/*<button onClick={()=> onDecrise({ id, price, product: items})}*/}
-                                           {/*        className="btn btn-outline-warning btn-sm ml-2">*/}
-                                           {/*    <i className="fa fa-minus-circle fa-lg"></i>*/}
-                                           {/*</button>*/}
                                        </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
 
                                    { price > 78 &&
@@ -246,22 +235,14 @@ return (
                                                onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } ) : () => deleteFilaSale(id)}>
                                        <DeleteOutlineOutlinedIcon/>
                                        </IconButton>
-                                   // <button
-                                   //     onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } ) : () => deleteFilaSale(id)}
-                                   //     className="btn btn-outline-danger btn-sm ml-2">
-                                   //     <i className="fa fa-trash-o fa-lg"></i>
-                                   // </button>
+
                                    }
                                    {pizzaSale &&
                                    <IconButton color="primary" aria-label="remove" component="span"
                                                onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }>
                                        <DeleteOutlineOutlinedIcon/>
                                    </IconButton>
-                                   // <button
-                                   //     onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
-                                   //     className="btn btn-outline-danger btn-sm ml-2">
-                                   //     <i className="fa fa-trash-o fa-lg"></i>
-                                   // </button>
+
                                    }
                                </div>
                                { !!priceIn33cm &&
@@ -471,4 +452,3 @@ export const queryKorzina = graphql `
               }
         }
     `
-
