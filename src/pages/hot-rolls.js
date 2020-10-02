@@ -33,7 +33,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
     const visibleItems = filtersProducts(product, searchText, priceFilter);
     const onSelectCategory = useCallback((index) => {
         dispatch(setCategory(index));
-    }, []);
+    }, [dispatch]);
 
 return (
    <section>

@@ -197,7 +197,7 @@ return (
         const {id, name, count, total, image, priceIn33cm, price, priceDef,
             textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
            return (
-               <Paper key={id} style={{maxWidth: 400}} style={{marginTop: 20, marginBottom: 30, padding: 10}}>
+               <Paper key={id} style={{marginTop: 20, marginBottom: 30, padding: 10, maxWidth: 400}}>
                    <Grid item xs={12} sm={7}>
                        <div style={{display: `flex`}}>
                            <div style={{margin: `auto 0`, zIndex: 10}}>

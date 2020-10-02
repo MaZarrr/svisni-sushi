@@ -37,7 +37,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter);
     const onSelectCategory = useCallback((index) => {
         dispatch(setCategory(index));
-    }, []);
+    },[dispatch]);
 
     return (
         <>

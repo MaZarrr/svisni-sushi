@@ -3,6 +3,7 @@ import styled  from 'styled-components';
 import Img  from 'gatsby-image';
 import { Link } from "gatsby"
 import useImageHook from './image';
+import {Typography} from "@material-ui/core";
 
 const Footer = styled.footer `
    background-color: #303032;
@@ -107,26 +108,26 @@ return (
             <Img fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
         </Link>
       </li>
-      <li><strong>Свисни Суши</strong></li>
+      <li><strong><Typography variant={"subtitle1"}>Свисни Суши</Typography></strong></li>
     </div>
 
     <div className="footer_info">
     <div className="footer_items">
       <li className="footer_item footer_info_st">
-          <Link to="/">Главная</Link>
-          <Link to="/sale">Акции</Link>
-          <Link to="/dostavka-i-oplata">Доставка и оплата</Link>
-          <Link to="/adres-i-kontakty">Адрес и контакты</Link>
-          <Link to="/vacancy">Вакансии</Link>
+          <Link to="/"><Typography variant={"subtitle1"}>Главная</Typography></Link>
+          <Link to="/sale"><Typography variant={"subtitle1"}>Акции</Typography></Link>
+          <Link to="/dostavka-i-oplata"><Typography variant={"subtitle1"}>Доставка и оплата</Typography></Link>
+          <Link to="/adres-i-kontakty"><Typography variant={"subtitle1"}>Адрес и контакты</Typography></Link>
+          <Link to="/vacancy"><Typography variant={"subtitle1"}>Вакансии</Typography></Link>
       </li>
     </div>
     
     <div className="footer_items">
       <li className="footer_item footer_info_st">
-        <Link to="/o-nas">О нас</Link>
-        <Link to="/privacy">Условия обработки персональных данных</Link>
-        <Link to="/cookie">Политика обработки файлов Cookie</Link>
-        <Link to="/offer">Договор оферты</Link>
+        <Link to="/o-nas"><Typography variant={"subtitle1"}>О нас</Typography></Link>
+        <Link to="/privacy"><Typography variant={"subtitle1"}>Условия обработки персональных данных</Typography></Link>
+        <Link to="/cookie"><Typography variant={"subtitle1"}>Политика обработки файлов Cookie</Typography></Link>
+        <Link to="/offer"><Typography variant={"subtitle1"}>Договор оферты</Typography></Link>
       </li>
     </div>
 
@@ -135,13 +136,13 @@ return (
     <p>Узнавайте об акциях первыми — <span className="txt_social">подписывайтесь на наши группы в соцсетях</span></p>
         <div className="d-flex">
             <div className="mr-2">
-                <a className="btn btn-sm btn-warning rounded-pill" href="https://ok.ru/group/55132913991911"><i className="fa fa-lg fa-odnoklassniki-square text-dark" aria-hidden="true"></i></a>
+                <a className="btn btn-sm btn-warning rounded-pill" href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-lg fa-odnoklassniki-square text-dark" ></i></a>
             </div>
             <div className="mr-2">
-                <a className="btn btn-sm btn-warning rounded-pill" href="https://vk.com/sushi_urazovo"><i className="fa fa-lg fa-vk text-dark" aria-hidden="true"></i></a>
+                <a className="btn btn-sm btn-warning rounded-pill" href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-lg fa-vk text-dark"></i></a>
             </div>
             <div>
-                <a className="btn btn-sm btn-warning rounded-pill" href="https://www.instagram.com/svisni_sushi/"><i className="fa fa-lg fa-instagram text-dark" aria-hidden="true"></i></a>
+                <a className="btn btn-sm btn-warning rounded-pill" href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-lg fa-instagram text-dark"></i></a>
             </div>
         </div>
      </div>

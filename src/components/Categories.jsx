@@ -6,8 +6,10 @@ import '../components/sass/filterStyle.css'
 const Categories = React.memo(function Categories({ activeCategory, items, onClickCategory }) {
     return (
         <div className="categories">
-            <ul>
+            <ul role="listbox">
                 <li
+                    role="option" aria-selected={"true"}
+                    onKeyPress={onClickCategory}
                     className={activeCategory === null ? 'active' : 'nonactive_category'}
                     onClick={() => onClickCategory(null)}>
                     <Typography variant={"subtitle2"}>
@@ -17,6 +19,8 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
                 {items &&
                 items.map((name, index) => (
                     <li
+                        role="option" aria-selected={"true"}
+                        onKeyPress={onClickCategory}
                         className={activeCategory === name ? 'active' : 'nonactive_category'}
                         onClick={() => onClickCategory(name)}
                         key={`${name}_${index}`}>

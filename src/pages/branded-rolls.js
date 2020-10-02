@@ -33,7 +33,7 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
         const visibleItems = filtersProducts(product, searchText, priceFilter);
         const onSelectCategory = useCallback((index) => {
             dispatch(setCategory(index));
-        }, []);
+        }, [dispatch]);
 
 
 return ( 

@@ -324,16 +324,14 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                         </Typography>
                                     </Grid>
                                     <FormControl required variant="outlined" className={classes.formControl}>
-                                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-                                            Способ получения заказа
-                                        </InputLabel>
                                         <Select native value={delivery} onChange={handleChangeDelivery} inputProps={{
                                             name: 'delivery',
                                             id: 'outlined-age-native-simple'}}>
-                                            <option value=""></option>
+                                            <option value="">Не выбрано</option>
                                             <option value="Самовывоз">Самовынос</option>
                                             <option value="Доставка курьером">Оформить доставку</option>
                                         </Select>
+                                        <FormHelperText id="my-helper-text">Способ получения заказа</FormHelperText>
                                     </FormControl>
                                 </Grid>
                                 {delivery === "Доставка курьером" && <>
@@ -346,7 +344,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                 onChange={handleChangeCity(city)}
                                                 inputProps={{ name: 'city',
                                                     id: 'outlined-age-native-simple'}}>
-                                            <option value="net"></option>
+                                            <option value="net">Не выбрано</option>
                                             <option value="yraz">Уразово</option>
                                             <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
                                             <option value="valsoshgor">Валуйки(соц.городок)</option>
