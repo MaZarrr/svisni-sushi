@@ -140,8 +140,12 @@ export const useStylesCart = makeStyles(theme => ({
 export const useStyleOrder = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        marginTop: 10
     },
+    // paper: {
+    //     padding: theme.spacing(2),
+    //     textAlign: 'center',
+    //     color: theme.palette.text.secondary,
+    // },
     paperEndOrder: {
         padding: `10px 50px`,
         [theme.breakpoints.down('500')]: {
@@ -152,8 +156,7 @@ export const useStyleOrder = makeStyles(theme => ({
         flexGrow: 1
     },
     formControl: {
-        marginTop: 10,
-        width: `90%`,
+        width: `100%`
     },
     paper: {
         padding: theme.spacing(2),

@@ -21,11 +21,13 @@ import {
     setDateDeliveryUser, setDoorUser,
     setEnhanceUser, setHomeUser,
     setLavelUser, setNameUser,
-    setPhoneUser, setTimeDeliveryUser, userCommentsFunc
+    setPhoneUser, setTimeDeliveryUser,
+    userCommentsFunc, userApartment
 } from "../../reducers/contacts-info";
 import {defaultTo} from "ramda";
 import {Container, Paper} from "@material-ui/core";
 import EmptyBasket from '../../components/EmptyBasket';
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -67,8 +69,8 @@ const city = {
 }
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
-                   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance,
-                   setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments }) => {
+                   entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, userApartment,
+                   setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
 
     const [open, setOpen] = useState(false);
 
@@ -115,7 +117,11 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         } else {
             data.append('totalPrice', total);
         }
-        data.append('adress', stateDeliveryPrice.name);
+        if(apartment !== "") {
+            data.append('adress', `${stateDeliveryPrice.name}, Номер квартиры: ${apartment}`);
+        } else {
+            data.append('adress', stateDeliveryPrice.name);
+        }
         xhr.open(form.method, form.action);
         xhr.setRequestHeader("Accept", "application/json");
         // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -232,11 +238,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                 name="svisniData"
                                 style={{width: '100%'}}>
 
-                                {/*Предзаказ или сразу время и дата*/}
-                                {/*Имя и Телефон*/}
-                                <Grid container>
-                                    <Grid item xs={12} className="mt-3">
-                                        <Typography style={{textAlign: `center`}} variant="h6">
+                                <div className={classes.root}>
+                                <Grid container spacing={3}>
+                                    {/*Предзаказ или сразу время и дата*/}
+                                    {/*Имя и Телефон*/}
+                                    <Grid item xs={12}>
+                                        <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
                                             Дата и время доставки заказа
                                         </Typography>
                                         <FormGroup>
@@ -249,67 +256,59 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             </Grid>
                                         </FormGroup>
                                     </Grid>
-                                    {state.checkedC &&
-                                    <>
-                                        <Grid item xs={12} sm={6} className="d-flex justify-content-center">
+                                    {state.checkedC && <>
+                                        <Grid item xs={12} sm={6}>
                                             <TextField id="standard-full-width"
                                                        variant="filled"
                                                        fullWidth
                                                        type="date"
-                                                       style={{ margin: `8px auto`, maxWidth: `90%` }}
                                                        required
                                                        name="date"
                                                        onChange={(e) => {setDate(e.target.value);
                                                        }}
                                                        value={dateDelivery}
-                                                       helperText="Когда доставить"/>
+                                                       helperText="Дата доставки"/>
                                         </Grid>
 
-                                        <Grid item xs={12} sm={6} className="d-flex justify-content-center">
+                                        <Grid item xs={12} sm={6}>
                                             <TextField id="standard-full-width"
                                                        variant="filled"
-                                                       margin="normal"
                                                        fullWidth
                                                        type="time"
-                                                       style={{ margin: `8px auto`, maxWidth: `90%` }}
                                                        required
                                                        name="time"
                                                        onChange={(e) => {
                                                            setTime(e.target.value);
                                                        }}
                                                        value={timeDelivery}
-                                                       helperText="К какому времени"/>
+                                                       helperText="К какому времени доставить"/>
                                         </Grid>
-                                    </>
-                                    }
-                                    <Grid item xs={12} >
-                                        <Typography style={{textAlign: `center`}} variant="h6">
+                                    </>}
+
+                                    <Grid item xs={12}>
+                                        <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
                                             Укажите ваши личные данные </Typography>
                                     </Grid>
-                                    <Grid item xs={12} sm={6} className="d-flex justify-content-center">
+                                    <Grid item xs={12} sm={6}>
                                         <TextField id="standard-full-width"
                                                    label="Ваше имя"
                                                    error={!validateUserName() && nameUser.length > 2}
                                                    fullWidth
                                                    variant="filled"
                                                    placeholder="Введите ваше имя"
-                                                   style={{ margin: 8, maxWidth: `90%` }}
-                                                   margin="normal"
                                                    required
-                                                   inputProps={{maxLength: 11, minLength: 2}}
+                                                   inputProps={{maxLength: 20, minLength: 2}}
                                                    name="name"
                                                    onChange={(e) => {setName(e.target.value)}}
                                                    value={nameUser}
                                                    helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
                                     </Grid>
-                                    <Grid item xs={12} sm={6} className="d-flex justify-content-center">
+                                    <Grid item xs={12} sm={6}>
                                         <TextField id="standard-full-width"
-                                                   helperText={validatePhone() === false ? "Ваш телефон, должен начинаться с 7 или 8" : "Ваш телефон" }
+                                                   helperText={validatePhone() === false ? "Введите телефон с 7 или 8" : "Ваш телефон" }
                                                    fullWidth
                                                    variant="filled"
                                                    type="tel"
-                                                   style={{ margin: `8px auto`, maxWidth: `90%`}}
-                                                   margin="normal"
                                                    required
                                                    inputProps={{minLength: 14}}
                                                    InputProps={{inputComponent: TextMaskCustom, minLength: 14}}
@@ -317,186 +316,184 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                    onChange={(e) => {setPhone(e.target.value)}}
                                                    value={phoneUser}/>
                                     </Grid>
-                                </Grid>
 
-                                {/*Доставка курьером или самовывоз*/}
-                                {/*Комментарий к заказу*/}
-                                <Grid container>
+                                <Grid item xs={12}>
                                     <Grid item xs={12}>
-                                        <Typography variant="h6" style={{textAlign: `center`}}>
+                                        <Typography variant="h5" style={{textAlign: `center`, fontSize: 22}}>
                                             Как вы хотите получить заказ?
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={12} className="d-flex justify-content-center mt-3">
-                                        <FormControl required variant="outlined" className={classes.formControl}>
-                                            <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-                                                Способ получения заказа
-                                            </InputLabel>
-                                            <Select native value={delivery} onChange={handleChangeDelivery} inputProps={{
-                                                name: 'delivery',
-                                                id: 'outlined-age-native-simple'}}>
-                                                <option value=""></option>
-                                                <option value="Самовывоз">Заберу из Суши Бара</option>
-                                                <option value="Доставка курьером">Оформить доставку</option>
-                                            </Select>
-                                        </FormControl>
+                                    <FormControl required variant="outlined" className={classes.formControl}>
+                                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                                            Способ получения заказа
+                                        </InputLabel>
+                                        <Select native value={delivery} onChange={handleChangeDelivery} inputProps={{
+                                            name: 'delivery',
+                                            id: 'outlined-age-native-simple'}}>
+                                            <option value=""></option>
+                                            <option value="Самовывоз">Самовынос</option>
+                                            <option value="Доставка курьером">Оформить доставку</option>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                {delivery === "Доставка курьером" && <>
+                                <Grid item xs={12} sm={4}>
+                                    <FormControl required variant="filled" className={classes.formControl}>
+                                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                                            Населённый пункт
+                                        </InputLabel>
+                                        <Select native value={deliverySity.city}
+                                                onChange={handleChangeCity(city)}
+                                                inputProps={{ name: 'city',
+                                                    id: 'outlined-age-native-simple'}}>
+                                            <option value="net"></option>
+                                            <option value="yraz">Уразово</option>
+                                            <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
+                                            <option value="valsoshgor">Валуйки(соц.городок)</option>
+                                            <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
+                                            <option value="dvyl">Двулучное</option>
+                                            <option style={{background: `#f0ecec`}} value="shel">Шелаево</option>
+                                            <option value="sobo">Соболевка</option>
+                                            <option style={{background: `#f0ecec`}} value="kol">Колыхалино</option>
+                                            <option value="sved">Шведуновка</option>
+                                            <option style={{background: `#f0ecec`}} value="borki">Борки</option>
+                                            <option value="znamenk">Знаменка</option>
+                                            <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
+                                            <option value="kazink">Казинка</option>
+                                            <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
+                                            <option value="kyky">Кукуевка</option>
+                                            <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
+                                            <option value="soloti">Солоти</option>
+                                            <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
+                                            <option value="samar">Самарино</option>
+                                        </Select>
+                                        <FormHelperText id="my-helper-text">Выберите населенный пункт</FormHelperText>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={4}>
+                                    <TextField id="validation-outlined-input"
+                                               label="Улица"
+                                               variant="filled"
+                                               fullWidth
+                                               // style={{maxWidth: `90%`}}
+                                               required
+                                               inputProps={{maxLength: 40, minLength: 4}}
+                                               name="street"
+                                               onChange={(e) => {
+                                                   setAdress(e.target.value);
+                                               }}
+                                               value={deliveryAdress}
+                                               helperText="Ваша улица"/>
+                                </Grid>
+                                <Grid item xs={12} sm={4}>
+                                    <TextField id="validation-outlined-input"
+                                               label="Дом"
+                                               variant="filled"
+                                               fullWidth
+                                               type="text"
+                                               required
+                                               inputProps={{maxLength: 5}}
+                                               name="home"
+                                               onChange={(e) => {
+                                                   setHome(e.target.value);
+                                               }}
+                                               value={homeNumber}
+                                               helperText="Ваш номер дома"/>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField id="validation-outlined-input"
+                                               label="Квартира"
+                                               variant="filled"
+                                               margin="normal"
+                                               fullWidth
+                                               size="small"
+                                               type="text"
+                                               style={{ margin: `8px auto` }}
+                                               inputProps={{ maxLength: 5 }}
+                                               name="apartment"
+                                               onChange={(e) => userApartment(e.target.value)}
+                                               value={apartment}
+                                               helperText="Номер квартиры"/>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField id="validation-outlined-input"
+                                               label="Подъезд"
+                                               variant="filled"
+                                               margin="normal"
+                                               fullWidth
+                                               style={{ margin: `8px auto`}}
+                                               type="number"
+                                               size="small"
+                                               inputProps={{maxLength: 2}}
+                                               name="podezd"
+                                               onChange={(e) => {
+                                                   setEntrance(e.target.value);
+                                               }}
+                                               value={entranceNumber}
+                                               helperText="Номер подъезда"/>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField id="validation-outlined-input"
+                                               label="Этаж"
+                                               variant="filled"
+                                               margin="normal"
+                                               fullWidth
+                                               size="small"
+                                               style={{ margin: `8px auto`}}
+                                               type="number"
+                                               inputProps={{
+                                                   maxLength: 2,
+                                               }}
+                                               name="etag"
+                                               onChange={(e) => {
+                                                   setLevel(e.target.value);
+                                               }}
+                                               value={levelNumber}
+                                               helperText="Введите ваш этаж."/>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField id="validation-outlined-input"
+                                                   label="Код двери"
+                                                   variant="filled"
+                                                   margin="normal"
+                                                   fullWidth
+                                                   size="small"
+                                                   type="number"
+                                                   style={{ margin: `8px auto`}}
+                                                   inputProps={{maxLength: 6}}
+                                                   name="kodDveri"
+                                                   onChange={(e) => {
+                                                       setDoor(e.target.value);
+                                                   }}
+                                                   value={doorPassword}
+                                                   helperText="Код двери"/>
                                     </Grid>
+                                </>}
 
-                                    {delivery === "Доставка курьером" &&
-                                    <>
-                                        <Grid item xs={12} sm={6} className="d-flex justify-content-center mt-3">
-                                            <FormControl required variant="filled" className={`${classes.formControl} mt-2`}>
-                                                <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-                                                    Населённый пункт
-                                                </InputLabel>
-                                                <Select native value={deliverySity.city}
-                                                        onChange={handleChangeCity(city)}
-                                                        inputProps={{ name: 'city',
-                                                            id: 'outlined-age-native-simple'}}>
-                                                    <option value="net"></option>
-                                                    <option value="yraz">Уразово</option>
-                                                    <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
-                                                    <option value="valsoshgor">Валуйки(соц.городок)</option>
-                                                    <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
-                                                    <option value="dvyl">Двулучное</option>
-                                                    <option style={{background: `#f0ecec`}} value="shel">Шелаево</option>
-                                                    <option value="sobo">Соболевка</option>
-                                                    <option style={{background: `#f0ecec`}} value="kol">Колыхалино</option>
-                                                    <option value="sved">Шведуновка</option>
-                                                    <option style={{background: `#f0ecec`}} value="borki">Борки</option>
-                                                    <option value="znamenk">Знаменка</option>
-                                                    <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
-                                                    <option value="kazink">Казинка</option>
-                                                    <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
-                                                    <option value="kyky">Кукуевка</option>
-                                                    <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
-                                                    <option value="soloti">Солоти</option>
-                                                    <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
-                                                    <option value="samar">Самарино</option>
-                                                </Select>
-                                            </FormControl>
-
-                                        </Grid>
-
-                                        <Grid item xs={12} sm={6} className="d-flex justify-content-center mt-3">
-                                            {/*<div className={classes.conatiner_info_delivery}>*/}
-                                            <TextField id="validation-outlined-input"
-                                                       label="Улица"
-                                                       variant="filled"
-                                                       margin="normal"
-                                                       fullWidth
-                                                       style={{ margin: `8px auto`, maxWidth: `90%` }}
-                                                       required
-                                                       inputProps={{maxLength: 20, minLength: 4}}
-                                                       name="street"
-                                                       onChange={(e) => {
-                                                           setAdress(e.target.value);
-                                                       }}
-                                                       value={deliveryAdress}
-                                                       helperText="Ваша улица"/>
-                                        </Grid>
-
-                                        <Grid item xs={6} sm={3} className="d-flex justify-content-center">
-                                            <TextField id="validation-outlined-input"
-                                                       label="Дом"
-                                                       variant="filled"
-                                                       margin="normal"
-                                                       fullWidth
-                                                       size="small"
-                                                       type="text"
-                                                       required
-                                                       style={{ margin: `8px auto`, maxWidth: `90%` }}
-                                                       inputProps={{maxLength: 5}}
-                                                       name="home"
-                                                       onChange={(e) => {
-                                                           setHome(e.target.value);
-                                                       }}
-                                                       value={homeNumber}
-                                                       helperText="Ваш номер дома"/>
-                                        </Grid>
-
-                                        <Grid item xs={6} sm={3} className="d-flex justify-content-center">
-                                            <TextField id="validation-outlined-input"
-                                                       label="Подъезд"
-                                                       variant="filled"
-                                                       margin="normal"
-                                                       fullWidth
-                                                       style={{ margin: `8px auto`, maxWidth: `90%` }}
-                                                       type="number"
-                                                       size="small"
-                                                       inputProps={{
-                                                           maxLength: 2,
-                                                       }}
-                                                       name="podezd"
-                                                       onChange={(e) => {
-                                                           setEntrance(e.target.value);
-                                                       }}
-                                                       value={entranceNumber}
-                                                       helperText="Номер подъезда"/>
-                                        </Grid>
-
-                                        <Grid item xs={6} sm={3} className="d-flex justify-content-center">
-                                            <TextField id="validation-outlined-input"
-                                                       label="Этаж"
-                                                       variant="filled"
-                                                       margin="normal"
-                                                       fullWidth
-                                                       size="small"
-                                                       style={{ margin: `8px auto`, maxWidth: `90%` }}
-                                                       type="number"
-                                                       inputProps={{
-                                                           maxLength: 2,
-                                                       }}
-                                                       name="etag"
-                                                       onChange={(e) => {
-                                                           setLevel(e.target.value);
-                                                       }}
-                                                       value={levelNumber}
-                                                       helperText="Введите ваш этаж."/>
-                                        </Grid>
-
-                                        <Grid item xs={6} sm={3} className="d-flex justify-content-center">
-                                            <TextField id="validation-outlined-input"
-                                                       label="Код двери"
-                                                       variant="filled"
-                                                       margin="normal"
-                                                       fullWidth
-                                                       size="small"
-                                                       type="number"
-                                                       style={{ margin: `8px auto`, maxWidth: `90%` }}
-                                                       inputProps={{maxLength: 6}}
-                                                       name="kodDveri"
-                                                       onChange={(e) => {
-                                                           setDoor(e.target.value);
-                                                       }}
-                                                       value={doorPassword}
-                                                       helperText="Код двери"/>
-                                        </Grid>
-                                    </>
-                                    }
-                                    <Grid item xs={12} className="d-flex justify-content-center mt-4">
+                                <Grid item xs={12}>
                                         <TextField
                                             id="outlined-multiline-static"
                                             label="Комментарий к заказу"
                                             multiline
                                             value={comments}
                                             onChange={(e) => userCommentsFunc(e.target.value)}
-                                            rows="2"
+                                            rows="3"
                                             error={!validateTextAria() && comments.length > 2}
-                                            inputProps={{minLength: 3, maxLength: 250}}
+                                            inputProps={{minLength: 3, maxLength: 255}}
                                             name="comments"
                                             variant="filled"
                                             margin="normal"
                                             fullWidth
-                                            style={{ margin: `8px auto`, maxWidth: `95%` }}
+                                            style={{ margin: `8px auto`}}
                                             helperText={!validateTextAria() && comments.length > 2 ? "Удалите лишние знаки и символы" : ""}
                                         />
                                     </Grid>
                                 </Grid>
+                                </div>
 
                                 {/*Кнопка заказать*/}
                                 <Grid container>
-                                    <Grid item xs={12} style={{ margin: `12px auto 8px auto`, maxWidth: `90%`}}>
+                                    <Grid item xs={12} style={{ margin: `12px auto 8px auto`}}>
                                         <Paper elevation={3} className={classes.paperEndOrder}>
                                             { delivery !== "Самовывоз" && !isEmpty(stateDeliveryPrice) &&
                                             <>
@@ -515,30 +512,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                     <Typography variant={"subtitle2"} style={{fontSize: 16}}>Доставка с бесплатной пиццей Ветчина-Грибы-Бекон + <strong>{stateDeliveryPrice.priceDel} ₽</strong></Typography>
                                                     }
                                                 </div>
-                                                <div>
-                                                    <Grid item className="mt-4 mb-2" xs={12}>
-                                                        <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
-                                                        <Select
-                                                            labelId="demo-controlled-open-select-label"
-                                                            id="demo-controlled-open-select"
-                                                            open={open}
-                                                            onClose={handleClose}
-                                                            onOpen={handleOpen}
-                                                            value={age}
-                                                            name="sdacha"
-                                                            onChange={handleChange}>
-                                                            <MenuItem value="Без сдачи">
-                                                                <em>Без сдачи</em>
-                                                            </MenuItem>
-                                                            <MenuItem value={700}>С 700 руб</MenuItem>
-                                                            <MenuItem value={1000}>С 1000 руб</MenuItem>
-                                                            <MenuItem value={1500}>С 1500 руб</MenuItem>
-                                                            <MenuItem value={2000}>С 2000 руб</MenuItem>
-                                                            <MenuItem value={3000}>С 3000 руб</MenuItem>
-                                                            <MenuItem value={5000}>С 5000 руб</MenuItem>
-                                                        </Select>
-                                                    </Grid>
-
+                                                <div style={{marginTop: 15}}>
                                                     { itemCartPizza &&
                                                     <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{` ${total + stateDeliveryPrice.priceDel} ₽`}</b> </Typography>
                                                     }
@@ -549,21 +523,46 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                 </div>
                                             </>
                                             }
+                                            <Grid item xs={12} style={{marginBottom: 20}}>
+                                            <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
+                                            <Select
+                                                labelId="demo-controlled-open-select-label"
+                                                id="demo-controlled-open-select"
+                                                open={open}
+                                                onClose={handleClose}
+                                                onOpen={handleOpen}
+                                                value={age}
+                                                name="sdacha"
+                                                onChange={handleChange}>
+                                                <MenuItem value="Без сдачи">
+                                                    <em>Без сдачи</em>
+                                                </MenuItem>
+                                                <MenuItem value={700}>С 700 руб</MenuItem>
+                                                <MenuItem value={1000}>С 1000 руб</MenuItem>
+                                                <MenuItem value={1500}>С 1500 руб</MenuItem>
+                                                <MenuItem value={2000}>С 2000 руб</MenuItem>
+                                                <MenuItem value={3000}>С 3000 руб</MenuItem>
+                                                <MenuItem value={5000}>С 5000 руб</MenuItem>
+                                            </Select>
+                                            </Grid>
+
                                             { isEmpty(stateDeliveryPrice) || delivery === "Самовывоз" ?
                                                 <div>
                                                     <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
                                                 </div> : ''
                                             }
-                                            <span>
-                <Button
-                    type="submit"
-                    color={"secondary"}
-                    size={'large'}
-                    disabled={buttonDisabled()}
-                    variant="contained">
-                    Сделать заказ
-                </Button>
-                </span>
+
+                                         <span>
+                                            <Button
+                                                type="submit"
+                                                color={"secondary"}
+                                                size={'large'}
+                                                disabled={buttonDisabled()}
+                                                variant="contained">
+                                                Сделать заказ
+                                            </Button>
+                                            </span>
+
                                             {buttonDisabled() === true &&
                                             <>
                                                 <hr></hr>
@@ -589,10 +588,10 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 };
 
 const mapStateToProps = ({shoppingCart: {cartItems, orderTotal, palochkiTotal}, contactsUser: {
-    nameUser, phoneUser, deliverySity, deliveryAdress, comments, homeNumber, entranceNumber, levelNumber, doorPassword}}) => ({
+    nameUser, phoneUser, deliverySity, deliveryAdress, comments, homeNumber, entranceNumber, levelNumber, doorPassword, apartment}}) => ({
     items: cartItems,
     total: orderTotal,
-    comments,
+    comments, apartment,
     nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber, entranceNumber, levelNumber,
     doorPassword, palochkiTotal
 });
@@ -608,6 +607,7 @@ const mapDispatchToProps = {
     setDoor: setDoorUser,
     setDate: setDateDeliveryUser,
     setTime: setTimeDeliveryUser,
+    userApartment,
     userCommentsFunc
 };
 
