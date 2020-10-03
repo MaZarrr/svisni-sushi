@@ -310,7 +310,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                         </Grid>
                                     </>}
 
-                                    {state === "deliveryTime" && <>
+                                    {state === "deliveryTime" && delivery === "Доставка курьером" && <>
                                         <Grid item xs={12} sm={6}>
                                             <TextField id="standard-full-width"
                                                        variant="filled"
@@ -321,7 +321,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                        onChange={(e) => {setDate(e.target.value);
                                                        }}
                                                        value={dateDelivery}
-                                                       helperText="Дата доставки"/>
+                                                       helperText="Дата доставки/готовки"/>
                                         </Grid>
 
                                         <Grid item xs={12} sm={6}>
@@ -335,7 +335,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                            setTime(e.target.value);
                                                        }}
                                                        value={timeDelivery}
-                                                       helperText="К какому времени доставить"/>
+                                                       helperText="К какому времени доставить/приготовить"/>
                                         </Grid>
                                     </>}
                                 {delivery === "Доставка курьером" && <>

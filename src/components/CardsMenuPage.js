@@ -149,7 +149,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             <Button
                                                 variant="contained"
                                                 className={classes.button}
-                                                style={{color: `white`}}
+                                                style={{color: `white`, marginTop: 10}}
                                                 onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
                                                 <ShoppingCartIcon/>
                                             </Button>
@@ -183,7 +183,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             <Button
                                                 variant="contained"
                                                 className={classes.button}
-                                                style={{color: 'white'}}
+                                                style={{color: 'white', marginTop: 10}}
                                                 onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
                                                 <ShoppingCartIcon/>
                                             </Button>
