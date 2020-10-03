@@ -8,7 +8,7 @@ import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 import {defaultTo} from "ramda";
 
-const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
+const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'));
 
 const Wok = ({data: {allContentfulProductWok: {edges: productsWok}, contentfulIconMenuLeftPanel: {image}},
                    dispatch, product: wok, productWok }) => {

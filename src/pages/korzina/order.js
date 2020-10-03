@@ -9,13 +9,12 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MaskedInput from 'react-text-mask';
 
-import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import axios from "axios";
-import {useStyleOrder, IOSSwitch} from '../../components/common/style'
+import {useStyleOrder} from '../../components/common/style'
 import {
     setAdresUser, setCityUser,
     setDateDeliveryUser, setDoorUser,
@@ -80,12 +79,11 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const classes = useStyleOrder();
 
     const inputLabel = React.useRef(null);
-    const [state, setState] = React.useState({checkedC: false});
+    const [state, setState] = React.useState("promptly");
 
     const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
 
-    const handleChangee = name => event => setState({ ...state, [name]: event.target.checked });
-
+    const handleChangee = name => event => setState(name);
     const handleSubmit = (ev) => {
         ev.preventDefault();
 
@@ -225,7 +223,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             <div className={classes.root}>
                 <Container className={classes.paper}>
                     <Typography variant="h2">
-                        <Box  style={{textTransform: "uppercase"}} fontFamily="Oswald" fontWeight={800} fontSize={34}>Оформление заказа</Box>
+                        <Box style={{textTransform: "uppercase"}} fontFamily="Oswald"
+                             fontWeight={800} fontSize={34}>Оформление заказа</Box>
                     </Typography>
                 </Container>
                 <Container>
@@ -240,51 +239,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
                                 <div className={classes.root}>
                                 <Grid container spacing={3}>
-                                    {/*Предзаказ или сразу время и дата*/}
                                     {/*Имя и Телефон*/}
-                                    <Grid item xs={12}>
-                                        <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
-                                            Дата и время доставки заказа
-                                        </Typography>
-                                        <FormGroup>
-                                            <Grid component="label" className="mt-1" container justify="center">
-                                                <Typography style={{marginRight: 5}} variant="body1">Сразу</Typography>
-                                                <Grid item>
-                                                    <IOSSwitch checked={state.checkedC} onChange={handleChangee('checkedC')} value="checkedC"/>
-                                                </Grid>
-                                                <Typography style={{marginLeft: 5}} variant="body1">Предзаказ</Typography>
-                                            </Grid>
-                                        </FormGroup>
-                                    </Grid>
-                                    {state.checkedC && <>
-                                        <Grid item xs={12} sm={6}>
-                                            <TextField id="standard-full-width"
-                                                       variant="filled"
-                                                       fullWidth
-                                                       type="date"
-                                                       required
-                                                       name="date"
-                                                       onChange={(e) => {setDate(e.target.value);
-                                                       }}
-                                                       value={dateDelivery}
-                                                       helperText="Дата доставки"/>
-                                        </Grid>
-
-                                        <Grid item xs={12} sm={6}>
-                                            <TextField id="standard-full-width"
-                                                       variant="filled"
-                                                       fullWidth
-                                                       type="time"
-                                                       required
-                                                       name="time"
-                                                       onChange={(e) => {
-                                                           setTime(e.target.value);
-                                                       }}
-                                                       value={timeDelivery}
-                                                       helperText="К какому времени доставить"/>
-                                        </Grid>
-                                    </>}
-
                                     <Grid item xs={12}>
                                         <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
                                             Укажите ваши личные данные </Typography>
@@ -334,6 +289,74 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                         <FormHelperText id="my-helper-text">Способ получения заказа</FormHelperText>
                                     </FormControl>
                                 </Grid>
+                                    {delivery === "Доставка курьером" && <>
+                                        {/*Предзаказ или сразу время и дата*/}
+                                        <Grid item xs={12}>
+                                            <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
+                                                Дата и время доставки заказа
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Button fullWidth variant={state === "promptly" ? "contained" : "outlined"} color={"secondary"}
+                                                    onClick={handleChangee("promptly")}>
+                                                Доставить сразу
+                                            </Button>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Button fullWidth variant={state === "deliveryTime" ? "contained" : "outlined"} color="secondary"
+                                                    onClick={handleChangee("deliveryTime")}>
+                                                Доставить ко времени
+                                            </Button>
+                                        </Grid>
+                                    </>}
+                                    {delivery === "Самовывоз" && <>
+                                        {/*Предзаказ или сразу время и дата*/}
+                                        <Grid item xs={12}>
+                                            <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
+                                                Дата и время готовки заказа
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Button fullWidth variant={state === "promptly" ? "contained" : "outlined"} color={"secondary"}
+                                                    onClick={handleChangee("promptly")}>
+                                                Приготовить сразу
+                                            </Button>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Button fullWidth variant={state === "deliveryTime" ? "contained" : "outlined"} color="secondary"
+                                                    onClick={handleChangee("deliveryTime")}>
+                                                Приготовить ко времени
+                                            </Button>
+                                        </Grid>
+                                    </>}
+                                    {state === "deliveryTime" && <>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField id="standard-full-width"
+                                                       variant="filled"
+                                                       fullWidth
+                                                       type="date"
+                                                       required
+                                                       name="date"
+                                                       onChange={(e) => {setDate(e.target.value);
+                                                       }}
+                                                       value={dateDelivery}
+                                                       helperText="Дата доставки/готовки"/>
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField id="standard-full-width"
+                                                       variant="filled"
+                                                       fullWidth
+                                                       type="time"
+                                                       required
+                                                       name="time"
+                                                       onChange={(e) => {
+                                                           setTime(e.target.value);
+                                                       }}
+                                                       value={timeDelivery}
+                                                       helperText="К какому времени доставить/приготовить"/>
+                                        </Grid>
+                                    </>}
                                 {delivery === "Доставка курьером" && <>
                                 <Grid item xs={12} sm={4}>
                                     <FormControl required variant="filled" className={classes.formControl}>

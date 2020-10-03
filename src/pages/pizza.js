@@ -97,11 +97,10 @@ return (
                                        <Typography itemProp="description"
                                                    className={classes.deckript}
                                                    variant="body2"
-                                                   color="textSecondary"
-                                                   component="p">
+                                                   color="textSecondary">
                                            {description}
                                        </Typography>
-                                       <Grid container justify={"center"} style={{padding: `10px 0 0 0`}}>
+                                       <Grid container justify={"center"}>
                                            <Grid style={{padding: `0`, margin: 0}} item xs={5}>
                                                <BootstrapButton onClick={() => dispatch(pizzaCart({id,
                                                    productPizza: updatePizza,
@@ -111,7 +110,9 @@ return (
                                                    mass: weight}))}
                                                    className={clsx(classes.buttonD, {
                                                             [classes.buttonT]: size[slug]})}>
-                                                   Средняя</BootstrapButton> </Grid>
+                                                   Средняя</BootstrapButton>
+                                               <Typography style={{fontSize: 13, textAlign: `center`}} variant={"body2"}>28см</Typography>
+                                           </Grid>
                                            <Grid item xs={5}>
                                                <BootstrapButton onClick={() => dispatch(pizzaCart({id,
                                                    productPizza: updatePizza,
@@ -121,10 +122,12 @@ return (
                                                    mass: weight33}))}
                                                        className={clsx(classes.buttonD, {
                                                            [classes.buttonT]: size[contentful_id]})}>
-                                                   Большая</BootstrapButton></Grid>
+                                                   Большая</BootstrapButton>
+                                               <Typography style={{fontSize: 13, textAlign: `center`}} variant={"body2"}>36см</Typography>
+                                           </Grid>
                                        </Grid>
                                        <Grid item xs={12} style={{textAlign: "center", padding: 0}}>
-                                           <p style={{fontSize: 14, margin: `0 auto`}}>{`${mass}кг`}</p>
+                                           <p style={{fontSize: 15, margin: `0 auto`, fontWeight: `bold`}}>{`${mass}кг`}</p>
                                        </Grid>
                                    </CardContent>
 
