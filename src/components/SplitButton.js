@@ -15,7 +15,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import {Typography} from "@material-ui/core";
 import {connect} from "react-redux";
 import {addedIngrideent} from "../reducers/shopping-cart";
-//
+
 export const useStyles = makeStyles(theme => ({
     buttonD: {
         background: `lightgrey`,
@@ -110,27 +110,3 @@ const mapDispatchToProps = {
     addedIngrideents: addedIngrideent
 };
 export default connect(null, mapDispatchToProps)(SplitButton)
-
-
-
-
-// const [sostav, setSostav] = React.useState([]);
-// console.log(sostav)
-// const handleChange = (event) =>  {
-    // addedIngrideents({id, sostav, name: event.target.name, ingrideents, check: event.target.checked, pizzaIng, path})
-    // const ingrideent = ingrideents.find((el) => el.title === event.target.name)
-    // const ingrideentIndex = sostav.findIndex((el) => el.id === ingrideent.id)
-    //
-    // if(ingrideentIndex === -1) {
-    //
-    //     // setSostav([...sostav, ingrideent])
-    //     dispatch(ingrideentPlus({id, path, pizzaIng, add: ingrideent.plus, name: event.target.name, check: event.target.checked, uid: event.target.id, ingrideents}))
-    // } else {
-    //     const ingrideent = remove(ingrideentIndex, 1, sostav)
-    //     dispatch(addedIngrideents(ingrideent))
-    //     // setSostav(newSostav)
-    //     dispatch(ingrideentMinus({id, path, pizzaIng, decrice: ingrideent.plus, name: event.target.name, check: event.target.checked, uid: event.target.id, ingrideents}))
-    // }
-    // dispatch(checker({name: event.target.name, checked: event.target.checked}))
-    // setState({...state, [event.target.name]: event.target.checked})
-// };

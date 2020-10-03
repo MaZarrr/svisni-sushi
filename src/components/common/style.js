@@ -1,7 +1,5 @@
-import {makeStyles, withStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
-import Switch from "@material-ui/core/Switch";
-import React from "react";
 
 export const useStyleH1 = makeStyles(theme => ({
     title: {
@@ -76,10 +74,28 @@ export const useStylesCart = makeStyles(theme => ({
         },
     },
     buttonD: {
+        fontSize: 14,
+        borderRadius: 10,
+        padding: '6px 12px',
+        border: '1px solid orange',
+        lineHeight: 1.5,
         width: 105,
     },
     buttonT: {
         width: 105,
+        borderRadius: 10,
+        fontSize: 14,
+        padding: '6px 12px',
+        border: '1px solid orange',
+        lineHeight: 1.5,
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: 'orange',
+        },
+        '&:focus': {
+            boxShadow: 'none',
+            backgroundColor: 'orange',
+        },
         backgroundColor: 'orange'
     },
     card: {
@@ -89,12 +105,10 @@ export const useStylesCart = makeStyles(theme => ({
             margin: `10px auto 30px auto`
         },
         [theme.breakpoints.up('960')]: {
-            margin: `10px 5% 30px 5%`,
-            // maxWidth: `260px`,
+            margin: `10px 5% 30px 5%`
         },
         [theme.breakpoints.down('959')]: {
-            margin: `10px auto 30px auto`,
-            // maxWidth: `290px`,
+            margin: `10px auto 30px auto`
         },
         [theme.breakpoints.up('1100')]: {
             margin: `10px auto 30px auto`
@@ -102,7 +116,7 @@ export const useStylesCart = makeStyles(theme => ({
     },
     media: {
         width: `99%`,
-        margin: `0 auto`,
+        margin: `0 auto`
     },
     expand: {
         transform: 'rotate(0deg)',

@@ -309,26 +309,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             </Button>
                                         </Grid>
                                     </>}
-                                    {delivery === "Самовывоз" && <>
-                                        {/*Предзаказ или сразу время и дата*/}
-                                        <Grid item xs={12}>
-                                            <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
-                                                Дата и время готовки заказа
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <Button fullWidth variant={state === "promptly" ? "contained" : "outlined"} color={"secondary"}
-                                                    onClick={handleChangee("promptly")}>
-                                                Приготовить сразу
-                                            </Button>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <Button fullWidth variant={state === "deliveryTime" ? "contained" : "outlined"} color="secondary"
-                                                    onClick={handleChangee("deliveryTime")}>
-                                                Приготовить ко времени
-                                            </Button>
-                                        </Grid>
-                                    </>}
+
                                     {state === "deliveryTime" && <>
                                         <Grid item xs={12} sm={6}>
                                             <TextField id="standard-full-width"
@@ -340,7 +321,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                        onChange={(e) => {setDate(e.target.value);
                                                        }}
                                                        value={dateDelivery}
-                                                       helperText="Дата доставки/готовки"/>
+                                                       helperText="Дата доставки"/>
                                         </Grid>
 
                                         <Grid item xs={12} sm={6}>
@@ -354,7 +335,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                            setTime(e.target.value);
                                                        }}
                                                        value={timeDelivery}
-                                                       helperText="К какому времени доставить/приготовить"/>
+                                                       helperText="К какому времени доставить"/>
                                         </Grid>
                                     </>}
                                 {delivery === "Доставка курьером" && <>

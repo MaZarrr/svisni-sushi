@@ -307,7 +307,7 @@ export default createReducer({
 
     [addedIngrideents]: (state) => ({...state}),
 
-    [ingrideentPlus]: (state, {path, pizzaIng, id, add, name, check, ingrideents, sostav, productPizza, defaultPizza}) => {
+    [ingrideentPlus]: (state, {path, pizzaIng, id, add, name, check, ingrideents, sostav}) => {
         const pizza = pizzaIng.find((pizza) => pizza.id === id);
         const itemIndexPizza = pizzaIng.findIndex((data) => data.id === id);
         // установка чекбоксов
@@ -403,7 +403,7 @@ export default createReducer({
         }
 
     },
-    [ingrideentMinus]: (state, {path, pizzaIng, id, decrice, name, check, ingrideentSostav, ingrideents, productPizza} ) => {
+    [ingrideentMinus]: (state, {path, pizzaIng, id, decrice, name, check, ingrideentSostav, ingrideents} ) => {
         const pizza = pizzaIng.find((pizza) => pizza.id === id);
         const itemIndexPizza = pizzaIng.findIndex((data) => data.id === id);
 

@@ -20,15 +20,13 @@ const useStyleButtonSize = makeStyles(theme => ({
 const ButtonSize = ({ sizePizzaStyle, title, onRazmer, id, pricePizza, edges, pizzaSize = {}}) => {
     const classes = useStyleButtonSize();
 
-    // const onRadioChangedd = (id, price, product, size) => onRazmer({id, price, product, size})
     return (
      <BootstrapButton className={clsx(classes.buttonD, {
         [classes.buttonT]: pizzaSize[sizePizzaStyle]})}
-             // onClick={() => onRadioChangedd(id, pricePizza, edges, sizePizzaStyle)}>
          onClick={() => onRazmer({id, price: pricePizza, product: edges, size: sizePizzaStyle})}>
          {title}</BootstrapButton>
  )
-}
+};
 
 const mapDispatchToProps = {
     onRazmer: pizzaSized

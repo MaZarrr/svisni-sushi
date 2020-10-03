@@ -9,7 +9,6 @@ import {connect} from "react-redux";
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        // flexDirection: 'column',
         justifyContent: 'center',
         '& > *': {
             margin: 0,
@@ -26,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const BootstrapButton = withStyles({
     root: {
-        marginTop: 10,
         boxShadow: 'none',
         fontSize: 14,
         padding: '6px 12px',
@@ -44,7 +42,7 @@ export const BootstrapButton = withStyles({
 })(Button);
 
 const BasicButtonGroup = ({dispatch, id, productWok}) => {
-    const [wokVariant, setWokVariant] = React.useState({udon: true}, {soba: false}, {funshoza: false})
+    const [wokVariant, setWokVariant] = React.useState({udon: true}, {soba: false}, {funshoza: false});
     const classes = useStyles();
 
     const onClickWokVariant = ({name, variant}) => {
@@ -88,24 +86,3 @@ const BasicButtonGroup = ({dispatch, id, productWok}) => {
 }
 
 export default connect(null, null)(BasicButtonGroup)
-
-
-
-
-
-// const styles = theme =>( {
-// });
-// const BasicButtonGroup = (props) => {
-//     const { dispatch, id, productWok, classes, children, className, ...other
-//     } = props;
-
-//     return (
-//             <div>
-//                 <Button
-//                     className={clsx(!wokVariant.udon ? classes.buttonD : classes.buttonT) }
-//                     onClick={() => onClickWokVariant({name: "udon", variant: "Удон"})}
-//                 >Удон</Button>
-//                 <Typography style={{fontSize: 11, textAlign: `center`}} variant={"body2"}>пшеничная</Typography>
-//             </div>
-
-// export default connect(null, null)(withStyles(styles)(BasicButtonGroup))
