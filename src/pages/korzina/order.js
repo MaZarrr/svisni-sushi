@@ -289,28 +289,30 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                         <FormHelperText id="my-helper-text">Способ получения заказа</FormHelperText>
                                     </FormControl>
                                 </Grid>
-                                    {delivery === "Доставка курьером" && <>
+                                    {delivery !== '' && <>
                                         {/*Предзаказ или сразу время и дата*/}
                                         <Grid item xs={12}>
                                             <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
-                                                Дата и время доставки заказа
+                                                { delivery !== "Самовывоз" ? "Дата и время доставки заказа"
+                                                    : "Дата и время готовки заказа"}
+
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
                                             <Button fullWidth variant={state === "promptly" ? "contained" : "outlined"} color={"secondary"}
                                                     onClick={handleChangee("promptly")}>
-                                                Доставить сразу
+                                                {delivery === "Самовывоз" ? "Готовить сразу" : "Доставить сразу"}
                                             </Button>
                                         </Grid>
                                         <Grid item xs={6}>
                                             <Button fullWidth variant={state === "deliveryTime" ? "contained" : "outlined"} color="secondary"
                                                     onClick={handleChangee("deliveryTime")}>
-                                                Доставить ко времени
+                                                {delivery === "Самовывоз" ? "Приготовить ко времени" : "Доставить ко времени"}
                                             </Button>
                                         </Grid>
                                     </>}
 
-                                    {state === "deliveryTime" && delivery === "Доставка курьером" && <>
+                                    {delivery !== "" && state === "deliveryTime" && <>
                                         <Grid item xs={12} sm={6}>
                                             <TextField id="standard-full-width"
                                                        variant="filled"
@@ -614,3 +616,15 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
+
+
+
+
+
+
+
+
+
+
+
+

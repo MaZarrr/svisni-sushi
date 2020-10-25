@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useCallback, useEffect} from "react"
 import SEO from "../components/seo"
 import {graphql } from "gatsby";
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import loadable from "@loadable/component";
 import {productPizzaLoaded} from "../reducers/app";
-import {defFilters} from "../reducers/filters";
+import {defFilters, setCategory} from "../reducers/filters";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Img from "gatsby-image";
@@ -24,37 +24,32 @@ import {addedToCart, pizzaCart} from "../reducers/shopping-cart";
 import clsx from "clsx";
 import Paper from "@material-ui/core/Paper";
 import SplitButton from "../components/SplitButton";
+import {productList} from "../reducers/selectors";
+import Categories from "../components/Categories";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 
+const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
 
 const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image}},
-                   productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path}) => {
+                   productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path, category}) => {
 
     const [load, setLoad] = React.useState(true);
     const classes = useStylesCart();
 
     useEffect(() => {
-        if(!R.isEmpty(productPizza)) {
-            setLoad(false);
-            dispatch(defFilters());
-            return
-        }
-        const ProductFetch = async () => {
-            return await pizzaProduct
-        }
-        ProductFetch()
-            .then((data) => dispatch(productPizzaLoaded(data)))
-            .then(() => setLoad(false))
-            .then(() => dispatch(defFilters()))
-    }, [productPizza, dispatch, pizzaProduct]);
+        dispatch(productPizzaLoaded(pizzaProduct)) // action push to reduxStore
+        setLoad(false);
+        dispatch(defFilters())
+    }, [dispatch, pizzaProduct]);
 
     const updatePizza = R.defaultTo(productPizza, pizza);
     const visibleItems = filtersProducts(updatePizza, searchText, priceFilter);
 
-    const switchSizePizza = (data) => {
-        dispatch(pizzaCart(data));
-    };
+    const switchSizePizza = data => dispatch(pizzaCart(data));
+    const onSelectCategory = useCallback((index) => {
+        dispatch(setCategory(index));
+    }, [dispatch]);
 
     return (
         <section>
@@ -62,9 +57,10 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                  description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно. Меню на сайте, пицца от 235 руб"
                  pathname="/sety"/>
             <h1 className={classes.titleH1}>Доставка пиццы</h1>
+            <CustomizedInputSearch/>
+            <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
             { load === false ?
                 <div>
-                    <CustomizedInputSearch/>
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                         {visibleItems.map((products) => {
                             const {id, name, pizzaSale,
@@ -170,9 +166,10 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
     )
 };
 
-const mapStateToProps = (state, props) => ({
-    productPizza: state.app.productPizza,
+const mapStateToProps = (state) => ({
+    productPizza: productList(state, true),
     searchText: state.filters.searchText,
+    category: state.filters.category,
     priceFilter: state.filters.priceFilter,
     updatePizza: state.shoppingCart.newPizza
 })
@@ -190,6 +187,7 @@ export const queryPizza = graphql `
                     name
                     price
                     count
+                    filter
                     priceIn33cm
                     pizzaSale
                     weight

@@ -27,7 +27,7 @@ function CustomizedInputSearch({serchProduct, location}) {
         className={classes.input}
         value={value}
         name="search"
-        placeholder={"Поиск..."}
+        placeholder={"Поиск по названию"}
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={handleChange}
       />
