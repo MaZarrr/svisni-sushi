@@ -21,7 +21,7 @@ export const useStyles = makeStyles(theme => ({
         background: `lightgrey`,
         textTransform: `uppercase`,
         color: `dark`,
-        fontSize: 12,
+        fontSize: 11,
         fontWeight: 500,
         zIndex: 99,
         padding: `6px 5px`,

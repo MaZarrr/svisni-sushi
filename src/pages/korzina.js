@@ -171,11 +171,11 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
       ])(value)
     });
   };
-
     const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items))
-return (
-  <>
-  <SEO title="Корзина" 
+
+    return (
+    <>
+    <SEO title="Корзина"
        description="Корзина товаров"
        noindex={true}/>
   <section>
@@ -204,14 +204,14 @@ return (
                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
                            </div>
                            <div style={{marginLeft: 30}}>
-                               <Typography gutterBottom style={{fontSize: 15}} variant="h6">
+                               <Typography gutterBottom style={{fontSize: 18}} variant="h6">
                                    {name}
                                </Typography>
                                <div style={{display: `flex`}}>
                                    <Typography variant="subtitle2" color="textSecondary" >
                                        <b>{priceDef === 0 ? "1шт" : `${count}шт`}</b>
                                    </Typography>
-                                   <Typography style={{marginLeft: 50, paddingBottom: 7}}
+                                   <Typography style={{marginLeft: 50, paddingBottom: 7, fontSize: 16}}
                                                variant="subtitle2"><b>{price === 79 ? null : `${total}₽`} </b></Typography>
                                </div>
 
