@@ -130,10 +130,10 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                 comments: ev.target.comments.value || "Без комментария",
             },
             url: process.env.GATSBY_NODE_SERVE
-        })
+        });
 
         if(typeof window !== `undefined`) {
-            const dataToSuccess = {
+            const infoSuccess = {
                 name: ev.target.name.value,
                 phone: ev.target.phone.value,
                 products: items.map((elem) => {
@@ -159,7 +159,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                 chopsticks: palochkiTotal,
                 comments: ev.target.comments.value || "Без комментария",
             }
-            navigate('/order-processed', {state: dataToSuccess })
+            navigate('/order-processed', {state: infoSuccess })
         }
 
     };
