@@ -46,10 +46,18 @@ function createData(name, count, price) {
 
 export default ({location: {state}}) => {
     const classes = useStyles();
-    const rows = state.products.map(el => {
-       return createData(el.product, el.count, el.total)
-    })
-return (
+    const [data, setData] = React.useState({});
+
+        React.useEffect(() => {
+            if(typeof window !== `undefined`) {
+                state.products.map(el => {
+                    setData(createData(el.product, el.count, el.total))
+                })
+            }
+        }, []);
+
+
+    return (
     <Grid container style={{marginTop: `75px`}}>
         <Grid item xs={12}>
             <Typography style={{textAlign: `center`}} variant={'h4'}>Ваш заказ успешно оформлен<span role="img" aria-label="accessible-emoji">🎉</span>
@@ -71,7 +79,7 @@ return (
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {data.map((row) => (
                             <TableRow key={row.name}>
                                 <TableCell component="th" scope="row">
                                     {row.name}
@@ -84,7 +92,7 @@ return (
                 </Table>
             </TableContainer>
             <Grid item xs={12}>
-                <Typography style={{textAlign: `right`, paddingRight: 20}} variant={'h6'}>Общая цена к оплате {state.totalPrice} руб</Typography>
+                {typeof window !== `undefined` ? <Typography style={{textAlign: `right`, paddingRight: 20}} variant={'h6'}>Общая цена к оплате {state.totalPrice} руб</Typography> : "" }
             </Grid>
 
             <Grid item xs={12}>
@@ -110,23 +118,3 @@ return (
 }
 
 
-// <Grid container direction="column" style={{paddingLeft: 30, maxWidth: `90%`}}>
-//     <Typography variant="h1" style={{marginTop: `70px`}}>
-//      <Box fontFamily="Oswald" fontWeight={500} fontSize={36} style={{textAlign: `start`, marginBottom: 20}}>
-// Ваш заказ успешно оформлен!
-//     </Box>
-//       <Box fontFamily="Comfortaa" fontWeight={400} fontSize={20} style={{textAlign: `start`, marginBottom: 20}}>
-//         Информация о вашем заказе передана на кухню.
-//     </Box>
-//
-//     <Box fontFamily="Comfortaa" fontWeight={400} fontSize={20} style={{textAlign: `start`}}>
-//        Вам могут перезвонить по номеру телефона для подтверждения и уточнения заказа.<br></br>
-//     <br></br>
-//         Спасибо что выбираете Свисни Sushi!
-//     </Box>
-//     </Typography>
-//     <Button component={Link} to="/" variant="contained" color="primary" style={{marginTop: `40px`, marginBottom: `69px`, maxWidth: 300}}>
-//         Перейти на главную
-//     </Button>
-// </Grid>
-      
