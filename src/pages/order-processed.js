@@ -23,12 +23,16 @@ export default ({location: {state}}) => {
     const classes = useStyles();
     const [data, setData] = React.useState([]);
     const [delivery, setDelivery] = React.useState("");
+    const [phone, setPhone] = React.useState("");
+    const [priceTotal, setPriceTotal] = React.useState("");
 
     React.useEffect(() => {
         if(typeof window !== `undefined`) {
             setData(state.products.map(el => {
                 return createData(el.product, el.count, el.total)
-            }))
+            }));
+            setPriceTotal(state.orderTotal)
+            setPhone(state.phone);
             setDelivery(state.delivery)
         }
     }, []);
@@ -47,7 +51,7 @@ export default ({location: {state}}) => {
                 </Grid>
                 <Divider/>
                 <Grid item xs={12} style={{background: `lightgrey`}}>
-                    <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}>Ваш телефон: <strong> {typeof window !== undefined ? `${state.phone}` : "" } </strong></Typography>
+                    <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}>Ваш телефон: <strong>{phone}</strong></Typography>
                 </Grid>
                 <Grid item xs={12} style={{borderRadius: 10, border: `1px lightgrey solid`, margin: `10px auto`}}>
                     {data.map((row) => (
@@ -63,7 +67,7 @@ export default ({location: {state}}) => {
                         ))}
                 </Grid>
                 <Grid item xs={12}>
-                    {typeof window !== `undefined` ? <Typography style={{textAlign: `right`, paddingRight: 20}} variant={'h6'}>Общая цена к оплате <strong>{state.totalPrice} руб</strong></Typography> : "" }
+                    <Typography style={{textAlign: `right`, paddingRight: 20}} variant={'h6'}>Общая цена к оплате <strong>{priceTotal} руб</strong></Typography>
                 </Grid>
                 <Divider/>
                 <Grid item xs={12} style={{background: `lightgrey`}}>
