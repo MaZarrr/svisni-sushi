@@ -100,64 +100,38 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             dateDelivery: ev.target.date.value,
             timeDelivery: ev.target.time.value
         };
+        const infoSuccess = {
+            name: ev.target.name.value,
+            phone: ev.target.phone.value,
+            products: items.map((elem) => {
 
+                const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
+                const productSize = elem.productSize === "" ? "" : elem.productSize;
+                const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
+
+                return {
+                    product: elem.name,
+                    total: elem.total,
+                    count: elem.count,
+                    description: elem.description,
+                    descriptionIngrideents,
+                    productSize,
+                    descriptionWok
+                }
+            }),
+            delivery: deliveru,
+            deliveryTime: deliveryTimeOrder,
+            totalPrice: total,
+            sdacha: ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб`,
+            chopsticks: palochkiTotal,
+            comments: ev.target.comments.value || "Без комментария",
+        };
         axios({
             method: 'POST',
-            data: {
-                name: ev.target.name.value,
-                phone: ev.target.phone.value,
-                products: items.map((elem) => {
-
-                    const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
-                    const productSize = elem.productSize === "" ? "" : elem.productSize;
-                    const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
-
-                    return {
-                        product: elem.name,
-                        total: elem.total,
-                        count: elem.count,
-                        description: elem.description,
-                        descriptionIngrideents,
-                        productSize,
-                        descriptionWok
-                    }
-                }),
-                delivery: deliveru,
-                deliveryTime: deliveryTimeOrder,
-                totalPrice: total,
-                sdacha: ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб`,
-                chopsticks: palochkiTotal,
-                comments: ev.target.comments.value || "Без комментария",
-            },
+            data: infoSuccess,
             url: process.env.GATSBY_NODE_SERVE
         });
 
-        const infoSuccess = {
-                name: ev.target.name.value,
-                phone: ev.target.phone.value,
-                products: items.map((elem) => {
-
-                    const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
-                    const productSize = elem.productSize === "" ? "" : elem.productSize;
-                    const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
-
-                    return {
-                        product: elem.name,
-                        total: elem.total,
-                        count: elem.count,
-                        description: elem.description,
-                        descriptionIngrideents,
-                        productSize,
-                        descriptionWok
-                    }
-                }),
-                delivery: deliveru,
-                deliveryTime: deliveryTimeOrder,
-                totalPrice: total,
-                sdacha: ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб`,
-                chopsticks: palochkiTotal,
-                comments: ev.target.comments.value || "Без комментария",
-            };
         navigate('/order-processed',{state: infoSuccess, replace: true })
     };
 

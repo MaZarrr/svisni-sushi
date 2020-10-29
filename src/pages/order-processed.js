@@ -20,18 +20,19 @@ function createData(name, count, price) {
 }
 
 export default ({location: {state}}) => {
-    const classes = useStyles();
     const [data, setData] = React.useState([]);
     const [delivery, setDelivery] = React.useState("");
     const [phone, setPhone] = React.useState("");
     const [priceTotal, setPriceTotal] = React.useState("");
+
+    const classes = useStyles();
 
     React.useEffect(() => {
         if(typeof window !== `undefined`) {
             setData(state.products.map(el => {
                 return createData(el.product, el.count, el.total)
             }));
-            setPriceTotal(state.orderTotal)
+            setPriceTotal(state.totalPrice);
             setPhone(state.phone);
             setDelivery(state.delivery)
         }
