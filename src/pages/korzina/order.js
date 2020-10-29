@@ -23,7 +23,6 @@ import {
     setPhoneUser, setTimeDeliveryUser,
     userCommentsFunc, userApartment
 } from "../../reducers/contacts-info";
-import {defaultTo} from "ramda";
 import {Container, Paper} from "@material-ui/core";
 import EmptyBasket from '../../components/EmptyBasket';
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -86,84 +85,89 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const handleChangee = name => event => setState(name);
     const handleSubmit = (ev) => {
         ev.preventDefault();
-
-        const form = ev.target;
-        const data = new FormData(form);
-        const xhr = new XMLHttpRequest();
-
-        items.forEach((elem) => {
-            return data.append(
-                'product', ` <div style="display: flex; flex-direction: column; align-items: center;
-                border: 1px solid lightgrey; margin-bottom: 10px; border-radius: 8px; padding: 10px;">
-                <p style="text-align: center"><b>Toвар: </b> ${elem.name}</p>
-                <p style="text-align: center"><b>Состав: </b> ${elem.description}</p> 
-                <p style="text-align: center"><b>Размер: </b> ${elem.productSize}</p>
-                <p style="text-align: center"><b>Доп.Ингидеенты: </b> ${elem.descriptionIngrideents}
-                <p style="text-align: center"><b>Лапша: </b> ${elem.descriptionWok}
-                <p style="text-align: center"><b>Цена: </b> ${elem.total}</p>
-                <p style="text-align: center"><b>Штук: </b> ${elem.count}</p></div>`);
-        });
-
-        data.append('chopsticks', palochkiTotal);
-        const def = defaultTo(false, itemCartPizza);
-
-        const deliveryTotalPrice = total + stateDeliveryPrice.priceDel;
-        if(delivery !== "Самовывоз" && (def === true) ) {
-            data.append('totalPrice', `Цена с доставкой и акцией ${deliveryTotalPrice} руб.`);
-        } else if(delivery !== "Самовывоз" && total <= stateDeliveryPrice.deliverySalePrice) {
-            data.append('totalPrice', `Цена вместе c доставкой ${deliveryTotalPrice} руб.`);
-        } else {
-            data.append('totalPrice', total);
-        }
-        if(apartment !== "") {
-            data.append('adress', `${stateDeliveryPrice.name}, Номер квартиры: ${apartment}`);
-        } else {
-            data.append('adress', stateDeliveryPrice.name);
-        }
-        xhr.open(form.method, form.action);
-        xhr.setRequestHeader("Accept", "application/json");
-        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState !== XMLHttpRequest.DONE) return;
-            if (xhr.status === 200) {
-                form.reset();
-            }
+        const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
+            formDelivery: ev.target.delivery.value,
+            adress: stateDeliveryPrice.name,
+            street: ev.target.street.value,
+            home: ev.target.home.value,
+            apartment: ev.target.apartment.value,
+            podezd: ev.target.podezd.value,
+            etag: ev.target.etag.value,
+            kodDveri: ev.target.kodDveri.value
         };
-        xhr.send(data);
 
-        navigate('/order-processed')
-        // navigate('/order-processed', {state: dataOrderInfo || {name: ":)", phone: "указанному"}  })
+        const deliveryTimeOrder = state !== "deliveryTime" ? "Приготовить сразу" : {
+            dateDelivery: ev.target.date.value,
+            timeDelivery: ev.target.time.value
+        };
 
         axios({
             method: 'POST',
             data: {
                 name: ev.target.name.value,
                 phone: ev.target.phone.value,
-                delivery: delivery === "Доставка курьером" ? {
-                    formDelivery: ev.target.delivery.value || "Не выбрано",
-                    adress: stateDeliveryPrice.name || "Самовывоз",
-                    street: ev.target.street.value || "Самовывоз",
-                    home: ev.target.home.value || "Самовывоз" } : "Самовывоз",
-                products:
-                    items.map((elem) => {
-                        return {
-                            product: elem.name,
-                            total: elem.total,
-                            count: elem.count,
-                        }
-                    }),
+                products: items.map((elem) => {
+
+                    const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
+                    const productSize = elem.productSize === "" ? "" : elem.productSize;
+                    const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
+
+                    return {
+                        product: elem.name,
+                        total: elem.total,
+                        count: elem.count,
+                        description: elem.description,
+                        descriptionIngrideents,
+                        productSize,
+                        descriptionWok
+                    }
+                }),
+                delivery: deliveru,
+                deliveryTime: deliveryTimeOrder,
                 totalPrice: total,
+                sdacha: ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб`,
+                chopsticks: palochkiTotal,
                 comments: ev.target.comments.value || "Без комментария",
             },
-            url: process.env.GATSBY_DATA_BASE
+            url: process.env.GATSBY_NODE_SERVE
         })
+
+        if(typeof window !== `undefined`) {
+            const dataToSuccess = {
+                name: ev.target.name.value,
+                phone: ev.target.phone.value,
+                products: items.map((elem) => {
+
+                    const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
+                    const productSize = elem.productSize === "" ? "" : elem.productSize;
+                    const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
+
+                    return {
+                        product: elem.name,
+                        total: elem.total,
+                        count: elem.count,
+                        description: elem.description,
+                        descriptionIngrideents,
+                        productSize,
+                        descriptionWok
+                    }
+                }),
+                delivery: deliveru,
+                deliveryTime: deliveryTimeOrder,
+                totalPrice: total,
+                sdacha: ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб`,
+                chopsticks: palochkiTotal,
+                comments: ev.target.comments.value || "Без комментария",
+            }
+            navigate('/order-processed', {state: dataToSuccess })
+        }
 
     };
 
     const handleChange = event => setAge(event.target.value);
     const handleChangeDelivery = event => setDelivery(event.target.value);
     const handleChangeCity = city => event => {
-        setSity(`${city[event.target.value].name}`)
+        setSity(`${city[event.target.value].name}`);
         setStateDeliveryPrice(city[event.target.value]);
     };
 
@@ -231,9 +235,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                     { !isEmpty(items) ?
                         <Grid container className={classes.gridContainer}>
                             <form
-                                method="POST"
+                                // method="POST"
                                 onSubmit={handleSubmit}
-                                action={process.env.GATSBY_NODE_SERVE}
                                 name="svisniData"
                                 style={{width: '100%'}}>
 
@@ -340,7 +343,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                        helperText="К какому времени доставить/приготовить"/>
                                         </Grid>
                                     </>}
-                                {delivery === "Доставка курьером" && <>
+                                    {delivery === "Доставка курьером" && <>
                                 <Grid item xs={12} sm={4}>
                                     <FormControl required variant="filled" className={classes.formControl}>
                                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
