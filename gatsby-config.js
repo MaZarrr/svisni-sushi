@@ -71,7 +71,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-123121109-2",
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKINGID,
         cookieExpires: "1000000"
       },
     },
@@ -88,22 +88,23 @@ module.exports = {
       }
     },
     {
-    resolve: `gatsby-plugin-yandex-metrika`,
+      resolve: `gatsby-plugin-yandex-metrika`,
       options: {
-        trackingId: '57341296',
+        trackingId: process.env.TRACKINGID_YAMETRIKA,
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,
         webvisor: true,
-        trackHash: true
-        },
+        trackHash: true,
+        afterBody: true,
+        defer: false,
+      },
     },
     {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        // downloadLocal: true
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
     {
@@ -122,13 +123,5 @@ module.exports = {
       },
     }
   ]
-}
+};
 
-// {
-//   resolve: `gatsby-plugin-nprogress`,
-//       options: {
-//   color: `tomato`,
-//       minimum: 0.2,
-//       showSpinner: false,
-// },
-// },
