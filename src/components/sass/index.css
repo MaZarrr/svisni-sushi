@@ -2,8 +2,11 @@
   margin-top: 50px;
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
   margin-top: 30px;
   margin-bottom: 30px;
+=======
+>>>>>>> sss
 }
 @media screen and (max-width: 768px) {
   .title_home {
@@ -12,7 +15,12 @@
 }
 .title_home h1 {
   text-align: center;
+<<<<<<< HEAD
   font-family: "Comfortaa", cursive;
+=======
+  text-transform: uppercase;
+  font-family: "Oswald", cursive;
+>>>>>>> sss
   font-style: normal;
   font-weight: 900;
   font-size: 40px;
@@ -52,6 +60,7 @@
     height: 230px;
   }
 }
+<<<<<<< HEAD
 @media screen and (max-width: 750px) {
   .cart_item {
     width: 180px;
@@ -64,6 +73,8 @@
     height: 150px;
   }
 }
+=======
+>>>>>>> sss
 .cart_item:hover {
   transition: 0.1s ease-in;
   transform: scale(1.03);
@@ -74,6 +85,7 @@
   height: 100px;
   max-width: 270px;
 }
+<<<<<<< HEAD
 @media screen and (max-width: 750px) {
   .cart_title {
     height: 70px;
@@ -84,6 +96,8 @@
     height: 50px;
   }
 }
+=======
+>>>>>>> sss
 .cart_title h3 {
   color: white;
   text-align: center;
@@ -93,6 +107,7 @@
   font-weight: 700;
   font-size: 26px;
 }
+<<<<<<< HEAD
 @media screen and (max-width: 750px) {
   .cart_title h3 {
     font-size: 20px;
@@ -108,5 +123,7 @@
 .sliders {
   border: none;
 }
+=======
+>>>>>>> sss
 
 /*# sourceMappingURL=index.css.map */
