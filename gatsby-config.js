@@ -67,7 +67,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKINGID,
+        trackingId: "UA-123121109-2",
         cookieExpires: "1000000"
       },
     },
@@ -86,7 +86,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-yandex-metrika`,
       options: {
-        trackingId: process.env.TRACKINGID_YAMETRIKA,
+        trackingId: "57341296",
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,
