@@ -38,9 +38,11 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
     const classes = useStylesCart();
 
     useEffect(() => {
-        dispatch(productPizzaLoaded(pizzaProduct)) // action push to reduxStore
+        dispatch(productPizzaLoaded(pizzaProduct))
         dispatch(pizzaCart({productPizza: pizzaProduct}))
-        setLoad(false);
+        setTimeout(() => {
+            setLoad(false)
+        }, 700)
         dispatch(defFilters())
     }, [dispatch, pizzaProduct]);
 

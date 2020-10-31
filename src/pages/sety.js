@@ -27,11 +27,11 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
     const { title } = useStyleH1();
 
     useEffect(() => {
-        // dispatch(setLoading(true))
         dispatch(productLoaded(setyProduct));
-        // dispatch(setLoading(false))
+        setTimeout(() => {
+            setLoad(false)
+        }, 700)
         dispatch(defFilters());
-        setLoad(false)
     }, [setyProduct, dispatch]);
 
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter);
@@ -44,7 +44,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
             <SEO title="Заказать Cуши сет. Меню суши, роллы — доставка в Валуйки"
                  description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
             <section>
-                <h1 className={title}>Заказать суши сет на дом</h1>
+                <h1 className={title}>Заказать суши сет</h1>
                 { load === false ?
                 <div>
                     <CustomizedInputSearch location={location.pathname}/>

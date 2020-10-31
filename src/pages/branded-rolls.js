@@ -26,7 +26,9 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
 
     useEffect(() => {
         dispatch(productLoaded(productsBrandedRolls)) // action push to reduxStore
-        setLoad(false);
+        setTimeout(() => {
+            setLoad(false)
+        }, 700)
         dispatch(defFilters())
     }, [productsBrandedRolls, dispatch]);
 

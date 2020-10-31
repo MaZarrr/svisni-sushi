@@ -94,20 +94,14 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                 </div>
                             </CardMedia>
                             }
-                            { sale && <div style={{width: `100%`, padding: 8,  backgroundColor: `lightgrey`, paddingLeft: 25}}>
-                                <Typography variant={"subtitle1"}>
-                                        Выгода
-                                    </Typography>
-                                    <Typography variant={"subtitle2"} style={{width: `70%`,
-                                        borderRadius: 6,
-                                        fontWeight: `bold`,
-                                        color: `white`,
-                                        backgroundColor: `tomato`,
-                                        padding: 5}}>
-                                        {nonprice - price} руб
-                                    </Typography> </div>
-                                }
+
                             <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
+                                { sale && <Typography variant={"subtitle2"} style={{paddingLeft: 14,
+                                    paddingTop: 14,
+                                    color: `tomato`}}>
+                                    Выгода {nonprice - price} ₽
+                                </Typography>
+                                }
                                 <Typography itemProp="description"
                                             className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
                                             slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" || slugCategogy === "/wok" ? classes.deckript : classes.deckriptSmall}

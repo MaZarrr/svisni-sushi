@@ -26,7 +26,9 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
 
     useEffect(() => {
         dispatch(productLoaded(productsHotRolls)); // action push to reduxStore
-        setLoad(false);
+        setTimeout(() => {
+            setLoad(false)
+        }, 700)
         dispatch(defFilters())
     }, [productsHotRolls, dispatch]);
 

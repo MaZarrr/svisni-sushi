@@ -8,12 +8,13 @@ import {Hidden} from "@material-ui/core";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../src/theme';
+import Transition from './transition'
 
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 const Footer = loadable(() => import('./footer'));
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
 
   const classes = useStyleLayout();
 
@@ -33,7 +34,9 @@ const Layout = ({ children }) => {
               <ThemeProvider theme={theme}>
                   <CssBaseline/>
                   <div className={classes.toolbar} />
-                  {children}
+                  {/*<Transition location={location}>*/}
+                      {children}
+                  {/*</Transition>*/}
               </ThemeProvider>
           </main>
         </div>

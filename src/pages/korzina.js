@@ -3,6 +3,7 @@ import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
 import  Img  from 'gatsby-image';
+import Spinner from '../components/spinner/spinner'
 import * as R from 'ramda'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -32,8 +33,15 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     total = 0, palochkiTotal,
     onIncrease, onDecrise, onDelete, addedPriborCount,
     addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
-
+    const [load, setLoad] = React.useState(true);
     const [value, setValue] = React.useState([]);
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            setLoad(false)
+        }, 600)
+    }, [])
+
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
     const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0))
 
@@ -188,10 +196,10 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                 {R.isEmpty(items) ? <div>Корзина пустая<span role="img" aria-label="accessible-emoji">😕</span></div> : "Корзина товаров" }
             </Box>
           </Typography>
-
           </Container>
+            { load === false ? <div>
            { R.isEmpty(items) ? <EmptyBasket/> : <div className={classes.paperDiv}>
-       <Grid justify={"center"} container spacing={2}>
+            <Grid justify={"center"} container spacing={2}>
            <div style={{display: `flex`, flexDirection: `column`}}>
        { items.map((item, idx) => {
         const {id, name, count, total, image, priceIn33cm, price, priceDef,
@@ -332,11 +340,13 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
            </Grid>
 
        </Grid>
-           </div>
-    }
-                </Grid>
-            </Container>
-        </div>
+            </div>
+           }
+        </div> : <Spinner/>}
+
+        </Grid>
+        </Container>
+    </div>
     </section>
   </>
     )

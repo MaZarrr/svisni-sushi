@@ -6,16 +6,19 @@ import { Grid } from "@material-ui/core";
 import {useStyleH1} from '../components/common/style'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
-
-const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
+import Spinner from '../components/spinner/spinner'
+const CardsMenuPage = loadable(()=> import('../components/CardsMenuPage'))
 
 const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
-
+    const [load, setLoad] = React.useState(true);
     const { title } = useStyleH1();
 
     useEffect(() => {
-        dispatch(productLoaded(productsKombo)) // action push to reduxStore
+        dispatch(productLoaded(productsKombo))
+        setTimeout(() => {
+            setLoad(false)
+        }, 700)
     }, [productsKombo, dispatch]);
 
 return (
@@ -23,10 +26,12 @@ return (
     <SEO title="Доставка комбо наборов из суши, роллов и пиццы в Валуйки"
     description="Заказать специальные комбо наборы, собирай свои блюда из суши и пиццы выгодно. Работаем с 10 до 22:00"/>
             <h1 className={title}>Комбо из суши, роллов и пиццы</h1>
-    <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
-        <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
-                       image={image} product={product}/>
-  </Grid>
+        {load === false ?
+            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+                <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
+                               image={image} product={product}/>
+            </Grid>
+        : <Spinner/>}
 </section>
     )
 };

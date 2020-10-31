@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import { graphql, useStaticQuery } from "gatsby"
 import {isEmpty} from "ramda"
 import loadable from "@loadable/component";
-
+import Insta from "../components/insta";
 import {loadIndexItems} from "../reducers/app";
 import Spinner from "../components/spinner/spinner"
 
@@ -180,6 +180,9 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
                 <CardIndex addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
+            </Grid>
+            <Grid item xs={12}>
+                <Insta/>
             </Grid>
         </section>
     )};
