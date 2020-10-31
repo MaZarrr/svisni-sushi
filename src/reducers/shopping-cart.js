@@ -179,13 +179,17 @@ export const addedIngrideent = ({id, sostav, name, ingrideents, check, path = nu
         dispatch(ingrideentMinus({id, path, pizzaIng, decrice: ingrideent.plus, name, check, ingrideentSostav, ingrideents, productPizza}))
     }
 };
+// export const pizzaCardsPage = (data) => (dispatch, getState) => {
+//     const {app: {productPizza}} = getState();
+//     dispatch(pizzaCart({data, productPizza}))
+// };
 
 const initialState = {
-        cartItems: typeof window !== `undefined` ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? [] : JSON.parse(localStorage.getItem('basketProduct')).cartItems : [],
-        orderTotal: typeof window !== `undefined` ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? 0 : JSON.parse(localStorage.getItem('basketProduct')).orderTotal : 0,
-        palochkiTotal: 0,
-        newPizza: null,
-        newWok: null
+    cartItems: typeof window !== `undefined` ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? [] : JSON.parse(localStorage.getItem('basketProduct')).cartItems : [],
+    orderTotal: typeof window !== `undefined` ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? 0 : JSON.parse(localStorage.getItem('basketProduct')).orderTotal : 0,
+    palochkiTotal: 0,
+    newPizza: null,
+    newWok: null
 };
 
 export default createReducer({
@@ -200,9 +204,9 @@ export default createReducer({
     [removeFromCart]: (state, {id, price, product}) => {
         const {cartItems, orderTotal} = updateOder(state, id, -1, price, product);
         if (typeof window !== `undefined`) {
-        localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
-        const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
-        return { ...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal }
+            localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
+            const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
+            return { ...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal }
         }
     },
     [allRemoveFromCart]: (state, {id, price, product}) => {
@@ -213,7 +217,7 @@ export default createReducer({
             const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
             return {...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}
         }
-        },
+    },
     [pizzaSize]: (state, {id, price, product, size}) => {
         const pizza = product.find((pizzaId) => pizzaId.id === id);
         const itemIndexPizza = state.cartItems.findIndex((data) => data.id === id);
@@ -241,11 +245,158 @@ export default createReducer({
     },
 
     [pizzaCart]: (state, {id, productPizza, total, priceDef, size, mass}) => {
+        if(id === undefined) {
+            const pizza = productPizza.map(({node: el}) => {
+                return {
+                    ...el,
+                    sostav: [],
+                    ingrideents: [
+                        {
+                            id: 1,
+                            nameI: " зелень",
+                            value: 29,
+                            minus: -29,
+                            plus: 29,
+                            zelen : false,
+                            title: "zelen"
+                        },
+                        {
+                            id: 2,
+                            nameI: "лук фри",
+                            lyk: false,
+                            value: 29,
+                            minus: -29,
+                            plus: 29,
+                            title: "lyk"
+                        },
+                        {
+                            id: 3,
+                            nameI: "барбекю соус",
+                            barbeky : false,
+                            value: 29,
+                            minus: -29,
+                            plus: 29,
+                            title: "barbeky"
+                        },
+                        {
+                            id: 4,
+                            nameI: "ананас",
+                            value: 39,
+                            minus: -39,
+                            plus: 39,
+                            ananas : false,
+                            title: "ananas",
+                        },
+                        {
+                            id: 5,
+                            nameI: "фирменный соус",
+                            firmsoys : false,
+                            value: 39,
+                            minus: -39,
+                            plus: 39,
+                            title: "firmsoys"
+                        },
+                        {
+                            id: 6,
+                            nameI: "болгарский перец",
+                            bolgarskiy : false,
+                            value: 39,
+                            minus: -39,
+                            plus: 39,
+                            title: "bolgarskiy"
+                        },
+                        {
+                            id: 7,
+                            nameI: "шампиньоны",
+                            shampinien : false,
+                            value: 39,
+                            minus: -39,
+                            plus: 39,
+                            title: "shampinien"
+                        },
+                        {
+                            id: 8,
+                            nameI: "помидор",
+                            pomidor : false,
+                            value: 39,
+                            minus: -39,
+                            plus: 39,
+                            title: "pomidor"
+                        },
+                        {
+                            id: 9,
+                            nameI: "куриное филе",
+                            kuricha : false,
+                            value: 39,
+                            minus: -39,
+                            plus: 39,
+                            title: "kuricha"
+                        },
+                        {
+                            id: 10,
+                            nameI: "свинина",
+                            svinina: false,
+                            value: 49,
+                            minus: -49,
+                            plus: 49,
+                            title: "svinina"
+                        },
+                        {
+                            id: 11,
+                            nameI: "пепперони",
+                            pepperoni: false,
+                            value: 49,
+                            minus: -49,
+                            plus: 49,
+                            title: "pepperoni"
+                        },
+                        {
+                            id: 12,
+                            nameI: "морепродукты",
+                            moreproduct : false,
+                            value: 49,
+                            minus: -49,
+                            plus: 49,
+                            title: "moreproduct"
+                        },
+                        {
+                            id: 13,
+                            nameI: "сыр Пармезан",
+                            parmezan: false,
+                            value: 49,
+                            minus: -49,
+                            plus: 49,
+                            title: "parmezan"
+                        },
+                        {
+                            id: 14,
+                            nameI: "сыр «Моцарелла»",
+                            mozarella: false,
+                            value: 49,
+                            minus: -49,
+                            plus: 49,
+                            title: "mozarella"
+                        },
+                        {
+                            id: 15,
+                            nameI: "ветчина",
+                            vetchina : false,
+                            value: 49,
+                            minus: -49,
+                            plus: 49,
+                            title: "vetchina"
+                        }]}});
+            return {
+                ...state,
+                newPizza: pizza
+            }
+        }
         const pizzaProduct = R.defaultTo(productPizza, state.newPizza);
         const pizza = pizzaProduct.find((pizzaId) => pizzaId.id === id);
         const itemIndexPizza = pizzaProduct.findIndex((data) => data.id === id);
+
         const updateItemPizza = R.update(itemIndexPizza, {
-           ...pizza,
+            ...pizza,
             price: total,
             priceDef,
             size: {[size]: true},
@@ -256,7 +407,7 @@ export default createReducer({
         return {
             ...state,
             newPizza: updateItemPizza
-            }
+        }
     },
 
     [addedPribor]: (state, count) => {
@@ -267,16 +418,16 @@ export default createReducer({
         }
     },
     [addedSaleRoll]: (state, objRoll) => {
-       return {
-           ...state,
-           orderTotal: state.orderTotal + objRoll.price,
-           cartItems: R.append({
-               ...objRoll,
-               id: uniqid(),
-               priceSale: 0,
-               textRollSale: "Филадельфия за 79!"
-           }, state.cartItems)
-       }
+        return {
+            ...state,
+            orderTotal: state.orderTotal + objRoll.price,
+            cartItems: R.append({
+                ...objRoll,
+                id: uniqid(),
+                priceSale: 0,
+                textRollSale: "Филадельфия за 79!"
+            }, state.cartItems)
+        }
     },
     [addedSalePizza]: (state, objPizza) => {
         return {
@@ -382,7 +533,7 @@ export default createReducer({
                 ...state,
                 newPizza: updateItemPizza,
             }
-         } else {
+        } else {
             const pizzazz = state.cartItems.find((pizza) => pizza.id === id);
             const itemIndexPizzazz = state.cartItems.findIndex((data) => data.id === id);
             const updateItem = R.update(itemIndexPizzazz, {
@@ -450,11 +601,11 @@ export default createReducer({
         }
 
         if(R.isEmpty(state.cartItems) || path === '/pizza/') {
-        return {
-            ...state,
-            newPizza: updateItemPizza,
-        }
-    } else {
+            return {
+                ...state,
+                newPizza: updateItemPizza,
+            }
+        } else {
             const pizzazz = state.cartItems.find((pizza) => pizza.id === id);
             const itemIndexPizzazz = state.cartItems.findIndex((data) => data.id === id);
             const updateItem = R.update(itemIndexPizzazz, {
@@ -471,7 +622,7 @@ export default createReducer({
                 cartItems: updateItem,
             }
         }
-},
+    },
 
     [checkedWok]: (state, {id, variant, productWok}) => {
         const wok = productWok.find((el) => el.id === id);
@@ -481,10 +632,10 @@ export default createReducer({
             descriptionWok: variant,
             wok: true
         })(productWok)
-    return {
-          ...state,
+        return {
+            ...state,
             newWok: newProductsWok,
-      }
+        }
     },
     [checker]: (state, {name, checked}) => {
         return {
@@ -492,8 +643,3 @@ export default createReducer({
         }
     }
 }, initialState)
-
-
-
-
-

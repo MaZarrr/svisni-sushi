@@ -39,6 +39,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
 
     useEffect(() => {
         dispatch(productPizzaLoaded(pizzaProduct)) // action push to reduxStore
+        dispatch(pizzaCart({productPizza: pizzaProduct}))
         setLoad(false);
         dispatch(defFilters())
     }, [dispatch, pizzaProduct]);
@@ -109,8 +110,8 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                                         priceDef,
                                                         size: slug,
                                                         mass: weight})}
-                                                        className={clsx(classes.buttonD, {
-                                                            [classes.buttonT]: size[slug]})}>
+                                                            className={clsx(classes.buttonD, {
+                                                                [classes.buttonT]: size[slug]})}>
                                                         Средняя</button>
                                                     <Typography style={{fontSize: 13, textAlign: `center`}} variant={"body2"}>28см</Typography>
                                                 </Grid>
@@ -122,8 +123,8 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                                         priceDef,
                                                         size: contentful_id,
                                                         mass: weight33})}
-                                                        className={clsx(classes.buttonD, {
-                                                            [classes.buttonT]: size[contentful_id]})}>
+                                                            className={clsx(classes.buttonD, {
+                                                                [classes.buttonT]: size[contentful_id]})}>
                                                         Большая</button>
                                                     <Typography style={{fontSize: 13, textAlign: `center`}} variant={"body2"}>36см</Typography>
                                                 </Grid>
@@ -170,9 +171,8 @@ const mapStateToProps = (state) => ({
     productPizza: productList(state, true),
     searchText: state.filters.searchText,
     category: state.filters.category,
-    priceFilter: state.filters.priceFilter,
-    updatePizza: state.shoppingCart.newPizza
-})
+    priceFilter: state.filters.priceFilter
+});
 
 export default connect(mapStateToProps, null)(Pizza)
 
@@ -210,8 +210,3 @@ export const queryPizza = graphql `
         }
     }
 `
-
-
-
-
-

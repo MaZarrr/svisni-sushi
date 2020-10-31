@@ -85,6 +85,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const handleChangee = name => event => setState(name);
     const handleSubmit = (ev) => {
         ev.preventDefault();
+
         const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
             formDelivery: ev.target.delivery.value,
             adress: stateDeliveryPrice.name,

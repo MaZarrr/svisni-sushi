@@ -1,4 +1,5 @@
  export default (product, searchText, priceFilter, checkboxFilter) => {
+
     const search = (items, txt) => {
         if(txt === undefined) {
           return items
@@ -6,7 +7,7 @@
         return items.filter((node) => {
             return node.name.toLowerCase().indexOf(txt.toLowerCase()) > -1
         })
-      }
+      };
 
     const filter = (items, filter) => {
       switch (filter) {
@@ -38,7 +39,7 @@
         }
     }
 
-  
+
   return filterCheckbox(filter(search(product, searchText), priceFilter), checkboxFilter)
-    
+
   }
