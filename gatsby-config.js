@@ -25,9 +25,9 @@ module.exports = {
     {
       resolve: 'gatsby-source-instagram',
       options: {
-        username: `8305490307`,
-        access_token: "EAAKF0ZC9mvEwBAEOYDaqc7f5y9cYw1ViGCVsUfSC2k4EqLvaa6XK9xgrsqoqHZCA18ZCuTZA3IdM98smZBNVsGuuAtFJLyfNrPx6m7pq28Nc5aStZBLNhh0GKsSU9Pj34JSTHLjgrpNQJ8tIgU6e8eOhqhZBWRtNZA7sBTy6tESkJZBZArYkOh8htZAsse0VAPMS4tD5fXFZC1D0YzzpVZAkI5OovsGKgHUvtse4alDTrbUfD9gZDZD",
-        instagram_id: "17841408229228186",
+        username: process.env.USERNAME_INSTAGRAM,
+        access_token: process.env.ACCESS_TOKEN_INSTAGRAM,
+        instagram_id: process.env.INSTAGRAM_ID,
         paginate: 7,
         maxPosts: 10,
         hashtags: true
@@ -101,12 +101,14 @@ module.exports = {
     {
     resolve: `gatsby-plugin-yandex-metrika`,
       options: {
-        trackingId: '57341296',
+        trackingId: process.env.TRACKINGID_YAMETRIKA,
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,
         webvisor: true,
-        trackHash: true
+        trackHash: true,
+        afterBody: true,
+        defer: false,
         },
     },
     {
