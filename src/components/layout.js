@@ -8,7 +8,6 @@ import {Hidden} from "@material-ui/core";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../src/theme';
-import Transition from './transition'
 
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
@@ -34,9 +33,7 @@ const Layout = ({ children, location }) => {
               <ThemeProvider theme={theme}>
                   <CssBaseline/>
                   <div className={classes.toolbar} />
-                  {/*<Transition location={location}>*/}
                       {children}
-                  {/*</Transition>*/}
               </ThemeProvider>
           </main>
         </div>

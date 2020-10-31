@@ -10,9 +10,7 @@ exports.wrapPageElement = ({element, props}) => {
 exports.wrapRootElement = ({element, props}) => {
     return (
         <Provider store={createStore}>
-            {/*<Layout {...props}>*/}
                 {element}
-            {/*</Layout>*/}
         </Provider>
         )
 };

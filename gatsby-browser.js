@@ -10,13 +10,8 @@ exports.wrapPageElement = ({element, props}) => {
 exports.wrapRootElement = ({element}) => {
     return (
         <Provider store={createStore}>
-            {/*<Layout {...props}>*/}
             {element}
-            {/*</Layout>*/}
         </Provider>
         )
     };
-
-// import {clockSale} from "./src/reducers/shopping-cart";
-// const {clockSale} = require('./src/reducers/shopping-cart').default
 
