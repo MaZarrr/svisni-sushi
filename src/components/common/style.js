@@ -45,7 +45,7 @@ export const useStylesCart = makeStyles(theme => ({
         fontWeight: 400,
         height: 65,
         overflowY: `auto`,
-        textAlign: 'center',
+        // textAlign: 'center',
         padding: 14,
         [theme.breakpoints.down('500')]: {
             minHeight: `20px`,
@@ -61,7 +61,7 @@ export const useStylesCart = makeStyles(theme => ({
         fontWeight: 400,
         height: 100,
         overflowY: `auto`,
-        textAlign: 'center',
+        // textAlign: 'center',
         padding: 14,
         [theme.breakpoints.down('500')]: {
             height: `60px`,

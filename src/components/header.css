@@ -12,40 +12,24 @@
   min-width: 75px;
   margin: 0 auto;
 }
-<<<<<<< HEAD
 @media screen and (max-width: 768px) {
-=======
-@media screen and (min-width: 768px) {
->>>>>>> sss
   .icon_start_xs {
     min-width: 60px;
     margin: 0 25% 0 25%;
   }
 }
-<<<<<<< HEAD
 @media screen and (max-width: 500px) {
-=======
-@media screen and (max-width: 768px) {
->>>>>>> sss
   .icon_start_xs {
     margin: 0 20vw 0 20vw;
     min-width: 55px;
   }
 }
-<<<<<<< HEAD
 @media screen and (max-width: 425px) {
-=======
-@media screen and (max-width: 500px) {
->>>>>>> sss
   .icon_start_xs {
     margin: 0 15vw 0 15vw;
   }
 }
-<<<<<<< HEAD
 @media screen and (max-width: 360px) {
-=======
-@media screen and (max-width: 320px) {
->>>>>>> sss
   .icon_start_xs {
     margin: 0 10vw 0 10vw;
   }
@@ -57,7 +41,6 @@
   min-width: 70px;
   list-style: none;
   margin: auto 0;
-<<<<<<< HEAD
   font-family: "Comfortaa", cursive;
   font-weight: 800;
 }
@@ -66,13 +49,6 @@
     font-size: 10px;
     letter-spacing: -0.5px;
   }
-=======
-  padding: 0;
-  border-radius: 5px;
-  font-family: "Comfortaa", cursive;
-  font-weight: 900;
-  color: white;
->>>>>>> sss
 }
 
 .nav-link {

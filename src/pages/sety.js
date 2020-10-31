@@ -78,6 +78,7 @@ export const querySet = graphql `
                     slug
                     name
                     price
+                    nonprice
                     weight
                     filter
                     count

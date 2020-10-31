@@ -25,7 +25,10 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
 
             { visibleItems.map((products) => {
 
-                const {id, name, slug, description, price, weight, count, edit, komboSale, variant = false, image: {fluid}} = products;
+                const {id, name, slug, description,
+                    price, weight, count,
+                    edit, komboSale, variant = false,
+                    image: {fluid}, sale, nonprice} = products;
 
                 return (
                     <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
@@ -91,6 +94,19 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                 </div>
                             </CardMedia>
                             }
+                            { sale && <div style={{width: `100%`, padding: 8,  backgroundColor: `lightgrey`, paddingLeft: 25}}>
+                                <Typography variant={"subtitle1"}>
+                                        Выгода
+                                    </Typography>
+                                    <Typography variant={"subtitle2"} style={{width: `70%`,
+                                        borderRadius: 6,
+                                        fontWeight: `bold`,
+                                        color: `white`,
+                                        backgroundColor: `tomato`,
+                                        padding: 5}}>
+                                        {nonprice - price} руб
+                                    </Typography> </div>
+                                }
                             <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
                                 <Typography itemProp="description"
                                             className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
