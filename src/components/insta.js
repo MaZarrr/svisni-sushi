@@ -68,7 +68,7 @@ const Insta = () => {
 
     return (
         <>
-            { dataInstagram === true ? "" ? instaFhotos.map(photo => {
+            { dataInstagram === true ? "" : instaFhotos.map(photo => {
                 const description = photo.caption.split(" \n⠀ \n");
                 const titlePost = description[0];
 
