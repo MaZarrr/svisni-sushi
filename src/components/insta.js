@@ -4,7 +4,6 @@ import useInstagram from '../utils/useInstagram'
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import {isNil, isEmpty} from "ramda";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
