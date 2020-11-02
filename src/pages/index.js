@@ -13,7 +13,7 @@ import Spinner from "../components/spinner/spinner"
 import Typography from "@material-ui/core/Typography";
 
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
-const InstaSection = loadable(() => import('../components/insta'));
+const InstaSection = loadable(() => import('../components/InstagramSection'));
 const CardIndex = loadable(() => import('../components/Card'), {
     fallback: <Spinner/>});
 

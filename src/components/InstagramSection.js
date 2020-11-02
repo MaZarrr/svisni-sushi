@@ -44,12 +44,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Insta = () => {
+const InstaSection = () => {
     const instaFhotos = useInstagram();
-
+    console.log(instaFhotos)
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState({id: false});
-
+    const dataInstagram = isNil(instaFhotos) || isEmpty(instaFhotos);
+    console.log(dataInstagram)
     function timeConverter(UNIX_timestamp){
         let a = new Date(UNIX_timestamp * 1000);
         let months = ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря'];
@@ -64,7 +65,6 @@ const Insta = () => {
         setExpanded({[id]: !expanded[id]});
     };
 
-    const dataInstagram = isNil(instaFhotos) || isEmpty(instaFhotos);
 
     return (
         <>
@@ -130,5 +130,5 @@ const Insta = () => {
     )
 };
 
-export default Insta;
+export default InstaSection;
 
