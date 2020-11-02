@@ -3,7 +3,7 @@ const path = require('path');
 
 exports.createSchemaCustomization = ({ actions }) => {
     actions.createTypes(`
-    type allInstaNode implements Node @dontInfer {
+    type allInstaNode implements Node {
         id: ID!
         username: String! 
         caption: String!
