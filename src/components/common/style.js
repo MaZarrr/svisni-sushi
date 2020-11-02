@@ -43,10 +43,10 @@ export const useStylesCart = makeStyles(theme => ({
     },
     deckriptSmall: {
         fontWeight: 400,
-        height: 65,
+        height: 30,
         overflowY: `auto`,
         // textAlign: 'center',
-        padding: 14,
+        padding: 11,
         [theme.breakpoints.down('500')]: {
             minHeight: `20px`,
             padding: 10,
@@ -57,12 +57,22 @@ export const useStylesCart = makeStyles(theme => ({
             height: `auto`,
         },
     },
-    deckript: {
+    deckriptPizza: {
         fontWeight: 400,
-        height: 100,
+        height: 80,
         overflowY: `auto`,
         // textAlign: 'center',
-        padding: 14,
+        padding: `10px 0 10px 20px`,
+        [theme.breakpoints.down('500')]: {
+            padding: `10px 0 10px 30px`,
+        }
+    },
+    deckript: {
+        fontWeight: 400,
+        height: 80,
+        overflowY: `auto`,
+        // textAlign: 'center',
+        padding: 11,
         [theme.breakpoints.down('500')]: {
             height: `60px`,
             padding: 10,
@@ -74,8 +84,8 @@ export const useStylesCart = makeStyles(theme => ({
         },
     },
     buttonD: {
-        fontSize: 14,
-        borderRadius: 10,
+        fontSize: 11,
+        borderRadius: 8,
         padding: '6px 12px',
         border: '1px solid orange',
         lineHeight: 1.5,
@@ -83,8 +93,8 @@ export const useStylesCart = makeStyles(theme => ({
     },
     buttonT: {
         width: 105,
-        borderRadius: 10,
-        fontSize: 14,
+        borderRadius: 8,
+        fontSize: 11,
         padding: '6px 12px',
         border: '1px solid orange',
         lineHeight: 1.5,

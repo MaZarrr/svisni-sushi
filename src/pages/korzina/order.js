@@ -91,6 +91,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const handleSubmit = (ev) => {
         ev.preventDefault();
 
+        const totalPrice = delivery === "Самовывоз" ? total : total + stateDeliveryPrice.priceDel;
         const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
             formDelivery: ev.target.delivery.value,
             adress: stateDeliveryPrice.name,
@@ -127,7 +128,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             }),
             delivery: deliveru,
             deliveryTime: deliveryTimeOrder,
-            totalPrice: total,
+            totalPrice,
             sdacha: ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб`,
             chopsticks: palochkiTotal,
             comments: ev.target.comments.value || "Без комментария",

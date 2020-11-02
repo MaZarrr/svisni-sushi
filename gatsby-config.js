@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
+require('dotenv').config();
 
-if(process.env.NODE_ENV !== 'production') {
-  dotenv.config()
-}
+// if(process.env.NODE_ENV !== 'production') {
+//   dotenv.config()
+// }
 
 module.exports = {
   siteMetadata: {
@@ -25,11 +25,11 @@ module.exports = {
     {
       resolve: 'gatsby-source-instagram',
       options: {
-        username: process.env.USERNAME_INSTAGRAM,
-        access_token: process.env.ACCESS_TOKEN_INSTAGRAM,
-        instagram_id: process.env.INSTAGRAM_ID,
-        paginate: 7,
-        maxPosts: 10,
+        username: process.env.GATSBY_USERNAME_INSTAGRAM,
+        access_token: process.env.GATSBY_ACCESS_TOKEN_INSTAGRAM,
+        instagram_id: process.env.GATSBY_INSTAGRAM_ID,
+        paginate: 10,
+        maxPosts: 15,
         hashtags: true
       },
     },
@@ -82,7 +82,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-123121109-2",
+        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
         cookieExpires: "1000000"
       },
     },
@@ -101,7 +101,7 @@ module.exports = {
     {
     resolve: `gatsby-plugin-yandex-metrika`,
       options: {
-        trackingId: process.env.TRACKINGID_YAMETRIKA,
+        trackingId: process.env.GATSBY_TRACKINGID_YAMETRIKA,
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,

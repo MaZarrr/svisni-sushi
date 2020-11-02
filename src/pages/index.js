@@ -11,6 +11,7 @@ import loadable from "@loadable/component";
 import Insta from "../components/insta";
 import {loadIndexItems} from "../reducers/app";
 import Spinner from "../components/spinner/spinner"
+import Typography from "@material-ui/core/Typography";
 
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
 const CardIndex = loadable(() => import('../components/Card'), {
@@ -20,8 +21,18 @@ const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         width: `100%`,
-        marginBottom: 70
-    }
+        marginBottom: 10,
+    },
+    titleIndex: {
+        fontSize: '32px',
+        width: `100%`,
+        padding: `20px 10px`,
+        textAlign: `center`,
+        [theme.breakpoints.down('600')]: {
+            fontSize: '22px',
+            padding: `10px 30px 10px 35px`,
+        },
+    },
 }));
 
 const QUERY_INDEX_DATA = graphql`
@@ -181,7 +192,10 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
             </Grid>
-            <Grid item xs={12}>
+            <Grid container>
+                <Grid item xs={12}>
+                    <Typography className={classes.titleIndex} variant={"h2"}>Мы в Instagram</Typography>
+                </Grid>
                 <Insta/>
             </Grid>
         </section>
