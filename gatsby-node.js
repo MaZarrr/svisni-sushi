@@ -1,6 +1,19 @@
 const path = require('path');
 
 
+exports.createSchemaCustomization = ({ actions }) => {
+    actions.createTypes(`
+    type allInstaNode implements Node @dontInfer {
+        id: ID!
+        username: String! 
+        caption: String!
+        comments: Int!
+        likes: Int! 
+        timestamp: Date! @dateformat
+    } 
+    `)
+};
+
 exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
@@ -109,43 +122,6 @@ exports.createPages = async ({graphql, actions}) => {
 
     }).catch((err) => console.log(err))
 }
-
-// exports.onPostBuild = async function({ cache, store, graphql }, { query }) {
-//     const cacheKey = "some-key-name"
-//     let obj = await cache.get(cacheKey)
-//     if (!obj) {
-//         obj = { created: Date.now() }
-//         const data = await graphql(query)
-//         obj.data = data
-//     } else if (Date.now() > obj.lastChecked + 3600000) {
-//         /* Reload after a day */
-//         const data = await graphql(query)
-//         obj.data = data
-//     }
-//     obj.lastChecked = Date.now()
-//     await cache.set(cacheKey, obj)
-//     /* Do something with data ... */
-// }
-
-// exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
-//   const pokemons = [
-//     { name: "Pikachu", type: "electric" },
-//     { name: "Squirtle", type: "water" },
-//   ]
-
-//   pokemons.forEach(pokemon => {
-//     const node = {
-//       name: pokemon.name,
-//       type: pokemon.type,
-//       id: createNodeId(`Pokemon-${pokemon.name}`),
-//       internal: {
-//         type: "Pokemon",
-//         contentDigest: createContentDigest(pokemon),
-//       },
-//     }
-//     actions.createNode(node)
-//   })
-// }
 
 
 
