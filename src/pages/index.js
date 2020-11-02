@@ -164,14 +164,31 @@ const QUERY_INDEX_DATA = graphql`
                 }
             }
         }
+        allInstaNode(limit: 4,
+            sort: {order: DESC, fields: timestamp},
+            filter: {caption: {regex: "/\\\\#рекомендуемsvisniсуши/"}}) {
+            nodes {
+                id
+                caption
+                comments
+                likes
+                timestamp
+                localFile{
+                    childImageSharp {
+                        fluid(maxWidth: 400, maxHeight: 400){
+                            ...GatsbyImageSharpFluid_withWebp
+                        }
+                    }
+                }
+            }
+        }
     }
-
 `;
 
 const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
 
     const { allContentfulContentIndex: {edges},
-            allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
+            allContentfulHomePageImageMenu: { edges: menu }, allInstaNode: {nodes}} = useStaticQuery(QUERY_INDEX_DATA);
     const classes = useStyleIndexPage();
     React.useEffect(() => {
         loadIndexItems({edges, menu})
@@ -196,7 +213,7 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
                 <Grid item xs={12}>
                     <Typography className={classes.titleIndex} variant={"h2"}>Мы в Instagram</Typography>
                 </Grid>
-                <InstaSection/>
+                <InstaSection instaFhotos={nodes}/>
             </Grid>
         </section>
     )};

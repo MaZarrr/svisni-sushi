@@ -44,13 +44,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const InstaSection = () => {
-    const instaFhotos = useInstagram();
-    console.log(instaFhotos)
+const InstaSection = ({ instaFhotos }) => {
+    // const instaFhotos = useInstagram();
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState({id: false});
+
     const dataInstagram = isNil(instaFhotos) || isEmpty(instaFhotos);
-    console.log(dataInstagram)
+
     function timeConverter(UNIX_timestamp){
         let a = new Date(UNIX_timestamp * 1000);
         let months = ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря'];
@@ -64,7 +64,6 @@ const InstaSection = () => {
     const handleExpandClick = (id) => {
         setExpanded({[id]: !expanded[id]});
     };
-
 
     return (
         <>
@@ -81,8 +80,8 @@ const InstaSection = () => {
                             />
                             <CardMedia
                                 className={classes.media}
-                                title="Paella dish"
-                            ><Image fluid={photo.fluid} alt={photo.caption} style={{maxWidth: `100%`}}/></CardMedia>
+                                title="Paella dish">
+                                <Image fluid={photo.localFile.childImageSharp.fluid} alt={photo.caption} style={{maxWidth: `100%`}}/></CardMedia>
 
                             <CardContent>
                                 <Typography variant="body1"
