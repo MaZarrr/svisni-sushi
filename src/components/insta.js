@@ -17,6 +17,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import { take } from "ramda";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 450,
@@ -45,16 +46,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Insta = () => {
     const instaFhotos = useInstagram();
-    const { username } = instaFhotos[0];
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState({id: false});
 
-    // const description = photo.caption.split(" \n⠀ \n");
-    // const titlePost = description[0];
-    // const bodyPost = description[1];
-    // const footerPost = description[2];
-    // const captionPost = description[3];
     function timeConverter(UNIX_timestamp){
         let a = new Date(UNIX_timestamp * 1000);
         let months = ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря'];
@@ -79,16 +74,6 @@ const Insta = () => {
                     <Grid key={photo.id} item xs={12} sm={6}>
                         <Card className={classes.root}>
                             <CardHeader
-                                // avatar={
-                                //     <Avatar aria-label="recipe" className={classes.avatar}>
-                                //         R
-                                //     </Avatar>
-                                // }
-                                // action={
-                                //     <IconButton aria-label="settings">
-                                //         <MoreVertIcon />
-                                //     </IconButton>
-                                // }
                                 title={`${take(28, titlePost)}`}
                                 subheader={timeConverter(photo.timestamp)}
                             />
@@ -134,9 +119,6 @@ const Insta = () => {
                                             <Typography variant="caption" color="textSecondary">Смотреть в Instagram &rarr;</Typography>
                                         </a>
                                     </Typography>
-                                    {/*<Typography>*/}
-                                    {/*    Set aside off of the heat to let rest for 10 minutes, and then serve.*/}
-                                    {/*</Typography>*/}
                                 </CardContent>
                             </Collapse>
                         </Card>
@@ -148,29 +130,3 @@ const Insta = () => {
 
 export default Insta;
 
-//
-                // <>
-                //     <Grid container>
-                // {/*<div style={{display: `flex`, flexWrap: `wrap`, justifyContent: `space-between`, margin: `1rem -0.5rem`}}>*/}
-                //     {instaFhotos.map(photo =>(
-                //         <Grid item xs={6}>
-                //         <a href={`https://instagram.com/p/${photo.id}`}
-                //         style={{
-                //             boxShadow: 0,
-                //             display: `block`,
-                //             margin: `10px auto`,
-                //             maxWidth: `calc(33% - 1 rem)`,
-                //             width: 400
-                //         }}>
-                //             Смотреть больше в Instagram &rarr;
-                //             <Image style={{borderRadius: 15}} fluid={photo.fluid} alt={photo.caption}/>
-                //         </a>
-                //         </Grid>
-                //     ))}
-                // {/*</div>*/}
-                //     </Grid>
-                //     {username}
-                //
-                //         Смотреть больше в Instagram &rarr;
-                //     </a>
-                // </>

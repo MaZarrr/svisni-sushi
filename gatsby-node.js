@@ -1,18 +1,18 @@
 const path = require('path');
 
 
-exports.createSchemaCustomization = ({ actions }) => {
-    actions.createTypes(`
-    type allInstaNode implements Node {
-        id: ID!
-        username: String! 
-        caption: String!
-        comments: Int!
-        likes: Int! 
-        timestamp: Date! @dateformat
-    } 
-    `)
-};
+// exports.createSchemaCustomization = ({ actions }) => {
+//     actions.createTypes(`
+//     type allInstaNode implements Node {
+//         id: ID!
+//         username: String!
+//         caption: String!
+//         comments: Int!
+//         likes: Int!
+//         timestamp: Date! @dateformat
+//     }
+//     `)
+// };
 
 exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;

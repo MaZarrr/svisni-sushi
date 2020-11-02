@@ -11,9 +11,9 @@ import loadable from "@loadable/component";
 import {loadIndexItems} from "../reducers/app";
 import Spinner from "../components/spinner/spinner"
 import Typography from "@material-ui/core/Typography";
-import Insta from "../components/insta";
 
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
+const InstaSection = loadable(() => import('../components/insta'));
 const CardIndex = loadable(() => import('../components/Card'), {
     fallback: <Spinner/>});
 
@@ -196,7 +196,7 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
                 <Grid item xs={12}>
                     <Typography className={classes.titleIndex} variant={"h2"}>Мы в Instagram</Typography>
                 </Grid>
-                <Insta/>
+                <InstaSection/>
             </Grid>
         </section>
     )};
