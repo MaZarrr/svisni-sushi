@@ -21,7 +21,7 @@ const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         width: `100%`,
-        marginBottom: 9,
+        marginBottom: 10,
     },
     titleIndex: {
         fontSize: '32px',

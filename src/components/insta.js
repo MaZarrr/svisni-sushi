@@ -4,6 +4,7 @@ import useInstagram from '../utils/useInstagram'
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import {isNil, isEmpty} from "ramda";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -16,7 +17,7 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import { take } from "ramda";
+import {isEmpty, isNil, take} from "ramda";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,9 +65,11 @@ const Insta = () => {
         setExpanded({[id]: !expanded[id]});
     };
 
+    const dataInstagram = isNil(instaFhotos) || isEmpty(instaFhotos);
+
     return (
         <>
-            { instaFhotos.map(photo => {
+            { dataInstagram === true ? "" ? instaFhotos.map(photo => {
                 const description = photo.caption.split(" \n⠀ \n");
                 const titlePost = description[0];
 
