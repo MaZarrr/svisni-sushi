@@ -19,7 +19,7 @@ import { take } from "ramda";
 
 const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
     const classes = useStylesCart();
-
+    //
     return (
         <>
 
@@ -96,17 +96,18 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                             }
 
                             <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
-                                { sale && <Typography variant={"subtitle2"} style={{paddingLeft: 14,
-                                    paddingTop: 14,
-                                    color: `tomato`}}>
+                                { sale && <Typography variant={"subtitle1"} style={{
+                                    paddingLeft: 7,
+                                    paddingTop: 12,
+                                    color: `tomato`,
+                                    fontWeight: `bold`}}>
                                     Выгода {nonprice - price} ₽
                                 </Typography>
                                 }
                                 <Typography itemProp="description"
                                             className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
                                             slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" || slugCategogy === "/wok" ? classes.deckript : classes.deckriptSmall}
-                                            variant="body2"
-                                            color="textSecondary">
+                                            variant="body2">
 
                                     { slugCategogy === "/sety" && !komboSale &&
                                         <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>

@@ -30,7 +30,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
         dispatch(productLoaded(setyProduct));
         setTimeout(() => {
             setLoad(false)
-        }, 700)
+        }, 650);
         dispatch(defFilters());
     }, [setyProduct, dispatch]);
 

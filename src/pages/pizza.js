@@ -42,7 +42,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
         dispatch(pizzaCart({productPizza: pizzaProduct}))
         setTimeout(() => {
             setLoad(false)
-        }, 700)
+        }, 650);
         dispatch(defFilters())
     }, [dispatch, pizzaProduct]);
 
@@ -98,7 +98,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                                          dir={"center"}/>
                                             }
                                             <Typography itemProp="description"
-                                                        className={classes.deckript}
+                                                        className={classes.deckriptPizza}
                                                         variant="body2"
                                                         color="textSecondary">
                                                 {description}
@@ -114,8 +114,9 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                                         mass: weight})}
                                                             className={clsx(classes.buttonD, {
                                                                 [classes.buttonT]: size[slug]})}>
-                                                        Средняя</button>
-                                                    <Typography style={{fontSize: 13, textAlign: `center`}} variant={"body2"}>28см</Typography>
+                                                        <Typography variant={"body1"}>Средняя</Typography></button>
+                                                    <Typography style={{fontSize: 13, textAlign: `center`}}
+                                                                variant={"body2"}>28см</Typography>
                                                 </Grid>
                                                 <Grid item xs={5}>
                                                     <button onClick={() => switchSizePizza({
@@ -127,8 +128,8 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                                         mass: weight33})}
                                                             className={clsx(classes.buttonD, {
                                                                 [classes.buttonT]: size[contentful_id]})}>
-                                                        Большая</button>
-                                                    <Typography style={{fontSize: 13, textAlign: `center`}} variant={"body2"}>36см</Typography>
+                                                        <Typography variant={"body1"}>Большая</Typography></button>
+                                                    <Typography style={{fontSize: 13, textAlign: `center`}} variant={"subtitle2"}>36см</Typography>
                                                 </Grid>
                                             </Grid>
                                             <Grid item xs={12} style={{textAlign: "center", padding: 0}}>

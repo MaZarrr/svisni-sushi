@@ -18,7 +18,7 @@ const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, conten
         dispatch(productLoaded(productsKombo))
         setTimeout(() => {
             setLoad(false)
-        }, 700)
+        }, 600);
     }, [productsKombo, dispatch]);
 
 return (

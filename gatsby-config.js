@@ -18,6 +18,17 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+      {
+          resolve: 'gatsby-source-instagram',
+          options: {
+              username: process.env.GATSBY_USERNAME_INSTAGRAM,
+              access_token: process.env.GATSBY_ACCESS_TOKEN_INSTAGRAM,
+              instagram_id: process.env.GATSBY_INSTAGRAM_ID,
+              paginate: 10,
+              maxPosts: 15,
+              hashtags: true
+          },
+      },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
@@ -67,7 +78,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-123121109-2",
+        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
         cookieExpires: "1000000"
       },
     },
@@ -86,15 +97,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-yandex-metrika`,
       options: {
-        trackingId: "57341296",
+        trackingId: process.env.GATSBY_TRACKINGID_YAMETRIKA,
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,
         webvisor: true,
         trackHash: true,
         afterBody: true,
-        defer: false,
-      },
+        defer: false
+      }
     },
     {
       resolve: `gatsby-source-contentful`,
