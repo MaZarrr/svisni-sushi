@@ -2,7 +2,8 @@ import {graphql, useStaticQuery} from 'gatsby'
 
 const instaQuery = graphql`
     query {
-        allInstaNode(limit: 4) {
+            allInstaNode(limit: 4, sort: {order: DESC, fields: timestamp},
+            filter: {caption: {regex: "/\\\\#рекомендуемsvisniсуши/"}}) {
             nodes {
                 id
                 caption
@@ -36,5 +37,3 @@ const useInstagram = () => {
 
 export default useInstagram
 
-// allInstaNode(limit: 4, sort: {order: DESC, fields: timestamp},
-// filter: {caption: {regex: "/\\#рекомендуемsvisniсуши/"}}) {

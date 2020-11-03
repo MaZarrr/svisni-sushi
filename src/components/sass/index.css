@@ -24,20 +24,21 @@
 }
 
 .cart_img {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
   padding: 0;
+}
+@media screen and (max-width: 768px) {
+  .cart_img {
+    width: 100px;
+    height: 100px;
+  }
 }
 .cart_img img {
   padding: 10px;
   transition: 0.05s;
   transform: scale(1);
-}
-@media screen and (max-width: 768px) {
-  .cart_img img {
-    max-width: 140px;
-    max-height: 140px;
-  }
 }
 .cart_img img:hover {
   transition: 0.1s ease-in;

@@ -61,7 +61,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     return (
         <div className={`mt-1 ${classes.root}`}>
             {/*Меню выбор*/}
-            <Grid container className="m-auto" >
+            <Grid container style={{marginBottom: 40}}>
                 <Typography className={`mb-2 ${classesCard.titleIndex}`}
                             variant={"h2"}>Заказывайте роллы, суши и пиццу с доставкой</Typography>
                 {indexMenu.map(({node: homeMenu}) => (
@@ -75,15 +75,15 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                 <Typography variant={"h2"}>{homeMenu.category}</Typography>
                             </div>
                         <div style={{margin: `0 auto`}}>
-                        <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey'}} to={`/${homeMenu.slug}`}>
+                        <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey', width: `120px`}} to={`/${homeMenu.slug}`}>
                             <Img fluid={homeMenu.image.fluid} className="cart_img"/>
                         </Link>
                         </div>
                         </div>
                     </Grid>
                 ))}
-
             </Grid>
+
             { prod === true ? '' :
                 <>
                 <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
@@ -234,25 +234,6 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                         </Grid>
                     </Hidden>
                 </> }
-
-
-            {/*<Grid container className="mt-4" >*/}
-            {/*    <Typography className={`mb-2 ${classesCard.titleIndex}`}*/}
-            {/*                variant={"h2"}>Заказывайте роллы, суши и пиццу с доставкой</Typography>*/}
-            {/*    {indexMenu.map(({node: homeMenu}) => (*/}
-            {/*        <Grid item xs={6} sm={4} key={homeMenu.id} >*/}
-            {/*            <div className="cart_item">*/}
-            {/*                <Link to={`/${homeMenu.slug}`}>*/}
-            {/*                    <div className="cart_title">*/}
-            {/*                        <h3><b>{homeMenu.category}</b></h3>*/}
-            {/*                    </div>*/}
-            {/*                    <Img fluid={homeMenu.image.fluid} className="cart_img" imgStyle={{maxWidth: 300}} />*/}
-            {/*                </Link>*/}
-            {/*            </div>*/}
-            {/*        </Grid>*/}
-            {/*    ))}*/}
-            {/*</Grid>*/}
-
         </div>
     );
 

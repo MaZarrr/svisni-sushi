@@ -3,17 +3,17 @@ import SEO from "../components/seo"
 import "../components/sass/index.css"
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
-import {addedCart} from "../reducers/shopping-cart";
-import {connect} from "react-redux";
+import { addedCart } from "../reducers/shopping-cart";
+import { connect } from "react-redux";
 import { graphql, useStaticQuery } from "gatsby"
-import {isEmpty} from "ramda"
+import { isEmpty } from "ramda"
 import loadable from "@loadable/component";
 import {loadIndexItems} from "../reducers/app";
 import Spinner from "../components/spinner/spinner"
 import Typography from "@material-ui/core/Typography";
+import InstaSection from '../components/InstagramSection'
 
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
-const InstaSection = loadable(() => import('../components/InstagramSection'));
 const CardIndex = loadable(() => import('../components/Card'), {
     fallback: <Spinner/>});
 
@@ -157,7 +157,7 @@ const QUERY_INDEX_DATA = graphql`
                     category
                     desc
                     image {
-                        fluid(maxWidth: 300) {
+                        fluid(maxWidth: 140) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -175,10 +175,11 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
             allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
 
     React.useEffect(() => {
-        loadIndexItems({edges, menu})
+        loadIndexItems({edges, menu});
+
         setTimeout(() => {
             setLoad(false)
-        }, 750);
+        }, 700);
     }, [edges, menu, loadIndexItems]);
 
     const indexProduct = isEmpty(product) ? edges : product;
@@ -196,13 +197,13 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
             </Grid>
-            </> : <Spinner/>}
-            {/*<Grid container>*/}
-            {/*    <Grid item xs={12}>*/}
-            {/*        <Typography className={classes.titleIndex} variant={"h2"}>Мы в Instagram</Typography>*/}
-            {/*    </Grid>*/}
-            {/*    <InstaSection/>*/}
-            {/*</Grid>*/}
+            <Grid container>
+                <Grid item xs={12}>
+                    <Typography className={classes.titleIndex}
+                                variant={"h2"}>Мы в Instagram</Typography>
+                </Grid>
+                <InstaSection/>
+            </Grid></> : <Spinner/>}
             </section>
     )};
 

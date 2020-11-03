@@ -45,34 +45,32 @@ export const useStylesCart = makeStyles(theme => ({
         fontWeight: 400,
         height: 30,
         overflowY: `auto`,
-        // textAlign: 'center',
-        padding: 11,
+        padding: 14,
         [theme.breakpoints.down('500')]: {
             minHeight: `20px`,
-            padding: 10,
+            padding: 14,
         },
         [theme.breakpoints.down('425')]: {
             margin: `auto 0`,
-            padding: 6,
+            padding: 14,
             height: `auto`,
         },
     },
     deckriptPizza: {
-        fontWeight: 400,
+        fontWeight: 500,
         height: 80,
         overflowY: `auto`,
-        // textAlign: 'center',
         padding: `10px 0 10px 20px`,
         [theme.breakpoints.down('500')]: {
             padding: `10px 0 10px 30px`,
+            height: `auto`,
         }
     },
     deckript: {
-        fontWeight: 400,
+        fontWeight: 500,
         height: 80,
         overflowY: `auto`,
-        // textAlign: 'center',
-        padding: 11,
+        padding: 14,
         [theme.breakpoints.down('500')]: {
             height: `60px`,
             padding: 10,
@@ -80,7 +78,7 @@ export const useStylesCart = makeStyles(theme => ({
         [theme.breakpoints.down('425')]: {
             height: `auto`,
             margin: `auto 0`,
-            padding: 6
+            padding: `6px 6px 6px 14px`
         },
     },
     buttonD: {
@@ -215,6 +213,13 @@ export const useStyleKorzina = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         marginTop: 10
+    },
+    wrappedContainer: {
+        display: `flex`,
+        flexDirection: `column`,
+        [theme.breakpoints.down('500')]: {
+            paddingBottom: 140
+        }
     },
     paper: {
         paddingTop: 80,

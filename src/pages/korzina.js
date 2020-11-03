@@ -15,7 +15,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import {useStyleKorzina} from '../components/common/style'
 import ButtonSize from "../components/common/ButtonSizePizza";
-import {addedCart, removeCart, allRemoveCart, addPribor, saleRoll, salePizza, deletePizza, deleteRoll} from "../reducers/shopping-cart";
+import {addedCart, removeCart,
+    allRemoveCart, addPribor,
+    saleRoll, salePizza,
+    deletePizza, deleteRoll} from "../reducers/shopping-cart";
 import {getProduct} from "../reducers/app";
 import SplitButton from "../components/SplitButton";
 import {Container} from "@material-ui/core";
@@ -25,6 +28,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EmptyBasket from "../components/EmptyBasket";
+import Hidden from "@material-ui/core/Hidden";
 
 const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
     allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
@@ -33,6 +37,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     total = 0, palochkiTotal,
     onIncrease, onDecrise, onDelete, addedPriborCount,
     addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
+
     const [load, setLoad] = React.useState(true);
     const [value, setValue] = React.useState([]);
 
@@ -179,7 +184,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
       ])(value)
     });
   };
-    const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items))
+    const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items));
 
     return (
     <>
@@ -198,10 +203,11 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
           </Typography>
           </Container>
             { load === false ? <div>
-           { R.isEmpty(items) ? <EmptyBasket/> : <div className={classes.paperDiv}>
+            { R.isEmpty(items) ? <EmptyBasket/> : <div>
             <Grid justify={"center"} container spacing={2}>
-           <div style={{display: `flex`, flexDirection: `column`}}>
-       { items.map((item, idx) => {
+
+                <div className={classes.wrappedContainer}>
+                    { items.map((item, idx) => {
         const {id, name, count, total, image, priceIn33cm, price, priceDef,
             textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
            return (
@@ -211,18 +217,19 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                            <div style={{margin: `auto 0`, zIndex: 10}}>
                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
                            </div>
-                           <div style={{marginLeft: 30}}>
+                           <div style={{marginLeft: 30, width: `100%`}}>
+                               <div style={{backgroundColor: `lightgrey`, padding: `8px 0 8px 14px`, width: `100%`}}>
                                <Typography gutterBottom style={{fontSize: 18}} variant="h6">
                                    {name}
                                </Typography>
                                <div style={{display: `flex`}}>
-                                   <Typography variant="subtitle2" color="textSecondary" >
+                                   <Typography style={{paddingBottom: 7, fontSize: 16}} variant="subtitle2">
                                        <b>{priceDef === 0 ? "1шт" : `${count}шт`}</b>
                                    </Typography>
                                    <Typography style={{marginLeft: 50, paddingBottom: 7, fontSize: 16}}
                                                variant="subtitle2"><b>{price === 79 ? null : `${total}₽`} </b></Typography>
                                </div>
-
+                               </div>
                                {/*button added count product*/}
                                <div style={{display: `flex`, marginBottom: 20}}>
                                    {price !== 79 && priceDef !== 0 ?
@@ -291,10 +298,10 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                                </>
                                }
                                {wok &&
-                                <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
+                                    <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
                                }
                                {edit !== null &&
-                               <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
+                                    <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
                                }
 
                            </div>
@@ -303,27 +310,55 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                    </Grid>
                </Paper>
                 )})}
-               {saleRollFunc()}
-               {pizzaDarom()}
-           </div>
-           <Grid style={{margin: `20px auto 0 auto`, padding: 0}} item xs={12} sm={5}>
-               <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`}}>
-                   { addPanelPribors  &&
-                   <div className="container_pribor mb-2" >
-                       <div className="d-flex flex-column">
-                           <Typography variant={"subtitle2"}>Количество <br></br> приборов(палочки)</Typography>
-                           <div style={{display: `flex`}}>
-                               <IconButton color="primary" aria-label="plus" component="span"
-                                           onClick={()=> addedPriborCount(1)}>
-                                <AddCircleOutlineIcon aria-label="plus" />
-                               </IconButton>
-                               <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
-                               <IconButton color="primary" aria-label="remove" component="span"
-                                           onClick={()=> addedPriborCount(-1)}>
-                                   <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
-                               </IconButton>
-                           </div>
-                       </div>
+                    {saleRollFunc()}
+                    {pizzaDarom()}
+                    <Hidden smUp>
+                        { addPanelPribors  &&
+                        <Paper style={{marginTop: 20, marginBottom: 30, padding: 10, maxWidth: 400}}>
+                            <div className="d-flex flex-column">
+                                <Typography variant={"subtitle2"}>Количество палочек</Typography>
+                                <div style={{display: `flex`}}>
+                                    <IconButton color="primary" aria-label="plus" component="span"
+                                                onClick={()=> addedPriborCount(1)}>
+                                     <AddCircleOutlineIcon aria-label="plus" />
+                                    </IconButton>
+                                    <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
+                                    <IconButton color="primary" aria-label="remove" component="span"
+                                                onClick={()=> addedPriborCount(-1)}>
+                                        <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
+                                    </IconButton>
+                                </div>
+                        </div>
+                        </Paper>
+                        }
+                    </Hidden>
+                </div>
+
+                <Hidden smUp>
+                    <Grid style={{margin: `20px auto 0 auto`,
+                    position: `fixed`,
+                    padding: 0,
+                    bottom: 0,
+                    width: `100%`,
+                    zIndex: 1200
+                }} item xs={12} sm={5}>
+                        <Paper elevation={3} style={{padding: 20}}>
+                    { addPanelPribors  &&
+                    <div className="container_pribor mb-1" >
+                       {/*<div className="d-flex flex-column">*/}
+                       {/*    <Typography variant={"subtitle2"}>Количество палочек</Typography>*/}
+                       {/*    <div style={{display: `flex`}}>*/}
+                       {/*        <IconButton color="primary" aria-label="plus" component="span"*/}
+                       {/*                    onClick={()=> addedPriborCount(1)}>*/}
+                       {/*         <AddCircleOutlineIcon aria-label="plus" />*/}
+                       {/*        </IconButton>*/}
+                       {/*        <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>*/}
+                       {/*        <IconButton color="primary" aria-label="remove" component="span"*/}
+                       {/*                    onClick={()=> addedPriborCount(-1)}>*/}
+                       {/*            <RemoveCircleOutlineOutlinedIcon aria-label="remove" />*/}
+                       {/*        </IconButton>*/}
+                       {/*    </div>*/}
+                       {/*</div>*/}
                    </div>
                    }
                    <Typography variant="h6" className={classes.typography}>Итого </Typography>
@@ -337,7 +372,43 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                        Продолжить
                    </Button>
                </Paper>
-           </Grid>
+                    </Grid>
+                </Hidden>
+
+                <Hidden xsDown>
+                    <Grid style={{margin: `20px auto 0 auto`, padding: 0}} item xs={12} sm={5}>
+                    <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`, width: `100%`}}>
+                        { addPanelPribors  &&
+                        <div className="container_pribor mb-2" >
+                            <div className="d-flex flex-column">
+                                <Typography variant={"subtitle2"}>Количество <br></br> приборов(палочки)</Typography>
+                                <div style={{display: `flex`}}>
+                                    <IconButton color="primary" aria-label="plus" component="span"
+                                                onClick={()=> addedPriborCount(1)}>
+                                        <AddCircleOutlineIcon aria-label="plus" />
+                                    </IconButton>
+                                    <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
+                                    <IconButton color="primary" aria-label="remove" component="span"
+                                                onClick={()=> addedPriborCount(-1)}>
+                                        <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
+                                    </IconButton>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        <Typography variant="h6" className={classes.typography}>Итого </Typography>
+                        <Typography variant="body1" className={classes.typography}>Сумма заказа <b>{total} ₽</b></Typography>
+                        <Button
+                            component={Link}
+                            to="/korzina/order"
+                            color={"secondary"}
+                            size={'large'}
+                            variant="contained" >
+                            Продолжить
+                        </Button>
+                    </Paper>
+                </Grid>
+                </Hidden>
 
        </Grid>
             </div>
