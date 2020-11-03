@@ -18,17 +18,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-      {
-          resolve: 'gatsby-source-instagram',
-          options: {
-              username: process.env.GATSBY_USERNAME_INSTAGRAM,
-              access_token: process.env.GATSBY_ACCESS_TOKEN_INSTAGRAM,
-              instagram_id: process.env.GATSBY_INSTAGRAM_ID,
-              paginate: 10,
-              maxPosts: 15,
-              hashtags: true
-          },
-      },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
