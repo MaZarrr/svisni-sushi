@@ -2,7 +2,7 @@ import {graphql, useStaticQuery} from 'gatsby'
 
 const instaQuery = graphql`
     query {
-        allInstaNode(limit: 4, sort: {order: DESC, fields: timestamp}) {
+        allInstaNode(limit: 4) {
             nodes {
                 id
                 caption

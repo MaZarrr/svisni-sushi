@@ -168,12 +168,17 @@ const QUERY_INDEX_DATA = graphql`
 `;
 
 const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
+    const [load, setLoad] = React.useState(true);
+    const classes = useStyleIndexPage();
 
     const { allContentfulContentIndex: {edges},
             allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
-    const classes = useStyleIndexPage();
+
     React.useEffect(() => {
         loadIndexItems({edges, menu})
+        setTimeout(() => {
+            setLoad(false)
+        }, 1100);
     }, [edges, menu, loadIndexItems]);
 
     const indexProduct = isEmpty(product) ? edges : product;
@@ -184,7 +189,7 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
             <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
                  description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                     Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-
+            {load === false ? <>
             <CarouselSvisni />
             <Grid item xs={12} className={classes.root}>
                 <CardIndex addedCart={addedCart}
@@ -195,9 +200,10 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
                 <Grid item xs={12}>
                     <Typography className={classes.titleIndex} variant={"h2"}>Мы в Instagram</Typography>
                 </Grid>
-                <InstaSection instaFhotos={nodes}/>
+                <InstaSection/>
             </Grid>
-        </section>
+            </> : <Spinner/>}
+            </section>
     )};
 
 const mapStateToProps = (state) => ({

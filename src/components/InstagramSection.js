@@ -81,7 +81,7 @@ const InstaSection = () => {
                             <CardMedia
                                 className={classes.media}
                                 title="Paella dish">
-                                <Image fluid={photo.localFile.childImageSharp.fluid} alt={photo.caption} style={{maxWidth: `100%`}}/></CardMedia>
+                                <Image fluid={photo.fluid} alt={photo.caption} style={{maxWidth: `100%`}}/></CardMedia>
 
                             <CardContent>
                                 <Typography variant="body1"
