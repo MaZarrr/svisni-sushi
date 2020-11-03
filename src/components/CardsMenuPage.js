@@ -19,7 +19,7 @@ import { take } from "ramda";
 
 const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
     const classes = useStylesCart();
-    //
+
     return (
         <>
 
@@ -97,7 +97,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
 
                             <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
                                 { sale && <Typography variant={"subtitle1"} style={{
-                                    paddingLeft: 7,
+                                    paddingLeft: 14,
                                     paddingTop: 12,
                                     color: `tomato`,
                                     fontWeight: `bold`}}>

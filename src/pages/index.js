@@ -3,15 +3,13 @@ import SEO from "../components/seo"
 import "../components/sass/index.css"
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
-import {addedCart} from "../reducers/shopping-cart";
-import {connect} from "react-redux";
+import { addedCart } from "../reducers/shopping-cart";
+import { connect } from "react-redux";
 import { graphql, useStaticQuery } from "gatsby"
-import {isEmpty} from "ramda"
+import { isEmpty } from "ramda"
 import loadable from "@loadable/component";
-import Insta from "../components/insta";
 import {loadIndexItems} from "../reducers/app";
 import Spinner from "../components/spinner/spinner"
-import Typography from "@material-ui/core/Typography";
 
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
 const CardIndex = loadable(() => import('../components/Card'), {
@@ -157,7 +155,7 @@ const QUERY_INDEX_DATA = graphql`
                     category
                     desc
                     image {
-                        fluid(maxWidth: 300) {
+                        fluid(maxWidth: 140) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -165,16 +163,21 @@ const QUERY_INDEX_DATA = graphql`
             }
         }
     }
-
 `;
 
 const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
+    const [load, setLoad] = React.useState(true);
+    const classes = useStyleIndexPage();
 
     const { allContentfulContentIndex: {edges},
             allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
-    const classes = useStyleIndexPage();
+
     React.useEffect(() => {
-        loadIndexItems({edges, menu})
+        loadIndexItems({edges, menu});
+
+        setTimeout(() => {
+            setLoad(false)
+        }, 700);
     }, [edges, menu, loadIndexItems]);
 
     const indexProduct = isEmpty(product) ? edges : product;
@@ -185,20 +188,14 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
             <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
                  description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                     Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-
+            {load === false ? <>
             <CarouselSvisni />
             <Grid item xs={12} className={classes.root}>
                 <CardIndex addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
-            </Grid>
-            <Grid container>
-                <Grid item xs={12}>
-                    <Typography className={classes.titleIndex} variant={"h2"}>Мы в Instagram</Typography>
-                </Grid>
-                <Insta/>
-            </Grid>
-        </section>
+            </Grid> </> : <Spinner/>}
+            </section>
     )};
 
 const mapStateToProps = (state) => ({

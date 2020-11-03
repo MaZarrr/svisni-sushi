@@ -1,9 +1,5 @@
 require('dotenv').config();
 
-// if(process.env.NODE_ENV !== 'production') {
-//   dotenv.config()
-// }
-
 module.exports = {
   siteMetadata: {
     siteUrl: `https://svisni-sushi.ru`,
@@ -22,17 +18,17 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: 'gatsby-source-instagram',
-      options: {
-        username: process.env.GATSBY_USERNAME_INSTAGRAM,
-        access_token: process.env.GATSBY_ACCESS_TOKEN_INSTAGRAM,
-        instagram_id: process.env.GATSBY_INSTAGRAM_ID,
-        paginate: 10,
-        maxPosts: 15,
-        hashtags: true
+      {
+          resolve: 'gatsby-source-instagram',
+          options: {
+              username: process.env.GATSBY_USERNAME_INSTAGRAM,
+              access_token: process.env.GATSBY_ACCESS_TOKEN_INSTAGRAM,
+              instagram_id: process.env.GATSBY_INSTAGRAM_ID,
+              paginate: 10,
+              maxPosts: 15,
+              hashtags: true
+          },
       },
-    },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
@@ -99,7 +95,7 @@ module.exports = {
       }
     },
     {
-    resolve: `gatsby-plugin-yandex-metrika`,
+      resolve: `gatsby-plugin-yandex-metrika`,
       options: {
         trackingId: process.env.GATSBY_TRACKINGID_YAMETRIKA,
         clickmap: true,
@@ -108,15 +104,14 @@ module.exports = {
         webvisor: true,
         trackHash: true,
         afterBody: true,
-        defer: false,
-        },
+        defer: false
+      }
     },
     {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        // downloadLocal: true
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
     {
@@ -135,13 +130,5 @@ module.exports = {
       },
     }
   ]
-}
+};
 
-// {
-//   resolve: `gatsby-plugin-nprogress`,
-//       options: {
-//   color: `tomato`,
-//       minimum: 0.2,
-//       showSpinner: false,
-// },
-// },

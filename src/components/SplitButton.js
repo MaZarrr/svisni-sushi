@@ -45,8 +45,10 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
     const handleChange = (event) =>  {
         addedIngrideents({id, sostav, name: event.target.name, ingrideents, check: event.target.checked, pizzaIng, path})
     };
+
     const handleToggle = () => setOpen((prevOpen) => !prevOpen);
     const addedIngrideent = ({sostav, pizzaIng, id}) => handleToggle();
+
     return (
         <Grid container direction="column" alignItems={dir}>
             <Grid item xs={12} style={{zIndex: 100}}>

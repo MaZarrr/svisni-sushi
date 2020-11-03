@@ -102,7 +102,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             etag: ev.target.etag.value,
             kodDveri: ev.target.kodDveri.value
         };
-
         const deliveryTimeOrder = state !== "deliveryTime" ? "Приготовить сразу" : {
             dateDelivery: ev.target.date.value,
             timeDelivery: ev.target.time.value
@@ -133,12 +132,14 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             chopsticks: palochkiTotal,
             comments: ev.target.comments.value || "Без комментария",
         };
+
         axios({
             method: 'POST',
             data: infoSuccess,
             url: process.env.GATSBY_NODE_SERVE
         });
 
+        typeof window !== undefined && localStorage.removeItem('basketProduct');
         navigate('/order-processed',{state: infoSuccess, replace: true })
     };
 

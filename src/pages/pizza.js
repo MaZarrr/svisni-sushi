@@ -42,7 +42,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
         dispatch(pizzaCart({productPizza: pizzaProduct}))
         setTimeout(() => {
             setLoad(false)
-        }, 650);
+        }, 670);
         dispatch(defFilters())
     }, [dispatch, pizzaProduct]);
 
