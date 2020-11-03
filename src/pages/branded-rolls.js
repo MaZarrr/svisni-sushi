@@ -28,7 +28,7 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
         dispatch(productLoaded(productsBrandedRolls)) // action push to reduxStore
         setTimeout(() => {
             setLoad(false)
-        }, 650);
+        }, 670);
         dispatch(defFilters())
     }, [productsBrandedRolls, dispatch]);
 
