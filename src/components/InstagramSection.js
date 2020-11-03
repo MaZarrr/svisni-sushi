@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const InstaSection = ({ instaFhotos }) => {
-    // const instaFhotos = useInstagram();
+const InstaSection = () => {
+    const instaFhotos = useInstagram();
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState({id: false});
 

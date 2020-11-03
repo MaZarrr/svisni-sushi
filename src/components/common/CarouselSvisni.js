@@ -62,31 +62,31 @@ const styles = {
     }
 };
 
-function DemoWidth({ carousel }) {
+function DemoWidth() {
 
     const classes = useStyleCarousel();
-    // const data = useStaticQuery(graphql `
-    //     {
-    //         allContentfulCarouselSiteImage {
-    //             edges {
-    //                 node {
-    //                     id
-    //                     slug
-    //                     imgCarouselPc {
-    //                         fluid(maxWidth: 1680, quality: 90) {
-    //                             ...GatsbyContentfulFluid
-    //                         }
-    //                     }
-    //                     imgCarouselPhone {
-    //                         fluid(maxWidth: 400, quality: 90) {
-    //                             ...GatsbyContentfulFluid
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // `)
+    const data = useStaticQuery(graphql `
+        {
+            allContentfulCarouselSiteImage {
+                edges {
+                    node {
+                        id
+                        slug
+                        imgCarouselPc {
+                            fluid(maxWidth: 1680, quality: 90) {
+                                ...GatsbyContentfulFluid
+                            }
+                        }
+                        imgCarouselPhone {
+                            fluid(maxWidth: 400, quality: 90) {
+                                ...GatsbyContentfulFluid
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `)
 
     function slideRenderer(params) {
         const { index, key } = params;
@@ -95,10 +95,10 @@ function DemoWidth({ carousel }) {
             case 0:
                 return (
                     <div key={key}>
-                        <Link to={carousel[0].node.slug}>
-                            <Img fluid={carousel[0].node.imgCarouselPc.fluid}
+                        <Link to={data.allContentfulCarouselSiteImage.edges[0].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[0].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={carousel[0].node.name} />
+                                 alt={data.allContentfulCarouselSiteImage.edges[0].node.name} />
                         </Link>
                     </div>
                 );
@@ -106,10 +106,10 @@ function DemoWidth({ carousel }) {
             case 1:
                 return (
                     <div key={key}>
-                        <Link to={carousel[1].node.slug}>
-                            <Img fluid={carousel[1].node.imgCarouselPc.fluid}
+                        <Link to={data.allContentfulCarouselSiteImage.edges[1].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[1].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={carousel[1].node.name} />
+                                 alt={data.allContentfulCarouselSiteImage.edges[1].node.name} />
                         </Link>
                     </div>
                 );
@@ -117,10 +117,10 @@ function DemoWidth({ carousel }) {
             case 2:
                 return (
                     <div key={key}>
-                        <Link to={carousel[2].node.slug}>
-                            <Img fluid={carousel[2].node.imgCarouselPc.fluid}
+                        <Link to={data.allContentfulCarouselSiteImage.edges[2].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[2].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={carousel[2].node.name} />
+                                 alt={data.allContentfulCarouselSiteImage.edges[2].node.name} />
                         </Link>
                     </div>
                 );
@@ -128,10 +128,10 @@ function DemoWidth({ carousel }) {
             case 3:
                 return (
                     <div key={key}>
-                        <Link to={carousel[3].node.slug}>
-                            <Img fluid={carousel[3].node.imgCarouselPc.fluid}
+                        <Link to={data.allContentfulCarouselSiteImage.edges[3].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[3].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={carousel[3].node.name} />
+                                 alt={data.allContentfulCarouselSiteImage.edges[3].node.name} />
                         </Link>
                     </div>
                 );
