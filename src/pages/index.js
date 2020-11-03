@@ -10,8 +10,6 @@ import { isEmpty } from "ramda"
 import loadable from "@loadable/component";
 import {loadIndexItems} from "../reducers/app";
 import Spinner from "../components/spinner/spinner"
-import Typography from "@material-ui/core/Typography";
-import InstaSection from '../components/InstagramSection'
 
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
 const CardIndex = loadable(() => import('../components/Card'), {
@@ -196,14 +194,7 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
                 <CardIndex addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
-            </Grid>
-            <Grid container>
-                <Grid item xs={12}>
-                    <Typography className={classes.titleIndex}
-                                variant={"h2"}>Мы в Instagram</Typography>
-                </Grid>
-                <InstaSection/>
-            </Grid></> : <Spinner/>}
+            </Grid> </> : <Spinner/>}
             </section>
     )};
 
