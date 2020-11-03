@@ -178,7 +178,7 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
         loadIndexItems({edges, menu})
         setTimeout(() => {
             setLoad(false)
-        }, 800);
+        }, 750);
     }, [edges, menu, loadIndexItems]);
 
     const indexProduct = isEmpty(product) ? edges : product;
