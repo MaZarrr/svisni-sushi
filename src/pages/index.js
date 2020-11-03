@@ -178,7 +178,7 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
         loadIndexItems({edges, menu})
         setTimeout(() => {
             setLoad(false)
-        }, 1100);
+        }, 800);
     }, [edges, menu, loadIndexItems]);
 
     const indexProduct = isEmpty(product) ? edges : product;
@@ -196,13 +196,13 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
             </Grid>
-            <Grid container>
-                <Grid item xs={12}>
-                    <Typography className={classes.titleIndex} variant={"h2"}>Мы в Instagram</Typography>
-                </Grid>
-                <InstaSection/>
-            </Grid>
             </> : <Spinner/>}
+            {/*<Grid container>*/}
+            {/*    <Grid item xs={12}>*/}
+            {/*        <Typography className={classes.titleIndex} variant={"h2"}>Мы в Instagram</Typography>*/}
+            {/*    </Grid>*/}
+            {/*    <InstaSection/>*/}
+            {/*</Grid>*/}
             </section>
     )};
 
