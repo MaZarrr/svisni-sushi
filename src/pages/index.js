@@ -68,30 +68,6 @@ const QUERY_INDEX_DATA = graphql`
                                     }
                                 }
                             }
-                            ... on ContentfulProductSushi {
-                                id
-                                name
-                                price
-                                count
-                                description
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                            ... on ContentfulProductGunkan {
-                                id
-                                name
-                                price
-                                count
-                                description
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
                             ... on ContentfulProductPizza {
                                 id
                                 name
@@ -119,18 +95,6 @@ const QUERY_INDEX_DATA = graphql`
                                 }
                             }
                             ... on ContentfulProductHotRolly {
-                                id
-                                name
-                                count
-                                description
-                                price
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                            ... on ContentfulProductZakuski {
                                 id
                                 name
                                 count
