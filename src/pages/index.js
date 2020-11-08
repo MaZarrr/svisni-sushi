@@ -142,7 +142,8 @@ const QUERY_INDEX_DATA = graphql`
     }
 `;
 
-const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
+// const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
+    const IndexPage = ({ addedCart }) => {
     // const [load, setLoad] = React.useState(true);
     const classes = useStyleIndexPage();
 
