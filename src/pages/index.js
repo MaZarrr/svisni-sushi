@@ -5,8 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import { addedCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
-import { graphql, useStaticQuery } from "gatsby"
-import { isEmpty } from "ramda"
+import { graphql, StaticQuery } from "gatsby"
+// import { isEmpty } from "ramda"
 import loadable from "@loadable/component";
 import {loadIndexItems} from "../reducers/app";
 import Spinner from "../components/spinner/spinner"
@@ -146,21 +146,28 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
     // const [load, setLoad] = React.useState(true);
     const classes = useStyleIndexPage();
 
-    const { allContentfulContentIndex: {edges},
-            allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
+    // const { allContentfulContentIndex: {edges},
+    //         allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
+
+    // React.useEffect(() => {
+    //     moment.locale('ru');
+    //     loadIndexItems({edges, menu});
+    //     // setTimeout(() => {
+    //     //     setLoad(false)
+    //     // }, 700);
+    // }, [edges, menu, loadIndexItems]);
 
     React.useEffect(() => {
         moment.locale('ru');
-        loadIndexItems({edges, menu});
-        // setTimeout(() => {
-        //     setLoad(false)
-        // }, 700);
-    }, [edges, menu, loadIndexItems]);
+    }, []);
 
-    const indexProduct = isEmpty(product) ? edges : product;
-    const indexMenu = isEmpty(menus) ? menu : menus;
+    // const indexProduct = isEmpty(product) ? edges : product;
+    // const indexMenu = isEmpty(menus) ? menu : menus;
 
     return (
+        <StaticQuery query={QUERY_INDEX_DATA}
+                     render={( { allContentfulContentIndex: {edges : indexProduct},
+                         allContentfulHomePageImageMenu: { edges: indexMenu }}) => (
         <section>
             <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
                  description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
@@ -175,6 +182,9 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
             </Grid>
             {/*</> : <Spinner/>}*/}
             </section>
+         )}
+        />
+
     )};
 
 const mapStateToProps = (state) => ({

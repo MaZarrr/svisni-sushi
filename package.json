@@ -21,7 +21,7 @@
     "gatsby-plugin-guess-js": "^1.1.30",
     "gatsby-plugin-manifest": "^2.2.30",
     "gatsby-plugin-material-ui": "^2.1.10",
-    "gatsby-plugin-offline": "3.0.35",
+    "gatsby-plugin-offline": "3.3.2",
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-react-redux": "^1.1.0-0",
     "gatsby-plugin-remote-images": "^2.1.0",
@@ -84,7 +84,7 @@
   "engines": {
     "node": "14.7.0",
     "npm": "6.4.1",
-    "yarn": "1.22.10"
+    "yarn": "1.13.0"
   },
   "resolutions": {
     "react-transition-group": "4.0.0"
