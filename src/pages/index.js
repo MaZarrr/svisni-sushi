@@ -13,6 +13,7 @@ import { graphql, StaticQuery } from "gatsby"
 import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
 import moment from "moment";
+import InstaSection from "../components/InstagramSection";
 
 // const CarouselSvisni = loadable(() => import());
 // const CardIndex = loadable(() => import(), {
@@ -181,6 +182,9 @@ const QUERY_INDEX_DATA = graphql`
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
 
+            </Grid>
+            <Grid container>
+                <InstaSection/>
             </Grid>
             </section>
          )}
