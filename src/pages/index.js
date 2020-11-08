@@ -175,7 +175,6 @@ const QUERY_INDEX_DATA = graphql`
             <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
                  description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                     Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-            {/*{load === false ? <>*/}
             <Carousel/>
             <Grid item xs={12} className={classes.root}>
                 <IndexCards addedCart={addedCart}
@@ -183,7 +182,6 @@ const QUERY_INDEX_DATA = graphql`
                            indexMenu={indexMenu} />
 
             </Grid>
-            {/*</> : <Spinner/>}*/}
             </section>
          )}
         />
