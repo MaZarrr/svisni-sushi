@@ -7,14 +7,16 @@ import { addedCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import { graphql, StaticQuery } from "gatsby"
 // import { isEmpty } from "ramda"
-import loadable from "@loadable/component";
-import {loadIndexItems} from "../reducers/app";
-import Spinner from "../components/spinner/spinner"
+// import loadable from "@loadable/component";
+// import {loadIndexItems} from "../reducers/app";
+// import Spinner from "../components/spinner/spinner"
+import Carousel from '../components/common/CarouselSvisni'
+import IndexCards from '../components/Card'
 import moment from "moment";
 
-const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
-const CardIndex = loadable(() => import('../components/Card'), {
-    fallback: <Spinner/>});
+// const CarouselSvisni = loadable(() => import());
+// const CardIndex = loadable(() => import(), {
+//     fallback: <Spinner/>});
 
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -174,9 +176,9 @@ const QUERY_INDEX_DATA = graphql`
                  description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                     Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
             {/*{load === false ? <>*/}
-            <CarouselSvisni />
+            <Carousel/>
             <Grid item xs={12} className={classes.root}>
-                <CardIndex addedCart={addedCart}
+                <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
 
@@ -194,8 +196,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    addedCart,
-    loadIndexItems,
+    addedCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
