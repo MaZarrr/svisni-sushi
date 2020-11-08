@@ -7,7 +7,7 @@ import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
 import {useStyleSearchInput} from "./common/style";
 import {getSearchText} from "../reducers/filters";
 
-function CustomizedInputSearch({serchProduct, location}) {
+const CustomizedInputSearch = React.memo(({serchProduct, location}) => {
   const classes = useStyleSearchInput();
   const [value, setValue] = React.useState('')
 
@@ -34,7 +34,7 @@ function CustomizedInputSearch({serchProduct, location}) {
      <Divider className={classes.divider} orientation="vertical" />
     </Paper>
   );
-}
+});
 
  const mapDispatchToProps = (dispatch) => ({
     serchProduct: (text) => dispatch(getSearchText(text))

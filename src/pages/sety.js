@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from "react"
+import React, {useCallback, useEffect, useMemo} from "react"
 import SEO from "../components/seo"
 import { graphql} from "gatsby";
 import { connect } from 'react-redux';
@@ -12,32 +12,38 @@ import { productLoaded } from "../reducers/app";
 import {defFilters, setCategory} from "../reducers/filters";
 import Categories from "../components/Categories";
 import {productList} from "../reducers/selectors";
+// import useTimer from "../utils/useTimer";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner/>
 });
 
-const categoryNames = ['Малые', 'Средние', 'Большие'];
+const categoryNames = ['Малые', 'Средние', 'Большие', 'Ланч-сеты'];
 
 const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
                   product, searchText, priceFilter, checkboxFilter, location, dispatch, category}) => {
 
     const [load, setLoad] = React.useState(true);
+    // const [{ hours, seconds, minutes }, doStart] = useTimer();
+    const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
+
     const { title } = useStyleH1();
+
+    const onSelectCategory = useCallback((index) => {
+        dispatch(setCategory(index));
+    },[dispatch]);
 
     useEffect(() => {
         dispatch(productLoaded(setyProduct));
+        // doStart({endTime: 15, startTime: 10});
         setTimeout(() => {
             setLoad(false)
         }, 670);
         dispatch(defFilters());
     }, [setyProduct, dispatch]);
 
-    const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter);
-    const onSelectCategory = useCallback((index) => {
-        dispatch(setCategory(index));
-    },[dispatch]);
+    // console.log(`${hours}:${minutes}:${seconds}`);
 
     return (
         <>
@@ -49,6 +55,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
                 <div>
                     <CustomizedInputSearch location={location.pathname}/>
                     <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
+                    {/*<div style={{padding: `10px 0 10px 35px`}}>{hours}:{minutes}:{seconds}</div>*/}
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                         <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
                                        image={image} product={product}/>

@@ -91,7 +91,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const handleSubmit = (ev) => {
         ev.preventDefault();
 
-        const totalPrice = delivery === "Самовывоз" ? total : total + stateDeliveryPrice.priceDel;
+        const totalPrice = delivery === "Самовывоз" ? total : total <= stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total;
         const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
             formDelivery: ev.target.delivery.value,
             adress: stateDeliveryPrice.name,

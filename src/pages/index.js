@@ -10,6 +10,7 @@ import { isEmpty } from "ramda"
 import loadable from "@loadable/component";
 import {loadIndexItems} from "../reducers/app";
 import Spinner from "../components/spinner/spinner"
+import moment from "moment";
 
 const CarouselSvisni = loadable(() => import('../components/common/CarouselSvisni'));
 const CardIndex = loadable(() => import('../components/Card'), {
@@ -59,6 +60,18 @@ const QUERY_INDEX_DATA = graphql`
                                 name
                                 price
                                 slug
+                                count
+                                description
+                                image {
+                                    fluid(maxWidth: 300) {
+                                        ...GatsbyContentfulFluid
+                                    }
+                                }
+                            }
+                            ... on ContentfulProductSushi {
+                                id
+                                name
+                                price
                                 count
                                 description
                                 image {
@@ -166,18 +179,18 @@ const QUERY_INDEX_DATA = graphql`
 `;
 
 const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
-    const [load, setLoad] = React.useState(true);
+    // const [load, setLoad] = React.useState(true);
     const classes = useStyleIndexPage();
 
     const { allContentfulContentIndex: {edges},
             allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
 
     React.useEffect(() => {
+        moment.locale('ru');
         loadIndexItems({edges, menu});
-
-        setTimeout(() => {
-            setLoad(false)
-        }, 700);
+        // setTimeout(() => {
+        //     setLoad(false)
+        // }, 700);
     }, [edges, menu, loadIndexItems]);
 
     const indexProduct = isEmpty(product) ? edges : product;
@@ -188,13 +201,15 @@ const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu:
             <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
                  description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                     Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-            {load === false ? <>
+            {/*{load === false ? <>*/}
             <CarouselSvisni />
             <Grid item xs={12} className={classes.root}>
                 <CardIndex addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
-            </Grid> </> : <Spinner/>}
+
+            </Grid>
+            {/*</> : <Spinner/>}*/}
             </section>
     )};
 
