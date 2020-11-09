@@ -342,31 +342,13 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                     width: `100%`,
                     zIndex: 1200
                 }} item xs={12} sm={5}>
-                        <Paper elevation={3} style={{padding: 20}}>
-                    { addPanelPribors  &&
-                    <div className="container_pribor mb-1" >
-                       {/*<div className="d-flex flex-column">*/}
-                       {/*    <Typography variant={"subtitle2"}>Количество палочек</Typography>*/}
-                       {/*    <div style={{display: `flex`}}>*/}
-                       {/*        <IconButton color="primary" aria-label="plus" component="span"*/}
-                       {/*                    onClick={()=> addedPriborCount(1)}>*/}
-                       {/*         <AddCircleOutlineIcon aria-label="plus" />*/}
-                       {/*        </IconButton>*/}
-                       {/*        <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>*/}
-                       {/*        <IconButton color="primary" aria-label="remove" component="span"*/}
-                       {/*                    onClick={()=> addedPriborCount(-1)}>*/}
-                       {/*            <RemoveCircleOutlineOutlinedIcon aria-label="remove" />*/}
-                       {/*        </IconButton>*/}
-                       {/*    </div>*/}
-                       {/*</div>*/}
-                   </div>
-                   }
-                   <Typography variant="h6" className={classes.typography}>Итого </Typography>
-                   <Typography variant="body1" className={classes.typography}>Сумма заказа <b>{total} ₽</b></Typography>
+                    <Paper elevation={3} style={{padding: 20}}>
+                   <Typography variant="h6" style={{fontSize: 22}}>Итого </Typography>
+                   <Typography variant="body1" style={{fontSize: 22}}>Сумма заказа <b>{total} ₽</b></Typography>
                    <Button
                        component={Link}
                        to="/korzina/order"
-                       color={"secondary"}
+                       color={"primary"}
                        size={'large'}
                        variant="contained" >
                        Продолжить
@@ -396,12 +378,13 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                             </div>
                         </div>
                         }
-                        <Typography variant="h6" className={classes.typography}>Итого </Typography>
-                        <Typography variant="body1" className={classes.typography}>Сумма заказа <b>{total} ₽</b></Typography>
+
+                        <Typography variant="h6" style={{fontSize: 24}}>Итого </Typography>
+                        <Typography variant="body1" style={{fontSize: 24}}>Сумма заказа <b>{total} ₽</b></Typography>
                         <Button
                             component={Link}
                             to="/korzina/order"
-                            color={"secondary"}
+                            color={"primary"}
                             size={'large'}
                             variant="contained" >
                             Продолжить

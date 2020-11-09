@@ -80,7 +80,7 @@ export default ({location: {state}}) => {
                         <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>Время доставки
                             заказа(вместе с готовкой)<strong> 1ч - 1ч 30 мин</strong></Typography>
                         <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>В часы пик, и праздничные дни время доставки может увеличиться<strong> на 30 минут</strong></Typography>
-                        <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body2"}>(оформляйте предзаказ)</Typography>
+                        <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body2"}>(оформляйте предзаказ заранее)</Typography>
                     </>}
                 </Grid>
                 <Divider/>

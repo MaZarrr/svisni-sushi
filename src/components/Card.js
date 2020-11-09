@@ -18,11 +18,12 @@ import {isNil, isEmpty} from "ramda";
 const useStylesCard = makeStyles(theme => ({
     titleIndex: {
         fontSize: '32px',
+        fontWeight: `bold`,
         width: `100%`,
         padding: `20px 10px`,
         textAlign: `center`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '22px',
+            fontSize: '26px',
             padding: `10px 30px 10px 35px`,
         },
     },
@@ -63,7 +64,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
             {/*Меню выбор*/}
             <Grid container style={{marginBottom: 40}}>
                 <Typography className={`mb-2 ${classesCard.titleIndex}`}
-                            variant={"h2"}>Заказывайте роллы, суши и пиццу с доставкой</Typography>
+                            variant={"h2"}>Заказывайте роллы, суши и пиццу</Typography>
                 {indexMenu.map(({node: homeMenu}) => (
                     <Grid item xs={6} sm={4}
                           style={{margin: `0 auto`,

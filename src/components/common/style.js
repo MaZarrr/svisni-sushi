@@ -42,7 +42,7 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     deckriptSmall: {
-        fontWeight: 400,
+        fontWeight: 500,
         height: 30,
         overflowY: `auto`,
         padding: 14,
@@ -179,6 +179,9 @@ export const useStyleOrder = makeStyles(theme => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         paddingTop: 80,
+        [theme.breakpoints.down('475')]: {
+            paddingTop: 40
+        },
     },
     infoGrid: {
         display: `flex`,
@@ -226,6 +229,7 @@ export const useStyleKorzina = makeStyles(theme => ({
         textAlign: 'center',
         [theme.breakpoints.down('425')]: {
             marginBottom: 10,
+            paddingTop: 40,
         },
         zIndex: 99,
     },
@@ -263,9 +267,6 @@ export const useStyleKorzina = makeStyles(theme => ({
         textAlign: "center",
         padding: theme.spacing(2),
         paddingLeft: theme.spacing(4),
-    },
-    typography: {
-        fontSize: 22
     },
     bottomHead: {
         [theme.breakpoints.down('sm')]: {

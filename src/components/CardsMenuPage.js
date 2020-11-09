@@ -94,7 +94,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                             }
 
                             <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
-
+                                {lanch &&
                                 <div style={{padding: 5, border: `1px solid lightgrey`, borderRadius: 10, marginTop: 8}}>
                                 {/* Выгода */}
                                     {lanch && (
@@ -117,7 +117,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                             textDecorationColor: `red`}}>{isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</span>
                                         }
                                 </Typography>}
-                                </div>
+                                </div>}
 
                                 <Typography itemProp="description"
                                             className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
@@ -221,7 +221,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                         <Grid item xs={6} style={{position: `relative`}}>
                                             <Typography
                                                 variant="overline"
-                                                style={{fontSize: 20, margin: `0 auto`, width: `85%`}}
+                                                style={{fontSize: 22, margin: `0 auto`, width: `85%`, fontWeight: `bold`}}
                                                 itemProp="price">
 
                                                 { lanch && <>
@@ -232,7 +232,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                                 {!lanch && `${price} ₽`}
                                             </Typography>
                                             {lanch && isSale &&
-                                            <div style={{position: `absolute`, bottom: 10, right: 14}}>
+                                            <div style={{position: `absolute`, bottom: 13, right: 4}}>
                                                 <Typography style={{textDecoration: `line-through`, color: `#000`,
                                                 textDecorationColor: `red`, fontSize: 18}} variant={"subtitle1"}>{defaultPrice}₽</Typography>
                                             </div>

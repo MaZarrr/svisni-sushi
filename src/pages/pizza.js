@@ -99,8 +99,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                             }
                                             <Typography itemProp="description"
                                                         className={classes.deckriptPizza}
-                                                        variant="body2"
-                                                        color="textSecondary">
+                                                        variant={"body2"}>
                                                 {description}
                                             </Typography>
                                             <Grid container justify={"center"}>
@@ -116,7 +115,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                                                 [classes.buttonT]: size[slug]})}>
                                                         <Typography variant={"body1"}>Средняя</Typography></button>
                                                     <Typography style={{fontSize: 13, textAlign: `center`}}
-                                                                variant={"body2"}>28см</Typography>
+                                                                variant={"subtitle2"}>28см</Typography>
                                                 </Grid>
                                                 <Grid item xs={5}>
                                                     <button onClick={() => switchSizePizza({

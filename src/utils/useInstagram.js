@@ -2,22 +2,23 @@ import {graphql, useStaticQuery} from 'gatsby'
 
 const instaQuery = graphql`
     query {
-            allInstaNode(limit: 4, sort: {order: DESC, fields: timestamp},
-            filter: {caption: {regex: "/\\\\#рекомендуемsvisniсуши/"}}) {
+        allInstaNode(limit: 4, sort: {order: DESC, fields: timestamp}) {
             nodes {
-                id
-                caption
-                comments
-                likes
-                timestamp
-                localFile{
-                    childImageSharp {
-                        fluid(maxWidth: 400, maxHeight: 400){
-                            ...GatsbyImageSharpFluid_withWebp
+                    type
+                    id
+                    caption
+                    username
+                    comments
+                    likes
+                    timestamp
+                    localFile{
+                        childImageSharp {
+                            fluid(maxWidth: 400, maxHeight: 400){
+                                ...GatsbyImageSharpFluid_withWebp
+                            }
                         }
                     }
                 }
-            }
         }
     }
 `

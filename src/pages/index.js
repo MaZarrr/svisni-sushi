@@ -33,18 +33,19 @@ import Typography from "@material-ui/core/Typography";
             fontSize: '36px',
             padding: `0 0 0 35px`,
             [theme.breakpoints.down('600')]: {
-                fontSize: '28px',
+                fontSize: '26px',
                 color: `#000`,
                 padding: `0 0 0 20px`,
             },
         },
     titleIndex: {
-        fontSize: '32px',
+        fontSize: '36px',
         width: `100%`,
+        fontWeight: `bold`,
         padding: `20px 10px`,
         textAlign: `center`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '22px',
+            fontSize: '28px',
             padding: `10px 30px 10px 35px`,
         },
     },

@@ -542,7 +542,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                          <span>
                                             <Button
                                                 type="submit"
-                                                color={"secondary"}
+                                                color={"primary"}
                                                 size={'large'}
                                                 disabled={buttonDisabled()}
                                                 variant="contained">

@@ -35,6 +35,7 @@ export default createReducer({
     [defFilters]: (state) => ({
         ...state,
         searchText: '',
+        category: null,
         priceFilter: "def",
         checkboxFilter: "def"
     }),
