@@ -9,7 +9,6 @@ import { graphql, StaticQuery } from "gatsby"
 import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
 import moment from "moment";
-import InstaSection from "../components/InstagramSection";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
@@ -185,10 +184,6 @@ const IndexPage = ({ addedCart }) => {
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
 
-                    </Grid>
-                    <Grid container style={{paddingBottom: 80}}>
-                        <Typography className={classes.titleIndex} variant={"h2"}>Наши новости</Typography>
-                        <InstaSection/>
                     </Grid>
                 </section>
          )}

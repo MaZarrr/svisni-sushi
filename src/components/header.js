@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useImageStaticHook from '../components/image';
 import "./header.css"
-import {useStyleHeader} from "./common/style";
+import { useStyleHeader } from "./common/style";
 import GatsbyImage from "gatsby-image";
 import Hidden from "@material-ui/core/Hidden";
 import loadable from "@loadable/component";
