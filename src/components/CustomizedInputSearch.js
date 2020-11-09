@@ -9,16 +9,17 @@ import {getSearchText} from "../reducers/filters";
 
 const CustomizedInputSearch = React.memo(({serchProduct, location}) => {
   const classes = useStyleSearchInput();
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = React.useState('');
 
     const handleSabmit = (e) => {
        e.preventDefault();
        serchProduct(value)
-      }
+      };
+
     const handleChange = (e) => {
-     setValue(e.target.value)
+     setValue(e.target.value);
      serchProduct(e.target.value)
-    }
+    };
 
   return (
     <Paper component="form" onSubmit={handleSabmit} className={classes.root}>

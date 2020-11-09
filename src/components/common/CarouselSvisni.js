@@ -2,13 +2,10 @@ import React from 'react';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { graphql, useStaticQuery, Link } from "gatsby"
 import Img from 'gatsby-image';
-import Paper from "@material-ui/core/Paper";
 import {makeStyles} from '@material-ui/core/styles';
-import Typography from "@material-ui/core/Typography";
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
-import {Hidden} from "@material-ui/core";
 
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
@@ -17,27 +14,11 @@ const useStyleCarousel = makeStyles(theme => ({
         maxWidth: `100vw`,
         flexGrow: '1',
         [theme.breakpoints.down('768')]: {
-            marginBottom: 40,
+            marginBottom: 30,
         },
         [theme.breakpoints.down('475')]: {
             marginBottom: 0,
-            marginTop: 35
-        },
-    },
-    header: {
-        paddingTop: '8px',
-        background: `#f0ecec`,
-    },
-    h1Home: {
-        fontFamily: 'Oswald, cursive',
-        fontWeight: '800',
-        lineHeight: 2,
-        fontSize: '30px',
-        padding: `0 0 0 35px`,
-        [theme.breakpoints.down('600')]: {
-            fontSize: '22px',
-            color: `#000`,
-            padding: `0 0 0 34px`,
+            marginTop: 8
         },
     },
     image: {
@@ -62,7 +43,7 @@ const styles = {
     }
 };
 
-function DemoWidth() {
+function Carousel() {
 
     const classes = useStyleCarousel();
     const data = useStaticQuery(graphql `
@@ -143,15 +124,9 @@ function DemoWidth() {
 
     return (
         <div className={classes.root}>
-            <Hidden xsDown>
-<Paper square elevation={0} className={classes.header}>
-    <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
-</Paper>
-            </Hidden>
-
             <VirtualizeSwipeableViews style={styles.root} slideRenderer={slideRenderer} slideStyle={styles.slideContainer}/>
         </div>
     )
 }
 
-export default DemoWidth;
+export default Carousel;

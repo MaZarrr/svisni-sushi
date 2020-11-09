@@ -10,6 +10,8 @@ export default () => {
     const [seconds, setSeconds] = useState("00");
     const [startTimeSale, setStartTimeSale] = useState(null);
     const [endTimeSale, setEndTimeSale] = useState(null);
+    const [isSale, setIsSale] = useState(null);
+
 
     let interval = useRef();
 
@@ -45,16 +47,17 @@ export default () => {
     };
 
     useEffect(() => {
-        // const hoursToSale = moment().hour();
-        // if(hoursToSale > startTimeSale && hoursToSale < endTimeSale) {
-        //     interval.current = startTimer();
+        const hoursToSale = moment().hour();
+        if(hoursToSale >= startTimeSale && hoursToSale < endTimeSale) {
             startTimer();
+            setIsSale(true);
             return () => clearInterval(interval.current);
-        // }
-        // return;
+        }
+        setIsSale(false);
+        return;
     });
 
-    return [{hours, minutes, seconds}, doStart]
+    return [{hours, minutes, seconds, isSale}, doStart]
 }
 
 

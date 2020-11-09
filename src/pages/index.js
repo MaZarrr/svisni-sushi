@@ -6,25 +6,38 @@ import { makeStyles } from "@material-ui/core/styles";
 import { addedCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import { graphql, StaticQuery } from "gatsby"
-// import { isEmpty } from "ramda"
-// import loadable from "@loadable/component";
-// import {loadIndexItems} from "../reducers/app";
-// import Spinner from "../components/spinner/spinner"
 import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
 import moment from "moment";
 import InstaSection from "../components/InstagramSection";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
-// const CarouselSvisni = loadable(() => import());
-// const CardIndex = loadable(() => import(), {
-//     fallback: <Spinner/>});
-
-const useStyleIndexPage = makeStyles(theme => ({
+    const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         width: `100%`,
         marginBottom: 10,
     },
+        header: {
+            paddingTop: '60px',
+            background: `#f0ecec`,
+            [theme.breakpoints.down('600')]: {
+                paddingTop: '30px',
+            },
+        },
+        h1Home: {
+            fontFamily: 'Oswald, cursive',
+            fontWeight: '800',
+            lineHeight: 2,
+            fontSize: '36px',
+            padding: `0 0 0 35px`,
+            [theme.breakpoints.down('600')]: {
+                fontSize: '28px',
+                color: `#000`,
+                padding: `0 0 0 20px`,
+            },
+        },
     titleIndex: {
         fontSize: '32px',
         width: `100%`,
@@ -37,7 +50,7 @@ const useStyleIndexPage = makeStyles(theme => ({
     },
 }));
 
-const QUERY_INDEX_DATA = graphql`
+    const QUERY_INDEX_DATA = graphql`
     query {
         allContentfulContentIndex {
             edges {
@@ -145,60 +158,44 @@ const QUERY_INDEX_DATA = graphql`
     }
 `;
 
-// const IndexPage = ({loadIndexItems, addedCart, indexProduct: product, indexMenu: menus}) => {
-    const IndexPage = ({ addedCart }) => {
-    // const [load, setLoad] = React.useState(true);
+const IndexPage = ({ addedCart }) => {
     const classes = useStyleIndexPage();
-
-    // const { allContentfulContentIndex: {edges},
-    //         allContentfulHomePageImageMenu: { edges: menu }} = useStaticQuery(QUERY_INDEX_DATA);
-
-    // React.useEffect(() => {
-    //     moment.locale('ru');
-    //     loadIndexItems({edges, menu});
-    //     // setTimeout(() => {
-    //     //     setLoad(false)
-    //     // }, 700);
-    // }, [edges, menu, loadIndexItems]);
 
     React.useEffect(() => {
         moment.locale('ru');
     }, []);
 
-    // const indexProduct = isEmpty(product) ? edges : product;
-    // const indexMenu = isEmpty(menus) ? menu : menus;
-
     return (
-        <StaticQuery query={QUERY_INDEX_DATA}
-                     render={( { allContentfulContentIndex: {edges : indexProduct},
-                         allContentfulHomePageImageMenu: { edges: indexMenu }}) => (
-        <section>
-            <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
-                 description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
-                    Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-            <Carousel/>
-            <Grid item xs={12} className={classes.root}>
-                <IndexCards addedCart={addedCart}
+            <StaticQuery query={QUERY_INDEX_DATA}
+                     render={( { allContentfulContentIndex: { edges : indexProduct },
+                                allContentfulHomePageImageMenu: { edges: indexMenu }}) => (
+                <section>
+                    <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
+                        description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
+                        Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
+
+                    <Paper square elevation={0} className={classes.header}>
+                        <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
+                    </Paper>
+
+                    <Carousel/>
+                    <Grid item xs={12} className={classes.root}>
+                    <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
 
-            </Grid>
-            <Grid container>
-                <InstaSection/>
-            </Grid>
-            </section>
+                    </Grid>
+                    <Grid container style={{paddingBottom: 80}}>
+                        <Typography className={classes.titleIndex} variant={"h2"}>Наши новости</Typography>
+                        <InstaSection/>
+                    </Grid>
+                </section>
          )}
         />
-
     )};
-
-const mapStateToProps = (state) => ({
-    indexProduct: state.app.indexProduct,
-    indexMenu: state.app.indexMenu
-});
 
 const mapDispatchToProps = {
     addedCart
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
+export default connect(null, mapDispatchToProps)(IndexPage)

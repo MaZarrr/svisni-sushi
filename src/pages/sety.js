@@ -9,10 +9,10 @@ import filtersProducts from '../utils/filtersProducts'
 import loadable from '@loadable/component'
 import { useStyleH1 } from "../components/common/style";
 import { productLoaded } from "../reducers/app";
-import {defFilters, setCategory} from "../reducers/filters";
+import {defFilters, setCategory, checkSaleLanch} from "../reducers/filters";
 import Categories from "../components/Categories";
 import {productList} from "../reducers/selectors";
-// import useTimer from "../utils/useTimer";
+import useTimer from "../utils/useTimer";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
@@ -25,8 +25,10 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
                   product, searchText, priceFilter, checkboxFilter, location, dispatch, category}) => {
 
     const [load, setLoad] = React.useState(true);
-    // const [{ hours, seconds, minutes }, doStart] = useTimer();
+    const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
+
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
+    const priceIsSale = useMemo(() => isSale, [isSale])
 
     const { title } = useStyleH1();
 
@@ -35,15 +37,17 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
     },[dispatch]);
 
     useEffect(() => {
+
         dispatch(productLoaded(setyProduct));
-        // doStart({endTime: 15, startTime: 10});
+        doStart({endTime: 15, startTime: 10});
+        dispatch(checkSaleLanch(priceIsSale));
+
         setTimeout(() => {
             setLoad(false)
         }, 670);
-        dispatch(defFilters());
-    }, [setyProduct, dispatch]);
 
-    // console.log(`${hours}:${minutes}:${seconds}`);
+        dispatch(defFilters());
+    }, [setyProduct, dispatch, doStart, priceIsSale]);
 
     return (
         <>
@@ -55,10 +59,9 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
                 <div>
                     <CustomizedInputSearch location={location.pathname}/>
                     <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
-                    {/*<div style={{padding: `10px 0 10px 35px`}}>{hours}:{minutes}:{seconds}</div>*/}
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                         <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
-                                       image={image} product={product}/>
+                                       image={image} product={product} timePrice={{hours, minutes, seconds}} isSale={priceIsSale}/>
                     </Grid>
                 </div>
                 : <Spinner/>}
@@ -88,6 +91,9 @@ export const querySet = graphql `
                     nonprice
                     weight
                     filter
+                    lanchprice
+                    lanch
+                    defaultPrice
                     count
                     description
                     komboSale

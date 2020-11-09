@@ -6,21 +6,20 @@ export const checkFilterNabor = createAction('FILTER_PRODUCT_CHECKBOX');
 export const defFilters = createAction('FILTER_DEF_VALUE');
 export const sortBy = createAction('SET_SORT_BY');
 export const setCategory = createAction('SET_CATEGORY');
+export const checkSaleLanch = createAction('CHECK_SALE_LANCH');
+
 
 export const getSearchText = (text) => (dispatch) => dispatch(searchTextFilter(text));
 export const getPriceDecInc = (value) => (dispatch) => dispatch(priceFilterDecInc(value));
 export const getCheckNabor = (val) => (dispatch) => dispatch(checkFilterNabor(val));
-export const setCategoryProduct = (text) => (dispatch) => dispatch(setCategory(text));
+// export const setCategoryProduct = (text) => (dispatch) => dispatch(setCategory(text));
 
-
-// export const sortByCategory = ({ type, order }) => (dispatch) => dispatch(sortBy({ type, order }));
-// export const setCategoryName = (catIndex) => (dispatch) => dispatch(setCategory(cartIndex));
-//
 const initialState = {
     searchText: '',
     priceFilter: "def",
     checkboxFilter: "def",
     category: null,
+    isSale: false,
     sortBy: {
         type: 'popular',
         order: 'desc',
@@ -33,11 +32,19 @@ export default createReducer({
     [checkFilterNabor]: (state, checkboxFilter) => ({...state, checkboxFilter}),
     [sortBy]: (state, { type, order }) => ({...state, sortBy: {type, order}}),
     [setCategory]: (state, catIndex) => ({...state, category: catIndex, cat: true}),
-    [defFilters]: () => ({
+    [defFilters]: (state) => ({
+        ...state,
         searchText: '',
         priceFilter: "def",
         checkboxFilter: "def"
-    })
+    }),
+    [checkSaleLanch]: (state, isSale) => {
+        if(isSale) {
+            return {...state, isSale}
+        }
+
+        return {...state, isSale}
+    }
 }, initialState)
 
 

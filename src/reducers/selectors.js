@@ -2,18 +2,37 @@ import {createSelector} from 'reselect'
 
 const categories = (state) => state.filters.category;
 const product = (state, isPizzas) => !isPizzas ? state.app.product : state.shoppingCart.newPizza === null ? state.app.productPizza : state.shoppingCart.newPizza;
+const isSaleLanch = (state) => state.filters.isSale;
 
 export const productList = createSelector(
     categories,
     product,
-    (category, product) => {
+    isSaleLanch,
+    (category, product, isLanch) => {
 
     if(category){
         return product.filter(({filter = category}) => {
             return filter.toLowerCase().split(", ").includes(category.toLowerCase())})
     }
+
+    if(isLanch) {
+        const productLanch = product.filter((el) => el.lanch === true);
+        const productNotLanch = product.filter((el) => !el.lanch);
+        const updateProdLanch = productLanch.map(el => {
+           return {
+               ...el,
+               price: el.lanchprice
+           }
+        });
+
+        const updateItemsProduct = updateProdLanch.concat(productNotLanch);
+
+        return updateItemsProduct
+    }
+
     return product
 });
+
 
 
 

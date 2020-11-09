@@ -17,9 +17,8 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ToggleButton from "./common/ToogleButton";
 import { take } from "ramda";
 
-const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, product, dispatch }) => {
+const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, product, dispatch, timePrice, isSale }) => {
     const classes = useStylesCart();
-
     return (
         <>
 
@@ -28,8 +27,7 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                 const {id, name, slug, description,
                     price, weight, count,
                     edit, komboSale, variant = false,
-                    image: {fluid}, sale, nonprice} = products;
-
+                    image: {fluid}, sale, nonprice, lanchprice, lanch, defaultPrice} = products;
                 return (
                     <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                           item xs={12} sm={6} md={3} key={id}>
@@ -96,14 +94,31 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                             }
 
                             <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
-                                { sale && <Typography variant={"subtitle1"} style={{
+
+                                <div style={{padding: 5, border: `1px solid lightgrey`, borderRadius: 10, marginTop: 8}}>
+                                {/* Выгода */}
+                                    {lanch && (
+                                        <Typography variant={"subtitle2"} style={{
+                                            paddingLeft: 14,
+                                            fontSize: 19,
+                                            fontWeight: `bold`}}>
+                                          <span role="img" aria-label="accessible-emoji">  ⏱️ </span>{timePrice.hours}:{timePrice.minutes}:{timePrice.seconds}</Typography>
+                                    )}
+
+                                    { sale && <Typography variant={"subtitle1"} style={{
                                     paddingLeft: 14,
-                                    paddingTop: 12,
+                                    fontSize: 19,
                                     color: `tomato`,
                                     fontWeight: `bold`}}>
-                                    Выгода {nonprice - price} ₽
-                                </Typography>
-                                }
+                                        {lanch && <> Выгода {!isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</>}
+                                        {!lanch && `Выгода ${nonprice - price}`}
+                                        {lanch &&
+                                        <span style={{textDecoration: `line-through`, fontWeight: 500, color: `#000`, paddingLeft: 20,
+                                            textDecorationColor: `red`}}>{isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</span>
+                                        }
+                                </Typography>}
+                                </div>
+
                                 <Typography itemProp="description"
                                             className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
                                             slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" || slugCategogy === "/wok" ? classes.deckript : classes.deckriptSmall}
@@ -201,15 +216,27 @@ const CardsMenuPage = memo(({titleCategory, slugCategogy, visibleItems, image, p
                                             }
 
                                         </Grid>
-                                        <Grid item xs={6}>
+
+                                        {/* Цена */}
+                                        <Grid item xs={6} style={{position: `relative`}}>
                                             <Typography
-                                                component="p"
                                                 variant="overline"
-                                                style={{fontSize: 20, margin: `0 auto`, width: `85%`, textAlign: `center`}}
-                                                itemProp="price"
-                                            >
-                                                {`${price}₽`}
+                                                style={{fontSize: 20, margin: `0 auto`, width: `85%`}}
+                                                itemProp="price">
+
+                                                { lanch && <>
+                                                        {!isSale ? `${price}₽` : <span style={{color: `tomato`, fontWeight: `bold`}}>{lanchprice}₽</span>}</>
+
+                                                }
+
+                                                {!lanch && `${price} ₽`}
                                             </Typography>
+                                            {lanch && isSale &&
+                                            <div style={{position: `absolute`, bottom: 10, right: 14}}>
+                                                <Typography style={{textDecoration: `line-through`, color: `#000`,
+                                                textDecorationColor: `red`, fontSize: 18}} variant={"subtitle1"}>{defaultPrice}₽</Typography>
+                                            </div>
+                                            }
                                         </Grid>
                                     </Grid>
 
