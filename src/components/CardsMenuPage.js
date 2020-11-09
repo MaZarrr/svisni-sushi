@@ -94,7 +94,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                             }
 
                             <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
-                                {lanch &&
+                                {sale &&
                                 <div style={{padding: 5, border: `1px solid lightgrey`, borderRadius: 10, marginTop: 8}}>
                                 {/* Выгода */}
                                     {lanch && (
