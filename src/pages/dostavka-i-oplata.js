@@ -5,6 +5,10 @@ import {Container, Grid} from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import {StylingInfo} from "../components/common/style";
 import Divider from "@material-ui/core/Divider";
+import InputBase from '@material-ui/core/InputBase';
+import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from '@material-ui/icons/Search';
 
 const delivery = [
     {
@@ -12,7 +16,7 @@ const delivery = [
         adress: 'Уразово',
         do: 499,
         posle: 500,
-        price: 100,
+        price: 80,
         color: '#ff5733'
     },
     {
@@ -21,7 +25,7 @@ const delivery = [
         do: 699,
         posle: 700,
         color: '#dc9484',
-        price: 150,
+        price: 100,
     },
     {
         id: 3,
@@ -37,7 +41,7 @@ const delivery = [
         do: 999,
         posle: 1000,
         color: '#6aa241',
-        price: 150,
+        price: 120,
     },
     {
         id: 5,
@@ -45,7 +49,7 @@ const delivery = [
         do: 999,
         posle: 1000,
         color: '#3099f0',
-        price: 150,
+        price: 120,
     },
     {
         id: 6,
@@ -53,55 +57,55 @@ const delivery = [
         do: 999,
         posle: 1000,
         color: '#0a4475',
-        price: 150,
+        price: 120,
     },
     {
         id: 7,
         adress: 'Колыхалино',
-        do: 1399,
-        posle: 1400,
+        do: 1499,
+        posle: 1500,
         color: '#81f030',
-        price: 250,
+        price: 150,
     },
     {
         id: 8,
         adress: 'Герасимовка',
-        do: 1399,
-        posle: 1400,
+        do: 1499,
+        posle: 1500,
         color: '#11161b',
         price: 250,
     },
     {
         id: 9,
         adress: 'Валуйки',
-        do: 1399,
-        posle: 1400,
+        do: 1499,
+        posle: 1500,
         color: '#d2143a',
-        price: 300,
+        price: 250,
     },
     {
         id: 10,
         adress: 'Борки',
-        do: 1399,
-        posle: 1400,
+        do: 1499,
+        posle: 1500,
         color: '#27G943',
-        price: 300,
+        price: 200,
     },
     {
         id: 11,
         adress: 'Логачёвка',
-        do: 1399,
-        posle: 1400,
+        do: 1499,
+        posle: 1500,
         color: '#ABD689',
         price: 250,
     },
     {
         id: 12,
         adress: 'Кукуевка',
-        do: 1399,
-        posle: 1400,
+        do: 1199,
+        posle: 1200,
         color: '#A6CCDE',
-        price: 250,
+        price: 200,
     },
     {
         id: 13,
@@ -149,10 +153,66 @@ const delivery = [
         do: 699,
         posle: 700,
         color: '#5c3c35',
-        price: 150,
+        price: 100,
     },
     {
         id: 19,
+        adress: 'Тогобиевка',
+        do: 699,
+        posle: 700,
+        color: '#82dc4e',
+        price: 100,
+    },
+    {
+        id: 20,
+        adress: 'Новопетровка',
+        do: 1499,
+        posle: 1500,
+        color: '#04dcd6',
+        price: 300,
+    },
+    {
+        id: 21,
+        adress: 'Бабки',
+        do: 1499,
+        posle: 1500,
+        color: '#416cdc',
+        price: 300,
+    },
+    {
+        id: 22,
+        adress: 'Сухарево',
+        do: 1199,
+        posle: 1200,
+        color: '#dc745f',
+        price: 200,
+    },
+    {
+        id: 23,
+        adress: 'Татариевка',
+        do: 699,
+        posle: 700,
+        color: '#d2dc54',
+        price: 100,
+    },
+    {
+        id: 24,
+        adress: 'Пристень',
+        do: 1199,
+        posle: 1200,
+        color: '#5ddcb7',
+        price: 200,
+    },
+    {
+        id: 25,
+        adress: 'Лобковка',
+        do: 999,
+        posle: 1000,
+        color: '#3788dc',
+        price: 150,
+    },
+    {
+        id: 26,
         adress: 'Самарино',
         do: 2499,
         posle: 2500,
@@ -162,6 +222,19 @@ const delivery = [
 ];
 
 const Dostavkaioplata = () => {
+    const [value, setValue] = React.useState("");
+    const [deliveryState, setDeliveryState] = React.useState(delivery);
+
+    const handleChange = (e) => {
+        const sity = delivery.filter(el => {
+            if(e.target.value === "") {
+                return delivery
+            }
+            return el.adress.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
+            });
+            setValue(e.target.value);
+            setDeliveryState(sity)
+    };
 
 return (
     <>
@@ -174,8 +247,21 @@ return (
             <Divider/>
     <Grid container>
     <Grid item xs={12} sm={6}>
-      <div style={{overflowY: `scroll`, height: `450px`}}>
-      {delivery.map((el) => (
+        <Paper style={{padding: '6px 8px', margin: `5px 0`, display: 'flex'}}>
+        <IconButton style={{padding: `5px 10px 5px 8px`}} aria-label="menu">
+            <SearchIcon />
+        </IconButton>
+        <InputBase
+            style={{flex: 1, padding: 0, width: `100%`}}
+            value={value}
+            name="search"
+            placeholder={"Начните вводить ваш нас.пункт"}
+            inputProps={{ 'aria-label': 'search google maps' }}
+            onChange={handleChange}
+        />
+        </Paper>
+        <div style={{overflowY: `scroll`, height: `450px`}}>
+        {deliveryState.map((el) => (
         <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
         <Typography variant="h6">

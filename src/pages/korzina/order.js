@@ -46,26 +46,35 @@ function TextMaskCustom(props) {
 
 const city = {
     net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
-    kol: {id: 1, priceDel: 250, deliverySalePrice: 1400, name: "Колыхалино"},
-    dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},
-    val: {id: 3, priceDel: 350, deliverySalePrice: 1400, name: "Валуйки(центр)"},
-    yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},
-    shel: {id: 5, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
-    gera: {id: 6, priceDel: 250, deliverySalePrice: 1400, name: "Герасимовка"},
-    sobo: {id: 7, priceDel: 150, deliverySalePrice: 700, name: "Соболёвка"},
-    sved: {id: 8, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"},
-    borki: {id: 9, priceDel: 300, deliverySalePrice: 1400, name: "Борки"},
-    znamenk: {id: 10, priceDel: 150, deliverySalePrice: 700, name: "Знаменка"},
-    loga: {id: 11, priceDel: 250, deliverySalePrice: 1400, name: "Логачевка"},
-    kyky: {id: 12, priceDel: 250, deliverySalePrice: 1400, name: "Кукуевка"},
+    kol: {id: 1, priceDel: 150, deliverySalePrice: 1400, name: "Колыхалино"},
+    dvyl: {id: 2, priceDel: 120, deliverySalePrice: 1000, name: "Двулучное"},
+    val: {id: 3, priceDel: 300, deliverySalePrice: 1500, name: "Валуйки(центр)"},
+    yraz: {id: 4, priceDel: 80, deliverySalePrice: 500, name: "Уразово"},
+    shel: {id: 5, priceDel: 120, deliverySalePrice: 1000, name: "Шелаево"},
+    gera: {id: 6, priceDel: 250, deliverySalePrice: 1500, name: "Герасимовка"},
+    sobo: {id: 7, priceDel: 100, deliverySalePrice: 700, name: "Соболёвка"},
+    sved: {id: 8, priceDel: 120, deliverySalePrice: 1000, name: "Шведуновка"},
+    borki: {id: 9, priceDel: 200, deliverySalePrice: 1500, name: "Борки"},
+    znamenk: {id: 10, priceDel: 100, deliverySalePrice: 700, name: "Знаменка"},
+    loga: {id: 11, priceDel: 250, deliverySalePrice: 1500, name: "Логачевка"},
+    kyky: {id: 12, priceDel: 200, deliverySalePrice: 1200, name: "Кукуевка"},
     kolos: {id: 13, priceDel: 500, deliverySalePrice: 2400, name: "Колосково"},
     kazink: {id: 14, priceDel: 400, deliverySalePrice: 2300, name: "Казинка"},
     soloti: {id: 15, priceDel: 500, deliverySalePrice: 2400, name: "Солоти"},
     rogdestv: {id: 16, priceDel: 500, deliverySalePrice: 2400, name: "Рождественно"},
     samar: {id: 17, priceDel: 600, deliverySalePrice: 2500, name: "Самарино"},
-    valsoshgor: {id: 18, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки(соц.городок)"},
-    valrazdol: {id: 19, priceDel: 300, deliverySalePrice: 1400, name: "Валуйки(раздолье)"},
-}
+    valsoshgor: {id: 18, priceDel: 250, deliverySalePrice: 1500, name: "Валуйки(соц.городок)"},
+    valrazdol: {id: 19, priceDel: 250, deliverySalePrice: 1500, name: "Валуйки(раздолье)"},
+    togobi: {id: 20, priceDel: 100, deliverySalePrice: 700, name: "Тогобиевка"},
+    novopetr: {id: 21, priceDel: 300, deliverySalePrice: 1500, name: "Новопетровка"},
+    babki: {id: 22, priceDel: 300, deliverySalePrice: 1500, name: "Бабки"},
+    syxarevo: {id: 23, priceDel: 200, deliverySalePrice: 1200, name: "Сухарево"},
+    tatarievka: {id: 24, priceDel: 100, deliverySalePrice: 700, name: "Татариевка"},
+    pricten: {id: 25, priceDel: 200, deliverySalePrice: 1200, name: "Пристень"},
+    lobkovka: {id: 26, priceDel: 150, deliverySalePrice: 1000, name: "Лобковка"},
+    nasonovo: {id: 27, priceDel: 500, deliverySalePrice: 2400 , name: "Насоново"},
+    yablonovo: {id: 28, priceDel: 500, deliverySalePrice: 2400 , name: "Яблоново"}
+};
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
                    entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, userApartment,
@@ -215,7 +224,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                     { !isEmpty(items) ?
                         <Grid container className={classes.gridContainer}>
                             <form
-                                // method="POST"
                                 onSubmit={handleSubmit}
                                 name="svisniData"
                                 style={{width: '100%'}}>
@@ -288,7 +296,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             </Button>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Button fullWidth variant={state === "deliveryTime" ? "contained" : "outlined"} color="secondary"
+                                            <Button  fullWidth variant={state === "deliveryTime" ? "contained" : "outlined"} color="secondary"
                                                     onClick={handleChangee("deliveryTime")}>
                                                 {delivery === "Самовывоз" ? "Приготовить ко времени" : "Доставить ко времени"}
                                             </Button>
@@ -343,6 +351,14 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             <option value="sobo">Соболевка</option>
                                             <option style={{background: `#f0ecec`}} value="kol">Колыхалино</option>
                                             <option value="sved">Шведуновка</option>
+                                            <option style={{background: `#f0ecec`}} value="togobi">Тогобиевка</option>
+                                            <option value="novopetr">Новопетровка</option>
+                                            <option style={{background: `#f0ecec`}} value="babki">Бабки</option>
+                                            <option value="syxarevo">Сухарево</option>
+                                            <option style={{background: `#f0ecec`}} value="tatarievka">Татариевка</option>
+                                            <option value="pricten">Пристень</option>
+                                            <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
+                                            <option value="soloti">Солоти</option>
                                             <option style={{background: `#f0ecec`}} value="borki">Борки</option>
                                             <option value="znamenk">Знаменка</option>
                                             <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
@@ -350,10 +366,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
                                             <option value="kyky">Кукуевка</option>
                                             <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
-                                            <option value="soloti">Солоти</option>
-                                            <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
-                                            <option value="samar">Самарино</option>
+                                            <option value="nasonovo">Насоново</option>
+                                            <option style={{background: `#f0ecec`}} value="yablonovo">Яблоново</option>
+                                            <option value="rogdestv">Рождественно</option>
+                                            <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
                                         </Select>
+
                                         <FormHelperText id="my-helper-text">Выберите населенный пункт</FormHelperText>
                                     </FormControl>
                                 </Grid>
