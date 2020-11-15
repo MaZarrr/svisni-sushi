@@ -1,40 +1,9 @@
 const path = require('path');
-const fs = require('fs');
-const mkdirp = require('mkdirp');
-const withDefault = require('./src/utils/default-options');
-
-
-// exports.createSchemaCustomization = ({ actions }) => {
-//     actions.createTypes(`
-//     type allInstaNode implements Node {
-//         id: ID!
-//         username: String!
-//         caption: String!
-//         comments: Int!
-//         likes: Int!
-//         timestamp: Date! @dateformat
-//     }
-//     `)
-// };
-
-exports.onPreBootstrap = ({store}, options) => {
-    const { program } = store.getState();
-    const { contentPath } = withDefault(options);
-    const dir = path.join(program.directory, contentPath);
-
-    if(!fs.existsSync(dir)) {
-        mkdirp.sync(dir)
-    }
-
-};
 
 exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
     const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js');
-    // const slognyeTeamplates = path.resolve('./src/templates/slognyeTeamplates.js')
-    // const klassikaTeamplates = path.resolve('./src/templates/klassikaTeamplates.js')
-    // const hotTeamplates = path.resolve('./src/templates/hotTeamplates.js')
     const saleTeamplates = path.resolve('./src/templates/saleTemplates.js');
     const komboTeamplates = path.resolve('./src/templates/komboTeamplates.js');
 
@@ -90,29 +59,7 @@ exports.createPages = async ({graphql, actions}) => {
                         slug: product.slug
                     }
                 })
-            })
-
-            // const productslognye = data.data.allContentfulProductSlognyeRolly.edges;
-            // productslognye.forEach(({node: product}) => {
-            //     createPage({
-            //         path: `/branded-rolls/${product.slug}`,
-            //         component: slognyeTeamplates,
-            //         context: {
-            //             slug: product.slug
-            //         }
-            //     })
-            // })
-
-            // const productshot = data.data.allContentfulProductHotRolly.edges;
-            // productshot.forEach(({node: product}) => {
-            //     createPage({
-            //         path: `/hot-rolls/${product.slug}`,
-            //         component: hotTeamplates,
-            //         context: {
-            //             slug: product.slug
-            //         }
-            //     })
-            // })
+            });
 
             const productssale = data.data.allContentfulProductSale.edges;
             productssale.forEach(({node}) => {
@@ -135,7 +82,7 @@ exports.createPages = async ({graphql, actions}) => {
             })
 
     }).catch((err) => console.log(err))
-}
+};
 
 
 

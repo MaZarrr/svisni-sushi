@@ -1,8 +1,4 @@
-// const withDefault = require('./src/utils/default-options');
 require('dotenv').config();
-
-
-// const { contentPath } = withDefault(options);
 
 module.exports = {
 

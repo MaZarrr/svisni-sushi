@@ -116,15 +116,3 @@ export const querySet = graphql `
     }
 `;
 
-// useEffect(() => {
-//
-//     dispatch(productLoaded(setyProduct));
-//     doStart({endTime: 15, startTime: 10});
-//     dispatch(checkSaleLanch(priceIsSale));
-//     if(!location.pathname.split("/").includes("sety")) {
-//         setTimeout(() => {
-//             setLoad(false)
-//         }, 750);
-//     } else {
-//         setLoad(false)
-//     }
