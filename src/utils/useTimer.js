@@ -54,6 +54,9 @@ export default () => {
             return () => clearInterval(interval.current);
         }
         setIsSale(false);
+        setSecondsInSale("00");
+        setEndTimeSale("00");
+        setStartTimeSale("00");
         return;
     });
 

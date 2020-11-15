@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import loadable from "@loadable/component";
-import Spinner from "../components/spinner/spinner"
+import Spinner from "../components/spinner/spinner-new"
 
 const KomboItem = loadable(() => import('../components/KomboItem'), {
     fallback: <Spinner/>});

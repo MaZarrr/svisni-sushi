@@ -6,13 +6,13 @@ import * as R from 'ramda'
 import loadable from '@loadable/component'
 import Spinner from  "../components/spinner/spinner"
 const ProductItem = loadable(() => import('../components/SetyItem'), {
-    fallback: <Spinner/>});
+    fallback: <Spinner count={1}/>});
 
 const SetyTeamplate = ({data: {contentfulProduct,
     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
     allContentfulProductKlassika: {edges: smallRoll}, allContentfulProductSushi: {edges: sushi},
     allContentfulProductGunkan: {edges: gunkan},
-}, addedToCart}) => {
+}, addedToCart }) => {
 
     const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan)
     const nameProduct = contentfulProduct.description.toLowerCase().split(', ')

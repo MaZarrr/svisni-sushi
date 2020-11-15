@@ -1,4 +1,7 @@
 const path = require('path');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+const withDefault = require('./src/utils/default-options');
 
 
 // exports.createSchemaCustomization = ({ actions }) => {
@@ -13,6 +16,17 @@ const path = require('path');
 //     }
 //     `)
 // };
+
+exports.onPreBootstrap = ({store}, options) => {
+    const { program } = store.getState();
+    const { contentPath } = withDefault(options);
+    const dir = path.join(program.directory, contentPath);
+
+    if(!fs.existsSync(dir)) {
+        mkdirp.sync(dir)
+    }
+
+};
 
 exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;

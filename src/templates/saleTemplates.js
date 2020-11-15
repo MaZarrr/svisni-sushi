@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {graphql} from 'gatsby';
-import Spinner from  "../components/spinner/spinner"
+import Spinner from  "../components/spinner/spinner-new"
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import loadable from "@loadable/component";
 

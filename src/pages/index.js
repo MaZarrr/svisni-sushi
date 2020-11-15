@@ -15,8 +15,7 @@ import Typography from "@material-ui/core/Typography";
     const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        width: `100%`,
-        marginBottom: 10,
+        width: `100%`
     },
         header: {
             paddingTop: '60px',
@@ -32,7 +31,7 @@ import Typography from "@material-ui/core/Typography";
             fontSize: '36px',
             padding: `0 0 0 35px`,
             [theme.breakpoints.down('600')]: {
-                fontSize: '26px',
+                fontSize: '30px',
                 color: `#000`,
                 padding: `0 0 0 20px`,
             },

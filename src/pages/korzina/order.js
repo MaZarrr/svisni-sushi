@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MaskedInput from 'react-text-mask';
-import Spinner from '../../components/spinner/spinner'
+import Spinner from '../../components/spinner/spinner-new'
 
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -47,13 +47,13 @@ function TextMaskCustom(props) {
 const city = {
     net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
     kol: {id: 1, priceDel: 150, deliverySalePrice: 1400, name: "Колыхалино"},
-    dvyl: {id: 2, priceDel: 120, deliverySalePrice: 1000, name: "Двулучное"},
+    dvyl: {id: 2, priceDel: 130, deliverySalePrice: 1000, name: "Двулучное"},
     val: {id: 3, priceDel: 300, deliverySalePrice: 1500, name: "Валуйки(центр)"},
     yraz: {id: 4, priceDel: 80, deliverySalePrice: 500, name: "Уразово"},
-    shel: {id: 5, priceDel: 120, deliverySalePrice: 1000, name: "Шелаево"},
+    shel: {id: 5, priceDel: 130, deliverySalePrice: 1000, name: "Шелаево"},
     gera: {id: 6, priceDel: 250, deliverySalePrice: 1500, name: "Герасимовка"},
     sobo: {id: 7, priceDel: 100, deliverySalePrice: 700, name: "Соболёвка"},
-    sved: {id: 8, priceDel: 120, deliverySalePrice: 1000, name: "Шведуновка"},
+    sved: {id: 8, priceDel: 130, deliverySalePrice: 1000, name: "Шведуновка"},
     borki: {id: 9, priceDel: 200, deliverySalePrice: 1500, name: "Борки"},
     znamenk: {id: 10, priceDel: 100, deliverySalePrice: 700, name: "Знаменка"},
     loga: {id: 11, priceDel: 250, deliverySalePrice: 1500, name: "Логачевка"},
@@ -562,6 +562,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                 type="submit"
                                                 color={"primary"}
                                                 size={'large'}
+                                                style={{fontWeigh: `bold`, fontSize: 20}}
                                                 disabled={buttonDisabled()}
                                                 variant="contained">
                                                 Сделать заказ
@@ -587,7 +588,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                             </form>
                         </Grid> : <EmptyBasket/> }
                 </Container>
-                 : <Spinner/>}
+                 : <Spinner />}
             </div>
         </section>
     )

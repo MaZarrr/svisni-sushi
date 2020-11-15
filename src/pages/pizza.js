@@ -42,7 +42,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
         dispatch(pizzaCart({productPizza: pizzaProduct}))
         setTimeout(() => {
             setLoad(false)
-        }, 670);
+        }, 700);
         dispatch(defFilters())
     }, [dispatch, pizzaProduct]);
 
@@ -163,7 +163,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                             )
                         })}
                     </Grid>
-                </div> : <Spinner/>
+                </div> : <Spinner count={10}/>
             }
         </section>
     )
