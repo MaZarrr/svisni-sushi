@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
 import loadable from "@loadable/component";
 import {addedCart} from "../reducers/shopping-cart";
-import Spinner from '../components/spinner/spinner'
+import Spinner from '../components/spinner/spinner-new'
 
 const PizzaItem = loadable(() => import('../components/PizzaItem'), {
     fallback: <Spinner />

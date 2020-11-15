@@ -28,7 +28,7 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
         dispatch(productLoaded(productsHotRolls)); // action push to reduxStore
         setTimeout(() => {
             setLoad(false)
-        }, 660);
+        }, 700);
         dispatch(defFilters())
     }, [productsHotRolls, dispatch]);
 
@@ -43,15 +43,13 @@ return (
         description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени великолепный вкус японской кухни от Свисни Суши"
         pathname="/sety"/>
        <h1 className={title}>Горячие роллы</h1>
-
+       <CustomizedInputSearch/>
+       <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
        {load === false ? <>
-                <CustomizedInputSearch/>
-                <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
-
            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                               image={image} product={product}/>
-           </Grid> </> : <Spinner/>
+           </Grid> </> : <Spinner count={10}/>
        }
   </section>
     )
@@ -68,12 +66,13 @@ export default connect(mapStateToProps, null)(HotRolls)
 
 export const query = graphql `
     {
-       allContentfulProductHotRolly {
+       allContentfulProductHotRolly(sort: {fields: desc}) {
           edges {
             node {
                 id
                 slug
                 name
+                desc
                 price
                 description
                 weight

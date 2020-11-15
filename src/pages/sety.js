@@ -16,19 +16,19 @@ import useTimer from "../utils/useTimer";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
-    fallback: <Spinner/>
+    fallback: <Spinner count={10}/>
 });
 
 const categoryNames = ['Малые', 'Средние', 'Большие', 'Ланч-сеты'];
 
-const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
-                  product, searchText, priceFilter, checkboxFilter, location, dispatch, category}) => {
+const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
+                  product, searchText, priceFilter, checkboxFilter, location, dispatch, category }) => {
 
     const [load, setLoad] = React.useState(true);
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
 
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
-    const priceIsSale = useMemo(() => isSale, [isSale])
+    const priceIsSale = useMemo(() => isSale, [isSale]);
 
     const { title } = useStyleH1();
 
@@ -44,7 +44,7 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
 
         setTimeout(() => {
             setLoad(false)
-        }, 670);
+        }, 750);
 
         dispatch(defFilters());
     }, [setyProduct, dispatch, doStart, priceIsSale]);
@@ -55,16 +55,15 @@ const Sety = ({data: {allContentfulProduct: {edges: setyProduct}, contentfulIcon
                  description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
             <section>
                 <h1 className={title}>Заказать суши сет</h1>
-                { load === false ?
-                <div>
-                    <CustomizedInputSearch location={location.pathname}/>
-                    <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
+                <CustomizedInputSearch location={location.pathname}/>
+                <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
+                { load === false ? <div>
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                         <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
                                        image={image} product={product} timePrice={{hours, minutes, seconds}} isSale={priceIsSale}/>
                     </Grid>
                 </div>
-                : <Spinner/>}
+                    : <Spinner count={10}/>}
             </section>
         </>
     )
@@ -81,23 +80,24 @@ export default connect(mapStateToProps, null)(Sety)
 
 export const querySet = graphql `
     {
-        allContentfulProduct {
+        allContentfulProduct(sort: {fields: desc}) {
             edges {
                 node {
                     id
                     slug
                     name
+                    desc
                     price
                     nonprice
                     weight
                     filter
                     lanchprice
                     lanch
+                    sale
                     defaultPrice
                     count
                     description
                     komboSale
-                    sale
                     image {
                         fluid(maxWidth: 400, quality: 100) {
                             ...GatsbyContentfulFluid_withWebp
@@ -115,3 +115,16 @@ export const querySet = graphql `
         }
     }
 `;
+
+// useEffect(() => {
+//
+//     dispatch(productLoaded(setyProduct));
+//     doStart({endTime: 15, startTime: 10});
+//     dispatch(checkSaleLanch(priceIsSale));
+//     if(!location.pathname.split("/").includes("sety")) {
+//         setTimeout(() => {
+//             setLoad(false)
+//         }, 750);
+//     } else {
+//         setLoad(false)
+//     }

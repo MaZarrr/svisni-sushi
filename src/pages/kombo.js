@@ -7,6 +7,7 @@ import {useStyleH1} from '../components/common/style'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 import Spinner from '../components/spinner/spinner'
+
 const CardsMenuPage = loadable(()=> import('../components/CardsMenuPage'))
 
 const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: {image}},
@@ -18,7 +19,7 @@ const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, conten
         dispatch(productLoaded(productsKombo))
         setTimeout(() => {
             setLoad(false)
-        }, 680);
+        }, 700);
     }, [productsKombo, dispatch]);
 
 return (
@@ -31,7 +32,7 @@ return (
                 <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
                                image={image} product={product}/>
             </Grid>
-        : <Spinner/>}
+        : <Spinner count={10}/>}
 </section>
     )
 };

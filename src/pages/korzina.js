@@ -3,7 +3,7 @@ import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
 import  Img  from 'gatsby-image';
-import Spinner from '../components/spinner/spinner'
+import Spinner from '../components/spinner/spinner-new'
 import * as R from 'ramda'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -45,10 +45,10 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
         setTimeout(() => {
             setLoad(false)
         }, 600)
-    }, [])
+    }, []);
 
-    const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale))
-    const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0))
+    const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
+    const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
 
     const pizzaDarom = () => {
         const cart = items.filter((el) => {
@@ -73,40 +73,40 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
       };
         if(countPizza > 2 && pizzaSaleFlag === false ) {
             return (
-                <Paper style={{maxWidth: 400}} className="mb-4 p-2">
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
+                <Grid item  xs={12} sm={7}>
+
+                <Paper style={{marginTop: 10, marginBottom: 10, padding: 8}}>
                         <div style={{display: `flex`}}>
                             <div style={{margin: `auto 0`, zIndex: 10}}>
                                 <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={pizza().image}> </Img>
                             </div>
-                            <div className="ml-4">
+                            <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
                                 <Typography gutterBottom variant="h6" style={{fontSize: 15}}>
                                     {pizza().name}
                                 </Typography>
-                                <div className="d-flex">
+                                <div style={{display: `flex`, fontSize: 18, fontWeight: `bold`}}>
                                     <Typography variant="subtitle2">
                                         <b>{pizza().count}шт</b>
                                     </Typography>
                                     <Typography style={{marginLeft: 50}} variant="subtitle2"><b>{pizza().total}₽</b></Typography>
                                 </div>
                                 <Grid item>
-                                    <Typography variant="body2">
+                                    <Typography variant="subtitle1" style={{fontSize: 20, fontWeight: `bold`}}>
                                         Пицца бесплатно!
                                     </Typography>
-                                    <button style={{cursor: 'pointer'}}
+                                    <Button variant={"contained"} color={"secondary"}
+                                            style={{cursor: 'pointer'}}
                                             disabled={false}
-                                            onClick={() => addedSalePizza(pizza())}
-                                            className="btn btn-success btn-sm">
+                                            onClick={() => addedSalePizza(pizza())}>
                                         Добавить
-                                    </button>
+                                    </Button>
                                 </Grid>
                             </div>
                         </div>
-                    </Grid>
-                </Grid>
-                </Paper>
-      )
+                    </Paper>
+        </Grid>
+
+        )
     } else if(countPizza < 3 && pizzaSaleFlag === true) {
             deletePizzaSale(pizza().id)
     }
@@ -144,31 +144,31 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
 
         if(test() > 789 && !disabled()) {
             return (
-                <Paper style={{maxWidth: 400}} className="mb-4 p-2">
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                        <div className="d-flex">
+                <Grid item  xs={12} sm={7}>
+
+                    <Paper style={{marginTop: 10, marginBottom: 10, padding: 8}}>
+                        <div style={{display: `flex`}}>
                             <div style={{margin: `auto 0`, zIndex: 10}}>
                                 <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={saleRoll.image}> </Img>
                             </div>
-                            <div className="ml-4">
-                                <Typography variant="subtitle1">
+                            <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
+                                <Typography variant="subtitle1" style={{fontSize: 20, fontWeight: `bold`}}>
                                     Акция
                                 </Typography>
-                                <Typography variant="subtitle2">
+                                <Typography variant="subtitle1" style={{fontSize: 18, fontWeight: `bold`}}>
                                     {saleRoll.name} за 79₽
                                 </Typography>
 
-                                <button style={{cursor: 'pointer'}} disabled={false}
-                                        onClick={() => addedSaleRoll(saleRoll)}
-                                        className="btn btn-success btn-sm">
+                                <Button variant={"contained"} color={"secondary"}
+                                        disabled={false}
+                                        onClick={() => addedSaleRoll(saleRoll)}>
                                     Добавить
-                                </button>
-                            </div>
+                                </Button>
                         </div>
-                    </Grid>
+                        </div>
+                    </Paper>
                 </Grid>
-                </Paper>
+
             )
         } else if (test() < 790 && disabled()) {
         deleteFilaSale(node.id)
@@ -194,7 +194,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
   <section>
   <div className={classes.root}>
     <Container>
-        <Grid item xs={12}>
           <Container className={classes.paper}>
           <Typography variant="h2">
             <Box style={{textTransform: "uppercase"}} fontFamily="Oswald" fontWeight={800} fontSize={34}>
@@ -203,30 +202,34 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
           </Typography>
           </Container>
             { load === false ? <div>
-            { R.isEmpty(items) ? <EmptyBasket/> : <div>
-            <Grid justify={"center"} container spacing={2}>
+            { R.isEmpty(items) ? <EmptyBasket/> :
+                <Grid container spacing={2}>
+                    <Grid item sm={7}>
+                    <Grid container justify={"center"} spacing={2} className={classes.wrappedContainer}>
 
-                <div className={classes.wrappedContainer}>
+                    {saleRollFunc()}
+                    {pizzaDarom()}
+
                     { items.map((item, idx) => {
-        const {id, name, count, total, image, priceIn33cm, price, priceDef,
-            textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
-           return (
-               <Paper key={id} style={{marginTop: 20, marginBottom: 30, padding: 10, maxWidth: 400}}>
-                   <Grid item xs={12} sm={7}>
+                        const {id, name, count, total, image, priceIn33cm, price, priceDef,
+                        textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
+                    return (
+                   <Grid item  key={id}  xs={12} sm={7}>
+                       <Paper style={{marginTop: 20, marginBottom: 10, padding: 8}}>
                        <div style={{display: `flex`}}>
                            <div style={{margin: `auto 0`, zIndex: 10}}>
                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
                            </div>
                            <div style={{marginLeft: 30, width: `100%`}}>
                                <div style={{backgroundColor: `lightgrey`, padding: `8px 0 8px 14px`, width: `100%`}}>
-                               <Typography gutterBottom style={{fontSize: 18}} variant="h6">
+                               <Typography variant="subtitle1" style={{fontSize: 20, fontWeight: `bold`}}>
                                    {name}
                                </Typography>
                                <div style={{display: `flex`}}>
-                                   <Typography style={{paddingBottom: 7, fontSize: 16}} variant="subtitle2">
+                                   <Typography style={{paddingBottom: 7, fontSize: 18, fontWeight: `bold`}} variant="subtitle2">
                                        <b>{priceDef === 0 ? "1шт" : `${count}шт`}</b>
                                    </Typography>
-                                   <Typography style={{marginLeft: 50, paddingBottom: 7, fontSize: 16}}
+                                   <Typography style={{marginLeft: 50, paddingBottom: 7, fontSize: 18, fontWeight: `bold`}}
                                                variant="subtitle2"><b>{price === 79 ? null : `${total}₽`} </b></Typography>
                                </div>
                                </div>
@@ -306,16 +309,15 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
 
                            </div>
                        </div>
-
+                       </Paper>
                    </Grid>
-               </Paper>
                 )})}
-                    {saleRollFunc()}
-                    {pizzaDarom()}
+                </Grid>
+            </Grid>
                     <Hidden smUp>
                         { addPanelPribors  &&
-                        <Paper style={{marginTop: 20, marginBottom: 30, padding: 10, maxWidth: 400}}>
-                            <div className="d-flex flex-column">
+                        <Paper style={{marginTop: 10, marginBottom: 170, padding: 10, width: `100%`}}>
+                            <div style={{display: `flex`, flexDirection: `column`}}>
                                 <Typography variant={"subtitle2"}>Количество палочек</Typography>
                                 <div style={{display: `flex`}}>
                                     <IconButton color="primary" aria-label="plus" component="span"
@@ -332,9 +334,8 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                         </Paper>
                         }
                     </Hidden>
-                </div>
 
-                <Hidden smUp>
+                    <Hidden smUp>
                     <Grid style={{margin: `20px auto 0 auto`,
                     position: `fixed`,
                     padding: 0,
@@ -342,14 +343,15 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                     width: `100%`,
                     zIndex: 1200
                 }} item xs={12} sm={5}>
-                    <Paper elevation={3} style={{padding: 20}}>
+                     <Paper elevation={3} style={{padding: 20}}>
                    <Typography variant="h6" style={{fontSize: 22}}>Итого </Typography>
-                   <Typography variant="body1" style={{fontSize: 22}}>Сумма заказа <b>{total} ₽</b></Typography>
-                   <Button
+                    <Typography variant="body1" style={{fontSize: 22}}>Сумма заказа <b>{total} ₽</b></Typography>
+                    <Button
                        component={Link}
                        to="/korzina/order"
                        color={"primary"}
                        size={'large'}
+                       style={{marginBottom: 10, fontWeigh: `bold`, fontSize: 20}}
                        variant="contained" >
                        Продолжить
                    </Button>
@@ -357,8 +359,9 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                     </Grid>
                 </Hidden>
 
-                <Hidden xsDown>
-                    <Grid style={{margin: `20px auto 0 auto`, padding: 0}} item xs={12} sm={5}>
+                    {/*PC block*/}
+                    <Hidden xsDown>
+                    <Grid item xs={12} sm={4} style={{margin: `20px auto 0 auto`, padding: 0}}>
                     <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`, width: `100%`}}>
                         { addPanelPribors  &&
                         <div className="container_pribor mb-2" >
@@ -393,12 +396,9 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                 </Grid>
                 </Hidden>
 
-       </Grid>
-            </div>
-           }
+                </Grid>
+                }
         </div> : <Spinner/>}
-
-        </Grid>
         </Container>
     </div>
     </section>

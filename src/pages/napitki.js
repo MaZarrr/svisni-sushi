@@ -7,7 +7,7 @@ import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import { productLoaded} from "../reducers/app";
 
-const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
+const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'))
 
 const Napitki = ({data: {allContentfulProductNapitki: {edges: productsDrink}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {

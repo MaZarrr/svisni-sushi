@@ -17,8 +17,7 @@ const useStyleCarousel = makeStyles(theme => ({
             marginBottom: 30,
         },
         [theme.breakpoints.down('475')]: {
-            marginBottom: 0,
-            marginTop: 8
+            marginBottom: 0
         },
     },
     image: {
@@ -58,21 +57,17 @@ function Carousel() {
                                 ...GatsbyContentfulFluid
                             }
                         }
-                        imgCarouselPhone {
-                            fluid(maxWidth: 400, quality: 90) {
-                                ...GatsbyContentfulFluid
-                            }
-                        }
                     }
                 }
             }
         }
-    `)
+    `);
+    
 
     function slideRenderer(params) {
         const { index, key } = params;
 
-        switch (mod(index, 4)) {
+        switch (mod(index, 5)) {
             case 0:
                 return (
                     <div key={key}>
@@ -116,6 +111,18 @@ function Carousel() {
                         </Link>
                     </div>
                 );
+
+            case 4:
+                return (
+                    <div key={key}>
+                        <Link to={data.allContentfulCarouselSiteImage.edges[4].node.slug}>
+                            <Img fluid={data.allContentfulCarouselSiteImage.edges[4].node.imgCarouselPc.fluid}
+                                 className={classes.image} imgStyle={{maxWidth: 1800}}
+                                 alt={data.allContentfulCarouselSiteImage.edges[4].node.name} />
+                        </Link>
+                    </div>
+                );
+
 
             default:
                 return null;

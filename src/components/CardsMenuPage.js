@@ -110,12 +110,20 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                     fontSize: 19,
                                     color: `tomato`,
                                     fontWeight: `bold`}}>
+                                        {slugCategogy === "/sety" && <>
+
                                         {lanch && <> Выгода {!isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</>}
-                                        {!lanch && `Выгода ${nonprice - price}`}
+                                        {!lanch && `Выгода ${nonprice - price}₽`}
                                         {lanch &&
-                                        <span style={{textDecoration: `line-through`, fontWeight: 500, color: `#000`, paddingLeft: 20,
-                                            textDecorationColor: `red`}}>{isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</span>
+                                            <span style={{
+                                            textDecoration: `line-through`,
+                                            fontWeight: 500,
+                                            color: `#000`,
+                                            paddingLeft: 20,
+                                            textDecorationColor: `red`
+                                        }}>{isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</span>
                                         }
+                                        </>}
                                 </Typography>}
                                 </div>}
 
@@ -231,10 +239,17 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
 
                                                 {!lanch && `${price} ₽`}
                                             </Typography>
+
                                             {lanch && isSale &&
                                             <div style={{position: `absolute`, bottom: 13, right: 4}}>
                                                 <Typography style={{textDecoration: `line-through`, color: `#000`,
-                                                textDecorationColor: `red`, fontSize: 18}} variant={"subtitle1"}>{defaultPrice}₽</Typography>
+                                                textDecorationColor: `red`, fontSize: 20, fontWeight: `bold`}} variant={"subtitle1"}>{defaultPrice}₽</Typography>
+                                            </div>
+                                            }
+                                            {lanch && !isSale &&
+                                            <div style={{position: `absolute`, bottom: 13, right: 4}}>
+                                                <Typography style={{textDecoration: `line-through`, color: `red`,
+                                                    textDecorationColor: `#000`, fontSize: 20, fontWeight: `bold`}} variant={"subtitle1"}>{lanchprice}₽</Typography>
                                             </div>
                                             }
                                         </Grid>

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from "react"
+import React, {useCallback, useEffect, useMemo} from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
@@ -8,10 +8,11 @@ import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
-import {defFilters, setCategory} from "../reducers/filters";
+import {checkSaleLanch, defFilters, setCategory} from "../reducers/filters";
 import {useStyleH1} from "../components/common/style";
 import Categories from "../components/Categories";
 import {productList} from "../reducers/selectors";
+import useTimer from "../utils/useTimer";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'));
@@ -23,20 +24,24 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
   
   const { title } = useStyleH1();
   const [load, setLoad] = React.useState(true);
+    const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
 
-    useEffect(() => {
-        dispatch(productLoaded(productsBrandedRolls)) // action push to reduxStore
-        setTimeout(() => {
-            setLoad(false)
-        }, 670);
-        dispatch(defFilters())
-    }, [productsBrandedRolls, dispatch]);
+    const priceIsSale = useMemo(() => isSale, [isSale]);
+    const visibleItems = filtersProducts(product, searchText, priceFilter);
 
-        const visibleItems = filtersProducts(product, searchText, priceFilter);
-        const onSelectCategory = useCallback((index) => {
+    const onSelectCategory = useCallback((index) => {
             dispatch(setCategory(index));
         }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(productLoaded(productsBrandedRolls));
+        doStart({endTime: 15, startTime: 10});
+        dispatch(checkSaleLanch(priceIsSale));
+        setTimeout(() => {
+            setLoad(false)
+        }, 700);
+        dispatch(defFilters())
+    }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
 
 return ( 
    <section>
@@ -51,8 +56,9 @@ return (
                <Grid container justify="center">
                    <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
                                   visibleItems={visibleItems}
-                                  image={image} product={product}/>
-               </Grid> : <Spinner/>
+                                  image={image} product={product}
+                                  timePrice={{hours, minutes, seconds}} isSale={priceIsSale}/>
+               </Grid> : <Spinner count={10}/>
        }
   </section>
     )
@@ -69,18 +75,23 @@ export default connect(mapStateToProps, null)(BrandedRolls)
 
 export const queryBrandedRolls = graphql `
     {
-        allContentfulProductSlognyeRolly {
+        allContentfulProductSlognyeRolly(sort: {fields: desc}) {
           edges {
             node {
                 id
-              slug
-              name
-              price
-            filter
-              description
-              weight
-              count
-              image {
+                slug
+                name
+                desc
+                price
+                filter
+                lanchprice
+                defaultPrice
+                lanch
+                sale
+                description
+                weight
+                count
+                image {
                  fluid(maxWidth: 400, maxHeight: 400, quality: 100) {
                      ...GatsbyContentfulFluid
                   }

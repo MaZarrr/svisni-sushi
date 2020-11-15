@@ -60,7 +60,31 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     const prod = isNil(indexProduct) || isEmpty(indexProduct);
 
     return (
-        <div className={`mt-1 ${classes.root}`}>
+        <div style={{marginTop: 10}} className={classes.root}>
+
+            {/*Меню выбор*/}
+            <Grid container style={{marginBottom: 40, marginTop: 20}}>
+                <Typography className={`mb-2 ${classesCard.titleIndex}`}
+                            variant={"h2"}>Заказывайте роллы, суши и пиццу</Typography>
+                {indexMenu.map(({node: homeMenu}) => (
+                    <Grid item xs={6} sm={4}
+                          style={{margin: `0 auto`,
+                              display: `flex`,
+                              justifyContent: `center`}}
+                          key={homeMenu.id} >
+                        <div>
+                            <div className="cart_title">
+                                <Typography variant={"h2"}>{homeMenu.category}</Typography>
+                            </div>
+                            <div style={{margin: `0 auto`}}>
+                                <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey', width: `120px`}} to={`/${homeMenu.slug}`}>
+                                    <Img fluid={homeMenu.image.fluid} className="cart_img"/>
+                                </Link>
+                            </div>
+                        </div>
+                    </Grid>
+                ))}
+            </Grid>
 
             { prod === true ? '' :
                 <>
@@ -143,7 +167,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
 
                     {/*Комбо компьютер*/}
                     <Hidden xsDown>
-                        <Grid container justify={"center"} style={{width: `100%`}}>
+                        <Grid container justify={"center"} style={{width: `100%`, marginBottom: 50}}>
                             { isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
                                 <Grid key={homeProduct.id} item sm={6} md={4} style={{maxWidth: `300px`}}>
                                     <Card className={classes.cardComboPc}>
@@ -212,30 +236,6 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                         </Grid>
                     </Hidden>
                 </> }
-
-            {/*Меню выбор*/}
-            <Grid container style={{marginBottom: 40, marginTop: 20}}>
-                <Typography className={`mb-2 ${classesCard.titleIndex}`}
-                            variant={"h2"}>Заказывайте роллы, суши и пиццу</Typography>
-                {indexMenu.map(({node: homeMenu}) => (
-                    <Grid item xs={6} sm={4}
-                          style={{margin: `0 auto`,
-                              display: `flex`,
-                              justifyContent: `center`}}
-                          key={homeMenu.id} >
-                        <div>
-                            <div className="cart_title">
-                                <Typography variant={"h2"}>{homeMenu.category}</Typography>
-                            </div>
-                            <div style={{margin: `0 auto`}}>
-                                <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey', width: `120px`}} to={`/${homeMenu.slug}`}>
-                                    <Img fluid={homeMenu.image.fluid} className="cart_img"/>
-                                </Link>
-                            </div>
-                        </div>
-                    </Grid>
-                ))}
-            </Grid>
         </div>
     );
 
