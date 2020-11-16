@@ -21,9 +21,6 @@ import Divider from "@material-ui/core/Divider";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
-// my components
-import ButtonBack from "./common/ButtonBackSet";
-
 const styles = {
     root: {
         padding: '0 50px',
@@ -94,7 +91,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const KomboItem = React.memo(( {id, name, description, addedCart, image, price, slug, edit, products} ) => {
+const KomboItem = React.memo(( { id, name, description, addedCart, image, price, slug, edit, products } ) => {
 
     const [activeItem, setActiveItem] = React.useState({nameItem: false});
     const [activeItems, setActiveItems] = React.useState({nameItem: false});
@@ -200,7 +197,6 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
                     <Container style={{paddingBottom: 50}}>
                         <Grid container style={{height: `20%`}}>
                             <Grid item xs={12} sm={5}>
-                                <ButtonBack back="/kombo" />
 
                                 <div style={{ overflowY: `scroll`, background: `lightgrey`,
                                     padding: `0 30px 30px 7px`, height: 450, borderRadius: 10}}>
@@ -269,8 +265,6 @@ const KomboItem = React.memo(( {id, name, description, addedCart, image, price, 
 
             {/*Карусель товаров телефон*/}
             <Hidden smUp>
-                <ButtonBack back="/kombo" />
-
                 {/* active sostav product */}
                 <Grid container style={{marginBottom: 140}}>
                     { productSostav.map((el, idx) => (

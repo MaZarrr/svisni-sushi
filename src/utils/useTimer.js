@@ -26,7 +26,7 @@ export default () => {
         setStartTimeSale(startTime);
     }, []);
 
-    const startTimer = () => {
+    const startTimer = useCallback( () => {
         interval.current = setInterval(() => {
             const time = moment().format("HH:mm:ss");
             let current = moment.duration(time).asSeconds();
@@ -44,7 +44,7 @@ export default () => {
             setSeconds(second)
 
         }, 1000)
-    };
+    }, [secondsInSale]);
 
     useEffect(() => {
         const hoursToSale = moment().hour();
@@ -58,7 +58,7 @@ export default () => {
         setEndTimeSale("00");
         setStartTimeSale("00");
         return;
-    });
+    }, [startTimeSale, endTimeSale, startTimer]);
 
     return [{hours, minutes, seconds, isSale}, doStart]
 }

@@ -24,19 +24,22 @@ const useStyleCarousel = makeStyles(theme => ({
         borderRadius: 13,
         maxWidth: 780,
         [theme.breakpoints.down('600')]: {
-            borderRadius: 5,
+            borderRadius: 7,
             // height: 90,
         },
     },
     rootAutoSwipeable: {
-        padding: '0 10vw 0 20vw',
+        padding: '0 20vw 0 30vw',
     },
+    rootCarousel: {
+        padding: '0 20vw 0 20vw',
+        [theme.breakpoints.down('475')]: {
+            padding: 0,
+        },
+    }
 }));
 
 const styles = {
-    root: {
-        padding: '0 10vw 0 20vw',
-    },
     slideContainer: {
         padding: '0 20px',
     }
@@ -131,7 +134,7 @@ function Carousel() {
 
     return (
         <div className={classes.root}>
-            <VirtualizeSwipeableViews style={styles.root} slideRenderer={slideRenderer} slideStyle={styles.slideContainer}/>
+            <VirtualizeSwipeableViews className={classes.rootCarousel} slideRenderer={slideRenderer} slideStyle={styles.slideContainer}/>
         </div>
     )
 }

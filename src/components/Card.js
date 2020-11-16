@@ -60,17 +60,17 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
     const prod = isNil(indexProduct) || isEmpty(indexProduct);
 
     return (
-        <div style={{marginTop: 10}} className={classes.root}>
-
+        <div className={classes.root}>
+            <Hidden smUp>
             {/*Меню выбор*/}
             <Grid container style={{marginBottom: 40, marginTop: 20}}>
-                <Typography className={`mb-2 ${classesCard.titleIndex}`}
+                <Typography style={{marginBottom: 10}} className={classesCard.titleIndex}
                             variant={"h2"}>Заказывайте роллы, суши и пиццу</Typography>
                 {indexMenu.map(({node: homeMenu}) => (
                     <Grid item xs={6} sm={4}
                           style={{margin: `0 auto`,
                               display: `flex`,
-                              justifyContent: `center`}}
+                              justifyContent: `center`, position: `relative`}}
                           key={homeMenu.id} >
                         <div>
                             <div className="cart_title">
@@ -85,6 +85,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                     </Grid>
                 ))}
             </Grid>
+            </Hidden>
 
             { prod === true ? '' :
                 <>

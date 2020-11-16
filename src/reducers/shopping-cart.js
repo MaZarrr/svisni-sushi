@@ -421,7 +421,7 @@ export default createReducer({
         return {
             ...state,
             orderTotal: state.orderTotal + objRoll.price,
-            cartItems: R.prepend({
+            cartItems: R.append({
                 ...objRoll,
                 id: uniqid(),
                 priceSale: 0,
@@ -432,7 +432,7 @@ export default createReducer({
     [addedSalePizza]: (state, objPizza) => {
         return {
             ...state,
-            cartItems: R.prepend({
+            cartItems: R.append({
                 ...objPizza,
                 pizzaSale: true,
                 textPizza: "Бесплатная пицца!",

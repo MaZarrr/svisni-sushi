@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
 const LayoutItem = loadable(() => import('./layoutItem'));
 
-const SetyItem = ({name, image, count, weight, price, added, kitProduct, location}) => {
+const SetyItem = ({name, image, count, weight, price, added, kitProduct, location, back}) => {
 
 return (
   <>
@@ -19,7 +19,7 @@ return (
          description={`Набор роллов ${name}, количество ${count} с общим весом ${weight}`}
          pathname="/sety"/>
         <LayoutItem name={name} image={null} location={location}>
-            <ButtonBackSet back="/sety" />
+            <ButtonBackSet back={back} />
             <Grid container>
                 <Grid item xs={12} sm={5} style={{width: `100%`}} >
                     <Img style={{maxWidth: 400, borderRadius: 15, position: `sticky`, top: 150}} fluid={image} />
@@ -48,8 +48,8 @@ return (
             ))}
             <div style={{marginTop: 20}}>
                 <Typography variant={"body1"}>Количество: <strong>{count} шт</strong></Typography>
-                    <Typography className="mt-2 mb-2" variant={"body1"}>Общий вес: <strong>{weight} кг</strong></Typography>
-                    <Typography className="mb-2" variant={"body1"}>Цена: <strong>{price} руб</strong></Typography>
+                    <Typography style={{marginTop: 10, marginBottom: 10}} variant={"body1"}>Общий вес: <strong>{weight} кг</strong></Typography>
+                    <Typography style={{marginBottom: 10}} variant={"body1"}>Цена: <strong>{price} руб</strong></Typography>
                     <Button
                         variant="contained"
                         size="large"

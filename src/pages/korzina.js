@@ -204,17 +204,14 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
             { load === false ? <div>
             { R.isEmpty(items) ? <EmptyBasket/> :
                 <Grid container spacing={2}>
-                    <Grid item sm={7}>
+                    <Grid item sm={7} style={{width: `100%`}}>
                     <Grid container justify={"center"} spacing={2} className={classes.wrappedContainer}>
-
-                    {saleRollFunc()}
-                    {pizzaDarom()}
 
                     { items.map((item, idx) => {
                         const {id, name, count, total, image, priceIn33cm, price, priceDef,
                         textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
                     return (
-                   <Grid item  key={id}  xs={12} sm={7}>
+                   <Grid item key={id} xs={12} sm={7}>
                        <Paper style={{marginTop: 20, marginBottom: 10, padding: 8}}>
                        <div style={{display: `flex`}}>
                            <div style={{margin: `auto 0`, zIndex: 10}}>
@@ -312,7 +309,11 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                        </Paper>
                    </Grid>
                 )})}
-                </Grid>
+
+                        {saleRollFunc()}
+                        {pizzaDarom()}
+
+                    </Grid>
             </Grid>
                     <Hidden smUp>
                         { addPanelPribors  &&

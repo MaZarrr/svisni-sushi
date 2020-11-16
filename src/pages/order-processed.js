@@ -36,7 +36,7 @@ export default ({location: {state}}) => {
             setPhone(state.phone);
             setDelivery(state.delivery)
         }
-    }, []);
+    }, [state.delivery, state.phone, state.products, state.totalPrice]);
 
     return (
         <Grid container style={{marginTop: `75px`}}>

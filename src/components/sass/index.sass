@@ -18,7 +18,8 @@
 .cart_img
   width: 120px
   height: 120px
-  margin: 0 auto
+  margin: 10px auto
+  z-index: 999
   padding: 0
   @media screen and (max-width: 768px)
     width: 100px
@@ -50,10 +51,13 @@
       height: 150px
   &_title
     text-align: center
+    position: absolute
+    top: -30px
+    left: 0
+    width: 100%
+    z-index: 1000
     @media screen and (max-width: 750px)
       height: 70px
-    @media screen and (max-width: 400px)
-      height: 50px
     h2
       text-align: center
       margin: 0
@@ -62,8 +66,5 @@
       font-size: 26px
       @media screen and (max-width: 750px)
         font-size: 20px
-      @media screen and (max-width: 400px)
-        font-size: 17px
-        padding: 15px 0 0 0
 .sliders
   border: none

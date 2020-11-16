@@ -218,9 +218,7 @@ export const useStyleKorzina = makeStyles(theme => ({
         marginTop: 10
     },
     wrappedContainer: {
-        // display: `flex`,
-        // flexDirection: `column`,
-        width: `80%`,
+        width: `100%`,
         [theme.breakpoints.down('500')]: {
             paddingBottom: 170
         }
