@@ -44,7 +44,7 @@ const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIco
 
         setTimeout(() => {
             setLoad(false)
-        }, 750);
+        }, 730);
 
         dispatch(defFilters());
     }, [setyProduct, dispatch, doStart, priceIsSale]);

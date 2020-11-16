@@ -222,7 +222,7 @@ export const useStyleKorzina = makeStyles(theme => ({
         // flexDirection: `column`,
         width: `80%`,
         [theme.breakpoints.down('500')]: {
-            paddingBottom: 10
+            paddingBottom: 170
         }
     },
     paper: {

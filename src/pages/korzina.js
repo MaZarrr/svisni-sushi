@@ -337,15 +337,16 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
 
                     <Hidden smUp>
                     <Grid style={{margin: `20px auto 0 auto`,
-                    position: `fixed`,
-                    padding: 0,
-                    bottom: 0,
-                    width: `100%`,
-                    zIndex: 1200
-                }} item xs={12} sm={5}>
-                     <Paper elevation={3} style={{padding: 20}}>
-                   <Typography variant="h6" style={{fontSize: 22}}>Итого </Typography>
-                    <Typography variant="body1" style={{fontSize: 22}}>Сумма заказа <b>{total} ₽</b></Typography>
+                        position: `fixed`,
+                        padding: 0,
+                        bottom: 0,
+                        width: `100%`,
+                        zIndex: 1200
+                        }} item xs={12} sm={5}>
+
+                        <Paper elevation={3} style={{padding: 20}}>
+                        <Typography variant="h6" style={{fontSize: 22}}>Итого </Typography>
+                        <Typography variant="body1" style={{fontSize: 22}}>Сумма заказа <b>{total} ₽</b></Typography>
                     <Button
                        component={Link}
                        to="/korzina/order"
