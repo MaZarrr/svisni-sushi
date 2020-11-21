@@ -312,30 +312,31 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
 
                         {saleRollFunc()}
                         {pizzaDarom()}
+                        <Hidden smUp>
+                            { addPanelPribors  &&
+                            <Paper style={{marginTop: 10, padding: 10, width: `100%`}}>
+                                <div style={{display: `flex`, flexDirection: `column`}}>
+                                    <Typography variant={"subtitle2"}>Количество палочек</Typography>
+                                    <div style={{display: `flex`}}>
+                                        <IconButton color="primary" aria-label="plus" component="span"
+                                                    onClick={()=> addedPriborCount(1)}>
+                                            <AddCircleOutlineIcon aria-label="plus" />
+                                        </IconButton>
+                                        <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
+                                        <IconButton color="primary" aria-label="remove" component="span"
+                                                    onClick={()=> addedPriborCount(-1)}>
+                                            <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
+                                        </IconButton>
+                                    </div>
+                                </div>
+                            </Paper>
+                            }
+                        </Hidden>
+                    </Grid>
 
                     </Grid>
-            </Grid>
-                    <Hidden smUp>
-                        { addPanelPribors  &&
-                        <Paper style={{marginTop: 10, marginBottom: 170, padding: 10, width: `100%`}}>
-                            <div style={{display: `flex`, flexDirection: `column`}}>
-                                <Typography variant={"subtitle2"}>Количество палочек</Typography>
-                                <div style={{display: `flex`}}>
-                                    <IconButton color="primary" aria-label="plus" component="span"
-                                                onClick={()=> addedPriborCount(1)}>
-                                     <AddCircleOutlineIcon aria-label="plus" />
-                                    </IconButton>
-                                    <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
-                                    <IconButton color="primary" aria-label="remove" component="span"
-                                                onClick={()=> addedPriborCount(-1)}>
-                                        <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
-                                    </IconButton>
-                                </div>
-                        </div>
-                        </Paper>
-                        }
-                    </Hidden>
 
+                    {/*phone next order*/}
                     <Hidden smUp>
                     <Grid style={{margin: `20px auto 0 auto`,
                         position: `fixed`,
@@ -345,15 +346,15 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                         zIndex: 1200
                         }} item xs={12} sm={5}>
 
-                        <Paper elevation={3} style={{padding: 20}}>
-                        <Typography variant="h6" style={{fontSize: 22}}>Итого </Typography>
-                        <Typography variant="body1" style={{fontSize: 22}}>Сумма заказа <b>{total} ₽</b></Typography>
+                        <Paper elevation={3} style={{padding: 10}}>
+                        <Typography variant="h6" style={{fontSize: 16}}>Итого</Typography>
+                        <Typography variant="body1" style={{fontSize: 20}}>Сумма заказа <b>{total} ₽</b></Typography>
                     <Button
                        component={Link}
                        to="/korzina/order"
                        color={"primary"}
                        size={'large'}
-                       style={{marginBottom: 10, fontWeigh: `bold`, fontSize: 20}}
+                       style={{fontWeigh: `bold`, fontSize: 18, marginBottom: 5}}
                        variant="contained" >
                        Продолжить
                    </Button>

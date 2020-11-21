@@ -40,9 +40,14 @@ const useStylesCard = makeStyles(theme => ({
         color: 'white',
     }
 }));
+
 const styles = {
     root: {
-        padding: '0 50px',
+        padding: '0 50px 0 50px',
+        maxWidth: `100%`,
+    },
+    rootNewProd: {
+        padding: '0 50px 70px 50px',
         maxWidth: `100%`,
     },
     slideContainer: {
@@ -122,10 +127,8 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                         </SwipeableViews>
 
                         {/* Новинки */}
-                        {/*<div style={{backgroundColor: `tomato`, width: `100%`}}>*/}
                         <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
-                        {/*</div>*/}
-                        <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
+                        <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
                             { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
 
                                 <Card key={homeProduct.id} className={classes.cardCombo}>
@@ -139,14 +142,12 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                                     variant={"subtitle1"}>{homeProduct.description}</Typography>
                                     </CardContent>
                                     <CardActions disableSpacing>
-                                        { homeProduct.__typename === "ContentfulProduct" ||
-                                        homeProduct.__typename === "ContentfulProductPizza" ?
+                                        { homeProduct.__typename === "ContentfulProduct" ?
                                             <Button
                                                 variant="contained"
                                                 className={classesCard.buttonCombo}
                                                 component={Link}
-                                                style={{fontSize: 12}}
-                                                to={homeProduct.slug === "hallowen" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                to={homeProduct.slug === "gucci-set" ? `/sety/${homeProduct.slug}` : "/pizza"}>
                                                 Посмотреть
                                             </Button> : <Button
                                                 variant="contained"
@@ -211,13 +212,12 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                             <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
                                         </CardContent>
                                         <CardActions disableSpacing>
-                                            { homeProduct.__typename === "ContentfulProduct" ||
-                                            homeProduct.__typename === "ContentfulProductPizza" ?
+                                            { homeProduct.__typename === "ContentfulProduct" ?
                                                 <Button
                                                     variant="contained"
                                                     className={classesCard.buttonCombo}
                                                     component={Link}
-                                                    to={homeProduct.slug === "enjoyment" || homeProduct.slug === "zvezdnyi" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                    to={homeProduct.slug === "gucci-set" ? `/sety/${homeProduct.slug}` : "/pizza"}>
                                                     Посмотреть
                                                 </Button> : <Button
                                                     variant="contained"
