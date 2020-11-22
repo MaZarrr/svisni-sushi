@@ -39,6 +39,23 @@ module.exports = {
         icon: `src/images/logosvisni.png`, 
       },
     },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [
+          `/*`,
+          `/sety/*`,
+          `/pizza/*`,
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      },
+    }
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-material-ui`,
     {
@@ -50,16 +67,6 @@ module.exports = {
         typekit: {
           families: ["Oswald"],
         }
-      },
-    },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        precachePages: [
-          `/*`,
-          `/sety/*`,
-          `/pizza/*`,
-        ],
       },
     },
     `gatsby-plugin-sitemap`,
@@ -95,12 +102,5 @@ module.exports = {
         defer: false
       }
     },
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
-      },
-    }
   ]
 };

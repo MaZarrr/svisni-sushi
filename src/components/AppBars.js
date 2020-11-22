@@ -95,7 +95,6 @@ const AppBars = (props) => {
                 onChange={handleChange}
                 scrollButtons="auto">
 
-                {/*<Hidden smUp>*/}
                 {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
                         <Tab key={menu.id}
                              style={{textDecoration: `none`}}

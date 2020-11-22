@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
         width: 'auto',
     },
     menuButton: {
-        marginRight: 36,
         color: `tomato`,
         borderRadius: `50px`,
         border: `1px solid tomato`
@@ -51,7 +50,7 @@ export default function TemporaryDrawer({image}) {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}>
 
-            <div style={{background: `linear-gradient(90deg, #FF6D4C 0%, #FF6D71 100%)`, width: `100%`, height: 120}}>
+            <div style={{background: `linear-gradient(90deg, #c9f520 0%, #aeff31 100%)`, width: `100%`, height: 120}}>
                 <div style={{maxWidth: 90, height: 90, margin: `0 auto 0 auto`, paddingTop: 15 }}>
                     <GatsbyImage fixed={image.fixed} alt={"аватар свисни бар"}/>
                 </div>
@@ -104,9 +103,8 @@ export default function TemporaryDrawer({image}) {
     );
 
     return (
-        <div className={classes.menuButton}>
                 <React.Fragment key={'left'}>
-                    <IconButton onClick={toggleDrawer('left', true)}>
+                    <IconButton className={classes.menuButton} onClick={toggleDrawer('left', true)}>
                         <MenuIcon fontSize={"small"} />
                     </IconButton>
                     <SwipeableDrawer
@@ -118,6 +116,5 @@ export default function TemporaryDrawer({image}) {
                         {list('left')}
                     </SwipeableDrawer>
                 </React.Fragment>
-        </div>
     );
 }

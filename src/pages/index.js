@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { graphql, StaticQuery } from "gatsby"
 import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
-import moment from "moment";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
@@ -159,10 +158,6 @@ import Typography from "@material-ui/core/Typography";
 
     const IndexPage = ({ addedCart }) => {
     const classes = useStyleIndexPage();
-
-    React.useEffect(() => {
-        moment.locale('ru');
-    }, []);
 
     return (
             <StaticQuery query={QUERY_INDEX_DATA}

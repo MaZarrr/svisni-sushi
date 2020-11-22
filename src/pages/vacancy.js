@@ -12,20 +12,38 @@ import Button from '@material-ui/core/Button';
 
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
-import {useStyleCardIndexPage} from "../components/common/style";
 import SEO from "../components/seo";
 import {Container, Grid} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import { makeStyles } from '@material-ui/core/styles';
 
 const AvatarWrapp = styled(Avatar) `
 background: ${props => props.color};
 `
 
+export const useStyleH1 = makeStyles(theme => ({
+    titleIndexVacancy: {
+        fontFamily: `Oswald, cursive`,
+        fontWeight: 800,
+        marginTop: 80,
+        textTransform: `uppercase`,
+        marginLeft: 35,
+        fontSize: 34,
+        display: `flex`,
+        [theme.breakpoints.down('475')]: {
+            fontSize: 26,
+            marginTop: 40,
+            marginLeft: 35
+        }
+    },
+}));
+
+
 const Vacancy = () => {
 
-    const classes = useStyleCardIndexPage()
     const [expanded, setExpanded] = React.useState({nameCart: false});
     const [state, setState] = React.useState({status: ""});
+    const classes = useStyleH1();
 
     const submitForm = (ev) => {
         ev.preventDefault();
@@ -143,9 +161,7 @@ return (
                         { allMd.map(({node})=> (
                         <Card key={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.id}>
                             <CardHeader
-                                classes={{title: classes.title}}
-                                avatar={ <AvatarWrapp alt="Sushi" src={Logo} className={classes.avatar}
-                                                 classes={{img: classes.img}}></AvatarWrapp>}
+                                avatar={ <AvatarWrapp alt="Sushi" src={Logo}></AvatarWrapp>}
                                 title={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.vacancy}
                                 subheader={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.experience}/>
 
@@ -153,7 +169,6 @@ return (
                                 <Button
                                     variant="contained"
                                     color="secondary"
-                                    className={classes.button}
                                     startIcon={<ExpandMoreIcon />}
                                     id={"one"}
                                     onClick={() => handleExpandClick("one")}

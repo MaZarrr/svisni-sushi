@@ -1,7 +1,6 @@
 import React, {memo} from 'react';
 import Img from 'gatsby-image';
 import { Link } from "gatsby"
-import {useStyleCardIndexPage} from "./common/style";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
@@ -16,6 +15,28 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {isNil, isEmpty} from "ramda";
 
 const useStylesCard = makeStyles(theme => ({
+    root: {
+        margin: `0 auto`,
+        display: `flex`,
+        flexDirection: `column`,
+        alignItems: `center`,
+        borderRadius: `15px`
+    },
+    cardComboPc: {
+        borderRadius: `10px`,
+        maxWidth: `280px`,
+        margin: `10px auto 0 auto`,
+        [theme.breakpoints.up('500')]: {
+            maxWidth: `280px`,
+        },
+    },
+    cardCombo: {
+        maxWidth: 280,
+        borderRadius: `10px`,
+        [theme.breakpoints.down('500')]: {
+            maxHeight: `98%`
+        },
+    },
     titleIndex: {
         fontSize: '32px',
         fontWeight: `bold`,
@@ -59,13 +80,12 @@ const styles = {
 };
 
 const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
-    const classes = useStyleCardIndexPage();
     const classesCard = useStylesCard();
 
     const prod = isNil(indexProduct) || isEmpty(indexProduct);
 
     return (
-        <div className={classes.root}>
+        <div className={classesCard.root}>
             <Hidden smUp>
             {/*Меню выбор*/}
             <Grid container style={{marginBottom: 40, marginTop: 20}}>
@@ -103,7 +123,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                 <Hidden smUp>
                     <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
                         {  isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
-                            <Card key={homeProduct.id} className={classes.cardCombo}>
+                            <Card key={homeProduct.id} className={classesCard.cardCombo}>
                                 <CardMedia
                                     title={homeProduct.name}>
                                     <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
@@ -131,7 +151,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                         <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
                             { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
 
-                                <Card key={homeProduct.id} className={classes.cardCombo}>
+                                <Card key={homeProduct.id} className={classesCard.cardCombo}>
                                     <CardMedia
                                         title={homeProduct.name}>
                                         <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
@@ -172,9 +192,9 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                         <Grid container justify={"center"} style={{width: `100%`, marginBottom: 50}}>
                             { isNil(indexProduct[1].node.combos) ? '' : indexProduct[1].node.combos.map((homeProduct) => (
                                 <Grid key={homeProduct.id} item sm={6} md={4} style={{maxWidth: `300px`}}>
-                                    <Card className={classes.cardComboPc}>
+                                    <Card className={classesCard.cardComboPc}>
                                         <CardMedia
-                                            className={classes.media}
+                                            className={classesCard.media}
                                             title={homeProduct.name}>
                                             <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                         </CardMedia>
@@ -201,9 +221,8 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                             <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(indexProduct[0].node.title) ? "" : indexProduct[0].node.title}</Typography>
                             { isNil(indexProduct[0].node.new) ? '' :  indexProduct[0].node.new.map((homeProduct) => (
                                 <Grid key={homeProduct.id} item sm={6} md={4} style={{maxWidth: `300px`}}>
-                                    <Card className={classes.cardComboPc}>
+                                    <Card className={classesCard.cardComboPc}>
                                         <CardMedia
-                                            className={classes.media}
                                             title={homeProduct.name}>
                                             <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                         </CardMedia>
@@ -228,7 +247,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                                 </Button>
                                             }
 
-                                            <Typography style={{fontSize: 22}} className="ml-auto mr-2"
+                                            <Typography style={{fontSize: 22, marginLeft: `auto`, marginRight: 10}}
                                                         variant={"body1"}>{homeProduct.price} ₽</Typography>
                                         </CardActions>
                                     </Card>

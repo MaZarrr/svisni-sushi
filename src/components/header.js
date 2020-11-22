@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from "gatsby"
-import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,6 +9,7 @@ import { useStyleHeader } from "./common/style";
 import GatsbyImage from "gatsby-image";
 import Hidden from "@material-ui/core/Hidden";
 import loadable from "@loadable/component";
+import {Grid} from "@material-ui/core";
 
 // my components
 import Korzina from './korzinaComponent'
@@ -54,44 +54,56 @@ const Header = () => {
             position="fixed"
             className={classes.appBar}>
           <Toolbar>
-            <Hidden smUp>
-              <DrawerMenu className={classes.menuButton} image={avatarImage.childImageSharp}/>
-            </Hidden>
+              <Grid container>
+              <Hidden smUp>
+                  <Grid item xs={3} style={{margin: `auto auto`}}>
+                        <DrawerMenu image={avatarImage.childImageSharp}/>
+                  </Grid>
+              </Hidden>
 
-            <div className={clsx(classes.content_header)}>
-              <Hidden xsDown>
-              <ul className={clsx(classes.content_link)}>
-                <div className="icon_start">
-                  <Link to="/">
-                    <GatsbyImage fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
+                <Hidden xsDown>
+
+                <Grid item sm={2} >
+                <Link to="/">
+                    <GatsbyImage style={{width: 70, margin: `auto auto`}} fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
                   </Link>
-                </div>
-                {
+                </Grid>
+
+                <Grid item xs={8} component={`ul`}  style={{margin: `auto 0`}}>
+                  <Grid container>
+              {
                   links.map(({name, link, id}) => (
-                      <li key={id} className="nav-item">
+                      <Grid item key={id} sm={3}>
+                        <li className="nav-item">
                         <Link to={link}
                               activeClassName="active"
                               className="nav-link">
-                          <Typography variant={"body2"}>
+                          <Typography style={{fontWeight: `bold`}} variant={"body2"}>
                             {name}
                           </Typography>
                         </Link>
                       </li>
+                      </Grid>
+
                   ))
                 }
-              </ul>
-              </Hidden>
-            </div>
+                  </Grid>
+                </Grid>
+                </Hidden>
 
-            <Hidden smUp>
-              <div className="icon_start_xs">
-                <Link to="/">
-                  <GatsbyImage fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
-                </Link>
-              </div>
-            </Hidden>
+                <Hidden smUp>
+                    <Grid item xs={6}>
+                        <Link to="/">
+                            <GatsbyImage style={{width: 65, margin: `auto auto`}} fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
+                        </Link>
+                    </Grid>
+                </Hidden>
 
-            <Korzina />
+                <Grid item xs={3} sm={2}>
+                    <Korzina />
+                </Grid>
+            </Grid>
+
           </Toolbar>
         </AppBar>
 

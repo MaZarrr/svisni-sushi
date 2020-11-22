@@ -23,24 +23,6 @@ export const useStyleH1 = makeStyles(theme => ({
 }));
 
 export const useStylesCart = makeStyles(theme => ({
-    titleH1: {
-        fontFamily: `Oswald, cursive`,
-        fontWeight: 800,
-        paddingTop: 80,
-        textTransform: `uppercase`,
-        paddingLeft: `3vw`,
-        fontSize: 34,
-        display: `flex`,
-        [theme.breakpoints.down('600')]: {
-            paddingTop: 45,
-        },
-        [theme.breakpoints.down('475')]: {
-            fontSize: 26,
-            paddingTop: 45,
-            paddingBottom: 10,
-            paddingLeft: `5vw`
-        }
-    },
     deckriptSmall: {
         fontWeight: 500,
         height: 30,
@@ -126,16 +108,6 @@ export const useStylesCart = makeStyles(theme => ({
         width: `99%`,
         margin: `0 auto`
     },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
     button: {
         margin: theme.spacing(1),
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -143,20 +115,6 @@ export const useStylesCart = makeStyles(theme => ({
         borderRadius: 3,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
     },
-    overline: {
-        minHeight: 55,
-        display: `flex`,
-        justifyContent: 'space-between',
-        [theme.breakpoints.down('425')]: {
-            minHeight: 0
-        },
-    },
-    overlinePizza: {
-        paddingTop: 10,
-        minHeight: 55,
-        display: `flex`,
-        justifyContent: 'space-between',
-    }
 }));
 
 export const useStyleOrder = makeStyles(theme => ({
@@ -183,33 +141,6 @@ export const useStyleOrder = makeStyles(theme => ({
             paddingTop: 40
         },
     },
-    infoGrid: {
-        display: `flex`,
-        justifyContent: `center`,
-        width: `99%`
-    },
-    conatiner_info: {
-        border: `2px solid blue`,
-        padding: 5,
-        borderRadius: 10,
-        width: `150px`,
-    },
-    conatiner_info_delivery: {
-        margin: `15px auto 15px 0`,
-        width: `100%`
-    },
-    emty: {
-        padding: theme.spacing(2),
-        paddingLeft: theme.spacing(4),
-    },
-    payInfo: {
-        margin: `20px 0 20px 0`,
-        fontSize: 15,
-        background: `#f0ecec`,
-        padding: 20,
-        boxShadow: `0px 4px 8px rgba(0, 0, 0, 0.5)`,
-        maxWidth: '65%'
-    }
 }));
 
 export const useStyleKorzina = makeStyles(theme => ({
@@ -224,137 +155,15 @@ export const useStyleKorzina = makeStyles(theme => ({
         }
     },
     paper: {
-        paddingTop: 80,
+        padding: theme.spacing(2),
         textAlign: 'center',
-        [theme.breakpoints.down('425')]: {
-            marginBottom: 10,
-            paddingTop: 40,
+        paddingTop: 80,
+        [theme.breakpoints.down('475')]: {
+            paddingTop: 40
         },
-        zIndex: 99,
-    },
-    paperDiv: {
-        padding: theme.spacing(2),
-        paddingLeft: theme.spacing(4),
-        textAlign: 'left',
-        color: theme.palette.text.secondary,
-    },
-    image: {
-        width: 128,
-        zIndex: 50,
-        height: 128,
-    },
-    img: {
-        margin: 'auto',
-        display: 'block',
-        maxWidth: '100%',
-        maxHeight: '100%',
-    },
-    containerWrapped: {
-        marginBottom: 30
-    },
-    button: {
-        background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-        color: 'white',
-        marginTop: 8,
-        textAlign: `start`,
-        width: `300px`,
-        [theme.breakpoints.down('sm')]: {
-            maxWidth: '90%'
-        }
-    },
-    emty: {
-        textAlign: "center",
-        padding: theme.spacing(2),
-        paddingLeft: theme.spacing(4),
-    },
-    bottomHead: {
-        [theme.breakpoints.down('sm')]: {
-            marginBottom: 60
-        }
-    },
-    buttonD: {
-        background: `lightgrey`,
-        textTransform: `uppercase`,
-        color: `dark`,
-        borderRadius: 10,
-        fontSize: 12,
-        width: 100,
-        fontWeight: 700,
-        padding: `8px 5px`
-    },
-    buttonT: {
-        background: `#FFAE40`,
-        transform: `scale(1.07)`,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
-        textTransform: `uppercase`,
-        color: `white`,
-        fontWeight: 700,
-        borderRadius: 10,
-        width: 100,
-        fontSize: 12,
-        padding: `8px 5px`
     },
 }));
 
-export const useStyleCardIndexPage = makeStyles(theme => ({
-    root: {
-        margin: `0 auto`,
-        display: `flex`,
-        flexDirection: `column`,
-        alignItems: `center`,
-        borderRadius: `15px`
-    },
-    titleIndex: {
-        textAlign: "center",
-        fontSize: '36px',
-        width: `100%`,
-        padding: `20px 10px`,
-        [theme.breakpoints.down('600')]: {
-            fontSize: '26px',
-            padding: `10px 10px`
-        },
-    },
-    titleIndexVacancy: {
-        fontFamily: `Oswald, cursive`,
-        fontWeight: 800,
-        marginTop: 80,
-        textTransform: `uppercase`,
-        marginLeft: 35,
-        fontSize: 34,
-        display: `flex`,
-        [theme.breakpoints.down('475')]: {
-            fontSize: 26,
-            marginTop: 40,
-            marginLeft: 35
-        }
-    },
-    cardCombo: {
-        maxWidth: 280,
-        borderRadius: `10px`,
-        [theme.breakpoints.down('500')]: {
-            maxHeight: `98%`
-        },
-    },
-    cardComboPc: {
-        borderRadius: `10px`,
-        maxWidth: `280px`,
-        margin: `10px auto 0 auto`,
-        [theme.breakpoints.up('500')]: {
-            maxWidth: `280px`,
-        },
-    },
-    card: {
-        minWidth: `280px`,
-        borderRadius: `10px`,
-        marginTop: 30,
-        [theme.breakpoints.down('425')]: {
-            maxWidth: `85%`,
-        },
-        [theme.breakpoints.up('768')]: {
-            maxWidth: `280px`,
-        },
-    }
-}));
 
 export const useStyleHeader = makeStyles(theme => ({
     root: {

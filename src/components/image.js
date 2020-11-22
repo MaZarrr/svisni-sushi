@@ -10,7 +10,7 @@ export default () => {
           }
         }
       },
-      avatarImage: file(relativePath: { eq: "avatar.jpg" }) {
+      avatarImage: file(relativePath: { eq: "logosvisni.png" }) {
         childImageSharp {
           fixed(width: 90, quality: 100) {
             ...GatsbyImageSharpFixed

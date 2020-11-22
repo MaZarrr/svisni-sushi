@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from "react"
 import SEO from "../components/seo"
 import {graphql } from "gatsby";
 import { connect } from 'react-redux';
-import { useStylesCart} from '../components/common/style';
+import {useStyleH1, useStylesCart} from '../components/common/style';
 import { Grid } from "@material-ui/core";
 import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
@@ -36,6 +36,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
 
     const [load, setLoad] = React.useState(true);
     const classes = useStylesCart();
+    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productPizzaLoaded(pizzaProduct))
@@ -59,7 +60,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
             <SEO title="Заказать пиццу в Валуйки, доставка пиццы с 10:00 до 22:00"
                  description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно, именинникам дарим пиццу. Меню на сайте, большая пицца от 249 руб"
                  pathname="/sety"/>
-            <h1 className={classes.titleH1}>Доставка пиццы</h1>
+            <h1 className={title}>Доставка пиццы</h1>
             <CustomizedInputSearch/>
             <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
             { load === false ?

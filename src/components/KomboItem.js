@@ -218,10 +218,10 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                     <div className="d-flex mt-2" >
                                         <Typography style={{fontSize: 20}} variant={"body1"}>
                                             Стоимость:</Typography>
-                                        <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}>
+                                        <Typography style={{fontSize: 24, marginLeft: `auto`}} variant={"body1"}>
                                             <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
                                     </div>
-                                    <Button className="mt-3" variant={"contained"}
+                                    <Button style={{marginTop: 20}} variant={"contained"}
                                             color={"primary"}
                                             onClick={() => addedCart({id, price,
                                                 product: [addedProductKomboToBacket()]}
@@ -302,7 +302,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                 <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
                             </div>
                         </div>
-                        <Button className="mb-1" variant={"contained"}
+                        <Button style={{marginBottom: 10}} variant={"contained"}
                                 color={"primary"}
                                 onClick={() => addedCart({id, price, product: [addedProductKomboToBacket()]})}>
                             В корзину</Button>
