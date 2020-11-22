@@ -155,3 +155,11 @@ export const query = graphql `
         }
     }
   `;
+
+
+
+// "react-hot-loader": "^4.12.19",
+//     "@material-ui/core": "4.9.10",
+//     "@material-ui/icons": "^4.9.1",
+//     "@material-ui/lab": "^4.0.0-alpha.56",
+// "gatsby-plugin-react-redux": "^1.1.0-0",
