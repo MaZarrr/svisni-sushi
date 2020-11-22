@@ -15,8 +15,9 @@ import {productList} from "../reducers/selectors";
 import useTimer from "../utils/useTimer";
 
 const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
-const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'));
-
+const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
+    fallback: <Spinner count={10}/>
+});
 const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с беконом', 'с курицей', 'веган'];
 
 const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
