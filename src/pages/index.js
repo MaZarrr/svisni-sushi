@@ -11,7 +11,6 @@ import IndexCards from '../components/Card'
 import moment from "moment";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import InstaSection from "../components/InstagramSection";
 
     const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -183,11 +182,8 @@ import InstaSection from "../components/InstagramSection";
                     <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
+                    </Grid>
 
-                    </Grid>
-                    <Grid container>
-                        <InstaSection/>
-                    </Grid>
                 </section>
          )}
         />
