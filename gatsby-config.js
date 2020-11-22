@@ -55,7 +55,7 @@ module.exports = {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
-    }
+    },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-material-ui`,
     {
@@ -101,6 +101,6 @@ module.exports = {
         afterBody: true,
         defer: false
       }
-    },
+    }
   ]
 };
