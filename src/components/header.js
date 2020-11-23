@@ -12,12 +12,12 @@ import loadable from "@loadable/component";
 import {Grid} from "@material-ui/core";
 
 // my components
-import Korzina from './korzinaComponent'
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
 import Typography from "@material-ui/core/Typography";
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
+const Korzina = loadable(() => import('./korzinaComponent'));
 
 const links = [
   {

@@ -11,19 +11,26 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     'gatsby-transformer-remark',
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
         stripMetadata: true,
         defaultQuality: 100,
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
     {
@@ -35,10 +42,10 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `standalone`,
-        icon: `src/images/logosvisni.png`, 
+        icon: `src/images/logosvisni.png`,
       },
     },
-    `gatsby-plugin-remove-serviceworker`,
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-theme-material-ui`,
       options: {
@@ -89,10 +96,9 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-source-contentful`,
+      resolve: `gatsby-plugin-facebook-pixel`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+        pixelId: "1086855725085525",
       },
     }
   ]

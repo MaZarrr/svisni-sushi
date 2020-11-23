@@ -176,6 +176,7 @@ export const query = graphql `
 // },
 
 // "gatsby-plugin-offline": "^3.5.0",
+// "gatsby-plugin-remove-serviceworker": "^1.0.0",
 
 //
 
@@ -206,3 +207,5 @@ export const query = graphql `
 //     }
 // },
 // },
+
+// `gatsby-plugin-remove-serviceworker`,

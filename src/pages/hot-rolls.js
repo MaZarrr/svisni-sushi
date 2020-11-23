@@ -11,9 +11,11 @@ import {defFilters, setCategory} from "../reducers/filters";
 import {useStyleH1} from "../components/common/style";
 import Categories from "../components/Categories";
 import {productList} from "../reducers/selectors";
+import CustomizedInputSearch from '../components/CustomizedInputSearch';
 
-const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
-const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'));
+const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
+    fallback: <Spinner count={10}/>
+});
 
 const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с мидиями', 'с курицей', 'веган'];
 

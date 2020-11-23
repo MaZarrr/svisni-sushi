@@ -13,8 +13,8 @@ import {useStyleH1} from "../components/common/style";
 import Categories from "../components/Categories";
 import {productList} from "../reducers/selectors";
 import useTimer from "../utils/useTimer";
+import CustomizedInputSearch from '../components/CustomizedInputSearch';
 
-const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner count={10}/>
 });
