@@ -9,7 +9,6 @@ import filtersProducts from '../utils/filtersProducts'
 import * as R from 'ramda'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-import loadable from "@loadable/component";
 import {productPizzaLoaded} from "../reducers/app";
 import {defFilters, setCategory} from "../reducers/filters";
 import Card from "@material-ui/core/Card";
@@ -26,8 +25,7 @@ import Paper from "@material-ui/core/Paper";
 import SplitButton from "../components/SplitButton";
 import {productList} from "../reducers/selectors";
 import Categories from "../components/Categories";
-
-const CustomizedInputSearch = loadable(() => import('../components/CustomizedInputSearch'));
+import CustomizedInputSearch from "../components/CustomizedInputSearch";
 
 const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
 

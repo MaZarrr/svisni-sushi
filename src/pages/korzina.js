@@ -195,10 +195,8 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
   <div className={classes.root}>
     <Container>
           <Container className={classes.paper}>
-          <Typography variant="h2">
-            <Box style={{textTransform: "uppercase"}} fontFamily="Oswald" fontWeight={800} fontSize={34}>
+          <Typography variant="h2" style={{fontWeight: 800, fontSize: 32}}>
                 {R.isEmpty(items) ? <div>Корзина пустая<span role="img" aria-label="accessible-emoji">😕</span></div> : "Корзина товаров" }
-            </Box>
           </Typography>
           </Container>
             { load === false ? <div>

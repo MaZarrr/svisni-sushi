@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo} from "react"
 import SEO from "../components/seo"
-import { graphql} from "gatsby";
+import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
 import Spinner from '../components/spinner/spinner'

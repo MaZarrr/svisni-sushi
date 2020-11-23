@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 module.exports = {
-
     siteMetadata: {
       siteUrl: `https://svisni-sushi.ru`,
       title: `Свистни Суши`,
@@ -39,29 +38,23 @@ module.exports = {
         icon: `src/images/logosvisni.png`, 
       },
     },
+    `gatsby-plugin-remove-serviceworker`,
     {
-      resolve: `gatsby-plugin-offline`,
+      resolve: `gatsby-theme-material-ui`,
       options: {
-        precachePages: [
-          `/*`,
-          `/sety/*`,
-          `/pizza/*`,
-        ],
-      },
-    },
-    `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        google: {
-          families: ["Oswald"],
+        webFontsConfig: {
+          fonts: {
+            google: [
+              {
+                family: `Montserrat`,
+                variants: [`400`, `500`, `600`, `800`],
+              },
+            ],
+          },
         },
-        typekit: {
-          families: ["Oswald"],
-        }
       },
     },
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-analytics`,

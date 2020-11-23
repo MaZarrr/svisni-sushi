@@ -78,7 +78,7 @@ const Header = () => {
                         <Link to={link}
                               activeClassName="active"
                               className="nav-link">
-                          <Typography style={{fontWeight: `bold`}} variant={"body2"}>
+                        <Typography variant={"body2"} style={{fontWeight: 500}}>
                             {name}
                           </Typography>
                         </Link>

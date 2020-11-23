@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const useStyleH1 = makeStyles(theme => ({
     title: {
-        fontFamily: `Oswald, cursive`,
         fontWeight: 800,
         paddingTop: 80,
         textTransform: `uppercase`,
@@ -16,7 +15,7 @@ export const useStyleH1 = makeStyles(theme => ({
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
             paddingTop: 45,
-            paddingBottom: 10,
+            // paddingBottom: 10,
             paddingLeft: `5vw`
         }
     }
@@ -224,7 +223,7 @@ export const useStyleSearchInput = makeStyles(theme => ({
 }));
 
 export const StyleH1Layout = styled.h1 `
-       font-family: 'Oswald', cursive;
+       font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 800;
         text-transform: uppercase;
@@ -242,11 +241,11 @@ export const WrappedContentLayout = styled.div `
 `;
 
 export const StylingInfo = styled.section ` 
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     margin-top: 80px;
      h1 {
-        font-family: 'Oswald', cursive;
+        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 800;
         text-transform: uppercase;
@@ -276,12 +275,12 @@ export const StylingInfo = styled.section `
     }
    
     h3 {
-        font-family: 'Oswald', cursive;
+        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 900;
     } 
     h2 {
-        font-family: 'Oswald', cursive;
+        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 900;
     }

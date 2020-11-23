@@ -163,3 +163,46 @@ export const query = graphql `
 //     "@material-ui/icons": "^4.9.1",
 //     "@material-ui/lab": "^4.0.0-alpha.56",
 // "gatsby-plugin-react-redux": "^1.1.0-0",
+
+// {
+//     resolve: `gatsby-plugin-offline`,
+//         options: {
+//     precachePages: [
+//         `/*`,
+//         `/sety/*`,
+//         `/pizza/*`,
+//     ],
+// },
+// },
+
+// "gatsby-plugin-offline": "^3.5.0",
+
+//
+
+// {
+//     resolve: `gatsby-plugin-offline`,
+//         options: {
+//     precachePages: [
+//         `/*`,
+//         `/sety/*`,
+//         `/pizza/*`,
+//     ],
+// },
+// },
+// `gatsby-plugin-material-ui`,
+// "gatsby-plugin-material-ui": "^2.1.10",
+
+
+// "gatsby-plugin-web-font-loader": "^1.0.4",
+
+// {
+//     resolve: "gatsby-plugin-web-font-loader",
+//         options: {
+//     google: {
+//         families: ["Oswald"],
+//     },
+//     typekit: {
+//         families: ["Oswald"],
+//     }
+// },
+// },

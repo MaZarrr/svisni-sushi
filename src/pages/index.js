@@ -24,13 +24,13 @@ import Typography from "@material-ui/core/Typography";
             },
         },
         h1Home: {
-            fontFamily: 'Oswald, cursive',
             fontWeight: '800',
             lineHeight: 2,
             fontSize: '36px',
             padding: `0 0 0 35px`,
+            letterSpacing: `-1.5px`,
             [theme.breakpoints.down('600')]: {
-                fontSize: '30px',
+                fontSize: '27px',
                 color: `#000`,
                 padding: `0 0 0 20px`,
             },
