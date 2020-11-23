@@ -27,7 +27,7 @@ return (
 
                 <Grid item xs={12} sm={6} md={5}>
                     <div style={{maxWidth: `100%`, height: `20px`}}>
-                        <Typography variant={"h6"} style={{marginTop: 10}}>Состав:</Typography>
+                        <Typography variant={"h6"} style={{marginTop: 10, marginBottom: 10}}>Состав:</Typography>
                     </div>
                 { kitProduct.map(({node: product}) => (
                 <Paper key={product.id} style={{marginTop: 10}}>
@@ -36,7 +36,7 @@ return (
                             <Img style={{maxWidth: 70}} fluid={product.image.fluid} alt={product.name} />
                         </Grid>
                     <Grid item xs={8} style={{paddingLeft: 8, margin: `auto 0`}}>
-                        <Typography variant={"subtitle2"} style={{fontSize: 14, margin: 0, padding: 0}}>{product.name}</Typography>
+                        <Typography variant={"subtitle2"} style={{fontSize: 14, fontWeight: 600, margin: 0, padding: 0}}>{product.name}</Typography>
                         <Typography variant={"body1"} style={{fontSize: 12, margin: `auto`}}>{product.description}</Typography>
                     </Grid>
 

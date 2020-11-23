@@ -35,7 +35,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                             <CardHeader
                                 avatar={slugCategogy !== "/wok" ? <Img style={{width: 40}} fluid={image.fluid} alt={name} /> : ''}
                                 title={variant ? variant : titleCategory}
-                                subheader={<span itemProp="name"><Typography style={{fontSize: 18}} variant={"subtitle2"}>{name}</Typography></span>}/>
+                                subheader={<span itemProp="name"><Typography style={{fontSize: 18, fontWeight: 600}} variant={"subtitle2"}>{name}</Typography></span>}/>
                             { slugCategogy === "/sety" &&
                             <CardMedia
                                 className={classes.media}

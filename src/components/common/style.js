@@ -228,8 +228,8 @@ export const StyleH1Layout = styled.h1 `
         font-weight: 800;
         text-transform: uppercase;
         font-size: 34px;
-     @media screen and (max-width: 475px) { 
-        font-size: 26px; 
+        @media screen and (max-width: 475px) { 
+            font-size: 26px; 
     }
 `;
 

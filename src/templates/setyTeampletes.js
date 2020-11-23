@@ -209,3 +209,5 @@ export const query = graphql `
 // },
 
 // `gatsby-plugin-remove-serviceworker`,
+
+// "gatsby-plugin-favicon": "^3.1.6",

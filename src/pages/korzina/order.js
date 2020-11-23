@@ -6,7 +6,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import MaskedInput from 'react-text-mask';
 import Spinner from '../../components/spinner/spinner-new'
 

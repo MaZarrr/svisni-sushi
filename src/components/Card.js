@@ -129,7 +129,8 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                     <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                 </CardMedia>
                                 <CardContent>
-                                    <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+
+                                    <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
                                 </CardContent>
                                 <CardActions disableSpacing>
                                         <Button
@@ -139,7 +140,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                             to={`/kombo/${homeProduct.slug}`}>
                                             Выбрать
                                         </Button>
-                                        <Typography style={{fontSize: 20}} className="ml-auto mr-1"
+                                        <Typography style={{fontSize: 20, marginLeft: `auto`, marginRight: 10, fontWeight: 800}}
                                                     variant={"body1"}>{homeProduct.price} ₽</Typography>
                                     </CardActions>
                                 </Card>
@@ -157,7 +158,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                         <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                     </CardMedia>
                                     <CardContent>
-                                        <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                        <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
                                         <Typography style={{fontSize: 13, height: 60, overflowY: `auto`}}
                                                     variant={"subtitle1"}>{homeProduct.description}</Typography>
                                     </CardContent>
@@ -178,7 +179,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                             </Button>
                                         }
 
-                                        <Typography style={{fontSize: 20}} className="ml-auto mr-1"
+                                        <Typography style={{fontSize: 20, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
                                                     variant={"body1"}>{homeProduct.price} ₽</Typography>
                                     </CardActions>
                                 </Card>
@@ -199,7 +200,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                             <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                         </CardMedia>
                                         <CardContent>
-                                            <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                            <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
                                             <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}}
                                                         variant={"subtitle1"}>{homeProduct.description}</Typography>
                                         </CardContent>
@@ -211,7 +212,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                                 to={`/kombo/${homeProduct.slug}`}>
                                                 Выбрать
                                             </Button>
-                                            <Typography style={{fontSize: 22}} className="ml-auto mr-2" variant={"body1"}>{homeProduct.price} ₽</Typography>
+                                            <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}} variant={"body1"}>{homeProduct.price} ₽</Typography>
                                         </CardActions>
                                     </Card>
                                 </Grid>
@@ -227,7 +228,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                             <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                         </CardMedia>
                                         <CardContent>
-                                            <Typography style={{fontSize: 18}} variant={"h6"}>{homeProduct.name}</Typography>
+                                            <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
                                             <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
                                         </CardContent>
                                         <CardActions disableSpacing>
@@ -247,7 +248,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                                 </Button>
                                             }
 
-                                            <Typography style={{fontSize: 22, marginLeft: `auto`, marginRight: 10}}
+                                            <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
                                                         variant={"body1"}>{homeProduct.price} ₽</Typography>
                                         </CardActions>
                                     </Card>

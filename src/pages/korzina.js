@@ -6,7 +6,6 @@ import  Img  from 'gatsby-image';
 import Spinner from '../components/spinner/spinner-new'
 import * as R from 'ramda'
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import RadioGroup from '@material-ui/core/RadioGroup';

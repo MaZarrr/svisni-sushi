@@ -80,7 +80,7 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                     <Card className={classes.card}>
                                         <CardHeader avatar={<Img style={{width: 40}} fluid={image.fluid} alt={name} />}
                                                     title={"Пицца"}
-                                                    subheader={<span itemProp="name"><Typography style={{fontSize: 18}} variant={"subtitle2"}>{name}</Typography></span>}/>
+                                                    subheader={<span itemProp="name"><Typography style={{fontSize: 18, fontWeight: 600}} variant={"subtitle2"}>{name}</Typography></span>}/>
                                         <CardMedia
                                             className={classes.media}
                                             title={name}>
@@ -139,12 +139,12 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                         <Grid container itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                             <Grid item xs={6}>
                                                 <Paper style={{width: `85%`, margin: `0 auto`}}>
-                                                    <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}} itemProp="price">{`от ${total}₽`}</Typography>
+                                                    <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 600}} itemProp="price">{`от ${total}₽`}</Typography>
                                                 </Paper>
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Paper style={{width: `85%`, margin: `0 auto`}}>
-                                                    <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{`${count}шт`}</Typography>
+                                                    <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 600}}>{`${count}шт`}</Typography>
                                                 </Paper>
                                             </Grid>
                                         </Grid>

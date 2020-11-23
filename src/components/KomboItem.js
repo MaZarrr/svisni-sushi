@@ -74,7 +74,6 @@ export const useStyleKombo = makeStyles(theme => ({
         marginBottom: 12,
     },
     titleClass: {
-        fontFamily: `Oswald, cursive`,
         fontWeight: 800,
         marginTop: 80,
         textTransform: `uppercase`,

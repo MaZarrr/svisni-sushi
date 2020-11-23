@@ -9,7 +9,20 @@ module.exports = {
       author: `@mazarrr`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: 'pages',
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
     'gatsby-transformer-remark',
     `gatsby-transformer-sharp`,
     {
@@ -26,26 +39,6 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `svisni-sushi`,
-        short_name: `Свисни суши`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `standalone`,
-        icon: `src/images/logosvisni.png`,
-      },
-    },
-    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-theme-material-ui`,
       options: {
@@ -100,6 +93,20 @@ module.exports = {
       options: {
         pixelId: "1086855725085525",
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `svisni-sushi`,
+        short_name: `Свисни суши`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `standalone`,
+        icon: `src/images/logosvisni.png`,
+      },
+    },
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`
   ]
 };
