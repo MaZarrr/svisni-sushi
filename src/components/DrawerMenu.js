@@ -28,6 +28,12 @@ const useStyles = makeStyles(theme => ({
         color: `tomato`,
         borderRadius: `50px`,
         border: `1px solid tomato`
+    },
+    socialContent: {
+        display: `flex`,
+        justifyContent: `space-around`,
+        width: `75%`,
+        margin: `40px auto 0 auto`
     }
 }));
 
@@ -88,15 +94,15 @@ export default function TemporaryDrawer({image}) {
                 </ListItem>
                 <Divider/>
             </List>
-            <div className="d-flex justify-content-around w-75 ml-auto mr-auto mt-5">
+            <div className={classes.socialContent}>
                 <div>
-                    <a className="btn btn-sm btn-outline-warning rounded-pill" href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-2x fa-odnoklassniki-square"></i></a>
+                    <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-2x fa-odnoklassniki-square"></i></a>
                 </div>
                 <div>
-                    <a className="btn btn-sm btn-outline-warning rounded-pill" href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-2x fa-vk text-gradient-dark"></i></a>
+                    <a href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-2x fa-vk text-gradient-dark"></i></a>
                 </div>
                 <div>
-                    <a className="btn btn-sm btn-outline-warning rounded-pill" href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-2x fa-instagram text-gradient-dark"></i></a>
+                    <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-2x fa-instagram text-gradient-dark"></i></a>
                 </div>
             </div>
         </div>

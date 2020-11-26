@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useImageStaticHook from '../components/image';
-import "./header.css"
 import { useStyleHeader } from "./common/style";
 import GatsbyImage from "gatsby-image";
 import Hidden from "@material-ui/core/Hidden";
@@ -14,7 +13,6 @@ import {Grid} from "@material-ui/core";
 // my components
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
-import Typography from "@material-ui/core/Typography";
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Korzina = loadable(() => import('./korzinaComponent'));
@@ -63,26 +61,27 @@ const Header = () => {
 
                 <Hidden xsDown>
 
-                <Grid item sm={2} >
+                <Grid item sm={2}>
                 <Link to="/">
-                    <GatsbyImage style={{width: 70, margin: `auto auto`}} fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
+                    <GatsbyImage style={{width: 70, margin: `auto auto`}}
+                                 fluid={placeholderImage.childImageSharp.fluid}
+                                 alt={"логотип свисни суши"}/>
                   </Link>
                 </Grid>
 
-                <Grid item xs={8} component={`ul`}  style={{margin: `auto 0`}}>
+                <Grid item xs={8} component={`ul`} style={{margin: `auto 0`}}>
                   <Grid container>
               {
                   links.map(({name, link, id}) => (
-                      <Grid item key={id} sm={3}>
-                        <li className="nav-item">
-                        <Link to={link}
-                              activeClassName="active"
-                              className="nav-link">
-                        <Typography variant={"body2"} style={{fontWeight: 500}}>
+                      <Grid item component={"li"} key={id} sm={3} style={{ textDecoration: `none`,
+                        listStyle: `none`, fontFamily: 'Montserrat, sans-serif', textAlign: `center`}}>
+                        <Link to={link} activeStyle={{ border: `solid 1px #FC5185`,
+                          borderBottomWidth: `3px`,
+                          borderRadius: `8px`,
+                          padding: 10,
+                          color: `blueviolet`}}>
                             {name}
-                          </Typography>
                         </Link>
-                      </li>
                       </Grid>
 
                   ))

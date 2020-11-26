@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from "react"
-import styled from 'styled-components';
 import { Link } from 'gatsby';
 import * as R from 'ramda'
 import { connect } from 'react-redux';
@@ -7,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import styled from 'styled-components';
 
 const KorzinaItem = styled.div `
   min-width: 90px;

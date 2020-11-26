@@ -1,9 +1,9 @@
 import React from "react"
-import styled  from 'styled-components';
 import Img  from 'gatsby-image';
 import { Link } from "gatsby"
 import useImageHook from './image';
-import {Typography} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import styled from 'styled-components';
 
 const Footer = styled.footer `
    background-color: #303032;
@@ -57,7 +57,7 @@ const FooterUl = styled.ul `
   }
 
   .footer_items {
-    padding: 0 30px 0 30px;
+    padding: 20px 30px 0 30px;
   }
 
   .footer_items li {
@@ -131,18 +131,18 @@ return (
       </li>
     </div>
 
-    <div className="footer_items mt-3">
+    <div className="footer_items">
     <div className="footer_item footer_social">
     <p>Узнавайте об акциях первыми — <span className="txt_social">подписывайтесь на наши группы в соцсетях</span></p>
-        <div className="d-flex">
-            <div className="mr-2">
-                <a className="btn btn-sm btn-warning rounded-pill" href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-lg fa-odnoklassniki-square text-dark" ></i></a>
+        <div style={{display: `flex`}}>
+            <div style={{marginRight: 15}}>
+                <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-lg fa-odnoklassniki-square text-dark" ></i></a>
             </div>
-            <div className="mr-2">
-                <a className="btn btn-sm btn-warning rounded-pill" href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-lg fa-vk text-dark"></i></a>
+            <div style={{marginRight: 15}}>
+                <a href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-lg fa-vk text-dark"></i></a>
             </div>
             <div>
-                <a className="btn btn-sm btn-warning rounded-pill" href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-lg fa-instagram text-dark"></i></a>
+                <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-lg fa-instagram text-dark"></i></a>
             </div>
         </div>
      </div>

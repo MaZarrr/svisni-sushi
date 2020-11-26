@@ -68,9 +68,9 @@ export const query = graphql `
             defaultPrice
             count
             description
-          image {
-              fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyContentfulFluid
+            image {
+              fluid(maxWidth: 400, quality: 90) {
+                  ...GatsbyContentfulFluid_noBase64
                 }
             }
         }
@@ -97,7 +97,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                        fluid(maxWidth: 200, maxHeight: 200) {
+                        fluid(maxWidth: 100, maxHeight: 100) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -113,7 +113,7 @@ export const query = graphql `
                     description
                     price
                     image {
-                       fluid(maxWidth: 200, maxHeight: 200) {
+                       fluid(maxWidth: 100, maxHeight: 100) {
                            ...GatsbyContentfulFluid
                       }
                     }
@@ -129,7 +129,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                        fluid(maxWidth: 200, maxHeight: 200) {
+                        fluid(maxWidth: 100, maxHeight: 100) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -146,7 +146,7 @@ export const query = graphql `
                     price
                     weight
                     image {
-                        fluid(maxWidth: 200, maxHeight: 200) {
+                        fluid(maxWidth: 100, maxHeight: 100) {
                             ...GatsbyContentfulFluid
                         }
                     }
@@ -211,3 +211,21 @@ export const query = graphql `
 // `gatsby-plugin-remove-serviceworker`,
 
 // "gatsby-plugin-favicon": "^3.1.6",
+
+// "babel-plugin-styled-components": "^1.12.0",
+// "gatsby-plugin-styled-components": "^3.5.0",
+// "styled-components": "^5.2.1",
+// `gatsby-plugin-styled-components`,
+
+// {
+//     rel: `stylesheet`,
+//         href: `https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css`,
+//     integrity: `sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T`,
+//     crossorigin: `anonymous`
+// },
+// {
+//     rel: "stylesheet",
+//         href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+// },
+// "@material-ui/styles": "4.11.1",
+

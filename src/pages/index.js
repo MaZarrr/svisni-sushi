@@ -1,6 +1,5 @@
 import React from "react"
 import SEO from "../components/seo"
-import "../components/sass/index.css"
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import { addedCart } from "../reducers/shopping-cart";
@@ -10,6 +9,7 @@ import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+// import "../components/sass/index.css"
 
     const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -24,13 +24,13 @@ import Typography from "@material-ui/core/Typography";
             },
         },
         h1Home: {
-            fontWeight: '800',
             lineHeight: 2,
             fontSize: '36px',
             padding: `0 0 0 35px`,
-            letterSpacing: `-1.5px`,
+            fontWeight: 800,
             [theme.breakpoints.down('600')]: {
                 fontSize: '27px',
+                letterSpacing: `-1.5px`,
                 color: `#000`,
                 padding: `0 0 0 20px`,
             },

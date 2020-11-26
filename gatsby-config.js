@@ -36,7 +36,9 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        pageLimit: 50,
+        assetDownloadWorkers: 25
       },
     },
     {
@@ -71,7 +73,7 @@ module.exports = {
         policy: [{
           userAgent: '*',
           allow: '/',
-          disallow: ['/slozhnyeRolly', '/klassicheskieRolly', '/zapechenyeRolly']
+          disallow: ['/korzina', '/korzina/order', '/cookie']
         }]
       }
     },
@@ -106,7 +108,16 @@ module.exports = {
         icon: `src/images/logosvisni.png`,
       },
     },
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [
+          `/*`,
+          `/sety/*`,
+          `/pizza/*`,
+        ],
+      },
+    },
     `gatsby-plugin-react-helmet`
   ]
 };

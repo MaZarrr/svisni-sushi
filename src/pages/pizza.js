@@ -195,7 +195,7 @@ export const queryPizza = graphql `
                     weight33
                     description
                     image {
-                        fluid(maxWidth: 400, maxHeight: 400) {
+                        fluid(maxWidth: 300, maxHeight: 300) {
                             ...GatsbyContentfulFluid
                         }
                     }

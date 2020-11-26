@@ -3,8 +3,6 @@ const { Provider } = require('react-redux');
 const React = require('react');
 const Layout = require('./src/components/layout').default;
 
-exports.onServiceWorkerUpdateReady = () => window.location.reload(true);
-
 exports.wrapPageElement = ({element, props}) => {
     return <Layout {...props}>{element}</Layout>
 };
@@ -16,5 +14,7 @@ exports.wrapRootElement = ({element}) => {
         </Provider>
         )
     };
+
+exports.onServiceWorkerUpdateReady = () => window.location.reload(true);
 
 

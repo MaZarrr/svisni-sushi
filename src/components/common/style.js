@@ -4,18 +4,17 @@ import styled from 'styled-components';
 export const useStyleH1 = makeStyles(theme => ({
     title: {
         fontWeight: 800,
-        paddingTop: 80,
+        paddingTop: 50,
         textTransform: `uppercase`,
         paddingLeft: `3vw`,
         fontSize: 34,
         display: `flex`,
         [theme.breakpoints.down('600')]: {
-            paddingTop: 45,
+            paddingTop: 25,
         },
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
-            paddingTop: 45,
-            // paddingBottom: 10,
+            marginBottom: 0,
             paddingLeft: `5vw`
         }
     }

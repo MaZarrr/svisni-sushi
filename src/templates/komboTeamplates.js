@@ -72,8 +72,8 @@ export const query = graphql `
                     slug
                     weight
                     image {
-                        fluid(maxWidth: 500) {
-                            ...GatsbyContentfulFluid
+                        fluid(maxWidth: 400) {
+                            ...GatsbyContentfulFluid_noBase64
                         }
                     }
                     sostavDefault {

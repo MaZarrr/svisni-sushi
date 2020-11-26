@@ -56,6 +56,38 @@ const useStylesCard = makeStyles(theme => ({
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         color: 'white',
     },
+    cartTitle: {
+        textAlign: `center`,
+        position: `absolute`,
+        top: `-35px`,
+        left: 0,
+        width: `100%`,
+        zIndex: 1000,
+        [theme.breakpoints.down('600')]: {
+            height: `70px`
+        }
+    },
+    menuTitle: {
+        textAlign: `center`,
+        margin: 0,
+        padding: `25px 0 0 0`,
+        fontWeight: 500,
+        fontSize: `26px`,
+        [theme.breakpoints.down('600')]: {
+            fontSize: `20px`
+        }
+    },
+    cartImg: {
+        width: `120px`,
+        height: `120px`,
+        margin: `10px auto`,
+        zIndex: 999,
+        padding: 0,
+        [theme.breakpoints.down('600')]: {
+            width: `100px`,
+            height: `100px`
+        }
+    },
     button: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         color: 'white',
@@ -98,12 +130,12 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                               justifyContent: `center`, position: `relative`}}
                           key={homeMenu.id} >
                         <div>
-                            <div className="cart_title">
-                                <Typography variant={"h2"}>{homeMenu.category}</Typography>
+                            <div className={classesCard.cartTitle}>
+                                <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
                             </div>
                             <div style={{margin: `0 auto`}}>
                                 <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey', width: `120px`}} to={`/${homeMenu.slug}`}>
-                                    <Img fluid={homeMenu.image.fluid} className="cart_img"/>
+                                    <Img fluid={homeMenu.image.fluid} className={classesCard.cartImg}/>
                                 </Link>
                             </div>
                         </div>

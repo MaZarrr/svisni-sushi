@@ -99,8 +99,8 @@ export const querySet = graphql `
                     description
                     komboSale
                     image {
-                        fluid(maxWidth: 400, quality: 100) {
-                            ...GatsbyContentfulFluid_withWebp
+                        fluid(maxWidth: 300, quality: 100) {
+                            ...GatsbyContentfulFluid_noBase64
                         }
                     }
                 }
