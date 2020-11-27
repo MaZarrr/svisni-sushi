@@ -10,8 +10,6 @@ import styled from 'styled-components';
 
 const KorzinaItem = styled.div `
   min-width: 90px;
-  margin-left: auto;
-  padding: 0 auto;
 `;
 
 const TextTotal = styled.span `
@@ -89,7 +87,7 @@ return (
                     horizontal: 'right',
                 }}  badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
 
-                    <ShoppingCartIcon fontSize={"large"}/>
+                    <ShoppingCartIcon fontSize={'large'}/>
                     <StyledBadge badgeContent={!orderTotal ? "0" : orderTotal} max={9999} anchorOrigin={{
                         vertical: 'bottom',
                         horizontal: 'right',

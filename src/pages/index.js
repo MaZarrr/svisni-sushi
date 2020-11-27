@@ -9,7 +9,6 @@ import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-// import "../components/sass/index.css"
 
     const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -27,10 +26,10 @@ import Typography from "@material-ui/core/Typography";
             lineHeight: 2,
             fontSize: '36px',
             padding: `0 0 0 35px`,
-            fontWeight: 800,
+            fontWeight: 900,
             [theme.breakpoints.down('600')]: {
-                fontSize: '27px',
-                letterSpacing: `-1.5px`,
+                fontSize: '26px',
+                letterSpacing: `-1px`,
                 color: `#000`,
                 padding: `0 0 0 20px`,
             },

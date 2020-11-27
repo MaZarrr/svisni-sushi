@@ -98,7 +98,7 @@ const Header = () => {
                     </Grid>
                 </Hidden>
 
-                <Grid item xs={3} sm={2}>
+                <Grid item xs={3} sm={2} style={{margin: `auto 0`}}>
                     <Korzina />
                 </Grid>
             </Grid>

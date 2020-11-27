@@ -3,27 +3,25 @@ import styled from 'styled-components';
 
 export const useStyleH1 = makeStyles(theme => ({
     title: {
-        fontWeight: 800,
+        fontWeight: 900,
         paddingTop: 50,
         textTransform: `uppercase`,
         paddingLeft: `3vw`,
         fontSize: 34,
-        display: `flex`,
         [theme.breakpoints.down('600')]: {
-            paddingTop: 25,
+            paddingTop: 15,
         },
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
-            marginBottom: 0,
-            paddingLeft: `5vw`
+            margin: `25px 0 0 0`,
         }
     }
 }));
 
 export const useStylesCart = makeStyles(theme => ({
     deckriptSmall: {
-        fontWeight: 500,
-        height: 30,
+        fontWeight: 600,
+        height: 35,
         overflowY: `auto`,
         padding: 14,
         [theme.breakpoints.down('500')]: {
@@ -47,12 +45,11 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     deckript: {
-        fontWeight: 500,
+        fontWeight: 600,
         height: 80,
         overflowY: `auto`,
         padding: 14,
         [theme.breakpoints.down('500')]: {
-            height: `60px`,
             padding: 10,
         },
         [theme.breakpoints.down('425')]: {

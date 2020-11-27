@@ -44,8 +44,8 @@ const useStylesCard = makeStyles(theme => ({
         padding: `20px 10px`,
         textAlign: `center`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '26px',
-            padding: `10px 30px 10px 35px`,
+            fontSize: '22px',
+            padding: `10px 10px 10px 10px`,
         },
     },
     buttonCombo: {
@@ -69,23 +69,11 @@ const useStylesCard = makeStyles(theme => ({
     },
     menuTitle: {
         textAlign: `center`,
-        margin: 0,
         padding: `25px 0 0 0`,
         fontWeight: 500,
         fontSize: `26px`,
         [theme.breakpoints.down('600')]: {
-            fontSize: `20px`
-        }
-    },
-    cartImg: {
-        width: `120px`,
-        height: `120px`,
-        margin: `10px auto`,
-        zIndex: 999,
-        padding: 0,
-        [theme.breakpoints.down('600')]: {
-            width: `100px`,
-            height: `100px`
+            fontSize: `18px`
         }
     },
     button: {
@@ -135,7 +123,9 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                             </div>
                             <div style={{margin: `0 auto`}}>
                                 <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey', width: `120px`}} to={`/${homeMenu.slug}`}>
-                                    <Img fluid={homeMenu.image.fluid} className={classesCard.cartImg}/>
+                                    <Img fluid={homeMenu.image.fluid} style={{width: `90px`,
+                                        height: `90px`}} imgStyle={{width: `90px`,
+                                        height: `90px`, padding: 10}} alt={homeMenu.category}/>
                                 </Link>
                             </div>
                         </div>
