@@ -24,7 +24,7 @@ const categoryNames = ['Малые', 'Средние', 'Большие', 'Лан
 const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
                   product, searchText, priceFilter, checkboxFilter, location, dispatch, category }) => {
 
-    const [load, setLoad] = React.useState(true);
+    // const [load, setLoad] = React.useState(true);
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
 
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
@@ -42,9 +42,9 @@ const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIco
         doStart({endTime: 15, startTime: 10});
         dispatch(checkSaleLanch(priceIsSale));
 
-        setTimeout(() => {
-            setLoad(false)
-        }, 730);
+        // setTimeout(() => {
+        //     setLoad(false)
+        // }, 730);
 
         dispatch(defFilters());
     }, [setyProduct, dispatch, doStart, priceIsSale]);
@@ -57,13 +57,13 @@ const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIco
                 <h1 className={title}>Заказать суши сет</h1>
                 <CustomizedInputSearch location={location.pathname}/>
                 <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
-                { load === false ? <div>
+                {/*{ load === false ? <div>*/}
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                         <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
                                        image={image} product={product} timePrice={{hours, minutes, seconds}} isSale={priceIsSale}/>
                     </Grid>
-                </div>
-                    : <Spinner count={10}/>}
+                {/*</div>*/}
+                {/*    : <Spinner count={10}/>}*/}
             </section>
         </>
     )
