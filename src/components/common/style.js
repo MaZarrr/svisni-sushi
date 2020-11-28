@@ -129,7 +129,6 @@ export const useStyleOrder = makeStyles(theme => ({
         width: `100%`
     },
     paper: {
-        padding: theme.spacing(2),
         textAlign: 'center',
         paddingTop: 80,
         [theme.breakpoints.down('475')]: {
@@ -150,7 +149,6 @@ export const useStyleKorzina = makeStyles(theme => ({
         }
     },
     paper: {
-        padding: theme.spacing(2),
         textAlign: 'center',
         paddingTop: 80,
         [theme.breakpoints.down('475')]: {
@@ -305,6 +303,5 @@ export const StylingInfo = styled.section `
     .map {
        padding-right: 20px;
        padding-left: 20px;
-       height: 250px;
     } 
 }`;

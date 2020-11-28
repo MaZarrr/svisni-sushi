@@ -194,7 +194,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
   <div className={classes.root}>
     <Container>
           <Container className={classes.paper}>
-          <Typography variant="h2" style={{fontWeight: 800, fontSize: 32}}>
+          <Typography variant="h2" style={{fontWeight: 800, fontSize: 30}}>
                 {R.isEmpty(items) ? <div>Корзина пустая<span role="img" aria-label="accessible-emoji">😕</span></div> : "Корзина товаров" }
           </Typography>
           </Container>
@@ -344,7 +344,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                         }} item xs={12} sm={5}>
 
                         <Paper elevation={3} style={{padding: 10}}>
-                        <Typography variant="h6" style={{fontSize: 16}}>Итого</Typography>
                         <Typography variant="body1" style={{fontSize: 20}}>Сумма заказа <b>{total} ₽</b></Typography>
                     <Button
                        component={Link}

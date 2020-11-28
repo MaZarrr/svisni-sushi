@@ -122,6 +122,7 @@ module.exports = {
           `/*`,
           `/sety/*`,
           `/pizza/*`,
+          `/sale/*`,
         ],
       },
     },

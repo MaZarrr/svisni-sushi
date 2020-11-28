@@ -9,10 +9,6 @@ const theme = createMuiTheme({
                 body: {
                     background: `#f2f2f2`
                 },
-                ul: {
-                    margin: 0,
-                    padding: 0
-                },
                 a: {
                     backgroundColor: `transparent`,
                     textDecoration: `none`,

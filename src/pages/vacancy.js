@@ -23,7 +23,6 @@ background: ${props => props.color};
 
 export const useStyleH1 = makeStyles(theme => ({
     titleIndexVacancy: {
-        fontFamily: `Oswald, cursive`,
         fontWeight: 800,
         marginTop: 80,
         textTransform: `uppercase`,
@@ -136,7 +135,7 @@ return (
                  description="Работа в Свисни Суши. Повар сушист, пиццмейкер"
                  noindex={true}/>
                  <Container>
-            <h1 className={classes.titleIndexVacancy}>Вакансии Свисни Суши в Уразово</h1>
+            <Typography variant={"h1"} className={classes.titleIndexVacancy}>Вакансии Свисни Суши</Typography>
             <Grid container>
                 <Grid item xs={12} sm={6} style={{paddingLeft: 35}}>
                     <Typography style={{padding: `10px 0 10px 0`, width: `90%`}}>

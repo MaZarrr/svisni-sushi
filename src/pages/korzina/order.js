@@ -148,7 +148,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         });
 
         typeof window !== undefined && localStorage.removeItem('basketProduct');
-        navigate('/order-processed',{state: infoSuccess, replace: true })
+        navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
     };
 
     const handleChange = event => setAge(event.target.value);
@@ -213,7 +213,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                  noindex={true}/>
             <div className={classes.root}>
                 <Container className={classes.paper}>
-                    <Typography variant="h2" style={{fontWeight: 800, fontSize: 32}}>
+                    <Typography variant="h2" style={{fontWeight: 800, fontSize: 30}}>
                         Оформление заказа
                     </Typography>
                 </Container>

@@ -76,6 +76,19 @@ const useStylesCard = makeStyles(theme => ({
             fontSize: `18px`
         }
     },
+    // cartImg: {
+    //     img: {
+    //         width: `120px`,
+    //         height: `120px`,
+    //         margin: `10px auto`,
+    //         zIndex: 999,
+    //         padding: 0,
+    //         [theme.breakpoints.down('600')]: {
+    //             width: `90px`,
+    //             height: `100px`
+    //         }
+    //     }
+    // },
     button: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         color: 'white',
