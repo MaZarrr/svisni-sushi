@@ -106,7 +106,7 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
                             className={activeCategory === name ? 'active' : 'nonactive_category'}
                             onClick={() => onClickCategory(name)}
                             key={`${name}_${index}`}>
-                            <Typography variant={"subtitle2"}>
+                            <Typography>
                                 {name}
                             </Typography>
                         </li>

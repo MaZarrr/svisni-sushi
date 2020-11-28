@@ -5,6 +5,7 @@ export const useStyleH1 = makeStyles(theme => ({
     title: {
         fontWeight: 900,
         paddingTop: 50,
+        marginBottom: 0,
         textTransform: `uppercase`,
         paddingLeft: `3vw`,
         fontSize: 34,

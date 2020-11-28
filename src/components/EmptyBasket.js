@@ -9,11 +9,11 @@ export default () => {
    return (
         <div className="container">
         <div style={{margin: '0 auto'}}>
-            <Typography variant={"body1"}>
+            <Typography style={{textAlign: `center`}} variant={"body1"}>
                 Вероятней всего, вы не добавили товары в корзину.<br />
                 Для того, чтобы заказать суши и пиццу, перейди в меню.
             </Typography>
-            <GatsbyImage style={{maxWidth: 400, marginTop: 10}} fluid={emptyBasketImage.childImageSharp.fluid} alt={"Пуская корзина"}/>
+            <GatsbyImage style={{maxWidth: 400, marginTop: `10px auto`}} fluid={emptyBasketImage.childImageSharp.fluid} alt={"Пуская корзина"}/>
         </div>
         </div>
 )};
