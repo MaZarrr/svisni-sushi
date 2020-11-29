@@ -3,18 +3,15 @@ import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
-
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
-import {useStyleH1} from "../components/common/style";
+import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Souses = ({data: {allContentfulProductSouse: {edges: productsSouses}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
-
-    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productLoaded(productsSouses)) // action push to reduxStore
@@ -25,7 +22,8 @@ return (
     <SEO title="Соусы и различные добавки к суши и роллам"
     description="Фирменный соус, барбекю соус, ореховый соус и другие у нас в меню Свисни суши"
     noindex={true}/>
-       <h1 className={title}>Соусы</h1>
+
+     <HeadSection titleTXT={"Соусы"} />
     <Grid container justify="center">
         <CardsMenuPage titleCategory="Соус" slugCategogy="/souses" visibleItems={product}
                        image={image} product={product}/>

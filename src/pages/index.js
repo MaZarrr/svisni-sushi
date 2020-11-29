@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { graphql, StaticQuery } from "gatsby"
 import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
     const useStyleIndexPage = makeStyles(theme => ({
@@ -15,36 +14,23 @@ import Typography from "@material-ui/core/Typography";
         flexGrow: 1,
         width: `100%`
     },
-        header: {
-            paddingTop: '60px',
-            background: `#f0ecec`,
-            [theme.breakpoints.down('600')]: {
-                paddingTop: '30px',
-            },
-        },
-        h1Home: {
-            lineHeight: 2,
-            fontSize: '36px',
-            padding: `0 0 0 35px`,
+        title: {
             fontWeight: 900,
+            marginBottom: 0,
+            marginTop: 80,
+            paddingLeft: 30,
+            textTransform: `uppercase`,
+            fontSize: 34,
             [theme.breakpoints.down('600')]: {
-                fontSize: '26px',
-                letterSpacing: `-1px`,
-                color: `#000`,
-                padding: `0 0 0 20px`,
+                paddingTop: 15,
             },
+            [theme.breakpoints.down('475')]: {
+                fontSize: 25,
+                letterSpacing: `-1.8px`,
+                margin: `25px 0 0 0`,
+                paddingLeft: 10,
+            }
         },
-    titleIndex: {
-        fontSize: '36px',
-        width: `100%`,
-        fontWeight: `bold`,
-        padding: `20px 10px`,
-        textAlign: `center`,
-        [theme.breakpoints.down('600')]: {
-            fontSize: '28px',
-            padding: `10px 30px 10px 35px`,
-        },
-    },
 }));
 
     const QUERY_INDEX_DATA = graphql`
@@ -167,10 +153,7 @@ import Typography from "@material-ui/core/Typography";
                         description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                         Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
 
-                    <Paper square elevation={0} className={classes.header}>
-                        <Typography variant="h1" className={classes.h1Home}>Свисни Суши в Уразово</Typography>
-                    </Paper>
-
+                    <h1 className={classes.title}>Свисни Суши в Уразово</h1>
                     <Carousel/>
                     <Grid item xs={12} className={classes.root}>
                     <IndexCards addedCart={addedCart}

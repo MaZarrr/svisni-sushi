@@ -1,10 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import {Link}  from 'gatsby';
-import { StylingInfo } from '../components/common/style';
-import {Container} from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
-
+import HeadSection from "../components/HeadSection"
 
 const onas = () => {
 
@@ -13,13 +10,10 @@ return (
     <SEO title="Узнай больше о компании"
     description="Мы готовим роллы, суши, пиццу для наших клиентов. Узнай подробнее о Свисни Суши на сайте"
     />
-    <StylingInfo>
-    <Container>
-            <h1>О нас</h1>
-		<div className="text">
-            <Divider/>
+    <HeadSection titleTXT={"О нас"} />
+		<div style={{padding: `10px 30px 10px 30px`}}>
             <p>
-            Svisni Sushi - это профессиональная служба доставки блюд японской кухни в п.Уразово 
+            Свисни суши - это служба доставки блюд японской и итальянской кухни в посёлке Уразово.
             Мы предлагаем своим покупателям превосходные суши, готовим вкусные салаты и <Link to="/pizza"><b>пиццу</b></Link>, а также предоставляем напитки от 
             наших партнеров.
             <br></br><br></br>
@@ -34,8 +28,6 @@ return (
             наших клиентов. Мы - те, кто удивит вас изысканной подачей блюд и незабываемым вкусом.
             </p>
         </div>
-    </Container>
-</StylingInfo>
 </>
     )
 }

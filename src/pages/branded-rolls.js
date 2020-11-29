@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo} from "react"
+import React, { useEffect, useMemo } from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
@@ -8,12 +8,10 @@ import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
-import {checkSaleLanch, defFilters, setCategory} from "../reducers/filters";
-import {useStyleH1} from "../components/common/style";
-import Categories from "../components/Categories";
+import {checkSaleLanch, defFilters } from "../reducers/filters";
 import {productList} from "../reducers/selectors";
 import useTimer from "../utils/useTimer";
-import CustomizedInputSearch from '../components/CustomizedInputSearch';
+import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner count={10}/>
@@ -21,26 +19,23 @@ const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
 const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с беконом', 'с курицей', 'веган'];
 
 const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
-    dispatch, product, searchText, priceFilter, category }) => {
+    dispatch, product, searchText, priceFilter }) => {
   
-  const { title } = useStyleH1();
-  const [load, setLoad] = React.useState(true);
+    const [load, setLoad] = React.useState(true);
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
 
     const priceIsSale = useMemo(() => isSale, [isSale]);
     const visibleItems = filtersProducts(product, searchText, priceFilter);
 
-    const onSelectCategory = useCallback((index) => {
-            dispatch(setCategory(index));
-        }, [dispatch]);
-
     useEffect(() => {
         dispatch(productLoaded(productsBrandedRolls));
         doStart({endTime: 15, startTime: 10});
         dispatch(checkSaleLanch(priceIsSale));
+
         setTimeout(() => {
             setLoad(false)
         }, 700);
+
         dispatch(defFilters())
     }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
 
@@ -50,9 +45,7 @@ return (
     description="Роллы которых вы еще не пробовали от 210 рублей. Закажи доставку или приходи к нам в гости!"
     pathname="/hot-rolls"/>
 
-       <h1 className={title}>Сложные роллы</h1>
-       <CustomizedInputSearch/>
-       <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
+     <HeadSection titleTXT={"Сложные роллы"} isFilter={true} categoryNames={categoryNames}/>
        {load === false ?
                <Grid container justify="center">
                    <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
@@ -67,7 +60,6 @@ return (
 
 const mapStateToProps = (state, props) => ({
     product: productList(state),
-    category: state.filters.category,
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter
 });

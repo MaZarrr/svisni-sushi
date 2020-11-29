@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from "react"
+import React, { useEffect } from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
@@ -7,11 +7,9 @@ import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
-import {defFilters, setCategory} from "../reducers/filters";
-import {useStyleH1} from "../components/common/style";
-import Categories from "../components/Categories";
+import { defFilters } from "../reducers/filters";
 import {productList} from "../reducers/selectors";
-import CustomizedInputSearch from '../components/CustomizedInputSearch';
+import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner count={10}/>
@@ -21,10 +19,9 @@ const categoryNames = ['с крабом', 'с лососем', 'с угрем', 
 
 
 const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
-    dispatch, product, searchText, priceFilter, category}) => {
+    dispatch, product, searchText, priceFilter }) => {
 
     const [load, setLoad] = React.useState(true);
-    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productLoaded(productsHotRolls)); // action push to reduxStore
@@ -35,19 +32,15 @@ const HotRolls = ({data: {allContentfulProductHotRolly: {edges: productsHotRolls
     }, [productsHotRolls, dispatch]);
 
     const visibleItems = filtersProducts(product, searchText, priceFilter);
-    const onSelectCategory = useCallback((index) => {
-        dispatch(setCategory(index));
-    }, [dispatch]);
 
 return (
    <section>
     <SEO title="Заказать гриль, жареные роллы от 215 рублей. Доставка по Уразово"
         description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени великолепный вкус японской кухни от Свисни Суши"
         pathname="/sety"/>
-       <h1 className={title}>Горячие роллы</h1>
-       <CustomizedInputSearch/>
-       <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
-       {load === false ? <>
+
+        <HeadSection titleTXT={"Горячие роллы"} isFilter={true} categoryNames={categoryNames}/>
+        {load === false ? <>
            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                               image={image} product={product}/>

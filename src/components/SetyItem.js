@@ -21,11 +21,11 @@ return (
         <LayoutItem name={name} image={null} location={location}>
             <ButtonBackSet back={back} />
             <Grid container>
-                <Grid item xs={12} sm={5} style={{width: `100%`}} >
+                <Grid item xs={12} sm={5} style={{width: `100%`, padding: 10}} >
                     <Img style={{maxWidth: 400, borderRadius: 15, position: `sticky`, top: 150}} fluid={image} />
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={5}>
+                <Grid item xs={12} sm={6} md={5} style={{paddingLeft: 10}}>
                     <div style={{maxWidth: `100%`, height: `20px`}}>
                         <Typography variant={"h6"} style={{marginTop: 10, marginBottom: 10}}>Состав:</Typography>
                     </div>

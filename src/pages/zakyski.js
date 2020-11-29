@@ -5,33 +5,27 @@ import { connect } from 'react-redux';
 
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
-import Spinner from "../components/spinner/spinner";
 import {productLoaded} from "../reducers/app";
-import {useStyleH1} from "../components/common/style";
+import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Zakyski = ({data: {allContentfulProductZakuski: {edges: productsZakyski}, contentfulIconMenuLeftPanel: {image}},
                      dispatch, product}) => {
 
-    const [load, setLoad] = React.useState(true)
-    const { title } = useStyleH1();
-
     useEffect(() => {
         dispatch(productLoaded(productsZakyski)) // action push to reduxStore
-        setLoad(false)
     }, [productsZakyski, dispatch])
 
 return ( 
    <section>
     <SEO title="Доставка закусок в Уразово | Заказать на дом или в офис"
     description="Доставка закусок от суши-бара Свисни в Уразово ☛ Телефон для заказа ☎ +7(904)094-92-22"/>
-       <h1 className={title}>Закуски</h1>
+
+     <HeadSection titleTXT={"Закуски"} />
     <Grid container justify="center">
-        {
-            !load ? <CardsMenuPage titleCategory="Закуски" slugCategogy="/zakyski" visibleItems={product}
-                                   image={image} product={product}/> : <Spinner />
-        }
+        <CardsMenuPage titleCategory="Закуски" slugCategogy="/zakyski" visibleItems={product}
+                                   image={image} product={product}/>
         </Grid>
       </section>
     )

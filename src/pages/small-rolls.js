@@ -6,14 +6,12 @@ import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import {productLoaded} from "../reducers/app";
-import {useStyleH1} from "../components/common/style";
+import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const SmallRolls = ({data: {allContentfulProductKlassika: {edges: productsSmallRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
-
-    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productLoaded(productsSmallRolls)) // action push to reduxStore
@@ -23,7 +21,8 @@ return (
    <section>
     <SEO title="Вкусные недорогие маки роллы. Заказать доставку на дом в Валуйки"
     description="Маленькие, жареные и темпурные классические Свисни роллы от 120 рублей"/>
-       <h1 className={title}>Классические роллы</h1>
+
+     <HeadSection titleTXT={"Классические роллы"} />
     <Grid container justify="center">
             <CardsMenuPage titleCategory="Классические" slugCategogy="/small-rolls" visibleItems={product}
                                    image={image} product={product}/>

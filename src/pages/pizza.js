@@ -1,16 +1,16 @@
-import React, {useCallback, useEffect} from "react"
+import React, { useEffect } from "react"
 import SEO from "../components/seo"
 import {graphql } from "gatsby";
 import { connect } from 'react-redux';
-import {useStyleH1, useStylesCart} from '../components/common/style';
+import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
 import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import * as R from 'ramda'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-import {productPizzaLoaded} from "../reducers/app";
-import {defFilters, setCategory} from "../reducers/filters";
+import { productPizzaLoaded } from "../reducers/app";
+import { defFilters } from "../reducers/filters";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Img from "gatsby-image";
@@ -24,17 +24,15 @@ import clsx from "clsx";
 import Paper from "@material-ui/core/Paper";
 import SplitButton from "../components/SplitButton";
 import {productList} from "../reducers/selectors";
-import Categories from "../components/Categories";
-import CustomizedInputSearch from "../components/CustomizedInputSearch";
+import HeadSection from "../components/HeadSection"
 
 const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
 
 const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image}},
-                   productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path, category}) => {
+                   productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path }) => {
 
     const [load, setLoad] = React.useState(true);
     const classes = useStylesCart();
-    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productPizzaLoaded(pizzaProduct))
@@ -49,18 +47,13 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
     const visibleItems = filtersProducts(updatePizza, searchText, priceFilter);
 
     const switchSizePizza = data => dispatch(pizzaCart(data));
-    const onSelectCategory = useCallback((index) => {
-        dispatch(setCategory(index));
-    }, [dispatch]);
 
     return (
         <section>
             <SEO title="Заказать пиццу в Валуйки, доставка пиццы с 10:00 до 22:00"
                  description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно, именинникам дарим пиццу. Меню на сайте, большая пицца от 249 руб"
                  pathname="/sety"/>
-            <h1 className={title}>Доставка пиццы</h1>
-            <CustomizedInputSearch/>
-            <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>
+            <HeadSection titleTXT={"Доставка пиццы"} path={path} isFilter={true} categoryNames={categoryNames}/>
             { load === false ?
                 <div>
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">

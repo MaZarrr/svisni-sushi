@@ -1,13 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
-import styled from 'styled-components';
 
 export const useStyleH1 = makeStyles(theme => ({
     title: {
         fontWeight: 900,
-        paddingTop: 50,
         marginBottom: 0,
         textTransform: `uppercase`,
-        paddingLeft: `3vw`,
         fontSize: 34,
         [theme.breakpoints.down('600')]: {
             paddingTop: 15,
@@ -16,6 +13,13 @@ export const useStyleH1 = makeStyles(theme => ({
             fontSize: 26,
             margin: `25px 0 0 0`,
         }
+    },
+    wrapped: {
+        marginTop: 80,
+        padding: 0,
+        [theme.breakpoints.down('600')]: {
+            marginTop: 0
+        },
     }
 }));
 
@@ -144,20 +148,12 @@ export const useStyleKorzina = makeStyles(theme => ({
         marginTop: 10
     },
     wrappedContainer: {
-        width: `100%`,
+        paddingLeft: 25,
         [theme.breakpoints.down('500')]: {
             paddingBottom: 170
         }
-    },
-    paper: {
-        textAlign: 'center',
-        paddingTop: 80,
-        [theme.breakpoints.down('475')]: {
-            paddingTop: 40
-        },
-    },
+    }
 }));
-
 
 export const useStyleHeader = makeStyles(theme => ({
     root: {
@@ -202,12 +198,9 @@ export const useStyleSearchInput = makeStyles(theme => ({
     root: {
         padding: '2px 4px',
         display: 'flex',
-        alignItems: 'center',
         width: `95%`,
-        margin: `0 auto`
     },
     input: {
-        marginLeft: theme.spacing(1),
         flex: 1,
         padding: 0
     },
@@ -217,92 +210,4 @@ export const useStyleSearchInput = makeStyles(theme => ({
     }
 }));
 
-export const StyleH1Layout = styled.h1 `
-       font-family: 'Montserrat', sans-serif;
-        font-style: normal;
-        font-weight: 800;
-        text-transform: uppercase;
-        font-size: 34px;
-        @media screen and (max-width: 475px) { 
-            font-size: 26px; 
-    }
-`;
 
-export const WrappedContentLayout = styled.div `
-       margin-top: 80px;
-     @media screen and (max-width: 475px) { 
-        margin-top: 45px; 
-    }
-`;
-
-export const StylingInfo = styled.section ` 
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    margin-top: 80px;
-     h1 {
-        font-family: 'Montserrat', sans-serif;
-        font-style: normal;
-        font-weight: 800;
-        text-transform: uppercase;
-        font-size: 34px;
-    }
-    .info-block {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border-left: 5px solid lightgrey;
-        padding: 7px 5px 7px 14px;
-    }
-    .map {
-        padding-right: 20px; 
-        width: 95%;
-       height: 400px;
-    }
-     .mapDelivery {
-        border-radius: 15px;
-        border: 1px solid lightgrey;
-        width: 100%;
-        height: 420px;
-    }
-      .imgSale {
-        max-width: 60vw; 
-        margin-top: 30px; 
-        borderRadius: 12px;
-    }
-   
-    h3 {
-        font-family: 'Montserrat', sans-serif;
-        font-style: normal;
-        font-weight: 900;
-    } 
-    h2 {
-        font-family: 'Montserrat', sans-serif;
-        font-style: normal;
-        font-weight: 900;
-    }
-    .container {
-        margin: 20px 0 0 35px;
-        padding: 0;
-        width: 89%;
-    }
-    
-    @media screen and (max-width: 475px) {
-    margin-top: 45px;
-    h1 {
-        font-size: 26px;
-        text-transform: uppercase;
-    }
-     .mapDelivery { 
-        height: 240px;
-    }
-    .imgSale {
-        max-width: 90vw; 
-        margin-top: 30px; 
-        borderRadius: 12px;
-    }
-}
-    @media screen and (max-width: 600px) {
-    .map {
-       padding-right: 20px;
-       padding-left: 20px;
-    } 
-}`;

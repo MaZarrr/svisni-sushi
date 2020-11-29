@@ -5,7 +5,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import LayoutItem from './layoutItem';
 import ButtonBackSet from "./common/ButtonBackSet";
 
-const PizzaItem = ({name, description, image, price, added, priceIn33, weight, weight33}) => {
+const PizzaItem = ({name, description, image, price, added, priceIn33 }) => {
 
     return (
         <>

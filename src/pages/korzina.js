@@ -20,7 +20,6 @@ import {addedCart, removeCart,
     deletePizza, deleteRoll} from "../reducers/shopping-cart";
 import {getProduct} from "../reducers/app";
 import SplitButton from "../components/SplitButton";
-import {Container} from "@material-ui/core";
 import uniqid from 'uniqid'
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
@@ -28,6 +27,7 @@ import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutl
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EmptyBasket from "../components/EmptyBasket";
 import Hidden from "@material-ui/core/Hidden";
+import HeadSection from "../components/HeadSection"
 
 const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
     allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
@@ -39,6 +39,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
 
     const [load, setLoad] = React.useState(true);
     const [value, setValue] = React.useState([]);
+    const classes = useStyleKorzina();
 
     React.useEffect(() => {
         setTimeout(() => {
@@ -174,8 +175,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     }
   };
 
-    const classes = useStyleKorzina();
-
     const handleChange = event => {
     setValue(() => {
       return R.update(event.target.id, [
@@ -192,23 +191,20 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
        noindex={true}/>
   <section>
   <div className={classes.root}>
-    <Container>
-          <Container className={classes.paper}>
-          <Typography variant="h2" style={{fontWeight: 800, fontSize: 30}}>
-                {R.isEmpty(items) ? <div>Корзина пустая<span role="img" aria-label="accessible-emoji">😕</span></div> : "Корзина товаров" }
-          </Typography>
-          </Container>
+                {R.isEmpty(items) ? <div>Корзина пустая<span role="img" aria-label="accessible-emoji">😕</span></div> :
+                  <HeadSection titleTXT={"Корзина товаров"} /> }
             { load === false ? <div>
             { R.isEmpty(items) ? <EmptyBasket/> :
                 <Grid container spacing={2}>
                     <Grid item sm={7} style={{width: `100%`}}>
-                    <Grid container justify={"center"} spacing={2} className={classes.wrappedContainer}>
+                    <Grid container spacing={2} className={classes.wrappedContainer}>
 
                     { items.map((item, idx) => {
                         const {id, name, count, total, image, priceIn33cm, price, priceDef,
                         textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
-                    return (
-                   <Grid item key={id} xs={12} sm={7}>
+
+                      return (
+                      <Grid item key={id} xs={12} sm={7}>
                        <Paper style={{marginTop: 20, marginBottom: 10, padding: 8}}>
                        <div style={{display: `flex`}}>
                            <div style={{margin: `auto 0`, zIndex: 10}}>
@@ -360,7 +356,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
 
                     {/*PC block*/}
                     <Hidden xsDown>
-                    <Grid item xs={12} sm={4} style={{margin: `20px auto 0 auto`, padding: 0}}>
+                    <Grid item xs={12} sm={4} style={{margin: `20px 0`, padding: 0}}>
                     <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`, width: `100%`}}>
                         { addPanelPribors  &&
                         <div className="container_pribor mb-2" >
@@ -398,7 +394,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                 </Grid>
                 }
         </div> : <Spinner/>}
-        </Container>
     </div>
     </section>
   </>

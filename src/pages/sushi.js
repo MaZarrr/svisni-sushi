@@ -6,14 +6,12 @@ import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import {productLoaded} from "../reducers/app";
-import {useStyleH1} from "../components/common/style";
+import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Sushi = ({data: {allContentfulProductSushi: {edges: products}, contentfulIconMenuLeftPanel: {image}}, product, dispatch}) => {
 
-    const { title } = useStyleH1();
-      
       useEffect(() => {
         dispatch(productLoaded(products)) // action push to reduxStore
       }, [products, dispatch]);
@@ -22,7 +20,8 @@ return (
    <section>
     <SEO title="Недорогие суши с доставкой по Валуйскому району"
     description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте, суши от 50 рублей. Звонок +7(904)094-92-22"/>
-       <h1 className={title}>Cуши</h1>
+
+    <HeadSection titleTXT={"Cуши"} />
     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Суши" slugCategogy="/sushi" visibleItems={product}
                        image={image} product={product}/>

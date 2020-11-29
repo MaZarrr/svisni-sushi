@@ -1,14 +1,14 @@
 import React from "react"
 import SEO from "../components/seo"
 import Avatar from '@material-ui/core/Avatar';
-import {Container, Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
-import {StylingInfo} from "../components/common/style";
 import Divider from "@material-ui/core/Divider";
 import InputBase from '@material-ui/core/InputBase';
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from '@material-ui/icons/Search';
+import HeadSection from "../components/HeadSection"
 
 const delivery = [
     {
@@ -241,13 +241,11 @@ return (
     <SEO title="Зоны и стоимость доставки суши роллов и пиццы в Валуйском районе"
        description="Доставка осуществляется с 10:00 до 22:00 в Валуйки и Уразово. Бесплатная доставка от 500 рублей"
     />
-    <StylingInfo>
-        <Container>
-            <h1>Валуйский район&nbsp;- стоимость доставки</h1>
-            <Divider/>
+    <HeadSection titleTXT={"Валуйский район-стоимость доставки"} />
+    <Divider/>
     <Grid container>
     <Grid item xs={12} sm={6}>
-        <Paper style={{padding: '6px 8px', margin: `5px 0`, display: 'flex'}}>
+        <Paper style={{padding: '6px 0', paddingLeft: 10, margin: `5px 0`, display: 'flex'}}>
         <IconButton style={{padding: `5px 10px 5px 8px`}} aria-label="menu">
             <SearchIcon />
         </IconButton>
@@ -260,7 +258,7 @@ return (
             onChange={handleChange}
         />
         </Paper>
-        <div style={{overflowY: `scroll`, height: `450px`}}>
+        <div style={{overflowY: `scroll`, paddingLeft: 20, height: `450px`}}>
         {deliveryState.map((el) => (
         <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
@@ -320,8 +318,6 @@ return (
     через интернет, звоните нам по телефону <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>.</p>
     </div>
     </Grid>
-    </Container>
-    </StylingInfo>
     </>
     
     )

@@ -23,9 +23,10 @@ import {
     setPhoneUser, setTimeDeliveryUser,
     userCommentsFunc, userApartment
 } from "../../reducers/contacts-info";
-import {Container, Paper} from "@material-ui/core";
+import { Container, Paper } from "@material-ui/core";
 import EmptyBasket from '../../components/EmptyBasket';
 import FormHelperText from "@material-ui/core/FormHelperText";
+import HeadSection from "../../components/HeadSection"
 
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -212,11 +213,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             <SEO title="Оформление заказа"
                  noindex={true}/>
             <div className={classes.root}>
-                <Container className={classes.paper}>
-                    <Typography variant="h2" style={{fontWeight: 800, fontSize: 30}}>
-                        Оформление заказа
-                    </Typography>
-                </Container>
+            <HeadSection titleTXT={"Оформление заказа"} />
                 {load === false ?
                     <Container>
                     { !isEmpty(items) ?
@@ -229,11 +226,11 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                 <div className={classes.root}>
                                 <Grid container spacing={3}>
                                     {/*Имя и Телефон*/}
-                                    <Grid item xs={12}>
-                                        <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
-                                            Укажите ваши личные данные </Typography>
+                                    <Grid item xs={12} style={{paddingBottom: 0, marginTop: 14}}>
+                                        <Typography style={{ fontSize: 22 }} variant="h5">
+                                            Укажите данные для связи </Typography>
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
                                         <TextField id="standard-full-width"
                                                    label="Ваше имя"
                                                    error={!validateUserName() && nameUser.length > 2}
@@ -247,7 +244,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                    value={nameUser}
                                                    helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
                                         <TextField id="standard-full-width"
                                                    helperText={validatePhone() === false ? "Введите телефон с 7 или 8" : "Ваш телефон" }
                                                    fullWidth
@@ -263,7 +260,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
                                 <Grid item xs={12}>
                                     <Grid item xs={12}>
-                                        <Typography variant="h5" style={{textAlign: `center`, fontSize: 22}}>
+                                        <Typography variant="h5" style={{fontSize: 22}}>
                                             Как вы хотите получить заказ?
                                         </Typography>
                                     </Grid>
@@ -281,7 +278,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                     {delivery !== '' && <>
                                         {/*Предзаказ или сразу время и дата*/}
                                         <Grid item xs={12}>
-                                            <Typography style={{textAlign: `center`, fontSize: 22}} variant="h5">
+                                            <Typography style={{fontSize: 22}} variant="h5">
                                                 { delivery !== "Самовывоз" ? "Дата и время доставки заказа"
                                                     : "Дата и время готовки заказа"}
 

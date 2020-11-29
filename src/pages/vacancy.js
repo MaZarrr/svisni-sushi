@@ -13,36 +13,17 @@ import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
 import SEO from "../components/seo";
-import {Container, Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from '@material-ui/core/styles';
+import HeadSection from "../components/HeadSection"
 
 const AvatarWrapp = styled(Avatar) `
 background: ${props => props.color};
 `
-
-export const useStyleH1 = makeStyles(theme => ({
-    titleIndexVacancy: {
-        fontWeight: 800,
-        marginTop: 80,
-        textTransform: `uppercase`,
-        marginLeft: 35,
-        fontSize: 34,
-        display: `flex`,
-        [theme.breakpoints.down('475')]: {
-            fontSize: 26,
-            marginTop: 40,
-            marginLeft: 35
-        }
-    },
-}));
-
-
 const Vacancy = () => {
 
     const [expanded, setExpanded] = React.useState({nameCart: false});
     const [state, setState] = React.useState({status: ""});
-    const classes = useStyleH1();
 
     const submitForm = (ev) => {
         ev.preventDefault();
@@ -134,10 +115,9 @@ return (
             <SEO title="Работа, вакансии"
                  description="Работа в Свисни Суши. Повар сушист, пиццмейкер"
                  noindex={true}/>
-                 <Container>
-            <Typography variant={"h1"} className={classes.titleIndexVacancy}>Вакансии Свисни Суши</Typography>
+             <HeadSection titleTXT={"Вакансии Свисни Суши"} />
             <Grid container>
-                <Grid item xs={12} sm={6} style={{paddingLeft: 35}}>
+                <Grid item xs={12} sm={6} style={{paddingLeft: 25}}>
                     <Typography style={{padding: `10px 0 10px 0`, width: `90%`}}>
                         {md.frontmatter.infoBrend}
                     </Typography>
@@ -221,8 +201,6 @@ return (
                     </div>
                 </Grid>
             </Grid>
-                 </Container>
-
         </section>
     );
 }

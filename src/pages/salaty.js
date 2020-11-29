@@ -6,14 +6,13 @@ import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import {productLoaded} from "../reducers/app";
-import {useStyleH1} from "../components/common/style";
+import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(()=>import('../components/CardsMenuPage'))
 
 const Salaty = ({data: {allContentfulProductSalat: {edges: productsSalaty}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product}) => {
 
-    const { title } = useStyleH1();
 
     useEffect(() => {
         dispatch(productLoaded(productsSalaty)) // action push to reduxStore
@@ -24,8 +23,9 @@ return (
     <SEO title="Заказать популярные салаты"
     description="Для вас предоставленна возможность заказа наиболее популярных салатов приготовленных из свежих продуктов.
     Вашему вниманию: салаты цезарь в вариациях и чука."/>
-       <h1 className={title}>Салаты</h1>
-    <Grid container justify="center">
+
+      <HeadSection titleTXT={"Салаты"} />
+      <Grid container justify="center">
         <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}
                                    image={image} product={product}/>
         </Grid>
