@@ -1,6 +1,5 @@
 import React from "react"
 import SEO from "../components/seo"
-import { StylingInfo } from '../components/common/style';
 
 const cookie = () => {
 
@@ -10,7 +9,6 @@ return (
     description="Политика обработки файлов Cookie"
     noindex={true}/>
     <section>
-    <StylingInfo>
     <div className="container">
     <article>
         <header>
@@ -66,7 +64,6 @@ return (
         </div>
     </article>
     </div>
-    </StylingInfo>
     </section>
     </>
     

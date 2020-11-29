@@ -1,7 +1,5 @@
 import React from "react"
 import SEO from "../components/seo"
-import { StylingInfo } from '../components/common/style';
-
 
 const privacy = () => {
 
@@ -10,7 +8,6 @@ return (
     <SEO title="Условия обработки персональных данных" 
     description="Условия обработки персональных данных"
     noindex={true} />
-    <StylingInfo>
     <div className="container">
     <article>
         <header>
@@ -75,7 +72,6 @@ return (
         </div>
     </article>
     </div>
-    </StylingInfo>
     </>
     
     )
