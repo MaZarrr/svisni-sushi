@@ -1,6 +1,6 @@
 import { red } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
-//
+
 // A custom theme for this app
 const theme = createMuiTheme({
     overrides: {
@@ -8,6 +8,9 @@ const theme = createMuiTheme({
             '@global': {
                 body: {
                     background: `#f2f2f2`
+                },
+                p: {
+                  fontSize: 16,
                 },
                 a: {
                     backgroundColor: `transparent`,

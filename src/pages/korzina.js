@@ -195,8 +195,8 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                   <HeadSection titleTXT={"Корзина товаров"} /> }
             { load === false ? <div>
             { R.isEmpty(items) ? <EmptyBasket/> :
-                <Grid container spacing={2}>
-                    <Grid item sm={7} style={{width: `100%`}}>
+                <Grid container spacing={2} style={{width: `100%`}}>
+                    <Grid item sm={7}>
                     <Grid container spacing={2} className={classes.wrappedContainer}>
 
                     { items.map((item, idx) => {
@@ -204,8 +204,8 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                         textRollSale, textPizza, pizzaSale, description, edit = null, size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig", ingrideents, sostav, descriptionIngrideents = ""} = item
 
                       return (
-                      <Grid item key={id} xs={12} sm={7}>
-                       <Paper style={{marginTop: 20, marginBottom: 10, padding: 8}}>
+                      <Grid item key={id} xs={12} sm={7} style={{paddingLeft: 0}}>
+                       <Paper style={{marginTop: 20, marginBottom: 10}}>
                        <div style={{display: `flex`}}>
                            <div style={{margin: `auto 0`, zIndex: 10}}>
                                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
@@ -333,7 +333,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                     <Hidden smUp>
                     <Grid style={{margin: `20px auto 0 auto`,
                         position: `fixed`,
-                        padding: 0,
+                        padding: `0 0 0 15px`,
                         bottom: 0,
                         width: `100%`,
                         zIndex: 1200

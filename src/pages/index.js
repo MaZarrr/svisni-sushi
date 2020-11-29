@@ -14,23 +14,23 @@ import Typography from "@material-ui/core/Typography";
         flexGrow: 1,
         width: `100%`
     },
-        title: {
-            fontWeight: 900,
-            marginBottom: 0,
-            marginTop: 80,
-            paddingLeft: 30,
-            textTransform: `uppercase`,
-            fontSize: 34,
-            [theme.breakpoints.down('600')]: {
-                paddingTop: 15,
-            },
-            [theme.breakpoints.down('475')]: {
-                fontSize: 25,
-                letterSpacing: `-1.8px`,
-                margin: `25px 0 0 0`,
-                paddingLeft: 10,
-            }
+    title: {
+        fontWeight: 900,
+        marginBottom: 0,
+        marginTop: 80,
+        paddingLeft: 30,
+        textTransform: `uppercase`,
+        fontSize: 34,
+        [theme.breakpoints.down('600')]: {
+            paddingTop: 15,
         },
+        [theme.breakpoints.down('475')]: {
+            fontSize: 25,
+            letterSpacing: `-1.1px`,
+            margin: `25px 0 0 0`,
+            paddingLeft: 10,
+        }
+    },
 }));
 
     const QUERY_INDEX_DATA = graphql`

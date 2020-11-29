@@ -6,10 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import HeadSection from "../components/HeadSection"
 
+
 const Sale = (props) => {
 return (
     <>
-    <SEO title="Акции и скидки на пиццу, роллы и суши"
+    <SEO title="Акции и скидки на пиццу, роллы и суши в Уразово"
     description="Акции на роллы суши и пиццу в Валуйках. Скидки до 60%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
     <HeadSection titleTXT={"Акции"} />
     <Grid container style={{margin: `0 0 50px 0`}}>

@@ -21,7 +21,7 @@ return (
     <SEO title="Недорогие суши с доставкой по Валуйскому району"
     description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте, суши от 50 рублей. Звонок +7(904)094-92-22"/>
 
-    <HeadSection titleTXT={"Cуши"} />
+    <HeadSection titleTXT={"Суши"} />
     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Суши" slugCategogy="/sushi" visibleItems={product}
                        image={image} product={product}/>

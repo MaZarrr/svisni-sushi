@@ -119,7 +119,8 @@ export const useStylesCart = makeStyles(theme => ({
 
 export const useStyleOrder = makeStyles(theme => ({
     root: {
-        flexGrow: 1
+        flexGrow: 1,
+        width: `100%`
     },
     paperEndOrder: {
         padding: `10px 50px`,

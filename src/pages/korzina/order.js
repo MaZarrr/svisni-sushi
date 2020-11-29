@@ -215,7 +215,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             <div className={classes.root}>
             <HeadSection titleTXT={"Оформление заказа"} />
                 {load === false ?
-                    <Container>
+                    <Container maxWidth={"xl"}>
                     { !isEmpty(items) ?
                         <Grid container className={classes.gridContainer}>
                             <form
@@ -224,7 +224,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                 style={{width: '100%'}}>
 
                                 <div className={classes.root}>
-                                <Grid container spacing={3}>
+                                <Grid container spacing={2}>
                                     {/*Имя и Телефон*/}
                                     <Grid item xs={12} style={{paddingBottom: 0, marginTop: 14}}>
                                         <Typography style={{ fontSize: 22 }} variant="h5">
