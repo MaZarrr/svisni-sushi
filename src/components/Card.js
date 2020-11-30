@@ -13,6 +13,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import SwipeableViews from 'react-swipeable-views';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {isNil, isEmpty} from "ramda";
+import IconButton from "@material-ui/core/IconButton"
 
 const useStylesCard = makeStyles(theme => ({
     root: {
@@ -76,19 +77,6 @@ const useStylesCard = makeStyles(theme => ({
             fontSize: `18px`
         }
     },
-    // cartImg: {
-    //     img: {
-    //         width: `120px`,
-    //         height: `120px`,
-    //         margin: `10px auto`,
-    //         zIndex: 999,
-    //         padding: 0,
-    //         [theme.breakpoints.down('600')]: {
-    //             width: `90px`,
-    //             height: `100px`
-    //         }
-    //     }
-    // },
     button: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         color: 'white',
@@ -130,7 +118,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                               display: `flex`,
                               justifyContent: `center`, position: `relative`}}
                           key={homeMenu.id} >
-                        <div>
+                        <IconButton>
                             <div className={classesCard.cartTitle}>
                                 <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
                             </div>
@@ -141,7 +129,7 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                         height: `90px`, padding: 10}} alt={homeMenu.category}/>
                                 </Link>
                             </div>
-                        </div>
+                        </IconButton>
                     </Grid>
                 ))}
             </Grid>

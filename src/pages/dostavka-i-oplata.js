@@ -286,18 +286,21 @@ return (
       </div>
         <Divider/>
      </Grid>
-     <Grid item xs={12} sm={5} style={{margin: `14px auto 0 auto`, borderRadius: 15}}>
+        <Grid item xs={12} sm={5} style={{margin: `14px auto 0 auto`, borderRadius: 15}}>
 
-         <div style={{borderRadius: 15}}>
+        <div style={{borderRadius: 15}}>
              <img src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A6c9654ff4500960caa168410dc7e08e8c8364690cf5a89b544e20cd237dc3970&amp;width=592&amp;height=422&amp;lang=ru_RU"
-                  alt="Адрес Свисни суши" className="mapDelivery" />
-         </div>
-    </Grid>
-     <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `15px`, color: `white`}}>
+                  alt="Адрес Свисни суши" style={{borderRadius: `10px`,
+                    border: `1px solid lightgrey`,
+                    width: `100%`,
+                    height: `420px`}} className="mapDelivery" />
+        </div>
+        </Grid>
+        <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `15px`, color: `white`}}>
           <Typography variant="body1"><strong>График работы: с 10:00 до 22:00</strong></Typography>
           <Typography variant="body1"><strong>+7(904)094-92-22</strong></Typography>
     </Grid>
-    <Grid item xs={6} style={{backgroundColor: `#000`, padding: `15px`, color: `white`}}>
+        <Grid item xs={6} style={{backgroundColor: `#000`, padding: `15px`, color: `white`}}>
           <Typography  variant="body1"><strong>Доставка от 60 до 90 мин</strong></Typography>
     </Grid>
 

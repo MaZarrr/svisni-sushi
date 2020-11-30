@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { graphql, StaticQuery } from "gatsby"
 import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
-import Typography from "@material-ui/core/Typography";
 
     const useStyleIndexPage = makeStyles(theme => ({
     root: {
@@ -26,7 +25,7 @@ import Typography from "@material-ui/core/Typography";
         },
         [theme.breakpoints.down('475')]: {
             fontSize: 25,
-            letterSpacing: `-1.1px`,
+            letterSpacing: `-0.6px`,
             margin: `25px 0 0 0`,
             paddingLeft: 10,
         }

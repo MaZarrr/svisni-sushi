@@ -18,53 +18,53 @@ return (
 
     <HeadSection titleTXT={"Адрес и контакты"} />
     <Grid container itemScope itemType="https://schema.org/Organization">
-        <Grid item xs={12} sm={6} style={{paddingLeft: 25}}>
-            <div className="d-flex align-items-center mt-2">
+        <Grid item xs={12} sm={6} style={{paddingLeft: 20}}>
+            <div style={{display: `flex`, alignItems: `center`, marginTop: 10}}>
                 <div>
                     <IconButton aria-label="add an alarm">
                         <AccessTimeOutlinedIcon color={"secondary"} fontSize={"large"}/>
                     </IconButton>
                 </div>
                 <div className="ml-1">
-                    <Typography className="mt-2" variant="h5">Режим работы</Typography>
+                    <Typography variant="h5">Режим работы</Typography>
                     <Typography variant={"subtitle1"}>С 10:00 до 22:00</Typography>
                 </div>
             </div>
 
-            <div className="d-flex align-items-center mt-2">
+            <div style={{display: `flex`, alignItems: `center`, marginTop: 10}}>
                 <div>
                     <IconButton aria-label="phone">
                         <PhoneIphoneOutlinedIcon color={"secondary"} fontSize={"large"}/>
                     </IconButton>
                 </div>
-                <div className="ml-1">
-                    <Typography className="mt-2" variant="h5">Телефон</Typography>
+                <div>
+                    <Typography variant="h5">Телефон</Typography>
                     <Typography variant={"subtitle1"}>
                         <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
                     </Typography>
                 </div>
             </div>
 
-            <div className="d-flex align-items-center mt-2">
+            <div style={{display: `flex`, alignItems: `center`, marginTop: 10}}>
                 <div>
                     <IconButton>
                         <LocationOnOutlinedIcon color={"secondary"} fontSize={"large"}/>
                     </IconButton>
                 </div>
-                <div className="ml-1">
+                <div>
                     <Typography className="mt-2" variant="h5">Адрес</Typography>
                     <Typography className="w-75" variant={"subtitle1"}><span itemProp="streetAddress">Улица 3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
                 </div>
             </div>
 
-            <div className="mt-4 ml-4">
+            <div style={{ marginTop: 30}}>
                 <Typography variant="caption">ИП Беженова Татьяна Викторовна</Typography>
                 <p variant="caption"> ОРГНИП 318312300012678</p>
             </div>
         </Grid>
 
         <Grid item xs={12} sm={6} style={{marginBottom: `50px`}}>
-                <iframe title="locationSvisniSushi" style={{  paddingRight: 20, width: `95%`, height: `400px`}} src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=70396123059"
+                <iframe title="locationSvisniSushi" style={{ width: `99%`, height: `670px`}} src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=70396123059"
                         frameBorder="0"></iframe>
         </Grid>
     </Grid>

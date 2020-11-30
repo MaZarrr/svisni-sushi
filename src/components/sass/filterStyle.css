@@ -7,9 +7,9 @@
 }
 @media (max-width: 768px) {
   .categories {
-    max-width: 95%;
+    /*max-width: 95%;*/
     margin-left: 0;
-    margin: 10px auto;
+    /*margin: 10px auto;*/
   }
 }
 .categories ul {

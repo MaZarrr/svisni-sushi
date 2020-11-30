@@ -74,11 +74,11 @@ export const useStyleKombo = makeStyles(theme => ({
         marginBottom: 12,
     },
     titleClass: {
-        fontWeight: 800,
+        fontWeight: 900,
         marginTop: 80,
         textTransform: `uppercase`,
         fontSize: 34,
-        marginLeft: 35,
+        marginLeft: 30,
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
             marginTop: 40
