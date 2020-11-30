@@ -5,20 +5,20 @@ import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
-import Spinner from '../components/spinner/spinner'
+// import Spinner from '../components/spinner/spinner'
 import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(()=> import('../components/CardsMenuPage'))
 
 const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
-    const [load, setLoad] = React.useState(true);
+    // const [load, setLoad] = React.useState(true);
 
     useEffect(() => {
         dispatch(productLoaded(productsKombo))
-        setTimeout(() => {
-            setLoad(false)
-        }, 700);
+        // setTimeout(() => {
+        //     setLoad(false)
+        // }, 700);
     }, [productsKombo, dispatch]);
 
 return (
@@ -26,12 +26,12 @@ return (
     <SEO title="Доставка комбо наборов из суши, роллов и пиццы в Валуйки"
     description="Заказать специальные комбо наборы, собирай свои блюда из суши и пиццы выгодно. Работаем с 10 до 22:00"/>
       <HeadSection titleTXT={"Комбо наборы"}/>
-        {load === false ?
+        {/*{load === false ?*/}
             <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                 <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
                                image={image} product={product}/>
             </Grid>
-        : <Spinner count={10}/>}
+        {/*: <Spinner count={10}/>}*/}
 </section>
     )
 };
