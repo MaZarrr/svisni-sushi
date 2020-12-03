@@ -175,7 +175,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             }
 
         }
-        if(localStorage.getItem('checkPushOrder') === 'true') {
+        if(typeof window !== undefined && localStorage.getItem('checkPushOrder') === 'true') {
             handleClickAlert()
         } else {
             pushOrder()
