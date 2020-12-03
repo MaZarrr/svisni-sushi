@@ -7,7 +7,6 @@ import Tabs from '@material-ui/core/Tabs';
 import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-
 import {Hidden} from "@material-ui/core";
 import Slide from "@material-ui/core/Slide";
 import Typography from "@material-ui/core/Typography";

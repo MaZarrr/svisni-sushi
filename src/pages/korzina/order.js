@@ -27,6 +27,9 @@ import { Container, Paper } from "@material-ui/core";
 import EmptyBasket from '../../components/EmptyBasket';
 import FormHelperText from "@material-ui/core/FormHelperText";
 import HeadSection from "../../components/HeadSection"
+import PayDialog from "../../components/PayDialog"
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -43,7 +46,9 @@ function TextMaskCustom(props) {
         />
     );
 }
-
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const city = {
     net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
     kol: {id: 1, priceDel: 150, deliverySalePrice: 1400, name: "Колыхалино"},
@@ -84,10 +89,13 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const [load, setLoad] = React.useState(true);
     const [age, setAge] = useState('');
     const [delivery, setDelivery] = useState('');
+    const [checkPushOrder, setCheckPushOrder] = useState(false);
+    const [openPay, setOpenPay] = useState(false)
+    const [openAlert, setOpenAlert] = React.useState(false);
     const inputLabel = React.useRef(null);
     const [state, setState] = React.useState("promptly");
+    const [variantPay, setVariantPay] = React.useState("cash");
     const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
-
     const classes = useStyleOrder();
 
     React.useEffect(() => {
@@ -97,59 +105,81 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     }, []);
 
     const handleChangee = name => event => setState(name);
+    const onSwitchPay = (pay) => () => setVariantPay(pay);
     const handleSubmit = (ev) => {
         ev.preventDefault();
 
-        const totalPrice = delivery === "Самовывоз" ? total : total <= stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total;
-        const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
-            formDelivery: ev.target.delivery.value,
-            adress: stateDeliveryPrice.name,
-            street: ev.target.street.value,
-            home: ev.target.home.value,
-            apartment: ev.target.apartment.value,
-            podezd: ev.target.podezd.value,
-            etag: ev.target.etag.value,
-            kodDveri: ev.target.kodDveri.value
-        };
-        const deliveryTimeOrder = state !== "deliveryTime" ? "Приготовить сразу" : {
-            dateDelivery: ev.target.date.value,
-            timeDelivery: ev.target.time.value
-        };
-        const infoSuccess = {
-            name: ev.target.name.value,
-            phone: ev.target.phone.value,
-            products: items.map((elem) => {
+        const pushOrder = () => {
+            const totalPrice = delivery === "Самовывоз" ? total : total <= stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total;
+            const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
+                formDelivery: ev.target.delivery.value,
+                adress: stateDeliveryPrice.name,
+                street: ev.target.street.value,
+                home: ev.target.home.value,
+                apartment: ev.target.apartment.value,
+                podezd: ev.target.podezd.value,
+                etag: ev.target.etag.value,
+                kodDveri: ev.target.kodDveri.value
+            };
+            const deliveryTimeOrder = state !== "deliveryTime" ? "Приготовить сразу" : {
+                dateDelivery: ev.target.date.value,
+                timeDelivery: ev.target.time.value
+            };
+            const infoSuccess = {
+                name: ev.target.name.value,
+                phone: ev.target.phone.value,
+                products: items.map((elem) => {
 
-                const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
-                const productSize = elem.productSize === "" ? "" : elem.productSize;
-                const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
+                    const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
+                    const productSize = elem.productSize === "" ? "" : elem.productSize;
+                    const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
 
-                return {
-                    product: elem.name,
-                    total: elem.total,
-                    count: elem.count,
-                    description: elem.description,
-                    descriptionIngrideents,
-                    productSize,
-                    descriptionWok
-                }
-            }),
-            delivery: deliveru,
-            deliveryTime: deliveryTimeOrder,
-            totalPrice,
-            sdacha: ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб`,
-            chopsticks: palochkiTotal,
-            comments: ev.target.comments.value || "Без комментария",
-        };
+                    return {
+                        product: elem.name,
+                        total: elem.total,
+                        count: elem.count,
+                        description: elem.description,
+                        descriptionIngrideents,
+                        productSize,
+                        descriptionWok
+                    }
+                }),
+                delivery: deliveru,
+                deliveryTime: deliveryTimeOrder,
+                totalPrice: `${totalPrice} руб. ${variantPay === "cash" ? "Выбрана оплата наличными" : "Выбрана онлайн оплата, ожидаем перевод..."}`,
+                sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
+                chopsticks: palochkiTotal,
+                comments: ev.target.comments.value || "Без комментария",
+            };
 
-        axios({
-            method: 'POST',
-            data: infoSuccess,
-            url: process.env.GATSBY_NODE_SERVE
-        });
+            axios({
+                method: 'POST',
+                data: infoSuccess,
+                url: process.env.GATSBY_NODE_SERVE
+            });
 
-        typeof window !== undefined && localStorage.removeItem('basketProduct');
-        navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
+            if(variantPay === "bank") {
+                setOpenPay(true)
+            }
+            setCheckPushOrder(true)
+            typeof window !== undefined && localStorage.setItem('checkPushOrder', 'true');
+
+            setTimeout(() => {
+                setCheckPushOrder(false)
+                typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
+            }, 65000)
+
+            typeof window !== undefined && localStorage.removeItem('basketProduct');
+            if(variantPay === "cash") {
+                navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
+            }
+
+        }
+        if(localStorage.getItem('checkPushOrder') === 'true') {
+            handleClickAlert()
+        } else {
+            pushOrder()
+        }
     };
 
     const handleChange = event => setAge(event.target.value);
@@ -158,10 +188,22 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         setSity(`${city[event.target.value].name}`);
         setStateDeliveryPrice(city[event.target.value]);
     };
-
+    const handleClosePay = () => {
+        typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
+        setOpenPay(false);
+    };
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
+    const handleClickAlert = () => {
+        setOpenAlert(true);
+    };
+    const handleCloseAlert = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
 
+        setOpenAlert(false);
+    };
     const isEmpty = (obj) => {
         if (Object.keys(obj).length === 0) {
             return true;
@@ -257,7 +299,23 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                    onChange={(e) => {setPhone(e.target.value)}}
                                                    value={phoneUser}/>
                                     </Grid>
-
+                                    <Grid item xs={12}>
+                                        <Typography variant="h5" style={{fontSize: 22}}>
+                                            Выберите форму оплаты
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Button fullWidth variant={variantPay === "cash" ? "contained" : "outlined"} color={"secondary"}
+                                                onClick={onSwitchPay("cash")}>
+                                           Оплата наличными
+                                        </Button>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Button  fullWidth variant={variantPay === "bank" ? "contained" : "outlined"} color="secondary"
+                                                 onClick={onSwitchPay("bank")}>
+                                           Банковской картой
+                                        </Button>
+                                    </Grid>
                                 <Grid item xs={12}>
                                     <Grid item xs={12}>
                                         <Typography variant="h5" style={{fontSize: 22}}>
@@ -281,13 +339,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                             <Typography style={{fontSize: 22}} variant="h5">
                                                 { delivery !== "Самовывоз" ? "Дата и время доставки заказа"
                                                     : "Дата и время готовки заказа"}
-
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
                                             <Button fullWidth variant={state === "promptly" ? "contained" : "outlined"} color={"secondary"}
                                                     onClick={handleChangee("promptly")}>
-                                                {delivery === "Самовывоз" ? "Готовить сразу" : "Доставить сразу"}
+                                                {delivery === "Самовывоз" ? "Приготовить сразу" : "Доставить сразу"}
                                             </Button>
                                         </Grid>
                                         <Grid item xs={6}>
@@ -523,44 +580,49 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                                 </div>
                                             </>
                                             }
-                                            <Grid item xs={12} style={{marginBottom: 20}}>
-                                            <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
-                                            <Select
-                                                labelId="demo-controlled-open-select-label"
-                                                id="demo-controlled-open-select"
-                                                open={open}
-                                                onClose={handleClose}
-                                                onOpen={handleOpen}
-                                                value={age}
-                                                name="sdacha"
-                                                onChange={handleChange}>
-                                                <MenuItem value="Без сдачи">
-                                                    <em>Без сдачи</em>
-                                                </MenuItem>
-                                                <MenuItem value={700}>С 700 руб</MenuItem>
-                                                <MenuItem value={1000}>С 1000 руб</MenuItem>
-                                                <MenuItem value={1500}>С 1500 руб</MenuItem>
-                                                <MenuItem value={2000}>С 2000 руб</MenuItem>
-                                                <MenuItem value={3000}>С 3000 руб</MenuItem>
-                                                <MenuItem value={5000}>С 5000 руб</MenuItem>
-                                            </Select>
+                                            {/*Если онлайн оплата не показывать сдачу*/}
+                                            {variantPay === 'cash' &&
+                                                <Grid item xs={12} style={{marginBottom: 20}}>
+                                                <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
+                                                <Select
+                                                  labelId="demo-controlled-open-select-label"
+                                                  id="demo-controlled-open-select"
+                                                  open={open}
+                                                  onClose={handleClose}
+                                                  onOpen={handleOpen}
+                                                  value={age}
+                                                  name="sdacha"
+                                                  onChange={handleChange}>
+                                                    <MenuItem value="Без сдачи">
+                                                        <em>Без сдачи</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={700}>С 700 руб</MenuItem>
+                                                    <MenuItem value={1000}>С 1000 руб</MenuItem>
+                                                    <MenuItem value={1500}>С 1500 руб</MenuItem>
+                                                    <MenuItem value={2000}>С 2000 руб</MenuItem>
+                                                    <MenuItem value={3000}>С 3000 руб</MenuItem>
+                                                    <MenuItem value={5000}>С 5000 руб</MenuItem>
+                                                </Select>
                                             </Grid>
+                                            }
+
 
                                             { isEmpty(stateDeliveryPrice) || delivery === "Самовывоз" ?
                                                 <div>
                                                     <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
                                                 </div> : ''
                                             }
-
-                                         <span>
+                                         {/*/!*если онлай оплата показывать другую кнопку*!/*/}
+                                         {/*   {variantPay === 'cash' &&*/}
+                                            <span>
                                             <Button
-                                                type="submit"
-                                                color={"primary"}
-                                                size={'large'}
-                                                style={{fontWeigh: `bold`, fontSize: 20}}
-                                                disabled={buttonDisabled()}
-                                                variant="contained">
-                                                Сделать заказ
+                                              type="submit"
+                                              color={"primary"}
+                                              size={'large'}
+                                              style={{fontWeigh: `bold`, fontSize: 20}}
+                                              disabled={buttonDisabled()}
+                                              variant="contained">
+                                                { variantPay === "cash" ? "Сделать заказ" : "Оплатить заказ"}
                                             </Button>
                                             </span>
 
@@ -581,6 +643,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                 </Grid>
 
                             </form>
+                            <PayDialog total={delivery === "Самовывоз" ? total : total <= stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total} open={openPay} handleClose={() => handleClosePay()}/>
+                            <Snackbar open={openAlert} autoHideDuration={2500} style={{bottom: 90}} onClose={handleCloseAlert}>
+                                <Alert onClose={handleCloseAlert} severity="info">
+                                    Ваш заказ уже оформлен и отправлен в Свисни Суши! Для оформления другого заказа попробуйте через 2 минуты...
+                                </Alert>
+                            </Snackbar>
                         </Grid> : <EmptyBasket/> }
                 </Container>
                  : <Spinner />}
@@ -621,6 +689,27 @@ export default connect(mapStateToProps, mapDispatchToProps)(Order)
 
 
 
+
+
+
+// if(variantPay === "bank") {
+//     axios({
+//         method: 'POST',
+//         headers: {
+//             'Access-Control-Allow-Origin': 'http://localhost:8000/',
+//             'Content-Type': 'multipart/form-data',
+//         },
+//         data: {
+//             receiver: "410018704311161",
+//             targets : "Оплата товаров",
+//             quickpayForm: "shop",
+//             sum: ev.target.sum.value,
+//             paymentType: "AC",
+//             successURL: "http://localhost:8000/korzina/order/order-processed"
+//         },
+//         url: "https://yoomoney.ru/quickpay/confirm.xml"
+//     });
+// }
 
 
 

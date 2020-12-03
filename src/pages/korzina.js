@@ -44,7 +44,14 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     React.useEffect(() => {
         setTimeout(() => {
             setLoad(false)
-        }, 600)
+        }, 600);
+
+      if(typeof window !== undefined && localStorage.getItem('checkPushOrder') === 'true') {
+        setTimeout(() => {
+          typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
+        }, 65000)
+      }
+
     }, []);
 
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));

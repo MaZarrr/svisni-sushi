@@ -23,7 +23,14 @@ export default () => {
             ...GatsbyImageSharpFluid
           }
         }
-      }
+      },
+        successImage: file(relativePath: { eq: "checked.png" }) {
+            childImageSharp {
+                fluid(maxWidth: 300, quality: 100) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        }
     }
   `);
 

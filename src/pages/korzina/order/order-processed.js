@@ -19,7 +19,7 @@ function createData(name, count, price) {
     return { name, count, price};
 }
 
-export default ({location: {state}}) => {
+export default ({ location: { state } }) => {
     const [data, setData] = React.useState([]);
     const [delivery, setDelivery] = React.useState("");
     const [phone, setPhone] = React.useState("");
