@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { graphql, useStaticQuery, Link } from "gatsby"
 import Img from 'gatsby-image';
 import {makeStyles} from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
+import Pagination from '../pagination/Pagination'
+import { Hidden } from "@material-ui/core";
 import { mod } from 'react-swipeable-views-core';
+
 
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
@@ -13,6 +16,7 @@ const useStyleCarousel = makeStyles(theme => ({
     root: {
         maxWidth: `100vw`,
         flexGrow: '1',
+        position: 'relative',
         [theme.breakpoints.down('768')]: {
             marginBottom: 30,
         },
@@ -32,7 +36,7 @@ const useStyleCarousel = makeStyles(theme => ({
         padding: '0 20vw 0 30vw',
     },
     rootCarousel: {
-        padding: '0 20vw 0 20vw',
+        padding: '0 15vw 0 15vw',
         [theme.breakpoints.down('475')]: {
             padding: 0,
         },
@@ -46,7 +50,7 @@ const styles = {
 };
 
 function Carousel() {
-
+    const [state, setState] = useState(0)
     const classes = useStyleCarousel();
     const data = useStaticQuery(graphql `
         {
@@ -65,7 +69,10 @@ function Carousel() {
             }
         }
     `);
-    
+
+    const handleChangeIndex = index => {
+        setState(index)
+    };
 
     function slideRenderer(params) {
         const { index, key } = params;
@@ -134,7 +141,15 @@ function Carousel() {
 
     return (
         <div className={classes.root}>
-            <VirtualizeSwipeableViews className={classes.rootCarousel} slideRenderer={slideRenderer} slideStyle={styles.slideContainer}/>
+            <VirtualizeSwipeableViews className={classes.rootCarousel}
+                                      slideRenderer={slideRenderer}
+                                      slideCount={5}
+                                      slideStyle={styles.slideContainer}
+                                      index={state}
+                                      onChangeIndex={handleChangeIndex}/>
+            <Hidden smUp>
+                <Pagination dots={5} index={state} onChangeIndex={handleChangeIndex} />
+            </Hidden>
         </div>
     )
 }

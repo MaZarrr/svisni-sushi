@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import Img from 'gatsby-image';
 import { Link } from "gatsby"
 import Card from "@material-ui/core/Card";
@@ -46,7 +46,7 @@ const useStylesCard = makeStyles(theme => ({
         textAlign: `center`,
         [theme.breakpoints.down('600')]: {
             fontSize: '22px',
-            padding: `10px 10px 10px 10px`,
+            padding: `10px 10px 0 10px`
         },
     },
     buttonCombo: {
@@ -60,7 +60,8 @@ const useStylesCard = makeStyles(theme => ({
     cartTitle: {
         textAlign: `center`,
         position: `absolute`,
-        top: `-35px`,
+        bottom: `0`,
+        color: `#fff`,
         left: 0,
         width: `100%`,
         zIndex: 1000,
@@ -71,11 +72,11 @@ const useStylesCard = makeStyles(theme => ({
     menuTitle: {
         textAlign: `center`,
         padding: `25px 0 0 0`,
-        fontWeight: 500,
-        fontSize: `26px`,
-        [theme.breakpoints.down('600')]: {
-            fontSize: `18px`
-        }
+        fontWeight: 900,
+        fontSize: `4vmin`,
+        // [theme.breakpoints.down('600')]: {
+        //     fontSize: `18px`,
+        // }
     },
     button: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -109,8 +110,8 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
         <div className={classesCard.root}>
             <Hidden smUp>
             {/*Меню выбор*/}
-            <Grid container style={{marginBottom: 40, marginTop: 20}}>
-                <Typography style={{marginBottom: 10}} className={classesCard.titleIndex}
+            <Grid container style={{marginBottom: 40, marginTop: 10}}>
+                <Typography className={classesCard.titleIndex}
                             variant={"h2"}>Заказывайте роллы, суши и пиццу</Typography>
                 {indexMenu.map(({node: homeMenu}) => (
                     <Grid item xs={6} sm={4}
@@ -123,10 +124,9 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                                 <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
                             </div>
                             <div style={{margin: `0 auto`}}>
-                                <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey', width: `120px`}} to={`/${homeMenu.slug}`}>
-                                    <Img fluid={homeMenu.image.fluid} style={{width: `90px`,
-                                        height: `90px`}} imgStyle={{width: `90px`,
-                                        height: `90px`, padding: 10}} alt={homeMenu.category}/>
+                                <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey', width: `43vmin`, height: `200px`}} to={`/${homeMenu.slug}`}>
+                                        <Img fluid={homeMenu.image.fluid} style={{width: `43vmin`, borderRadius: 10,
+                                            height: `200px`}} alt={homeMenu.category}/>
                                 </Link>
                             </div>
                         </IconButton>

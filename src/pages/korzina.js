@@ -49,7 +49,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
       if(typeof window !== undefined && localStorage.getItem('checkPushOrder') === 'true') {
         setTimeout(() => {
           typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
-        }, 65000)
+        }, 63000)
       }
 
     }, []);

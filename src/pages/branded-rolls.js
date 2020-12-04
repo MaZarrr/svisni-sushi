@@ -28,15 +28,20 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
     const visibleItems = filtersProducts(product, searchText, priceFilter);
 
     useEffect(() => {
+        let cleanupFunction = false;
+
         dispatch(productLoaded(productsBrandedRolls));
         doStart({endTime: 15, startTime: 10});
         dispatch(checkSaleLanch(priceIsSale));
 
+      if(!cleanupFunction) {
         setTimeout(() => {
-            setLoad(false)
+          setLoad(false)
         }, 700);
-
+      }
         dispatch(defFilters())
+
+      return () => cleanupFunction = true
     }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
 
 return ( 

@@ -35,12 +35,16 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
     const classes = useStylesCart();
 
     useEffect(() => {
+      let cleanupFunction = false;
         dispatch(productPizzaLoaded(pizzaProduct))
         dispatch(pizzaCart({productPizza: pizzaProduct}))
+        if(!cleanupFunction) {
         setTimeout(() => {
             setLoad(false)
         }, 700);
+    }
         dispatch(defFilters())
+        return () => cleanupFunction = true
     }, [dispatch, pizzaProduct]);
 
     const updatePizza = R.defaultTo(productPizza, pizza);
