@@ -7,7 +7,7 @@ const styles = {
     position: 'absolute',
     bottom: 5,
     right: 30,
-    zIndex: 10000,
+    zIndex: 998,
     display: 'flex',
     flexDirection: 'row',
   },
