@@ -120,15 +120,15 @@ const CardIndex = memo(({addedCart, indexProduct, indexMenu}) => {
                               justifyContent: `center`, position: `relative`}}
                           key={homeMenu.id} >
                         <IconButton>
+                            <Link style={{textDecoration: `none`, color: 'grey', width: `43vmin`, height: `200px`}} to={`/${homeMenu.slug}`}>
                             <div className={classesCard.cartTitle}>
                                 <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
                             </div>
                             <div style={{margin: `0 auto`}}>
-                                <Link style={{textDecoration: `none`, margin: `0 auto`, color: 'grey', width: `43vmin`, height: `200px`}} to={`/${homeMenu.slug}`}>
                                         <Img fluid={homeMenu.image.fluid} style={{width: `43vmin`, borderRadius: 10,
                                             height: `200px`}} alt={homeMenu.category}/>
-                                </Link>
                             </div>
+                            </Link>
                         </IconButton>
                     </Grid>
                 ))}
