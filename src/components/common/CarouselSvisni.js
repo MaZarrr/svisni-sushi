@@ -36,7 +36,7 @@ const useStyleCarousel = makeStyles(theme => ({
         padding: '0 20vw 0 30vw',
     },
     rootCarousel: {
-        padding: '0 15vw 0 15vw',
+        padding: '0 20vw 0 20vw',
         [theme.breakpoints.down('475')]: {
             padding: 0,
         },

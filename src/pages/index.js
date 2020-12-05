@@ -130,7 +130,7 @@ import IndexCards from '../components/Card'
                     category
                     desc
                     image {
-                        fluid(maxWidth: 140) {
+                        fluid(maxWidth: 180, quality: 100) {
                             ...GatsbyContentfulFluid
                         }
                     }
