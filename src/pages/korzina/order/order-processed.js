@@ -28,6 +28,9 @@ export default ({ location: { state } }) => {
     const classes = useStyles();
 
     React.useEffect(() => {
+        if(state === null) {
+            return
+        }
         if(typeof window !== `undefined`) {
             setData(state.products.map(el => {
                 return createData(el.product, el.count, el.total)
@@ -40,63 +43,69 @@ export default ({ location: { state } }) => {
 
     return (
         <Grid container style={{marginTop: `75px`}}>
-            <Grid item xs={12}>
-                <Typography style={{textAlign: `center`}} variant={'h4'}>Ваш заказ успешно оформлен<span role="img" aria-label="accessible-emoji">🎉</span>
-                    <span role="img" aria-label="accessible-emoji" >🎉</span><span role="img" aria-label="accessible-emoji">🎉</span>
-                </Typography>
-                <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>заказ оформлен и принят в обработку</Typography>
-            </Grid>
-            <Grid item xs={11} sm={10} style={{margin: `15px auto 50px auto`}}>
+            { state !== null ? <>
                 <Grid item xs={12}>
-                    <Typography variant={'h5'}>Детали заказа:</Typography>
+                    <Typography style={{textAlign: `center`}} variant={'h4'}>Ваш заказ успешно оформлен<span role="img" aria-label="accessible-emoji">🎉</span>
+                        <span role="img" aria-label="accessible-emoji" >🎉</span><span role="img" aria-label="accessible-emoji">🎉</span>
+                    </Typography>
+                    <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>заказ оформлен и принят в обработку</Typography>
                 </Grid>
-                <Divider/>
-                <Grid item xs={12} style={{background: `lightgrey`}}>
-                    <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}>Ваш телефон: <strong>{phone}</strong></Typography>
-                </Grid>
-                <Grid item xs={12} style={{borderRadius: 10, border: `1px lightgrey solid`, margin: `10px auto`}}>
-                    {data.map((row) => (
-                        <div key={row.name} style={{marginTop: 8 }}>
-                        <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}><strong>Блюдо: </strong>
-                           {row.name}</Typography>
-                        <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}><strong>Количество: </strong>
-                            {row.count} шт</Typography>
-                        <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}><strong>Цена: </strong>
-                        {row.price} руб</Typography>
-                        <Divider/>
-                        </div>
+                <Grid item xs={11} sm={10} style={{margin: `15px auto 50px auto`}}>
+                    <Grid item xs={12}>
+                        <Typography variant={'h5'}>Детали заказа:</Typography>
+                    </Grid>
+                    <Divider/>
+                    <Grid item xs={12} style={{background: `lightgrey`}}>
+                        <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}>Ваш телефон: <strong>{phone}</strong></Typography>
+                    </Grid>
+                    <Grid item xs={12} style={{borderRadius: 10, border: `1px lightgrey solid`, margin: `10px auto`}}>
+                        {data.map((row) => (
+                          <div key={row.name} style={{marginTop: 8 }}>
+                              <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}><strong>Блюдо: </strong>
+                                  {row.name}</Typography>
+                              <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}><strong>Количество: </strong>
+                                  {row.count} шт</Typography>
+                              <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}><strong>Цена: </strong>
+                                  {row.price} руб</Typography>
+                              <Divider/>
+                          </div>
                         ))}
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography style={{textAlign: `right`, paddingRight: 20}} variant={'h6'}>Общая цена к оплате <strong>{priceTotal} руб</strong></Typography>
+                    </Grid>
+                    <Divider/>
+                    <Grid item xs={12} style={{background: `lightgrey`}}>
+                        {delivery === "Самовывоз" && (
+                          <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>Время готовки заказа: <strong>25 - 45
+                              мин</strong></Typography>
+                        )}
+                        { delivery !== "Самовывоз" && <>
+                            <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>Время доставки
+                                заказа(вместе с готовкой)<strong> 1ч - 1ч 30 мин</strong></Typography>
+                            <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>В часы пик, и праздничные дни время доставки может увеличиться<strong> на 30 минут</strong></Typography>
+                            <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body2"}>(оформляйте предзаказ заранее)</Typography>
+                        </>}
+                    </Grid>
+                    <Divider/>
+                    <Grid item xs={12}>
+                        <Typography style={{textAlign: `left`}} variant={'h6'}>Спасибо что выбираете Свисни Sushi!</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button component={Link}
+                                to="/"
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}>
+                            Перейти на главную
+                        </Button>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    <Typography style={{textAlign: `right`, paddingRight: 20}} variant={'h6'}>Общая цена к оплате <strong>{priceTotal} руб</strong></Typography>
-                </Grid>
-                <Divider/>
-                <Grid item xs={12} style={{background: `lightgrey`}}>
-                    {delivery === "Самовывоз" && (
-                        <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>Время готовки заказа: <strong>25 - 45
-                        мин</strong></Typography>
-                    )}
-                    { delivery !== "Самовывоз" && <>
-                        <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>Время доставки
-                            заказа(вместе с готовкой)<strong> 1ч - 1ч 30 мин</strong></Typography>
-                        <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>В часы пик, и праздничные дни время доставки может увеличиться<strong> на 30 минут</strong></Typography>
-                        <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body2"}>(оформляйте предзаказ заранее)</Typography>
-                    </>}
-                </Grid>
-                <Divider/>
-                <Grid item xs={12}>
-                    <Typography style={{textAlign: `left`}} variant={'h6'}>Спасибо что выбираете Свисни Sushi!</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Button component={Link}
-                            to="/"
-                            variant="contained"
-                            color="primary"
-                            className={classes.button}>
-                        Перейти на главную
-                    </Button>
-                </Grid>
+            </> : <Grid item xs={12}>
+                <Typography style={{textAlign: `center`}} variant={'h4'}>Ваша корзина пуста.</Typography>
+                <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>Добавьте товары в корзину</Typography>
             </Grid>
+            }
         </Grid>
     )
 }

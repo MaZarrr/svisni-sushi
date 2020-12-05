@@ -47,11 +47,8 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
         }, 600);
 
       if(typeof window !== undefined && localStorage.getItem('checkPushOrder') === 'true') {
-        setTimeout(() => {
-          typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
-        }, 63000)
+          typeof window !== undefined && localStorage.removeItem('checkPushOrder');
       }
-
     }, []);
 
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));

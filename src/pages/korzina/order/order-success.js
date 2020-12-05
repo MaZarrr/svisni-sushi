@@ -11,10 +11,6 @@ import useImageStaticHook from "../../../components/image"
 export default () => {
   const [{ successImage },] = useImageStaticHook();
 
-  React.useEffect(() => {
-    typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
-  }, [])
-
   return (
     <Grid container style={{paddingTop: 80}} >
       <Grid item xs={12}>

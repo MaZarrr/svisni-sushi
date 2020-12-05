@@ -47,7 +47,7 @@ function TextMaskCustom(props) {
   );
 }
 function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
+  return <MuiAlert elevation={6} variant="standard" {...props} />;
 }
 const city = {
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
@@ -167,23 +167,21 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
           setCheckPushOrder(false)
         }, 8000)
       }
-      typeof window !== undefined && localStorage.setItem('checkPushOrder', 'true');
-
-      setTimeout(() => {
-        typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
-      }, 63000)
 
       typeof window !== undefined && localStorage.removeItem('basketProduct');
-      if(variantPay === "cash") {
+      if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true') {
+        typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
       }
-
     }
-    if(typeof window !== undefined && localStorage.getItem('checkPushOrder') === 'true') {
+
+    if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true') {
       handleClickAlert()
     } else {
       pushOrder()
+
     }
+
   };
 
   const handleChange = event => setAge(event.target.value);
@@ -193,7 +191,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     setStateDeliveryPrice(city[event.target.value]);
   };
   const handleClosePay = () => {
-    typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
     setOpenPay(false);
   };
   const handleClose = () => setOpen(false);
@@ -647,9 +644,9 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
                 </form>
                 <PayDialog total={delivery === "Самовывоз" ? total : total < stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total} open={openPay} handleClose={() => handleClosePay()}/>
-                <Snackbar open={openAlert} autoHideDuration={2500} style={{bottom: 90}} onClose={handleCloseAlert}>
-                  <Alert onClose={handleCloseAlert} severity="info">
-                    Ваш заказ уже оформлен и отправлен! Для оформления другого заказа попробуйте через 1 минуту...
+                <Snackbar open={openAlert} autoHideDuration={5000} style={{bottom: 90}} onClose={handleCloseAlert}>
+                  <Alert onClose={handleCloseAlert} severity="success">
+                    Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.
                   </Alert>
                 </Snackbar>
               </Grid> : <EmptyBasket/> }
@@ -693,38 +690,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(Order)
 
 
 
-// function Alert(props) {
-//   return <MuiAlert elevation={6} variant="filled" {...props} />;
-// }
 
-// const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
-//                  entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, userApartment,
-//                  setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
-//
-//   const [open, setOpen] = useState(false);
-//   const [load, setLoad] = React.useState(true);
-//   const [age, setAge] = useState('');
-//   const [delivery, setDelivery] = useState('');
-//   const [checkPushOrder, setCheckPushOrder] = useState(false);
-//   const [openPay, setOpenPay] = useState(false)
-//   const [openAlert, setOpenAlert] = React.useState(false);
-//   const inputLabel = React.useRef(null);
-//   const [state, setState] = React.useState("promptly");
-//   const [variantPay, setVariantPay] = React.useState("cash");
-//   const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
-//   const classes = useStyleOrder();
-//
-//   React.useEffect(() => {
-//     let cleanupFunction = false;
-//     if(!cleanupFunction) {
-//       setTimeout(() => {
-//         setLoad(false)
-//       }, 500)
-//     }
-//
-//     return () => cleanupFunction = true
-//   }, []);
-//
+
+
 //   const handleChangee = name => event => setState(name);
 //   const onSwitchPay = (pay) => () => setVariantPay(pay);
 //   const handleSubmit = (ev) => {
