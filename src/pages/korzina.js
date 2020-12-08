@@ -12,13 +12,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import {useStyleKorzina} from '../components/common/style'
+import { useStyleKorzina } from '../components/common/style'
 import ButtonSize from "../components/common/ButtonSizePizza";
-import {addedCart, removeCart,
+import { addedCart, removeCart,
     allRemoveCart, addPribor,
     saleRoll, salePizza,
-    deletePizza, deleteRoll} from "../reducers/shopping-cart";
-import {getProduct} from "../reducers/app";
+    deletePizza, deleteRoll } from "../reducers/shopping-cart";
+import { getProduct } from "../reducers/app";
 import SplitButton from "../components/SplitButton";
 import uniqid from 'uniqid'
 import IconButton from "@material-ui/core/IconButton";
@@ -195,8 +195,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
        noindex={true}/>
   <section>
   <div className={classes.root}>
-                {R.isEmpty(items) ? <div>Корзина пустая<span role="img" aria-label="accessible-emoji">😕</span></div> :
-                  <HeadSection titleTXT={"Корзина товаров"} /> }
+      <HeadSection titleTXT={"Корзина товаров"} />
             { load === false ? <div>
             { R.isEmpty(items) ? <EmptyBasket/> :
                 <Grid container spacing={2} style={{width: `100%`}}>

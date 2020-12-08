@@ -643,7 +643,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                   </Grid>
 
                 </form>
-                <PayDialog total={delivery === "Самовывоз" ? total : total < stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total} open={openPay} handleClose={() => handleClosePay()}/>
+                <PayDialog open={openPay} handleClose={() => handleClosePay()} name={nameUser} phone={phoneUser}
+                  total={delivery === "Самовывоз" ? total : total < stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total}/>
                 <Snackbar open={openAlert} autoHideDuration={5000} style={{bottom: 90}} onClose={handleCloseAlert}>
                   <Alert onClose={handleCloseAlert} severity="success">
                     Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.
@@ -682,3 +683,138 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
+
+
+
+
+
+
+
+
+
+
+
+//   const handleChangee = name => event => setState(name);
+//   const onSwitchPay = (pay) => () => setVariantPay(pay);
+//   const handleSubmit = (ev) => {
+//     ev.preventDefault();
+//
+//     const pushOrder = () => {
+//       const totalPrice = delivery === "Самовывоз" ? total : total <= stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total;
+//       const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
+//         formDelivery: ev.target.delivery.value,
+//         adress: stateDeliveryPrice.name,
+//         street: ev.target.street.value,
+//         home: ev.target.home.value,
+//         apartment: ev.target.apartment.value,
+//         podezd: ev.target.podezd.value,
+//         etag: ev.target.etag.value,
+//         kodDveri: ev.target.kodDveri.value
+//       };
+//       const deliveryTimeOrder = state !== "deliveryTime" ? "Приготовить сразу" : {
+//         dateDelivery: ev.target.date.value,
+//         timeDelivery: ev.target.time.value
+//       };
+//       const infoSuccess = {
+//         name: ev.target.name.value,
+//         phone: ev.target.phone.value,
+//         products: items.map((elem) => {
+//
+//           const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
+//           const productSize = elem.productSize === "" ? "" : elem.productSize;
+//           const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
+//
+//           return {
+//             product: elem.name,
+//             total: elem.total,
+//             count: elem.count,
+//             description: elem.description,
+//             descriptionIngrideents,
+//             productSize,
+//             descriptionWok
+//           }
+//         }),
+//         delivery: deliveru,
+//         deliveryTime: deliveryTimeOrder,
+//         totalPrice: `${totalPrice} руб. ${variantPay === "cash" ? "Выбрана оплата наличными" : "Выбрана онлайн оплата, ожидаем перевод..."}`,
+//         sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
+//         chopsticks: palochkiTotal,
+//         comments: ev.target.comments.value || "Без комментария",
+//       };
+//
+//       if (!checkPushOrder) {
+//         setCheckPushOrder(true)
+//
+//         console.log("POST_AXIOS")
+//         // axios({
+//         //     method: 'POST',
+//         //     data: infoSuccess,
+//         //     url: process.env.GATSBY_NODE_SERVE
+//         // });
+//       }
+//       if(variantPay === "bank") {
+//         setOpenPay(true)
+//       }
+//       typeof window !== undefined && localStorage.setItem('checkPushOrder', 'true');
+//
+//       setTimeout(() => {
+//         setCheckPushOrder(false)
+//         typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
+//       }, 59000)
+//
+//       typeof window !== undefined && localStorage.removeItem('basketProduct');
+//       if(variantPay === "cash") {
+//         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
+//       }
+//
+//     }
+//     if(typeof window !== undefined && localStorage.getItem('checkPushOrder') === 'true') {
+//       handleClickAlert()
+//     } else {
+//       pushOrder()
+//     }
+//   };
+//
+//   const handleChange = event => setAge(event.target.value);
+//   const handleChangeDelivery = event => setDelivery(event.target.value);
+//   const handleChangeCity = city => event => {
+//     setSity(`${city[event.target.value].name}`);
+//     setStateDeliveryPrice(city[event.target.value]);
+//   };
+//   const handleClosePay = () => {
+//     let cleanupFunction = false;
+//     if(!cleanupFunction) {
+//       typeof window !== undefined && localStorage.setItem('checkPushOrder', 'false');
+//       setOpenPay(false);
+//       setTimeout(() => {
+//         setCheckPushOrder(false)
+//       }, 7000)
+//     }
+//     return () => cleanupFunction = true
+//   };
+
+// ==========================
+
+// if(variantPay === "bank") {
+//     axios({
+//         method: 'POST',
+//         headers: {
+//             'Access-Control-Allow-Origin': 'http://localhost:8000/',
+//             'Content-Type': 'multipart/form-data',
+//         },
+//         data: {
+//             receiver: "410018704311161",
+//             targets : "Оплата товаров",
+//             quickpayForm: "shop",
+//             sum: ev.target.sum.value,
+//             paymentType: "AC",
+//             successURL: "http://localhost:8000/korzina/order/order-processed"
+//         },
+//         url: "https://yoomoney.ru/quickpay/confirm.xml"
+//     });
+// }
+
+
+
+
+
