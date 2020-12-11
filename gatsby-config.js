@@ -123,6 +123,7 @@ module.exports = {
           `/sety/*`,
           `/pizza/*`,
           `/sale/*`,
+          `/kombo/*`
         ],
       },
     },
