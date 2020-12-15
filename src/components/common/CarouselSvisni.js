@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { autoPlay } from 'react-swipeable-views-utils';
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { Link } from "gatsby"
 import Img from 'gatsby-image';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
 import Pagination from '../pagination/Pagination'
 import { Hidden } from "@material-ui/core";
 import { mod } from 'react-swipeable-views-core';
-
 
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
@@ -49,26 +48,10 @@ const styles = {
     }
 };
 
-function Carousel() {
+function Carousel({ dataCarousel }) {
     const [state, setState] = useState(0)
+    const [data,] = useState(dataCarousel)
     const classes = useStyleCarousel();
-    const data = useStaticQuery(graphql `
-        {
-            allContentfulCarouselSiteImage {
-                edges {
-                    node {
-                        id
-                        slug
-                        imgCarouselPc {
-                            fluid(maxWidth: 1680, quality: 90) {
-                                ...GatsbyContentfulFluid
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `);
 
     const handleChangeIndex = index => {
         setState(index)
@@ -81,10 +64,10 @@ function Carousel() {
             case 0:
                 return (
                     <div key={key}>
-                        <Link to={data.allContentfulCarouselSiteImage.edges[0].node.slug}>
-                            <Img fluid={data.allContentfulCarouselSiteImage.edges[0].node.imgCarouselPc.fluid}
+                        <Link to={data.edges[0].node.slug}>
+                            <Img fluid={data.edges[0].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={data.allContentfulCarouselSiteImage.edges[0].node.name} />
+                                 alt={data.edges[0].node.name} />
                         </Link>
                     </div>
                 );
@@ -92,10 +75,10 @@ function Carousel() {
             case 1:
                 return (
                     <div key={key}>
-                        <Link to={data.allContentfulCarouselSiteImage.edges[1].node.slug}>
-                            <Img fluid={data.allContentfulCarouselSiteImage.edges[1].node.imgCarouselPc.fluid}
+                        <Link to={data.edges[1].node.slug}>
+                            <Img fluid={data.edges[1].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={data.allContentfulCarouselSiteImage.edges[1].node.name} />
+                                 alt={data.edges[1].node.name} />
                         </Link>
                     </div>
                 );
@@ -103,10 +86,10 @@ function Carousel() {
             case 2:
                 return (
                     <div key={key}>
-                        <Link to={data.allContentfulCarouselSiteImage.edges[2].node.slug}>
-                            <Img fluid={data.allContentfulCarouselSiteImage.edges[2].node.imgCarouselPc.fluid}
+                        <Link to={data.edges[2].node.slug}>
+                            <Img fluid={data.edges[2].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={data.allContentfulCarouselSiteImage.edges[2].node.name} />
+                                 alt={data.edges[2].node.name} />
                         </Link>
                     </div>
                 );
@@ -114,10 +97,10 @@ function Carousel() {
             case 3:
                 return (
                     <div key={key}>
-                        <Link to={data.allContentfulCarouselSiteImage.edges[3].node.slug}>
-                            <Img fluid={data.allContentfulCarouselSiteImage.edges[3].node.imgCarouselPc.fluid}
+                        <Link to={data.edges[3].node.slug}>
+                            <Img fluid={data.edges[3].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={data.allContentfulCarouselSiteImage.edges[3].node.name} />
+                                 alt={data.edges[3].node.name} />
                         </Link>
                     </div>
                 );
@@ -125,10 +108,10 @@ function Carousel() {
             case 4:
                 return (
                     <div key={key}>
-                        <Link to={data.allContentfulCarouselSiteImage.edges[4].node.slug}>
-                            <Img fluid={data.allContentfulCarouselSiteImage.edges[4].node.imgCarouselPc.fluid}
+                        <Link to={data.edges[4].node.slug}>
+                            <Img fluid={data.edges[4].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
-                                 alt={data.allContentfulCarouselSiteImage.edges[4].node.name} />
+                                 alt={data.edges[4].node.name} />
                         </Link>
                     </div>
                 );

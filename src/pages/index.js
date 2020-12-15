@@ -33,7 +33,7 @@ import IndexCards from '../components/Card'
 }));
 
     const IndexPage = ({ addedCart, data: { allContentfulContentIndex: { edges : indexProduct },
-                     allContentfulHomePageImageMenu: { edges: indexMenu }}}) => {
+                     allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
 
         const classes = useStyleIndexPage();
 
@@ -44,7 +44,7 @@ import IndexCards from '../components/Card'
                         Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
 
                     <h1 className={classes.title}>Свисни Суши в Уразово</h1>
-                    <Carousel/>
+                    <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid item xs={12} className={classes.root}>
                     <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
@@ -160,6 +160,19 @@ export const queryIndexPage = graphql `
                     desc
                     image {
                         fluid(maxWidth: 180, quality: 100) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
+                }
+            }
+        }
+        allContentfulCarouselSiteImage {
+            edges {
+                node {
+                    id
+                    slug
+                    imgCarouselPc {
+                        fluid(maxWidth: 1680, quality: 90) {
                             ...GatsbyContentfulFluid
                         }
                     }
