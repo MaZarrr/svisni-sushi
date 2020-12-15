@@ -1,6 +1,6 @@
 const path = require('path');
 
-exports.createPages = async ({graphql, actions}) => {
+exports.createPages = async ({ graphql, actions }) => {
     const {createPage} = actions;
     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
     const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js');
@@ -83,7 +83,6 @@ exports.createPages = async ({graphql, actions}) => {
 
     }).catch((err) => console.log(err))
 };
-
 
 exports.onCreateWebpackConfig = ({ actions }) => {
     actions.setWebpackConfig({

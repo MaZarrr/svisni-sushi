@@ -15,15 +15,15 @@ class ErrorBoundary extends Component {
     reload = () => window.location.reload();
 
     render() {
-        const {hasError} = this.state
+        const { hasError } = this.state
 
         if(hasError) {
             return (
-                <div className="d-flex flex-column items-center" >
-                    <div style={{margin: `20% auto 0 auto`}}>
-                        <Typography variant={`h5`}>Упс! Непредвиденная ошибка...</Typography>
-                        <Button style={{margin: `8px 0 8px 0 `}} variant="contained" color="primary" onClick={this.reload}>
-                            Перезагрузить
+                <div style={{ display: `flex`, flexDirection: `column`, height: `100vh`}}>
+                    <div style={{margin: `auto`}}>
+                        <Typography variant={`h5`}>Обновления на сайте!</Typography>
+                        <Button fullWidth={true} style={{ margin: `8px 0 8px 0` }} variant="contained" color={"secondary"} onClick={this.reload}>
+                            Обновить
                         </Button>
                     </div>
                 </div>

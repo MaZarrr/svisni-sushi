@@ -79,7 +79,7 @@ const Korzina = ({ cartItems = [], orderTotal = 0}) => {
 
 return (
     <KorzinaItem >
-        <Link to="/korzina">
+        <Link to="/korzina/">
             <IconButton color="secondary" aria-label="cart">
             <TextTotal count={count} prevCount={prevCount} >
                 <StyledBadge anchorOrigin={{

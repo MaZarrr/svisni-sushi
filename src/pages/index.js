@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import { addedCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
-import { graphql, StaticQuery } from "gatsby"
+import { graphql } from "gatsby"
 import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
 
@@ -32,7 +32,36 @@ import IndexCards from '../components/Card'
     },
 }));
 
-    const QUERY_INDEX_DATA = graphql`
+    const IndexPage = ({ addedCart, data: { allContentfulContentIndex: { edges : indexProduct },
+                     allContentfulHomePageImageMenu: { edges: indexMenu }}}) => {
+
+        const classes = useStyleIndexPage();
+
+        return (
+                <section>
+                    <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
+                        description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
+                        Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
+
+                    <h1 className={classes.title}>Свисни Суши в Уразово</h1>
+                    <Carousel/>
+                    <Grid item xs={12} className={classes.root}>
+                    <IndexCards addedCart={addedCart}
+                           indexProduct={indexProduct}
+                           indexMenu={indexMenu} />
+                    </Grid>
+
+                </section>
+         )}
+
+
+const mapDispatchToProps = {
+    addedCart
+};
+
+export default connect(null, mapDispatchToProps)(IndexPage)
+
+export const queryIndexPage = graphql `    
     query {
         allContentfulContentIndex {
             edges {
@@ -138,35 +167,4 @@ import IndexCards from '../components/Card'
             }
         }
     }
-`;
-
-    const IndexPage = ({ addedCart }) => {
-    const classes = useStyleIndexPage();
-
-    return (
-            <StaticQuery query={QUERY_INDEX_DATA}
-                     render={( { allContentfulContentIndex: { edges : indexProduct },
-                                allContentfulHomePageImageMenu: { edges: indexMenu }}) => (
-                <section>
-                    <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
-                        description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
-                        Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-
-                    <h1 className={classes.title}>Свисни Суши в Уразово</h1>
-                    <Carousel/>
-                    <Grid item xs={12} className={classes.root}>
-                    <IndexCards addedCart={addedCart}
-                           indexProduct={indexProduct}
-                           indexMenu={indexMenu} />
-                    </Grid>
-
-                </section>
-         )}
-        />
-    )};
-
-const mapDispatchToProps = {
-    addedCart
-};
-
-export default connect(null, mapDispatchToProps)(IndexPage)
+`

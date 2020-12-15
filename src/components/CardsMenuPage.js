@@ -106,10 +106,10 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                     )}
 
                                     { sale && <Typography variant={"subtitle1"} style={{
-                                    paddingLeft: 14,
-                                    fontSize: 19,
-                                    color: `tomato`,
-                                    fontWeight: `bold`}}>
+                                            paddingLeft: 14,
+                                            fontSize: 19,
+                                            color: `tomato`,
+                                            fontWeight: `bold`}}>
                                         {slugCategogy === "/sety" && <>
 
                                         {lanch && <> Выгода {!isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</>}
@@ -207,7 +207,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                                 component={Link}
                                                 to={`/${slug}`}
                                                 variant="contained"
-                                                style={{backgroundColor: "orange", color: 'white', marginTop: 10}}>
+                                                style={{ backgroundColor: "orange", color: 'white', marginTop: 10 }}>
                                                 Выбрать
                                             </Button>
                                             }
@@ -217,7 +217,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                             <Button
                                                 variant="contained"
                                                 className={classes.button}
-                                                style={{color: 'white', marginTop: 10}}
+                                                style={{ color: 'white', marginTop: 10 }}
                                                 onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
                                                 <ShoppingCartIcon/>
                                             </Button>
@@ -241,15 +241,15 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                             </Typography>
 
                                             {lanch && isSale &&
-                                            <div style={{position: `absolute`, bottom: 13, right: 4}}>
+                                            <div style={{position: `absolute`, bottom: 13, right: 2}}>
                                                 <Typography style={{textDecoration: `line-through`, color: `#000`,
-                                                textDecorationColor: `red`, fontSize: 20, fontWeight: `bold`}} variant={"subtitle1"}>{defaultPrice}₽</Typography>
+                                                textDecorationColor: `red`, fontSize: 18, fontWeight: 600}} variant={"subtitle1"}>{defaultPrice}</Typography>
                                             </div>
                                             }
                                             {lanch && !isSale &&
-                                            <div style={{position: `absolute`, bottom: 13, right: 4}}>
+                                            <div style={{position: `absolute`, bottom: 13, right: 2}}>
                                                 <Typography style={{textDecoration: `line-through`, color: `red`,
-                                                    textDecorationColor: `#000`, fontSize: 20, fontWeight: `bold`}} variant={"subtitle1"}>{lanchprice}₽</Typography>
+                                                    textDecorationColor: `#000`, fontSize: 18, fontWeight: 600}} variant={"subtitle1"}>{lanchprice}</Typography>
                                             </div>
                                             }
                                         </Grid>

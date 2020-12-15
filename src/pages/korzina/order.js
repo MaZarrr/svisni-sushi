@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MaskedInput from 'react-text-mask';
 import Spinner from '../../components/spinner/spinner-new'
-
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -168,9 +167,9 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         }, 8000)
       }
 
-      typeof window !== undefined && localStorage.removeItem('basketProduct');
       if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true') {
         typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
+        typeof window !== undefined && localStorage.removeItem('basketProduct');
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
       }
     }

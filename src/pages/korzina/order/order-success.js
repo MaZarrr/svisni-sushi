@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import GatsbyImage from "gatsby-image"
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +10,10 @@ import useImageStaticHook from "../../../components/image"
 
 export default () => {
   const [{ successImage },] = useImageStaticHook();
+
+  useEffect(() => {
+    typeof window !== undefined && localStorage.removeItem('basketProduct');
+  }, [])
 
   return (
     <Grid container style={{paddingTop: 80}} >

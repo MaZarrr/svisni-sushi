@@ -35,7 +35,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
     items = [],
     total = 0, palochkiTotal,
     onIncrease, onDecrise, onDelete, addedPriborCount,
-    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale }) => {
+    addedSaleRoll, addedSalePizza, deletePizzaSale, deleteFilaSale, location }) => {
 
     const [load, setLoad] = React.useState(true);
     const [value, setValue] = React.useState([]);
@@ -346,7 +346,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                         <Typography variant="body1" style={{fontSize: 20}}>Сумма заказа <b>{total} ₽</b></Typography>
                     <Button
                        component={Link}
-                       to="/korzina/order"
+                       to={`${location.pathname}order`}
                        color={"primary"}
                        size={'large'}
                        style={{fontWeigh: `bold`, fontSize: 18, marginBottom: 5}}
@@ -361,9 +361,7 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                     <Hidden xsDown>
                     <Grid item xs={12} sm={4} style={{margin: `20px 0`, padding: 0}}>
                     <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`, width: `100%`}}>
-                        { addPanelPribors  &&
-                        <div className="container_pribor mb-2" >
-                            <div className="d-flex flex-column">
+                        { addPanelPribors  && <>
                                 <Typography variant={"subtitle2"}>Количество <br></br> приборов(палочки)</Typography>
                                 <div style={{display: `flex`}}>
                                     <IconButton color="primary" aria-label="plus" component="span"
@@ -376,15 +374,13 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
                                         <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
                                     </IconButton>
                                 </div>
-                            </div>
-                        </div>
-                        }
+                          </>}
 
                         <Typography variant="h6" style={{fontSize: 24}}>Итого </Typography>
                         <Typography variant="body1" style={{fontSize: 24}}>Сумма заказа <b>{total} ₽</b></Typography>
                         <Button
                             component={Link}
-                            to="/korzina/order"
+                            to={`${location.pathname}order`}
                             color={"primary"}
                             size={'large'}
                             variant="contained" >

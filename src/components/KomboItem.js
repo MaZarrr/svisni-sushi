@@ -78,6 +78,7 @@ export const useStyleKombo = makeStyles(theme => ({
         marginTop: 80,
         textTransform: `uppercase`,
         fontSize: 34,
+        marginBottom: 6,
         marginLeft: 30,
         [theme.breakpoints.down('475')]: {
             fontSize: 26,
@@ -189,7 +190,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
 
             <div style={{width: `100%`}}>
             <div>
-                <Typography style={{marginLeft: 35, fontSize: 15, padding: `0 15px 5px 0`}}
+                <Typography style={{marginLeft: 30, fontSize: 18, fontWeight: 500, padding: `0 15px 5px 0`}}
                             variant={"body1"}>{description}</Typography>
                 <Divider/>
                 <Hidden xsDown>
@@ -217,10 +218,10 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                     <div className="d-flex mt-2" >
                                         <Typography style={{fontSize: 20}} variant={"body1"}>
                                             Стоимость:</Typography>
-                                        <Typography style={{fontSize: 24, marginLeft: `auto`}} variant={"body1"}>
-                                            <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
+                                        <Typography style={{fontSize: 22, marginLeft: `auto`, fontWeight: 800}} variant={"body1"}>
+                                            <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                                     </div>
-                                    <Button style={{marginTop: 20}} variant={"contained"}
+                                    <Button fullWidth={true} style={{marginTop: 20}} variant={"contained"}
                                             color={"primary"}
                                             onClick={() => addedCart({id, price,
                                                 product: [addedProductKomboToBacket()]}
@@ -273,9 +274,9 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                  onKeyPress={onActiveItem}
                                  className={classes.activeItem}
                                  onClick={() => onActiveItem(el.id, el.__typename, idx)}>
-                                <Img style={{width: `90%`, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
+                                <Img style={{width: `80%`, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
                                 <div>
-                                    <Typography style={{fontSize: 14, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
+                                    <Typography style={{fontSize: 13, fontWeight: 600, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
                                     <div style={{display: `flex`, justifyContent: `center`}}>
                                         <Button className={classes.button} variant={"contained"}>
                                             Поменять</Button>
@@ -292,16 +293,16 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                         position: `fixed`,
                         backgroundColor: `white`,
                         bottom: 0}}>
-                        <div style={{marginTop: 10}}>
+                        <div style={{marginTop: 5}}>
                             <div>
-                                <Typography style={{fontSize: 20}} variant={"body1"}>
+                                <Typography style={{fontSize: 16}} variant={"body1"}>
                                     Стоимость:</Typography>
                             </div>
                             <div>
-                                <Typography style={{fontSize: 24}} className="ml-auto" variant={"body1"}> <s style={{fontSize: 22}}>{priceSale()} ₽</s> {price} ₽</Typography>
+                                <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`}} variant={"body1"}> <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                             </div>
                         </div>
-                        <Button style={{marginBottom: 10}} variant={"contained"}
+                        <Button style={{marginBottom: 10, width: `85%`}} variant={"contained"}
                                 color={"primary"}
                                 onClick={() => addedCart({id, price, product: [addedProductKomboToBacket()]})}>
                             В корзину</Button>
@@ -314,9 +315,8 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                         open={open}
                         className={classes.backdrop}
                         aria-labelledby="simple-modal-title"
-                        aria-describedby="simple-modal-description"
-                    >
-                        <div style={{width: `100%`, marginTop: `39%`}}>
+                        aria-describedby="simple-modal-description">
+                        <div style={{width: `100%`, marginTop: `37%`}}>
                             <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}
                                             index={activeItemIndex}
                                             onChangeIndex={value => setActiveItemIndex(value)}>
@@ -358,7 +358,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                 </Grid>
             </Hidden>
 
-                <Snackbar open={openAlert} autoHideDuration={2500} style={{bottom: 90}} onClose={handleCloseAlert}>
+            <Snackbar open={openAlert} autoHideDuration={2500} style={{bottom: 90}} onClose={handleCloseAlert}>
                     <Alert onClose={handleCloseAlert} severity="error">
                        В составе такой товар есть, выберите другой.
                     </Alert>
