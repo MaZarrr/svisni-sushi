@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ description, lang, meta, title, keywords, pathname, noindex }) {
@@ -33,6 +33,7 @@ function SEO({ description, lang, meta, title, keywords, pathname, noindex }) {
       title={title}
       description={metaDescription}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
+      defer={false}
       link={[
           {
           href: `https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css`,

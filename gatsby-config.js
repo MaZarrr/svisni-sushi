@@ -32,6 +32,7 @@ module.exports = {
         defaultQuality: 100,
       },
     },
+    `gatsby-plugin-preload-link-crossorigin`,
     {
       resolve: `gatsby-source-contentful`,
       options: {

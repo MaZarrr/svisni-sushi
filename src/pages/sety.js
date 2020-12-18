@@ -25,12 +25,11 @@ const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIco
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
     const priceIsSale = useMemo(() => isSale, [isSale]);
-    useEffect(() => {
 
+    useEffect(() => {
         dispatch(productLoaded(setyProduct));
         doStart({endTime: 15, startTime: 10});
         dispatch(checkSaleLanch(priceIsSale));
-
         dispatch(defFilters());
     }, [setyProduct, dispatch, doStart, priceIsSale]);
 
