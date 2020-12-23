@@ -8,14 +8,15 @@ import { useStyleHeader } from "./common/style";
 import GatsbyImage from "gatsby-image";
 import Hidden from "@material-ui/core/Hidden";
 import loadable from "@loadable/component";
-import {Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 // my components
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
+import Korzina from './korzinaComponent';
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
-const Korzina = loadable(() => import('./korzinaComponent'));
+// const Korzina = loadable(() => import('./korzinaComponent'));
 
 const links = [
   {

@@ -3,20 +3,25 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import { useStyleLayout } from "./common/style";
 import loadable from '@loadable/component'
-import {Hidden} from "@material-ui/core";
+import { Hidden } from "@material-ui/core";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../src/theme';
+import Spinner from '../components/spinner/spinner-new'
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import useIsClient from "../utils/useIsClient"
 
 const Footer = loadable(() => import('./footer'));
 
 const Layout = ({ children }) => {
 
+  const { isClient, key } = useIsClient();
   const classes = useStyleLayout();
 
+  if (!isClient) return <Spinner/>
+
   return (
-      <>
+      <div key={key}>
       <ThemeProvider theme={theme}>
       <Header/>
           <ErrorBoundary>
@@ -41,7 +46,7 @@ const Layout = ({ children }) => {
           <Footer/>
         </Hidden>
       </ThemeProvider>
-      </>
+      </div>
   )
 };
 

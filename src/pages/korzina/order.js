@@ -12,8 +12,8 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import axios from "axios";
-import {useStyleOrder} from '../../components/common/style'
+import axios from 'redaxios';
+import { useStyleOrder } from '../../components/common/style'
 import {
   setAdresUser, setCityUser,
   setDateDeliveryUser, setDoorUser,
