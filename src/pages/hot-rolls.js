@@ -21,8 +21,6 @@ const categoryNames = ['с крабом', 'с лососем', 'с угрем', 
 const HotRolls = ({ data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter }) => {
 
-    // const [load, setLoad] = React.useState(true);
-
     useEffect(() => {
         dispatch(productLoaded(productsHotRolls)); // action push to reduxStore
         // setTimeout(() => {

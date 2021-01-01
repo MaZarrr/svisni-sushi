@@ -129,7 +129,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
 
                                 <Typography itemProp="description"
                                             className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
-                                            slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" || slugCategogy === "/wok" ? classes.deckript : classes.deckriptSmall}
+                                            slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" || slugCategogy === "/wok" || slugCategogy === "/zakyski" ? classes.deckript : classes.deckriptSmall}
                                             variant="body2">
 
                                     { slugCategogy === "/sety" && !komboSale &&

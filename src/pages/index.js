@@ -8,6 +8,7 @@ import { graphql } from "gatsby"
 import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
 
+
     const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -20,6 +21,7 @@ import IndexCards from '../components/Card'
         paddingLeft: 30,
         textTransform: `uppercase`,
         fontSize: 34,
+
         [theme.breakpoints.down('600')]: {
             paddingTop: 15,
         },
@@ -58,6 +60,7 @@ import IndexCards from '../components/Card'
 const mapDispatchToProps = {
     addedCart
 };
+
 
 export default connect(null, mapDispatchToProps)(IndexPage)
 

@@ -46,6 +46,7 @@ export const query = graphql `
                   name
                   count
                   price
+                  description
                   weight
                       image {
                           fluid(maxWidth: 600) {
