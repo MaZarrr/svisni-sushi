@@ -11,13 +11,13 @@ import Typography from "@material-ui/core/Typography";
 const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
 const LayoutItem = loadable(() => import('./layoutItem'));
 
-const SetyItem = ({name, image, count, weight, price, added, kitProduct, location, back}) => {
+const SetyItem = ({ name, image, count, weight, price, added, kitProduct, location, back }) => {
 
 return (
   <>
     <SEO title={`Сет роллов ${name}`}
          description={`Набор роллов ${name}, количество ${count} с общим весом ${weight}`}
-         pathname="/sety"/>
+         pathname="/sety/"/>
         <LayoutItem name={name} image={null} location={location}>
             <ButtonBackSet back={back} />
             <Grid container>

@@ -10,7 +10,7 @@ import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(()=> import('../components/CardsMenuPage'))
 
-const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: {image}},
+const Kombo = ({ data: {allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product }) => {
     // const [load, setLoad] = React.useState(true);
 
@@ -24,7 +24,8 @@ const Kombo = ({data: {allContentfulProductKombo: {edges: productsKombo}, conten
 return (
     <section>
     <SEO title="Доставка комбо наборов из суши, роллов и пиццы в Валуйки"
-    description="Заказать специальные комбо наборы, собирай свои блюда из суши и пиццы выгодно. Работаем с 10 до 22:00"/>
+    description="Заказать специальные комбо наборы, собирай свои блюда из суши и пиццы выгодно. Работаем с 10 до 22:00"
+    pathname="/pizza"/>
       <HeadSection titleTXT={"Комбо наборы"}/>
         {/*{load === false ?*/}
             <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">

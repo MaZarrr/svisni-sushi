@@ -20,7 +20,8 @@ const SmallRolls = ({data: {allContentfulProductKlassika: {edges: productsSmallR
 return ( 
    <section>
     <SEO title="Вкусные недорогие маки роллы. Заказать доставку на дом в Валуйки"
-    description="Маленькие, жареные и темпурные классические Свисни роллы от 120 рублей"/>
+      description="Маленькие, жареные и темпурные классические Свисни роллы от 120 рублей"
+      pathname="/pizza"/>
 
      <HeadSection titleTXT={"Классические роллы"} />
     <Grid container justify="center">

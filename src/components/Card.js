@@ -121,7 +121,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                               justifyContent: `center`, position: `relative`}}
                           key={homeMenu.id} >
                         <IconButton>
-                            <Link style={{textDecoration: `none`, color: 'grey', width: `43vmin`, height: `200px`}} to={`/${homeMenu.slug}`}>
+                            <Link style={{textDecoration: `none`, color: 'grey', width: `43vmin`, height: `200px`}} to={`/${homeMenu.slug}/`}>
                             <div className={classesCard.cartTitle}>
                                 <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
                             </div>

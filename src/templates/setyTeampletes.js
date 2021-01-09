@@ -29,7 +29,7 @@ const SetyTeamplate = ({data: {contentfulProduct,
         createdAt={contentfulProduct.createdAt}
         weight={contentfulProduct.weight}
         count={contentfulProduct.count}
-        back={"/sety"}
+        back={"/sety/"}
         image={contentfulProduct.image.fluid}
         kitProduct={kitProduct}
         added={() => addedToCart({id: contentfulProduct.id, price: null,

@@ -1,9 +1,11 @@
-import React from "react"
+import React, { memo } from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title, keywords, pathname, noindex }) {
+
+const SEO = memo(function Seosite({ description, lang, meta, title, keywords, pathname = null, noindex }) {
+// function memo( () => SEO({ description, lang, meta, title, keywords, pathname = null, noindex }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -22,7 +24,7 @@ function SEO({ description, lang, meta, title, keywords, pathname, noindex }) {
 
     const metaDescription = description || site.siteMetadata.description
     const metaKeywords = keywords || site.siteMetadata.keywords
-    const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
+    const canonical = pathname !== null ? `${site.siteMetadata.siteUrl}${pathname}` : null
     const noindexTxt = noindex ?  "noindex" : null
 
   return (
@@ -103,7 +105,7 @@ function SEO({ description, lang, meta, title, keywords, pathname, noindex }) {
       ].concat(meta)}
     />
   )
-}
+})
 
 SEO.defaultProps = {
   lang: `ru`,

@@ -100,7 +100,7 @@ const AppBars = (props) => {
                              classes={{ labelIcon: props.classes.labelIcon }}
                              className={props.classes.tabs}
                              component={Link}
-                             to={`/${menu.slug}`}
+                             to={`/${menu.slug}/`}
                              value={index + 1}
                              icon={<Hidden xsDown>
                                  <Img fluid={menu.image.fluid}

@@ -22,7 +22,7 @@ const links = [
   {
     id: 1,
     name: 'Акции',
-    link: '/sale'
+    link: '/sale/'
   },
   {
     id: 2,

@@ -19,7 +19,8 @@ const Sushi = ({data: {allContentfulProductSushi: {edges: products}, contentfulI
 return ( 
    <section>
     <SEO title="Недорогие суши с доставкой по Валуйскому району"
-    description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте, суши от 50 рублей. Звонок +7(904)094-92-22"/>
+      description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте, суши от 50 рублей. Звонок +7(904)094-92-22"
+      pathname="/pizza"/>
 
     <HeadSection titleTXT={"Суши"} />
     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">

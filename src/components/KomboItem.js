@@ -184,8 +184,8 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
     return (
         <>
             <SEO title={`Комбо набор ${name}`}
-                 description={`Доставка комбо наборов в Валуйки. Комбо набор ${name}, цена ${price} рублей`}
-                 pathname="/kombo"/>
+                 description={`Доставка комбо наборов в Валуйки. Комбо набор ${name}, цена ${price} рублей`} />
+
             <h1 itemProp="name" className={classes.titleClass}>{name}</h1>
 
             <div style={{width: `100%`}}>
