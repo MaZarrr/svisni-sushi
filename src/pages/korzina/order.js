@@ -155,29 +155,47 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         comments: ev.target.comments.value || "Без комментария",
       };
 
-      if(!checkPushOrder && navigator.onLine) {
-        axios({
+      // if(!checkPushOrder && navigator.onLine) {
+       
+      // } else {
+      //   setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
+      //   handleClickAlert()
+      // }
+      
+
+      // if() {
+      //   setOpenPay(true)
+      //   setCheckPushOrder(true)
+      //   setTimeout(() => {
+      //     setCheckPushOrder(false)
+      //   }, 8000)
+      // }
+
+      if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {
+         axios({
           method: 'POST',
           data: infoSuccess,
           url: process.env.GATSBY_NODE_SERVE
         });
-      } else {
-        setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
-        handleClickAlert()
-      }
-
-      if(variantPay === "bank") {
-        setOpenPay(true)
-        setCheckPushOrder(true)
-        setTimeout(() => {
-          setCheckPushOrder(false)
-        }, 8000)
-      }
-
-      if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {
+         // console.log("dffss")
         typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
         typeof window !== undefined && localStorage.removeItem('basketProduct');
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
+
+      } else if(variantPay === "bank" && navigator.onLine) {
+        if(!checkPushOrder) {
+             axios({
+              method: 'POST',
+              data: infoSuccess,
+              url: process.env.GATSBY_NODE_SERVE
+        });
+        }
+         // console.log("bank")
+          setOpenPay(true)
+          setCheckPushOrder(true)
+          setTimeout(() => {
+          setCheckPushOrder(false)
+        }, 8000)
       } else {
         setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
         handleClickAlert()
