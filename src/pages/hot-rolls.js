@@ -22,7 +22,7 @@ const HotRolls = ({ data: {allContentfulProductHotRolly: {edges: productsHotRoll
     dispatch, product, searchText, priceFilter }) => {
 
     useEffect(() => {
-        dispatch(productLoaded(productsHotRolls)); // action push to reduxStore
+        dispatch(productLoaded(productsHotRolls)); 
         // setTimeout(() => {
         //     setLoad(false)
         // }, 700);
@@ -33,7 +33,7 @@ const HotRolls = ({ data: {allContentfulProductHotRolly: {edges: productsHotRoll
 
 return (
    <section>
-    <SEO title="Заказать жареные роллы от 215 рублей с доставкой в Валуйки"
+    <SEO title="Заказать запечённые роллы с доставкой на дом в Валуйки"
           description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени вкус японской кухни от Свисни Суши"
           pathname="/sety/"/>
 

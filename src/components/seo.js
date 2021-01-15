@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 
 const SEO = memo(function Seosite({ description, lang, meta, title, keywords, pathname = null, noindex }) {
-// function memo( () => SEO({ description, lang, meta, title, keywords, pathname = null, noindex }) {
+
   const { site } = useStaticQuery(
     graphql`
       query {

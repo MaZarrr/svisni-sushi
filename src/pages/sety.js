@@ -33,10 +33,12 @@ const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIco
         dispatch(defFilters());
     }, [setyProduct, dispatch, doStart, priceIsSale]);
 
+           // <SEO title="Заказать Cуши сет. Меню суши, роллы — доставка в Валуйки"
+                 // description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
     return (
         <>
-            <SEO title="Заказать Cуши сет. Меню суши, роллы — доставка в Валуйки"
-                 description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
+            <SEO title="Заказать суши сет. Меню наборов роллов — доставка в Валуйки"
+                 description="Широкий выбор сетов из запечённых роллов и суши в суши баре Свисни Суши Уразово с выгодой до 40%. Акция ланч-тайм, скидки с 10 до 15:00"/>
             <section>
                     <HeadSection titleTXT={"Заказать суши сет"} path={location.pathname} isFilter={true} categoryNames={categoryNames}/>
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">

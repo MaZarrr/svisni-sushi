@@ -14,14 +14,13 @@ const SmallRolls = ({data: {allContentfulProductKlassika: {edges: productsSmallR
     dispatch, product }) => {
 
     useEffect(() => {
-        dispatch(productLoaded(productsSmallRolls)) // action push to reduxStore
+        dispatch(productLoaded(productsSmallRolls)) 
     }, [productsSmallRolls, dispatch]);
 
 return ( 
    <section>
-    <SEO title="Вкусные недорогие маки роллы. Заказать доставку на дом в Валуйки"
-      description="Маленькие, жареные и темпурные классические Свисни роллы от 120 рублей"
-      pathname="/pizza"/>
+    <SEO title="Недорогие маки роллы. Заказать доставку на дом в Валуйки"
+      description="Маленькие, жареные и классические роллы с лососем от 120 рублей"/>
 
      <HeadSection titleTXT={"Классические роллы"} />
     <Grid container justify="center">

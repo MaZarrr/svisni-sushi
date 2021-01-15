@@ -155,21 +155,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         comments: ev.target.comments.value || "Без комментария",
       };
 
-      // if(!checkPushOrder && navigator.onLine) {
-       
-      // } else {
-      //   setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
-      //   handleClickAlert()
-      // }
-      
-
-      // if() {
-      //   setOpenPay(true)
-      //   setCheckPushOrder(true)
-      //   setTimeout(() => {
-      //     setCheckPushOrder(false)
-      //   }, 8000)
-      // }
 
       if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {
          axios({
@@ -177,12 +162,13 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
           data: infoSuccess,
           url: process.env.GATSBY_NODE_SERVE
         });
-         // console.log("dffss")
+
         typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
         typeof window !== undefined && localStorage.removeItem('basketProduct');
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
 
       } else if(variantPay === "bank" && navigator.onLine) {
+        
         if(!checkPushOrder) {
              axios({
               method: 'POST',
@@ -190,7 +176,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
               url: process.env.GATSBY_NODE_SERVE
         });
         }
-         // console.log("bank")
           setOpenPay(true)
           setCheckPushOrder(true)
           setTimeout(() => {

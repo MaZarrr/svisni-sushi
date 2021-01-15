@@ -46,8 +46,8 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
 
 return ( 
    <section>
-    <SEO title="Меню фирменные роллы. Доставка сложных роллов на дом в Валуйки"  
-    description="Роллы которых вы еще не пробовали от 210 рублей. Закажи доставку или приходи к нам в гости!"
+    <SEO title="Меню сложных роллов. Заказать доставку на дом в Валуйки"  
+    description="Пять видов роллов Филадельфия которых вы еще не пробовали. Закажи доставку или приходи к нам в гости!"
     pathname="/hot-rolls"/>
 
      <HeadSection titleTXT={"Сложные роллы"} isFilter={true} categoryNames={categoryNames}/>
