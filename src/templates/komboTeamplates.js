@@ -87,16 +87,6 @@ export const query = graphql `
                                 }
                             }
                         }
-                        ... on ContentfulProductSouse {
-                            id
-                            name
-                            price
-                            image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
-                                }
-                            } 
-                        }
                         ... on ContentfulProductKlassika {
                             id
                             name
