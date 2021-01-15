@@ -51,7 +51,7 @@ const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
                     ContentfulProductNapitki: contentfulProductKombo.productsKomboNapitki,
                     ContentfulProductPizza: pizzas(),
                     ContentfulProductKlassika: contentfulProductKombo.contentfulProductKlassika,
-                    ContentfulProductSouse: contentfulProductKombo.contentfulProductSouses,
+                    // ContentfulProductSouse: contentfulProductKombo.contentfulProductSouses,
                     ContentfulProductZakuski: contentfulProductKombo.productsKomboZakuski
                 }}>
         </KomboItem>
@@ -224,17 +224,6 @@ export const query = graphql `
                 }
                 count
                 description
-            }
-            contentfulProductSouses {
-                id
-                name
-                price
-                image {
-                    fluid(maxWidth: 150) {
-                        ...GatsbyContentfulFluid
-                    }
-                }
-                count
             }
             productsKomboZakuski {
                 id
