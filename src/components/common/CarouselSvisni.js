@@ -24,10 +24,10 @@ const useStyleCarousel = makeStyles(theme => ({
         },
     },
     image: {
-        borderRadius: 13,
+        borderRadius: 10,
         maxWidth: 780,
         [theme.breakpoints.down('600')]: {
-            borderRadius: 7,
+            borderRadius: 3,
             // height: 90,
         },
     },
@@ -47,6 +47,7 @@ const styles = {
         padding: '0 20px',
     }
 };
+
 
 function Carousel({ dataCarousel }) {
     const [state, setState] = useState(0)
@@ -96,7 +97,7 @@ function Carousel({ dataCarousel }) {
 
             case 3:
                 return (
-                    <div key={key}>
+                    <div key={key} style={styles.slide}>
                         <Link to={data.edges[3].node.slug}>
                             <Img fluid={data.edges[3].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
@@ -107,7 +108,7 @@ function Carousel({ dataCarousel }) {
 
             case 4:
                 return (
-                    <div key={key}>
+                    <div key={key} style={styles.slide}>
                         <Link to={data.edges[4].node.slug}>
                             <Img fluid={data.edges[4].node.imgCarouselPc.fluid}
                                  className={classes.image} imgStyle={{maxWidth: 1800}}
@@ -124,12 +125,14 @@ function Carousel({ dataCarousel }) {
 
     return (
         <div className={classes.root}>
-            <VirtualizeSwipeableViews className={classes.rootCarousel}
+            <VirtualizeSwipeableViews 
+            className={classes.rootCarousel}
                                       slideRenderer={slideRenderer}
                                       slideCount={5}
-                                      slideStyle={styles.slideContainer}
+                                      // slideStyle={styles.slideContainer}
                                       index={state}
-                                      onChangeIndex={handleChangeIndex}/>
+                                      onChangeIndex={handleChangeIndex}
+                                      />
             <Hidden smUp>
                 <Pagination dots={5} index={state} onChangeIndex={handleChangeIndex} />
             </Hidden>

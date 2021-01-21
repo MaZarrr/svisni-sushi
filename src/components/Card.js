@@ -190,7 +190,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                                 variant="contained"
                                                 className={classesCard.buttonCombo}
                                                 component={Link}
-                                                to={homeProduct.slug === "gucci-set" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                to={homeProduct.slug === "gucci-set" ? `/sety/${homeProduct.slug}` : homeProduct.slug === "dachnyi" ? `/sety/${homeProduct.slug}` : "/pizza/"}>
                                                 Посмотреть
                                             </Button> : <Button
                                                 variant="contained"
@@ -259,7 +259,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                                     variant="contained"
                                                     className={classesCard.buttonCombo}
                                                     component={Link}
-                                                    to={homeProduct.slug === "gucci-set" ? `/sety/${homeProduct.slug}` : "/pizza"}>
+                                                    to={homeProduct.slug === "gucci-set" ? `/sety/${homeProduct.slug}` : homeProduct.slug === "dachnyi" ? `/sety/${homeProduct.slug}` : "/pizza/"}>
                                                     Посмотреть
                                                 </Button> : <Button
                                                     variant="contained"

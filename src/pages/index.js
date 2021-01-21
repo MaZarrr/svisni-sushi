@@ -9,7 +9,7 @@ import Carousel from '../components/common/CarouselSvisni'
 import IndexCards from '../components/Card'
 
 
-    const useStyleIndexPage = makeStyles(theme => ({
+const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         width: `100%`
