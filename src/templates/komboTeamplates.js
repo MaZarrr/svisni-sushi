@@ -31,7 +31,7 @@ const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
         }
         return contentfulProductKombo.sostavDefault
     };
-
+// 
     return  (
         <KomboItem
                 id={contentfulProductKombo.id}
