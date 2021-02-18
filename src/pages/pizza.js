@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import SEO from "../components/seo"
-import {graphql } from "gatsby";
+import {graphql, Link } from "gatsby";
 import { connect } from 'react-redux';
 import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
@@ -28,7 +28,7 @@ import HeadSection from "../components/HeadSection"
 
 const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
 
-const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image}},
+const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image} },
                    productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path }) => {
 
     const [load, setLoad] = React.useState(true);
@@ -98,6 +98,10 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                                         variant={"body2"}>
                                                 {description}
                                             </Typography>
+
+                                            {/*выбор размера пиццы*/}
+                                            {/*проверка цены на 1 для того что бы убарать или показать выбор размеров пиццы*/}
+                                            { priceIn33cm !== 1 &&
                                             <Grid container justify={"center"}>
                                                 <Grid style={{padding: `0`, margin: 0}} item xs={5}>
                                                     <button onClick={() => switchSizePizza({
@@ -127,6 +131,8 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                                     <Typography style={{fontSize: 13, textAlign: `center`}} variant={"subtitle2"}>36см</Typography>
                                                 </Grid>
                                             </Grid>
+                                            }
+
                                             <Grid item xs={12} style={{textAlign: "center", padding: 0}}>
                                                 <p style={{fontSize: 15, margin: `0 auto`, fontWeight: `bold`}}>{`${mass}кг`}</p>
                                             </Grid>
@@ -147,12 +153,21 @@ const Pizza = ({data: {allContentfulProductPizza: {edges: pizzaProduct}, content
                                         </Grid>
 
                                         <CardActions disableSpacing>
+                                        { priceIn33cm !== 1 ?
                                             <Button
                                                 variant="contained"
                                                 color="secondary"
                                                 className={classes.button}
                                                 onClick={() => dispatch(addedToCart({id, productPrice: null, product: updatePizza}))}>
-                                                <ShoppingCartIcon/></Button>
+                                                <ShoppingCartIcon/></Button> : <Button
+                                                itemProp="url"
+                                                component={Link}
+                                                to={`/${slug}`}
+                                                variant="contained"
+                                                style={{ backgroundColor: "orange", color: 'white', marginTop: 10 }}>
+                                                Выбрать
+                                            </Button>
+                                        }
                                         </CardActions>
                                     </Card>
                                 </Grid>
@@ -192,7 +207,7 @@ export const queryPizza = graphql `
                     weight33
                     description
                     image {
-                        fluid(maxWidth: 300, maxHeight: 300) {
+                        fluid(maxWidth: 300) {
                             ...GatsbyContentfulFluid
                         }
                     }

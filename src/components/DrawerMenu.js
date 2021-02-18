@@ -48,7 +48,7 @@ export default function TemporaryDrawer({image}) {
 
         setState({ ...state, [anchor]: open });
     };
-
+// linear-gradient(90deg, #c9f520 0%, #aeff31 100%)
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {[classes.fullList]: anchor === 'top' || anchor === 'bottom'})}
@@ -56,9 +56,9 @@ export default function TemporaryDrawer({image}) {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}>
 
-            <div style={{background: `linear-gradient(90deg, #c9f520 0%, #aeff31 100%)`, width: `100%`, height: 120}}>
+            <div style={{background: `red`, width: `100%`, height: 120}}>
                 <div style={{maxWidth: 90, height: 90, margin: `0 auto 0 auto`, paddingTop: 15 }}>
-                    <GatsbyImage fixed={image.fixed} alt={"аватар свисни бар"}/>
+                    <GatsbyImage fixed={image.fixed} alt={"логотип свистни суши"}/>
                 </div>
             </div>
             <List style={{margin: 0, padding: 0}}>
