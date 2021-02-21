@@ -1,12 +1,9 @@
-const createStore = require('./src/state/createStore')
+const createStore = require('./src/state/createStore').default;
 const { Provider } = require('react-redux');
 const React = require('react');
 const Layout = require('./src/components/layout').default;
 
 // exports.registerServiceWorker = () => true
-
-const store = createStore();
-
 
 exports.wrapPageElement = ({element, props}) => {
     return <Layout {...props}>{element}</Layout>
@@ -14,7 +11,7 @@ exports.wrapPageElement = ({element, props}) => {
 
 exports.wrapRootElement = ({element}) => {
     return (
-        <Provider store={store}>
+        <Provider store={createStore}>
             {element}
         </Provider>
         )
