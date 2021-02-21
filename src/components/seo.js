@@ -74,7 +74,7 @@ const SEO = ({ description, lang, meta, title, keywords, noindex }) => {
        <meta name="google-site-verification" content="Dl5O_rAjIGCzaRIsDM6M4jsV2gz4zAePxeTghWzZbvE" />
         <meta name="wmail-verification" content="3f3d80ea360609afbf541ab3ad672f4a" />
         <meta name="yandex-verification" content="d47803efe98f2440" />
-       {canonical && <link rel="canonical" href={seo.canonical} />}
+       {seo.canonical && <link rel="canonical" href={seo.canonical} />}
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
     </Helmet>
   )
