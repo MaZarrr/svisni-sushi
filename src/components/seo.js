@@ -91,16 +91,16 @@ const SEO = memo(function Seosite({ description, lang, meta, title, keywords, pa
           content: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
         },
         {
-        name: `google-site-verification`,
-        content: `Dl5O_rAjIGCzaRIsDM6M4jsV2gz4zAePxeTghWzZbvE`,
+          name: "google-site-verification",
+          content: "Dl5O_rAjIGCzaRIsDM6M4jsV2gz4zAePxeTghWzZbvE",
         },
         {
           name: `wmail-verification`,
           content: `3f3d80ea360609afbf541ab3ad672f4a`,
         },
         {
-          name: `yandex-verification`,
-          content: `d47803efe98f2440`,
+          name: "yandex-verification",
+          content: "d47803efe98f2440"
         }
       ].concat(meta)}
     />
