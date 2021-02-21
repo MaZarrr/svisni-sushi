@@ -29,7 +29,7 @@ import EmptyBasket from "../components/EmptyBasket";
 import Hidden from "@material-ui/core/Hidden";
 import HeadSection from "../components/HeadSection"
 
-const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProductKlassika,
+const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProductKlassika,
     allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
     allContentfulProductGunkan},
     items = [],
@@ -45,10 +45,6 @@ const ShoppingCartTable = ({data: {allContentfulProductPizza, allContentfulProdu
         setTimeout(() => {
             setLoad(false)
         }, 600);
-
-      if(typeof window !== undefined && localStorage.getItem('checkPushOrder') === 'true') {
-          typeof window !== undefined && localStorage.removeItem('checkPushOrder');
-      }
     }, []);
 
     const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
