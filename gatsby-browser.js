@@ -5,12 +5,14 @@ const Layout = require('./src/components/layout').default;
 
 // exports.registerServiceWorker = () => true
 
+const store = createStore();
+
+
 exports.wrapPageElement = ({element, props}) => {
     return <Layout {...props}>{element}</Layout>
 };
 
 exports.wrapRootElement = ({element}) => {
-  const store = createStore();
     return (
         <Provider store={store}>
             {element}
