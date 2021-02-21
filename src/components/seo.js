@@ -39,7 +39,7 @@ const SEO = ({ description, lang, meta, title, keywords, noindex }) => {
     canonical: pathname !== null ? `${site.siteMetadata.siteUrl}${pathname}` : null,
     noindexTxt: noindex ?  "noindex" : null,
     // image: `${siteUrl}${image || defaultImage}`,
-    url: `${siteUrl}${pathname}`,
+    url: `${site.siteMetadata.siteUrl}${pathname}`,
   }
 
     // const metaDescription = description || site.siteMetadata.description
