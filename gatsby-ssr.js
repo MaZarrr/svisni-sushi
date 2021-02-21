@@ -3,12 +3,13 @@ const { Provider } = require('react-redux');
 const React = require('react');
 const Layout = require('./src/components/layout').default;
 
-exports.wrapPageElement = ({element, props}) => {
+exports.wrapPageElement = ({ element, props }) => {
     return <Layout {...props}>{element}</Layout>
 };
 
-exports.wrapRootElement = ({element, props}) => {
-    return (
+exports.wrapRootElement = ({ element, props }) => {
+  const store = createStore();
+    return ( 
         <Provider store={createStore}>
                 {element}
         </Provider>

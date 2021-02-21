@@ -1,4 +1,4 @@
-const createStore  = require('./src/state/createStore').default;
+const createStore = require('./src/state/createStore').default;
 const { Provider } = require('react-redux');
 const React = require('react');
 const Layout = require('./src/components/layout').default;
@@ -10,12 +10,22 @@ exports.wrapPageElement = ({element, props}) => {
 };
 
 exports.wrapRootElement = ({element}) => {
+  const store = createStore();
     return (
-        <Provider store={createStore}>
+        <Provider store={store}>
             {element}
         </Provider>
         )
     };
+
+// exports.wrapRootElement = ({element}) => {
+//   const store = createStore();
+//     return (
+//         <Provider store={createStore}>
+//             {element}
+//         </Provider>
+//         )
+//     };
 
 
 exports.onServiceWorkerUpdateReady = () => {
