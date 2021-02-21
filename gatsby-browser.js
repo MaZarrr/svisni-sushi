@@ -1,4 +1,4 @@
-const createStore = require('./src/state/createStore').default;
+const createStore = require('./src/state/createStore')
 const { Provider } = require('react-redux');
 const React = require('react');
 const Layout = require('./src/components/layout').default;
