@@ -32,6 +32,19 @@ module.exports = {
         defaultQuality: 100,
       },
     },
+    {
+    resolve: `gatsby-plugin-manifest`,
+    options: {
+      name: `svisni-sushi`,
+      short_name: `Свисни суши`,
+      start_url: `/`,
+      background_color: `#663399`,
+      theme_color: `#663399`,
+      display: `standalone`,
+      icon: `src/images/logosvisni.png`,
+    },
+  },
+   `gatsby-plugin-react-helmet`,
     `gatsby-plugin-preload-link-crossorigin`,
     {
       resolve: `gatsby-source-contentful`,
@@ -106,18 +119,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `svisni-sushi`,
-        short_name: `Свисни суши`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `standalone`,
-        icon: `src/images/logosvisni.png`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-offline`,
       options: {
         precachePages: [
@@ -128,7 +129,6 @@ module.exports = {
           `/kombo/*`
         ],
       },
-    },
-    `gatsby-plugin-react-helmet`
+    }
   ]
 };

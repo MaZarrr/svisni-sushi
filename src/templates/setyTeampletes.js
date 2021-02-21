@@ -158,6 +158,61 @@ export const query = graphql `
 
 
 
+
+
+// export const onServiceWorkerUpdateReady = async (args) => {
+//   const permissionResponse = await Notification.requestPermission()
+//   console.log(permissionResponse)
+//   if (permissionResponse === "granted") {
+//     await args.serviceWorker.showNotification("Website update", {
+//       body:
+//         "Our website just got a little bit better. We reloaded the site with the update to ensure a smooth experience for you."
+//     })
+//   }
+//   window.location.reload(true)
+// }
+
+// Этот сайт был обновлен с новыми данными. Вы хотите перезагрузить сайт, чтобы получить новые данные?
+
+// exports.onServiceWorkerUpdateReady = () => window.location.reload(true);
+
+
+
+
+
+
+
+  //      setPreBodyComponents([
+//         <script
+//             key={1}
+//             dangerouslySetInnerHTML={{
+//          __html: `
+// (function () {
+//     window['yandexChatWidgetCallback'] = function() {
+//         try {
+//             window.yandexChatWidget = new Ya.ChatWidget({
+//                 guid: '02c1500f-bc2c-401d-957d-e332c8c69b28',
+//                 buttonText: 'Напишите нам',
+//                 title: 'Чат',
+//                 theme: 'light',
+//                 collapsedDesktop: 'hover',
+//                 collapsedTouch: 'always'
+//             });
+//         } catch(e) { }
+//     };
+//     var n = document.getElementsByTagName('script')[0],
+//         s = document.createElement('script');
+//     s.async = true;
+//     s.charset = 'UTF-8';
+//     s.src = 'https://yastatic.net/s3/chat/widget.js';
+//     n.parentNode.insertBefore(s, n);
+// })();
+//         `
+//          }}/>
+//      ])
+
+
+
 // "react-hot-loader": "^4.12.19",
 //     "@material-ui/core": "4.9.10",
 //     "@material-ui/icons": "^4.9.1",
