@@ -158,6 +158,20 @@ export const query = graphql `
 
 
 
+    // {
+    //   resolve: `gatsby-plugin-offline`,
+    //   options: {
+    //     precachePages: [
+    //       `/*`,
+    //       `/sety/*`,
+    //       `/pizza/*`,
+    //       `/sale/*`,
+    //       `/kombo/*`
+    //     ],
+    //   },
+    // }
+
+
 
 
 // {
