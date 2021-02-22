@@ -1,9 +1,14 @@
-import React from 'react'
-import Layout from './src/components/layout'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/styles';
-import theme from './src/theme';
-import { Helmet } from "react-helmet"
+// import React from 'react'
+// import Layout from './src/components/layout'
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import { ThemeProvider } from '@material-ui/styles';
+// import theme from './src/theme';
+// import { Helmet } from "react-helmet"
+
+const React = require('react');
+const CssBaseline = require('@material-ui/core/CssBaseline');
+const { ThemeProvider } = require('@material-ui/styles');
+const Layout = require('./src/components/layout').default;
 
 export const wrapRootElement = ({ element }) => {
  return (
