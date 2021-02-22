@@ -20,7 +20,7 @@ export const wrapPageElement = ({ element, props }) => {
  );
 };
 
-export const onRenderBody = ({ setPreBodyComponents, setHeadComponents, setBodyAttributes, setHtmlAttributes }) => {
+export const onRenderBody = ({ setHeadComponents }) => {
       setHeadComponents([
         <script
             key={1}

@@ -1,13 +1,8 @@
-// const createStore = require('./src/state/createStore').default;
-// const { Provider } = require('react-redux');
-// const Layout = require('./src/components/layout').default;
 import React from 'react'
 import Layout from './src/components/layout'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './src/theme';
-
-
 
 export const wrapRootElement = ({ element }) => {
  return (
@@ -34,6 +29,10 @@ export const onServiceWorkerUpdateReady = () => {
   }
 };
 
+
+// const createStore = require('./src/state/createStore').default;
+// const { Provider } = require('react-redux');
+// const Layout = require('./src/components/layout').default;
 
 
 // exports.registerServiceWorker = () => true

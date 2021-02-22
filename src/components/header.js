@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "gatsby"
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import useImageStaticHook from '../components/image';
 import { useStyleHeader } from "./common/style";
 import GatsbyImage from "gatsby-image";
@@ -13,10 +13,13 @@ import { Grid } from "@material-ui/core";
 // my components
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
-import Korzina from './korzinaComponent';
+// import Korzina from './korzinaComponent';
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
-// const Korzina = loadable(() => import('./korzinaComponent'));
+const Korzina = loadable(() => import('./korzinaComponent'));
+
+        
+// <CssBaseline /> было на 54 строке
 
 const links = [
   {
@@ -43,12 +46,12 @@ const links = [
 
 const Header = () => {
     const classes = useStyleHeader();
-    const [{avatarImage, placeholderImage},] = useImageStaticHook();
+    const [{ avatarImage, placeholderImage },] = useImageStaticHook();
 
   return (
       <>
       <div className={classes.root}>
-        <CssBaseline />
+
         <AppBar
             position="fixed"
             className={classes.appBar}>

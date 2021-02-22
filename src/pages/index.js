@@ -5,8 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import { addedCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import { graphql } from "gatsby"
-import Carousel from '../components/common/CarouselSvisni'
-import IndexCards from '../components/Card'
+import loadable from "@loadable/component";
+import Spinner from '../components/spinner/spinner-new'
+// import Carousel from '../components/common/CarouselSvisni'
+// import IndexCards from '../components/Card'
+
+const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
+const IndexCards = loadable(() => import('../components/Card'), {
+    fallback: <Spinner/>
+});
 
 
 const useStyleIndexPage = makeStyles(theme => ({

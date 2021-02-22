@@ -7,7 +7,7 @@ import { Hidden } from "@material-ui/core";
 
 import Spinner from '../components/spinner/spinner-new'
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-import useIsClient from "../utils/useIsClient"
+// import useIsClient from "../utils/useIsClient"
 
 const Footer = loadable(() => import('./footer'));
 
@@ -53,7 +53,3 @@ Layout.propTypes = {
 };
 
 export default Layout
-
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import { ThemeProvider } from "@material-ui/core/styles";
-// import theme from "../../src/theme";
