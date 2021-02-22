@@ -156,7 +156,43 @@ export const query = graphql `
     }
   `;
 
+    // `gatsby-plugin-preload-link-crossorigin`,
+  
 
+
+    // {
+    //   resolve: `gatsby-source-contentful`,
+    //   options: {
+    //     spaceId: process.env.CONTENTFUL_SPACE_ID,
+    //     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    //     pageLimit: 50,
+    //     assetDownloadWorkers: 25
+    //   },
+    // },
+
+
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/src/pages`,
+    //     name: 'pages',
+    //   },
+    // },
+
+   // {
+   //    resolve: `gatsby-plugin-sharp`,
+   //    options: {
+   //      stripMetadata: true,
+   //      defaultQuality: 100,
+   //    },
+   //  },
+
+    // {
+    //   resolve: `gatsby-plugin-facebook-pixel`,
+    //   options: {
+    //     pixelId: "1086855725085525",
+    //   },
+    // },
 
 
   // {

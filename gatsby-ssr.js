@@ -21,38 +21,27 @@ export const wrapPageElement = ({ element, props }) => {
 };
 
 export const onRenderBody = ({ setPreBodyComponents, setHeadComponents, setBodyAttributes, setHtmlAttributes }) => {
-
-     const helmet = Helmet.renderStatic()
-       setHtmlAttributes(helmet.htmlAttributes.toComponent())
-       setBodyAttributes(helmet.bodyAttributes.toComponent())
       setHeadComponents([
-        helmet.title.toComponent(),
-        helmet.link.toComponent(),
-        helmet.meta.toComponent(),
-        helmet.noscript.toComponent(),
-        helmet.script.toComponent(),
-        helmet.style.toComponent()
+        <script
+            key={1}
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+                __html: `
+                !function(){
+                var t=document.createElement("script");
+                t.type="text/javascript",
+                t.async=!0,
+                t.src="https://vk.com/js/api/openapi.js?168",
+                t.onload=function(){
+                    VK.Retargeting.Init("VK-RTRG-493440-aoKed"),
+                    VK.Retargeting.Hit()
+                    }, document.head.appendChild(t)}();
+                `
+            }}/>
     ])
 };
 
 
-
-   //<script
-     //       key={1}
-       //     type="text/javascript"
-         //   dangerouslySetInnerHTML={{
-           //     __html: `
-             //   !function(){
-               // var t=document.createElement("script");
-                //t.type="text/javascript",
-                //t.async=!0,
-                //t.src="https://vk.com/js/api/openapi.js?168",
-                //t.onload=function(){
-                 //   VK.Retargeting.Init("VK-RTRG-493440-aoKed"),
-                  //  VK.Retargeting.Hit()
-                    //}, document.head.appendChild(t)}();
-                //`
-           // }}/>
 
 
     // <script key={2} type='text/javascript'

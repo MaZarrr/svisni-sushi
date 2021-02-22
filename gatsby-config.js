@@ -9,27 +9,17 @@ module.exports = {
       author: `@mazarrr`,
   },
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
-      },
-    },
+    `gatsby-transformer-sharp`,
+   `gatsby-transformer-remark`,
+   `gatsby-plugin-sharp`,
+   `gatsby-plugin-react-helmet`,
+   `gatsby-plugin-material-ui`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
-    },
-    'gatsby-transformer-remark',
-    `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        stripMetadata: true,
-        defaultQuality: 100,
       },
     },
     {
@@ -44,6 +34,27 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
+  {
+    resolve: `gatsby-plugin-react-redux`,
+    options: {
+      pathToCreateStoreModule: './src/state/createStore',
+      serialize: {
+        space: 0,
+        isJSON: true,
+        unsafe: false,
+        ignoreFunction: true,
+      },
+      cleanupOnClient: true,
+      windowKey: '__PRELOADED_STATE__',
+    },
+  },
+   {
+    resolve: `gatsby-source-contentful`,
+    options: {
+      spaceId: process.env.CONTENTFUL_SPACE_ID,
+      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+    },
+  },
     {
       resolve: `gatsby-plugin-webfonts`,
       options: {
@@ -52,10 +63,6 @@ module.exports = {
             {
               family: "Montserrat",
               variants: ["500", "600", "800"],
-              //subsets: ['latin']
-              //text: 'Hello'
-              //fontDisplay: 'swap',
-              //strategy: 'selfHosted' // 'base64' || 'cdn'
             },
           ],
         },
@@ -65,40 +72,9 @@ module.exports = {
           woff: `Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; rv:11.0) like Gecko`,
           woff2: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; ServiceUI 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393`,
         },
-        formats: ['woff2', 'woff'],
-        useMinify: true,
-        usePreload: true,
-        usePreconnect: false,
+        formats: ['woff2', 'woff']
       },
     },
-  {
-      resolve: `gatsby-plugin-react-redux`,
-      options: {
-        pathToCreateStoreModule: './src/state/createStore',
-        serialize: {
-          space: 0,
-          isJSON: true,
-          unsafe: false,
-          ignoreFunction: true,
-        },
-        cleanupOnClient: true,
-        windowKey: '__PRELOADED_STATE__',
-      },
-    },
-   `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-preload-link-crossorigin`,
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        pageLimit: 50,
-        assetDownloadWorkers: 25
-      },
-    },
- 
-    `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-ramda`,
     `gatsby-plugin-sitemap`,
     {
@@ -132,12 +108,6 @@ module.exports = {
         afterBody: true,
         defer: false
       }
-    },
-    {
-      resolve: `gatsby-plugin-facebook-pixel`,
-      options: {
-        pixelId: "1086855725085525",
-      },
     },
     {
       resolve: `gatsby-plugin-offline`,
