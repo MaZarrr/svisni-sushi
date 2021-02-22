@@ -1,10 +1,6 @@
 const createStore = require('./src/state/createStore').default;
 const { Provider } = require('react-redux');
 const React = require('react');
-// import { ThemeProvider } from '';
-// import theme from '../../src/theme';
-const { ThemeProvider } = require('@material-ui/core/styles');
-const theme = require('./src/theme');
 const Layout = require('./src/components/layout').default;
 
 // exports.registerServiceWorker = () => true
@@ -16,9 +12,7 @@ exports.wrapPageElement = ({element, props}) => {
 exports.wrapRootElement = ({element}) => {
     return (
         <Provider store={createStore}>
-        <ThemeProvider theme={theme}>
             {element}
-        </ThemeProvider>
         </Provider>
         )
     };

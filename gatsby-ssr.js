@@ -1,8 +1,6 @@
 const createStore = require('./src/state/createStore').default;
 const { Provider } = require('react-redux'); 
 const React = require('react');
-const { ThemeProvider } = require('@material-ui/core/styles');
-const theme = require('./src/theme');
 const Layout = require('./src/components/layout').default;
 
 exports.wrapPageElement = ({ element, props }) => {
@@ -12,9 +10,7 @@ exports.wrapPageElement = ({ element, props }) => {
 exports.wrapRootElement = ({ element, props }) => {
     return ( 
         <Provider store={createStore}>
-        <ThemeProvider theme={theme}>
                 {element}
-        </ThemeProvider>
         </Provider>
         )
 };

@@ -40,11 +40,11 @@ const useStyleIndexPage = makeStyles(theme => ({
         const classes = useStyleIndexPage();
 
         return (
-                <section>
-                    <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
+            <>
+             <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
                         description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                         Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-
+                <section>
                     <h1 className={classes.title}>Свисни Суши в Уразово</h1>
                     <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid item xs={12} className={classes.root}>
@@ -54,6 +54,7 @@ const useStyleIndexPage = makeStyles(theme => ({
                     </Grid>
 
                 </section>
+         </>
          )}
 
 
