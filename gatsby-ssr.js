@@ -3,6 +3,30 @@ const { Provider } = require('react-redux');
 const React = require('react');
 const Layout = require('./src/components/layout').default;
 
+exports.onPreRenderHTML = ({
+  getHeadComponents,
+  pathname,
+  replaceHeadComponents,
+}) => {
+  if (pathname !== `/offline-plugin-app-shell-fallback/`) return
+
+  const headComponents = getHeadComponents()
+
+  const filteredHeadComponents = headComponents.filter(
+    ({ type, props }) =>
+      !(
+        type === `link` &&
+        props.as === `fetch` &&
+        props.rel === `preload` &&
+        (props.href.startsWith(`/static/d/`) ||
+          props.href.startsWith(`/page-data/`))
+      )
+  )
+
+  replaceHeadComponents(filteredHeadComponents)
+}
+
+
 exports.wrapPageElement = ({ element, props }) => {
     return <Layout {...props}>{element}</Layout>
 };
