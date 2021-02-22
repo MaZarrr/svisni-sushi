@@ -36,27 +36,30 @@ export const onRenderBody = ({ setPreBodyComponents, setHeadComponents }) => {
                     VK.Retargeting.Hit()
                     }, document.head.appendChild(t)}();
                 `
-            }}/>,
-      <script key={2} type='text/javascript'
-              dangerouslySetInnerHTML={{
-                __html: `
-               (function(d, w, m) {
-                  window.supportAPIMethod = m;
-                  var s = d.createElement('script');
-                  s.type ='text/javascript'; s.id = 'supportScript'; s.charset = 'utf-8';
-                  s.async = true;
-                  var id = '226d519661c50fd5e16477daf16d89eb';
-                  s.src = 'https://lcab.talk-me.ru/support/support.js?h='+id;
-                  var sc = d.getElementsByTagName('script')[0];
-                  w[m] = w[m] || function() { (w[m].q = w[m].q || []).push(arguments); };
-                  if (sc) sc.parentNode.insertBefore(s, sc);
-                  else d.documentElement.firstChild.appendChild(s);
-                    })(document, window, 'TalkMe');
-                `
-              }}/>
+            }}/>
     ])
 };
 
+
+
+
+    // <script key={2} type='text/javascript'
+    //           dangerouslySetInnerHTML={{
+    //             __html: `
+    //            (function(d, w, m) {
+    //               window.supportAPIMethod = m;
+    //               var s = d.createElement('script');
+    //               s.type ='text/javascript'; s.id = 'supportScript'; s.charset = 'utf-8';
+    //               s.async = true;
+    //               var id = '226d519661c50fd5e16477daf16d89eb';
+    //               s.src = 'https://lcab.talk-me.ru/support/support.js?h='+id;
+    //               var sc = d.getElementsByTagName('script')[0];
+    //               w[m] = w[m] || function() { (w[m].q = w[m].q || []).push(arguments); };
+    //               if (sc) sc.parentNode.insertBefore(s, sc);
+    //               else d.documentElement.firstChild.appendChild(s);
+    //                 })(document, window, 'TalkMe');
+    //             `
+    //           }}/>
 
 
 // const createStore = require('./src/state/createStore').default;
