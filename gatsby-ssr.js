@@ -6,6 +6,7 @@
 // import { Helmet } from "react-helmet"
 
 const React = require('react');
+const theme = require('./src/theme');
 const CssBaseline = require('@material-ui/core/CssBaseline');
 const { ThemeProvider } = require('@material-ui/styles');
 const Layout = require('./src/components/layout').default;
