@@ -68,7 +68,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "cross-env GATSBY_CONTENTFUL_OFFLINE=true gatsby build",
     "develop": "gatsby develop",
     "start": "node index.js",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
