@@ -8,11 +8,11 @@ import Spinner from  "../components/spinner/spinner"
 const ProductItem = loadable(() => import('../components/SetyItem'), {
     fallback: <Spinner count={1}/>});
 
-const SetyTeamplate = ({data: {contentfulProduct,
+const SetyTeamplate = ({ data: { contentfulProduct,
     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
     allContentfulProductKlassika: {edges: smallRoll}, allContentfulProductSushi: {edges: sushi},
     allContentfulProductGunkan: {edges: gunkan},
-}, addedToCart, isSale}) => {
+}, addedToCart, isSale }) => {
 
     const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan);
     const nameProduct = contentfulProduct.description.toLowerCase().split(', ');
@@ -156,8 +156,210 @@ export const query = graphql `
     }
   `;
 
+
+
+
+
+// {
+//   "name": "svisni-sushi",
+//   "private": true,
+//   "description": "svisni sushi pizza",
+//   "version": "1.0.1",
+//   "author": "Vitaliy Nesterov <vitalistarkiii@gmail.com>",
+//   "dependencies": {
+//     "@loadable/component": "^5.12.0",
+//     "@material-ui/core": "4.11.1",
+//     "@material-ui/icons": "^4.9.1",
+//     "@material-ui/lab": "^4.0.0-alpha.56",
+//     "babel-plugin-styled-components": "^1.12.0",
+//     "cross-env": "^7.0.2",
+//     "dotenv": "^8.2.0",
+//     "gatsby": "^2.32.4",
+//     "gatsby-cli": "^2.19.1",
+//     "gatsby-image": "^2.11.0",
+//     "gatsby-plugin-facebook-pixel": "^1.0.5",
+//     "gatsby-plugin-google-analytics": "^2.1.35",
+//     "gatsby-plugin-google-tagmanager": "^2.1.25",
+//     "gatsby-plugin-image": "^0.5.1",
+//     "gatsby-plugin-manifest": "^2.12.0",
+//     "gatsby-plugin-material-ui": "^2.1.10",
+//     "gatsby-plugin-offline": "^3.10.1",
+//     "gatsby-plugin-preload-link-crossorigin": "^1.0.2",
+//     "gatsby-plugin-ramda": "^1.0.0",
+//     "gatsby-plugin-react-helmet": "^3.10.0",
+//     "gatsby-plugin-react-redux": "^1.1.0",
+//     "gatsby-plugin-robots-txt": "^1.5.5",
+//     "gatsby-plugin-sharp": "^2.14.1",
+//     "gatsby-plugin-sitemap": "^2.12.0",
+//     "gatsby-plugin-styled-components": "^3.5.0",
+//     "gatsby-plugin-webfonts": "^1.1.4",
+//     "gatsby-plugin-yandex-metrika": "^1.3.0",
+//     "gatsby-source-contentful": "^4.6.2",
+//     "gatsby-source-filesystem": "^2.11.0",
+//     "gatsby-theme-material-ui": "^1.0.13",
+//     "gatsby-transformer-remark": "^2.16.0",
+//     "gatsby-transformer-sharp": "^2.12.0",
+//     "moment": "^2.29.1",
+//     "prop-types": "^15.7.2",
+//     "ramda": "^0.26.1",
+//     "react": "^17.0.1",
+//     "react-content-loader": "^5.1.4",
+//     "react-dom": "^17.0.1",
+//     "react-helmet": "^6.1.0",
+//     "react-number-format": "^4.4.1",
+//     "react-redux": "^7.1.3",
+//     "react-swipeable-views": "^0.13.9",
+//     "react-swipeable-views-core": "^0.13.7",
+//     "react-swipeable-views-utils": "^0.13.9",
+//     "react-text-mask": "^5.4.3",
+//     "react-transition-group": "^4.3.0",
+//     "redaxios": "^0.3.0",
+//     "redux": "^4.0.4",
+//     "redux-act": "^1.8.0",
+//     "redux-thunk": "^2.3.0",
+//     "reselect": "^4.0.0",
+//     "styled-components": "^5.2.1",
+//     "uniqid": "^5.2.0"
+//   },
+//   "devDependencies": {
+//     "@hot-loader/react-dom": "^17.0.1",
+//     "prettier": "^1.19.1"
+//   },
+
+
+// =====================================================================================
+
+// require('dotenv').config();
+
+// module.exports = {
+//     siteMetadata: {
+//       siteUrl: `https://svisni-sushi.ru`,
+//       title: `Свистни суши`,
+//       description: `Заказать роллы, пиццу и суши c 10 до 22:00 в службе доставки Свисни-Суши Уразово. Доставка в Валуйки, на дом, приятные цены, именинникам скидки.`,
+//       keywords: `доставка, заказать, роллы, суши, еду, сеты, пиццу, на заказ`,
+//       author: `@mazarrr`,
+//   },
+//   plugins: [
+//     `gatsby-transformer-sharp`,
+//    `gatsby-transformer-remark`,
+//    `gatsby-plugin-sharp`,
+//    `gatsby-plugin-react-helmet`,
+//    `gatsby-plugin-material-ui`,
+//     `gatsby-plugin-styled-components`,
+//     {
+//       resolve: `gatsby-source-filesystem`,
+//       options: {
+//         name: `images`,
+//         path: `${__dirname}/src/images`,
+//       },
+//     },
+//     {
+//     resolve: `gatsby-plugin-manifest`,
+//     options: {
+//       name: `svisni-sushi`,
+//       short_name: `Свисни суши`,
+//       start_url: `/`,
+//       background_color: `#663399`,
+//       theme_color: `#663399`,
+//       display: `standalone`,
+//       icon: `src/images/logosvisni.png`,
+//     },
+//   },
+//   {
+//     resolve: `gatsby-plugin-react-redux`,
+//     options: {
+//       pathToCreateStoreModule: './src/state/createStore',
+//       serialize: {
+//         space: 0,
+//         isJSON: true,
+//         unsafe: false,
+//         ignoreFunction: true,
+//       },
+//       cleanupOnClient: true,
+//       windowKey: '__PRELOADED_STATE__',
+//     },
+//   },
+//    {
+//     resolve: `gatsby-source-contentful`,
+//     options: {
+//       spaceId: process.env.CONTENTFUL_SPACE_ID,
+//       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+//     },
+//   },
+//     {
+//       resolve: `gatsby-plugin-webfonts`,
+//       options: {
+//         fonts: {
+//           google: [
+//             {
+//               family: "Montserrat",
+//               variants: ["500", "600", "800"],
+//             },
+//           ],
+//         },
+//         formatAgents: {
+//           eot: `Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)`,
+//           ttf: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.59.8 (KHTML, like Gecko) Version/5.1.9 Safari/534.59.8`,
+//           woff: `Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; rv:11.0) like Gecko`,
+//           woff2: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; ServiceUI 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393`,
+//         },
+//         formats: ['woff2', 'woff']
+//       },
+//     },
+//     `gatsby-plugin-ramda`,
+//     `gatsby-plugin-sitemap`,
+//     {
+//       resolve: `gatsby-plugin-google-analytics`,
+//       options: {
+//         trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
+//         cookieExpires: "1000000"
+//       },
+//     },
+//     {
+//       resolve: 'gatsby-plugin-robots-txt',
+//       options: {
+//         host: 'https://svisni-sushi.ru',
+//         sitemap: 'https://svisni-sushi.ru/sitemap.xml',
+//         policy: [{
+//           userAgent: '*',
+//           allow: '/',
+//           disallow: ['/korzina', '/korzina/order', '/cookie']
+//         }]
+//       }
+//     },
+//     {
+//       resolve: `gatsby-plugin-yandex-metrika`,
+//       options: {
+//         trackingId: process.env.GATSBY_TRACKINGID_YAMETRIKA,
+//         clickmap: true,
+//         trackLinks: true,
+//         accurateTrackBounce: true,
+//         webvisor: true,
+//         trackHash: true,
+//         afterBody: true,
+//         defer: false
+//       }
+//     },
+//     {
+//       resolve: `gatsby-plugin-offline`,
+//       options: {
+//         precachePages: [
+//           `/*`,
+//           `/sety/*`,
+//           `/pizza/*`,
+//           `/sale/*`,
+//           `/kombo/*`
+//         ],
+//       },
+//     }
+//   ]
+// };
+
+
+  // ================================================================================
+
     // `gatsby-plugin-preload-link-crossorigin`,
-  
+
 
 
     // {

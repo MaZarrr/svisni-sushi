@@ -27,7 +27,7 @@ const useStyleIndexPage = makeStyles(theme => ({
         },
         [theme.breakpoints.down('475')]: {
             fontSize: 25,
-            letterSpacing: `-0.6px`,
+            letterSpacing: `-1.6px`,
             margin: `25px 0 0 0`,
             paddingLeft: 10,
         }
