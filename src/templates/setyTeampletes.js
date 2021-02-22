@@ -171,9 +171,10 @@ export const query = graphql `
     //   },
     // }
 
+// GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true --log-pages
+    // "build": "cross-env GATSBY_CONTENTFUL_OFFLINE=true gatsby build",
 
-
-
+// develop": "cross-env GATSBY_EXPERIMENTAL_LAZY_DEVJS=true GATSBY_CONTENTFUL_OFFLINE=true GATSBY_EXPERIMENTAL_DEV_SSR=true gatsby develop --log-pages",
 // {
 //   "name": "svisni-sushi",
 //   "private": true,
