@@ -4,9 +4,7 @@ import Header from "./header"
 import { useStyleLayout } from "./common/style";
 import loadable from '@loadable/component'
 import { Hidden } from "@material-ui/core";
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import { ThemeProvider } from "@material-ui/core/styles";
-// import theme from "../../src/theme";
+
 import Spinner from '../components/spinner/spinner-new'
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import useIsClient from "../utils/useIsClient"
@@ -15,14 +13,15 @@ const Footer = loadable(() => import('./footer'));
 
 const Layout = ({ children }) => {
 
-  const { isClient, key } = useIsClient();
+  // const { isClient, key } = useIsClient();
   const classes = useStyleLayout();
 
-  if (!isClient) return <Spinner/>
-      // <ThemeProvider theme={theme}>
+  // if (!isClient) return <Spinner/>
+      // <div key={key}>
+  // </div>
 
   return (
-      <div key={key}>
+      <React.Fragment>        
       <Header/>
       <ErrorBoundary>
         <div style={{
@@ -44,7 +43,7 @@ const Layout = ({ children }) => {
     <Hidden xsDown>
       <Footer/>
     </Hidden>
-  </div>
+    </React.Fragment>
   )
 };
 
@@ -54,3 +53,7 @@ Layout.propTypes = {
 };
 
 export default Layout
+
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import { ThemeProvider } from "@material-ui/core/styles";
+// import theme from "../../src/theme";
