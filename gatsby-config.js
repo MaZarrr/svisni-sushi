@@ -101,7 +101,8 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
-        cookieExpires: "1000000"
+        head: true,
+        defer: true
       },
     },
     {
@@ -126,7 +127,8 @@ module.exports = {
         webvisor: true,
         trackHash: true,
         afterBody: true,
-        defer: false
+        defer: true,
+        useCDN: true
       }
     },
     {

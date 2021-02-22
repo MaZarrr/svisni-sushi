@@ -159,6 +159,16 @@ export const query = graphql `
 
 
 
+  // {
+  //     resolve: `gatsby-plugin-google-analytics`,
+  //     options: {
+  //       trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
+  //       head: true,
+  //       defer: true,
+  //       cookieExpires: "1000000"
+  //     },
+  //   },
+
 // const createStore = require('./src/state/createStore').default;
 // const { Provider } = require('react-redux'); 
 // const React = require('react');
