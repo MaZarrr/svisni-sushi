@@ -13,7 +13,7 @@ export const wrapRootElement = ({ element }) => {
  );
 };
 
-export const wrapPageElement = ({ element }) => {
+export const wrapPageElement = ({ element, props }) => {
  return (
     <Layout {...props}>{element}</Layout>
  );
