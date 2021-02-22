@@ -159,6 +159,55 @@ export const query = graphql `
 
 
 
+  // {
+  //     resolve: `gatsby-plugin-react-redux`,
+  //     options: {
+  //       // [required] - path to your createStore module
+  //       pathToCreateStoreModule: './src/state/createStore',
+  //       // [optional] - options passed to `serialize-javascript`
+  //       // info: https://github.com/yahoo/serialize-javascript#options
+  //       // will be merged with these defaults:
+  //       serialize: {
+  //         space: 0,
+  //         // if `isJSON` is set to `false`, `eval` is used to deserialize redux state,
+  //         // otherwise `JSON.parse` is used
+  //         isJSON: true,
+  //         unsafe: false,
+  //         ignoreFunction: true,
+  //       },
+  //       // [optional] - if true will clean up after itself on the client, default:
+  //       cleanupOnClient: true,
+  //       // [optional] - name of key on `window` where serialized state will be stored, default:
+  //       windowKey: '__PRELOADED_STATE__',
+  //     },
+  //   },
+
+
+   // {
+   //    resolve: `gatsby-theme-material-ui`,
+   //    options: {
+   //      webFontsConfig: {
+   //        fonts: {
+   //          google: [
+   //            {
+   //              family: `Montserrat`,
+   //              variants: [`500`, `600`, `800`],
+   //              formatAgents: {
+   //                eot: `Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)`,
+   //                ttf: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.59.8 (KHTML, like Gecko) Version/5.1.9 Safari/534.59.8`,
+   //                woff: `Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; rv:11.0) like Gecko`,
+   //                woff2: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; ServiceUI 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393`,
+   //              },
+   //            },
+   //          ],
+   //        },
+   //        formats: ['woff2', 'woff']
+   //      },
+   //    },
+   //  },
+
+
+
 
 // export const onServiceWorkerUpdateReady = async (args) => {
 //   const permissionResponse = await Notification.requestPermission()

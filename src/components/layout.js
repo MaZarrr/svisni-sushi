@@ -4,9 +4,9 @@ import Header from "./header"
 import { useStyleLayout } from "./common/style";
 import loadable from '@loadable/component'
 import { Hidden } from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "../../src/theme";
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import { ThemeProvider } from "@material-ui/core/styles";
+// import theme from "../../src/theme";
 import Spinner from '../components/spinner/spinner-new'
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import useIsClient from "../utils/useIsClient"
@@ -23,31 +23,28 @@ const Layout = ({ children }) => {
 
   return (
       <div key={key}>
-      <ThemeProvider theme={theme}>
       <Header/>
-          <ErrorBoundary>
-            <div style={{
-            maxWidth: `1680px`,
-            backgroundColor: "#fafafa",
-            margin: `0 auto`,
-            minHeight: `100vh`
-        }}>
-            <div style={{height: 75, width: 100}}></div>
-          <main>
-                  <CssBaseline/>
-                  <div className={classes.toolbar} />
-                      {children}
-          </main>
-        </div>
-        </ErrorBoundary>
-        <div>
-        </div>
-
-        <Hidden xsDown>
-          <Footer/>
-        </Hidden>
-        </ThemeProvider>
+      <ErrorBoundary>
+        <div style={{
+        maxWidth: `1680px`,
+        backgroundColor: "#fafafa",
+        margin: `0 auto`,
+        minHeight: `100vh`
+    }}>
+      <div style={{height: 75, width: 100}}></div>
+      <main>
+        <div className={classes.toolbar} />
+        {children}
+      </main>
       </div>
+    </ErrorBoundary>
+    <div>
+    </div>
+
+    <Hidden xsDown>
+      <Footer/>
+    </Hidden>
+  </div>
   )
 };
 

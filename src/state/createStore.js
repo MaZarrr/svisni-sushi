@@ -1,14 +1,33 @@
-import {applyMiddleware, createStore} from "redux";
+import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import createRootReducer from '../reducers'
 
 const middlewares = [thunk];
-const store = createStore(
-    createRootReducer,
-    applyMiddleware(...middlewares)
-);
 
-export default store
+export default preloadedState => {
+  return createStore(
+    createRootReducer,
+    preloadedState,
+    applyMiddleware(...middlewares)
+  );
+};
+
+// return createStore(
+//     createRootReducer,
+//     store,
+//     applyMiddleware(...middlewares)
+// );
+
+// export default store
+
+
+// const middlewares = [thunk];
+// const store = createStore(
+//     createRootReducer,
+//     applyMiddleware(...middlewares)
+// );
+
+// export default store
 
 
 
