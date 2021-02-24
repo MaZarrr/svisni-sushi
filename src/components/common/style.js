@@ -156,36 +156,6 @@ export const useStyleKorzina = makeStyles(theme => ({
     }
 }));
 
-export const useStyleHeader = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        zIndex: '1000'
-    },
-    appBar: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        width: `100%`,
-        zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        backgroundColor: "white",
-    },
-    content_header: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        width: '100%'
-    },
-    content_link: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        margin: 'auto 0',
-        width: '100%',
-    }
-}));
-
 export const useStyleLayout = makeStyles({
     toolbar: {
         display: 'flex',

@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 // import CssBaseline from '@material-ui/core/CssBaseline';
 import useImageStaticHook from '../components/image';
-import { useStyleHeader } from "./common/style";
+// import { useStyleHeader } from "./common/style";
 import GatsbyImage from "gatsby-image";
 import Hidden from "@material-ui/core/Hidden";
 import loadable from "@loadable/component";
@@ -12,13 +12,15 @@ import { Grid } from "@material-ui/core";
 
 // my components
 import DrawerMenu from './DrawerMenu'
-import AppBars from './AppBars'
+import { makeStyles } from "@material-ui/core/styles"
+// import AppBars from './AppBars'
 // import Korzina from './korzinaComponent';
+// const { useStyleHeader } = loadable(() =>  import("./common/style"));
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Korzina = loadable(() => import('./korzinaComponent'));
+const AppBars = loadable(() => import('./AppBars'));
 
-        
 // <CssBaseline /> было на 54 строке
 
 const links = [
@@ -54,6 +56,7 @@ const Header = () => {
 
         <AppBar
             position="fixed"
+            classes={{colorPrimary: classes.colorPrimary}}
             className={classes.appBar}>
           <Toolbar>
               <Grid container>
@@ -122,3 +125,33 @@ const Header = () => {
 };
 
 export default Header
+
+export const useStyleHeader = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    zIndex: '1000'
+  },
+  appBar: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: `100%`,
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    backgroundColor: "white",
+  },
+  content_header: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: '100%'
+  },
+  content_link: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    margin: 'auto 0',
+    width: '100%',
+  }
+}));

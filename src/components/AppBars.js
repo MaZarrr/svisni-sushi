@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import {Hidden} from "@material-ui/core";
+import { Hidden } from "@material-ui/core";
 import Slide from "@material-ui/core/Slide";
 import Typography from "@material-ui/core/Typography";
 
@@ -15,6 +15,8 @@ const styles = theme =>( {
     root: {
         top: '60px',
         background: `#ffcccc`,
+        margin: 0,
+        padding: 0,
         [theme.breakpoints.up('600')]: {
             top: '65px',
         },
@@ -25,6 +27,7 @@ const styles = theme =>( {
     tabs: {
         height: 50,
         backgroundColor: `white`,
+        textDecoration: `none`,
         [theme.breakpoints.up('600')]: {
             height: '78px'
         },
@@ -84,7 +87,7 @@ const AppBars = (props) => {
 
     return (
         <HideOnScroll>
-            <AppBar className={props.classes.root}>
+            <AppBar component="ul" className={props.classes.root}>
             <Tabs
                 indicatorColor="primary"
                 textColor="primary"
@@ -94,8 +97,8 @@ const AppBars = (props) => {
                 scrollButtons="auto">
 
                 {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
-                        <Tab key={menu.id}
-                             style={{textDecoration: `none`}}
+                        <Tab component="li" key={menu.id}
+                             // style={{}}
                              textColor={"primary"}
                              classes={{ labelIcon: props.classes.labelIcon }}
                              className={props.classes.tabs}
