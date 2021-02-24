@@ -1,15 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
-// import Header from "./header"
+import Header from "./header"
 import { useStyleLayout } from "./common/style";
 import loadable from '@loadable/component'
 import { Hidden } from "@material-ui/core";
 
-import Spinner from '../components/spinner/spinner-new'
+// import Spinner from '../components/spinner/spinner-new'
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 // import useIsClient from "../utils/useIsClient"
 
-const Header = loadable(() => import('./header'));
+// const Header = loadable(() => import('./header'));
 const Footer = loadable(() => import('./footer'));
 
 const Layout = ({ children }) => {

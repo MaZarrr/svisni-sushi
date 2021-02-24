@@ -242,7 +242,7 @@ return (
        description="Доставка осуществляется с 10:00 до 22:00 в Валуйки и Уразово. Бесплатная доставка от 500 рублей"
        pathname=""
     />
-    <HeadSection titleTXT={"Валуйский район-стоимость доставки"} />
+    <HeadSection titleTXT={"Стоимость доставки"} />
     <Divider/>
     <Grid container>
     <Grid item xs={12} sm={6}>

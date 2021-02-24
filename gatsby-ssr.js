@@ -3,7 +3,6 @@ import Layout from './src/components/layout'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './src/theme';
-import { Helmet } from "react-helmet"
 
 export const wrapRootElement = ({ element }) => {
  return (
@@ -14,11 +13,14 @@ export const wrapRootElement = ({ element }) => {
  );
 };
 
+
+
 export const wrapPageElement = ({ element, props }) => {
  return (
     <Layout {...props}>{element}</Layout>
  );
 };
+
 
 export const onRenderBody = ({ setHeadComponents }) => {
       setHeadComponents([
