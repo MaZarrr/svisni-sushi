@@ -97,8 +97,7 @@ const AppBars = (props) => {
                 scrollButtons="auto">
 
                 {data.allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
-                        <Tab component="li" key={menu.id}
-                             // style={{}}
+                        <Tab key={menu.id}
                              textColor={"primary"}
                              classes={{ labelIcon: props.classes.labelIcon }}
                              className={props.classes.tabs}
