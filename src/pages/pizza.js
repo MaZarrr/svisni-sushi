@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import SEO from "../components/seo"
-import {graphql, Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { connect } from 'react-redux';
-import { useStylesCart } from '../components/common/style';
+// import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
 import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
@@ -19,12 +19,13 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import {addedToCart, pizzaCart} from "../reducers/shopping-cart";
+import { addedToCart, pizzaCart } from "../reducers/shopping-cart";
 import clsx from "clsx";
 import Paper from "@material-ui/core/Paper";
 import SplitButton from "../components/SplitButton";
-import {productList} from "../reducers/selectors";
+import { productList } from "../reducers/selectors";
 import HeadSection from "../components/HeadSection"
+import { makeStyles } from "@material-ui/core/styles"
 
 const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
 
@@ -223,3 +224,98 @@ export const queryPizza = graphql `
         }
     }
 `
+
+export const useStylesCart = makeStyles(theme => ({
+  deckriptSmall: {
+    fontWeight: 600,
+    height: 35,
+    overflowY: `auto`,
+    padding: 14,
+    [theme.breakpoints.down('500')]: {
+      minHeight: `20px`,
+      padding: 14,
+    },
+    [theme.breakpoints.down('425')]: {
+      margin: `auto 0`,
+      padding: 14,
+      height: `auto`,
+    },
+  },
+  deckriptPizza: {
+    fontWeight: 500,
+    height: 80,
+    overflowY: `auto`,
+    padding: `10px 0 10px 20px`,
+    [theme.breakpoints.down('500')]: {
+      padding: `10px 0 10px 30px`,
+      height: `auto`,
+    }
+  },
+  deckript: {
+    fontWeight: 600,
+    height: 80,
+    overflowY: `auto`,
+    padding: 14,
+    [theme.breakpoints.down('500')]: {
+      padding: 10,
+    },
+    [theme.breakpoints.down('425')]: {
+      height: `auto`,
+      margin: `auto 0`,
+      padding: `6px 6px 6px 14px`
+    },
+  },
+  buttonD: {
+    fontSize: 11,
+    borderRadius: 8,
+    padding: '6px 12px',
+    border: '1px solid orange',
+    lineHeight: 1.5,
+    width: 105,
+  },
+  buttonT: {
+    width: 105,
+    borderRadius: 8,
+    fontSize: 11,
+    padding: '6px 12px',
+    border: '1px solid orange',
+    lineHeight: 1.5,
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: 'orange',
+    },
+    '&:focus': {
+      boxShadow: 'none',
+      backgroundColor: 'orange',
+    },
+    backgroundColor: 'orange'
+  },
+  card: {
+    maxWidth: `290px`,
+    margin: `20px auto 10px auto`,
+    [theme.breakpoints.down('600')]: {
+      margin: `10px auto 30px auto`
+    },
+    [theme.breakpoints.up('960')]: {
+      margin: `10px 5% 30px 5%`
+    },
+    [theme.breakpoints.down('959')]: {
+      margin: `10px auto 30px auto`
+    },
+    [theme.breakpoints.up('1100')]: {
+      margin: `10px auto 30px auto`
+    }
+  },
+  media: {
+    width: `99%`,
+    margin: `0 auto`
+  },
+  button: {
+    margin: theme.spacing(1),
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+  },
+}));
+
