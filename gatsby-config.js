@@ -67,15 +67,8 @@ module.exports = {
         usePreconnect: true,
       },
     },
+    `gatsby-plugin-loadable-components-ssr`,
     {
-      resolve: `gatsby-plugin-loadable-components-ssr`,
-      options: {
-        // Whether replaceHydrateFunction should call ReactDOM.hydrate or ReactDOM.render
-        // Defaults to ReactDOM.render on develop and ReactDOM.hydrate on build
-        useHydrate: true,
-      },
-    },
-  {
       resolve: `gatsby-plugin-react-redux`,
       options: {
         pathToCreateStoreModule: './src/state/createStore',
@@ -94,8 +87,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: "o3pzpw68fwfi",
-        accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         pageLimit: 50,
         assetDownloadWorkers: 25
       },
