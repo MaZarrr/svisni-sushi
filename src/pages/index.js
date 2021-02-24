@@ -15,32 +15,6 @@ const IndexCards = loadable(() => import('../components/Card'), {
     fallback: <Spinner/>
 });
 
-
-const useStyleIndexPage = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        width: `100%`
-    },
-    title: {
-        fontWeight: 900,
-        marginBottom: 0,
-        marginTop: 80,
-        paddingLeft: 30,
-        textTransform: `uppercase`,
-        fontSize: 34,
-
-        [theme.breakpoints.down('600')]: {
-            paddingTop: 15,
-        },
-        [theme.breakpoints.down('475')]: {
-            fontSize: 25,
-            letterSpacing: `-1.6px`,
-            margin: `25px 0 0 0`,
-            paddingLeft: 10,
-        }
-    },
-}));
-
     const IndexPage = ({ addedCart, data: { allContentfulContentIndex: { edges : indexProduct },
                      allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
 
@@ -69,8 +43,32 @@ const mapDispatchToProps = {
     addedCart
 };
 
-
 export default connect(null, mapDispatchToProps)(IndexPage)
+
+const useStyleIndexPage = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+        width: `100%`
+    },
+    title: {
+        fontWeight: 900,
+        marginBottom: 0,
+        marginTop: 80,
+        paddingLeft: 30,
+        textTransform: `uppercase`,
+        fontSize: 34,
+
+        [theme.breakpoints.down('600')]: {
+            paddingTop: 15,
+        },
+        [theme.breakpoints.down('475')]: {
+            fontSize: 25,
+            letterSpacing: `-1.6px`,
+            margin: `25px 0 0 0`,
+            paddingLeft: 10,
+        }
+    },
+}));
 
 export const queryIndexPage = graphql `    
     query {

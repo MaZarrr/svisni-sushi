@@ -38,8 +38,8 @@ module.exports = {
       name: `svisni-sushi`,
       short_name: `Свисни суши`,
       start_url: `/`,
-      background_color: `#663399`,
-      theme_color: `#663399`,
+      background_color: `#fa0000`,
+      theme_color: `#fa0000`,
       display: `standalone`,
       icon: `src/images/logosvisni.png`,
     },
@@ -82,7 +82,6 @@ module.exports = {
       },
     },
    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-preload-link-crossorigin`,
     {
       resolve: `gatsby-source-contentful`,
       options: {

@@ -14,6 +14,7 @@ import SwipeableViews from 'react-swipeable-views';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { isNil } from "ramda";
 import IconButton from "@material-ui/core/IconButton"
+import { addedCart } from "../reducers/shopping-cart"
 
 const useStylesCard = makeStyles(theme => ({
     root: {
@@ -185,12 +186,12 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                                     variant={"subtitle1"}>{homeProduct.description}</Typography>
                                     </CardContent>
                                     <CardActions disableSpacing>
-                                        { homeProduct.__typename === "ContentfulProduct" ?
+                                        { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
                                             <Button
                                                 variant="contained"
                                                 className={classesCard.buttonCombo}
                                                 component={Link}
-                                                to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : "/pizza/"}>
+                                                to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
                                                 Посмотреть
                                             </Button> : <Button
                                                 variant="contained"
@@ -200,7 +201,6 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                                 <ShoppingCartIcon/>
                                             </Button>
                                         }
-
                                         <Typography style={{fontSize: 20, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
                                                     variant={"body1"}>{homeProduct.price} ₽</Typography>
                                     </CardActions>
@@ -254,12 +254,12 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                             <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
                                         </CardContent>
                                         <CardActions disableSpacing>
-                                            { homeProduct.__typename === "ContentfulProduct" ?
+                                            { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
                                                 <Button
                                                     variant="contained"
                                                     className={classesCard.buttonCombo}
                                                     component={Link}
-                                                    to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : "/pizza/"}>
+                                                    to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
                                                     Посмотреть
                                                 </Button> : <Button
                                                     variant="contained"
