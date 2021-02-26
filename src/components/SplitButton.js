@@ -21,19 +21,19 @@ export const useStyles = makeStyles(theme => ({
         background: `lightgrey`,
         textTransform: `uppercase`,
         color: `dark`,
-        fontSize: 11,
+        fontSize: 9,
         fontWeight: 500,
         zIndex: 99,
-        padding: `6px 5px`,
+        padding: `0px`,
     },
     buttonT: {
         background: `orange`,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .2)',
         textTransform: `uppercase`,
         fontWeight: 600,
-        fontSize: 11,
+        fontSize: 9,
         zIndex: 99,
-        padding: `6px 5px`
+        padding: `0px`
     },
 }));
 

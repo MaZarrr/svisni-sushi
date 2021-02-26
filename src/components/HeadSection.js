@@ -36,19 +36,22 @@ export const useStyleH1 = makeStyles(theme => ({
     marginBottom: 0,
     textTransform: `uppercase`,
     letterSpacing: `-1.6px`,
-    fontSize: 34,
+    fontSize: `2rem`,
     [theme.breakpoints.down('600')]: {
-      paddingTop: 15,
+      paddingTop: 10,
+      fontSize: `1.6rem`,
     },
     [theme.breakpoints.down('475')]: {
-      fontSize: 26,
-      margin: `25px 0 0 0`,
+      fontSize: 24,
+      margin: `35px 0 0 0`,
     }
   },
   wrapped: {
     marginTop: 80,
-    paddingLeft: 10,
+    paddingLeft: 30,
+    // borderBottom: `1px solid #000`,
     [theme.breakpoints.down('600')]: {
+      paddingLeft: 20,
       marginTop: 0
     },
   }
