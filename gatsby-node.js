@@ -1,13 +1,13 @@
 const path = require('path');
 
 exports.createPages = async ({ graphql, actions }) => {
-    const {createPage} = actions;
+    const { createPage } = actions;
     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
     const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js');
     const saleTeamplates = path.resolve('./src/templates/saleTemplates.js');
     const komboTeamplates = path.resolve('./src/templates/komboTeamplates.js');
 
-   const result = await graphql(`
+    await graphql(`
     {
       allContentfulProduct {
         edges {
@@ -38,9 +38,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
     }  
     }
-    `)
-            const productssets = result.data.allContentfulProduct.edges;
-            productssets.forEach(({node: product}) => {
+    `).then((data) => {
+            const productssets = data.data.allContentfulProduct.edges;
+            productssets.forEach(({ node: product }) => {
                 createPage({
                     path: `/sety/${product.slug}`,
                     component: setyTemplate,
@@ -50,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 })
             })
 
-            const productspizza = result.data.allContentfulProductPizza.edges;
+            const productspizza = data.data.allContentfulProductPizza.edges;
             productspizza.forEach(({node: product}) => {
                 createPage({
                     path: `/pizza/${product.slug}`,
@@ -61,7 +61,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 })
             });
 
-            const productssale = result.data.allContentfulProductSale.edges;
+            const productssale = data.data.allContentfulProductSale.edges;
             productssale.forEach(({node}) => {
                 createPage({
                     path: `/sale${node.slug}`,
@@ -72,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 })
             });
 
-        const productKombo = result.data.allContentfulProductKombo.edges;
+        const productKombo = data.data.allContentfulProductKombo.edges;
             productKombo.forEach(({node}) => {
                 createPage({
                     path: `/kombo/${node.slug}`,
@@ -80,7 +80,18 @@ exports.createPages = async ({ graphql, actions }) => {
                     context: {slug: node.slug}
                 })
             })
+
+    }).catch((err) => console.log(err))
 };
+
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//     actions.setWebpackConfig({
+//         node: {
+//             fs: "empty",
+//         },
+//     })
+// };
+
 
 
 exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
@@ -94,14 +105,19 @@ exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 }
 
 
+
+// =====================================================
+
+// const path = require('path');
+//
 // exports.createPages = async ({ graphql, actions }) => {
 //     const {createPage} = actions;
 //     const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
 //     const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js');
 //     const saleTeamplates = path.resolve('./src/templates/saleTemplates.js');
 //     const komboTeamplates = path.resolve('./src/templates/komboTeamplates.js');
-
-//     await graphql(`
+//
+//    const result = await graphql(`
 //     {
 //       allContentfulProduct {
 //         edges {
@@ -116,24 +132,24 @@ exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 //             slug
 //           }
 //         }
-//       } 
+//       }
 //       allContentfulProductKombo {
 //         edges {
 //           node {
 //             slug
 //           }
 //         }
-//       } 
+//       }
 //       allContentfulProductSale {
 //         edges {
 //             node {
 //             slug
 //         }
 //         }
-//     }  
 //     }
-//     `).then((data) => {
-//             const productssets = data.data.allContentfulProduct.edges;
+//     }
+//     `)
+//             const productssets = result.data.allContentfulProduct.edges;
 //             productssets.forEach(({node: product}) => {
 //                 createPage({
 //                     path: `/sety/${product.slug}`,
@@ -143,8 +159,8 @@ exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 //                     }
 //                 })
 //             })
-
-//             const productspizza = data.data.allContentfulProductPizza.edges;
+//
+//             const productspizza = result.data.allContentfulProductPizza.edges;
 //             productspizza.forEach(({node: product}) => {
 //                 createPage({
 //                     path: `/pizza/${product.slug}`,
@@ -154,8 +170,8 @@ exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 //                     }
 //                 })
 //             });
-
-//             const productssale = data.data.allContentfulProductSale.edges;
+//
+//             const productssale = result.data.allContentfulProductSale.edges;
 //             productssale.forEach(({node}) => {
 //                 createPage({
 //                     path: `/sale${node.slug}`,
@@ -165,8 +181,8 @@ exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 //                     }
 //                 })
 //             });
-
-//         const productKombo = data.data.allContentfulProductKombo.edges;
+//
+//         const productKombo = result.data.allContentfulProductKombo.edges;
 //             productKombo.forEach(({node}) => {
 //                 createPage({
 //                     path: `/kombo/${node.slug}`,
@@ -174,15 +190,6 @@ exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 //                     context: {slug: node.slug}
 //                 })
 //             })
-
-//     }).catch((err) => console.log(err))
 // };
 
-// exports.onCreateWebpackConfig = ({ actions }) => {
-//     actions.setWebpackConfig({
-//         node: {
-//             fs: "empty",
-//         },
-//     })
-// };
 
