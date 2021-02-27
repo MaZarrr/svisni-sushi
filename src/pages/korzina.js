@@ -76,24 +76,25 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
           <Paper style={{marginTop: 10, marginBottom: 10, padding: 8}}>
             <div style={{display: `flex`}}>
               <div style={{margin: `auto 0`, zIndex: 10}}>
-                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={pizza().image}> </Img>
+                <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={pizza().image}> </Img>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
-                <Typography gutterBottom variant="h6" style={{fontSize: 15}}>
+                <Typography gutterBottom variant="h6" style={{fontSize: 14}}>
                   {pizza().name}
                 </Typography>
-                <div style={{display: `flex`, fontSize: 18, fontWeight: `bold`}}>
+                <div style={{display: `flex`, fontSize: 14, fontWeight: `bold`}}>
                   <Typography variant="subtitle2">
                     <b>{pizza().count}шт</b>
                   </Typography>
                   <Typography style={{marginLeft: 50}} variant="subtitle2"><b>{pizza().total}₽</b></Typography>
                 </div>
                 <Grid item>
-                  <Typography variant="subtitle1" style={{fontSize: 20, fontWeight: `bold`}}>
+                  <Typography variant="subtitle1" style={{fontSize: 14, fontWeight: `bold`}}>
                     Пицца бесплатно!
                   </Typography>
                   <Button variant={"contained"} color={"secondary"}
                           style={{cursor: 'pointer'}}
+                          size={"small"}
                           disabled={false}
                           onClick={() => addedSalePizza(pizza())}>
                     Добавить
@@ -147,17 +148,18 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
           <Paper style={{marginTop: 10, marginBottom: 10, padding: 8}}>
             <div style={{display: `flex`}}>
               <div style={{margin: `auto 0`, zIndex: 10}}>
-                <Img style={{width: 90, height: 90, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={saleRoll.image}> </Img>
+                <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={saleRoll.image}> </Img>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
-                <Typography variant="subtitle1" style={{fontSize: 20, fontWeight: `bold`}}>
+                <Typography variant="subtitle1" style={{fontSize: 16, fontWeight: `bold`}}>
                   Акция
                 </Typography>
-                <Typography variant="subtitle1" style={{fontSize: 18, fontWeight: `bold`}}>
+                <Typography variant="subtitle1" style={{fontSize: 14, fontWeight: `bold`}}>
                   {saleRoll.name} за 79₽
                 </Typography>
 
                 <Button variant={"contained"} color={"secondary"}
+                        size={"small"}
                         disabled={false}
                         onClick={() => addedSaleRoll(saleRoll)}>
                   Добавить
@@ -350,7 +352,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         to={`${location.pathname}order`}
                         size={'small'}
                         className={classes.buttonCheckout}
-                        // style={{fontWeigh: `bold`, fontSize: 18, marginBottom: 5}}
                         variant="contained" >
                         Перейти к оформлению
                       </Button>
