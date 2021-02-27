@@ -45,10 +45,7 @@ export const useStyleKorzina = makeStyles(theme => ({
         marginTop: 5,
         marginBottom: 15,
         width: '100%',
-        opacity: `93%`,
-        // [theme.breakpoints.down('768')]: {
-        // width: `90%`
-        // }
+        opacity: `93%`
     },
 }));
 

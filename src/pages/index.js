@@ -7,8 +7,6 @@ import { connect } from "react-redux";
 import { graphql } from "gatsby"
 import loadable from "@loadable/component";
 import Spinner from '../components/spinner/spinner-new'
-// import Carousel from '../components/common/CarouselSvisni'
-// import IndexCards from '../components/Card'
 
 const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
 const IndexCards = loadable(() => import('../components/Card'), {
