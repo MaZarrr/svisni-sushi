@@ -12,7 +12,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import { useStyleKorzina } from '../components/common/style'
 import ButtonSize from "../components/common/ButtonSizePizza";
 import { addedCart, removeCart,
   allRemoveCart, addPribor,
@@ -28,16 +27,17 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import EmptyBasket from "../components/EmptyBasket";
 import Hidden from "@material-ui/core/Hidden";
 import HeadSection from "../components/HeadSection"
+import { makeStyles } from "@material-ui/core/styles"
 
 const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProductKlassika,
   allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
-  allContentfulProductGunkan},items = [], total = 0, palochkiTotal,
-  onIncrease, onDecrise, onDelete, addedPriborCount,addedSaleRoll,
+  allContentfulProductGunkan}, items = [], total = 0, palochkiTotal,
+                             onIncrease, onDecrise, onDelete, addedPriborCount, addedSaleRoll,
   addedSalePizza, deletePizzaSale, deleteFilaSale, location }) => {
 
   const [load, setLoad] = React.useState(true);
   const [value, setValue] = React.useState([]);
-  const classes = useStyleKorzina();
+  const classes = useStyleBasket();
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -205,8 +205,8 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         descriptionIngrideents = ""} = item
 
                       return (
-                        <Grid item key={id} xs={12} sm={7}>
-                            <div style={{display: `flex`, borderBottom: `1px solid #000`, padding: 10}}>
+                    <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+                            <div style={{display: `flex`, borderBottom: `1px solid #000`}}>
                               <div style={{margin: `auto 0`, zIndex: 10}}>
                                 <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
                               </div>
@@ -344,7 +344,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                     zIndex: 1200
                   }} item xs={12} sm={5}>
 
-                    <Paper elevation={3} style={{padding: 5, opacity: `99%`}}>
+                    <Paper elevation={3} style={{padding: 5, opacity: `90%`}}>
                       <Typography variant="body1" style={{fontSize: 18}}>Сумма заказа <b>{total} ₽</b></Typography>
                     </Paper>
                       <Button
@@ -508,5 +508,26 @@ export const queryKorzina = graphql `
                   }
                 }
               }
-        }
-    `
+        }`
+  const useStyleBasket  = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: 10
+  },
+  wrappedContainer: {
+    paddingLeft: 25,
+    [theme.breakpoints.down('500')]: {
+paddingBottom: 170
+}
+},
+buttonCheckout: {
+  position: "sticky",
+    bottom: 30,
+    backgroundColor: "#303032",
+    color: "white",
+    marginTop: 5,
+    marginBottom: 15,
+    width: '100%',
+    opacity: `93%`
+},
+}));
