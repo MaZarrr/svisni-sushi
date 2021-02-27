@@ -200,9 +200,9 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
                     { items.map((item, idx) => {
                       const { id, name, count, total, image, priceIn33cm, price, priceDef,
-                        textRollSale, textPizza, pizzaSale, description, edit = null,
-                        size, wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
-                        descriptionIngrideents = ""} = item
+                        textRollSale, textPizza, pizzaSale, description, edit = null, size,
+                        wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
+                        ingrideents, sostav, descriptionIngrideents = ""} = item
 
                       return (
                     <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
@@ -226,19 +226,19 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                         <>
                                           <IconButton color="primary" aria-label="plus" component="span"
                                                       onClick={()=> onIncrease( {id, price, product: items} )}
-                                                      style={{padding: `5px`}}>
+                                                      style={{padding: `7px`}}>
                                             <AddCircleOutlineIcon />
                                           </IconButton>
                                           <IconButton color="primary" aria-label="remove" component="span"
                                                       onClick={()=> onDecrise({ id, price, product: items})}
-                                                      style={{padding: `5px`}}>
+                                                      style={{padding: `7px`}}>
                                             <RemoveCircleOutlineOutlinedIcon/>
                                           </IconButton>
                                         </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
 
                                       { price > 78 &&
                                       <IconButton color="primary" aria-label="remove" component="span"
-                                                  style={{padding: `5px`}}
+                                                  style={{padding: `7px`}}
                                                   onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
                                                     : () => deleteFilaSale(id)}>
                                         <DeleteOutlineOutlinedIcon/>
@@ -247,7 +247,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                       }
                                       { pizzaSale &&
                                       <IconButton color="primary" aria-label="remove" component="span"
-                                                  style={{padding: `5px`}}
+                                                  style={{padding: `7px`}}
                                                   onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }>
                                         <DeleteOutlineOutlinedIcon/>
                                       </IconButton>
@@ -339,7 +339,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                   <Grid style={{margin: `20px auto 0 auto`,
                     position: `fixed`,
                     padding: `0 0 0 15px`,
-                    bottom: 0,
+                    bottom: 20,
                     width: `100%`,
                     zIndex: 1200
                   }} item xs={12} sm={5}>
@@ -351,6 +351,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         component={Link}
                         to={`${location.pathname}order`}
                         size={'small'}
+                        color={"secondary"}
                         className={classes.buttonCheckout}
                         variant="contained" >
                         Перейти к оформлению
@@ -517,12 +518,12 @@ export const queryKorzina = graphql `
   wrappedContainer: {
     paddingLeft: 25,
     [theme.breakpoints.down('500')]: {
-paddingBottom: 170
-}
-},
-buttonCheckout: {
-  position: "sticky",
-    bottom: 30,
+      paddingBottom: 170
+    }
+  },
+    buttonCheckout: {
+      position: "sticky",
+      bottom: 44,
     backgroundColor: "#303032",
     color: "white",
     marginTop: 5,

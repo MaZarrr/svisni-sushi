@@ -14,7 +14,7 @@ const theme = createMuiTheme({
                 },
                 a: {
                     backgroundColor: `transparent`,
-                    textDecoration: `none`,
+                    textDecoration: `none`
                 },
                 li: {
                     margin: 0,

@@ -299,7 +299,7 @@ export const useStylesCart = makeStyles(theme => ({
         }
     },
     deckript: {
-        fontWeight: 600,
+        fontWeight: 500,
         height: 80,
         overflowY: `auto`,
         padding: 14,
@@ -309,7 +309,7 @@ export const useStylesCart = makeStyles(theme => ({
         [theme.breakpoints.down('425')]: {
             height: `auto`,
             margin: `auto 0`,
-            padding: `6px 6px 6px 14px`
+            padding: `5px 5px 5px 14px`
         },
     },
     buttonD: {
