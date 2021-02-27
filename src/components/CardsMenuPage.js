@@ -63,7 +63,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                 title={name}>
 
                                 {edit &&
-                                <Link to={`${slugCategogy}${slug}`}>
+                                <Link to={`${slugCategogy}/${slug}`}>
                                     <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
                                 </Link>
                                 }

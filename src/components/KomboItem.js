@@ -43,14 +43,24 @@ export const useStyleKombo = makeStyles(theme => ({
     activeItem: {
         cursor: 'pointer',
         background: `white`,
-        maxWidth: `80%`,
+        maxWidth: `90%`,
         padding: 3,
         overflowY: `auto`,
-        borderRadius: 10,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .6)',
+        borderTop: `1px solid #000`,
         transition: `transform 0.3s`,
+        position: "relative",
         margin: `10px auto 0 auto`,
         transform: `scale(1.01)`,
+    },
+    buttonCheckout: {
+        position: "sticky",
+        bottom: 30,
+        backgroundColor: "#303032",
+        color: "white",
+        marginTop: 5,
+        marginBottom: 15,
+        width: '100%',
+        opacity: `93%`
     },
     activeItemPc: {
         cursor: 'pointer',
@@ -71,7 +81,7 @@ export const useStyleKombo = makeStyles(theme => ({
     button: {
         backgroundColor: 'orange',
         padding: 5,
-        marginBottom: 12,
+        marginBottom: 6,
     },
     titleClass: {
         fontWeight: 900,
@@ -79,9 +89,10 @@ export const useStyleKombo = makeStyles(theme => ({
         textTransform: `uppercase`,
         fontSize: 34,
         marginBottom: 6,
+        letterSpacing: `-1.6px`,
         marginLeft: 30,
         [theme.breakpoints.down('475')]: {
-            fontSize: 26,
+            fontSize: 24,
             marginTop: 40
         }
     }
@@ -190,9 +201,9 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
 
             <div style={{width: `100%`}}>
             <div>
-                <Typography style={{marginLeft: 30, fontSize: 18, fontWeight: 500, padding: `0 15px 5px 0`}}
+                <Typography style={{marginLeft: 30, fontSize: 14, fontWeight: 500, padding: `0 15px 5px 0`}}
                             variant={"body1"}>{description}</Typography>
-                <Divider/>
+                {/*<Divider/>*/}
                 <Hidden xsDown>
                     <Container style={{paddingBottom: 50}}>
                         <Grid container style={{height: `20%`}}>
@@ -221,13 +232,13 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                         <Typography style={{fontSize: 22, marginLeft: `auto`, fontWeight: 800}} variant={"body1"}>
                                             <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                                     </div>
-                                    <Button fullWidth={true} style={{marginTop: 20}} variant={"contained"}
-                                            color={"primary"}
-                                            onClick={() => addedCart({id, price,
-                                                product: [addedProductKomboToBacket()]}
-                                            )}>
-                                        В корзину</Button>
                                 </div>
+                                <Button fullWidth={true} style={{marginTop: 20}} variant={"contained"}
+                                        color={"primary"}
+                                        className={classes.buttonCheckout}
+                                        onClick={() => addedCart({id, price,
+                                            product: [addedProductKomboToBacket()]})}>
+                                    Добавить в корзину</Button>
                             </Grid>
 
                             {/*Выбор товаров из предложенных компьютер*/}
@@ -266,47 +277,47 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             {/*Карусель товаров телефон*/}
             <Hidden smUp>
                 {/* active sostav product */}
-                <Grid container style={{marginBottom: 140}}>
+                <Grid container style={{marginBottom: 50}}>
                     { productSostav.map((el, idx) => (
-                        <Grid key={el.id} item xs={6}>
+                        <Grid key={el.id} item xs={12}>
                             <div role="button" tabIndex="0"
                                  aria-roledescription="attachment button"
                                  onKeyPress={onActiveItem}
                                  className={classes.activeItem}
                                  onClick={() => onActiveItem(el.id, el.__typename, idx)}>
-                                <Img style={{width: `80%`, margin: `0 auto`}} fluid={el.image.fluid} alt={el.name}/>
-                                <div>
-                                    <Typography style={{fontSize: 13, fontWeight: 600, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
-                                    <div style={{display: `flex`, justifyContent: `center`}}>
-                                        <Button className={classes.button} variant={"contained"}>
-                                            Поменять</Button>
+                                <Grid container justify={"space-between"} alignItems={"center"}>
+                                    <Img style={{width: `35%`, margin: `0`}} fluid={el.image.fluid} alt={el.name}/>
+                                    <div style={{position: `absolute`, width: 200, right: 0, paddingLeft: `5px`}}>
+                                        <Typography style={{fontSize: 14, fontWeight: 600}} variant={"subtitle1"}>{el.name}</Typography>
+                                        <Typography style={{fontSize: 12, fontWeight: 400}} variant={"subtitle1"}>{el.description}</Typography>
                                     </div>
-                                </div>
+                                </Grid>
+                                <Button size={"small"} fullWidth className={classes.button} variant={"contained"}>
+                                    Поменять</Button>
                             </div>
                         </Grid>
                     ))}
 
-                    <div style={{borderRadius: 10,
+                    <div style={{
                         border: `1px solid lightgrey`,
-                        padding: `6px 6px 6px 50px`,
-                        width: `100%`,
-                        position: `fixed`,
+                        padding: `3px 3px 3px 25px`,
+                        width: `90%`,
+                        margin: `30px auto 0 auto`,
+                        position: `sticky`,
                         backgroundColor: `white`,
-                        bottom: 0}}>
-                        <div style={{marginTop: 5}}>
-                            <div>
-                                <Typography style={{fontSize: 16}} variant={"body1"}>
-                                    Стоимость:</Typography>
-                            </div>
-                            <div>
-                                <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`}} variant={"body1"}> <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
-                            </div>
-                        </div>
-                        <Button style={{marginBottom: 10, width: `85%`}} variant={"contained"}
-                                color={"primary"}
-                                onClick={() => addedCart({id, price, product: [addedProductKomboToBacket()]})}>
-                            В корзину</Button>
+                        opacity: `80%`,
+                        bottom: 60}}>
+                        <Typography style={{fontSize: 14}} variant={"body1"}>
+                            Стоимость:</Typography>
+                        <Typography style={{fontSize: 18, fontWeight: 800, marginLeft: `auto`}} variant={"body1"}> <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                     </div>
+                    <Button className={classes.buttonCheckout}
+                            style={{margin: `0 auto 0 auto`, padding: 5, width: `90%`, }}
+                            size={"small"}
+                            variant={"contained"}
+                            color={"secondary"}
+                            onClick={() => addedCart({id, price, product: [addedProductKomboToBacket()]})}>
+                            Добавить в корзину</Button>
                 </Grid>
 
                 {/*Modal carousel items phone*/}
@@ -337,6 +348,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                                 onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
                                                     name: el.name, image: el.image, __typename: activeType, price: el.price })}
                                                 variant="contained"
+                                                size={"small"}
                                                 style={{backgroundColor: "orange"}}>
                                                 Выбрать
                                             </Button>
