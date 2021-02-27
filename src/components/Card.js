@@ -14,7 +14,6 @@ import SwipeableViews from 'react-swipeable-views';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { isNil } from "ramda";
 import IconButton from "@material-ui/core/IconButton"
-import { addedCart } from "../reducers/shopping-cart"
 
 const useStylesCard = makeStyles(theme => ({
     root: {
