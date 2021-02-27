@@ -19,7 +19,7 @@ const IndexCards = loadable(() => import('../components/Card'), {
                      allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
 
         const classes = useStyleIndexPage();
-
+        console.log(indexProduct)
         return (
             <>
              <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
@@ -65,7 +65,7 @@ const useStyleIndexPage = makeStyles(theme => ({
             fontSize: 24,
             letterSpacing: `-1.6px`,
             margin: `20px 0 0 0`,
-            paddingLeft: 20,
+            paddingLeft: 10,
         }
     },
 }));

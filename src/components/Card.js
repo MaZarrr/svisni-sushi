@@ -14,7 +14,6 @@ import SwipeableViews from 'react-swipeable-views';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { isNil } from "ramda";
 import IconButton from "@material-ui/core/IconButton"
-import { addedCart } from "../reducers/shopping-cart"
 
 const useStylesCard = makeStyles(theme => ({
     root: {
@@ -160,10 +159,11 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                             variant="contained"
                                             className={classesCard.buttonCombo}
                                             component={Link}
+                                            size={"small"}
                                             to={`/kombo/${homeProduct.slug}`}>
                                             Выбрать
                                         </Button>
-                                        <Typography style={{fontSize: 20, marginLeft: `auto`, marginRight: 10, fontWeight: 800}}
+                                        <Typography style={{fontSize: 18, marginLeft: `auto`, marginRight: 10, fontWeight: 800}}
                                                     variant={"body1"}>{homeProduct.price} ₽</Typography>
                                     </CardActions>
                                 </Card>
@@ -191,6 +191,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                                 variant="contained"
                                                 className={classesCard.buttonCombo}
                                                 component={Link}
+                                                size={"small"}
                                                 to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
                                                 Посмотреть
                                             </Button> : <Button
@@ -201,7 +202,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                                 <ShoppingCartIcon/>
                                             </Button>
                                         }
-                                        <Typography style={{fontSize: 20, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
+                                        <Typography style={{fontSize: 18, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
                                                     variant={"body1"}>{homeProduct.price} ₽</Typography>
                                     </CardActions>
                                 </Card>
