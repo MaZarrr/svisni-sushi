@@ -59,13 +59,13 @@ const useStyleIndexPage = makeStyles(theme => ({
         fontSize: 34,
 
         [theme.breakpoints.down('600')]: {
-            paddingTop: 15,
+            paddingTop: 20,
         },
         [theme.breakpoints.down('475')]: {
-            fontSize: 25,
+            fontSize: 24,
             letterSpacing: `-1.6px`,
-            margin: `25px 0 0 0`,
-            paddingLeft: 10,
+            margin: `20px 0 0 0`,
+            paddingLeft: 20,
         }
     },
 }));

@@ -81,7 +81,7 @@ export const useStyleKombo = makeStyles(theme => ({
     button: {
         backgroundColor: 'orange',
         padding: 5,
-        marginBottom: 6,
+        margin: `6px 0 6px 0`,
     },
     titleClass: {
         fontWeight: 900,
@@ -287,7 +287,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                  onClick={() => onActiveItem(el.id, el.__typename, idx)}>
                                 <Grid container justify={"space-between"} alignItems={"center"}>
                                     <Img style={{width: `35%`, margin: `0`}} fluid={el.image.fluid} alt={el.name}/>
-                                    <div style={{position: `absolute`, width: 200, right: 0, paddingLeft: `5px`}}>
+                                    <div style={{position: `absolute`, width: 200, right: 0, padding: `3px 2px 3px 3px`}}>
                                         <Typography style={{fontSize: 14, fontWeight: 600}} variant={"subtitle1"}>{el.name}</Typography>
                                         <Typography style={{fontSize: 12, fontWeight: 400}} variant={"subtitle1"}>{el.description}</Typography>
                                     </div>

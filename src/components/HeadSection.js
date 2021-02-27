@@ -43,7 +43,7 @@ export const useStyleH1 = makeStyles(theme => ({
     },
     [theme.breakpoints.down('475')]: {
       fontSize: 24,
-      margin: `35px 0 0 0`,
+      margin: `30px 0 0 0`,
     }
   },
   wrapped: {

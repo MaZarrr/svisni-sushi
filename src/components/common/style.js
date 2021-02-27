@@ -26,32 +26,6 @@ export const useStyleOrder = makeStyles(theme => ({
     },
 }));
 
-export const useStyleKorzina = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        marginTop: 10
-    },
-    wrappedContainer: {
-        paddingLeft: 25,
-        [theme.breakpoints.down('500')]: {
-            paddingBottom: 170
-        }
-    },
-    buttonCheckout: {
-        position: "sticky",
-        bottom: 30,
-        backgroundColor: "#303032",
-        color: "white",
-        marginTop: 5,
-        marginBottom: 15,
-        width: '100%',
-        opacity: `93%`,
-        // [theme.breakpoints.down('768')]: {
-        // width: `90%`
-        // }
-    },
-}));
-
 export const useStyleLayout = makeStyles({
     toolbar: {
         display: 'flex',
