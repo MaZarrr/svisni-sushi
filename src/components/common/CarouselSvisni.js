@@ -20,7 +20,8 @@ const useStyleCarousel = makeStyles(theme => ({
             marginBottom: 30,
         },
         [theme.breakpoints.down('475')]: {
-            marginBottom: 0
+            marginBottom: 0,
+            marginTop: 36,
         },
     },
     image: {

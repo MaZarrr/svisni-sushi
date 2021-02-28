@@ -7,6 +7,9 @@ import { connect } from "react-redux";
 import { graphql } from "gatsby"
 import loadable from "@loadable/component";
 import Spinner from '../components/spinner/spinner-new'
+import { Hidden } from "@material-ui/core"
+// import Carousel from '../components/common/CarouselSvisni'
+// import IndexCards from '../components/Card'
 
 const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
 const IndexCards = loadable(() => import('../components/Card'), {
@@ -17,14 +20,16 @@ const IndexCards = loadable(() => import('../components/Card'), {
                      allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
 
         const classes = useStyleIndexPage();
-        console.log(indexProduct)
+
         return (
             <>
              <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
                         description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                         Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
                 <section>
-                    <h1 className={classes.title}>Свисни Суши в Уразово</h1>
+                    <Hidden xsDown>
+                        <h1 className={classes.title}>Свисни Суши в Уразово</h1>
+                    </Hidden>
                     <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid item xs={12} className={classes.root}>
                     <IndexCards addedCart={addedCart}
@@ -55,7 +60,6 @@ const useStyleIndexPage = makeStyles(theme => ({
         paddingLeft: 30,
         textTransform: `uppercase`,
         fontSize: 34,
-
         [theme.breakpoints.down('600')]: {
             paddingTop: 20,
         },

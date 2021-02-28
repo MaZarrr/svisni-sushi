@@ -14,7 +14,7 @@ import RoomIcon from "@material-ui/icons/Room";
 import LocalTaxiIcon from "@material-ui/icons/LocalTaxi";
 import Divider from '@material-ui/core/Divider';
 import WorkIcon from '@material-ui/icons/Work';
-import {SwipeableDrawer} from "@material-ui/core";
+import { SwipeableDrawer, Typography } from "@material-ui/core"
 import GatsbyImage from "gatsby-image";
 
 const useStyles = makeStyles(theme => ({
@@ -56,10 +56,11 @@ export default function TemporaryDrawer({ image }) {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}>
 
-            <div style={{background: `red`, width: `100%`, height: 120}}>
+            <div style={{background: `red`, width: `100%`, paddingBottom: 15}}>
                 <div style={{maxWidth: 90, height: 90, margin: `0 auto 0 auto`, paddingTop: 15 }}>
                     <GatsbyImage fixed={image.fixed} alt={"логотип свистни суши"}/>
                 </div>
+                <Typography style={{color: `white`, fontWeight: 600, textAlign: `center`, marginTop: 20}} variant={'subtitle1'}>Уразово</Typography>
             </div>
             <List style={{margin: 0, padding: 0}}>
                 <ListItem button component={Link} to="/sale"  activeStyle={{ color: "#000",

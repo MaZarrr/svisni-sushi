@@ -33,7 +33,6 @@ const MetterContent = styled.div `
     margin: 20px 0 20px 0;
   }
 `
-
 const ButtonGroupSale = styled.div `
   padding-left: 20px;
   margin: 0 0 30px 0;  
@@ -41,7 +40,6 @@ const ButtonGroupSale = styled.div `
     padding-left: 30px;;
   }
 `
-
 const ImageSale = styled(Img) `
   margin-top: 20px;
   border-radius: 2px;
@@ -53,8 +51,8 @@ const ImageSale = styled(Img) `
   }
 `
 
-const SaleItem = ({image, md, name, path }) => {
-
+const SaleItem = ({ image, md, name, path }) => {
+    console.log(md)
     return (
       <>
       <SEO title={`Акция ${name}`}

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {graphql} from 'gatsby';
+import { graphql } from 'gatsby';
 import Spinner from  "../components/spinner/spinner-new"
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import loadable from "@loadable/component";
@@ -7,9 +7,8 @@ import loadable from "@loadable/component";
 const SaleItem = loadable(() => import('../components/SaleItem'), {
     fallback: <Spinner/>});
 
-const SaleTeamplate = ({data: {contentfulProductSale: {image, name,
-    detailedDescription, slug}}, path}) => {
-
+const SaleTeamplate = ({ data: { contentfulProductSale: {
+    image, name, detailedDescription, slug }} }) => {
     const [load, setLoad] = useState(true)
     const [mdr, setMdr] = useState(null)
 
@@ -19,7 +18,7 @@ const SaleTeamplate = ({data: {contentfulProductSale: {image, name,
             setMdr(mdRemark)
             setLoad(false)
         }
-        fetchData()
+        fetchData();
     }, [image, detailedDescription])
 
     return (
@@ -30,7 +29,8 @@ const SaleTeamplate = ({data: {contentfulProductSale: {image, name,
                         image={image.fluid}
                         md={mdr}
                         path={slug}
-                    /> : <Spinner/> }
+                    />
+                    : <Spinner/> }
                 </ErrorBoundary>
     )
 }
