@@ -13,15 +13,10 @@ import { Grid } from "@material-ui/core";
 // my components
 import DrawerMenu from './DrawerMenu'
 import { makeStyles } from "@material-ui/core/styles"
-// import AppBars from './AppBars'
-// import Korzina from './korzinaComponent';
-// const { useStyleHeader } = loadable(() =>  import("./common/style"));
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Korzina = loadable(() => import('./korzinaComponent'));
 const AppBars = loadable(() => import('./AppBars'));
-
-// <CssBaseline /> было на 54 строке
 
 const links = [
   {

@@ -7,16 +7,50 @@ import ReplyIcon from '@material-ui/icons/Reply';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import HeadSection from "./HeadSection"
 import styled from 'styled-components';
+import Grid from "@material-ui/core/Grid"
 
 const MetterContent = styled.div `
-  max-width: 90%; 
-  padding-left: 15px;
+  max-width: 94%;
+  margin: 20px 0 20px 10px;
   .info-block {
-    border-left: 2px solid #c75050;
+    blockquote {
+      margin: 0;
     }
-
+    //border-left: 2px solid #c75050;
+    max-width: 90%;
+    p {
+      font-size: 16px;
+      @media (max-width: 475px) {
+        font-size: 14px;
+        }
+      }
+    }
+  p {
+    padding-left: 20px;
+    }
   }
+  @media (max-width: 475px) {
+    margin: 20px 0 20px 0;
+  }
+`
 
+const ButtonGroupSale = styled.div `
+  padding-left: 20px;
+  margin: 0 0 30px 0;  
+  @media (min-width: 475px) {
+    padding-left: 30px;;
+  }
+`
+
+const ImageSale = styled(Img) `
+  margin-top: 20px;
+  border-radius: 2px;
+  max-width: 48vmax;
+  margin-left: 20px;
+  margin-right: 10px;
+  @media (min-width: 475px) {
+    margin-left: 30px;
+  }
 `
 
 const SaleItem = ({image, md, name, path }) => {
@@ -28,22 +62,28 @@ const SaleItem = ({image, md, name, path }) => {
              noindex={true}
              pathname="/sale"/>
           <HeadSection titleTXT={name} />
-                <Img style={{borderRadius: 12, maxWidth: `45vmax`, marginLeft: 15}} fluid={image} />
-                <MetterContent dangerouslySetInnerHTML={{__html: md.childMarkdownRemark.html}} />
-                <div style={{paddingLeft: 15}}>
-            <Button variant="contained"
-                component={Link}
-                to="/sale"
-                endIcon={<ReplyIcon color={"action"}/>}
-                style={{margin: `10px 0`}}>Все акции</Button>
-            { path !== "/pizza-happy/" &&
-            <Button variant="contained"
-                    component={Link}
-                    to="/dostavka-i-oplata"
-                    endIcon={<LocalTaxiIcon color={"action"}/>}
-                    style={{margin: 0}}>Доставка</Button> }
-      </div>
-  </>
+          <Grid container>
+          <Grid item xs={12} md={6}>
+            <ImageSale fluid={image} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <MetterContent dangerouslySetInnerHTML={{__html: md.childMarkdownRemark.html}} />
+              <ButtonGroupSale>
+              <Button variant="contained"
+                      component={Link}
+                      to="/sale"
+                      endIcon={<ReplyIcon color={"action"}/>}
+                      style={{margin: `10px 0`}}>Все акции</Button>
+              { path !== "/pizza-happy/" &&
+              <Button variant="contained"
+                      component={Link}
+                      to="/dostavka-i-oplata"
+                      endIcon={<LocalTaxiIcon color={"action"}/>}
+                      style={{marginLeft: 10}}>Доставка</Button> }
+              </ButtonGroupSale>
+          </Grid>
+      </Grid>
+      </>
 )};
 
 export default SaleItem
