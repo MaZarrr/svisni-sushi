@@ -36,7 +36,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                             <CardHeader
                                 avatar={slugCategogy !== "/wok" ? <Img style={{width: 40}} fluid={image.fluid} alt={name} /> : ''}
                                 title={variant ? variant : titleCategory}
-                                subheader={<span itemProp="name"><Typography style={{fontSize: 18, fontWeight: 600}} variant={"subtitle2"}>{name}</Typography></span>}/>
+                                subheader={<span itemProp="name"><Typography style={{ fontWeight: 600 }} variant={"subtitle1"}>{name}</Typography></span>}/>
                             { slugCategogy === "/sety" &&
                             <CardMedia
                                 className={classes.media}
@@ -94,27 +94,25 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                             </CardMedia>
                             }
 
-                            <CardContent style={{marginBottom: 0, paddingBottom: 0, paddingTop: 0}}>
+                            <CardContent style={{marginBottom: 0, padding: 0}}>
                                 {sale &&
-                                <div style={{padding: 5, border: `1px solid lightgrey`, borderRadius: 10, marginTop: 8}}>
+                                <div style={{padding: 5, border: `1px solid lightgrey`, borderRadius: 5, margin: `8px 14px 8px 14px`}}>
                                 {/* Выгода */}
                                     { lanch && (slugCategogy === "/sety" || slugCategogy === "/branded-rolls") && (
                                         <Typography variant={"subtitle2"} style={{
-                                            paddingLeft: 14,
-                                            fontSize: 19,
+                                            fontSize: 16,
                                             fontWeight: `bold`}}>
                                           <span role="img" aria-label="accessible-emoji">  ⏱️ </span>{timePrice.hours}:{timePrice.minutes}:{timePrice.seconds}</Typography>
                                     )}
 
                                     { sale && <Typography variant={"subtitle1"} style={{
-                                            paddingLeft: 14,
-                                            fontSize: 19,
+                                            fontSize: 16,
                                             color: `tomato`,
                                             fontWeight: `bold`}}>
                                         {slugCategogy === "/sety" && <>
 
                                         {lanch && <> Выгода {!isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</>}
-                                        {!lanch && `Выгода ${nonprice - price}₽`}
+                                        {!lanch && `Выгода ${nonprice - price} ₽`}
                                         {lanch &&
                                             <span style={{
                                             textDecoration: `line-through`,
@@ -122,15 +120,20 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                             color: `#000`,
                                             paddingLeft: 20,
                                             textDecorationColor: `red`
-                                        }}>{isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</span>
+                                        }}>{isSale ? nonprice - defaultPrice : nonprice - lanchprice} ₽</span>
                                         }
                                         </>}
                                 </Typography>}
                                 </div>}
 
                                 <Typography itemProp="description"
-                                            className={slugCategogy === "/sety" || slugCategogy === "/kombo" || slugCategogy === "/hot-rolls" ||
-                                            slugCategogy === "/branded-rolls" || slugCategogy === "/salaty" || slugCategogy === "/wok" || slugCategogy === "/zakyski" ? classes.deckript : classes.deckriptSmall}
+                                            className={slugCategogy === "/sety" ||
+                                            slugCategogy === "/kombo" ||
+                                            slugCategogy === "/hot-rolls" ||
+                                            slugCategogy === "/branded-rolls" ||
+                                            slugCategogy === "/salaty" ||
+                                            slugCategogy === "/wok" ||
+                                            slugCategogy === "/zakyski" ? classes.deckript : classes.deckriptSmall}
                                             variant="body2">
 
                                     { slugCategogy === "/sety" && !komboSale &&
@@ -138,7 +141,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                     }
 
                                     { komboSale && slugCategogy === "/sety" &&
-                                    <Link to={`/${slug}`}> {`${take(50, description)}...` }</Link>
+                                        <Link to={`/${slug}`}> {`${take(50, description)}...` }</Link>
                                     }
 
                                     { slugCategogy === "/kombo" && edit &&
@@ -242,15 +245,15 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                             </Typography>
 
                                             {lanch && isSale &&
-                                            <div style={{position: `absolute`, bottom: 13, right: 2}}>
+                                            <div style={{position: `absolute`, bottom: 14, right: 15}}>
                                                 <Typography style={{textDecoration: `line-through`, color: `#000`,
-                                                textDecorationColor: `red`, fontSize: 18, fontWeight: 600}} variant={"subtitle1"}>{defaultPrice}</Typography>
+                                                textDecorationColor: `red`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{defaultPrice}</Typography>
                                             </div>
                                             }
                                             {lanch && !isSale &&
-                                            <div style={{position: `absolute`, bottom: 13, right: 2}}>
+                                            <div style={{position: `absolute`, bottom: 14, right: 15}}>
                                                 <Typography style={{textDecoration: `line-through`, color: `red`,
-                                                    textDecorationColor: `#000`, fontSize: 18, fontWeight: 600}} variant={"subtitle1"}>{lanchprice}</Typography>
+                                                    textDecorationColor: `#000`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{lanchprice}</Typography>
                                             </div>
                                             }
                                         </Grid>
@@ -288,21 +291,11 @@ export const useStylesCart = makeStyles(theme => ({
             height: `auto`,
         },
     },
-    deckriptPizza: {
-        fontWeight: 500,
-        height: 80,
-        overflowY: `auto`,
-        padding: `10px 0 10px 20px`,
-        [theme.breakpoints.down('500')]: {
-            padding: `10px 0 10px 30px`,
-            height: `auto`,
-        }
-    },
     deckript: {
-        fontWeight: 500,
         height: 80,
-        overflowY: `auto`,
+        // overflowY: `auto`,
         padding: 14,
+        // borderBottom: `1px solid lightgrey`,
         [theme.breakpoints.down('500')]: {
             padding: 10,
         },

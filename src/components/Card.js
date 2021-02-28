@@ -15,75 +15,6 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { isNil } from "ramda";
 import IconButton from "@material-ui/core/IconButton"
 
-const useStylesCard = makeStyles(theme => ({
-    root: {
-        margin: `0 auto`,
-        display: `flex`,
-        flexDirection: `column`,
-        alignItems: `center`,
-        borderRadius: `15px`
-    },
-    cardComboPc: {
-        borderRadius: `10px`,
-        maxWidth: `280px`,
-        margin: `10px auto 0 auto`,
-        [theme.breakpoints.up('500')]: {
-            maxWidth: `280px`,
-        },
-    },
-    cardCombo: {
-        maxWidth: 280,
-        borderRadius: `10px`,
-        [theme.breakpoints.down('500')]: {
-            maxHeight: `98%`
-        },
-    },
-    titleIndex: {
-        fontSize: '32px',
-        fontWeight: `bold`,
-        width: `100%`,
-        padding: `20px 10px`,
-        textAlign: `center`,
-        [theme.breakpoints.down('600')]: {
-            fontSize: '22px',
-            padding: `10px 10px 0 10px`
-        },
-    },
-    buttonCombo: {
-        margin: theme.spacing(1),
-        backgroundColor: `orange`,
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-    },
-    cartTitle: {
-        textAlign: `center`,
-        position: `absolute`,
-        bottom: `0`,
-        color: `#fff`,
-        left: 0,
-        width: `100%`,
-        zIndex: 1000,
-        [theme.breakpoints.down('600')]: {
-            height: `70px`
-        }
-    },
-    menuTitle: {
-        textAlign: `center`,
-        padding: `25px 0 0 0`,
-        fontWeight: 900,
-        fontSize: `4vmin`,
-        // [theme.breakpoints.down('600')]: {
-        //     fontSize: `18px`,
-        // }
-    },
-    button: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        color: 'white',
-    }
-}));
-
 const styles = {
     root: {
         padding: '0 50px 0 50px',
@@ -113,7 +44,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
             {/*Меню выбор*/}
             <Grid container style={{marginBottom: 40, marginTop: 10}}>
                 <Typography className={classesCard.titleIndex}
-                            variant={"h2"}>Заказывайте роллы, суши и пиццу</Typography>
+                            variant={"h2"}>Заказывайте роллы суши и пиццу</Typography>
                 { menu.map(({node: homeMenu}) => (
                     <Grid item xs={6} sm={4}
                           style={{margin: `0 auto`,
@@ -171,7 +102,8 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                         </SwipeableViews>
 
                         {/* Новинки */}
-                        <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(product[0].node.title) ? "" : product[0].node.title}</Typography>
+                        <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(product[0].node.title) ? "" :
+                          product[0].node.title}</Typography>
                         <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
                             { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
 
@@ -284,3 +216,73 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
 
 });
 export default CardIndex
+
+const useStylesCard = makeStyles(theme => ({
+    root: {
+        margin: `0 auto`,
+        display: `flex`,
+        flexDirection: `column`,
+        alignItems: `center`,
+        borderRadius: `15px`
+    },
+    cardComboPc: {
+        borderRadius: `10px`,
+        maxWidth: `280px`,
+        margin: `10px auto 0 auto`,
+        [theme.breakpoints.up('500')]: {
+            maxWidth: `280px`,
+        },
+    },
+    cardCombo: {
+        maxWidth: 280,
+        borderRadius: `10px`,
+        [theme.breakpoints.down('500')]: {
+            maxHeight: `98%`
+        },
+    },
+    titleIndex: {
+        fontSize: '32px',
+        fontWeight: `bold`,
+        width: `100%`,
+        padding: `20px 10px`,
+        textAlign: `center`,
+        [theme.breakpoints.down('600')]: {
+            fontSize: '22px',
+            padding: `20px 15px 10px 20px`
+        },
+    },
+    buttonCombo: {
+        margin: theme.spacing(1),
+        backgroundColor: `orange`,
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+    },
+    cartTitle: {
+        textAlign: `center`,
+        position: `absolute`,
+        bottom: `0`,
+        color: `#fff`,
+        left: 0,
+        width: `100%`,
+        zIndex: 1000,
+        [theme.breakpoints.down('600')]: {
+            height: `70px`
+        }
+    },
+    menuTitle: {
+        textAlign: `center`,
+        padding: `25px 0 0 0`,
+        fontWeight: 900,
+        fontSize: `4vmin`,
+        // [theme.breakpoints.down('600')]: {
+        //     fontSize: `18px`,
+        // }
+    },
+    button: {
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        color: 'white',
+    }
+}));
+

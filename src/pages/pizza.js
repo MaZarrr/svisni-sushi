@@ -78,7 +78,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                     <Card className={classes.card}>
                                         <CardHeader avatar={<Img style={{width: 40}} fluid={image.fluid} alt={name} />}
                                                     title={"Пицца"}
-                                                    subheader={<span itemProp="name"><Typography style={{fontSize: 18, fontWeight: 600}} variant={"subtitle2"}>{name}</Typography></span>}/>
+                                                    subheader={<span itemProp="name"><Typography style={{fontWeight: 600}} variant={"subtitle1"}>{name}</Typography></span>}/>
                                         <CardMedia
                                             className={classes.media}
                                             title={name}>
@@ -242,7 +242,6 @@ export const useStylesCart = makeStyles(theme => ({
     },
   },
   deckriptPizza: {
-    fontWeight: 500,
     height: 80,
     overflowY: `auto`,
     padding: `10px 0 10px 20px`,
