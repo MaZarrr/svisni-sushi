@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function TemporaryDrawer({image}) {
+export default function TemporaryDrawer({ image }) {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
 

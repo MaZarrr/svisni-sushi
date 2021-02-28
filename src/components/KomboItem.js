@@ -17,7 +17,6 @@ import {connect} from "react-redux";
 import CloseIcon from '@material-ui/icons/Close';
 import SwipeableViews from 'react-swipeable-views';
 import Modal from "@material-ui/core/Modal";
-import Divider from "@material-ui/core/Divider";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -306,10 +305,11 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                         position: `sticky`,
                         backgroundColor: `white`,
                         opacity: `80%`,
-                        bottom: 60}}>
+                        bottom: 60 }}>
                         <Typography style={{fontSize: 14}} variant={"body1"}>
                             Стоимость:</Typography>
-                        <Typography style={{fontSize: 18, fontWeight: 800, marginLeft: `auto`}} variant={"body1"}> <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
+                        <Typography style={{fontSize: 18, fontWeight: 800, marginLeft: `auto`}} variant={"body1"}>
+                            <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                     </div>
                     <Button className={classes.buttonCheckout}
                             style={{margin: `0 auto 0 auto`, padding: 5, width: `90%`, }}
