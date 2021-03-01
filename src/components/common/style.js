@@ -26,15 +26,6 @@ export const useStyleOrder = makeStyles(theme => ({
     },
 }));
 
-export const useStyleLayout = makeStyles({
-    toolbar: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 0,
-    }
-});
-
 export const useStyleSearchInput = makeStyles(theme => ({
     root: {
         padding: '2px 4px',

@@ -15,13 +15,14 @@ const useStyleCarousel = makeStyles(theme => ({
     root: {
         maxWidth: `100vw`,
         flexGrow: '1',
+        marginTop: 75,
         position: 'relative',
         [theme.breakpoints.down('768')]: {
             marginBottom: 30,
         },
         [theme.breakpoints.down('475')]: {
             marginBottom: 0,
-            marginTop: 36,
+            marginTop: 37,
         },
     },
     image: {
