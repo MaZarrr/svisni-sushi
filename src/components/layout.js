@@ -1,40 +1,34 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Header from "./header"
-import { useStyleLayout } from "./common/style";
 import loadable from '@loadable/component'
 import { Hidden } from "@material-ui/core";
+import { YMaps } from 'react-yandex-maps';
 
-// import Spinner from '../components/spinner/spinner-new'
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-// import useIsClient from "../utils/useIsClient"
-
-// const Header = loadable(() => import('./header'));
+import { makeStyles } from "@material-ui/core/styles"
 const Footer = loadable(() => import('./footer'));
 
 const Layout = ({ children }) => {
 
-  // const { isClient, key } = useIsClient();
   const classes = useStyleLayout();
-
-  // if (!isClient) return <Spinner/>
-      // <div key={key}>
-  // </div>
 
   return (
       <React.Fragment>        
       <Header/>
       <ErrorBoundary>
-        <div style={{
-        maxWidth: `1680px`,
+      <div style={{
+        maxWidth: `1920px`,
         backgroundColor: "#fafafa",
         margin: `0 auto`,
         minHeight: `100vh`
-    }}>
-      <div style={{height: 75, width: 100}}></div>
+      }}>
+      <div style={{height: 75, width: 100}} />
       <main>
         <div className={classes.toolbar} />
-        {children}
+        <YMaps>
+          {children}
+        </YMaps>
       </main>
       </div>
     </ErrorBoundary>
@@ -54,3 +48,24 @@ Layout.propTypes = {
 };
 
 export default Layout
+
+const useStyleLayout = makeStyles({
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 0,
+  }
+});
+
+
+
+// import { useStyleLayout } from "./common/style";
+// import useIsClient from "../utils/useIsClient"
+// const { isClient, key } = useIsClient();
+// import Spinner from '../components/spinner/spinner-new'
+
+// const Header = loadable(() => import('./header'));
+// if (!isClient) return <Spinner/>
+// <div key={key}>
+// </div>

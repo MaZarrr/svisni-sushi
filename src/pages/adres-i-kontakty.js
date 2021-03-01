@@ -7,7 +7,47 @@ import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
 import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import IconButton from '@material-ui/core/IconButton';
+import { Map, Placemark, RouteButton} from 'react-yandex-maps';
+
 import HeadSection from "../components/HeadSection"
+import styled from "styled-components"
+
+const Container = styled.div`
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+    @media (max-width: 768px) {
+      display: block;
+      margin: 20px 0;
+    }
+    .item-info {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+`
+
+const FooterBlock = styled.div`
+        margin-top: 50px;
+        margin-bottom: 50px;
+        text-align: center;
+`
+
+const MapContainer = styled.div`
+        box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+        width: 90%;
+        margin: 20px auto 50px auto;
+        .mapStyle {
+            width: 100%;
+            height: 700px;
+            padding: 30px;
+            margin: auto;
+            @media (max-width: 768px) {
+              height: 400px;
+              padding: 10px;
+        }
+    }
+`
 
 const Adresikontakty = () => {
 
@@ -18,8 +58,9 @@ return (
 
     <HeadSection titleTXT={"Адрес и контакты"} />
     <Grid container itemScope itemType="https://schema.org/Organization">
-        <Grid item xs={12} sm={6} style={{paddingLeft: 20}}>
-            <div style={{display: `flex`, alignItems: `center`, marginTop: 10}}>
+        <Grid item xs={12}>
+            <Container>
+                <div className="item-info">
                 <div>
                     <IconButton aria-label="add an alarm">
                         <AccessTimeOutlinedIcon color={"secondary"} fontSize={"large"}/>
@@ -30,8 +71,7 @@ return (
                     <Typography variant={"subtitle1"}>С 10:00 до 22:00</Typography>
                 </div>
             </div>
-
-            <div style={{display: `flex`, alignItems: `center`, marginTop: 10}}>
+                <div className="item-info">
                 <div>
                     <IconButton aria-label="phone">
                         <PhoneIphoneOutlinedIcon color={"secondary"} fontSize={"large"}/>
@@ -44,8 +84,7 @@ return (
                     </Typography>
                 </div>
             </div>
-
-            <div style={{display: `flex`, alignItems: `center`, marginTop: 10}}>
+                <div className="item-info">
                 <div>
                     <IconButton>
                         <LocationOnOutlinedIcon color={"secondary"} fontSize={"large"}/>
@@ -53,20 +92,38 @@ return (
                 </div>
                 <div>
                     <Typography className="mt-2" variant="h5">Адрес</Typography>
-                    <Typography className="w-75" variant={"subtitle1"}><span itemProp="streetAddress">Улица 3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
+                    <Typography className="w-75" variant={"subtitle1"}><span itemProp="streetAddress">ул.3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
                 </div>
             </div>
+            </Container>
+            <MapContainer>
+            <Map
+              defaultState={{
+                  center: [50.077763, 38.031733],
+                  zoom: 16.4,
+                  controls: ['zoomControl', 'fullscreenControl'],
+                  behaviors: ["disable('drag')"]}}
+              modules={['control.ZoomControl', 'control.FullscreenControl']}
+              className="mapStyle"
+              // width={'100%'}
+              // height={'400px'}
+              properties={{
+                  balloonContentBody:
+                    'Суши бар Свисни Суши в Уразово',
+              }}>
+                <RouteButton options={{ float: 'right' }} />
+                <Placemark
+                  defaultGeometry={[50.077763, 38.031733]}
+                />
+            </Map>
+            </MapContainer>
 
-            <div style={{ marginTop: 30}}>
-                <Typography variant="caption">ИП Беженова Татьяна Викторовна</Typography>
-                <p variant="caption"> ОРГНИП 318312300012678</p>
-            </div>
+            <FooterBlock>
+                <Typography variant="body1">ИП Беженова Татьяна Викторовна</Typography>
+                <Typography variant="body1"> ОРГНИП 318312300012678</Typography>
+            </FooterBlock>
         </Grid>
 
-        <Grid item xs={12} sm={6} style={{marginBottom: `50px`}}>
-                <iframe title="locationSvisniSushi" style={{ width: `99%`, height: `670px`}} src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=70396123059"
-                        frameBorder="0"></iframe>
-        </Grid>
     </Grid>
     </>
     )
