@@ -157,15 +157,3 @@ export const query = graphql `
   `
 
 
-// {
-//   resolve: `gatsby-source-contentful`,
-//     options: {
-//   spaceId: "o3pzpw68fwfi",
-//     accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
-//     pageLimit: 50,
-//     assetDownloadWorkers: 25
-// },
-// },
-
-
-
