@@ -56,7 +56,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                 <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
                             </div>
                             <div style={{margin: `0 auto`}}>
-                                <Img fluid={homeMenu.image.fluid} style={{width: `43vmin`, borderRadius: 10,
+                                <Img fluid={homeMenu.image.fluid} style={{width: `43vmin`, borderRadius: 5,
                                             height: `200px`}} alt={homeMenu.category}/>
                             </div>
                             </Link>
@@ -231,16 +231,15 @@ const useStylesCard = makeStyles(theme => ({
         borderRadius: `5px`
     },
     cardComboPc: {
-        borderRadius: `10px`,
+        borderRadius: `3px`,
         maxWidth: `280px`,
-        // margin: `10px auto 0 auto`,
         [theme.breakpoints.up('500')]: {
             maxWidth: `280px`,
         },
     },
     cardCombo: {
         maxWidth: 280,
-        borderRadius: `10px`,
+        borderRadius: `3px`,
         [theme.breakpoints.down('500')]: {
             maxHeight: `98%`
         },
@@ -249,12 +248,8 @@ const useStylesCard = makeStyles(theme => ({
         fontSize: '28px',
         fontWeight: `bold`,
         width: `100%`,
-        // letterSpacing: `-1.6px`,
-        // padding: `20px 0`,
-        // textAlign: `center`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '22px',
-            // padding: `20px 0`
+            fontSize: '22px'
         },
     },
     buttonCombo: {
@@ -281,10 +276,7 @@ const useStylesCard = makeStyles(theme => ({
         textAlign: `center`,
         padding: `25px 0 0 0`,
         fontWeight: 900,
-        fontSize: `4vmin`,
-        // [theme.breakpoints.down('600')]: {
-        //     fontSize: `18px`,
-        // }
+        fontSize: `4vmin`
     },
     button: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',

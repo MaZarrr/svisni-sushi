@@ -57,15 +57,3 @@ const useStyleLayout = makeStyles({
     height: 0,
   }
 });
-
-
-
-// import { useStyleLayout } from "./common/style";
-// import useIsClient from "../utils/useIsClient"
-// const { isClient, key } = useIsClient();
-// import Spinner from '../components/spinner/spinner-new'
-
-// const Header = loadable(() => import('./header'));
-// if (!isClient) return <Spinner/>
-// <div key={key}>
-// </div>

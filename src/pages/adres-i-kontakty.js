@@ -105,8 +105,6 @@ return (
                   behaviors: ["disable('drag')"]}}
               modules={['control.ZoomControl', 'control.FullscreenControl']}
               className="mapStyle"
-              // width={'100%'}
-              // height={'400px'}
               properties={{
                   balloonContentBody:
                     'Суши бар Свисни Суши в Уразово',

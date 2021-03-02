@@ -202,7 +202,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                       const { id, name, count, total, image, priceIn33cm, price, priceDef,
                         textRollSale, textPizza, pizzaSale, description, edit = null, size,
                         wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
-                        ingrideents, sostav, descriptionIngrideents = ""} = item
+                        descriptionIngrideents = ""} = item
 
                       return (
                     <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
@@ -510,7 +510,8 @@ export const queryKorzina = graphql `
                 }
               }
         }`
-  const useStyleBasket  = makeStyles(theme => ({
+
+const useStyleBasket  = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     marginTop: 10
