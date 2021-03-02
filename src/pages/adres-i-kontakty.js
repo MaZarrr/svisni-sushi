@@ -7,7 +7,7 @@ import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
 import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import IconButton from '@material-ui/core/IconButton';
-import { Map, Placemark, RouteButton} from 'react-yandex-maps';
+import { Map, Placemark } from 'react-yandex-maps';
 
 import HeadSection from "../components/HeadSection"
 import styled from "styled-components"
@@ -102,18 +102,20 @@ return (
                   center: [50.077763, 38.031733],
                   zoom: 16.4,
                   controls: ['zoomControl', 'fullscreenControl'],
-                  behaviors: ["disable('drag')"]}}
+                  behaviors: ['drag', 'dblClickZoom', 'multiTouch'] }}
               modules={['control.ZoomControl', 'control.FullscreenControl']}
               className="mapStyle"
-              // width={'100%'}
-              // height={'400px'}
               properties={{
                   balloonContentBody:
                     'Суши бар Свисни Суши в Уразово',
               }}>
-                <RouteButton options={{ float: 'right' }} />
                 <Placemark
                   defaultGeometry={[50.077763, 38.031733]}
+                  modules={["geoObject.addon.balloon"]}
+                  properties={{
+                      balloonContentHeader: "Свисни Суши",
+                      balloonContent: 'ул.3-го Интернационала д.48а, Уразово'
+                  }}
                 />
             </Map>
             </MapContainer>

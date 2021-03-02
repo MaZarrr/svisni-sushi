@@ -13,7 +13,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import axios from 'redaxios';
-import { useStyleOrder } from '../../components/common/style'
 import {
   setAdresUser, setCityUser,
   setDateDeliveryUser, setDoorUser,
@@ -29,6 +28,7 @@ import HeadSection from "../../components/HeadSection"
 import PayDialog from "../../components/PayDialog"
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from "@material-ui/core/styles";
 
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
@@ -283,7 +283,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                     <Grid container spacing={2}>
                       {/*Имя и Телефон*/}
                       <Grid item xs={12} style={{paddingBottom: 0, marginTop: 14}}>
-                        <Typography style={{ fontSize: 22 }} variant="h5">
+                        <Typography variant="h6">
                           Укажите данные для связи </Typography>
                       </Grid>
                       <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
@@ -314,7 +314,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                    value={phoneUser}/>
                       </Grid>
                       <Grid item xs={12}>
-                        <Typography variant="h5" style={{fontSize: 22}}>
+                        <Typography variant="h6">
                           Выберите форму оплаты
                         </Typography>
                       </Grid>
@@ -332,7 +332,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                       </Grid>
                       <Grid item xs={12}>
                         <Grid item xs={12}>
-                          <Typography variant="h5" style={{fontSize: 22}}>
+                          <Typography variant="h6">
                             Как вы хотите получить заказ?
                           </Typography>
                         </Grid>
@@ -596,9 +596,11 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                         }
                         {/*Если онлайн оплата не показывать сдачу*/}
                         {variantPay === 'cash' &&
-                        <Grid item xs={12} style={{marginBottom: 20}}>
+                        <Grid item xs={12} style={{position: `relative`}}>
+                          <div className={classes.cashCdacha}>
                           <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
                           <Select
+                            component={Button}
                             labelId="demo-controlled-open-select-label"
                             id="demo-controlled-open-select"
                             open={open}
@@ -617,38 +619,37 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                             <MenuItem value={3000}>С 3000 руб</MenuItem>
                             <MenuItem value={5000}>С 5000 руб</MenuItem>
                           </Select>
+                          </div>
                         </Grid>
                         }
 
 
                         { isEmpty(stateDeliveryPrice) || delivery === "Самовывоз" ?
                           <div>
-                            <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
+                            <Typography variant={"h6"} style={{fontSize: 18}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
                           </div> : ''
                         }
                         {/*/!*если онлай оплата показывать другую кнопку*!/*/}
                         {/*   {variantPay === 'cash' &&*/}
                         <span>
-                                            <Button
-                                              type="submit"
-                                              color={"primary"}
-                                              size={'large'}
-                                              style={{fontWeigh: `bold`, fontSize: 20}}
-                                              disabled={buttonDisabled()}
-                                              variant="contained">
-                                                { variantPay === "cash" ? "Сделать заказ" : "Оплатить заказ"}
-                                            </Button>
-                                            </span>
+                            <Button
+                              type="submit"
+                              color={"secondary"}
+                              style={{fontWeigh: `bold`, fontSize: 18}}
+                              disabled={buttonDisabled()}
+                              variant="contained">
+                                { variantPay === "cash" ? "Сделать заказ" : "Оплатить заказ"}
+                            </Button>
+                          </span>
 
-                        {buttonDisabled() === true &&
+                        { buttonDisabled() === true &&
                         <>
                           <hr></hr>
                           <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
                           <ul>
-                            { !validateUserName() && <li>Введите ваше имя - из букв русского алфавита</li>}
-                            { !validatePhone() && <li>Введите ваш телефон - начинается 7 или 8</li>}
-                            { !validateDelivery() && delivery === "Доставка курьером"
-                            && <li>Выберите населенный пункт</li>}
+                            { !validateUserName() && <li>Введите имя из букв</li>}
+                            { !validatePhone() && <li>Введите корректный телефон</li>}
+                            { !validateDelivery() && delivery === "Доставка курьером" && <li>Выберите населенный пункт</li>}
                           </ul>
                         </>
                         }
@@ -697,6 +698,40 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
+
+export const useStyleOrder = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    width: `100%`
+  },
+  paperEndOrder: {
+    padding: `10px 50px`,
+    [theme.breakpoints.down('500')]: {
+      padding: `10px 10px`
+    }
+  },
+  gridContainer: {
+    flexGrow: 1
+  },
+  formControl: {
+    width: `100%`
+  },
+  cashCdacha: {
+    position: `absolute`,
+    left: 200,
+    top: 20,
+    [theme.breakpoints.down('500')]: {
+      right: 30
+    }
+  },
+  paper: {
+    textAlign: 'center',
+    paddingTop: 80,
+    [theme.breakpoints.down('475')]: {
+      paddingTop: 40
+    },
+  },
+}));
 
 
 

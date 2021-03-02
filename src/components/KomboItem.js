@@ -33,70 +33,6 @@ const styles = {
     }
 };
 
-export const useStyleKombo = makeStyles(theme => ({
-    defItem: {
-        cursor: 'pointer', marginTop: 10, background: `white`,
-        maxWidth: `75%`, border: `1px solid lightgrey`, padding: 10, borderRadius: 10,
-
-    },
-    activeItem: {
-        cursor: 'pointer',
-        background: `white`,
-        maxWidth: `90%`,
-        padding: 3,
-        overflowY: `auto`,
-        borderTop: `1px solid #000`,
-        transition: `transform 0.3s`,
-        position: "relative",
-        margin: `10px auto 0 auto`,
-        transform: `scale(1.01)`,
-    },
-    buttonCheckout: {
-        position: "sticky",
-        bottom: 30,
-        backgroundColor: "#303032",
-        color: "white",
-        marginTop: 5,
-        marginBottom: 15,
-        width: '100%',
-        opacity: `93%`
-    },
-    activeItemPc: {
-        cursor: 'pointer',
-        marginTop: 5,
-        background: `white`,
-        maxWidth: `80%`,
-        padding: 5,
-        borderRadius: 10,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .6)',
-        transition: `transform 0.2s`,
-        margin: `0 auto`,
-        transform: `scale(1.03)`,
-    },
-    backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
-        color: '#fff',
-    },
-    button: {
-        backgroundColor: 'orange',
-        padding: 5,
-        margin: `6px 0 6px 0`,
-    },
-    titleClass: {
-        fontWeight: 900,
-        marginTop: 80,
-        textTransform: `uppercase`,
-        fontSize: 34,
-        marginBottom: 6,
-        letterSpacing: `-1.6px`,
-        marginLeft: 30,
-        [theme.breakpoints.down('475')]: {
-            fontSize: 24,
-            marginTop: 40
-        }
-    }
-}));
-
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -386,3 +322,67 @@ const mapDispatchToProps = {
     addedCart,
 };
 export default connect(null, mapDispatchToProps)(KomboItem)
+
+export const useStyleKombo = makeStyles(theme => ({
+    defItem: {
+        cursor: 'pointer', marginTop: 10, background: `white`,
+        maxWidth: `75%`, border: `1px solid lightgrey`, padding: 10, borderRadius: 10,
+
+    },
+    activeItem: {
+        cursor: 'pointer',
+        background: `white`,
+        maxWidth: `90%`,
+        padding: 3,
+        overflowY: `auto`,
+        borderTop: `1px solid #000`,
+        transition: `transform 0.3s`,
+        position: "relative",
+        margin: `10px auto 0 auto`,
+        transform: `scale(1.01)`,
+    },
+    buttonCheckout: {
+        position: "sticky",
+        bottom: 30,
+        backgroundColor: "#303032",
+        color: "white",
+        marginTop: 5,
+        marginBottom: 15,
+        width: '100%',
+        opacity: `93%`
+    },
+    activeItemPc: {
+        cursor: 'pointer',
+        marginTop: 5,
+        background: `white`,
+        maxWidth: `80%`,
+        padding: 5,
+        borderRadius: 10,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .6)',
+        transition: `transform 0.2s`,
+        margin: `0 auto`,
+        transform: `scale(1.03)`,
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
+    button: {
+        backgroundColor: 'orange',
+        padding: 5,
+        margin: `6px 0 6px 0`,
+    },
+    titleClass: {
+        fontWeight: 900,
+        marginTop: 80,
+        textTransform: `uppercase`,
+        fontSize: 34,
+        marginBottom: 6,
+        letterSpacing: `-1.6px`,
+        marginLeft: 30,
+        [theme.breakpoints.down('475')]: {
+            fontSize: 24,
+            marginTop: 40
+        }
+    }
+}));

@@ -36,7 +36,6 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
     const classesCard = useStylesCard();
     const [menu,] = useState(indexMenu)
     const [product,] = useState(indexProduct)
-    // const prod = isNil(indexProduct) || isEmpty(indexProduct);
 
     return (
       <>
@@ -56,7 +55,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                 <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
                             </div>
                             <div style={{margin: `0 auto`}}>
-                                <Img fluid={homeMenu.image.fluid} style={{width: `43vmin`, borderRadius: 10,
+                                <Img fluid={homeMenu.image.fluid} style={{width: `43vmin`, borderRadius: 5,
                                             height: `200px`}} alt={homeMenu.category}/>
                             </div>
                             </Link>
@@ -69,7 +68,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
 
         <Typography className={classesCard.titleIndex}
                     variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
-        <Typography variant={'button'}>
+        <Typography variant={'button'} style={{width: `90%`}}>
             <Link to={"/kombo"}>Все комбо</Link>
         </Typography>
 
@@ -231,7 +230,7 @@ const useStylesCard = makeStyles(theme => ({
         borderRadius: `3px`
     },
     cardComboPc: {
-        borderRadius: `10px`,
+        borderRadius: `3px`,
         maxWidth: `280px`,
         [theme.breakpoints.up('500')]: {
             maxWidth: `280px`,

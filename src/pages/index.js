@@ -10,6 +10,7 @@ import Spinner from '../components/spinner/spinner-new'
 import { Typography } from "@material-ui/core"
 
 const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
+const Map = loadable(() => import('../components/MapContent'));
 const IndexCards = loadable(() => import('../components/Card'), {
     fallback: <Spinner/>
 });
@@ -27,35 +28,15 @@ const IndexCards = loadable(() => import('../components/Card'), {
                 <section>
                     <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid container className={classes.root}>
-                      {/*<Hidden xsDown>*/}
-                      <Typography className={classes.title} variant={"inherit"} component={"h1"}>Свисни Суши в Уразово</Typography>
-                      {/*</Hidden>*/}
-                      <IndexCards addedCart={addedCart}
+                        <Typography className={classes.title}
+                                    variant={"inherit"}
+                                    component={"h1"}>
+                            Свисни Суши в Уразово</Typography>
+                        <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
-                       <div>
-                         <Typography className={classes.titleSub} variant={"inherit"} component={"h2"}>Наш адрес</Typography>
-                         <Typography variant={"subtitle1"}>3-го Интернационала д.48а, Уразово</Typography>
-                       </div>
-                      <div className={classes.mapContainer}>
-                        <Map
-                          defaultState={{
-                            center: [50.077763, 38.031733],
-                            zoom: 17,
-                            controls: ['zoomControl', 'fullscreenControl'],
-                            behaviors: ["disable('drag')"]}}
-                          modules={['control.ZoomControl', 'control.FullscreenControl']}
-                          className={classes.mapStyle}
-                          properties={{
-                            balloonContentBody:
-                              'Суши бар Свисни Суши в Уразово',
-                          }}>
-                          <RouteButton options={{ float: 'right' }} />
-                          <Placemark
-                            defaultGeometry={[50.077763, 38.031733]}
-                          />
-                        </Map>
-                      </div>
+
+                        <Map />
                     </Grid>
                 </section>
          </>
@@ -83,33 +64,9 @@ const useStyleIndexPage = makeStyles(theme => ({
         fontSize: 34,
         [theme.breakpoints.down('475')]: {
             fontSize: 24,
-            letterSpacing: `-1.6px`,
+            letterSpacing: `-1px`,
             margin: `20px 0 0 0`
         }
-    },
-    titleSub: {
-      fontSize: '28px',
-      fontWeight: `bold`,
-      width: `100%`,
-      // padding: `10px 0`,
-      [theme.breakpoints.down('600')]: {
-        fontSize: '22px',
-      },
-    },
-    mapContainer: {
-      boxShadow: `0px 5px 10px 2px rgba(34, 60, 80, 0.2)`,
-      width: `100%`,
-      margin: `20px auto 50px auto`,
-    },
-    mapStyle: {
-      width: `100%`,
-      height: `600px`,
-      padding: 30,
-      margin: `auto`,
-      [theme.breakpoints.down('600')]: {
-        height: `400px`,
-        padding: 10,
-      },
     }
 }));
 
