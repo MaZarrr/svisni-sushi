@@ -42,9 +42,9 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
         <div className={classesCard.root}>
             <Hidden smUp>
             {/*Меню выбор*/}
-            <Grid container style={{marginBottom: 20, marginTop: 10}}>
-                <Typography className={classesCard.titleIndex}
-                            variant={"h2"}>Заказывайте роллы суши и пиццу</Typography>
+            <Grid container style={{marginBottom: 20}}>
+                {/*<Typography className={classesCard.titleIndex}*/}
+                {/*            variant={"h2"}>Заказывайте роллы суши и пиццу</Typography>*/}
                 { menu.map(({node: homeMenu}) => (
                     <Grid item xs={6} sm={4}
                           style={{ position: `relative` }}
@@ -68,9 +68,6 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
 
         <Typography className={classesCard.titleIndex}
                     variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
-        <Typography variant={'button'} style={{width: `90%`}}>
-            <Link to={"/kombo"}>Все комбо</Link>
-        </Typography>
 
         {/*Карусель комбо телефон*/}
         <Hidden smUp>
@@ -174,7 +171,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
 
                     {/* Новинки компьютер  */}
                     <Grid container justify={"space-between"}>
-                    <Typography style={{marginTop: 50, marginBottom: 20}}
+                    <Typography style={{marginTop: 50}}
                                 className={classesCard.titleIndex}
                                 variant={"h2"}>{isNil(product[0].node.title) ? "" :
                                 product[0].node.title}</Typography>
@@ -243,8 +240,11 @@ const useStylesCard = makeStyles(theme => ({
         fontSize: '28px',
         fontWeight: `bold`,
         width: `100%`,
+        paddingBottom: 20,
         [theme.breakpoints.down('600')]: {
-            fontSize: '22px'
+            fontSize: '22px',
+            paddingTop: 20,
+            paddingBottom: 0,
         },
     },
     buttonCombo: {

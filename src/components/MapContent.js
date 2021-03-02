@@ -18,7 +18,7 @@ export default () => {
         center: [50.077763, 38.031733],
         zoom: 17,
         controls: ['zoomControl', 'fullscreenControl'],
-        behaviors: ['drag', 'dblClickZoom', 'multiTouch'] }}
+        behaviors: ['dblClickZoom', 'multiTouch'] }}
         modules={['control.ZoomControl', 'control.FullscreenControl']}
         className={classes.mapStyle}
         properties={{balloonContentBody: 'Суши бар Свисни Суши в Уразово'}}>

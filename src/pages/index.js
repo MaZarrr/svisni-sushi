@@ -57,7 +57,7 @@ const useStyleIndexPage = makeStyles(theme => ({
     },
     title: {
         fontWeight: 900,
-        marginBottom: 0,
+        marginBottom: 30,
         marginTop: 80,
         width: `100%`,
         textTransform: `uppercase`,
