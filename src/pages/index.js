@@ -8,9 +8,6 @@ import { graphql } from "gatsby"
 import loadable from "@loadable/component";
 import Spinner from '../components/spinner/spinner-new'
 import { Typography } from "@material-ui/core"
-import { Map, Placemark, RouteButton } from "react-yandex-maps"
-// import Carousel from '../components/common/CarouselSvisni'
-// import IndexCards from '../components/Card'
 
 const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
 const IndexCards = loadable(() => import('../components/Card'), {
@@ -82,17 +79,12 @@ const useStyleIndexPage = makeStyles(theme => ({
         marginBottom: 0,
         marginTop: 80,
         width: `100%`,
-        // paddingLeft: 30,
         textTransform: `uppercase`,
         fontSize: 34,
-        // [theme.breakpoints.down('600')]: {
-        //     paddingTop: 20,
-        // },
         [theme.breakpoints.down('475')]: {
             fontSize: 24,
             letterSpacing: `-1.6px`,
-            margin: `20px 0 0 0`,
-            // paddingLeft: 10
+            margin: `20px 0 0 0`
         }
     },
     titleSub: {
