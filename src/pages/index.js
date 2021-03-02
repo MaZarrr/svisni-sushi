@@ -28,12 +28,12 @@ const IndexCards = loadable(() => import('../components/Card'), {
                 <section>
                     <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid container className={classes.root}>
-                        <h1 className={classes.title}>Свисни Суши в Уразово</h1>
-                      <IndexCards addedCart={addedCart}
+                        <Typography className={classes.title} variant={"inherit"} component={"h1"}>Свисни Суши в Уразово</Typography>
+                        <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
 
-                      <Map />
+                        <Map />
                     </Grid>
                 </section>
          </>
@@ -61,7 +61,7 @@ const useStyleIndexPage = makeStyles(theme => ({
         fontSize: 34,
         [theme.breakpoints.down('475')]: {
             fontSize: 24,
-            letterSpacing: `-2.5px`,
+            letterSpacing: `-1.6px`,
             margin: `20px 0 0 0`,
         }
     }
