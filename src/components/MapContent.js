@@ -16,9 +16,9 @@ export default () => {
     <Map
       defaultState={{
         center: [50.077763, 38.031733],
-        zoom: 17,
+        zoom: 15,
         controls: ['zoomControl', 'fullscreenControl'],
-        behaviors: ['dblClickZoom', 'multiTouch'] }}
+        behaviors: ['drag', 'dblClickZoom', 'multiTouch'] }}
         modules={['control.ZoomControl', 'control.FullscreenControl']}
         className={classes.mapStyle}
         properties={{balloonContentBody: 'Суши бар Свисни Суши в Уразово'}}>
@@ -51,11 +51,11 @@ const useStyleMap = makeStyles(theme => ({
   },
   mapStyle: {
     width: `100%`,
-    height: `600px`,
+    height: `650px`,
     padding: 30,
     margin: `auto`,
     [theme.breakpoints.down('600')]: {
-      height: `400px`,
+      height: `300px`,
       padding: 10,
     },
   }

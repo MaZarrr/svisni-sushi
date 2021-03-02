@@ -100,7 +100,7 @@ return (
             <Map
               defaultState={{
                   center: [50.077763, 38.031733],
-                  zoom: 16.4,
+                  zoom: 14.5,
                   controls: ['zoomControl', 'fullscreenControl'],
                   behaviors: ['drag', 'dblClickZoom', 'multiTouch'] }}
               modules={['control.ZoomControl', 'control.FullscreenControl']}
