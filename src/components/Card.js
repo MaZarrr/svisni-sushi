@@ -18,14 +18,14 @@ import IconButton from "@material-ui/core/IconButton"
 const styles = {
     root: {
         padding: '0 30px 0 0',
-        maxWidth: `100%`,
+        maxWidth: `100%`
     },
     rootNewProd: {
         padding: '0 30px 0 0',
-        maxWidth: `100%`,
+        maxWidth: `100%`
     },
     slideContainer: {
-        padding: '10px 0',
+        padding: '15px 0 30px 0',
     },
     img: {
         maxWidth: 350
@@ -43,14 +43,14 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
         <div className={classesCard.root}>
             <Hidden smUp>
             {/*Меню выбор*/}
-            <Grid container style={{marginBottom: 20, marginTop: 20}}>
+            <Grid container style={{marginBottom: 20, marginTop: 10}}>
                 <Typography className={classesCard.titleIndex}
                             variant={"h2"}>Заказывайте роллы суши и пиццу</Typography>
                 { menu.map(({node: homeMenu}) => (
                     <Grid item xs={6} sm={4}
                           style={{ position: `relative` }}
                           key={homeMenu.id} >
-                        <IconButton style={{padding: `20px 0`}}>
+                        <IconButton style={{padding: `20px 0 10px 0`}}>
                             <Link style={{textDecoration: `none`, color: 'grey', width: `43vmin`, height: `200px`}} to={`/${homeMenu.slug}/`}>
                             <div className={classesCard.cartTitle}>
                                 <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
@@ -67,7 +67,8 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
             </Hidden>
         </div>
 
-        <Typography className={classesCard.titleIndex} variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
+        <Typography className={classesCard.titleIndex}
+                    variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
         <Typography variant={'button'}>
             <Link to={"/kombo"}>Все комбо</Link>
         </Typography>
@@ -76,14 +77,13 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
         <Hidden smUp>
             <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
                 {  isNil(product[1].node.combos) ? '' : product[1].node.combos.map((homeProduct) => (
-                    <Card key={homeProduct.id} className={classesCard.cardCombo}>
-                        <CardMedia
-                            title={homeProduct.name}>
+                    <Card key={homeProduct.id} className={classesCard.cardCombo} raised={true}>
+                        <CardMedia title={homeProduct.name}>
                             <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                         </CardMedia>
-                        <CardContent>
-
+                        <CardContent style={{minHeight: 140}}>
                             <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
+                            <Typography style={{position: `absolute`, width: `85%`}}>{homeProduct.description}</Typography>
                         </CardContent>
                         <CardActions disableSpacing>
                                 <Button
@@ -106,16 +106,14 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                   product[0].node.title}</Typography>
                 <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
                     { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
-
-                        <Card key={homeProduct.id} className={classesCard.cardCombo}>
+                        <Card key={homeProduct.id} className={classesCard.cardCombo} raised={true}>
                             <CardMedia
                                 title={homeProduct.name}>
                                 <Img style={styles.img} fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                             </CardMedia>
-                            <CardContent>
+                            <CardContent style={{minHeight: 140}}>
                                 <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-                                <Typography style={{fontSize: 13, height: 60, overflowY: `auto`}}
-                                            variant={"subtitle1"}>{homeProduct.description}</Typography>
+                                <Typography style={{position: `absolute`, width: `85%`}}>{homeProduct.description}</Typography>
                             </CardContent>
                             <CardActions disableSpacing>
                                 { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
@@ -177,8 +175,10 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
 
                     {/* Новинки компьютер  */}
                     <Grid container justify={"space-between"}>
-                    <Typography style={{marginTop: 50, marginBottom: 20}} className={classesCard.titleIndex} variant={"h2"}>{isNil(product[0].node.title) ? "" :
-                      product[0].node.title}</Typography>
+                    <Typography style={{marginTop: 50, marginBottom: 20}}
+                                className={classesCard.titleIndex}
+                                variant={"h2"}>{isNil(product[0].node.title) ? "" :
+                                product[0].node.title}</Typography>
                     { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
                         <Grid key={homeProduct.id} item sm={6} md={4} style={{maxWidth: `300px`, margin: `20px 0`}}>
                             <Card className={classesCard.cardComboPc}>
@@ -188,7 +188,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                 </CardMedia>
                                 <CardContent>
                                     <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-                                    <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
+                                    <Typography style={{fontSize: 14, height: 75, width: `100%`}} variant={"subtitle1"}>{homeProduct.description}</Typography>
                                 </CardContent>
                                 <CardActions disableSpacing>
                                     { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
@@ -228,33 +228,24 @@ const useStylesCard = makeStyles(theme => ({
         display: `flex`,
         flexDirection: `column`,
         alignItems: "baseline",
-        borderRadius: `5px`
+        borderRadius: `3px`
     },
     cardComboPc: {
         borderRadius: `10px`,
         maxWidth: `280px`,
-        // margin: `10px auto 0 auto`,
         [theme.breakpoints.up('500')]: {
             maxWidth: `280px`,
         },
     },
     cardCombo: {
-        maxWidth: 280,
-        borderRadius: `10px`,
-        [theme.breakpoints.down('500')]: {
-            maxHeight: `98%`
-        },
+        maxWidth: 280
     },
     titleIndex: {
         fontSize: '28px',
         fontWeight: `bold`,
         width: `100%`,
-        // letterSpacing: `-1.6px`,
-        // padding: `20px 0`,
-        // textAlign: `center`,
         [theme.breakpoints.down('600')]: {
-            fontSize: '22px',
-            // padding: `20px 0`
+            fontSize: '22px'
         },
     },
     buttonCombo: {
@@ -282,9 +273,6 @@ const useStylesCard = makeStyles(theme => ({
         padding: `25px 0 0 0`,
         fontWeight: 900,
         fontSize: `4vmin`,
-        // [theme.breakpoints.down('600')]: {
-        //     fontSize: `18px`,
-        // }
     },
     button: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',

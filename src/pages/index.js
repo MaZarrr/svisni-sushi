@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { graphql } from "gatsby"
 import loadable from "@loadable/component";
 import Spinner from '../components/spinner/spinner-new'
-import { Hidden, Typography } from "@material-ui/core"
+import { Typography } from "@material-ui/core"
 import { Map, Placemark, RouteButton } from "react-yandex-maps"
 // import Carousel from '../components/common/CarouselSvisni'
 // import IndexCards from '../components/Card'
@@ -31,7 +31,7 @@ const IndexCards = loadable(() => import('../components/Card'), {
                     <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid container className={classes.root}>
                       {/*<Hidden xsDown>*/}
-                        <h1 className={classes.title}>Свисни Суши в Уразово</h1>
+                      <Typography className={classes.title} variant={"inherit"} component={"h1"}>Свисни Суши в Уразово</Typography>
                       {/*</Hidden>*/}
                       <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
@@ -90,7 +90,7 @@ const useStyleIndexPage = makeStyles(theme => ({
         // },
         [theme.breakpoints.down('475')]: {
             fontSize: 24,
-            letterSpacing: `-2.5px`,
+            letterSpacing: `-1.6px`,
             margin: `20px 0 0 0`,
             // paddingLeft: 10
         }
