@@ -583,7 +583,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                             <Typography variant={"subtitle2"} style={{fontSize: 16}}>Доставка с бесплатной пиццей Ветчина-Грибы-Бекон + <strong>{stateDeliveryPrice.priceDel} ₽</strong></Typography>
                             }
                           </div>
-                          <div style={{marginTop: 15}}>
+                          <div style={{marginTop: 15, marginBottom: 15}}>
                             { itemCartPizza &&
                             <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{` ${total + stateDeliveryPrice.priceDel} ₽`}</b> </Typography>
                             }
@@ -718,11 +718,11 @@ export const useStyleOrder = makeStyles(theme => ({
   },
   cashCdacha: {
     position: `absolute`,
-    left: 200,
-    top: 20,
-    [theme.breakpoints.down('500')]: {
-      right: 30
-    }
+    left: 210,
+    top: 0,
+    // [theme.breakpoints.down('500')]: {
+    //   right: 200
+    // }
   },
   paper: {
     textAlign: 'center',

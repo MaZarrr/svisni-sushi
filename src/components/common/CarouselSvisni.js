@@ -9,12 +9,16 @@ import Pagination from '../pagination/Pagination'
 import { Hidden } from "@material-ui/core";
 import { mod } from 'react-swipeable-views-core';
 
+// const VirtualizeSwipeableViews = virtualize(SwipeableViews);
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
 const styles = {
     slideContainer: {
-        padding: '0 5vw'
-    }
+        padding: '1vw'
+    },
+    // slide: {
+    //     padding: 10
+    // }
 };
 
 function Carousel({ dataCarousel }) {
@@ -96,8 +100,9 @@ function Carousel({ dataCarousel }) {
             <VirtualizeSwipeableViews 
                 className={classes.rootCarousel}
                 slideRenderer={slideRenderer}
-                slideCount={5}
+                // slideCount={5}
                 slideStyle={styles.slideContainer}
+                animateHeight={true}
                 index={state}
                 onChangeIndex={handleChangeIndex}
               />

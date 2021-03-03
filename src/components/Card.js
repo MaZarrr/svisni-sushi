@@ -79,19 +79,19 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                         </CardMedia>
                         <CardContent style={{minHeight: 140}}>
                             <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-                            <Typography style={{position: `absolute`, width: `85%`}}>{homeProduct.description}</Typography>
+                            <Typography style={{position: `absolute`, width: `80%`}}>{homeProduct.description}</Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                                <Button
-                                    variant="contained"
-                                    className={classesCard.buttonCombo}
-                                    component={Link}
-                                    size={"small"}
-                                    to={`/kombo/${homeProduct.slug}`}>
-                                    Выбрать
-                                </Button>
-                                <Typography style={{fontSize: 18, marginLeft: `auto`, marginRight: 10, fontWeight: 800}}
-                                            variant={"body1"}>{homeProduct.price} ₽</Typography>
+                            <Button
+                                variant="contained"
+                                className={classesCard.buttonCombo}
+                                component={Link}
+                                size={"small"}
+                                to={`/kombo/${homeProduct.slug}`}>
+                                Выбрать
+                            </Button>
+                            <Typography style={{fontSize: 18, marginLeft: `auto`, marginRight: 10, fontWeight: 800}}
+                                        variant={"body1"}>{homeProduct.price} ₽</Typography>
                             </CardActions>
                         </Card>
                     ))}
@@ -109,7 +109,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                             </CardMedia>
                             <CardContent style={{minHeight: 140}}>
                                 <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-                                <Typography style={{position: `absolute`, width: `85%`}}>{homeProduct.description}</Typography>
+                                <Typography style={{position: `absolute`, width: `75%`}}>{homeProduct.description}</Typography>
                             </CardContent>
                             <CardActions disableSpacing>
                                 { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
