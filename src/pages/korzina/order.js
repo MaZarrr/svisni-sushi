@@ -594,35 +594,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                           </div>
                         </>
                         }
-                        {/*Если онлайн оплата не показывать сдачу*/}
-                        {variantPay === 'cash' &&
-                        <Grid item xs={12} style={{position: `relative`}}>
-                          <div className={classes.cashCdacha}>
-                          <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
-                          <Select
-                            component={Button}
-                            labelId="demo-controlled-open-select-label"
-                            id="demo-controlled-open-select"
-                            open={open}
-                            onClose={handleClose}
-                            onOpen={handleOpen}
-                            value={age}
-                            name="sdacha"
-                            onChange={handleChange}>
-                            <MenuItem value="Без сдачи">
-                              <em>Без сдачи</em>
-                            </MenuItem>
-                            <MenuItem value={700}>С 700 руб</MenuItem>
-                            <MenuItem value={1000}>С 1000 руб</MenuItem>
-                            <MenuItem value={1500}>С 1500 руб</MenuItem>
-                            <MenuItem value={2000}>С 2000 руб</MenuItem>
-                            <MenuItem value={3000}>С 3000 руб</MenuItem>
-                            <MenuItem value={5000}>С 5000 руб</MenuItem>
-                          </Select>
-                          </div>
-                        </Grid>
-                        }
-
 
                         { isEmpty(stateDeliveryPrice) || delivery === "Самовывоз" ?
                           <div>
@@ -631,15 +602,42 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                         }
                         {/*/!*если онлай оплата показывать другую кнопку*!/*/}
                         {/*   {variantPay === 'cash' &&*/}
-                        <span>
+                        <span style={{ position: `relative`}}>
                             <Button
                               type="submit"
                               color={"secondary"}
-                              style={{fontWeigh: `bold`, fontSize: 18}}
+                              style={{fontWeigh: `bold`, fontSize: 18 }}
                               disabled={buttonDisabled()}
                               variant="contained">
                                 { variantPay === "cash" ? "Сделать заказ" : "Оплатить заказ"}
                             </Button>
+                          {/*Если онлайн оплата не показывать сдачу*/}
+                          {variantPay === 'cash' &&
+                          <Grid item xs={12}>
+                            <div className={classes.cashCdacha}>
+                              <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
+                              <Select
+                                labelId="demo-controlled-open-select-label"
+                                id="demo-controlled-open-select"
+                                open={open}
+                                onClose={handleClose}
+                                onOpen={handleOpen}
+                                value={age}
+                                name="sdacha"
+                                onChange={handleChange}>
+                                <MenuItem value="Без сдачи">
+                                  <em>Без сдачи</em>
+                                </MenuItem>
+                                <MenuItem value={700}>С 700 руб</MenuItem>
+                                <MenuItem value={1000}>С 1000 руб</MenuItem>
+                                <MenuItem value={1500}>С 1500 руб</MenuItem>
+                                <MenuItem value={2000}>С 2000 руб</MenuItem>
+                                <MenuItem value={3000}>С 3000 руб</MenuItem>
+                                <MenuItem value={5000}>С 5000 руб</MenuItem>
+                              </Select>
+                            </div>
+                          </Grid>
+                          }
                           </span>
 
                         { buttonDisabled() === true &&
@@ -718,11 +716,8 @@ export const useStyleOrder = makeStyles(theme => ({
   },
   cashCdacha: {
     position: `absolute`,
-    left: 210,
-    top: 0,
-    // [theme.breakpoints.down('500')]: {
-    //   right: 200
-    // }
+    left: 220,
+    top: -15
   },
   paper: {
     textAlign: 'center',

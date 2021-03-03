@@ -52,7 +52,7 @@ const ImageSale = styled(Img) `
 `
 
 const SaleItem = ({ image, md, name, path }) => {
-    console.log(md)
+
     return (
       <>
       <SEO title={`Акция ${name}`}
