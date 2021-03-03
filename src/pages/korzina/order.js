@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MaskedInput from 'react-text-mask';
-import Spinner from '../../components/spinner/spinner-new'
+// import Spinner from '../../components/spinner/spinner-new'
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -87,7 +87,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                  setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
 
   const [open, setOpen] = useState(false);
-  const [load, setLoad] = React.useState(true);
+  // const [load, setLoad] = React.useState(true);
   const [age, setAge] = useState('');
   const [delivery, setDelivery] = useState('');
   const [checkPushOrder, setCheckPushOrder] = useState(false);
@@ -100,11 +100,11 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   const inputLabel = React.useRef(null);
   const classes = useStyleOrder();
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoad(false)
-    }, 500)
-  }, []);
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoad(false)
+  //   }, 500)
+  // }, []);
 
   const handleChangee = name => event => setState(name);
   const onSwitchPay = (pay) => () => setVariantPay(pay);
@@ -270,7 +270,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
            noindex={true}/>
       <div className={classes.root}>
         <HeadSection titleTXT={"Оформление заказа"} />
-        {load === false ?
+        {/*{load === false ?*/}
           <Container maxWidth={"xl"}>
             { !isEmpty(items) ?
               <Grid container className={classes.gridContainer}>
@@ -665,7 +665,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                 </Snackbar>
               </Grid> : <EmptyBasket/> }
           </Container>
-          : <Spinner />}
+          {/*// : <Spinner />}*/}
       </div>
     </section>
   )
@@ -716,7 +716,7 @@ export const useStyleOrder = makeStyles(theme => ({
   },
   cashCdacha: {
     position: `absolute`,
-    left: 220,
+    left: 210,
     top: -15
   },
   paper: {

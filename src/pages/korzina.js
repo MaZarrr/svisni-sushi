@@ -3,7 +3,7 @@ import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
 import  Img  from 'gatsby-image';
-import Spinner from '../components/spinner/spinner-new'
+// import Spinner from '../components/spinner/spinner-new'
 import * as R from 'ramda'
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -21,9 +21,11 @@ import { getProduct } from "../reducers/app";
 // import SplitButton from "../components/SplitButton";
 import uniqid from 'uniqid'
 import IconButton from "@material-ui/core/IconButton";
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
+// import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+// import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
+import IndeterminateCheckBoxOutlinedIcon from '@material-ui/icons/IndeterminateCheckBoxOutlined';
 import EmptyBasket from "../components/EmptyBasket";
 import Hidden from "@material-ui/core/Hidden";
 import HeadSection from "../components/HeadSection"
@@ -35,15 +37,15 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                              onIncrease, onDecrise, onDelete, addedPriborCount, addedSaleRoll,
   addedSalePizza, deletePizzaSale, deleteFilaSale, location }) => {
 
-  const [load, setLoad] = React.useState(true);
+  // const [load, setLoad] = React.useState(true);
   const [value, setValue] = React.useState([]);
   const classes = useStyleBasket();
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoad(false)
-    }, 600);
-  }, []);
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoad(false)
+  //   }, 600);
+  // }, []);
 
   const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
   const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
@@ -151,10 +153,10 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                 <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={saleRoll.image}> </Img>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
-                <Typography variant="subtitle1" style={{fontSize: 16, fontWeight: `bold`}}>
+                <Typography variant="subtitle1" style={{fontSize: 16}}>
                   Акция
                 </Typography>
-                <Typography variant="subtitle1" style={{fontSize: 14, fontWeight: `bold`}}>
+                <Typography variant="subtitle1">
                   {saleRoll.name} за 79₽
                 </Typography>
 
@@ -192,7 +194,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
       <section>
         <div className={classes.root}>
           <HeadSection titleTXT={"Корзина товаров"} />
-          { load === false ? <div>
+          {/*{ load === false ? <div>*/}
             { R.isEmpty(items) ? <EmptyBasket/> :
               <Grid container spacing={2} style={{ width: `100%` }}>
                 <Grid item sm={7}>
@@ -204,41 +206,41 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
                         descriptionIngrideents = ""} = item
 
-                      return (
+                    return (
                     <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
-                            <div style={{display: `flex`, borderBottom: `1px solid #000`}}>
+                            <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
                               <div style={{margin: `auto 0`, zIndex: 10}}>
                                 <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
                               </div>
                               <div style={{marginLeft: 5, width: `100%`}}>
                                 <div style={{padding: `8px 0 8px 0px`, width: `100%`}}>
-                                  <Typography variant="subtitle1" style={{fontSize: 14, fontWeight: 600}}>
+                                  <Typography variant="subtitle1" style={{paddingLeft: 10}}>
                                     {name}
                                   </Typography>
                                   {/*button added count product*/}
-                                  <div style={{display: `flex`}}>
+                                  <div style={{display: `flex`, paddingLeft: 10}}>
                                     <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 0`}} variant="subtitle2">
                                       {priceDef === 0 ? "1шт" : `${count}шт`}
                                     </Typography>
 
-                                    <div style={{display: `flex`}}>
+                                    <div style={{display: `flex`, alignItems: `center`, margin: `auto`}}>
                                       {price !== 79 && priceDef !== 0 ?
                                         <>
-                                          <IconButton color="primary" aria-label="plus" component="span"
+                                          <IconButton aria-label="plus" component="span"
                                                       onClick={()=> onIncrease( {id, price, product: items} )}
-                                                      style={{padding: `7px`}}>
-                                            <AddCircleOutlineIcon />
+                                                      // style={{padding: `7px`}}
+                                          >
+                                            <AddBoxOutlinedIcon />
                                           </IconButton>
-                                          <IconButton color="primary" aria-label="remove" component="span"
-                                                      onClick={()=> onDecrise({ id, price, product: items})}
-                                                      style={{padding: `7px`}}>
-                                            <RemoveCircleOutlineOutlinedIcon/>
+                                          <IconButton aria-label="remove" component="span"
+                                                      onClick={()=> onDecrise({ id, price, product: items})}>
+                                            <IndeterminateCheckBoxOutlinedIcon/>
                                           </IconButton>
                                         </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
 
                                       { price > 78 &&
-                                      <IconButton color="primary" aria-label="remove" component="span"
-                                                  style={{padding: `7px`}}
+                                      <IconButton aria-label="remove" component="span"
+                                                  // style={{padding: `7px`}}
                                                   onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
                                                     : () => deleteFilaSale(id)}>
                                         <DeleteOutlineOutlinedIcon/>
@@ -246,14 +248,13 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
                                       }
                                       { pizzaSale &&
-                                      <IconButton color="primary" aria-label="remove" component="span"
-                                                  style={{padding: `7px`}}
+                                      <IconButton aria-label="remove" component="span"
                                                   onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }>
                                         <DeleteOutlineOutlinedIcon/>
                                       </IconButton>
                                       }
                                     </div>
-                                    <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 0`}}
+                                    <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 20px auto 0`}}
                                                 variant="subtitle2">{price === 79 ? null : `${total}₽`}</Typography>
                                   </div>
                                 </div>
@@ -316,14 +317,14 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         <div style={{display: `flex`, flexDirection: `column`}}>
                           <Typography variant={"subtitle2"}>Количество палочек</Typography>
                           <div style={{display: `flex`}}>
-                            <IconButton color="primary" aria-label="plus" component="span"
+                            <IconButton aria-label="plus" component="span"
                                         onClick={()=> addedPriborCount(1)}>
-                              <AddCircleOutlineIcon aria-label="plus" />
+                              <AddBoxOutlinedIcon aria-label="plus" />
                             </IconButton>
-                            <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
-                            <IconButton color="primary" aria-label="remove" component="span"
+                            <Typography variant={"h6"}>{palochkiTotal}</Typography>
+                            <IconButton aria-label="remove" component="span"
                                         onClick={()=> addedPriborCount(-1)}>
-                              <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
+                              <IndeterminateCheckBoxOutlinedIcon aria-label="remove" />
                             </IconButton>
                           </div>
                         </div>
@@ -337,7 +338,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                 {/*phone next order*/}
                 <Hidden smUp>
                   <Grid style={{margin: `20px auto 0 auto`,
-                    position: `fixed`,
+                    position: `sticky`,
                     padding: `0 0 0 15px`,
                     bottom: 20,
                     width: `100%`,
@@ -366,14 +367,14 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                       { addPanelPribors  && <>
                         <Typography variant={"subtitle2"}>Количество <br></br> приборов(палочки)</Typography>
                         <div style={{display: `flex`}}>
-                          <IconButton color="primary" aria-label="plus" component="span"
+                          <IconButton aria-label="plus" component="span"
                                       onClick={()=> addedPriborCount(1)}>
-                            <AddCircleOutlineIcon aria-label="plus" />
+                            <AddBoxOutlinedIcon aria-label="plus" />
                           </IconButton>
                           <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
-                          <IconButton color="primary" aria-label="remove" component="span"
+                          <IconButton aria-label="remove" component="span"
                                       onClick={()=> addedPriborCount(-1)}>
-                            <RemoveCircleOutlineOutlinedIcon aria-label="remove" />
+                            <IndeterminateCheckBoxOutlinedIcon aria-label="remove" />
                           </IconButton>
                         </div>
                       </>}
@@ -394,8 +395,9 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
               </Grid>
             }
-          </div> : <Spinner/>}
-        </div>
+          </div>
+        {/*: <Spinner/>}*/}
+        {/*</div>*/}
       </section>
     </>
   )
@@ -519,7 +521,7 @@ const useStyleBasket  = makeStyles(theme => ({
   wrappedContainer: {
     paddingLeft: 25,
     [theme.breakpoints.down('500')]: {
-      paddingBottom: 170
+      paddingBottom: 50
     }
   },
     buttonCheckout: {

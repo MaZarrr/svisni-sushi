@@ -78,7 +78,9 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                     <Card className={classes.card}>
                                         <CardHeader avatar={<Img style={{width: 40}} fluid={image.fluid} alt={name} />}
                                                     title={"Пицца"}
-                                                    subheader={<span itemProp="name"><Typography style={{fontWeight: 600}} variant={"subtitle1"}>{name}</Typography></span>}/>
+                                                    subheader={<span itemProp="name">
+                                                      <Typography style={{fontWeight: 600}} variant={"subtitle1"}>
+                                                        {name}</Typography></span>}/>
                                         <CardMedia
                                             className={classes.media}
                                             title={name}>
@@ -103,7 +105,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                             {/*выбор размера пиццы*/}
                                             {/*проверка цены на 1 для того что бы убарать или показать выбор размеров пиццы*/}
                                             { priceIn33cm !== 1 &&
-                                            <Grid container justify={"center"}>
+                                            <Grid container justify={"space-between"}>
                                                 <Grid style={{padding: `0`, margin: 0}} item xs={5}>
                                                     <button onClick={() => switchSizePizza({
                                                         id,
@@ -118,8 +120,11 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                     <Typography style={{fontSize: 13, textAlign: `center`}}
                                                                 variant={"subtitle2"}>28см</Typography>
                                                 </Grid>
+                                              <Grid item xs={2} style={{textAlign: "center", padding: `10px 0 0 0`}}>
+                                                <p style={{fontSize: 15, margin: `0 auto`, fontWeight: `bold`}}>{`${mass}кг`}</p>
+                                              </Grid>
                                                 <Grid item xs={5}>
-                                                    <button onClick={() => switchSizePizza({
+                                                    <button style={{paddingLeft: `auto`}} onClick={() => switchSizePizza({
                                                         id,
                                                         productPizza: updatePizza,
                                                         total: priceIn33cm,
@@ -134,9 +139,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                             </Grid>
                                             }
 
-                                            <Grid item xs={12} style={{textAlign: "center", padding: 0}}>
-                                                <p style={{fontSize: 15, margin: `0 auto`, fontWeight: `bold`}}>{`${mass}кг`}</p>
-                                            </Grid>
+
                                         </CardContent>
 
                                         {/*total, count*/}
@@ -244,9 +247,9 @@ export const useStylesCart = makeStyles(theme => ({
   deckriptPizza: {
     height: 80,
     overflowY: `auto`,
-    padding: `10px 0 10px 20px`,
+    padding: `10px 0 10px 0`,
     [theme.breakpoints.down('500')]: {
-      padding: `10px 0 10px 30px`,
+      // padding: `10px 0 10px 30px`,
       height: `auto`,
     }
   },
@@ -266,15 +269,16 @@ export const useStylesCart = makeStyles(theme => ({
   },
   buttonD: {
     fontSize: 11,
-    borderRadius: 8,
+    borderRadius: 5,
     padding: '6px 12px',
     border: '1px solid orange',
     lineHeight: 1.5,
-    width: 105,
+    marginLeft: 5,
+    width: `95%`
   },
   buttonT: {
-    width: 105,
-    borderRadius: 8,
+    width: `95%`,
+    borderRadius: 5,
     fontSize: 11,
     padding: '6px 12px',
     border: '1px solid orange',
@@ -290,20 +294,29 @@ export const useStylesCart = makeStyles(theme => ({
     backgroundColor: 'orange'
   },
   card: {
-    maxWidth: `290px`,
+    maxWidth: `350px`,
     margin: `20px auto 10px auto`,
-    [theme.breakpoints.down('600')]: {
-      margin: `10px auto 30px auto`
+    [theme.breakpoints.down('475')]: {
+      maxWidth: `340px`,
     },
-    [theme.breakpoints.up('960')]: {
-      margin: `10px 5% 30px 5%`
+    [theme.breakpoints.down('376')]: {
+      maxWidth: `320px`,
     },
-    [theme.breakpoints.down('959')]: {
-      margin: `10px auto 30px auto`
+    [theme.breakpoints.down('340')]: {
+      maxWidth: `280px`,
     },
-    [theme.breakpoints.up('1100')]: {
-      margin: `10px auto 30px auto`
-    }
+    // [theme.breakpoints.down('600')]: {
+    //   margin: `10px auto 30px auto`
+    // },
+    // [theme.breakpoints.up('960')]: {
+    //   margin: `10px 5% 30px 5%`
+    // },
+    // [theme.breakpoints.down('959')]: {
+    //   margin: `10px auto 30px auto`
+    // },
+    // [theme.breakpoints.up('1100')]: {
+    //   margin: `10px auto 30px auto`
+    // }
   },
   media: {
     width: `99%`,

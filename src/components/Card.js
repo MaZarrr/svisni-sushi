@@ -43,20 +43,17 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
             <Hidden smUp>
             {/*Меню выбор*/}
             <Grid container style={{marginBottom: 20}}>
-                {/*<Typography className={classesCard.titleIndex}*/}
-                {/*            variant={"h2"}>Заказывайте роллы суши и пиццу</Typography>*/}
                 { menu.map(({node: homeMenu}) => (
                     <Grid item xs={6} sm={4}
-                          style={{ position: `relative` }}
+                          className={classesCard.itemMenu}
                           key={homeMenu.id} >
                         <IconButton style={{padding: `20px 0 10px 0`}}>
-                            <Link style={{textDecoration: `none`, color: 'grey', width: `43vmin`, height: `200px`}} to={`/${homeMenu.slug}/`}>
+                            <Link style={{textDecoration: `none`, color: 'grey'}} to={`/${homeMenu.slug}/`}>
                             <div className={classesCard.cartTitle}>
                                 <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
                             </div>
                             <div style={{margin: `0 auto`}}>
-                                <Img fluid={homeMenu.image.fluid} style={{width: `43vmin`, borderRadius: 5,
-                                            height: `200px`}} alt={homeMenu.category}/>
+                                <Img fluid={homeMenu.image.fluid} style={{width: `43vmin`, borderRadius: 10}} alt={homeMenu.category}/>
                             </div>
                             </Link>
                         </IconButton>
@@ -67,7 +64,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
         </div>
 
         <Typography className={classesCard.titleIndex}
-                    variant={"h2"}>Собери свой комбо из пиццы, суши и роллов</Typography>
+                    variant={"h2"}>Комбо из пиццы суши роллов</Typography>
 
         {/*Карусель комбо телефон*/}
         <Hidden smUp>
@@ -79,7 +76,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                         </CardMedia>
                         <CardContent style={{minHeight: 140}}>
                             <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-                            <Typography style={{position: `absolute`, width: `80%`}}>{homeProduct.description}</Typography>
+                            <Typography style={{position: `absolute`, width: `78%`}}>{homeProduct.description}</Typography>
                         </CardContent>
                         <CardActions disableSpacing>
                             <Button
@@ -98,8 +95,10 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                 </SwipeableViews>
 
                 {/* Новинки */}
-                <Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(product[0].node.title) ? "" :
-                  product[0].node.title}</Typography>
+                {/*<Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(product[0].node.title) ? "" :*/}
+                {/*  product[0].node.title}</Typography>*/}
+                <Typography className={classesCard.titleIndex} variant={"h2"}>
+                    Суши и пицца, которые понравятся каждому</Typography>
                 <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
                     { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
                         <Card key={homeProduct.id} className={classesCard.cardCombo} raised={true}>
@@ -109,7 +108,7 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                             </CardMedia>
                             <CardContent style={{minHeight: 140}}>
                                 <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-                                <Typography style={{position: `absolute`, width: `75%`}}>{homeProduct.description}</Typography>
+                                <Typography style={{position: `absolute`, width: `77%`}}>{homeProduct.description}</Typography>
                             </CardContent>
                             <CardActions disableSpacing>
                                 { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
@@ -234,7 +233,7 @@ const useStylesCard = makeStyles(theme => ({
         },
     },
     cardCombo: {
-        maxWidth: 280
+        maxWidth: 300
     },
     titleIndex: {
         fontSize: '28px',
@@ -244,8 +243,13 @@ const useStylesCard = makeStyles(theme => ({
         [theme.breakpoints.down('600')]: {
             fontSize: '22px',
             paddingTop: 20,
+            paddingRight: 20,
             paddingBottom: 0,
         },
+    },
+    itemMenu: {
+        display: "flex",
+        justifyContent: "space-around"
     },
     buttonCombo: {
         margin: theme.spacing(1),
@@ -256,21 +260,19 @@ const useStylesCard = makeStyles(theme => ({
         color: 'white',
     },
     cartTitle: {
-        textAlign: `center`,
         position: `absolute`,
         bottom: `0`,
+        opacity: `90%`,
+        borderRadius: 3,
+        backgroundColor: "#303032",
         color: `#fff`,
         left: 0,
         width: `100%`,
-        zIndex: 1000,
-        [theme.breakpoints.down('600')]: {
-            height: `70px`
-        }
+        zIndex: 1000
     },
     menuTitle: {
         textAlign: `center`,
-        padding: `25px 0 0 0`,
-        fontWeight: 900,
+        padding: `10px 0 10px 0`,
         fontSize: `4vmin`,
     },
     button: {

@@ -91,7 +91,6 @@ module.exports = {
         assetDownloadWorkers: 25
       },
     },
- 
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-ramda`,

@@ -7,7 +7,7 @@ import Grow from '@material-ui/core/Grow';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-import clsx from "clsx";
+// import clsx from "clsx";
 import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -37,24 +37,25 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedIngrideents, ingrideentButtonStyle, height = 210, dir = "center"}) => {
+// dir = "center"
+const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedIngrideents, ingrideentButtonStyle, height = 210}) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
-    const classes = useStyles();
+    // const classes = useStyles();
 
     const handleChange = (event) =>  {
         addedIngrideents({id, sostav, name: event.target.name, ingrideents, check: event.target.checked, pizzaIng, path})
     };
 
     const handleToggle = () => setOpen((prevOpen) => !prevOpen);
-    const addedIngrideent = ({sostav, pizzaIng, id}) => handleToggle();
+    // const addedIngrideent = ({sostav, pizzaIng, id}) => handleToggle();
 
     return (
-        <Grid container direction="column" alignItems={dir}>
+        <Grid container direction="column">
             <Grid item xs={12} style={{zIndex: 100}}>
                 <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                    <Button className={clsx(classes.buttonD, {
-                        [classes.buttonT]: ingrideentButtonStyle})} onClick={handleToggle}>Ингридеенты</Button>
+                    {/*<Button className={clsx(classes.buttonD, {*/}
+                    {/*    [classes.buttonT]: ingrideentButtonStyle})} onClick={handleToggle}>Ингридеенты</Button>*/}
                     <Button
                         variant="outlined"
                         color="primary"

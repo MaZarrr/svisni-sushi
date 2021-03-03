@@ -331,20 +331,17 @@ export const useStylesCart = makeStyles(theme => ({
         backgroundColor: 'orange'
     },
     card: {
-        maxWidth: `290px`,
+        maxWidth: `350px`,
         margin: `20px auto 10px auto`,
-        [theme.breakpoints.down('600')]: {
-            margin: `10px auto 30px auto`
+        [theme.breakpoints.down('475')]: {
+            maxWidth: `340px`,
         },
-        [theme.breakpoints.up('960')]: {
-            margin: `10px 5% 30px 5%`
+        [theme.breakpoints.down('376')]: {
+            maxWidth: `320px`,
         },
-        [theme.breakpoints.down('959')]: {
-            margin: `10px auto 30px auto`
+        [theme.breakpoints.down('340')]: {
+            maxWidth: `280px`,
         },
-        [theme.breakpoints.up('1100')]: {
-            margin: `10px auto 30px auto`
-        }
     },
     media: {
         width: `99%`,

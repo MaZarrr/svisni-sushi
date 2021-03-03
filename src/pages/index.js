@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { graphql } from "gatsby"
 import loadable from "@loadable/component";
 import Spinner from '../components/spinner/spinner-new'
-import { Typography } from "@material-ui/core"
+import { Hidden, Typography } from "@material-ui/core";
 
 const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
 const Map = loadable(() => import('../components/MapContent'));
@@ -28,10 +28,14 @@ const IndexCards = loadable(() => import('../components/Card'), {
                 <section>
                     <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid container className={classes.root}>
+                        <Hidden xsDown>
                         <Typography className={classes.title}
                                     variant={"inherit"}
                                     component={"h1"}>
                             Свисни Суши в Уразово</Typography>
+                        {/*<Typography className={classes.titleIndex}*/}
+                        {/*            variant={"h2"}>Заказывайте роллы суши и пиццу</Typography>*/}
+                        </Hidden>
                         <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
@@ -52,8 +56,20 @@ export default connect(null, mapDispatchToProps)(IndexPage)
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        width: `90%`,
+        width: `95%`,
         margin: `auto`,
+    },
+    titleIndex: {
+        fontSize: '28px',
+        fontWeight: `bold`,
+        width: `100%`,
+        paddingBottom: 20,
+        [theme.breakpoints.down('600')]: {
+            fontSize: '22px',
+            paddingTop: 20,
+            paddingRight: 20,
+            paddingBottom: 0,
+        },
     },
     title: {
         fontWeight: 900,
