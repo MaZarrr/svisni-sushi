@@ -111,9 +111,24 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    
+
+    const totalPriceOrder = () => {
+      // const totalPrice = delivery === "Самовывоз" ?
+      //   total : total < stateDeliveryPrice.deliverySalePrice
+      //     ? total + stateDeliveryPrice.priceDel : total;
+      if(delivery === "Самовывоз") {
+        return total
+      } else if(delivery !== "Самовывоз" && !itemCartPizza) {
+          if(total < stateDeliveryPrice.deliverySalePrice) {
+            return stateDeliveryPrice.priceDel + total
+          }
+          return total
+      } else if(delivery !== "Самовывоз" && itemCartPizza) {
+        return stateDeliveryPrice.priceDel + total
+      }
+    }
+
     const pushOrder = () => {
-      const totalPrice = delivery === "Самовывоз" ? total : total < stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total;
       const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
         formDelivery: ev.target.delivery.value,
         adress: stateDeliveryPrice.name,
@@ -149,7 +164,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         }),
         delivery: deliveru,
         deliveryTime: deliveryTimeOrder,
-        totalPrice: `${totalPrice} руб. ${variantPay === "cash" ? "Выбрана оплата наличными" : "Выбрана онлайн оплата, ожидаем перевод..."}`,
+        totalPrice: `${totalPriceOrder()} руб. ${variantPay === "cash" ? "Выбрана оплата наличными" : "Выбрана онлайн оплата, ожидаем перевод..."}`,
         sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
         chopsticks: palochkiTotal,
         comments: ev.target.comments.value || "Без комментария",
@@ -162,13 +177,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
           data: infoSuccess,
           url: process.env.GATSBY_NODE_SERVE
         });
-
         typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
         typeof window !== undefined && localStorage.removeItem('basketProduct');
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
 
       } else if(variantPay === "bank" && navigator.onLine) {
-        
+
         if(!checkPushOrder) {
              axios({
               method: 'POST',
@@ -192,9 +206,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       handleClickAlert()
     } else {
       pushOrder()
-
     }
-
   };
 
   const handleChange = event => setAge(event.target.value);
