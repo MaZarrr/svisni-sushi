@@ -212,9 +212,9 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                               <div style={{margin: `auto 0`, zIndex: 10}}>
                                 <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
                               </div>
-                              <div style={{marginLeft: 5, width: `100%`}}>
-                                <div style={{padding: `8px 0 8px 0px`, width: `100%`}}>
-                                  <Typography variant="subtitle1" style={{paddingLeft: 10}}>
+                              <div style={{width: `100%`}}>
+                                <div style={{padding: `8px 0 8px 0`, width: `100%`}}>
+                                  <Typography variant="subtitle1" style={{paddingLeft: 8}}>
                                     {name}
                                   </Typography>
                                   {/*button added count product*/}
@@ -340,7 +340,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                   <Grid style={{margin: `20px auto 0 auto`,
                     position: `sticky`,
                     padding: `0 0 0 15px`,
-                    bottom: 20,
+                    bottom: 25,
                     width: `100%`,
                     zIndex: 1200
                   }} item xs={12} sm={5}>
@@ -525,13 +525,13 @@ const useStyleBasket  = makeStyles(theme => ({
     }
   },
     buttonCheckout: {
-      position: "sticky",
-      bottom: 44,
+    position: "fixed",
+    bottom: 44,
     backgroundColor: "#303032",
     color: "white",
     marginTop: 5,
     marginBottom: 15,
-    width: '100%',
+    width: '96%',
     opacity: `93%`
 },
 }));

@@ -102,7 +102,6 @@ function Carousel({ dataCarousel }) {
                 slideRenderer={slideRenderer}
                 // slideCount={5}
                 slideStyle={styles.slideContainer}
-                animateHeight={true}
                 index={state}
                 onChangeIndex={handleChangeIndex}
               />
@@ -117,7 +116,7 @@ export default Carousel;
 
 const useStyleCarousel = makeStyles(theme => ({
     root: {
-        maxWidth: `100vw`,
+        // maxWidth: `100vw`,
         flexGrow: '1',
         marginTop: 75,
         position: 'relative',
@@ -133,17 +132,17 @@ const useStyleCarousel = makeStyles(theme => ({
         borderRadius: 5,
         maxWidth: 1920,
         [theme.breakpoints.down('600')]: {
-            maxWidth: 780,
-            borderRadius: 3,
+            // maxWidth: 780,
+            borderRadius: 5,
             // height: 90,
         },
     },
     rootAutoSwipeable: {
-        padding: '0 20vw 0 30vw'
+        padding: '0 20vw 0 20vw',
     },
     rootCarousel: {
         // padding: '0 20vw 0 20vw',
-        padding: '0 10vw 0 10vw',
+        padding: '0 9vw 0 9vw',
         [theme.breakpoints.down('475')]: {
             padding: 0,
         },

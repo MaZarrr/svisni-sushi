@@ -142,10 +142,10 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                       justify={"space-between"}
                       style={{width: `100%`, marginBottom: 50}}>
                     { isNil(product[1].node.combos) ? '' : product[1].node.combos.map((homeProduct) => (
-                        <Grid key={homeProduct.id} item sm={6} md={4} style={{maxWidth: `300px`}}>
-                            <Card className={classesCard.cardComboPc}>
+                        <Grid key={homeProduct.id} item sm={6} md={3} className={classesCard.cardComboPc} >
+                            <Card raised={true}>
                                 <CardMedia
-                                    className={classesCard.media}
+                                    // className={classesCard.media}
                                     title={homeProduct.name}>
                                     <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                 </CardMedia>
@@ -175,8 +175,8 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                                 variant={"h2"}>{isNil(product[0].node.title) ? "" :
                                 product[0].node.title}</Typography>
                     { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
-                        <Grid key={homeProduct.id} item sm={6} md={4} style={{maxWidth: `300px`, margin: `20px 0`}}>
-                            <Card className={classesCard.cardComboPc}>
+                        <Grid key={homeProduct.id} item sm={6} md={3} className={classesCard.cardComboPc}>
+                            <Card raised={true}>
                                 <CardMedia
                                     title={homeProduct.name}>
                                     <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
@@ -227,13 +227,17 @@ const useStylesCard = makeStyles(theme => ({
     },
     cardComboPc: {
         borderRadius: `3px`,
-        maxWidth: `280px`,
-        [theme.breakpoints.up('500')]: {
-            maxWidth: `280px`,
-        },
+        maxWidth: `350px`,
+        margin: `20px 0`
+        // [theme.breakpoints.up('500')]: {
+        //     maxWidth: `280px`,
+        // },
     },
     cardCombo: {
         maxWidth: 300
+    },
+    media: {
+      maxWidth: 400
     },
     titleIndex: {
         fontSize: '28px',
