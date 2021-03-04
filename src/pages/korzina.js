@@ -313,10 +313,10 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                     {pizzaDarom()}
                     <Hidden smUp>
                       { addPanelPribors  &&
-                      <Paper style={{marginTop: 10, padding: 10, width: `100%`}}>
+                      <Paper style={{marginTop: 0, marginBottom: 30, padding: 8, width: `100%`}}>
                         <div style={{display: `flex`, flexDirection: `column`}}>
                           <Typography variant={"subtitle2"}>Количество палочек</Typography>
-                          <div style={{display: `flex`}}>
+                          <div style={{display: `flex`, alignItems: `center`}}>
                             <IconButton aria-label="plus" component="span"
                                         onClick={()=> addedPriborCount(1)}>
                               <AddBoxOutlinedIcon aria-label="plus" />
@@ -337,15 +337,15 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
                 {/*phone next order*/}
                 <Hidden smUp>
-                  <Grid style={{margin: `20px auto 0 auto`,
-                    position: `sticky`,
+                  <div style={{margin: `20px auto 0 auto`,
+                    position: `fixed`,
                     padding: `0 0 0 15px`,
                     bottom: 25,
                     width: `100%`,
                     zIndex: 1200
-                  }} item xs={12} sm={5}>
+                  }}>
 
-                    <Paper elevation={3} style={{padding: 5, opacity: `90%`}}>
+                    <Paper style={{padding: 5, opacity: `90%`}}>
                       <Typography variant="body1" style={{fontSize: 18}}>Сумма заказа <b>{total} ₽</b></Typography>
                     </Paper>
                       <Button
@@ -357,7 +357,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         variant="contained" >
                         Перейти к оформлению
                       </Button>
-                  </Grid>
+                  </div>
                 </Hidden>
 
                 {/*PC block*/}
