@@ -147,8 +147,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                         variant={"subtitle1"}>Сейчас состав</Typography>
                         <Typography style={{
                             fontSize: 16,
-                            fontWeight: 500,
-                            padding: `0 0 10px 0`}}
+                            fontWeight: 500}}
                             variant={"subtitle2"}>Нажмите на блюдо</Typography>
                     </div>
                     {/*<Container style={{paddingBottom: 50}}>*/}
@@ -379,7 +378,7 @@ export const useStyleKombo = makeStyles(theme => ({
         cursor: 'pointer',
         background: `white`,
         // maxWidth: `90%`,
-        // padding: 3,
+        padding: 3,
         // overflowY: `auto`,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         border: `1px solid lightgrey`,
