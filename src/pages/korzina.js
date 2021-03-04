@@ -300,7 +300,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                 <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
                                 }
                                 {edit !== null &&
-                                <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
+                                <Typography style={{fontSize: 13, padding: `0 10px`}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
                                 }
 
                               </div>
