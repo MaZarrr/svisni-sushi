@@ -261,9 +261,9 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
                                 { !!priceIn33cm &&
                                 <>
-                                  <FormControl component="fieldset">
+                                  <FormControl component="fieldset" style={{width: `95%`}}>
                                     <RadioGroup aria-label="position" name="position"
-                                                value={value[idx]} onChange={handleChange} row style={{width: `100%`}}>
+                                                value={value[idx]} onChange={handleChange} row style={{justifyContent: `center`}}>
                                       <FormControlLabel
                                         value={name}
                                         control={<ButtonSize

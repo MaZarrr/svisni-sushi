@@ -51,7 +51,7 @@ const ImageSale = styled(Img) `
   }
 `
 
-const SaleItem = ({ image, md, name, path }) => {
+const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
 
     return (
       <>
@@ -75,9 +75,8 @@ const SaleItem = ({ image, md, name, path }) => {
               { path !== "/pizza-happy/" &&
               <Button variant="contained"
                       component={Link}
-                      to="/dostavka-i-oplata"
-                      endIcon={<LocalTaxiIcon color={"action"}/>}
-                      style={{marginLeft: 10}}>Доставка</Button> }
+                      to={`/${slug}/`}
+                      style={{marginLeft: 10, backgroundColor: `orange`, color: `white`}}>{textSlug}</Button> }
               </ButtonGroupSale>
           </Grid>
       </Grid>

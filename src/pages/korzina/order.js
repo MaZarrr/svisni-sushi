@@ -197,7 +197,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
   };
 
-
   const handleChange = event => setAge(event.target.value);
   const handleChangeDelivery = event => setDelivery(event.target.value);
   const handleChangeCity = city => event => {
@@ -236,7 +235,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     if(comments === '') {
       return true
     } else if(comments !== '') {
-      return ((/^[а-я_А-Я_0-9\-?()!,.ё]{3,230}$/).test(commentTextArea.toLowerCase()))
+      return ((/^[а-я_А-Я_0-9\-?()!,.ё:]{3,230}$/).test(commentTextArea.toLowerCase()))
     }
   };
   const validatePhone = () => {

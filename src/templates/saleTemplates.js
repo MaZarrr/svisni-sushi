@@ -27,6 +27,8 @@ const SaleTeamplate = ({ data: { contentfulProductSale: {
                     <SaleItem
                         name={name}
                         image={image.fluid}
+                        slug={detailedDescription.childMarkdownRemark.frontmatter.sluginfo}
+                        textSlug={detailedDescription.childMarkdownRemark.frontmatter.sluginfotext}
                         md={mdr}
                         path={slug}
                     />
@@ -49,11 +51,15 @@ export const pageQuery = graphql `
                 }
             }
             detailedDescription {
-                childMarkdownRemark {
-                    html
-                    frontmatter {
-                        name
-                    }
+              childMarkdownRemark {
+                frontmatter {
+                  slug
+                  sluginfo
+                  sluginfotext
+                  title
+                  name
+                }
+                html
                 }
             }
         }

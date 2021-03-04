@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import SEO from "./seo"
 import Button from '@material-ui/core/Button';
 import clsx from "clsx";
-import {Container, Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Img from "gatsby-image";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
@@ -55,7 +55,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
     const handleClickAlert = () => {
         setOpenAlert(true);
     };
-
     const handleCloseAlert = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -136,76 +135,98 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
 
             <div style={{width: `100%`}}>
             <div>
-                <Typography style={{marginLeft: 30, fontSize: 14, fontWeight: 500, padding: `0 15px 5px 0`}}
+                <Typography style={{marginLeft: 30, fontWeight: 500, padding: `0 10px 5px 0`}}
                             variant={"body1"}>{description}</Typography>
                 {/*<Divider/>*/}
                 <Hidden xsDown>
-                    <Container style={{paddingBottom: 50}}>
-                        <Grid container style={{height: `20%`}}>
-                            <Grid item xs={12} sm={5}>
-
-                                <div style={{ overflowY: `scroll`, background: `lightgrey`,
-                                    padding: `0 30px 30px 7px`, height: 450, borderRadius: 10}}>
+                    <div style={{marginLeft: 30}}>
+                    <Typography style={{
+                        fontSize: 22,
+                        fontWeight: 500,
+                        padding: `10px 10px 0 0`}}
+                        variant={"subtitle1"}>Сейчас состав</Typography>
+                        <Typography style={{
+                            fontSize: 16,
+                            fontWeight: 500,
+                            padding: `0 0 10px 0`}}
+                            variant={"subtitle2"}>Нажмите на блюдо</Typography>
+                    </div>
+                    {/*<Container style={{paddingBottom: 50}}>*/}
+                        <Grid container style={{padding: `0 0 30px 30px`}}>
+                            <Grid item xs={12} sm={5} style={{
+                                background: `lightgrey`,
+                                padding: `0 30px 30px 7px`,
+                                borderRadius: 5 }}>
+                                <div style={{
+                                    borderRadius: 5,
+                                    top: 150,
+                                    position: `sticky`}}>
                                     { productSostav.map((el, idx) => (
                                         <div aria-hidden={true} onKeyPress={onActiveItem} key={el.id}
                                              className={clsx(classes.defItem, {
                                                  [classes.activeItem]: activeItem[el.id],
                                              })}
                                              onClick={() => onActiveItem(el.id, el.__typename, idx)}>
+                                           <div className={classes.sostavContainer}>
+                                           <div>
                                             <Img style={{width: 100}} fluid={el.image.fluid} alt={el.name}/>
-                                            <div style={{maxWidth: 200, marginLeft: 10}}>
+                                           </div>
+                                               <div style={{maxWidth: 400, marginLeft: 10}}>
                                                 <Typography variant={"subtitle2"}>{el.name}</Typography>
-                                                <Typography style={{fontSize: 14}} variant={"body2"}>{el.description}</Typography>
+                                                <Typography variant={"body2"}>{el.description}</Typography>
                                             </div>
+                                           </div>
                                         </div>
                                     ))}
-                                </div>
-                                <div style={{borderRadius: 10, border: `1px solid lightgrey`, padding: 9, marginTop: 20}}>
-                                    <div className="d-flex mt-2" >
-                                        <Typography style={{fontSize: 20}} variant={"body1"}>
-                                            Стоимость:</Typography>
-                                        <Typography style={{fontSize: 22, marginLeft: `auto`, fontWeight: 800}} variant={"body1"}>
-                                            <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
+                                    <div className={classes.checkoutInfo}>
+                                            <Typography style={{fontSize: 20}} variant={"body1"}>
+                                                Стоимость:</Typography>
+                                            <Typography style={{fontSize: 22, marginLeft: `auto`, fontWeight: 800}} variant={"body1"}>
+                                                <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                                     </div>
+                                    <Button fullWidth={true}
+                                            variant={"contained"}
+                                            color={"primary"}
+                                            className={classes.buttonCheckout}
+                                            onClick={() => addedCart({id, price,
+                                                product: [addedProductKomboToBacket()]})}>
+                                        Добавить в корзину</Button>
                                 </div>
-                                <Button fullWidth={true} style={{marginTop: 20}} variant={"contained"}
-                                        color={"primary"}
-                                        className={classes.buttonCheckout}
-                                        onClick={() => addedCart({id, price,
-                                            product: [addedProductKomboToBacket()]})}>
-                                    Добавить в корзину</Button>
                             </Grid>
 
                             {/*Выбор товаров из предложенных компьютер*/}
                             <Grid item xs={12} sm={7}>
                                 <Grid container justify={"space-around"} style={{
                                     borderRadius: 10,
-                                    height: 450,
+                                    // height: 500,
                                     position: `sticky`,
                                     top: 150,
                                     overflowY: `scroll`,
                                     border: `1px solid lightgrey`,
-                                    margin: `0 auto`}}>
+                                    margin: `0 auto` }}>
                                     { activeType !== '' ? items.map((el) => (
-                                        <Grid item xs={2}
+                                        <Grid item md={4} lg={3} xl={2}
                                               role="button" tabIndex="0" aria-roledescription="attachment button"
-                                              onKeyPress={onActiveItems} key={el.id}  className={clsx(classes.defItem, {
-                                            [classes.activeItemPc]: activeItems[el.id]})}
-                                              onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
-                                                  name: el.name, image: el.image, __typename: activeType, price: el.price })}
-                                              style={{ width: `120px`, cursor: 'pointer',
-                                                  margin: 7, border: `1px solid lightgrey`,
-                                                  padding: 6, borderRadius: 10, height: 180 }}>
-                                            <Img style={{width: 100}} fluid={el.image.fluid} alt={el.name}/>
+                                              onKeyPress={onActiveItems} key={el.id}
+                                              className={clsx(classes.defItemVibor, {
+                                                [classes.activeItemPc]: activeItems[el.id]})}
+                                                onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
+                                                name: el.name, image: el.image, __typename: activeType, price: el.price })}
+                                                style={{cursor: 'pointer', margin: 5, border: `1px solid lightgrey`}}>
+
+                                            <Img fluid={el.image.fluid} alt={el.name}/>
                                             <div>
-                                                <Typography  style={{fontSize: 14, textAlign: `center`}} variant={"subtitle1"}>{el.name}</Typography>
+                                                <Typography style={{textAlign: `center`}}
+                                                             variant={"subtitle1"}>{el.name}</Typography>
+                                                <Typography style={{textAlign: `center`}} variant={"subtitle2"}>
+                                                    {el.description}</Typography>
                                             </div>
                                         </Grid>
                                     )) : <div style={{width: `460px`}}><Img fluid={image} alt={name}/></div> }
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Container>
+                    {/*</Container>*/}
                 </Hidden>
             </div>
 
@@ -213,8 +234,15 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             <Hidden smUp>
                 {/* active sostav product */}
                 <Grid container style={{marginBottom: 50}}>
+                    <div style={{marginLeft: 30}}>
+                        <Typography style={{
+                            fontSize: 22,
+                            fontWeight: 500,
+                            padding: `10px 10px 0 0`}}
+                                    variant={"subtitle1"}>Состав набора:</Typography>
+                    </div>
                     { productSostav.map((el, idx) => (
-                        <Grid key={el.id} item xs={12}>
+                        <Grid key={el.id} item xs={12} style={{padding: 25}}>
                             <div role="button" tabIndex="0"
                                  aria-roledescription="attachment button"
                                  onKeyPress={onActiveItem}
@@ -325,21 +353,40 @@ export default connect(null, mapDispatchToProps)(KomboItem)
 
 export const useStyleKombo = makeStyles(theme => ({
     defItem: {
-        cursor: 'pointer', marginTop: 10, background: `white`,
-        maxWidth: `75%`, border: `1px solid lightgrey`, padding: 10, borderRadius: 10,
+        cursor: 'pointer',
+        margin: `10px 0 10px 0`,
+        background: `white`,
+        // maxWidth: `75%`,
+        border: `1px solid lightgrey`,
+        padding: 10,
+        borderRadius: 5,
 
+    },
+    defItemVibor: {
+        cursor: 'pointer',
+        margin: `10px 0 10px 0`,
+        background: `white`,
+        border: `1px solid lightgrey`,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        padding: 5,
+        borderRadius: 5,
+    },
+    sostavContainer: {
+      display: "flex",
+        alignItems: "center"
     },
     activeItem: {
         cursor: 'pointer',
         background: `white`,
-        maxWidth: `90%`,
-        padding: 3,
-        overflowY: `auto`,
-        borderTop: `1px solid #000`,
+        // maxWidth: `90%`,
+        // padding: 3,
+        // overflowY: `auto`,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        border: `1px solid lightgrey`,
         transition: `transform 0.3s`,
         position: "relative",
         margin: `10px auto 0 auto`,
-        transform: `scale(1.01)`,
+        transform: `scale(1.05)`,
     },
     buttonCheckout: {
         position: "sticky",
@@ -350,6 +397,17 @@ export const useStyleKombo = makeStyles(theme => ({
         marginBottom: 15,
         width: '100%',
         opacity: `93%`
+    },
+    checkoutInfo: {
+        borderRadius: 5,
+        border: `1px solid lightgrey`,
+        padding: 9,
+        backgroundColor: "white",
+        opacity: `80%`,
+        display: "flex",
+        // marginTop: 20,
+        position: "sticky",
+        bottom: 60
     },
     activeItemPc: {
         cursor: 'pointer',
