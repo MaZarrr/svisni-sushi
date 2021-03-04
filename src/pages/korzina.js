@@ -46,7 +46,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
   //     setLoad(false)
   //   }, 600);
   // }, []);
-  console.log(items);
   const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
   const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
 
