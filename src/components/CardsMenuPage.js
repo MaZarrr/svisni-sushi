@@ -9,7 +9,6 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import {Link} from "gatsby";
 import React, {memo} from "react";
-// import { useStylesCart } from "./common/style";
 import { addedToCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
@@ -31,7 +30,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                     image: {fluid}, sale, nonprice, lanchprice, lanch, defaultPrice} = products;
                 return (
                     <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
-                          item xs={12} sm={6} md={3} key={id}>
+                          item xs={12} sm={6} md={4} lg={3} key={id}>
                         <Card className={classes.card}>
                             <CardHeader
                                 avatar={slugCategogy !== "/wok" ? <Img style={{width: 40}} fluid={image.fluid} alt={name} /> : ''}
@@ -293,9 +292,7 @@ export const useStylesCart = makeStyles(theme => ({
     },
     deckript: {
         height: 80,
-        // overflowY: `auto`,
         padding: 14,
-        // borderBottom: `1px solid lightgrey`,
         [theme.breakpoints.down('500')]: {
             padding: 10,
         },
@@ -333,6 +330,15 @@ export const useStylesCart = makeStyles(theme => ({
     card: {
         maxWidth: `350px`,
         margin: `20px auto 10px auto`,
+        [theme.breakpoints.up('1900')]: {
+            maxWidth: `400px`,
+        },
+        [theme.breakpoints.down('1281')]: {
+            maxWidth: `300px`,
+        },
+        [theme.breakpoints.down('600')]: {
+            maxWidth: `400px`,
+        },
         [theme.breakpoints.down('475')]: {
             maxWidth: `340px`,
         },

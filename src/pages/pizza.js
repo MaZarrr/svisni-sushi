@@ -74,7 +74,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
 
                             return (
                                 <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
-                                      item xs={12} sm={6} md={"auto"} lg={3} key={id}>
+                                      item xs={12} sm={6} md={4} lg={3} key={id}>
                                     <Card className={classes.card}>
                                         <CardHeader avatar={<Img style={{width: 40}} fluid={image.fluid} alt={name} />}
                                                     title={"Пицца"}
@@ -296,6 +296,15 @@ export const useStylesCart = makeStyles(theme => ({
   card: {
     maxWidth: `350px`,
     margin: `20px auto 10px auto`,
+    [theme.breakpoints.up('1900')]: {
+      maxWidth: `400px`,
+    },
+    [theme.breakpoints.down('1281')]: {
+      maxWidth: `300px`,
+    },
+    [theme.breakpoints.down('600')]: {
+      maxWidth: `400px`,
+    },
     [theme.breakpoints.down('475')]: {
       maxWidth: `340px`,
     },

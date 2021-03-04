@@ -4,7 +4,6 @@ import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import Button from '@material-ui/core/Button';
 import ReplyIcon from '@material-ui/icons/Reply';
-import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import HeadSection from "./HeadSection"
 import styled from 'styled-components';
 import Grid from "@material-ui/core/Grid"
@@ -16,7 +15,6 @@ const MetterContent = styled.div `
     blockquote {
       margin: 0;
     }
-    //border-left: 2px solid #c75050;
     max-width: 90%;
     p {
       font-size: 16px;
@@ -76,7 +74,7 @@ const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
               <Button variant="contained"
                       component={Link}
                       to={`/${slug}/`}
-                      style={{marginLeft: 10, backgroundColor: `orange`, color: `white`}}>{textSlug}</Button> }
+                      style={{marginLeft: 10, backgroundColor: `orange`}}>{textSlug}</Button> }
               </ButtonGroupSale>
           </Grid>
       </Grid>

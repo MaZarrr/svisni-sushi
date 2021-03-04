@@ -137,20 +137,18 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             <div>
                 <Typography style={{marginLeft: 30, fontWeight: 500, padding: `0 10px 5px 0`}}
                             variant={"body1"}>{description}</Typography>
-                {/*<Divider/>*/}
                 <Hidden xsDown>
                     <div style={{marginLeft: 30}}>
                     <Typography style={{
                         fontSize: 22,
                         fontWeight: 500,
                         padding: `10px 10px 0 0`}}
-                        variant={"subtitle1"}>Сейчас состав</Typography>
+                        variant={"subtitle1"}>Состав</Typography>
                         <Typography style={{
                             fontSize: 16,
                             fontWeight: 500}}
                             variant={"subtitle2"}>Нажмите на блюдо</Typography>
                     </div>
-                    {/*<Container style={{paddingBottom: 50}}>*/}
                         <Grid container style={{padding: `0 0 30px 30px`}}>
                             <Grid item xs={12} sm={5} style={{
                                 background: `lightgrey`,
@@ -225,7 +223,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                 </Grid>
                             </Grid>
                         </Grid>
-                    {/*</Container>*/}
                 </Hidden>
             </div>
 
@@ -238,20 +235,21 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                             fontSize: 22,
                             fontWeight: 500,
                             padding: `10px 10px 0 0`}}
-                                    variant={"subtitle1"}>Состав набора:</Typography>
+                            variant={"subtitle1"}>Состав набора:</Typography>
                     </div>
                     { productSostav.map((el, idx) => (
-                        <Grid key={el.id} item xs={12} style={{padding: 25}}>
+                        <Grid key={el.id} item xs={12} style={{padding: 10}}>
                             <div role="button" tabIndex="0"
                                  aria-roledescription="attachment button"
                                  onKeyPress={onActiveItem}
-                                 className={classes.activeItem}
+                                 className={classes.activeItemPhone}
                                  onClick={() => onActiveItem(el.id, el.__typename, idx)}>
                                 <Grid container justify={"space-between"} alignItems={"center"}>
                                     <Img style={{width: `35%`, margin: `0`}} fluid={el.image.fluid} alt={el.name}/>
-                                    <div style={{position: `absolute`, width: 200, right: 0, padding: `3px 2px 3px 3px`}}>
-                                        <Typography style={{fontSize: 14, fontWeight: 600}} variant={"subtitle1"}>{el.name}</Typography>
-                                        <Typography style={{fontSize: 12, fontWeight: 400}} variant={"subtitle1"}>{el.description}</Typography>
+                                    <div style={{position: `absolute`, width: `60%`, right: 0, padding: `8px 2px 8px 3px`}}>
+                                        <Typography style={{fontWeight: 600}} variant={"subtitle1"}>{el.name}</Typography>
+                                        <Typography style={{lineHeight: 1.15, letterSpacing: -0.5}}
+                                                    variant={"body2"}>{el.description}</Typography>
                                     </div>
                                 </Grid>
                                 <Button size={"small"} fullWidth className={classes.button} variant={"contained"}>
@@ -355,7 +353,6 @@ export const useStyleKombo = makeStyles(theme => ({
         cursor: 'pointer',
         margin: `10px 0 10px 0`,
         background: `white`,
-        // maxWidth: `75%`,
         border: `1px solid lightgrey`,
         padding: 10,
         borderRadius: 5,
@@ -377,15 +374,21 @@ export const useStyleKombo = makeStyles(theme => ({
     activeItem: {
         cursor: 'pointer',
         background: `white`,
-        // maxWidth: `90%`,
         padding: 3,
-        // overflowY: `auto`,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         border: `1px solid lightgrey`,
         transition: `transform 0.3s`,
         position: "relative",
         margin: `10px auto 0 auto`,
         transform: `scale(1.05)`,
+    },
+    activeItemPhone: {
+        cursor: 'pointer',
+        background: `white`,
+        padding: `8px 3px 3px 3px`,
+        borderTop: `1px solid lightgrey`,
+        transition: `transform 0.3s`,
+        position: "relative",
     },
     buttonCheckout: {
         position: "sticky",
@@ -404,7 +407,6 @@ export const useStyleKombo = makeStyles(theme => ({
         backgroundColor: "white",
         opacity: `80%`,
         display: "flex",
-        // marginTop: 20,
         position: "sticky",
         bottom: 60
     },
@@ -427,7 +429,7 @@ export const useStyleKombo = makeStyles(theme => ({
     button: {
         backgroundColor: 'orange',
         padding: 5,
-        margin: `6px 0 6px 0`,
+        margin: `10px 0 6px 0`,
     },
     titleClass: {
         fontWeight: 900,

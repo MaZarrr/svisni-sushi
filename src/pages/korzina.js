@@ -3,7 +3,6 @@ import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
 import  Img  from 'gatsby-image';
-// import Spinner from '../components/spinner/spinner-new'
 import * as R from 'ramda'
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -18,11 +17,8 @@ import { addedCart, removeCart,
   saleRoll, salePizza,
   deletePizza, deleteRoll } from "../reducers/shopping-cart";
 import { getProduct } from "../reducers/app";
-// import SplitButton from "../components/SplitButton";
 import uniqid from 'uniqid'
 import IconButton from "@material-ui/core/IconButton";
-// import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-// import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import IndeterminateCheckBoxOutlinedIcon from '@material-ui/icons/IndeterminateCheckBoxOutlined';
@@ -37,15 +33,9 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                              onIncrease, onDecrise, onDelete, addedPriborCount, addedSaleRoll,
   addedSalePizza, deletePizzaSale, deleteFilaSale, location }) => {
 
-  // const [load, setLoad] = React.useState(true);
   const [value, setValue] = React.useState([]);
   const classes = useStyleBasket();
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoad(false)
-  //   }, 600);
-  // }, []);
   const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
   const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
 
@@ -193,7 +183,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
       <section>
         <div className={classes.root}>
           <HeadSection titleTXT={"Корзина товаров"} />
-          {/*{ load === false ? <div>*/}
             { R.isEmpty(items) ? <EmptyBasket/> :
               <Grid container spacing={2} style={{ width: `100%` }}>
                 <Grid item sm={7}>
@@ -291,7 +280,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                         style={{margin: `0 0 5px 0`, padding: 0}}/>
                                     </RadioGroup>
                                   </FormControl>
-                                  {/*<SplitButton id={id} pizzaIng={items} sostav={sostav} ingrideents={ingrideents} dir={"flex-start"} path={"/korzina/"} height={130}/>*/}
                                   <Typography style={{fontSize: 12}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
                                 </>
                                 }
@@ -304,7 +292,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
                               </div>
                             </div>
-                          {/*</Paper>*/}
                         </Grid>
                       )})}
 
@@ -395,8 +382,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
               </Grid>
             }
           </div>
-        {/*: <Spinner/>}*/}
-        {/*</div>*/}
       </section>
     </>
   )

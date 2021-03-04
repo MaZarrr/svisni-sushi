@@ -113,9 +113,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     ev.preventDefault();
 
     const totalPriceOrder = () => {
-      // const totalPrice = delivery === "Самовывоз" ?
-      //   total : total < stateDeliveryPrice.deliverySalePrice
-      //     ? total + stateDeliveryPrice.priceDel : total;
       if(delivery === "Самовывоз") {
         return total
       } else if(delivery !== "Самовывоз" && !itemCartPizza) {
@@ -457,7 +454,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                      label="Улица"
                                      variant="filled"
                                      fullWidth
-                            // style={{maxWidth: `90%`}}
                                      required
                                      inputProps={{maxLength: 40, minLength: 4}}
                                      name="street"
