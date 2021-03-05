@@ -38,6 +38,7 @@ export default function ButtonBackSet({back}) {
         <div className={classes.root}>
             <Fab component={Link}
                  to={back}
+                 state={{animate: true}}
                  aria-label="ArrowBack"
                  className={classes.sizeButton} >
                 <ArrowBackIcon />

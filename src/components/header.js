@@ -77,7 +77,7 @@ const Header = () => {
                   links.map(({name, link, id}) => (
                       <Grid item component={"li"} key={id} sm={3} style={{ textDecoration: `none`,
                         listStyle: `none`, fontFamily: 'Montserrat, sans-serif', textAlign: `center`}}>
-                        <Link to={link} activeStyle={{ border: `solid 1px #FC5185`,
+                        <Link to={link}  activeStyle={{ border: `solid 1px #FC5185`,
                           borderBottomWidth: `3px`,
                           borderRadius: `8px`,
                           padding: 10,

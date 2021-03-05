@@ -102,6 +102,7 @@ const AppBars = (props) => {
                              classes={{ labelIcon: props.classes.labelIcon }}
                              className={props.classes.tabs}
                              component={Link}
+                             state={{animate: true}}
                              to={`/${menu.slug}/`}
                              value={index + 1}
                              icon={<Hidden xsDown>
