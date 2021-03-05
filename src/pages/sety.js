@@ -21,9 +21,9 @@ const categoryNames = ['Малые', 'Средние', 'Большие', 'Лан
 
 const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
                   product, searchText, priceFilter, checkboxFilter, location, dispatch }) => {
-    const { state = {} } = location
-    const { animate = false } = state
-    const [animates, setAnimate] = React.useState(false)
+    // const { state = {} } = location
+    // const { animate = false } = state
+    // const [animates, setAnimate] = React.useState(false)
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
     // const ulScrollRestoration = useScrollRestoration(`page-component-ul-list`)
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
@@ -35,7 +35,7 @@ const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIco
         dispatch(checkSaleLanch(priceIsSale));
         dispatch(defFilters());
         // setTimeout(() => {
-          setAnimate(animate)
+        //   setAnimate(animate)
 
         // }, 1000)
     }, [setyProduct, dispatch, doStart, priceIsSale, animate]);
@@ -49,9 +49,9 @@ const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIco
             <section>
                     <HeadSection titleTXT={"Заказать суши сет"} path={location.pathname} isFilter={true} categoryNames={categoryNames}/>
                     <Grid container  justify="center" itemScope itemType="http://schema.org/ItemList">
-                      { animates ? <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
+                      <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
                                       image={image} product={product} timePrice={{ hours, minutes, seconds }}
-                                      isSale={priceIsSale} /> : <Spinner count={8}/>}
+                                      isSale={priceIsSale} />
                     </Grid>
             </section>
         </>
