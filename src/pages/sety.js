@@ -38,7 +38,7 @@ const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIco
         //   setAnimate(animate)
 
         // }, 1000)
-    }, [setyProduct, dispatch, doStart, priceIsSale, animate]);
+    }, [setyProduct, dispatch, doStart, priceIsSale]);
   // console.log(animates);
            // <SEO title="Заказать Cуши сет. Меню суши, роллы — доставка в Валуйки"
                  // description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
