@@ -22,7 +22,7 @@ const categoryNames = ['Малые', 'Средние', 'Большие', 'Лан
 const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
                   product, searchText, priceFilter, checkboxFilter, location, dispatch }) => {
     const { state = {} } = location
-    const { animate } = state
+    const { animate = false } = state
     const [animates, setAnimate] = React.useState(false)
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
     // const ulScrollRestoration = useScrollRestoration(`page-component-ul-list`)
