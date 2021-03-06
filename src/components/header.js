@@ -2,13 +2,12 @@ import React from 'react';
 import { Link } from "gatsby"
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-// import CssBaseline from '@material-ui/core/CssBaseline';
 import useImageStaticHook from '../components/image';
-// import { useStyleHeader } from "./common/style";
 import GatsbyImage from "gatsby-image";
 import Hidden from "@material-ui/core/Hidden";
 import loadable from "@loadable/component";
 import { Grid } from "@material-ui/core";
+import AppBars from './AppBars';
 
 // my components
 import DrawerMenu from './DrawerMenu'
@@ -16,7 +15,7 @@ import { makeStyles } from "@material-ui/core/styles"
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Korzina = loadable(() => import('./korzinaComponent'));
-const AppBars = loadable(() => import('./AppBars'));
+// const AppBars = loadable(() => import('./AppBars'));
 
 const links = [
   {

@@ -2,14 +2,47 @@ import React from "react"
 import SEO from "./seo"
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import {Grid, Paper} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Img from "gatsby-image";
 import loadable from "@loadable/component";
 import Typography from "@material-ui/core/Typography";
+import styled from 'styled-components'
 
 // my components
 const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
 const LayoutItem = loadable(() => import('./layoutItem'));
+
+
+const ImageItem = styled(Img)`
+    max-width: 450px; 
+    border-radius: 5px;
+    @media (max-width: 600px) {
+        max-width: 400px;
+    }
+`
+const ContainerContentProducts = styled.div`
+    max-height: 440px;
+    overflow: scroll;
+    border-radius: 5px;
+    margin-top: 4px;
+    padding: 5px;
+    position: relative;
+    @media (max-width: 600px) {
+        overflow: visible;
+        max-height: inherit;
+    }
+`
+const CheckoutContainer = styled.div`
+    margin-topp: 20px;
+    position: sticky;
+    bottom: -50px;
+    div {
+      background-color: #f4f4f4;
+      opacity: 75%;
+      padding: 5px;
+      box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+    }
+`
 
 const SetyItem = ({ name, image, count, weight, price, added, kitProduct, location, back }) => {
 
@@ -21,46 +54,51 @@ return (
         <LayoutItem name={name} image={null} location={location}>
             <ButtonBackSet back={back} />
             <Grid container>
-                <Grid item xs={12} sm={5} style={{width: `100%`, padding: 10}} >
-                    <Img style={{maxWidth: 400, borderRadius: 15, position: `sticky`, top: 150}} fluid={image} />
+                <Grid item xs={12} sm={5} style={{width: `100%`, padding: `5px 0 0 30px`}} >
+                    <ImageItem fluid={image} />
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={5} style={{paddingLeft: 10}}>
-                    <div style={{maxWidth: `100%`, height: `20px`}}>
+                <Grid item xs={12} sm={6} md={5}
+                      style={{paddingLeft: 10}}>
+                    <div style={{padding: 3, borderRadius: 5, boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)', width: `95%`}}>
                         <Typography variant={"h6"} style={{marginTop: 10, marginBottom: 10}}>Состав:</Typography>
                     </div>
+                <ContainerContentProducts>
                 { kitProduct.map(({node: product}) => (
-                <Paper key={product.id} style={{marginTop: 10}}>
-                    <Grid container direction={"row"}>
+                    <Grid container key={product.id}
+                          style={{margin: `7px 0 7px 0`, padding: `7px 0 7px 0`, border: `1px solid lightgrey`, width: `95%`}}
+                          direction={"row"}>
                         <Grid item xs={2}>
                             <Img style={{maxWidth: 70}} fluid={product.image.fluid} alt={product.name} />
                         </Grid>
                     <Grid item xs={8} style={{paddingLeft: 8, margin: `auto 0`}}>
-                        <Typography variant={"subtitle2"} style={{fontSize: 14, fontWeight: 600, margin: 0, padding: 0}}>{product.name}</Typography>
-                        <Typography variant={"body1"} style={{fontSize: 12, margin: `auto`}}>{product.description}</Typography>
+                        <Typography variant={"body1"} style={{fontWeight: 600, margin: 0, padding: 0}}>{product.name}</Typography>
+                        <Typography variant={"subtitle2"} style={{margin: `auto`}}>{product.description}</Typography>
                     </Grid>
 
                     <Grid item xs={2} style={{margin: `auto auto`, textAlign: `center`}}>
-                        <Typography variant={"caption"} style={{fontSize: 12}}>{product.count}шт</Typography>
+                        <Typography variant={"caption"} >{product.count}шт</Typography>
                     </Grid>
                     </Grid>
-                </Paper>
             ))}
-            <div style={{marginTop: 20}}>
-                <Typography variant={"body1"}>Количество: <strong>{count} шт</strong></Typography>
-                    <Typography style={{marginTop: 10, marginBottom: 10}} variant={"body1"}>Общий вес: <strong>{weight} кг</strong></Typography>
-                    <Typography style={{marginBottom: 10}} variant={"body1"}>Цена: <strong>{price} руб</strong></Typography>
-                    <Button
+            </ContainerContentProducts>
+
+            <CheckoutContainer>
+                    <div style={{width: `40%`, borderRadius: 3}}>
+                      <Typography variant={"subtitle2"}>Количество: <strong>{count} шт</strong></Typography>
+                      <Typography style={{marginTop: 3, marginBottom: 3}} variant={"subtitle2"}>Общий вес: <strong>{weight} кг</strong></Typography>
+                      <Typography style={{marginBottom: 10}} variant={"subtitle2"}>Цена: <strong>{price} руб</strong></Typography>
+                    </div>
+                  <Button
                         variant="contained"
-                        size="large"
+                        size="small"
                         endIcon={<ShoppingBasketIcon/>}
-                        style={{marginBottom: `50px`}}
-                        color={"primary"}
+                        style={{marginBottom: `50px`, backgroundColor: "#303032", width: `95%`, color: `white`}}
                         onClick={added}
                     >В корзину</Button>
-            </div>
-                </Grid>
-            </Grid>
+            </CheckoutContainer>
+        </Grid>
+    </Grid>
     </LayoutItem>
     </>
     )
