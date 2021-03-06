@@ -93,10 +93,7 @@ return (
             <CheckoutContainer>
                     <div style={{width: `95%`, borderRadius: 3, display: `flex`, justifyContent: `space-between`}}>
                       <Typography variant={"subtitle2"}>Кол-во: <strong>{count}шт</strong></Typography>
-                      <Typography style={{
-                        borderRight: `1px solid lightgrey`,
-                        borderLeft: `1px solid lightgrey`,
-                      }} variant={"subtitle2"}>Общий вес: <strong>{weight}кг</strong></Typography>
+                      <Typography variant={"subtitle2"}>Общий вес: <strong>{weight}кг</strong></Typography>
                       <Typography variant={"subtitle2"}>Цена: <strong>{price}₽</strong></Typography>
                     </div>
                   <Button
