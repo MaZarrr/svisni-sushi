@@ -67,7 +67,7 @@ const Header = () => {
                 <Link to="/">
                     <GatsbyImage style={{width: 70, margin: `auto auto`}}
                                  fluid={placeholderImage.childImageSharp.fluid}
-                                 alt={"логотип свисни суши"}/>
+                                 alt={"Свисни суши в Уразово"}/>
                   </Link>
                 </Grid>
 
@@ -95,7 +95,7 @@ const Header = () => {
                 <Hidden smUp>
                     <Grid item xs={6}>
                         <Link to="/">
-                            <GatsbyImage style={{width: 65, margin: `auto auto`}} fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
+                            <GatsbyImage style={{width: 65, margin: `auto auto`}} fluid={placeholderImage.childImageSharp.fluid} alt={"Свисни суши в Уразово"}/>
                         </Link>
                     </Grid>
                 </Hidden>

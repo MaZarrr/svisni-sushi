@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import Layout from './src/components/layout'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
@@ -30,33 +31,9 @@ export const onServiceWorkerUpdateReady = () => {
   }
 };
 
-
-// const createStore = require('./src/state/createStore').default;
-// const { Provider } = require('react-redux');
-// const Layout = require('./src/components/layout').default;
-
-
-// exports.registerServiceWorker = () => true
-
-// exports.wrapPageElement = ({element, props}) => {
-//     return <Layout {...props}>{element}</Layout>
-// };
-
-// exports.wrapRootElement = ({ element }) => {
-//     return (
-//         <Provider store={createStore}>
-//             {element}
-//         </Provider>
-//         )
-//     };
-
-
-// exports.onServiceWorkerUpdateReady = () => {
-  // if (
-  //   window.confirm(
-  //     "Cайт был обновлен. Вы хотите перезагрузить сайт, чтобы получить новые товары?"
-  //   )
-  // ) {
-  //   window.location.reload(true);
-  // }
-// };
+export const replaceHydrateFunction = () => {
+  return (element, container, callback) => {
+    console.log("rendering!");
+    ReactDOM.render(element, container, callback);
+  };
+};

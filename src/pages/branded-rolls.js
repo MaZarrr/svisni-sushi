@@ -21,27 +21,15 @@ const categoryNames = ['с крабом', 'с лососем', 'с угрем', 
 const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter }) => {
   
-    const [load, setLoad] = React.useState(true);
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
-
     const priceIsSale = useMemo(() => isSale, [isSale]);
     const visibleItems = filtersProducts(product, searchText, priceFilter);
 
     useEffect(() => {
-        let cleanupFunction = false;
-
         dispatch(productLoaded(productsBrandedRolls));
         doStart({endTime: 15, startTime: 10});
         dispatch(checkSaleLanch(priceIsSale));
-
-      if(!cleanupFunction) {
-        setTimeout(() => {
-          setLoad(false)
-        }, 700);
-      }
         dispatch(defFilters())
-
-      return () => cleanupFunction = true
     }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
 
 return ( 
@@ -50,15 +38,13 @@ return (
     description="Пять видов роллов Филадельфия которых вы еще не пробовали. Закажи доставку или приходи к нам в гости!"
     pathname="/hot-rolls"/>
 
-     <HeadSection titleTXT={"Сложные роллы"} isFilter={true} categoryNames={categoryNames}/>
-       {load === false ?
-               <Grid container justify="center">
-                   <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
-                                  visibleItems={visibleItems}
-                                  image={image} product={product}
-                                  timePrice={{hours, minutes, seconds}} isSale={priceIsSale}/>
-               </Grid> : <Spinner count={10}/>
-       }
+    <HeadSection titleTXT={"Сложные роллы"} isFilter={true} categoryNames={categoryNames}/>
+     <Grid container justify="center">
+         <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
+                        visibleItems={visibleItems}
+                        image={image} product={product}
+                        timePrice={{hours, minutes, seconds}} isSale={priceIsSale}/>
+     </Grid>
   </section>
     )
 };
@@ -107,5 +93,19 @@ export const queryBrandedRolls = graphql `
         }
     `
 
-
-
+// useEffect(() => {
+//   // let cleanupFunction = false;
+//
+//   dispatch(productLoaded(productsBrandedRolls));
+//   doStart({endTime: 15, startTime: 10});
+//   dispatch(checkSaleLanch(priceIsSale));
+//   // setLoad(false)
+//   // if(!cleanupFunction) {
+//   //   setTimeout(() => {
+//   //     setLoad(false)
+//   //   }, 700);
+//   // }
+//   dispatch(defFilters())
+//
+//   // return () => cleanupFunction = true
+// }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);

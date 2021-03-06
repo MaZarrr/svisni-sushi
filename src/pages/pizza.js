@@ -2,9 +2,7 @@ import React, { useEffect } from "react"
 import SEO from "../components/seo"
 import { graphql, Link } from "gatsby";
 import { connect } from 'react-redux';
-// import { useStylesCart } from '../components/common/style';
 import { Grid } from "@material-ui/core";
-import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import * as R from 'ramda'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -32,20 +30,12 @@ const categoryNames = ['новинки', 'мясные', 'с колбаскам�
 const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image} },
                    productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path }) => {
 
-    const [load, setLoad] = React.useState(true);
     const classes = useStylesCart();
 
     useEffect(() => {
-      let cleanupFunction = false;
         dispatch(productPizzaLoaded(pizzaProduct))
         dispatch(pizzaCart({productPizza: pizzaProduct}))
-        if(!cleanupFunction) {
-        setTimeout(() => {
-            setLoad(false)
-        }, 700);
-    }
         dispatch(defFilters())
-        return () => cleanupFunction = true
     }, [dispatch, pizzaProduct]);
 
     const updatePizza = R.defaultTo(productPizza, pizza);
@@ -59,8 +49,6 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                  description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно, именинникам дарим пиццу. Меню на сайте, большая пицца от 249 руб"
                   pathname=""/>
             <HeadSection titleTXT={"Доставка пиццы"} path={path} isFilter={true} categoryNames={categoryNames}/>
-            { load === false ?
-                <div>
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                         {visibleItems.map((products) => {
                             const {id, name, pizzaSale,
@@ -178,8 +166,6 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                             )
                         })}
                     </Grid>
-                </div> : <Spinner count={10}/>
-            }
         </section>
     )
 };
@@ -249,7 +235,6 @@ export const useStylesCart = makeStyles(theme => ({
     overflowY: `auto`,
     padding: `10px 0 10px 0`,
     [theme.breakpoints.down('500')]: {
-      // padding: `10px 0 10px 30px`,
       height: `auto`,
     }
   },
@@ -313,19 +298,7 @@ export const useStylesCart = makeStyles(theme => ({
     },
     [theme.breakpoints.down('340')]: {
       maxWidth: `280px`,
-    },
-    // [theme.breakpoints.down('600')]: {
-    //   margin: `10px auto 30px auto`
-    // },
-    // [theme.breakpoints.up('960')]: {
-    //   margin: `10px 5% 30px 5%`
-    // },
-    // [theme.breakpoints.down('959')]: {
-    //   margin: `10px auto 30px auto`
-    // },
-    // [theme.breakpoints.up('1100')]: {
-    //   margin: `10px auto 30px auto`
-    // }
+    }
   },
   media: {
     width: `99%`,
