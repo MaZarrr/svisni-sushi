@@ -37,8 +37,6 @@ import IndexCards from '../components/Card';
                                     variant={"inherit"}
                                     component={"h1"}>
                             Свисни Суши в Уразово</Typography>
-                        {/*<Typography className={classes.titleIndex}*/}
-                        {/*            variant={"h2"}>Заказывайте роллы суши и пиццу</Typography>*/}
                         </Hidden>
                         <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
@@ -92,94 +90,101 @@ const useStyleIndexPage = makeStyles(theme => ({
 
 export const queryIndexPage = graphql `    
     query {
-        allContentfulContentIndex {
-            edges {
-                node {
-                    title
-                    combos {
-                        id
-                        description
-                        name
-                        price
-                        slug
-                        image {
-                            fluid(maxWidth: 300) {
-                                ...GatsbyContentfulFluid
-                            }
-                        }
-                    }
-                    new {
-                        __typename
-                        ... on Node {
-                            ... on ContentfulProduct {
-                                id
-                                name
-                                price
-                                slug
-                                count
-                                description
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                            ... on ContentfulProductPizza {
-                                id
-                                name
-                                price
-                                priceIn33cm
-                                slug
-                                count
-                                description
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                            ... on ContentfulProductSlognyeRolly {
-                                id
-                                name
-                                count
-                                description
-                                price
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                            ... on ContentfulProductHotRolly {
-                                id
-                                name
-                                count
-                                description
-                                price
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                            ... on ContentfulProductKombo {
-                                id
-                                name
-                                count
-                                description
-                                price
-                                slug
-                                image {
-                                    fluid(maxWidth: 300) {
-                                        ...GatsbyContentfulFluid
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+      allContentfulContentIndex {
+    edges {
+      node {
+        title
+        combos {
+          id
+          description
+          name
+          price
+          slug
+          image {
+            fluid(maxWidth: 300) {
+              ...GatsbyContentfulFluid
             }
+          }
         }
+        new {
+          __typename
+          ... on Node {
+            ... on ContentfulProduct {
+              id
+              name
+              price
+              slug
+              description
+              image {
+                fluid(maxWidth: 300) {
+                  ...GatsbyContentfulFluid
+                }
+              }
+            }
+            ... on ContentfulProductPizza {
+              id
+              name
+              price
+              priceIn33cm
+              slug
+              description
+              image {
+                fluid(maxWidth: 300) {
+                  ...GatsbyContentfulFluid
+                }
+              }
+            }
+            ... on ContentfulProductSlognyeRolly {
+              id
+              name
+              description
+              price
+              image {
+                fluid(maxWidth: 300) {
+                  ...GatsbyContentfulFluid
+                }
+              }
+            }
+            ... on ContentfulProductHotRolly {
+              id
+              name
+              description
+              price
+              image {
+                fluid(maxWidth: 300) {
+                  ...GatsbyContentfulFluid
+                }
+              }
+            }
+            ... on ContentfulProductKombo {
+              id
+              name
+              count
+              description
+              price
+              image {
+                fluid(maxWidth: 300) {
+                  ...GatsbyContentfulFluid
+                }
+              }
+            }
+          ... on ContentfulProductSalat {
+            id
+            name
+            price
+            description
+            weight
+           image {
+            fluid(maxWidth: 300) {
+              ...GatsbyContentfulFluid
+            }
+          }
+          }
+        }
+      }
+    }
+  }
+  }
         allContentfulHomePageImageMenu(sort: {fields: desc}) {
             edges {
                 node {

@@ -95,10 +95,8 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                 </SwipeableViews>
 
                 {/* Новинки */}
-                {/*<Typography className={classesCard.titleIndex} variant={"h2"}>{isNil(product[0].node.title) ? "" :*/}
-                {/*  product[0].node.title}</Typography>*/}
                 <Typography className={classesCard.titleIndex} variant={"h2"}>
-                    Суши и пицца, которые понравятся каждому</Typography>
+                    Блюда которые понравятся каждому</Typography>
                 <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
                     { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
                         <Card key={homeProduct.id} className={classesCard.cardCombo} raised={true}>
