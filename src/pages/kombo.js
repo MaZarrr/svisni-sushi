@@ -51,7 +51,7 @@ export const queryKombo = graphql `
               description
               image {
                   fluid(maxWidth: 380) {
-                    ...GatsbyContentfulFluid
+                    ...GatsbyContentfulFluid_withWebp
                   }
               }
               }
@@ -60,7 +60,7 @@ export const queryKombo = graphql `
            contentfulIconMenuLeftPanel(name: {eq: "Комбо"}) {
             image {
               fluid {
-                ...GatsbyContentfulFluid
+                ...GatsbyContentfulFluid_withWebp
               }
             }
           }

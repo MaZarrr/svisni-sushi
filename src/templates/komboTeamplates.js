@@ -73,7 +73,7 @@ export const query = graphql `
                     weight
                     image {
                         fluid(maxWidth: 400) {
-                            ...GatsbyContentfulFluid_noBase64
+                            ...GatsbyContentfulFluid_withWebp
                         }
                     }
                     sostavDefault {
@@ -83,7 +83,7 @@ export const query = graphql `
                             price
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             }
                         }
@@ -94,7 +94,7 @@ export const query = graphql `
                             description
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             } 
                         }
@@ -105,7 +105,7 @@ export const query = graphql `
                             description
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             }
                         }
@@ -116,7 +116,7 @@ export const query = graphql `
                             description
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             }
                         }
@@ -128,7 +128,7 @@ export const query = graphql `
                             description
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             }
                         }
@@ -139,7 +139,7 @@ export const query = graphql `
                             description
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             }
                         }
@@ -150,7 +150,7 @@ export const query = graphql `
                             description
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             }
                         }
@@ -162,7 +162,7 @@ export const query = graphql `
                         price
                         image {
                             fluid(maxWidth: 150) {
-                                ...GatsbyContentfulFluid
+                                ...GatsbyContentfulFluid_withWebp
                             }
                         }
                     }
@@ -174,7 +174,7 @@ export const query = graphql `
                             description
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             }
                         }
@@ -185,7 +185,7 @@ export const query = graphql `
                             description
                             image {
                                 fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid
+                                    ...GatsbyContentfulFluid_withWebp
                                 }
                             }
                         }
@@ -194,7 +194,7 @@ export const query = graphql `
                         id
                         image {
                             fluid(maxWidth: 150) {
-                                ...GatsbyContentfulFluid
+                                ...GatsbyContentfulFluid_withWebp
                             }
                         }
                         name
@@ -207,23 +207,23 @@ export const query = graphql `
                         priceIn33cm
                         image {
                             fluid(maxWidth: 150) {
-                                ...GatsbyContentfulFluid
+                                ...GatsbyContentfulFluid_withWebp
                             }
                         }
                         count
                         description
                     }
                     contentfulProductKlassika {
-                id
-                name
-                price
-                image {
-                    fluid(maxWidth: 150) {
-                        ...GatsbyContentfulFluid
-                    }
-                }
-                count
-                description
+                      id
+                      name
+                      price
+                      image {
+                          fluid(maxWidth: 150) {
+                              ...GatsbyContentfulFluid_withWebp
+                          }
+                      }
+                      count
+                      description
             }
             productsKomboZakuski {
                 id
@@ -232,7 +232,7 @@ export const query = graphql `
                 count
                 image {
                     fluid(maxWidth: 150) {
-                        ...GatsbyContentfulFluid
+                        ...GatsbyContentfulFluid_withWebp
                     }
                 }
             }

@@ -77,7 +77,7 @@ export const queryBrandedRolls = graphql `
                 count
                 image {
                  fluid(maxWidth: 300, maxHeight: 300, quality: 100) {
-                     ...GatsbyContentfulFluid
+                     ...GatsbyContentfulFluid_withWebp
                   }
               }
               }
@@ -86,7 +86,7 @@ export const queryBrandedRolls = graphql `
           contentfulIconMenuLeftPanel(name: {eq: "Сложные роллы"}) {
           image {
              fluid(maxWidth: 35) {
-               ...GatsbyContentfulFluid
+               ...GatsbyContentfulFluid_withWebp
              }
           }
         }

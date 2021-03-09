@@ -47,7 +47,7 @@ export const pageQuery = graphql `
             slug
             image {
                 fluid(maxWidth: 1280) {
-                    ...GatsbyContentfulFluid
+                    ...GatsbyContentfulFluid_withWebp
                 }
             }
             detailedDescription {

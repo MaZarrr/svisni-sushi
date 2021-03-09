@@ -9,16 +9,30 @@ import {connect} from "react-redux";
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: "space-around",
         '& > *': {
             margin: 0,
         },
     },
     buttonD: {
-        color: `dark`,
+        borderRadius: 5,
+        padding: '6px 12px',
+        border: '1px solid orange',
+        width: `95%`
     },
     buttonT: {
-        backgroundColor: `orange`,
+        width: `95%`,
+        borderRadius: 5,
+        border: '1px solid orange',
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: 'orange',
+        },
+        '&:focus': {
+            boxShadow: 'none',
+            backgroundColor: 'orange',
+        },
+        backgroundColor: 'orange'
 
     },
 }));
@@ -26,10 +40,7 @@ const useStyles = makeStyles((theme) => ({
 export const BootstrapButton = withStyles({
     root: {
         boxShadow: 'none',
-        fontSize: 14,
-        padding: '6px 12px',
         border: '1px solid orange',
-        lineHeight: 1.5,
         '&:active': {
             boxShadow: 'none',
             backgroundColor: 'orange',
@@ -52,32 +63,32 @@ const BasicButtonGroup = ({dispatch, id, productWok}) => {
 
     return (
         <div className={classes.root}>
-            <div>
-                <BootstrapButton className={clsx(
+            <div style={{width: `31%`}}>
+                <button className={clsx(
                     classes.buttonD, {
                         [classes.buttonT]: wokVariant.udon})}
                                  onClick={() => onClickWokVariant({name: "udon", variant: "Удон"})}
-                >Удон</BootstrapButton>
+                >Удон</button>
                 <Typography style={{fontSize: 11, textAlign: `center`}} variant={"body2"}>пшеничная</Typography>
 
             </div>
 
-            <div>
-                <BootstrapButton className={clsx(
+            <div style={{width: `31%`}}>
+                <button className={clsx(
                     classes.buttonD, {
                         [classes.buttonT]: wokVariant.funshoza})}
                                  onClick={() => onClickWokVariant({name: "funshoza", variant: "Фунчоза"})}
-                >Фунчоза</BootstrapButton>
+                >Фунчоза</button>
                 <Typography style={{fontSize: 11, textAlign: `center`}} variant={"body2"}>рисовая</Typography>
 
             </div>
 
-            <div>
-                <BootstrapButton className={clsx(
+            <div style={{width: `31%`}}>
+                <button className={clsx(
                     classes.buttonD, {
                     [classes.buttonT]: wokVariant.soba})}
                         onClick={() => onClickWokVariant({name: "soba", variant: "Соба"})}
-                >Соба</BootstrapButton>
+                >Соба</button>
                 <Typography style={{fontSize: 11, textAlign: `center`}} variant={"body2"}>гречневая</Typography>
             </div>
 

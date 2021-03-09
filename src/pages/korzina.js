@@ -419,7 +419,7 @@ export const queryKorzina = graphql `
                 priceIn33cm
                 image {
                   fluid(maxWidth: 300) {
-                    ...GatsbyContentfulFluid
+                    ...GatsbyContentfulFluid_withWebp
                   }
               }
               }
@@ -433,7 +433,7 @@ export const queryKorzina = graphql `
           price
           image {
             fluid(maxWidth: 300) {
-              ...GatsbyContentfulFluid
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
@@ -447,7 +447,7 @@ export const queryKorzina = graphql `
             price
             image {
               fluid(maxWidth: 300) {
-                ...GatsbyContentfulFluid
+                ...GatsbyContentfulFluid_withWebp
               }
             }
           }
@@ -461,7 +461,7 @@ export const queryKorzina = graphql `
                  price
                  image {
                    fluid(maxWidth: 300) {
-                     ...GatsbyContentfulFluid
+                     ...GatsbyContentfulFluid_withWebp
                    }
                  }
                }
@@ -475,7 +475,7 @@ export const queryKorzina = graphql `
                      price
                      image {
                        fluid(maxWidth: 300) {
-                         ...GatsbyContentfulFluid
+                         ...GatsbyContentfulFluid_withWebp
                        }
                      }
                    }
@@ -489,7 +489,7 @@ export const queryKorzina = graphql `
                     price
                     image {
                       fluid(maxWidth: 300) {
-                        ...GatsbyContentfulFluid
+                        ...GatsbyContentfulFluid_withWebp
                       }
                     }
                   }

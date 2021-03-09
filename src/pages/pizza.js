@@ -198,7 +198,7 @@ export const queryPizza = graphql `
                     description
                     image {
                         fluid(maxWidth: 300) {
-                            ...GatsbyContentfulFluid
+                            ...GatsbyContentfulFluid_withWebp
                         }
                     }
                 }
@@ -207,7 +207,7 @@ export const queryPizza = graphql `
         contentfulIconMenuLeftPanel(name: {eq: "Пицца"}) {
             image {
                 fluid(maxWidth: 35) {
-                    ...GatsbyContentfulFluid
+                    ...GatsbyContentfulFluid_withWebp
                 }
             }
         }
@@ -258,16 +258,13 @@ export const useStylesCart = makeStyles(theme => ({
     padding: '6px 12px',
     border: '1px solid orange',
     lineHeight: 1.5,
-    marginLeft: 5,
     width: `95%`
   },
   buttonT: {
-    width: `95%`,
+    width: `100%`,
     borderRadius: 5,
     fontSize: 11,
-    padding: '6px 12px',
     border: '1px solid orange',
-    lineHeight: 1.5,
     '&:active': {
       boxShadow: 'none',
       backgroundColor: 'orange',

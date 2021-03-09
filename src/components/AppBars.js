@@ -42,7 +42,7 @@ const styles = theme =>( {
 });
 
 function HideOnScroll(props) {
-    const trigger = useScrollTrigger();
+    const trigger = useScrollTrigger({ threshold: 550 });
 
     return (
         <Slide appear={false} direction="down" in={!trigger}>
@@ -69,7 +69,7 @@ const AppBars = (props) => {
                         slug
                         image {
                             fluid(maxWidth: 70) {
-                                ...GatsbyContentfulFluid
+                                ...GatsbyContentfulFluid_withWebp
                             }
                         }
                     }

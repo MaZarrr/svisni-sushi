@@ -254,7 +254,6 @@ const useStylesCard = makeStyles(theme => ({
         justifyContent: "space-around"
     },
     buttonCombo: {
-        margin: theme.spacing(1),
         backgroundColor: `orange`,
         border: 0,
         borderRadius: 3,

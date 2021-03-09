@@ -102,7 +102,7 @@ export const queryIndexPage = graphql `
           slug
           image {
             fluid(maxWidth: 300) {
-              ...GatsbyContentfulFluid
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
@@ -117,7 +117,7 @@ export const queryIndexPage = graphql `
               description
               image {
                 fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid
+                  ...GatsbyContentfulFluid_withWebp
                 }
               }
             }
@@ -130,7 +130,7 @@ export const queryIndexPage = graphql `
               description
               image {
                 fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid
+                  ...GatsbyContentfulFluid_withWebp
                 }
               }
             }
@@ -141,7 +141,7 @@ export const queryIndexPage = graphql `
               price
               image {
                 fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid
+                  ...GatsbyContentfulFluid_withWebp
                 }
               }
             }
@@ -152,7 +152,7 @@ export const queryIndexPage = graphql `
               price
               image {
                 fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid
+                  ...GatsbyContentfulFluid_withWebp
                 }
               }
             }
@@ -164,7 +164,7 @@ export const queryIndexPage = graphql `
               price
               image {
                 fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid
+                  ...GatsbyContentfulFluid_withWebp
                 }
               }
             }
@@ -176,7 +176,7 @@ export const queryIndexPage = graphql `
             weight
            image {
             fluid(maxWidth: 300) {
-              ...GatsbyContentfulFluid
+              ...GatsbyContentfulFluid_withWebp
             }
           }
           }
@@ -194,7 +194,7 @@ export const queryIndexPage = graphql `
                     desc
                     image {
                         fluid(maxWidth: 180, quality: 100) {
-                            ...GatsbyContentfulFluid
+                            ...GatsbyContentfulFluid_withWebp
                         }
                     }
                 }
@@ -207,7 +207,7 @@ export const queryIndexPage = graphql `
                     slug
                     imgCarouselPc {
                         fluid(maxWidth: 1680, quality: 90) {
-                            ...GatsbyContentfulFluid
+                            ...GatsbyContentfulFluid_withWebp
                         }
                     }
                 }
