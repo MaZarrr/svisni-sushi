@@ -12,10 +12,6 @@ import { defFilters, checkSaleLanch } from "../reducers/filters";
 import {productList} from "../reducers/selectors";
 import useTimer from "../utils/useTimer";
 import HeadSection from "../components/HeadSection"
-// import cardItems from "../components/testWorker";
-import TesItems  from "../components/test.worker";
-
-
 
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner count={10}/>
@@ -25,31 +21,17 @@ const categoryNames = ['Малые', 'Средние', 'Большие', 'Лан
 
 const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
                   product, searchText, priceFilter, checkboxFilter, location, dispatch }) => {
-    // const { state = {} } = location
-    // const { animate = false } = state
-    // const [animates, setAnimate] = React.useState(false)
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
     const priceIsSale = useMemo(() => isSale, [isSale]);
-    // console.log(animate);
-    // console.log();
-    const { TestItems } = typeof window === 'object' && new TesItems()
-  // console.log(cardItems);
 
   useEffect(() => {
-    console.log(TestItems());
-      dispatch(productLoaded(setyProduct));
+        dispatch(productLoaded(setyProduct));
         doStart({endTime: 15, startTime: 10});
         dispatch(checkSaleLanch(priceIsSale));
         dispatch(defFilters());
-        // setTimeout(() => {
-        //   setAnimate(animate)
-
-        // }, 1000)
     }, [setyProduct, dispatch, doStart, priceIsSale]);
-    // console.log(animates);
-   // <SEO title="Заказать Cуши сет. Меню суши, роллы — доставка в Валуйки"
-   // description="Сеты в Уразово в ассортименте — широкий выбор, приятные цены. Закажи доставку роллов — в суши баре Свисни Суши"/>
+
     return (
         <>
             <SEO title="Заказать суши сет. Меню наборов роллов — доставка в Валуйки"

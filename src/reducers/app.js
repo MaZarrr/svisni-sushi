@@ -1,22 +1,13 @@
 import {createReducer, createAction} from "redux-act";
-// import {pizzaCart} from "./shopping-cart";
 
 export const productLoaded = createAction('PRODUCT_LOADED');
 export const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA');
 const productLoadedIndex = createAction('PRODUCT_LOADED_INDEX');
 
-
 export const loadIndexItems = (data) => (dispatch) => dispatch(productLoadedIndex(data));
 export const getProduct = (product) => async (dispatch) => {
     await dispatch(productLoaded(product))
 };
-// export const loadedPizza = (data) => (dispatch) => {
-//     dispatch(productPizzaLoaded(data));
-//     dispatch(pizzaCart({productPizza: data}));
-// };
-
-// export const loadedPizza = (data) => (dispatch, getState) => dispatch(productPizzaLoaded(data))
-
 
 const initialState = {
     product: [],
@@ -180,4 +171,3 @@ export default createReducer({
     },
 
 }, initialState)
-//

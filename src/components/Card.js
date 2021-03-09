@@ -143,7 +143,6 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                         <Grid key={homeProduct.id} item sm={6} md={3} className={classesCard.cardComboPc} >
                             <Card raised={true}>
                                 <CardMedia
-                                    // className={classesCard.media}
                                     title={homeProduct.name}>
                                     <Img fluid={homeProduct.image.fluid} alt={homeProduct.name} />
                                 </CardMedia>
@@ -227,15 +226,9 @@ const useStylesCard = makeStyles(theme => ({
         borderRadius: `3px`,
         maxWidth: `350px`,
         margin: `20px 0`
-        // [theme.breakpoints.up('500')]: {
-        //     maxWidth: `280px`,
-        // },
     },
     cardCombo: {
         maxWidth: 300
-    },
-    media: {
-      maxWidth: 400
     },
     titleIndex: {
         fontSize: '28px',

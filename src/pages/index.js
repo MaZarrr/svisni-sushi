@@ -5,19 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { addedCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import { graphql } from "gatsby"
-// import loadable from "@loadable/component";
-// import Spinner from '../components/spinner/spinner-new'
 import { Hidden, Typography } from "@material-ui/core";
 import Carousel from '../components/common/CarouselSvisni';
-import Map from '../components/MapContent';
 import IndexCards from '../components/Card';
-
-
-// const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
-// const Map = loadable(() => import('../components/MapContent'));
-// const IndexCards = loadable(() => import('../components/Card'), {
-//     fallback: <Spinner/>
-// });
 
     const IndexPage = ({ addedCart, data: { allContentfulContentIndex: { edges : indexProduct },
                      allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
@@ -26,7 +16,7 @@ import IndexCards from '../components/Card';
 
         return (
             <>
-             <SEO title="Заказать любимые суши и роллы c доставкой в Валуйки"
+             <SEO title="Заказать любимые суши роллы c доставкой в Валуйки"
                         description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                         Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
                 <section>
@@ -41,8 +31,6 @@ import IndexCards from '../components/Card';
                         <IndexCards addedCart={addedCart}
                            indexProduct={indexProduct}
                            indexMenu={indexMenu} />
-
-                        <Map />
                     </Grid>
                 </section>
          </>

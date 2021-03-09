@@ -24,7 +24,6 @@ module.exports = {
       },
     },
     'gatsby-transformer-remark',
-    'gatsby-plugin-workerize-loader',
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
@@ -80,8 +79,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: "o3pzpw68fwfi",
-        accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         pageLimit: 50,
         assetDownloadWorkers: 25
       },

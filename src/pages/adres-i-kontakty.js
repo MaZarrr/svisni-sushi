@@ -2,15 +2,14 @@ import React from "react"
 import SEO from "../components/seo"
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
 import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
 import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import IconButton from '@material-ui/core/IconButton';
-import { Map, Placemark } from 'react-yandex-maps';
-
-import HeadSection from "../components/HeadSection"
 import styled from "styled-components"
+
+import Map from '../components/MapContent'
+import HeadSection from "../components/HeadSection"
 
 const Container = styled.div`
     display: flex;
@@ -33,22 +32,6 @@ const FooterBlock = styled.div`
         text-align: center;
 `
 
-const MapContainer = styled.div`
-        box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
-        width: 90%;
-        margin: 20px auto 50px auto;
-        .mapStyle {
-            width: 100%;
-            height: 700px;
-            padding: 30px;
-            margin: auto;
-            @media (max-width: 768px) {
-              height: 400px;
-              padding: 10px;
-        }
-    }
-`
-
 const Adresikontakty = () => {
 
 return (
@@ -66,7 +49,7 @@ return (
                         <AccessTimeOutlinedIcon color={"secondary"} fontSize={"large"}/>
                     </IconButton>
                 </div>
-                <div className="ml-1">
+                <div>
                     <Typography variant="h5">Режим работы</Typography>
                     <Typography variant={"subtitle1"}>С 10:00 до 22:00</Typography>
                 </div>
@@ -96,30 +79,7 @@ return (
                 </div>
             </div>
             </Container>
-            <MapContainer>
-            <Map
-              defaultState={{
-                  center: [50.077763, 38.031733],
-                  zoom: 14.5,
-                  controls: ['zoomControl', 'fullscreenControl'],
-                  behaviors: ['drag', 'dblClickZoom', 'multiTouch'] }}
-              modules={['control.ZoomControl', 'control.FullscreenControl']}
-              className="mapStyle"
-              properties={{
-                  balloonContentBody:
-                    'Суши бар Свисни Суши в Уразово',
-              }}>
-                <Placemark
-                  defaultGeometry={[50.077763, 38.031733]}
-                  modules={["geoObject.addon.balloon"]}
-                  properties={{
-                      balloonContentHeader: "Свисни Суши",
-                      balloonContent: 'ул.3-го Интернационала д.48а, Уразово'
-                  }}
-                />
-            </Map>
-            </MapContainer>
-
+            <Map />
             <FooterBlock>
                 <Typography variant="body1">ИП Беженова Татьяна Викторовна</Typography>
                 <Typography variant="body1"> ОРГНИП 318312300012678</Typography>
