@@ -10,11 +10,12 @@ import { Grid } from "@material-ui/core";
 
 // my components
 import DrawerMenu from './DrawerMenu'
+import AppBars from './AppBars'
 import { makeStyles } from "@material-ui/core/styles"
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Korzina = loadable(() => import('./korzinaComponent'));
-const AppBars = loadable(() => import('./AppBars'));
+// const AppBars = loadable(() => import('./AppBars'));
 
 const links = [
   {

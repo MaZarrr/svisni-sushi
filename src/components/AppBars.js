@@ -69,7 +69,7 @@ const AppBars = (props) => {
                         slug
                         image {
                             fluid(maxWidth: 70) {
-                                ...GatsbyContentfulFluid_withWebp
+                                ...GatsbyContentfulFluid
                             }
                         }
                     }
