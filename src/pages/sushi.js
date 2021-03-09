@@ -59,7 +59,7 @@ export const query = graphql `
              contentfulIconMenuLeftPanel(name: {eq: "Суши"}) {
                image {
                  fluid(maxWidth: 35) {
-                   ...GatsbyContentfulFluid_withWebp
+                   ...GatsbyContentfulFluid
                  }
                }
              }

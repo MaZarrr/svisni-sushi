@@ -50,7 +50,7 @@ export const query = graphql `
                   weight
                       image {
                           fluid(maxWidth: 350, maxHeight: 350) {
-                              ...GatsbyContentfulFluid
+                              ...GatsbyContentfulFluid_withWebp
                           }
                       }
               }

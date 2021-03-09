@@ -87,7 +87,7 @@ export const querySet = graphql `
         contentfulIconMenuLeftPanel(name: {eq: "Сеты"}) {
             image {
                 fluid {
-                    ...GatsbyContentfulFluid_withWebp
+                    ...GatsbyContentfulFluid
                 }
             }
         }

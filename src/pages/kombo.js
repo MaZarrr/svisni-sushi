@@ -60,7 +60,7 @@ export const queryKombo = graphql `
            contentfulIconMenuLeftPanel(name: {eq: "Комбо"}) {
             image {
               fluid {
-                ...GatsbyContentfulFluid_withWebp
+                ...GatsbyContentfulFluid
               }
             }
           }

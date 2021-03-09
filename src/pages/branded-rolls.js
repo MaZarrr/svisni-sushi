@@ -86,26 +86,9 @@ export const queryBrandedRolls = graphql `
           contentfulIconMenuLeftPanel(name: {eq: "Сложные роллы"}) {
           image {
              fluid(maxWidth: 35) {
-               ...GatsbyContentfulFluid_withWebp
+               ...GatsbyContentfulFluid
              }
           }
         }
         }
     `
-
-// useEffect(() => {
-//   // let cleanupFunction = false;
-//
-//   dispatch(productLoaded(productsBrandedRolls));
-//   doStart({endTime: 15, startTime: 10});
-//   dispatch(checkSaleLanch(priceIsSale));
-//   // setLoad(false)
-//   // if(!cleanupFunction) {
-//   //   setTimeout(() => {
-//   //     setLoad(false)
-//   //   }, 700);
-//   // }
-//   dispatch(defFilters())
-//
-//   // return () => cleanupFunction = true
-// }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
