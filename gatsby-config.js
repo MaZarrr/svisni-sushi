@@ -9,7 +9,6 @@ module.exports = {
       author: `@mazarrr`,
   },
   plugins: [
-    `gatsby-source-filesystem`,
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     'gatsby-transformer-remark',
