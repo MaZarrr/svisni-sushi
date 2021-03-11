@@ -85,13 +85,13 @@ exports.createPages = async ({ graphql, actions }) => {
   }).catch((err) => console.log(err))
 };
 
-// exports.onCreateWebpackConfig = ({ actions }) => {
-//   actions.setWebpackConfig({
-//     node: {
-//       fs: "empty",
-//     },
-//   })
-// }
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: "empty",
+    },
+  })
+}
 
 // exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 //   const config = getConfig()
