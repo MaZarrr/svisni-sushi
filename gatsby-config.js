@@ -39,6 +39,22 @@ module.exports = {
     },
   },
     {
+      resolve: `gatsby-theme-material-ui`,
+      options: {
+        webFontsConfig: {
+          fonts: {
+            google: [
+              {
+                family: `Montserrat`,
+                variants: [`500`, `800`],
+              },
+            ],
+          },
+        },
+      },
+    },
+    `gatsby-plugin-styled-components`,
+    {
       resolve: `gatsby-plugin-react-redux`,
       options: {
         pathToCreateStoreModule: './src/state/createStore',
@@ -55,26 +71,10 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: "o3pzpw68fwfi",
-        accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4"
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
-    {
-      resolve: `gatsby-theme-material-ui`,
-      options: {
-        webFontsConfig: {
-          fonts: {
-            google: [
-              {
-                family: `Montserrat`,
-                variants: [`500`, `800`],
-              },
-            ],
-          },
-        },
-      },
-    },
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-ramda`,
     `gatsby-plugin-sitemap`,
     {

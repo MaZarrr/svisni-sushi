@@ -1,6 +1,19 @@
 const path = require('path');
 const { graphql } = require('gatsby');
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+      resolve: {
+       alias: {
+            path: require.resolve("path-browserify")
+           },
+       fallback: {
+           fs: false,
+           }
+        }
+})
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
@@ -85,13 +98,16 @@ exports.createPages = async ({ graphql, actions }) => {
   }).catch((err) => console.log(err))
 };
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    node: {
-      fs: "empty",
-    },
-  })
-}
+
+
+
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     node: {
+//       fs: "empty",
+//     },
+//   })
+// }
 
 // exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 //   const config = getConfig()
