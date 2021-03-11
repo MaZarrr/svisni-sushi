@@ -61,6 +61,7 @@
     "uniqid": "^5.2.0"
   },
   "devDependencies": {
+    "path-browserify": "^1.0.1",
     "prettier": "^2.2.1"
   },
   "keywords": [
