@@ -72,8 +72,7 @@ module.exports = {
           unsafe: false,
           ignoreFunction: true,
         },
-        cleanupOnClient: true,
-        windowKey: '__PRELOADED_STATE__',
+        cleanupOnClient: true
       },
     },
    `gatsby-plugin-react-helmet`,
@@ -81,7 +80,9 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        pageLimit: 50,
+        assetDownloadWorkers: 25
       },
     },
     `gatsby-plugin-material-ui`,

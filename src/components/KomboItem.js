@@ -209,7 +209,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                           className={clsx(classes.defItemVibor, {
                                             [classes.activeItemPc]: activeItems[el.id]})}
                                             onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
-                                            name: el.name, image: el.image, __typename: activeType, price: el.price })}
+                                            name: el.name, image: el.image.gatsbyImageData, __typename: activeType, price: el.price })}
                                             style={{cursor: 'pointer', margin: 5, border: `1px solid lightgrey`}}>
 
                                         <GatsbyImage image={el.image.gatsbyImageData} alt={el.name} />
@@ -311,7 +311,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                                     variant={"subtitle1"}>{el.description}</Typography>
                                         <Button
                                           onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
-                                              name: el.name, image: el.image.gatsbyImageData, __typename: activeType, price: el.price })}
+                                              name: el.name, image: el.image, __typename: activeType, price: el.price })}
                                           variant="contained"
                                           size={"small"}
                                           style={{backgroundColor: "orange", position: `absolute`, bottom: `10px`, marginTop: 10}}>

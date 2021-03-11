@@ -4,22 +4,39 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import Logo from "../images/logoPN.png"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
-import styled from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
 import SEO from "../components/seo";
 import { Grid } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import HeadSection from "../components/HeadSection"
 
-const AvatarWrapp = styled(Avatar) `
-background: ${props => props.color};
-`
+const advantages = [
+    {
+        id: 1,
+        img: "../images/money.png",
+        text: "Возможность влиять на доход"
+    },
+    {
+        id: 2,
+        img: "../images/icEducation.png",
+        text: "Обучение у наставника"
+    },
+    {
+        id: 3,
+        img: "../images/growth.png",
+        text: "Возможность карьерного роста"
+    },
+    {
+        id: 4,
+        img: "../images/home.png",
+        text: "Выбор графика работы"
+    }
+]
+
 const Vacancy = () => {
 
     const [expanded, setExpanded] = React.useState({nameCart: false});
@@ -44,18 +61,10 @@ const Vacancy = () => {
         xhr.send(data);
     }
     const {
-        allFile: {edges},
         contentfulInfoModel: {childContentfulInfoModelJobSvisniTextNode: {childMarkdownRemark: md}},
         allContentfulInfoModel: {edges: allMd}
     } = useStaticQuery(graphql`
      query {
-            allFile(filter: { extension: { eq: "svg" } }) {
-                edges {
-                    node {
-                        publicURL
-                    }
-                }
-            }
             allContentfulInfoModel {
                 edges {
                     node {
@@ -83,34 +92,12 @@ const Vacancy = () => {
             }
         }
     `)
-    const advantages = [
-        {
-            id: 1,
-            imgSrc: edges[0].node.publicURL,
-            text: "Возможность влиять на доход"
-        },
-        {
-            id: 2,
-            imgSrc: edges[1].node.publicURL,
-            text: "Обучение у наставника"
-        },
-        {
-            id: 3,
-            imgSrc: edges[2].node.publicURL,
-            text: "Возможность карьерного роста"
-        },
-        {
-            id: 4,
-            imgSrc: edges[3].node.publicURL,
-            text: "Выбор графика работы"
-        }
-    ]
 
     const handleExpandClick = (id) => {
         setExpanded({[id]: !expanded[id]});
     };
 
-return (
+    return (
         <section>
             <SEO title="Работа, вакансии"
                  description="Работа в Свисни Суши. Повар сушист, пиццмейкер"
@@ -123,24 +110,21 @@ return (
                     </Typography>
                     <h2 style={{paddingTop: 20}}>Плюсы работы в Свисни Суши</h2>
                     <section style={{padding: `10px 0 10px 0`}}>
-                        { advantages.map((adva) => (
-                            <div key={adva.id} style={{display: `flex`}}>
-                                <div>
-                                    <img src={adva.imgSrc} alt="Преимущества работы"/>
-                                </div>
+                        { advantages.map(({ id, text, img }) => (
+                            <div key={id} style={{display: `flex`}}>
+                                {/*<StaticImage src={img} alt={text}/>*/}
                                 <div style={{margin: `auto 0`, paddingLeft: 10}}>
-                                    <p>{adva.text}</p>
+                                    <p>{text}</p>
                                 </div>
                             </div>))}
                     </section>
                 </Grid>
 
                 <Grid item xs={12} sm={6} style={{paddingRight: 20, paddingBottom: 30}}>
-                    <div style={{marginLeft: 40}}>
+                    <div style={{marginLeft: 30}}>
                         { allMd.map(({node})=> (
                         <Card key={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.id}>
                             <CardHeader
-                                avatar={ <AvatarWrapp alt="Sushi" src={Logo}></AvatarWrapp>}
                                 title={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.vacancy}
                                 subheader={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.experience}/>
 
@@ -150,51 +134,53 @@ return (
                                     color="secondary"
                                     startIcon={<ExpandMoreIcon />}
                                     id={"one"}
+                                    style={{width: `50%`}}
                                     onClick={() => handleExpandClick("one")}
                                     aria-expanded={expanded["one"]}
                                     aria-label="show more">
                                     Подробнее
                                 </Button>
                             </CardActions>
+
                             <Collapse in={expanded["one"]} timeout="auto" unmountOnExit>
-                                <CardContent>
+                            <CardContent>
+                            <Typography dangerouslySetInnerHTML={{__html: node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.html}} />
 
-                                    <div dangerouslySetInnerHTML={{__html: node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.html}} />
-
-                                    <form className="d-flex flex-column"
-                                          onSubmit={submitForm}
-                                          action="https://formspree.io/xbjdqevk"
-                                          method="POST">
-                                        <Typography variant="h6">
-                                            Отклик на вакансию:
-                                        </Typography>
-                                        <TextField
-                                            id="filled-secondary"
-                                            label="Ф.И.О"
-                                            required
-                                            inputProps={{maxLength: 50, minLength: 3}}
-                                            variant="filled"
-                                            color="primary"
-                                            name="name"/>
-                                        <TextField
-                                            id="filled-secondary"
-                                            label="Телефон"
-                                            required
-                                            inputProps={{maxLength: 20, minLength: 10}}
-                                            variant="filled"
-                                            color="primary"
-                                            name="phone"
-                                            style={{marginTop: 10}}/>
-                                        {state.status === "SUCCESS" ? <h6 style={{paddingTop: 15}}>В ближайшее время с вами свяжутся.</h6> : <Button
-                                            style={{margin: `8px 0 8px 0 `}}
-                                            variant="contained"
-                                            color="primary"
-                                            type="submit">
-                                            Откликнуться
-                                        </Button> }
-                                        {state.status === "ERROR" && <h6>Ooops! Произошла ошибка.</h6>}
-                                        </form>
-                                    </CardContent>
+                            <form onSubmit={submitForm}
+                                  action="https://formspree.io/xbjdqevk"
+                                  method="POST">
+                                <Typography variant="h6">
+                                    Отклик на вакансию:
+                                </Typography>
+                                <TextField
+                                    id="filled-secondary"
+                                    label="Ф.И.О"
+                                    required
+                                    fullWidth
+                                    inputProps={{maxLength: 50, minLength: 3}}
+                                    variant="filled"
+                                    color="primary"
+                                    name="name"/>
+                                <TextField
+                                    id="filled-secondary"
+                                    label="Телефон"
+                                    required
+                                    fullWidth
+                                    inputProps={{maxLength: 20, minLength: 10}}
+                                    variant="filled"
+                                    color="primary"
+                                    name="phone"
+                                    style={{marginTop: 10}}/>
+                                {state.status === "SUCCESS" ? <h6 style={{paddingTop: 15}}>В ближайшее время с вами свяжутся.</h6> : <Button
+                                    style={{margin: `8px 0 8px 0 `}}
+                                    variant="contained"
+                                    color="primary"
+                                    type="submit">
+                                    Откликнуться
+                                </Button> }
+                                {state.status === "ERROR" && <h6>Ooops! Произошла ошибка.</h6>}
+                                </form>
+                            </CardContent>
                             </Collapse>
                         </Card>
                         ))}
