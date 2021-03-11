@@ -9,20 +9,7 @@ module.exports = {
       author: `@mazarrr`,
   },
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
+    `gatsby-source-filesystem`,
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     'gatsby-transformer-remark',
@@ -80,9 +67,7 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        pageLimit: 50,
-        assetDownloadWorkers: 25
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
     `gatsby-plugin-material-ui`,
