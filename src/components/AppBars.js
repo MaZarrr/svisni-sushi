@@ -46,26 +46,96 @@ function HideOnScroll(props) {
     );
 }
 
+
+const barsLinks = [
+    {
+        key: 1,
+        name: "Сеты",
+        slug: "sety",
+    },
+    {
+        key: 2,
+        name: "Горячие роллы",
+        slug: "hot-rolls",
+    },
+    {
+        key: 3,
+        name: "Сложные роллы",
+        slug: "branded-rolls",
+    },
+    {
+        key: 4,
+        name: "Пицца",
+        slug: "pizza",
+    },
+    {
+        key: 5,
+        name: "Комбо",
+        slug: "kombo",
+    },
+    {
+        key: 6,
+        name: "Классические роллы",
+        slug: "small-rolls",
+    },
+    {
+        key: 7,
+        name: "Вок",
+        slug: "wok",
+    },
+    {
+        key: 8,
+        name: "Суши",
+        slug: "sushi",
+    },
+    {
+        key: 9,
+        name: "Гунканы",
+        slug: "gunkany",
+    },
+    {
+        key: 10,
+        name: "Салаты",
+        slug: "salaty",
+    },
+    {
+        key: 11,
+        name: "Закуски",
+        slug: "zakyski",
+    },
+    {
+        key: 12,
+        name: "Напитки",
+        slug: "napitki",
+    },
+    {
+        key: 13,
+        name: "Соусы",
+        slug: "souses",
+    }
+
+]
+
 const AppBars = (props) => {
     const [value, setValue] = React.useState(1);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    const { allContentfulIconMenuLeftPanel } = useStaticQuery(graphql `
-        query {
-            allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
-                edges {
-                    node {
-                        id
-                        name
-                        deck
-                        slug
-                    }
-                }
-            }
-        }
-    `)
+    // const { allContentfulIconMenuLeftPanel } = useStaticQuery(graphql `
+    //     query {
+    //         allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
+    //             edges {
+    //                 node {
+    //                     id
+    //                     name
+    //                     deck
+    //                     slug
+    //                 }
+    //             }
+    //         }
+    //     }
+    // `)
 
     function a11yProps(index){
         return {
@@ -85,17 +155,17 @@ const AppBars = (props) => {
                 onChange={handleChange}
                 scrollButtons="auto">
 
-                {allContentfulIconMenuLeftPanel.edges.map(({node: menu}, index) => (
-                        <Tab key={menu.id}
+                {barsLinks.map(({id, name, slug}, index) => (
+                        <Tab key={id}
                              textColor={"primary"}
                              classes={{ labelIcon: props.classes.labelIcon }}
                              className={props.classes.tabs}
                              component={Link}
-                             to={`/${menu.slug}/`}
+                             to={`/${slug}/`}
                              value={index + 1}
                             label={<Typography style={{fontSize: 16}}
-                                               variant={"subtitle2"}>{menu.name}
-                                    </Typography>} {...a11yProps(menu.deck)}/>))}
+                                               variant={"subtitle2"}>{name}
+                                    </Typography>} {...a11yProps(id)}/>))}
                             </Tabs>
                     </AppBar>
         </HideOnScroll>
