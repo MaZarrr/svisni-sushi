@@ -72,20 +72,16 @@ export const query = graphql `
                 variant
                 filter
                 count
-                image {
-                  fluid(maxWidth: 300, maxHeight: 300, quality: 100) {
-                      ...GatsbyContentfulFluid_withWebp
+                 image {
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
                   }
-                }
               }
             }
           }
         contentfulIconMenuLeftPanel(name: {eq: "Горячие роллы"}) {
-             image {
-               fluid(maxWidth: 35) {
-                 ...GatsbyContentfulFluid
-               }
-             }
+              image {
+                    gatsbyImageData(placeholder: BLURRED)
+                  }
             }
         }
     `

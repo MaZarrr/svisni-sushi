@@ -15,9 +15,9 @@ import LocalTaxiIcon from "@material-ui/icons/LocalTaxi";
 import Divider from '@material-ui/core/Divider';
 import WorkIcon from '@material-ui/icons/Work';
 import { SwipeableDrawer, Typography } from "@material-ui/core"
-import GatsbyImage from "gatsby-image";
+import { StaticImage } from "gatsby-plugin-image";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(({
     list: {
         width: 250,
     },
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function TemporaryDrawer({ image }) {
+export default function TemporaryDrawer() {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
 
@@ -48,7 +48,7 @@ export default function TemporaryDrawer({ image }) {
 
         setState({ ...state, [anchor]: open });
     };
-// linear-gradient(90deg, #c9f520 0%, #aeff31 100%)
+
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {[classes.fullList]: anchor === 'top' || anchor === 'bottom'})}
@@ -58,7 +58,7 @@ export default function TemporaryDrawer({ image }) {
 
             <div style={{background: `red`, width: `100%`, paddingBottom: 15}}>
                 <div style={{maxWidth: 90, height: 90, margin: `0 auto 0 auto`, paddingTop: 15 }}>
-                    <GatsbyImage fixed={image.fixed} alt={"логотип свистни суши"}/>
+                    <StaticImage loading={"eager"} src="../images/logosvisni.png" alt={"Свистни суши в Уразово"}/>
                 </div>
                 <Typography style={{color: `white`, fontWeight: 600, textAlign: `center`, marginTop: 20}} variant={'subtitle1'}>Уразово</Typography>
             </div>

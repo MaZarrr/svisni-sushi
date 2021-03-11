@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { Link } from "gatsby"
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
@@ -37,9 +37,12 @@ function Carousel({ dataCarousel }) {
                 return (
                     <div key={key}>
                         <Link to={data.edges[0].node.slug}>
-                            <Img fluid={data.edges[0].node.imgCarouselPc.fluid}
-                                 className={classes.image} imgStyle={{maxWidth: 1900}}
-                                 alt={data.edges[0].node.name} />
+                            <GatsbyImage
+                                image={data.edges[0].node.imgCarouselPc.gatsbyImageData}
+                                className={classes.image}
+                                loading={"eager"}
+                                imgStyle={{maxWidth: 1900}}
+                                alt={data.edges[0].node.nameAkcii} />
                         </Link>
                     </div>
                 );
@@ -48,9 +51,12 @@ function Carousel({ dataCarousel }) {
                 return (
                     <div key={key}>
                         <Link to={data.edges[1].node.slug}>
-                            <Img fluid={data.edges[1].node.imgCarouselPc.fluid}
-                                 className={classes.image} imgStyle={{maxWidth: 1900}}
-                                 alt={data.edges[1].node.name} />
+                            <GatsbyImage
+                                image={data.edges[1].node.imgCarouselPc.gatsbyImageData}
+                                className={classes.image}
+                                loading={"eager"}
+                                imgStyle={{maxWidth: 1900}}
+                                alt={data.edges[1].node.nameAkcii} />
                         </Link>
                     </div>
                 );
@@ -59,9 +65,12 @@ function Carousel({ dataCarousel }) {
                 return (
                     <div key={key}>
                         <Link to={data.edges[2].node.slug}>
-                            <Img fluid={data.edges[2].node.imgCarouselPc.fluid}
-                                 className={classes.image} imgStyle={{maxWidth: 1900}}
-                                 alt={data.edges[2].node.name} />
+                            <GatsbyImage
+                                image={data.edges[2].node.imgCarouselPc.gatsbyImageData}
+                                className={classes.image}
+                                loading={"eager"}
+                                imgStyle={{maxWidth: 1900}}
+                                alt={data.edges[2].node.nameAkcii} />
                         </Link>
                     </div>
                 );
@@ -70,9 +79,12 @@ function Carousel({ dataCarousel }) {
                 return (
                     <div key={key} style={styles.slide}>
                         <Link to={data.edges[3].node.slug}>
-                            <Img fluid={data.edges[3].node.imgCarouselPc.fluid}
-                                 className={classes.image} imgStyle={{maxWidth: 1900}}
-                                 alt={data.edges[3].node.name} />
+                            <GatsbyImage
+                                image={data.edges[3].node.imgCarouselPc.gatsbyImageData}
+                                className={classes.image}
+                                loading={"eager"}
+                                imgStyle={{maxWidth: 1900}}
+                                alt={data.edges[3].node.nameAkcii} />
                         </Link>
                     </div>
                 );
@@ -81,9 +93,12 @@ function Carousel({ dataCarousel }) {
                 return (
                     <div key={key} style={styles.slide}>
                         <Link to={data.edges[4].node.slug}>
-                            <Img fluid={data.edges[4].node.imgCarouselPc.fluid}
-                                 className={classes.image} imgStyle={{maxWidth: 1900}}
-                                 alt={data.edges[4].node.name} />
+                            <GatsbyImage
+                                image={data.edges[4].node.imgCarouselPc.gatsbyImageData}
+                                className={classes.image}
+                                loading={"eager"}
+                                imgStyle={{maxWidth: 1900}}
+                                alt={data.edges[4].node.nameAkcii} />
                         </Link>
                     </div>
                 );
@@ -115,7 +130,6 @@ export default Carousel;
 
 const useStyleCarousel = makeStyles(theme => ({
     root: {
-        // maxWidth: `100vw`,
         flexGrow: '1',
         marginTop: 75,
         position: 'relative',
@@ -131,16 +145,13 @@ const useStyleCarousel = makeStyles(theme => ({
         borderRadius: 5,
         maxWidth: 1920,
         [theme.breakpoints.down('600')]: {
-            // maxWidth: 780,
             borderRadius: 5,
-            // height: 90,
         },
     },
     rootAutoSwipeable: {
         padding: '0 20vw 0 20vw',
     },
     rootCarousel: {
-        // padding: '0 20vw 0 20vw',
         padding: '0 9vw 0 9vw',
         [theme.breakpoints.down('475')]: {
             padding: 0,

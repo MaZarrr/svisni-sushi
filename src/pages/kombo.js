@@ -49,20 +49,16 @@ export const queryKombo = graphql `
               weight
               count
               description
-              image {
-                  fluid(maxWidth: 380) {
-                    ...GatsbyContentfulFluid_withWebp
+               image {
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
                   }
-              }
               }
             }
           }
            contentfulIconMenuLeftPanel(name: {eq: "Комбо"}) {
-            image {
-              fluid {
-                ...GatsbyContentfulFluid
-              }
-            }
+             image {
+                    gatsbyImageData(placeholder: BLURRED)
+                  }
           }
         }
     `

@@ -48,20 +48,16 @@ export const query = graphql `
                   count
                   price
                   weight
-                      image {
-                          fluid(maxWidth: 300, maxHeight: 300) {
-                              ...GatsbyContentfulFluid_withWebp
-                          }
-                      }
+                  image {
+                  gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
               }
           }
       }
-             contentfulIconMenuLeftPanel(name: {eq: "Суши"}) {
-               image {
-                 fluid(maxWidth: 35) {
-                   ...GatsbyContentfulFluid
-                 }
-               }
-             }
+     contentfulIconMenuLeftPanel(name: {eq: "Суши"}) {
+        image {
+          gatsbyImageData(placeholder: BLURRED)
         }
+     }
+}
     `

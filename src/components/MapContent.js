@@ -18,9 +18,7 @@ const MapContainer = styled.div`
     }
 `
 
-export default () => {
-
-  return (
+const MapContent = () => (
     <MapContainer>
       <Map
         defaultState={{
@@ -45,4 +43,5 @@ export default () => {
       </Map>
     </MapContainer>
   )
-}
+
+export default MapContent

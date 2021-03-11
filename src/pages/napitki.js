@@ -45,20 +45,16 @@ export const queryDrink = graphql `
                 price
                 name
                 weight
-                    image {
-                        fluid(maxWidth: 400) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
-                    }
+                 image {
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
             }
         }
     }
         contentfulIconMenuLeftPanel(name: {eq: "Напитки"}) {
-           image {
-             fluid(maxWidth: 35) {
-               ...GatsbyContentfulFluid
-             }
-           }
+            image {
+              gatsbyImageData(placeholder: BLURRED)
+              }
          }
         }
     `

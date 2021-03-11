@@ -77,18 +77,20 @@ export const querySet = graphql `
                     description
                     komboSale
                     image {
-                        fluid(maxWidth: 300, quality: 100) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
+                     gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [WEBP, AUTO]
+                  )
                     }
                 }
             }
         }
         contentfulIconMenuLeftPanel(name: {eq: "Сеты"}) {
             image {
-                fluid {
-                    ...GatsbyContentfulFluid
-                }
+                gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [WEBP, AUTO]
+                  )
             }
         }
     }

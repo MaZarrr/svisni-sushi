@@ -10,6 +10,8 @@ import styled from 'styled-components';
 
 const KorzinaItem = styled.div `
   min-width: 90px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const TextTotal = styled.span `

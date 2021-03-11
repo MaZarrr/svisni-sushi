@@ -23,8 +23,9 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    'gatsby-transformer-remark',
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
+    'gatsby-transformer-remark',
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -80,23 +81,13 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        pageLimit: 50,
-        assetDownloadWorkers: 25
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-ramda`,
     `gatsby-plugin-sitemap`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
-        head: true,
-        defer: true
-      },
-    },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {

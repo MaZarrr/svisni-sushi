@@ -1,11 +1,10 @@
 import React from "react"
-import Img  from 'gatsby-image';
+import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby"
-import useImageHook from './image';
 import { Typography } from "@material-ui/core";
 import styled from 'styled-components';
 
-const Footer = styled.footer `
+const FooterSection = styled.footer `
    background-color: #303032;
    color: white;
    padding: 30px 0 30px 0;
@@ -96,59 +95,62 @@ const FooterUl = styled.ul `
 
 `
 
-export default () => {
- const [{placeholderImage}, ] = useImageHook();
+const Footer = () => {
 
 return (
-    <Footer>
-    <FooterUl className="footer">
-    <div className="footer_items foter_t">
-      <li className="footer_item foooter_logo">
-        <Link to="/">
-            <Img fluid={placeholderImage.childImageSharp.fluid} alt={"логотип свисни суши"}/>
-        </Link>
-      </li>
-      <li><strong><Typography variant={"subtitle1"}>Свисни Суши</Typography></strong></li>
-    </div>
+  <FooterSection>
+  <FooterUl className="footer">
+  <div className="footer_items foter_t">
+    <li className="footer_item foooter_logo">
+      <Link to="/">
+          <StaticImage
+            src="../images/logosvisni.png"
+            alt={"логотип свисни суши"} />
+      </Link>
+    </li>
+    <li><strong><Typography variant={"subtitle1"}>Свисни Суши</Typography></strong></li>
+  </div>
 
-    <div className="footer_info">
-    <div className="footer_items">
-      <li className="footer_item footer_info_st">
-          <Link to="/"><Typography variant={"subtitle1"}>Главная</Typography></Link>
-          <Link to="/sale"><Typography variant={"subtitle1"}>Акции</Typography></Link>
-          <Link to="/dostavka-i-oplata"><Typography variant={"subtitle1"}>Доставка и оплата</Typography></Link>
-          <Link to="/adres-i-kontakty"><Typography variant={"subtitle1"}>Адрес и контакты</Typography></Link>
-          <Link to="/vacancy"><Typography variant={"subtitle1"}>Вакансии</Typography></Link>
-      </li>
-    </div>
-    
-    <div className="footer_items">
-      <li className="footer_item footer_info_st">
-        <Link to="/o-nas"><Typography variant={"subtitle1"}>О нас</Typography></Link>
-        <Link to="/privacy"><Typography variant={"subtitle1"}>Условия обработки персональных данных</Typography></Link>
-        <Link to="/cookie"><Typography variant={"subtitle1"}>Политика обработки файлов Cookie</Typography></Link>
-        <Link to="/offer"><Typography variant={"subtitle1"}>Договор оферты</Typography></Link>
-      </li>
-    </div>
+  <div className="footer_info">
+  <div className="footer_items">
+    <li className="footer_item footer_info_st">
+        <Link to="/"><Typography variant={"subtitle1"}>Главная</Typography></Link>
+        <Link to="/sale"><Typography variant={"subtitle1"}>Акции</Typography></Link>
+        <Link to="/dostavka-i-oplata"><Typography variant={"subtitle1"}>Доставка и оплата</Typography></Link>
+        <Link to="/adres-i-kontakty"><Typography variant={"subtitle1"}>Адрес и контакты</Typography></Link>
+        <Link to="/vacancy"><Typography variant={"subtitle1"}>Вакансии</Typography></Link>
+    </li>
+  </div>
+  
+  <div className="footer_items">
+    <li className="footer_item footer_info_st">
+      <Link to="/o-nas"><Typography variant={"subtitle1"}>О нас</Typography></Link>
+      <Link to="/privacy"><Typography variant={"subtitle1"}>Условия обработки персональных данных</Typography></Link>
+      <Link to="/cookie"><Typography variant={"subtitle1"}>Политика обработки файлов Cookie</Typography></Link>
+      <Link to="/offer"><Typography variant={"subtitle1"}>Договор оферты</Typography></Link>
+    </li>
+  </div>
 
-    <div className="footer_items">
-    <div className="footer_item footer_social">
-    <p>Узнавайте об акциях первыми — <span className="txt_social">подписывайтесь на наши группы в соцсетях</span></p>
-        <div style={{display: `flex`}}>
-            <div style={{marginRight: 15}}>
-                <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-lg fa-odnoklassniki-square text-dark" ></i></a>
-            </div>
-            <div style={{marginRight: 15}}>
-                <a href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-lg fa-vk text-dark"></i></a>
-            </div>
-            <div>
-                <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-lg fa-instagram text-dark"></i></a>
-            </div>
-        </div>
-     </div>
-    </div>
-    </div>
-    </FooterUl>
-  </Footer>
-)
+  <div className="footer_items">
+  <div className="footer_item footer_social">
+  <p>Узнавайте об акциях первыми — <span className="txt_social">подписывайтесь на наши группы в соцсетях</span></p>
+      <div style={{display: `flex`}}>
+          <div style={{marginRight: 15}}>
+              <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-lg fa-odnoklassniki-square text-dark" ></i></a>
+          </div>
+          <div style={{marginRight: 15}}>
+              <a href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-lg fa-vk text-dark"></i></a>
+          </div>
+          <div>
+              <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-lg fa-instagram text-dark"></i></a>
+          </div>
+      </div>
+   </div>
+  </div>
+  </div>
+  </FooterUl>
+</FooterSection>
+);
 }
+
+export default Footer;

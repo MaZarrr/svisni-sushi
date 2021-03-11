@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from "react"
 
-export default () => {
+const ProgressBar = () => {
 
     const [progressPercent, setProgressPercent] = useState(0);
    
@@ -27,3 +27,5 @@ export default () => {
         }}/>
     )
 }
+
+export default ProgressBar

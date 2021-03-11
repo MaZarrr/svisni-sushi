@@ -63,7 +63,7 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
         count = 0,
         name = setу.name,
         total = 0,
-        image = setу.image.fluid,
+        image = setу.image.gatsbyImageData,
         priceDef = pricePizza,
         priceIn33cm = setу.priceIn33cm,
         pribor = 0,

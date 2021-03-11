@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from "gatsby"
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import useImageStaticHook from '../components/image';
-import GatsbyImage from "gatsby-image";
+import { StaticImage } from "gatsby-plugin-image";
 import Hidden from "@material-ui/core/Hidden";
 import loadable from "@loadable/component";
 import { Grid } from "@material-ui/core";
@@ -42,7 +41,6 @@ const links = [
 
 const Header = () => {
     const classes = useStyleHeader();
-    const [{ avatarImage, placeholderImage },] = useImageStaticHook();
 
   return (
       <>
@@ -55,24 +53,27 @@ const Header = () => {
           <Toolbar>
               <Grid container>
               <Hidden smUp>
-                  <Grid item xs={3} style={{margin: `auto auto`}}>
-                        <DrawerMenu image={avatarImage.childImageSharp}/>
+                  <Grid item xs={4} style={{margin: `auto auto`}}>
+                        <DrawerMenu />
                   </Grid>
               </Hidden>
 
                 <Hidden xsDown>
 
-                <Grid item sm={2}>
-                <Link to="/">
-                    <GatsbyImage style={{width: 70, margin: `auto auto`}}
-                                 fluid={placeholderImage.childImageSharp.fluid}
+                <Grid item sm={1}>
+                  <Link to="/">
+                    <StaticImage layout="constrained"
+                                 loading={"eager"}
+                                 placeholder="blurred"
+                                 style={{maxWidth: 70}}
+                                 src="../images/logosvisni.png"
                                  alt={"Свисни суши в Уразово"}/>
                   </Link>
                 </Grid>
 
-                <Grid item xs={8} component={`ul`} style={{margin: `auto 0`}}>
-                  <Grid container>
-              {
+                <Grid item xs={9} component={`ul`} style={{margin: `auto 0`}}>
+                <Grid container>
+                {
                   links.map(({name, link, id}) => (
                       <Grid item component={"li"} key={id} sm={3} style={{ textDecoration: `none`,
                         listStyle: `none`, fontFamily: 'Montserrat, sans-serif', textAlign: `center`}}>
@@ -87,19 +88,24 @@ const Header = () => {
 
                   ))
                 }
-                  </Grid>
+                </Grid>
                 </Grid>
                 </Hidden>
 
                 <Hidden smUp>
-                    <Grid item xs={6}>
+                    <Grid item xs={4} style={{display: `flex`, justifyContent: `center`}}>
                         <Link to="/">
-                            <GatsbyImage style={{width: 65, margin: `auto auto`}} fluid={placeholderImage.childImageSharp.fluid} alt={"Свисни суши в Уразово"}/>
+                            <StaticImage layout="constrained"
+                                         loading={"eager"}
+                                         style={{maxWidth: 65}}
+                                         placeholder="blurred"
+                                         src="../images/logosvisni.png"
+                                         alt={"Свисни суши в Уразово"}/>
                         </Link>
                     </Grid>
                 </Hidden>
 
-                <Grid item xs={3} sm={2} style={{margin: `auto 0`}}>
+                <Grid item xs={4} sm={2} style={{margin: `auto 0`, display: `flex`, justifyContent: `flex-end`}}>
                     <Korzina />
                 </Grid>
             </Grid>

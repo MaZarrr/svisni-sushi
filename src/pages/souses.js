@@ -48,20 +48,16 @@ export const query = graphql `
                   name
                   count
                   weight
-                       image {
-                           fluid(maxWidth: 350, maxHeight: 350) {
-                               ...GatsbyContentfulFluid_withWebp
-                           }
-                       }
+                image {
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
               }
           }
       }
       contentfulIconMenuLeftPanel(name: {eq: "Соусы"}) {
-         image {
-           fluid(maxWidth: 35) {
-             ...GatsbyContentfulFluid
-           }
-         }
+        image {
+          gatsbyImageData(placeholder: BLURRED)
+          }
        }
-        }
+    }
     `

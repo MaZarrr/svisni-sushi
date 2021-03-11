@@ -704,7 +704,7 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
 
-export const useStyleOrder = makeStyles(theme => ({
+const useStyleOrder = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: `100%`

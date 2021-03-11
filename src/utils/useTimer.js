@@ -3,7 +3,7 @@ import moment from "moment";
 
 const daySeconds = 86400;
 
-export default () => {
+const useTimer = () => {
     const [secondsInSale, setSecondsInSale] = useState(null);
     const [hours, setHours] = useState("00");
     const [minutes, setMinutes] = useState("00");
@@ -63,8 +63,7 @@ export default () => {
     return [{hours, minutes, seconds, isSale}, doStart]
 }
 
-
-
+export default useTimer;
 
 
 

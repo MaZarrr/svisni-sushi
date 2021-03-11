@@ -1,4 +1,4 @@
- export default (product, searchText, priceFilter, checkboxFilter) => {
+ const filterProducts = (product, searchText, priceFilter, checkboxFilter) => {
 
     const search = (items, txt) => {
         if(txt === undefined) {
@@ -43,3 +43,5 @@
   return filterCheckbox(filter(search(product, searchText), priceFilter), checkboxFilter)
 
   }
+
+  export default filterProducts;

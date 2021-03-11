@@ -40,7 +40,7 @@ const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
                 description={contentfulProductKombo.description}
                 weight={contentfulProductKombo.weight}
                 count={contentfulProductKombo.count}
-                image={contentfulProductKombo.image.fluid}
+                image={contentfulProductKombo.image.gatsbyImageData}
                 edit={contentfulProductKombo.edit}
                 largePizza={contentfulProductKombo.largePizza}
                 slug={contentfulProductKombo.slug}
@@ -60,7 +60,7 @@ const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
 export default KomboTeamplate
 
 export const query = graphql `
-    query ($slug: String!) {
+  query ($slug: String!) {
         contentfulProductKombo(slug: {eq: $slug}) {
                     id
                     name
@@ -68,172 +68,157 @@ export const query = graphql `
                     description
                     price
                     edit
+                    __typename
                     largePizza
                     slug
                     weight
                     image {
-                        fluid(maxWidth: 400) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
+                      gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
                     }
                     sostavDefault {
                         ... on ContentfulProductZakuski {
+                            __typename
                             id
                             name
                             price
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                         ... on ContentfulProductKlassika {
+                            __typename
                             id
                             name
                             price
                             description
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            } 
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                         ... on ContentfulProductHotRolly {
+                            __typename  
                             id
                             name
                             price
                             description
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                         ... on ContentfulProductNapitki {
+                            __typename  
                             id
                             name
                             price
                             description
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                         ... on ContentfulProductPizza {
+                            __typename
                             id
                             name
                             price
                             priceIn33cm
                             description
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                         ... on ContentfulProductSlognyeRolly {
+                            __typename
                             id
                             name
                             price
                             description
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                         ... on ContentfulProductWok {
+                            __typename
                             id
                             name
                             price
                             description
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                     }
                     productsKomboWok {
+                        __typename
                         id
                         name
                         description
                         price
                         image {
-                            fluid(maxWidth: 150) {
-                                ...GatsbyContentfulFluid_withWebp
-                            }
-                        }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                     }
                     productsKomboRolls {
                         ... on ContentfulProductSlognyeRolly {
+                           __typename
                             id
                             name
                             price
                             description
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                         ... on ContentfulProductHotRolly {
+                            __typename  
                             id
                             name
                             price
                             description
                             image {
-                                fluid(maxWidth: 150) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                            }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         }
                     }
                     productsKomboNapitki {
                         id
+                        __typename
                         image {
-                            fluid(maxWidth: 150) {
-                                ...GatsbyContentfulFluid_withWebp
-                            }
-                        }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         name
                         price
                     }
                     productsCombo {
+                      __typename
                         id
                         name
                         price
                         priceIn33cm
                         image {
-                            fluid(maxWidth: 150) {
-                                ...GatsbyContentfulFluid_withWebp
-                            }
-                        }
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                          }
                         count
                         description
                     }
                     contentfulProductKlassika {
+                      __typename
                       id
                       name
                       price
                       image {
-                          fluid(maxWidth: 150) {
-                              ...GatsbyContentfulFluid_withWebp
+                            gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
                           }
-                      }
                       count
                       description
             }
             productsKomboZakuski {
+                __typename
                 id
                 name
                 price
                 count
                 image {
-                    fluid(maxWidth: 150) {
-                        ...GatsbyContentfulFluid_withWebp
-                    }
+                  gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
                 }
             }
         }

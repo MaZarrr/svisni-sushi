@@ -1,12 +1,13 @@
 import React from 'react'
-import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
 import {addedCart} from "../reducers/shopping-cart";
 import * as R from 'ramda'
+import { graphql } from 'gatsby'
 import loadable from '@loadable/component'
-import Spinner from  "../components/spinner/spinner"
+import Spinner from  "../components/spinner/spinner-new"
+
 const ProductItem = loadable(() => import('../components/SetyItem'), {
-    fallback: <Spinner count={1}/>});
+    fallback: <Spinner />});
 
 const SetyTeamplate = ({ data: { contentfulProduct,
     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
@@ -30,7 +31,7 @@ const SetyTeamplate = ({ data: { contentfulProduct,
         weight={contentfulProduct.weight}
         count={contentfulProduct.count}
         back={"/sety/"}
-        image={contentfulProduct.image.fluid}
+        image={contentfulProduct.image}
         kitProduct={kitProduct}
         added={() => addedToCart({id: contentfulProduct.id, price: null,
             product: [{
@@ -68,10 +69,8 @@ export const query = graphql `
             defaultPrice
             count
             description
-            image {
-              fluid(maxWidth: 400, quality: 90) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
+             image {
+              gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
             }
         }
         allContentfulProductHotRolly {
@@ -82,10 +81,8 @@ export const query = graphql `
                     description
                     count
                     image {
-                        fluid(maxWidth: 200, maxHeight: 200) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
-                    }
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
                 }
             }
         }
@@ -97,10 +94,8 @@ export const query = graphql `
                     description
                     count
                     image {
-                        fluid(maxWidth: 100, maxHeight: 100) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
-                    }
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
                 }
             }
         }
@@ -113,10 +108,8 @@ export const query = graphql `
                     description
                     price
                     image {
-                       fluid(maxWidth: 100, maxHeight: 100) {
-                           ...GatsbyContentfulFluid_withWebp
-                      }
-                    }
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
                 }
             }
        }
@@ -129,10 +122,8 @@ export const query = graphql `
                     description
                     count
                     image {
-                        fluid(maxWidth: 100, maxHeight: 100) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
-                    }
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
                 }
             }
         }
@@ -146,12 +137,34 @@ export const query = graphql `
                     price
                     weight
                     image {
-                        fluid(maxWidth: 100, maxHeight: 100) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
-                    }
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
                 }
             }
         }
     }
  `
+
+// "gatsby-plugin-preload-link-crossorigin": "^1.0.2",
+
+// {
+//   resolve: `gatsby-source-contentful`,
+//     options: {
+//   spaceId: "o3pzpw68fwfi",
+//     accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
+//     pageLimit: 50,
+//     assetDownloadWorkers: 25
+// },
+// },
+
+//    "@hot-loader/react-dom": "^17.0.1",
+
+//    "gatsby-image": "^2.11.0",
+// {
+//   resolve: `gatsby-plugin-google-analytics`,
+//     options: {
+//   trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
+//     head: true,
+//     defer: true
+// },
+// },

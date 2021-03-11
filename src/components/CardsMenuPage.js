@@ -1,14 +1,14 @@
 import { Grid } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import {Link} from "gatsby";
-import React, {memo} from "react";
+import { Link } from "gatsby";
+import React, { memo } from "react";
 import { addedToCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
@@ -19,257 +19,262 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, product, dispatch, timePrice, isSale }) => {
     const classes = useStylesCart();
-    return (
-        <>
+    return <>
 
-            { visibleItems.map((products) => {
+        { visibleItems.map((products) => {
 
-                const {id, name, slug, description,
-                    price, weight, count,
-                    edit, komboSale, variant = false,
-                    image: {fluid}, sale, nonprice, lanchprice, lanch, defaultPrice} = products;
-                return (
-                    <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
-                          item xs={12} sm={6} md={4} lg={3} key={id}>
-                        <Card className={classes.card}>
-                            <CardHeader
-                                avatar={slugCategogy !== "/wok" ? <Img style={{width: 40}} fluid={image.fluid} alt={name} /> : ''}
-                                title={variant ? variant : titleCategory}
-                                subheader={<span itemProp="name"><Typography style={{ fontWeight: 600 }} variant={"subtitle1"}>{name}</Typography></span>}/>
-                            { slugCategogy === "/sety" &&
-                            <CardMedia
-                                className={classes.media}
-                                title={name}>
+            const {id, name, slug, description,
+                price, weight, count,
+                edit, komboSale, variant = false,
+                image: { gatsbyImageData }, sale, nonprice, lanchprice, lanch, defaultPrice} = products;
+            console.log("render timer");
+            return (
+                <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
+                      item xs={12} sm={6} md={4} lg={3} key={id}>
+                    <Card className={classes.card}>
+                        <CardHeader
+                            avatar={slugCategogy !== "/wok" ? <GatsbyImage image={image.gatsbyImageData} style={{width: 40}} alt={name} /> : ''}
+                            title={variant ? variant : titleCategory}
+                            subheader={<span itemProp="name"><Typography style={{ fontWeight: 600 }} variant={"subtitle1"}>{name}</Typography></span>}/>
+                        { slugCategogy === "/sety" &&
+                        <CardMedia
+                            className={classes.media}
+                            title={name}>
 
-                                {!komboSale &&
-                                    <Link to={`${slugCategogy}/${slug}`}>
-                                        <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
-                                    </Link>
-                                }
-
-                                {komboSale &&
-                                <Link to={`/${slug}`}>
-                                    <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
-                                </Link>
-                                }
-
-                            </CardMedia>
-                            }
-
-                            { slugCategogy === "/kombo" &&
-                            <CardMedia
-                                className={classes.media}
-                                title={name}>
-
-                                {edit &&
+                            {!komboSale &&
                                 <Link to={`${slugCategogy}/${slug}`}>
-                                    <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
+                                    <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} style={{maxWidth: `100%`}} />
                                 </Link>
-                                }
-                                {!edit &&
-                                <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`}}/>
-                                }
-                            </CardMedia>
                             }
 
+                            {komboSale &&
+                            <Link to={`/${slug}`}>
+                                <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} style={{maxWidth: `100%`}} />
+                            </Link>
+                            }
 
-                            {slugCategogy !== "/sety" && slugCategogy !== "/kombo" &&
-                            <CardMedia
-                                className={classes.media}
-                                title={name}>
-                                <div style={{position: `relative`}}>
-                                    <Img itemProp="image" fluid={fluid} alt={name} style={{maxWidth: `100%`, margin: 0}}/>
-                                    {slugCategogy === "/wok" &&
-                                    <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
-                                        <Img style={{maxWidth: 50, bottom: 45, marginLeft: 15}} fluid={image.fluid}
-                                             alt={"Коробка wok box"}/>
-                                        <div style={{position: `absolute`, bottom: 60, left: 55, width: 180}}>
-                                            <Typography style={{fontSize: 13}} variant={"subtitle2"}>
-                                                Доставим в коробке</Typography>
-                                        </div>
+                        </CardMedia>
+                        }
+
+                        { slugCategogy === "/kombo" &&
+                        <CardMedia
+                            className={classes.media}
+                            title={name}>
+
+                            {edit &&
+                            <Link to={`${slugCategogy}/${slug}`}>
+                                <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} style={{maxWidth: `100%`}} />
+                            </Link>
+                            }
+                            {!edit &&
+                            <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} style={{maxWidth: `100%`}} />
+                            }
+                        </CardMedia>
+                        }
+
+
+                        {slugCategogy !== "/sety" && slugCategogy !== "/kombo" &&
+                        <CardMedia
+                            className={classes.media}
+                            title={name}>
+                            <div style={{position: `relative`}}>
+                                <GatsbyImage
+                                    image={gatsbyImageData}
+                                    itemProp="image"
+                                    alt={name}
+                                    style={{maxWidth: `100%`, margin: 0}} />
+                                {slugCategogy === "/wok" &&
+                                <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
+                                    <GatsbyImage
+                                        image={image.gatsbyImageData}
+                                        style={{maxWidth: 50, bottom: 45, marginLeft: 15}}
+                                        alt={"Коробка wok box"} />
+                                    <div style={{position: `absolute`, bottom: 60, left: 55, width: 180}}>
+                                        <Typography style={{fontSize: 13}} variant={"subtitle2"}>
+                                            Доставим в коробке</Typography>
                                     </div>
-                                    }
                                 </div>
-                            </CardMedia>
-                            }
+                                }
+                            </div>
+                        </CardMedia>
+                        }
 
-                            <CardContent style={{marginBottom: 0, padding: 0}}>
-                                {sale &&
-                                <div style={{padding: 5, border: `1px solid lightgrey`, borderRadius: 5, margin: `8px 14px 8px 14px`}}>
-                                {/* Выгода */}
-                                    { lanch && (slugCategogy === "/sety" || slugCategogy === "/branded-rolls") && (
-                                        <Typography variant={"subtitle2"} style={{
-                                            fontSize: 16,
-                                            fontWeight: `bold`}}>
-                                          <span role="img" aria-label="accessible-emoji">  ⏱️ </span>{timePrice.hours}:{timePrice.minutes}:{timePrice.seconds}</Typography>
-                                    )}
+                        <CardContent style={{marginBottom: 0, padding: 0}}>
+                            {sale &&
+                            <div style={{padding: 5, border: `1px solid lightgrey`, borderRadius: 5, margin: `8px 14px 8px 14px`}}>
+                            {/* Выгода */}
+                                { lanch && (slugCategogy === "/sety" || slugCategogy === "/branded-rolls") && (
+                                    <Typography variant={"subtitle2"} style={{
+                                        fontSize: 16,
+                                        fontWeight: `bold`}}>
+                                      <span role="img" aria-label="accessible-emoji">  ⏱️ </span>{timePrice.hours}:{timePrice.minutes}:{timePrice.seconds}</Typography>
+                                )}
 
-                                    { sale && <Typography variant={"subtitle1"} style={{
-                                            fontSize: 16,
-                                            color: `tomato`,
-                                            fontWeight: `bold`}}>
-                                        {slugCategogy === "/sety" && <>
+                                { sale && <Typography variant={"subtitle1"} style={{
+                                        fontSize: 16,
+                                        color: `tomato`,
+                                        fontWeight: `bold`}}>
+                                    {slugCategogy === "/sety" && <>
 
-                                        {lanch && <> Выгода {!isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</>}
-                                        {!lanch && `Выгода ${nonprice - price} ₽`}
-                                        {lanch &&
-                                            <span style={{
-                                            textDecoration: `line-through`,
-                                            fontWeight: 500,
-                                            color: `#000`,
-                                            paddingLeft: 20,
-                                            textDecorationColor: `red`
-                                        }}>{isSale ? nonprice - defaultPrice : nonprice - lanchprice} ₽</span>
+                                    {lanch && <> Выгода {!isSale ? nonprice - defaultPrice : nonprice - lanchprice}₽</>}
+                                    {!lanch && `Выгода ${nonprice - price} ₽`}
+                                    {lanch &&
+                                        <span style={{
+                                        textDecoration: `line-through`,
+                                        fontWeight: 500,
+                                        color: `#000`,
+                                        paddingLeft: 20,
+                                        textDecorationColor: `red`
+                                    }}>{isSale ? nonprice - defaultPrice : nonprice - lanchprice} ₽</span>
+                                    }
+                                    </>}
+                            </Typography>}
+                            </div>}
+
+                            <Typography itemProp="description"
+                                        className={slugCategogy === "/sety" ||
+                                        slugCategogy === "/kombo" ||
+                                        slugCategogy === "/hot-rolls" ||
+                                        slugCategogy === "/branded-rolls" ||
+                                        slugCategogy === "/salaty" ||
+                                        slugCategogy === "/wok" ||
+                                        slugCategogy === "/zakyski" ? classes.deckript : classes.deckriptSmall}
+                                        variant="body2">
+
+                                { slugCategogy === "/sety" && !komboSale &&
+                                    <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
+                                }
+
+                                { komboSale && slugCategogy === "/sety" &&
+                                    <Link to={`/${slug}`}> {`${take(50, description)}...` }</Link>
+                                }
+
+                                { slugCategogy === "/kombo" && edit &&
+                                    <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
+                                }
+
+                                { slugCategogy === "/kombo" && !edit &&
+                                    description
+                                }
+
+                                {slugCategogy !== "/sety" && slugCategogy !== "/kombo" &&
+                                    description
+                                }
+                            </Typography>
+
+                            {/*Кнопки выбора wok*/}
+                            {slugCategogy === "/wok" && <ToggleButton id={id} productWok={visibleItems}/>}
+
+                            <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
+                                {/*total, count*/}
+                                <Grid style={{padding: 10}} container itemProp="offers" itemScope itemType="http://schema.org/Offer">
+                                    <Grid item xs={6}>
+                                        <Paper style={{width: `90%`, margin: `0 auto`}}>
+                                            { slugCategogy !== "/napitki" &&
+                                            <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
+                                            "/sety" ? `${weight}кг` : `${weight}гр`}</Typography>
+                                            }
+                                            { slugCategogy === "/napitki" &&
+                                            <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{weight}л</Typography>
+                                            }
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Paper style={{width: `90%`, margin: `0 auto`}}>
+                                            <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
+                                            "/souses" || slugCategogy === "/napitki" || slugCategogy === "/salaty" ? "1шт" : `${count}шт`}
+                                            </Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        {/*Показывать корзину для всех путей*/}
+                                        { slugCategogy !== "/kombo" && !komboSale &&
+                                        <Button
+                                            variant="contained"
+                                            className={classes.button}
+                                            style={{color: `white`, marginTop: 10}}
+                                            onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
+                                            <ShoppingCartIcon/>
+                                        </Button>
                                         }
-                                        </>}
-                                </Typography>}
-                                </div>}
 
-                                <Typography itemProp="description"
-                                            className={slugCategogy === "/sety" ||
-                                            slugCategogy === "/kombo" ||
-                                            slugCategogy === "/hot-rolls" ||
-                                            slugCategogy === "/branded-rolls" ||
-                                            slugCategogy === "/salaty" ||
-                                            slugCategogy === "/wok" ||
-                                            slugCategogy === "/zakyski" ? classes.deckript : classes.deckriptSmall}
-                                            variant="body2">
-
-                                    { slugCategogy === "/sety" && !komboSale &&
-                                        <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
-                                    }
-
-                                    { komboSale && slugCategogy === "/sety" &&
-                                        <Link to={`/${slug}`}> {`${take(50, description)}...` }</Link>
-                                    }
-
-                                    { slugCategogy === "/kombo" && edit &&
-                                        <Link to={`${slugCategogy}/${slug}`}> {`${take(50, description)}...` }</Link>
-                                    }
-
-                                    { slugCategogy === "/kombo" && !edit &&
-                                        description
-                                    }
-
-                                    {slugCategogy !== "/sety" && slugCategogy !== "/kombo" &&
-                                        description
-                                    }
-                                </Typography>
-
-                                {/*Кнопки выбора wok*/}
-                                {slugCategogy === "/wok" && <ToggleButton id={id} productWok={visibleItems}/>}
-
-                                <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
-                                    {/*total, count*/}
-                                    <Grid style={{padding: 10}} container itemProp="offers" itemScope itemType="http://schema.org/Offer">
-                                        <Grid item xs={6}>
-                                            <Paper style={{width: `90%`, margin: `0 auto`}}>
-                                                { slugCategogy !== "/napitki" &&
-                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
-                                                "/sety" ? `${weight}кг` : `${weight}гр`}</Typography>
-                                                }
-                                                { slugCategogy === "/napitki" &&
-                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{weight}л</Typography>
-                                                }
-                                            </Paper>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <Paper style={{width: `90%`, margin: `0 auto`}}>
-                                                <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
-                                                "/souses" || slugCategogy === "/napitki" || slugCategogy === "/salaty" ? "1шт" : `${count}шт`}
-                                                </Typography>
-                                            </Paper>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            {/*Показывать корзину для всех путей*/}
-                                            { slugCategogy !== "/kombo" && !komboSale &&
-                                            <Button
-                                                variant="contained"
-                                                className={classes.button}
-                                                style={{color: `white`, marginTop: 10}}
-                                                onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
-                                                <ShoppingCartIcon/>
-                                            </Button>
-                                            }
-
-                                            {/*Показывать кнопку редактирования комбо*/}
-                                            { edit === true ?
-                                                <Button
-                                                    itemProp="url"
-                                                    component={Link}
-                                                    to={`${slugCategogy}/${slug}`}
-                                                    variant="contained"
-                                                    style={{backgroundColor: "orange", color: 'white', marginTop: 10}}>
-                                                    Выбрать
-                                                </Button> : null
-                                            }
-
-                                            { slugCategogy === "/sety" && komboSale &&
+                                        {/*Показывать кнопку редактирования комбо*/}
+                                        { edit === true ?
                                             <Button
                                                 itemProp="url"
                                                 component={Link}
-                                                to={`/${slug}`}
+                                                to={`${slugCategogy}/${slug}`}
                                                 variant="contained"
-                                                style={{ backgroundColor: "orange", color: 'white', marginTop: 10 }}>
+                                                style={{backgroundColor: "orange", color: 'white', marginTop: 10}}>
                                                 Выбрать
-                                            </Button>
-                                            }
+                                            </Button> : null
+                                        }
 
-                                            {/* Проверка - комбо редактируется или нет */}
-                                            {edit === false &&
-                                            <Button
-                                                variant="contained"
-                                                className={classes.button}
-                                                style={{ color: 'white', marginTop: 10 }}
-                                                onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
-                                                <ShoppingCartIcon/>
-                                            </Button>
-                                            }
+                                        { slugCategogy === "/sety" && komboSale &&
+                                        <Button
+                                            itemProp="url"
+                                            component={Link}
+                                            to={`/${slug}`}
+                                            variant="contained"
+                                            style={{ backgroundColor: "orange", color: 'white', marginTop: 10 }}>
+                                            Выбрать
+                                        </Button>
+                                        }
 
-                                        </Grid>
+                                        {/* Проверка - комбо редактируется или нет */}
+                                        {edit === false &&
+                                        <Button
+                                            variant="contained"
+                                            className={classes.button}
+                                            style={{ color: 'white', marginTop: 10 }}
+                                            onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
+                                            <ShoppingCartIcon/>
+                                        </Button>
+                                        }
 
-                                        {/* Цена */}
-                                        <Grid item xs={6} style={{position: `relative`}}>
-                                            <Typography
-                                                variant="overline"
-                                                style={{fontSize: 22, margin: `0 auto`, width: `85%`, fontWeight: `bold`}}
-                                                itemProp="price">
-
-                                                { lanch && <>
-                                                        {!isSale ? `${price}₽` : <span style={{color: `tomato`, fontWeight: `bold`}}>{lanchprice}₽</span>}</>
-
-                                                }
-
-                                                {!lanch && `${price} ₽`}
-                                            </Typography>
-
-                                            {lanch && isSale &&
-                                            <div style={{position: `absolute`, bottom: 14, right: 15}}>
-                                                <Typography style={{textDecoration: `line-through`, color: `#000`,
-                                                textDecorationColor: `red`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{defaultPrice}</Typography>
-                                            </div>
-                                            }
-                                            {lanch && !isSale &&
-                                            <div style={{position: `absolute`, bottom: 14, right: 15}}>
-                                                <Typography style={{textDecoration: `line-through`, color: `red`,
-                                                    textDecorationColor: `#000`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{lanchprice}</Typography>
-                                            </div>
-                                            }
-                                        </Grid>
                                     </Grid>
 
-                                </div>
-                            </CardContent>
+                                    {/* Цена */}
+                                    <Grid item xs={6} style={{position: `relative`}}>
+                                        <Typography
+                                            variant="overline"
+                                            style={{fontSize: 22, margin: `0 auto`, width: `85%`, fontWeight: `bold`}}
+                                            itemProp="price">
 
-                            <CardActions disableSpacing>
+                                            { lanch && <>
+                                                    {!isSale ? `${price}₽` : <span style={{color: `tomato`, fontWeight: `bold`}}>{lanchprice}₽</span>}</>
 
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                )
-            })}
-        </>
-    )
+                                            }
+
+                                            {!lanch && `${price} ₽`}
+                                        </Typography>
+
+                                        {lanch && isSale &&
+                                        <div style={{position: `absolute`, bottom: 14, right: 15}}>
+                                            <Typography style={{textDecoration: `line-through`, color: `#000`,
+                                            textDecorationColor: `red`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{defaultPrice}</Typography>
+                                        </div>
+                                        }
+                                        {lanch && !isSale &&
+                                        <div style={{position: `absolute`, bottom: 14, right: 15}}>
+                                            <Typography style={{textDecoration: `line-through`, color: `red`,
+                                                textDecorationColor: `#000`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{lanchprice}</Typography>
+                                        </div>
+                                        }
+                                    </Grid>
+                                </Grid>
+
+                            </div>
+                        </CardContent>
+
+                        <CardActions disableSpacing>
+
+                        </CardActions>
+                    </Card>
+                </Grid>
+            );
+        })}
+    </>;
 });
 
 export default connect(null, null)(CardsMenuPage)

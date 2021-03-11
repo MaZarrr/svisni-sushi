@@ -11,7 +11,7 @@ import { productPizzaLoaded } from "../reducers/app";
 import { defFilters } from "../reducers/filters";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -56,7 +56,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                 price, weight, weight33, mass = weight, priceIn33cm,
                                 count, total = price,
                                 ingrideentButtonStyle = false,
-                                image: {fluid}, ingrideents, sostav,
+                                image: {gatsbyImageData}, ingrideents, sostav,
                                 contentful_id, priceDef = price, size={[slug]: true},
                             } = products;
 
@@ -64,7 +64,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                 <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                                       item xs={12} sm={6} md={4} lg={3} key={id}>
                                     <Card className={classes.card}>
-                                        <CardHeader avatar={<Img style={{width: 40}} fluid={image.fluid} alt={name} />}
+                                        <CardHeader avatar={<GatsbyImage image={image.gatsbyImageData} style={{width: 40}} alt={name} />}
                                                     title={"Пицца"}
                                                     subheader={<span itemProp="name">
                                                       <Typography style={{fontWeight: 600}} variant={"subtitle1"}>
@@ -72,7 +72,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                         <CardMedia
                                             className={classes.media}
                                             title={name}>
-                                            <Img itemProp="image" fluid={fluid} alt={name}/>
+                                            <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} />
                                         </CardMedia>
                                         <CardContent>
                                             {!pizzaSale &&
@@ -163,11 +163,11 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                         </CardActions>
                                     </Card>
                                 </Grid>
-                            )
+                            );
                         })}
                     </Grid>
         </section>
-    )
+    );
 };
 
 const mapStateToProps = (state) => ({
@@ -197,24 +197,20 @@ export const queryPizza = graphql `
                     weight33
                     description
                     image {
-                        fluid(maxWidth: 300) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
-                    }
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
                 }
             }
         }
         contentfulIconMenuLeftPanel(name: {eq: "Пицца"}) {
             image {
-                fluid(maxWidth: 35) {
-                    ...GatsbyContentfulFluid
-                }
-            }
+                gatsbyImageData(placeholder: BLURRED)
+              }
         }
     }
 `
 
-export const useStylesCart = makeStyles(theme => ({
+const useStylesCart = makeStyles(theme => ({
   deckriptSmall: {
     fontWeight: 600,
     height: 35,

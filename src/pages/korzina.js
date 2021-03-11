@@ -2,7 +2,7 @@ import React from "react"
 import SEO from "../components/seo"
 import { connect } from 'react-redux';
 import {graphql, Link} from 'gatsby'
-import  Img  from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import * as R from 'ramda'
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -54,7 +54,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
         id: uniqid(),
         name: pizzaSale.name,
         priceDef: 0,
-        image: pizzaSale.image.fluid,
+        image: pizzaSale.image.gatsbyImageData,
         count: 1,
         pizzaCountSale: 1,
         total: 0
@@ -62,12 +62,11 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
     };
     if(countPizza > 2 && pizzaSaleFlag === false ) {
       return (
-        <Grid item  xs={12} sm={7}>
-
-          <Paper style={{marginTop: 10, marginBottom: 10, padding: 8}}>
-            <div style={{display: `flex`}}>
-              <div style={{margin: `auto 0`, zIndex: 10}}>
-                <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={pizza().image}> </Img>
+        <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+          <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
+              <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
+                <GatsbyImage style={{maxWidth: 192, padding: 0, zIndex: 10}}
+                             image={pizza().image} alt={pizza().name}/>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
                 <Typography gutterBottom variant="h6" style={{fontSize: 14}}>
@@ -93,7 +92,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                 </Grid>
               </div>
             </div>
-          </Paper>
         </Grid>
 
       )
@@ -101,7 +99,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
       deletePizzaSale(pizza().id)
     }
   }
-
   const test = () => {
     const cart = items.filter((el) => {
       return allContentfulProductHotRolly.edges.concat(allContentfulProductSlognyeRolly.edges, allContentfulProductKlassika.edges, allContentfulProductGunkan.edges, allContentfulProductSushi.edges).find((data) => data.node.id === el.id)
@@ -120,7 +117,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
       R.pluck('total')
     )(cart)
   }
-
   const saleRollFunc = () => {
     const {node} = allContentfulProductSlognyeRolly.edges.find((el) => el.node.name === 'Филадельфия one' )
     const saleRoll = {
@@ -128,18 +124,16 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
       name: node.name,
       price: 79,
       total: 79,
-      image: node.image.fluid,
+      image: node.image.gatsbyImageData,
       count: 1
     }
 
     if(test() > 789 && !disabled()) {
       return (
-        <Grid item  xs={12} sm={7}>
-
-          <Paper style={{marginTop: 10, marginBottom: 10, padding: 8}}>
-            <div style={{display: `flex`}}>
-              <div style={{margin: `auto 0`, zIndex: 10}}>
-                <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={saleRoll.image}> </Img>
+        <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+            <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
+              <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
+                <GatsbyImage style={{maxWidth: 192}} image={saleRoll.image} alt={saleRoll.name}/>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
                 <Typography variant="subtitle1" style={{fontSize: 16}}>
@@ -157,7 +151,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                 </Button>
               </div>
             </div>
-          </Paper>
         </Grid>
 
       )
@@ -174,7 +167,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
     });
   };
   const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items));
-
   return (
     <>
       <SEO title="Корзина"
@@ -193,12 +185,13 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         textRollSale, textPizza, pizzaSale, description, edit = null, size,
                         wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
                         descriptionIngrideents = ""} = item
-
                     return (
                     <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
                             <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
                               <div style={{margin: `auto 0`, zIndex: 10}}>
-                                <Img style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}} fluid={image}> </Img>
+                                <GatsbyImage
+                                  // style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}}
+                                  image={image} alt={name} />
                               </div>
                               <div style={{width: `100%`}}>
                                 <div style={{padding: `8px 0 8px 0`, width: `100%`}}>
@@ -251,7 +244,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                 <>
                                   <FormControl component="fieldset" style={{width: `95%`}}>
                                     <RadioGroup aria-label="position" name="position"
-                                                value={value[idx]} onChange={handleChange} row style={{justifyContent: `center`}}>
+                                                value={value[idx]} onChange={handleChange} row style={{marginLeft: 8}}>
                                       <FormControlLabel
                                         value={name}
                                         control={<ButtonSize
@@ -280,7 +273,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                         style={{margin: `0 0 5px 0`, padding: 0}}/>
                                     </RadioGroup>
                                   </FormControl>
-                                  <Typography style={{fontSize: 12}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
+                                  <Typography style={{fontSize: 12, marginLeft: 8}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
                                 </>
                                 }
                                 {wok &&
@@ -294,12 +287,12 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                             </div>
                         </Grid>
                       )})}
-
                     {saleRollFunc()}
                     {pizzaDarom()}
+
                     <Hidden smUp>
                       { addPanelPribors  &&
-                      <Paper style={{marginTop: 0, marginBottom: 30, padding: 8, width: `100%`}}>
+                      <Paper style={{marginTop: 0, marginBottom: 40, padding: 8, width: `100%`}}>
                         <div style={{display: `flex`, flexDirection: `column`}}>
                           <Typography variant={"subtitle2"}>Количество палочек</Typography>
                           <div style={{display: `flex`, alignItems: `center`}}>
@@ -406,96 +399,103 @@ const mapDispatchToProps = {
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
 
-export const queryKorzina = graphql `
+export const query = graphql `
     {
-          allContentfulProductPizza  {
-          edges {
-            node {
-                id
-                contentful_id
-                name
-                slug
-                price
-                priceIn33cm
-                image {
-                  fluid(maxWidth: 300) {
-                    ...GatsbyContentfulFluid_withWebp
-                  }
-              }
-              }
-            }
-          }
-    allContentfulProductKlassika {
+      allContentfulProductPizza  {
       edges {
         node {
-          id
-          name
-          price
-          image {
-            fluid(maxWidth: 300) {
-              ...GatsbyContentfulFluid_withWebp
+            id
+            contentful_id
+            name
+            slug
+            price
+            priceIn33cm
+            image {
+                gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [WEBP, AUTO]
+                  )
             }
           }
         }
+      }
+allContentfulProductKlassika {
+  edges {
+    node {
+      id
+      name
+      price
+      image {
+                gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [WEBP, AUTO]
+                  )
+            }
+    }
+  }
+}
+  allContentfulProductSlognyeRolly {
+    edges {
+      node {
+        id
+        name
+        price
+        image {
+                gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [WEBP, AUTO]
+                  )
+            }
       }
     }
-      allContentfulProductSlognyeRolly {
-        edges {
-          node {
-            id
-            name
-            price
-            image {
-              fluid(maxWidth: 300) {
-                ...GatsbyContentfulFluid_withWebp
-              }
+  }
+       allContentfulProductSushi {
+         edges {
+           node {
+             id
+             name
+             price
+             image {
+                gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [WEBP, AUTO]
+                  )
             }
-          }
-        }
-      }
-           allContentfulProductSushi {
+           }
+         }
+       }
+           allContentfulProductHotRolly {
              edges {
                node {
                  id
                  name
                  price
                  image {
-                   fluid(maxWidth: 300) {
-                     ...GatsbyContentfulFluid_withWebp
-                   }
-                 }
+                gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [WEBP, AUTO]
+                  )
+            }
                }
              }
            }
-               allContentfulProductHotRolly {
-                 edges {
-                   node {
-                     id
-                     name
-                     price
-                     image {
-                       fluid(maxWidth: 300) {
-                         ...GatsbyContentfulFluid_withWebp
-                       }
-                     }
-                   }
-                 }
-               }
-              allContentfulProductGunkan {
-                edges {
-                  node {
-                    id
-                    name
-                    price
-                    image {
-                      fluid(maxWidth: 300) {
-                        ...GatsbyContentfulFluid_withWebp
-                      }
-                    }
-                  }
-                }
+          allContentfulProductGunkan {
+            edges {
+              node {
+                id
+                name
+                price
+                image {
+                gatsbyImageData(
+                      placeholder: BLURRED
+                      formats: [WEBP, AUTO]
+                  )
+            }
               }
-        }`
+            }
+          }
+        }
+    `
 
 const useStyleBasket  = makeStyles(theme => ({
   root: {

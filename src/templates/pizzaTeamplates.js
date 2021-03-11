@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
 import loadable from "@loadable/component";
-import {addedCart} from "../reducers/shopping-cart";
+import { addedCart } from "../reducers/shopping-cart";
 import Spinner from '../components/spinner/spinner-new'
 
 const PizzaItem = loadable(() => import('../components/PizzaItem'), {
@@ -18,7 +18,7 @@ const PizzaTeamplate = ({data: {contentfulProductPizza}, addedToCart}) => {
         price={contentfulProductPizza.price}
         priceIn33={contentfulProductPizza.priceIn33cm}
         description={contentfulProductPizza.description}
-        image={contentfulProductPizza.image.fluid}
+        image={contentfulProductPizza.image.gatsbyImageData}
         added={() => addedToCart({ id: contentfulProductPizza.id, productPrice: contentfulProductPizza.price,
             product: [{
             node: {
@@ -27,7 +27,7 @@ const PizzaTeamplate = ({data: {contentfulProductPizza}, addedToCart}) => {
                     price: contentfulProductPizza.price,
                     priceIn33cm: contentfulProductPizza.priceIn33cm,
                     count: contentfulProductPizza.count,
-                    image: contentfulProductPizza.image
+                    image: contentfulProductPizza.image.gatsbyImageData
                 }
             }
         ]
@@ -57,10 +57,8 @@ export const query = graphql `
            weight33
            count
            description
-          image {
-              fluid(maxWidth: 400) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
+           image {
+              gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
             }
         }
     }

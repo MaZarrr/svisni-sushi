@@ -13,7 +13,6 @@ import IndexCards from '../components/Card';
                      allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
 
         const classes = useStyleIndexPage();
-
         return (
             <>
              <SEO title="Заказать любимые суши роллы c доставкой в Валуйки"
@@ -79,8 +78,8 @@ const useStyleIndexPage = makeStyles(theme => ({
 export const queryIndexPage = graphql `    
     query {
       allContentfulContentIndex {
-    edges {
-      node {
+        edges {
+        node {
         title
         combos {
           id
@@ -89,9 +88,10 @@ export const queryIndexPage = graphql `
           price
           slug
           image {
-            fluid(maxWidth: 300) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+           gatsbyImageData(
+                placeholder: BLURRED
+                formats: [WEBP, AUTO]
+            )
           }
         }
         new {
@@ -104,9 +104,10 @@ export const queryIndexPage = graphql `
               slug
               description
               image {
-                fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
+                gatsbyImageData(
+                placeholder: BLURRED
+                formats: [WEBP, AUTO]
+            )
               }
             }
             ... on ContentfulProductPizza {
@@ -117,9 +118,10 @@ export const queryIndexPage = graphql `
               slug
               description
               image {
-                fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
+               gatsbyImageData(
+                placeholder: BLURRED
+                formats: [WEBP, AUTO]
+            )
               }
             }
             ... on ContentfulProductSlognyeRolly {
@@ -128,9 +130,10 @@ export const queryIndexPage = graphql `
               description
               price
               image {
-                fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
+               gatsbyImageData(
+                placeholder: BLURRED
+                formats: [WEBP, AUTO]
+            )
               }
             }
             ... on ContentfulProductHotRolly {
@@ -139,9 +142,10 @@ export const queryIndexPage = graphql `
               description
               price
               image {
-                fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
+              gatsbyImageData(
+                placeholder: BLURRED
+                formats: [WEBP, AUTO]
+            )
               }
             }
             ... on ContentfulProductKombo {
@@ -151,9 +155,10 @@ export const queryIndexPage = graphql `
               description
               price
               image {
-                fluid(maxWidth: 300) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
+                gatsbyImageData(
+                placeholder: BLURRED
+                formats: [WEBP, AUTO]
+            )
               }
             }
           ... on ContentfulProductSalat {
@@ -162,11 +167,12 @@ export const queryIndexPage = graphql `
             price
             description
             weight
-           image {
-            fluid(maxWidth: 300) {
-              ...GatsbyContentfulFluid_withWebp
-            }
-          }
+            image {
+            gatsbyImageData(
+                        placeholder: BLURRED
+                        formats: [WEBP, AUTO]
+                    )
+                }
           }
         }
       }
@@ -181,9 +187,10 @@ export const queryIndexPage = graphql `
                     category
                     desc
                     image {
-                        fluid(maxWidth: 180, quality: 100) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
+                    gatsbyImageData(
+                        placeholder: BLURRED
+                        formats: [WEBP, AUTO]
+                    )
                     }
                 }
             }
@@ -193,10 +200,12 @@ export const queryIndexPage = graphql `
                 node {
                     id
                     slug
+                    nameAkcii
                     imgCarouselPc {
-                        fluid(maxWidth: 1680, quality: 90) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
+                    gatsbyImageData(
+                     placeholder: BLURRED
+                     formats: [WEBP, AUTO]
+                    )
                     }
                 }
             }

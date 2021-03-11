@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import Spinner from  "../components/spinner/spinner-new"
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import loadable from "@loadable/component";
+import { getImage } from "gatsby-plugin-image";
 
 const SaleItem = loadable(() => import('../components/SaleItem'), {
     fallback: <Spinner/>});
@@ -11,6 +12,7 @@ const SaleTeamplate = ({ data: { contentfulProductSale: {
     image, name, detailedDescription, slug }} }) => {
     const [load, setLoad] = useState(true)
     const [mdr, setMdr] = useState(null)
+    const img = getImage(image)
 
     useEffect(() => {
         async function fetchData() {
@@ -19,21 +21,21 @@ const SaleTeamplate = ({ data: { contentfulProductSale: {
             setLoad(false)
         }
         fetchData();
-    }, [image, detailedDescription])
+    }, [detailedDescription])
 
     return (
-                <ErrorBoundary>
-                    { load === false ?
-                    <SaleItem
-                        name={name}
-                        image={image.fluid}
-                        slug={detailedDescription.childMarkdownRemark.frontmatter.sluginfo}
-                        textSlug={detailedDescription.childMarkdownRemark.frontmatter.sluginfotext}
-                        md={mdr}
-                        path={slug}
-                    />
-                    : <Spinner/> }
-                </ErrorBoundary>
+    <ErrorBoundary>
+        { load === false ?
+        <SaleItem
+            name={name}
+            image={img}
+            slug={detailedDescription.childMarkdownRemark.frontmatter.sluginfo}
+            textSlug={detailedDescription.childMarkdownRemark.frontmatter.sluginfotext}
+            md={mdr}
+            path={slug}
+        />
+        : <Spinner/> }
+    </ErrorBoundary>
     )
 }
 export default SaleTeamplate
@@ -46,9 +48,10 @@ export const pageQuery = graphql `
             name
             slug
             image {
-                fluid(maxWidth: 1280) {
-                    ...GatsbyContentfulFluid_withWebp
-                }
+            gatsbyImageData(
+                placeholder: BLURRED
+                formats: [WEBP, AUTO]
+            )
             }
             detailedDescription {
               childMarkdownRemark {

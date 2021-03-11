@@ -48,20 +48,16 @@ export const query = graphql `
                   description
                   price
                   weight
-                      image {
-                          fluid(maxWidth: 350, maxHeight: 350) {
-                              ...GatsbyContentfulFluid_withWebp
-                          }
-                      }
+                   image {
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
               }
           }
       }
       contentfulIconMenuLeftPanel(name: {eq: "Гунканы"}) {
-         image {
-           fluid(maxWidth: 35) {
-             ...GatsbyContentfulFluid
-           }
-         }
+          image {
+            gatsbyImageData(placeholder: BLURRED)
+          }
        }
         }
     `

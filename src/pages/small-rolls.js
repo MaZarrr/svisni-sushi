@@ -49,20 +49,16 @@ export const query = graphql `
                    description
                    weight
                    count
-                     image {
-                         fluid(maxWidth: 400, maxHeight: 400, quality: 100) {
-                             ...GatsbyContentfulFluid_withWebp
-                         }
-                     }
+                   image {
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                  }
                }
            }
        }
          contentfulIconMenuLeftPanel(name: {eq: "Классические роллы"}) {
-            image {
-                fluid(maxWidth: 35) {
-                    ...GatsbyContentfulFluid
-                }
-            }
+          image {
+          gatsbyImageData(placeholder: BLURRED)
+          }
         }
         }
     `

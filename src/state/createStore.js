@@ -4,13 +4,24 @@ import createRootReducer from '../reducers'
 
 const middlewares = [thunk];
 
-export default preloadedState => {
+const preloadedState = () => {
   return createStore(
     createRootReducer,
-    preloadedState,
     applyMiddleware(...middlewares)
   );
 };
+
+export default preloadedState
+
+
+
+// export default preloadedState => {
+//   return createStore(
+//     createRootReducer,
+//     preloadedState,
+//     applyMiddleware(...middlewares)
+//   );
+// };
 
 // return createStore(
 //     createRootReducer,

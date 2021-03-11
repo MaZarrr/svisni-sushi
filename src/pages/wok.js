@@ -40,31 +40,27 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, null)(Wok)
 
 export const queryWok = graphql `
-    {
-        allContentfulProductWok {
-            edges {
-                node {
-                    id
-                    name
-                    price
-                    weight
-                    count
-                    description
-                    private
-                    image {
-                        fluid(maxWidth: 400) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
-                    }
-                }
-            }
+  {
+  allContentfulProductWok {
+    edges {
+      node {
+        id
+        name
+        price
+        weight
+        count
+        description
+        private
+        image {
+          gatsbyImageData
         }
-        contentfulIconMenuLeftPanel(name: {eq: "Вок"}) {
-            image {
-                fluid(maxWidth: 50) {
-                    ...GatsbyContentfulFluid
-                }
-            }
-        }
+      }
     }
+  }
+  contentfulIconMenuLeftPanel(name: {eq: "Вок"}) {
+    image {
+      gatsbyImageData
+    }
+  }
+}
 `

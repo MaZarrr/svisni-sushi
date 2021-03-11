@@ -1,6 +1,6 @@
 import React from "react"
 import SEO from "./seo"
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from 'gatsby';
 import Button from '@material-ui/core/Button';
 import ReplyIcon from '@material-ui/icons/Reply';
@@ -38,7 +38,7 @@ const ButtonGroupSale = styled.div `
     padding-left: 30px;;
   }
 `
-const ImageSale = styled(Img) `
+const ImageSale = styled(GatsbyImage) `
   margin-top: 20px;
   border-radius: 2px;
   max-width: 48vmax;
@@ -50,7 +50,6 @@ const ImageSale = styled(Img) `
 `
 
 const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
-
     return (
       <>
       <SEO title={`Акция ${name}`}
@@ -60,7 +59,7 @@ const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
           <HeadSection titleTXT={name} />
           <Grid container>
           <Grid item xs={12} md={6}>
-            <ImageSale fluid={image} />
+            <ImageSale image={image} />
           </Grid>
           <Grid item xs={12} md={6}>
             <MetterContent dangerouslySetInnerHTML={{__html: md.childMarkdownRemark.html}} />
@@ -80,5 +79,4 @@ const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
       </Grid>
       </>
 )};
-
 export default SaleItem

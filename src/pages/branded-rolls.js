@@ -75,20 +75,16 @@ export const queryBrandedRolls = graphql `
                 description
                 weight
                 count
-                image {
-                 fluid(maxWidth: 300, maxHeight: 300, quality: 100) {
-                     ...GatsbyContentfulFluid_withWebp
+                 image {
+                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
                   }
-              }
               }
             }
           }
           contentfulIconMenuLeftPanel(name: {eq: "Сложные роллы"}) {
-          image {
-             fluid(maxWidth: 35) {
-               ...GatsbyContentfulFluid
-             }
-          }
-        }
+           image {
+            gatsbyImageData(placeholder: BLURRED)
+            }
+            }
         }
     `

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
-import GatsbyImage from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import Typography from '@material-ui/core/Typography';
 import { Divider } from "@material-ui/core"
 import Button from "@material-ui/core/Button"
@@ -8,7 +8,7 @@ import { Link } from "gatsby"
 
 import useImageStaticHook from "../../../components/image"
 
-export default () => {
+const OrderSuccess = () => {
   const [{ successImage },] = useImageStaticHook();
 
   useEffect(() => {
@@ -24,7 +24,10 @@ export default () => {
         <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>заказ оформлен и принят в обработку</Typography>
       </Grid>
       <Grid item xs={12}>
-        <GatsbyImage style={{width: 300, margin: `0 auto`}} fluid={successImage.childImageSharp.fluid} alt={"заказ оформлен"}/>
+        <GatsbyImage
+          image={successImage.childImageSharp.gatsbyImageData}
+          style={{width: 300, margin: `0 auto`}}
+          alt={"заказ оформлен"} />
       </Grid>
       <Divider/>
       <Grid item xs={12}>
@@ -53,5 +56,7 @@ export default () => {
         </Button>
       </Grid>
     </Grid>
-  )
+  );
 }
+
+export default OrderSuccess

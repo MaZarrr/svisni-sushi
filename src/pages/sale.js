@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import { graphql, Link} from "gatsby"
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import HeadSection from "../components/HeadSection"
@@ -9,25 +9,25 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const Sale = (props) => {
   const classes = useStyleSalePage();
-  return (
-    <>
-    <SEO title="Акции и скидки на пиццу, роллы и суши в Уразово"
-    description="Акции на роллы суши и пиццу в Валуйках. Скидки до 60%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
-    <HeadSection titleTXT={"Акции"} />
-    <Grid container className={classes.container}>
-        {props.data.allContentfulProductSale.edges.map((product) => (
-        <Grid key={product.node.id} item xs={12} sm={6} md={4} className={classes.item}>
-            <Link to={`/sale${product.node.slug}`} style={{textDecoration: `none`, color: '#000'}}>
-                <Img fluid={product.node.image.fluid}
-                     className={classes.imageSale}
-                     alt={`Акция ${product.node.name}`} />
-                <Typography className={classes.saleName} variant="h4">{product.node.name}</Typography>
-                <Typography className={classes.saleDescription} variant="h4">{product.node.description}</Typography>
-            </Link>
-        </Grid> ))}
-    </Grid>
-    </>
-    )
+
+  return <>
+  <SEO title="Акции и скидки на пиццу, роллы и суши в Уразово"
+  description="Акции на роллы суши и пиццу в Валуйках. Скидки до 60%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
+  <HeadSection titleTXT={"Акции"} />
+  <Grid container className={classes.container}>
+      {props.data.allContentfulProductSale.edges.map((product) => (
+      <Grid key={product.node.id} item xs={12} sm={6} md={4} className={classes.item}>
+          <Link to={`/sale${product.node.slug}`} style={{textDecoration: `none`, color: '#000'}}>
+              <GatsbyImage
+                image={product.node.image.gatsbyImageData}
+                className={classes.imageSale}
+                alt={`Акция ${product.node.name}`} />
+              <Typography className={classes.saleName} variant="h4">{product.node.name}</Typography>
+              <Typography className={classes.saleDescription} variant="h4">{product.node.description}</Typography>
+          </Link>
+      </Grid> ))}
+  </Grid>
+  </>;
 }
 
 export default Sale
@@ -84,9 +84,9 @@ export const query = graphql `
                     slug
                     description
                     image {
-                        fluid(maxWidth: 600) {
-                            ...GatsbyContentfulFluid
-                        }
+                    gatsbyImageData(
+                        formats: [WEBP, AUTO]
+                    )
                     }
                 }
             }
