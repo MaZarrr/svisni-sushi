@@ -37,6 +37,7 @@
     "gatsby-transformer-remark": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
     "moment": "^2.29.1",
+    "path-browserify": "^1.0.1",
     "postcss": "^8.2.8",
     "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
@@ -61,7 +62,6 @@
     "uniqid": "^5.2.0"
   },
   "devDependencies": {
-    "path-browserify": "^1.0.1",
     "prettier": "^2.2.1"
   },
   "keywords": [
