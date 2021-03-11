@@ -4,7 +4,6 @@ import Layout from './src/components/layout'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './src/theme';
-// import "./src/preloader.scss"
 
 export const wrapRootElement = ({ element }) => {
  return (

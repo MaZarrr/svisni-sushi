@@ -76,7 +76,7 @@ const useStyleIndexPage = makeStyles(theme => ({
 }));
 
 export const queryIndexPage = graphql `    
-    query {
+   query {
       allContentfulContentIndex {
         edges {
         node {
@@ -85,6 +85,7 @@ export const queryIndexPage = graphql `
           id
           description
           name
+          __typename
           price
           slug
           image {
@@ -113,6 +114,7 @@ export const queryIndexPage = graphql `
             ... on ContentfulProductPizza {
               id
               name
+              __typename
               price
               priceIn33cm
               slug
@@ -128,6 +130,7 @@ export const queryIndexPage = graphql `
               id
               name
               description
+              __typename
               price
               image {
                gatsbyImageData(
@@ -139,6 +142,7 @@ export const queryIndexPage = graphql `
             ... on ContentfulProductHotRolly {
               id
               name
+              __typename
               description
               price
               image {
@@ -151,6 +155,7 @@ export const queryIndexPage = graphql `
             ... on ContentfulProductKombo {
               id
               name
+              __typename
               count
               description
               price
@@ -164,9 +169,11 @@ export const queryIndexPage = graphql `
           ... on ContentfulProductSalat {
             id
             name
+            __typename
             price
             description
             weight
+            __typename
             image {
             gatsbyImageData(
                         placeholder: BLURRED

@@ -2,7 +2,8 @@ import React, { memo } from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-
+import montserratBlack from '../../assets/fonts/Montserrat-Black.woff2'
+import montserratLight from '../../assets/fonts/Montserrat-Light.woff2'
 
 const SEO = memo(function Seosite({ description, lang, meta, title, keywords, pathname = null, noindex }) {
 
@@ -38,11 +39,19 @@ const SEO = memo(function Seosite({ description, lang, meta, title, keywords, pa
       defer={false}
       link={[
           {
-          href: `https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css`,
-          rel: `stylesheet`,
-          integrity: `sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN`,
-          crossorigin: `anonymous`
-        },
+            rel: "preload",
+            href: montserratBlack,
+            as: "fonts/woff2",
+            crossOrigin: "anonymous",
+            type: "font/woff2"
+          },
+          {
+            rel: "preload",
+            href: montserratLight,
+            as: "fonts/woff2",
+            crossOrigin: "anonymous",
+            type: "font/woff2"
+          },
         canonical ? { rel: "canonical", href: canonical } : {}
       ]}
       meta={[

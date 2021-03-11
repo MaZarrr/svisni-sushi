@@ -5,14 +5,14 @@ import clsx from "clsx";
 import { Grid } from "@material-ui/core";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
-import {pluck, sum, compose } from "ramda";
+import { makeStyles } from "@material-ui/core/styles";
+import { pluck, sum, compose } from "ramda";
 import Hidden from "@material-ui/core/Hidden";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import {addedCart} from "../reducers/shopping-cart";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import CloseIcon from '@material-ui/icons/Close';
 import SwipeableViews from 'react-swipeable-views';
 import Modal from "@material-ui/core/Modal";
@@ -48,7 +48,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
     const [open, setOpen] = React.useState(false);
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
-
     const classes = useStyleKombo();
 
     const handleClickAlert = () => {
@@ -89,6 +88,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
 
     const addedProductKomboToBacket = () => {
         const descriptionKombo = pluck("name")(productSostav).join(", ");
+        console.log(image);
         return {
             id,
             name,
@@ -100,7 +100,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             image
         }
     };
-
     const handleClose = () => {
         setOpen(false);
     };
@@ -168,7 +167,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                             image={el.image.gatsbyImageData}
                                             style={{width: 100}}
                                             alt={el.name} />
-                                       </div>
+                                        </div>
                                            <div style={{maxWidth: 400, marginLeft: 10}}>
                                             <Typography variant={"subtitle2"}>{el.name}</Typography>
                                             <Typography variant={"body2"}>{el.description}</Typography>
@@ -220,7 +219,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                                 {el.description}</Typography>
                                         </div>
                                     </Grid>
-                                )) : <div style={{width: `460px`}}><GatsbyImage image={image} alt={name} /></div> }
+                                )) : <div><GatsbyImage image={image.gatsbyImageData} alt={name} /></div> }
                             </Grid>
                         </Grid>
                     </Grid>
@@ -351,7 +350,7 @@ const mapDispatchToProps = {
 };
 export default connect(null, mapDispatchToProps)(KomboItem)
 
-export const useStyleKombo = makeStyles(theme => ({
+const useStyleKombo = makeStyles(theme => ({
     defItem: {
         cursor: 'pointer',
         margin: `10px 0 10px 0`,

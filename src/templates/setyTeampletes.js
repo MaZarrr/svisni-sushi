@@ -144,7 +144,21 @@ export const query = graphql `
         }
     }
  `
+// "gatsby-plugin-webfonts": "^2.0.0",
+// "gatsby-plugin-material-ui": "^2.1.10",
 
+// options: {
+//   webFontsConfig: {
+//     fonts: {
+//       google: [
+//         {
+//           family: `Montserrat`,
+//           variants: [`500`, `800`],
+//         },
+//       ],
+//     },
+//   },
+// },
 
 
 // {

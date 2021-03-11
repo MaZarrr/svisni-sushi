@@ -27,7 +27,6 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                 price, weight, count,
                 edit, komboSale, variant = false,
                 image: { gatsbyImageData }, sale, nonprice, lanchprice, lanch, defaultPrice} = products;
-            console.log("render timer");
             return (
                 <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                       item xs={12} sm={6} md={4} lg={3} key={id}>
@@ -235,7 +234,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                     </Grid>
 
                                     {/* Цена */}
-                                    <Grid item xs={6} style={{position: `relative`}}>
+                                    <Grid item xs={6} style={{position: `relative`, textAlign: 'center', paddingRight: 15}}>
                                         <Typography
                                             variant="overline"
                                             style={{fontSize: 22, margin: `0 auto`, width: `85%`, fontWeight: `bold`}}
@@ -250,13 +249,13 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                         </Typography>
 
                                         {lanch && isSale &&
-                                        <div style={{position: `absolute`, bottom: 14, right: 15}}>
+                                        <div style={{position: `absolute`, bottom: 12, right: 5}}>
                                             <Typography style={{textDecoration: `line-through`, color: `#000`,
                                             textDecorationColor: `red`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{defaultPrice}</Typography>
                                         </div>
                                         }
                                         {lanch && !isSale &&
-                                        <div style={{position: `absolute`, bottom: 14, right: 15}}>
+                                        <div style={{position: `absolute`, bottom: 12, right: 2}}>
                                             <Typography style={{textDecoration: `line-through`, color: `red`,
                                                 textDecorationColor: `#000`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{lanchprice}</Typography>
                                         </div>

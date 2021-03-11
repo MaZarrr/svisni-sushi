@@ -14,7 +14,6 @@ import { makeStyles } from "@material-ui/core/styles"
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Korzina = loadable(() => import('./korzinaComponent'));
-// const AppBars = loadable(() => import('./AppBars'));
 
 const links = [
   {

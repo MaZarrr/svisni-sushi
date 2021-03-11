@@ -10,32 +10,42 @@ import Button from '@material-ui/core/Button';
 
 import { useStaticQuery, graphql } from "gatsby"
 import SEO from "../components/seo";
-import { Grid } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import HeadSection from "../components/HeadSection"
+import { StaticImage } from "gatsby-plugin-image";
+import styled from "styled-components";
 
-const advantages = [
-    {
-        id: 1,
-        img: "../images/money.png",
-        text: "Возможность влиять на доход"
-    },
-    {
-        id: 2,
-        img: "../images/icEducation.png",
-        text: "Обучение у наставника"
-    },
-    {
-        id: 3,
-        img: "../images/growth.png",
-        text: "Возможность карьерного роста"
-    },
-    {
-        id: 4,
-        img: "../images/home.png",
-        text: "Выбор графика работы"
+const SectionInfo = styled.section `
+    padding: 10px 0 10px 0;
+    .items-container {
+        display: flex;
+        @media (max-width: 500px) {
+            flex-direction: column;
+        }
     }
-]
+    .item-content {
+        margin: auto 0;
+    }
+`
+
+const Container = styled.div`
+    padding-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    h2 {
+        padding-top: 20px;
+    }
+    @media (max-width: 500px) {
+        padding-left: 20px;
+        flex-direction: column;
+    }
+    .item-section {
+        width: 50%;
+        @media (max-width: 500px) {
+            width: 90%;
+        }
+    }
+`
 
 const Vacancy = () => {
 
@@ -102,91 +112,111 @@ const Vacancy = () => {
             <SEO title="Работа, вакансии"
                  description="Работа в Свисни Суши. Повар сушист, пиццмейкер"
                  noindex={true}/>
-             <HeadSection titleTXT={"Вакансии Свисни Суши"} />
-            <Grid container>
-                <Grid item xs={12} sm={6} style={{paddingLeft: 25}}>
+                <HeadSection titleTXT={"Вакансии Свисни Суши"} />
+                <Container>
+                    <div className="item-section">
                     <Typography style={{padding: `10px 0 10px 0`, width: `90%`}}>
                         {md.frontmatter.infoBrend}
                     </Typography>
-                    <h2 style={{paddingTop: 20}}>Плюсы работы в Свисни Суши</h2>
-                    <section style={{padding: `10px 0 10px 0`}}>
-                        { advantages.map(({ id, text, img }) => (
-                            <div key={id} style={{display: `flex`}}>
-                                {/*<StaticImage src={img} alt={text}/>*/}
-                                <div style={{margin: `auto 0`, paddingLeft: 10}}>
-                                    <p>{text}</p>
+                        <h2>Плюсы работы в Свисни Суши</h2>
+                        <SectionInfo>
+                            <div className="items-container">
+                                <div>
+                                    <div>
+                                        <StaticImage src="../images/money.png" alt="Возможность влиять на доход"/>
+                                    </div>
+                                    <div className="item-content">
+                                        <p>Возможность влиять на доход</p>
+                                    </div>
                                 </div>
-                            </div>))}
-                    </section>
-                </Grid>
 
-                <Grid item xs={12} sm={6} style={{paddingRight: 20, paddingBottom: 30}}>
-                    <div style={{marginLeft: 30}}>
-                        { allMd.map(({node})=> (
-                        <Card key={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.id}>
-                            <CardHeader
-                                title={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.vacancy}
-                                subheader={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.experience}/>
+                                <div>
+                                    <StaticImage src="../images/icEducation.png" alt="Обучение у наставника"/>
+                                    <div className="item-content">
+                                        <p>Обучение у наставника</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <StaticImage src="../images/growth.png" alt="Возможность карьерного роста"/>
+                                    <div className="item-content">
+                                        <p>Возможность карьерного роста</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <StaticImage src="../images/home.png" alt="Выбор графика работы"/>
+                                    <div className="item-content">
+                                        <p>Выбор графика работы</p>
+                                    </div>
+                                </div>
 
-                            <CardActions disableSpacing>
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    startIcon={<ExpandMoreIcon />}
-                                    id={"one"}
-                                    style={{width: `50%`}}
-                                    onClick={() => handleExpandClick("one")}
-                                    aria-expanded={expanded["one"]}
-                                    aria-label="show more">
-                                    Подробнее
-                                </Button>
-                            </CardActions>
-
-                            <Collapse in={expanded["one"]} timeout="auto" unmountOnExit>
-                            <CardContent>
-                            <Typography dangerouslySetInnerHTML={{__html: node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.html}} />
-
-                            <form onSubmit={submitForm}
-                                  action="https://formspree.io/xbjdqevk"
-                                  method="POST">
-                                <Typography variant="h6">
-                                    Отклик на вакансию:
-                                </Typography>
-                                <TextField
-                                    id="filled-secondary"
-                                    label="Ф.И.О"
-                                    required
-                                    fullWidth
-                                    inputProps={{maxLength: 50, minLength: 3}}
-                                    variant="filled"
-                                    color="primary"
-                                    name="name"/>
-                                <TextField
-                                    id="filled-secondary"
-                                    label="Телефон"
-                                    required
-                                    fullWidth
-                                    inputProps={{maxLength: 20, minLength: 10}}
-                                    variant="filled"
-                                    color="primary"
-                                    name="phone"
-                                    style={{marginTop: 10}}/>
-                                {state.status === "SUCCESS" ? <h6 style={{paddingTop: 15}}>В ближайшее время с вами свяжутся.</h6> : <Button
-                                    style={{margin: `8px 0 8px 0 `}}
-                                    variant="contained"
-                                    color="primary"
-                                    type="submit">
-                                    Откликнуться
-                                </Button> }
-                                {state.status === "ERROR" && <h6>Ooops! Произошла ошибка.</h6>}
-                                </form>
-                            </CardContent>
-                            </Collapse>
-                        </Card>
-                        ))}
+                            </div>
+                        </SectionInfo>
                     </div>
-                </Grid>
-            </Grid>
+                    <div style={{paddingBottom: 100}} className="item-section">
+                            { allMd.map(({node})=> (
+                              <Card key={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.id}>
+                                  <CardHeader
+                                    title={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.vacancy}
+                                    subheader={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.experience}/>
+
+                                  <CardActions disableSpacing>
+                                      <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        startIcon={<ExpandMoreIcon />}
+                                        id={"one"}
+                                        style={{width: `50%`}}
+                                        onClick={() => handleExpandClick("one")}
+                                        aria-expanded={expanded["one"]}
+                                        aria-label="show more">
+                                          Подробнее
+                                      </Button>
+                                  </CardActions>
+
+                                  <Collapse in={expanded["one"]} timeout="auto" unmountOnExit>
+                                      <CardContent>
+                                          <Typography dangerouslySetInnerHTML={{__html: node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.html}} />
+
+                                          <form onSubmit={submitForm}
+                                                action="https://formspree.io/xbjdqevk"
+                                                method="POST">
+                                              <Typography variant="h6">
+                                                  Отклик на вакансию:
+                                              </Typography>
+                                              <TextField
+                                                id="filled-secondary"
+                                                label="Ф.И.О"
+                                                required
+                                                fullWidth
+                                                inputProps={{maxLength: 50, minLength: 3}}
+                                                variant="filled"
+                                                color="primary"
+                                                name="name"/>
+                                              <TextField
+                                                id="filled-secondary"
+                                                label="Телефон"
+                                                required
+                                                fullWidth
+                                                inputProps={{maxLength: 20, minLength: 10}}
+                                                variant="filled"
+                                                color="primary"
+                                                name="phone"
+                                                style={{marginTop: 10}}/>
+                                              {state.status === "SUCCESS" ? <h6 style={{paddingTop: 15}}>В ближайшее время с вами свяжутся.</h6> : <Button
+                                                style={{margin: `8px 0 8px 0 `}}
+                                                variant="contained"
+                                                color="primary"
+                                                type="submit">
+                                                  Откликнуться
+                                              </Button> }
+                                              {state.status === "ERROR" && <h6>Ooops! Произошла ошибка.</h6>}
+                                          </form>
+                                      </CardContent>
+                                  </Collapse>
+                              </Card>
+                            ))}
+                        </div>
+                </Container>
         </section>
     );
 }

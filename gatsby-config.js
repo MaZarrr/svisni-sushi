@@ -38,21 +38,7 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-    {
-      resolve: `gatsby-theme-material-ui`,
-      options: {
-        webFontsConfig: {
-          fonts: {
-            google: [
-              {
-                family: `Montserrat`,
-                variants: [`500`, `800`],
-              },
-            ],
-          },
-        },
-      },
-    },
+    `gatsby-theme-material-ui`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-react-redux`,

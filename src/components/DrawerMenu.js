@@ -31,9 +31,10 @@ const useStyles = makeStyles(({
     },
     socialContent: {
         display: `flex`,
-        justifyContent: `space-around`,
-        width: `75%`,
-        margin: `40px auto 0 auto`
+        flexDirection: "column",
+        padding: `0 0 0 10px`,
+        width: `95%`,
+        margin: `30px auto 0 auto`
     }
 }));
 
@@ -97,13 +98,13 @@ export default function TemporaryDrawer() {
             </List>
             <div className={classes.socialContent}>
                 <div>
-                    <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-2x fa-odnoklassniki-square"></i></a>
+                    <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki">Мы в одноклассниках</a>
+                </div>
+                <div style={{padding: `10px 0`}}>
+                    <a href="https://vk.com/sushi_urazovo" aria-label="vk">Мы в вконтакте</a>
                 </div>
                 <div>
-                    <a href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-2x fa-vk text-gradient-dark"></i></a>
-                </div>
-                <div>
-                    <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-2x fa-instagram text-gradient-dark"></i></a>
+                    <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram">Мы в инстаграм</a>
                 </div>
             </div>
         </div>

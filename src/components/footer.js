@@ -136,13 +136,13 @@ return (
   <p>Узнавайте об акциях первыми — <span className="txt_social">подписывайтесь на наши группы в соцсетях</span></p>
       <div style={{display: `flex`}}>
           <div style={{marginRight: 15}}>
-              <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki"><i className="fa fa-lg fa-odnoklassniki-square text-dark" ></i></a>
+              <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki">Мы в одноклассниках</a>
           </div>
           <div style={{marginRight: 15}}>
-              <a href="https://vk.com/sushi_urazovo" aria-label="vk"><i className="fa fa-lg fa-vk text-dark"></i></a>
+              <a href="https://vk.com/sushi_urazovo" aria-label="vk">Мы в вконтакте</a>
           </div>
           <div>
-              <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram"><i className="fa fa-lg fa-instagram text-dark"></i></a>
+              <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram">Мы в инстаграм</a>
           </div>
       </div>
    </div>

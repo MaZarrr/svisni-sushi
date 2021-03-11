@@ -40,7 +40,7 @@ const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
                 description={contentfulProductKombo.description}
                 weight={contentfulProductKombo.weight}
                 count={contentfulProductKombo.count}
-                image={contentfulProductKombo.image.gatsbyImageData}
+                image={contentfulProductKombo.image}
                 edit={contentfulProductKombo.edit}
                 largePizza={contentfulProductKombo.largePizza}
                 slug={contentfulProductKombo.slug}
@@ -60,15 +60,15 @@ const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
 export default KomboTeamplate
 
 export const query = graphql `
-  query ($slug: String!) {
-        contentfulProductKombo(slug: {eq: $slug}) {
+          query ($slug: String!) {
+          contentfulProductKombo(slug: {eq: $slug}) {
+                    __typename
                     id
                     name
                     count
                     description
                     price
                     edit
-                    __typename
                     largePizza
                     slug
                     weight

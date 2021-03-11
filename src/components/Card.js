@@ -37,47 +37,47 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
     const [menu,] = useState(indexMenu)
     const [product,] = useState(indexProduct)
     return <>
-      <div className={classesCard.root}>
-          <Hidden smUp>
-          {/*Меню выбор*/}
-          <Grid container style={{marginBottom: 20}}>
-              { menu.map(({node: homeMenu}) => (
-                  <Grid item xs={6} sm={4}
-                        className={classesCard.itemMenu}
-                        key={homeMenu.id} >
-                      <IconButton style={{padding: `20px 0 10px 0`}}>
-                          <Link style={{textDecoration: `none`, color: 'grey'}} to={`/${homeMenu.slug}/`}>
-                          <div className={classesCard.cartTitle}>
-                              <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
-                          </div>
-                          <div style={{margin: `0 auto`}}>
-                              <GatsbyImage
-                                    loading={"eager"}
-                                    image={homeMenu.image.gatsbyImageData}
-                                    style={{width: `43vmin`, borderRadius: 10}}
-                                    alt={homeMenu.category} />
-                          </div>
-                          </Link>
-                      </IconButton>
-                  </Grid>
-              ))}
-          </Grid>
-          </Hidden>
-      </div>
+        <div className={classesCard.root}>
+            <Hidden smUp>
+                {/*Меню выбор*/}
+                <Grid container style={{marginBottom: 20}}>
+                    { menu.map(({node: homeMenu}) => (
+                      <Grid item xs={6} sm={4}
+                            className={classesCard.itemMenu}
+                            key={homeMenu.id} >
+                          <IconButton style={{padding: `20px 0 10px 0`}}>
+                              <Link style={{textDecoration: `none`, color: 'grey'}} to={`/${homeMenu.slug}/`}>
+                                  <div className={classesCard.cartTitle}>
+                                      <Typography className={classesCard.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
+                                  </div>
+                                  <div style={{margin: `0 auto`}}>
+                                      <GatsbyImage
+                                        loading={"eager"}
+                                        image={homeMenu.image.gatsbyImageData}
+                                        style={{width: `43vmin`, borderRadius: 10}}
+                                        alt={homeMenu.category} />
+                                  </div>
+                              </Link>
+                          </IconButton>
+                      </Grid>
+                    ))}
+                </Grid>
+            </Hidden>
+        </div>
 
-      <Typography className={classesCard.titleIndex}
-                  variant={"h2"}>Комбо из пиццы суши роллов</Typography>
+        <Typography className={classesCard.titleIndex}
+                    variant={"h2"}>Комбо из пиццы суши роллов</Typography>
 
-      {/*Карусель комбо телефон*/}
-      <Hidden smUp>
-          <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
-              {  isNil(product[1].node.combos) ? '' : product[1].node.combos.map((homeProduct) => (
+        {/*Карусель комбо телефон*/}
+        <Hidden smUp>
+            <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
+                {  isNil(product[1].node.combos) ? '' : product[1].node.combos.map((homeProduct) => (
                   <Card key={homeProduct.id} className={classesCard.cardCombo} raised={true}>
                       <CardMedia title={homeProduct.name}>
                           <GatsbyImage
-                              image={homeProduct.image.gatsbyImageData}
-                              style={styles.img}
-                              alt={homeProduct.name} />
+                            image={homeProduct.image.gatsbyImageData}
+                            style={styles.img}
+                            alt={homeProduct.name} />
                       </CardMedia>
                       <CardContent style={{minHeight: 140}}>
                           <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
@@ -85,110 +85,110 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                       </CardContent>
                       <CardActions disableSpacing>
                           <Button
-                              variant="contained"
-                              className={classesCard.buttonCombo}
-                              component={Link}
-                              size={"small"}
-                              to={`/kombo/${homeProduct.slug}`}>
+                            variant="contained"
+                            className={classesCard.buttonCombo}
+                            component={Link}
+                            size={"small"}
+                            to={`/kombo/${homeProduct.slug}`}>
                               Выбрать
                           </Button>
                           <Typography style={{fontSize: 18, marginLeft: `auto`, marginRight: 10, fontWeight: 800}}
                                       variant={"body1"}>{homeProduct.price} ₽</Typography>
-                          </CardActions>
-                      </Card>
-                  ))}
-              </SwipeableViews>
+                      </CardActions>
+                  </Card>
+                ))}
+            </SwipeableViews>
 
-              {/* Новинки */}
-              <Typography className={classesCard.titleIndex} variant={"h2"}>
-                  Блюда которые понравятся каждому</Typography>
-              <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
-                  { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
-                      <Card key={homeProduct.id} className={classesCard.cardCombo} raised={true}>
+            {/* Новинки */}
+            <Typography className={classesCard.titleIndex} variant={"h2"}>
+                Блюда которые понравятся каждому</Typography>
+            <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
+                { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
+                  <Card key={homeProduct.id} className={classesCard.cardCombo} raised={true}>
+                      <CardMedia
+                        title={homeProduct.name}>
+                          <GatsbyImage
+                            image={homeProduct.image.gatsbyImageData}
+                            style={styles.img}
+                            alt={homeProduct.name} />
+                      </CardMedia>
+                      <CardContent style={{minHeight: 140}}>
+                          <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
+                          <Typography style={{position: `absolute`, width: `77%`}}>{homeProduct.description}</Typography>
+                      </CardContent>
+                      <CardActions disableSpacing>
+                          { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
+                            <Button
+                              variant="contained"
+                              className={classesCard.buttonCombo}
+                              component={Link}
+                              size={"small"}
+                              to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
+                                Посмотреть
+                            </Button> : <Button
+                              variant="contained"
+                              className={classesCard.button}
+                              onClick={() => addedCart({id: homeProduct.id,
+                                  productPrice: null, product: indexProduct[0].node.new})}>
+                                <ShoppingCartIcon/>
+                            </Button>
+                          }
+                          <Typography style={{fontSize: 18, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
+                                      variant={"body1"}>{homeProduct.price} ₽</Typography>
+                      </CardActions>
+                  </Card>
+                ))}
+            </SwipeableViews>
+
+        </Hidden>
+
+        {/*Комбо компьютер*/}
+        <Hidden xsDown>
+            <Grid container
+                  justify={"space-between"}
+                  style={{width: `100%`, marginBottom: 50}}>
+                { isNil(product[1].node.combos) ? '' : product[1].node.combos.map((homeProduct) => (
+                  <Grid key={homeProduct.id} item sm={6} md={3} className={classesCard.cardComboPc} >
+                      <Card raised={true}>
                           <CardMedia
-                              title={homeProduct.name}>
+                            title={homeProduct.name}>
                               <GatsbyImage
-                                  image={homeProduct.image.gatsbyImageData}
-                                  style={styles.img}
-                                  alt={homeProduct.name} />
+                                image={homeProduct.image.gatsbyImageData}
+                                alt={homeProduct.name} />
                           </CardMedia>
-                          <CardContent style={{minHeight: 140}}>
+                          <CardContent>
                               <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-                              <Typography style={{position: `absolute`, width: `77%`}}>{homeProduct.description}</Typography>
+                              <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}}
+                                          variant={"subtitle1"}>{homeProduct.description}</Typography>
                           </CardContent>
                           <CardActions disableSpacing>
-                              { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
-                                  <Button
-                                      variant="contained"
-                                      className={classesCard.buttonCombo}
-                                      component={Link}
-                                      size={"small"}
-                                      to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
-                                      Посмотреть
-                                  </Button> : <Button
-                                      variant="contained"
-                                      className={classesCard.button}
-                                      onClick={() => addedCart({id: homeProduct.id,
-                                          productPrice: null, product: indexProduct[0].node.new})}>
-                                      <ShoppingCartIcon/>
-                                  </Button>
-                              }
-                              <Typography style={{fontSize: 18, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
-                                          variant={"body1"}>{homeProduct.price} ₽</Typography>
+                              <Button
+                                variant="contained"
+                                className={classesCard.buttonCombo}
+                                component={Link}
+                                to={`/kombo/${homeProduct.slug}`}>
+                                  Выбрать
+                              </Button>
+                              <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}} variant={"body1"}>{homeProduct.price} ₽</Typography>
                           </CardActions>
                       </Card>
-                  ))}
-              </SwipeableViews>
+                  </Grid>
+                ))}
 
-          </Hidden>
-
-      {/*Комбо компьютер*/}
-      <Hidden xsDown>
-              <Grid container
-                    justify={"space-between"}
-                    style={{width: `100%`, marginBottom: 50}}>
-                  { isNil(product[1].node.combos) ? '' : product[1].node.combos.map((homeProduct) => (
-                      <Grid key={homeProduct.id} item sm={6} md={3} className={classesCard.cardComboPc} >
-                          <Card raised={true}>
-                              <CardMedia
-                                  title={homeProduct.name}>
-                                  <GatsbyImage
-                                      image={homeProduct.image.gatsbyImageData}
-                                      alt={homeProduct.name} />
-                              </CardMedia>
-                              <CardContent>
-                                  <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-                                  <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}}
-                                              variant={"subtitle1"}>{homeProduct.description}</Typography>
-                              </CardContent>
-                              <CardActions disableSpacing>
-                                  <Button
-                                      variant="contained"
-                                      className={classesCard.buttonCombo}
-                                      component={Link}
-                                      to={`/kombo/${homeProduct.slug}`}>
-                                      Выбрать
-                                  </Button>
-                                  <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}} variant={"body1"}>{homeProduct.price} ₽</Typography>
-                              </CardActions>
-                          </Card>
-                      </Grid>
-                  ))}
-
-                  {/* Новинки компьютер  */}
-                  <Grid container justify={"space-between"}>
-                  <Typography style={{marginTop: 50}}
-                              className={classesCard.titleIndex}
-                              variant={"h2"}>{isNil(product[0].node.title) ? "" :
-                              product[0].node.title}</Typography>
-                  { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
+                {/* Новинки компьютер  */}
+                <Grid container justify={"space-between"}>
+                    <Typography style={{marginTop: 50}}
+                                className={classesCard.titleIndex}
+                                variant={"h2"}>{isNil(product[0].node.title) ? "" :
+                      product[0].node.title}</Typography>
+                    { isNil(product[0].node.new) ? '' :  product[0].node.new.map((homeProduct) => (
                       <Grid key={homeProduct.id} item sm={6} md={3} className={classesCard.cardComboPc}>
                           <Card raised={true}>
                               <CardMedia
-                                  title={homeProduct.name}>
+                                title={homeProduct.name}>
                                   <GatsbyImage
-                                      image={homeProduct.image.gatsbyImageData}
-                                      alt={homeProduct.name} />
+                                    image={homeProduct.image.gatsbyImageData}
+                                    alt={homeProduct.name} />
                               </CardMedia>
                               <CardContent>
                                   <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
@@ -196,19 +196,19 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                               </CardContent>
                               <CardActions disableSpacing>
                                   { homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
-                                      <Button
-                                          variant="contained"
-                                          className={classesCard.buttonCombo}
-                                          component={Link}
-                                          to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
-                                          Посмотреть
-                                      </Button> : <Button
-                                          variant="contained"
-                                          className={classesCard.button}
-                                          onClick={() => addedCart({id: homeProduct.id,
-                                              productPrice: null, product: indexProduct[0].node.new})}>
-                                          <ShoppingCartIcon/>
-                                      </Button>
+                                    <Button
+                                      variant="contained"
+                                      className={classesCard.buttonCombo}
+                                      component={Link}
+                                      to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
+                                        Посмотреть
+                                    </Button> : <Button
+                                      variant="contained"
+                                      className={classesCard.button}
+                                      onClick={() => addedCart({id: homeProduct.id,
+                                          productPrice: null, product: indexProduct[0].node.new})}>
+                                        <ShoppingCartIcon/>
+                                    </Button>
                                   }
 
                                   <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
@@ -216,11 +216,11 @@ const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
                               </CardActions>
                           </Card>
                       </Grid>
-                  ))}
-                  </Grid>
-              </Grid>
-          </Hidden>
-  </>;
+                    ))}
+                </Grid>
+            </Grid>
+        </Hidden>
+    </>;
 
 });
 export default CardIndex
@@ -285,4 +285,3 @@ const useStylesCard = makeStyles(theme => ({
         color: 'white',
     }
 }));
-

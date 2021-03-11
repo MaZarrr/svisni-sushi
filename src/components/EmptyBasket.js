@@ -11,6 +11,7 @@ const EmptyBasket = () => (
             </Typography>
             <StaticImage style={{maxWidth: 400, marginTop: `10px auto`}}
                          src="../images/emptyCart.png"
+                         placeholder="blurred"
                          alt={"Пуская корзина"}/>
         </div>
         </div>

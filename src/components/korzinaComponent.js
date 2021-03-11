@@ -15,6 +15,8 @@ const KorzinaItem = styled.div `
 `;
 
 const TextTotal = styled.span `
+  display: flex;
+  flex-direction: column;
   ${({count, prevCount}) => count > prevCount ? `animation-duration: 0.5s;
         animation-name: slidein;
         animation-iteration-count: 2;
@@ -49,7 +51,9 @@ const TextTotal = styled.span `
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
-        border: `2px solid ${theme.palette.background.paper}`,
+        padding: 0,
+        width: `inherit`,
+        border: `2px solid ${theme.palette.background.paper}`
     }
 }))(Badge);
 
@@ -87,14 +91,13 @@ return (
                 <StyledBadge anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'right',
-                }}  badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary">
+                }}  badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary"/>
 
                     <ShoppingCartIcon fontSize={'large'}/>
                     <StyledBadge badgeContent={!orderTotal ? "0" : orderTotal} max={9999} anchorOrigin={{
                         vertical: 'bottom',
                         horizontal: 'right',
                     }} color="error"/>
-                </StyledBadge>
 
             </TextTotal>
             </IconButton>

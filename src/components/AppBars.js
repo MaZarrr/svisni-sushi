@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import PropTypes from 'prop-types';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
@@ -8,6 +8,8 @@ import { withStyles } from '@material-ui/core/styles';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from "@material-ui/core/Slide";
 import Typography from "@material-ui/core/Typography";
+import Hidden from "@material-ui/core/Hidden";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const styles = theme =>( {
     root: {
@@ -46,96 +48,29 @@ function HideOnScroll(props) {
     );
 }
 
-
-const barsLinks = [
-    {
-        key: 1,
-        name: "Сеты",
-        slug: "sety",
-    },
-    {
-        key: 2,
-        name: "Горячие роллы",
-        slug: "hot-rolls",
-    },
-    {
-        key: 3,
-        name: "Сложные роллы",
-        slug: "branded-rolls",
-    },
-    {
-        key: 4,
-        name: "Пицца",
-        slug: "pizza",
-    },
-    {
-        key: 5,
-        name: "Комбо",
-        slug: "kombo",
-    },
-    {
-        key: 6,
-        name: "Классические роллы",
-        slug: "small-rolls",
-    },
-    {
-        key: 7,
-        name: "Вок",
-        slug: "wok",
-    },
-    {
-        key: 8,
-        name: "Суши",
-        slug: "sushi",
-    },
-    {
-        key: 9,
-        name: "Гунканы",
-        slug: "gunkany",
-    },
-    {
-        key: 10,
-        name: "Салаты",
-        slug: "salaty",
-    },
-    {
-        key: 11,
-        name: "Закуски",
-        slug: "zakyski",
-    },
-    {
-        key: 12,
-        name: "Напитки",
-        slug: "napitki",
-    },
-    {
-        key: 13,
-        name: "Соусы",
-        slug: "souses",
-    }
-
-]
-
 const AppBars = (props) => {
     const [value, setValue] = React.useState(1);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    // const { allContentfulIconMenuLeftPanel } = useStaticQuery(graphql `
-    //     query {
-    //         allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
-    //             edges {
-    //                 node {
-    //                     id
-    //                     name
-    //                     deck
-    //                     slug
-    //                 }
-    //             }
-    //         }
-    //     }
-    // `)
+    const { allContentfulIconMenuLeftPanel } = useStaticQuery(graphql `
+        {
+        allContentfulIconMenuLeftPanel(sort: {fields: deck}) {
+        edges {
+          node {
+            id
+            name
+            deck
+            slug
+            image {
+              gatsbyImageData
+                }
+                }
+            }
+        }
+    }
+`)
 
     function a11yProps(index){
         return {
@@ -155,19 +90,20 @@ const AppBars = (props) => {
                 onChange={handleChange}
                 scrollButtons="auto">
 
-                { barsLinks.map(({key, name, slug}, index) => (
-                                <Tab key={key}
-                                textColor={"primary"}
-                                classes={{ labelIcon: props.classes.labelIcon }}
-                                className={props.classes.tabs}
-                                component={Link}
-                                to={`/${slug}/`}
-                                value={index + 1}
-                                label={<Typography style={{fontSize: 16}}
-                                               variant={"subtitle2"}>{name}
-                                    </Typography>} {...a11yProps(key)}/>))}
-                            </Tabs>
-                    </AppBar>
+                { allContentfulIconMenuLeftPanel.edges.map(({ node: {id, name, slug, desc, image}}, index) => (
+                    <Tab key={id}
+                        textColor={"primary"}
+                        classes={{ labelIcon: props.classes.labelIcon }}
+                        className={props.classes.tabs}
+                        component={Link}
+                        to={`/${slug}/`}
+                        value={index + 1}
+                        icon={<Hidden xsDown><GatsbyImage loading={"eager"}
+                        image={image.gatsbyImageData} style={{width: 30, height: 30}} alt={name} /></Hidden>}
+                        label={ <Typography style={{fontSize: 16, marginBottom: 0}}
+                                            variant={"subtitle2"}>{name}</Typography>} {...a11yProps(desc)}/>))}
+            </Tabs>
+            </AppBar>
         </HideOnScroll>
     );
 };
