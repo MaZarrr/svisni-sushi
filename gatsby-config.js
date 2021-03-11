@@ -39,23 +39,6 @@ module.exports = {
     },
   },
     {
-      resolve: `gatsby-plugin-webfonts`,
-      options: {
-        fonts: {
-          google: [
-            {
-              family: "Montserrat",
-              variants: ["500", "800"],
-            },
-          ],
-        },
-        formats: ['woff2'],
-        useMinify: true,
-        usePreload: true,
-        usePreconnect: true,
-      },
-    },
-    {
       resolve: `gatsby-plugin-react-redux`,
       options: {
         pathToCreateStoreModule: './src/state/createStore',
@@ -76,7 +59,21 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
-    `gatsby-plugin-material-ui`,
+    {
+      resolve: `gatsby-theme-material-ui`,
+      options: {
+        webFontsConfig: {
+          fonts: {
+            google: [
+              {
+                family: `Montserrat`,
+                variants: [`500`, `800`],
+              },
+            ],
+          },
+        },
+      },
+    },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-ramda`,
     `gatsby-plugin-sitemap`,

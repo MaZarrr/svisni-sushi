@@ -33,6 +33,7 @@
     "gatsby-plugin-yandex-metrika": "^2.5.0",
     "gatsby-source-contentful": "^5.0.3",
     "gatsby-source-filesystem": "^3.0.0",
+    "gatsby-theme-material-ui": "^1.0.13",
     "gatsby-transformer-remark": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
     "moment": "^2.29.1",

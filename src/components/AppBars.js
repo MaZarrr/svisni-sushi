@@ -155,15 +155,15 @@ const AppBars = (props) => {
                 onChange={handleChange}
                 scrollButtons="auto">
 
-                {barsLinks.map(({id, name, slug}, index) => (
+                { barsLinks.map(({id, name, slug}, index) => (
                         <Tab key={id}
-                             textColor={"primary"}
-                             classes={{ labelIcon: props.classes.labelIcon }}
-                             className={props.classes.tabs}
-                             component={Link}
-                             to={`/${slug}/`}
-                             value={index + 1}
-                            label={<Typography style={{fontSize: 16}}
+                                textColor={"primary"}
+                                classes={{ labelIcon: props.classes.labelIcon }}
+                                className={props.classes.tabs}
+                                component={Link}
+                                to={`/${slug}/`}
+                                value={index + 1}
+                                label={<Typography style={{fontSize: 16}}
                                                variant={"subtitle2"}>{name}
                                     </Typography>} {...a11yProps(id)}/>))}
                             </Tabs>

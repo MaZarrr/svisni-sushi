@@ -144,6 +144,26 @@ export const query = graphql `
         }
     }
  `
+
+
+
+// {
+//   resolve: `gatsby-plugin-webfonts`,
+//     options: {
+//   fonts: {
+//     google: [
+//       {
+//         family: "Montserrat",
+//         variants: ["500", "800"],
+//       },
+//     ],
+//   },
+//   formats: ['woff2'],
+//     useMinify: true,
+//     usePreload: true,
+//     usePreconnect: true,
+// },
+// },
 // "gatsby-theme-material-ui": "^1.0.13",
 
 // "gatsby-plugin-preload-link-crossorigin": "^1.0.2",
