@@ -52,8 +52,12 @@ const TextTotal = styled.span `
 const StyledBadge = withStyles((theme) => ({
     badge: {
         padding: 0,
-        width: `inherit`,
-        border: `2px solid ${theme.palette.background.paper}`
+        width: `37px`,
+        color: `#000`,
+        border: `2px solid lightgrey`,
+        backgroundColor: `#fff`,
+        opacity: `94%`
+        // border: `2px solid ${theme.palette.background.paper}`
     }
 }))(Badge);
 
@@ -97,7 +101,7 @@ return (
                     <StyledBadge badgeContent={!orderTotal ? "0" : orderTotal} max={9999} anchorOrigin={{
                         vertical: 'bottom',
                         horizontal: 'right',
-                    }} color="error"/>
+                    }} />
 
             </TextTotal>
             </IconButton>

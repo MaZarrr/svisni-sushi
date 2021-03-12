@@ -58,7 +58,6 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
 
     const sizePizza = R.defaultTo({[setу.slug]: true}, setу.size);
     const pricePizza = R.defaultTo(setу.price, setу.priceDef);
-    console.log(setу);
     const {
         id = setу.id,
         count = 0,

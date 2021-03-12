@@ -6,12 +6,12 @@ import { StaticImage } from "gatsby-plugin-image";
 import Hidden from "@material-ui/core/Hidden";
 import loadable from "@loadable/component";
 import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles"
 
-// my components
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
-import { makeStyles } from "@material-ui/core/styles"
-const ScrollTop = loadable(() => import('./common/ScrollTop'));
+import ScrollTop from './common/ScrollTop'
+
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Korzina = loadable(() => import('./korzinaComponent'));
 

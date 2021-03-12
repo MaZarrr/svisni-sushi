@@ -19,7 +19,7 @@ const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
 
 const categoryNames = ['Малые', 'Средние', 'Большие', 'Ланч-сеты'];
 
-const Sety = ( {data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
+const Sety = ( { data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
                   product, searchText, priceFilter, checkboxFilter, location, dispatch }) => {
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
