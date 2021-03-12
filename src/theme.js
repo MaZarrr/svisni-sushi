@@ -8,7 +8,6 @@ const theme = createMuiTheme({
             '@global': {
                 body: {
                     background: `#f2f2f2`,
-                    fontFamily: `Montserrat, sans-serif`
                 },
                 p: {
                   fontSize: 16,

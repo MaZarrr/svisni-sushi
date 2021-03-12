@@ -38,20 +38,6 @@ const SEO = memo(function Seosite({ description, lang, meta, title, keywords, pa
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       defer={false}
       link={[
-        {
-          rel: "preload",
-          href: montserratBlack,
-          as: "fonts/woff2",
-          crossOrigin: "anonymous",
-          type: "font/woff2"
-        },
-        {
-          rel: "preload",
-          href: montserratLight,
-          as: "fonts/woff2",
-          crossOrigin: "anonymous",
-          type: "font/woff2"
-        },
         canonical ? { rel: "canonical", href: canonical } : {}
       ]}
       meta={[
@@ -130,3 +116,18 @@ SEO.propTypes = {
 }
 
 export default SEO
+
+// {
+//   rel: "preload",
+//     href: montserratBlack,
+//   as: "fonts/woff2",
+//   crossOrigin: "anonymous",
+//   type: "font/woff2"
+// },
+// {
+//   rel: "preload",
+//     href: montserratLight,
+//   as: "fonts/woff2",
+//   crossOrigin: "anonymous",
+//   type: "font/woff2"
+// },
