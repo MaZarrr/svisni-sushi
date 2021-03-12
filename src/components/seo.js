@@ -2,8 +2,6 @@ import React, { memo } from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import montserratBlack from '../../assets/fonts/Montserrat-Black.woff2'
-import montserratLight from '../../assets/fonts/Montserrat-Light.woff2'
 
 const SEO = memo(function Seosite({ description, lang, meta, title, keywords, pathname = null, noindex }) {
 

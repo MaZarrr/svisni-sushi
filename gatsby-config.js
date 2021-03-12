@@ -38,7 +38,24 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-    `gatsby-theme-material-ui`,
+    `gatsby-plugin-material-ui`,
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Montserrat",
+              variants: ["500", "800"],
+            },
+          ],
+        },
+        formats: ['woff2'],
+        useMinify: true,
+        usePreload: true,
+        usePreconnect: true,
+      },
+    },
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-react-redux`,
@@ -57,8 +74,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: "o3pzpw68fwfi",
+        accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
         pageLimit: 50,
         assetDownloadWorkers: 25
       },
