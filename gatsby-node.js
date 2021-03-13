@@ -1,6 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const os = require(`os`);
+const LoadablePlugin = require('@loadable/webpack-plugin');
+
+const { statsFilename, statsPath } = require('./constants') ;
 
 let didRunAlready = false;
 
@@ -40,20 +43,27 @@ exports.onPreBootstrap = ({ store, cache }, pluginOptions) => {
   fs.writeFileSync(path.join(dir, `styles-provider-props.js`), module);
 };
 
-exports.onCreateWebpackConfig = ({ actions, cache }) => {
+exports.onCreateWebpackConfig = ({ actions, cache, stage }) => {
   const cacheFile = path.join(cache.directory, `styles-provider-props.js`);
-  actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        path: require.resolve("path-browserify"),
-        "material-ui-plugin-cache-endpoint": cacheFile,
+  if (stage === 'build-javascript') {
+    actions.setWebpackConfig({
+      resolve: {
+        alias: {
+          path: require.resolve("path-browserify"),
+          "material-ui-plugin-cache-endpoint": cacheFile,
+        },
+        fallback: {
+          fs: false,
+        }
       },
-      fallback: {
-        fs: false,
-      }
-    }
-  })
+      plugins: [new LoadablePlugin({ filename: statsFilename })],
+    })
+  }
 }
+
+export const onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPlugin({ name: '@loadable/babel-plugin' });
+};
 
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -131,4 +141,9 @@ exports.createPages = async ({ graphql, actions }) => {
     })
 
   }).catch((err) => console.log(err))
+};
+
+export const onPostBuild = () => {
+  // Clean after ourselves
+  fs.unlinkSync(statsPath);
 };

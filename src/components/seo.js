@@ -2,8 +2,8 @@ import React, { memo } from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import montserratBold from '../assets/Montserrat-ExtraBold.woff2'
-import montserratMedium from '../assets/Montserrat-Medium.woff2'
+// import montserratBold from '../assets/Montserrat-ExtraBold.woff2'
+// import montserratMedium from '../assets/Montserrat-Medium.woff2'
 
 const SEO = memo(function Seo({ description, lang, meta, title, keywords, pathname = null, noindex }) {
 
@@ -38,20 +38,6 @@ const SEO = memo(function Seo({ description, lang, meta, title, keywords, pathna
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       defer={false}
       link={[
-        {
-          rel: "preload",
-          href: montserratBold,
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-        },
-        {
-          rel: "preload",
-          href: montserratMedium,
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-        },
         canonical ? { rel: "canonical", href: canonical } : {}
       ]}
       meta={[
@@ -130,3 +116,18 @@ SEO.propTypes = {
 }
 
 export default SEO
+
+// {
+//   rel: "preload",
+//     href: montserratBold,
+//   as: "font",
+//   type: "font/woff2",
+//   crossOrigin: "anonymous",
+// },
+// {
+//   rel: "preload",
+//     href: montserratMedium,
+//   as: "font",
+//   type: "font/woff2",
+//   crossOrigin: "anonymous",
+// },

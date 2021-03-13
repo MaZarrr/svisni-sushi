@@ -1,16 +1,26 @@
 import React from "react";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/styles";
+import { readFileSync, existsSync } from 'fs';
+import { ChunkExtractor } from '@loadable/server';
+import { statsPath } from './constants';
 import CleanCSS from "clean-css";
 import Layout from './src/components/layout'
 import theme from './src/theme';
 import stylesProviderProps from "material-ui-plugin-cache-endpoint";
+import { CssBaseline } from "@material-ui/core";
 
 import { hasEntries } from "./src/utils";
-import { CssBaseline } from "@material-ui/core";
+import montserratBold from "./src/assets/Montserrat-ExtraBold.woff2";
+import montserratMedium from "./src/assets/Montserrat-Medium.woff2";
 
 // Keep track of sheets for each page
 const globalLeak = new Map();
 const cleanCSS = new CleanCSS();
+
+const extractor = new ChunkExtractor({
+  stats: existsSync(statsPath) ? JSON.parse(readFileSync(statsPath, 'utf8')) : {},
+  entrypoints: [],
+});
 
 export const wrapPageElement = ({ element, props }) => {
   return (
@@ -34,7 +44,7 @@ export const wrapRootElement = ({ element, pathname }, pluginOptions) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {sheets.collect(element)}
+      {extractor.collectChunks(sheets.collect(element))}
     </ThemeProvider>
     )
 };
@@ -55,16 +65,32 @@ export const onRenderBody = (
   css = disableMinification ? css : cleanCSS.minify(css).styles;
 
   setHeadComponents([
-    <style
+    extractor.getStyleElements(<style
       id="jss-server-side"
       key="jss-server-side"
       dangerouslySetInnerHTML={{ __html: css }}
-    />,
-    <script
-      key="vk-retargeting"
-      type="text/javascript"
-      dangerouslySetInnerHTML={{
-        __html: `
+    />),
+    extractor.getLinkElements(<link
+        key="font-medium"
+        rel="preload"
+        href={montserratMedium}
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />,
+      <link
+        key="font-bold"
+        rel="preload"
+        href={montserratBold}
+        type="font/woff2"
+        as="font"
+        crossOrigin="anonymous"
+      />),
+      extractor.getScriptElements(<script
+        key="vk-retargeting"
+        type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `
                 !function(){
                 var t=document.createElement("script");
                 t.type="text/javascript",
@@ -75,10 +101,10 @@ export const onRenderBody = (
                     VK.Retargeting.Hit()
                     }, document.head.appendChild(t)}();
                 `
-      }}/>,
-    <script key="talk-me" type='text/javascript'
-            dangerouslySetInnerHTML={{
-              __html: `
+        }}/>,
+      <script key="talk-me" type='text/javascript'
+              dangerouslySetInnerHTML={{
+                __html: `
                    (function(d, w, m) {
                     window.supportAPIMethod = m;
                     var s = d.createElement('script');
@@ -92,11 +118,13 @@ export const onRenderBody = (
                     else d.documentElement.firstChild.appendChild(s);
                   })(document, window, 'TalkMe');
                 `
-            }}
-    />
+              }}
+      />)
   ]);
 
   globalLeak.delete(pathname);
+  extractor.chunks = [];
+
 };
 
 

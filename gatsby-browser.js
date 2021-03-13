@@ -60,16 +60,27 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
 };
 
 export const onServiceWorkerUpdateReady = () => {
-  if(typeof window !== 'undefined') {
-    if (
-      window.confirm(
-        "Cайт был обновлен. Вы хотите перезагрузить сайт, чтобы получить новые товары?"
-      )
-    ) {
-      window.location.reload(true);
-    }
+  const answer = window.confirm(
+    `Это приложение было обновлено. ` +
+    `Перезагрузить, чтобы отобразить последнюю версию?`
+  )
+  if (answer === true) {
+    window.location.reload()
   }
-};
+}
+
+
+// export const onServiceWorkerUpdateReady = () => {
+//   if(typeof window !== 'undefined') {
+//     if (
+//       window.confirm(
+//         "Cайт был обновлен. Вы хотите перезагрузить сайт, чтобы получить новые товары?"
+//       )
+//     ) {
+//       window.location.reload(true);
+//     }
+//   }
+// };
 
 
 
