@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby';
+// import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
 import loadable from "@loadable/component";
 import { addedCart } from "../reducers/shopping-cart";
@@ -45,24 +45,24 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(null, mapDispatchToProps)(PizzaTeamplate)
 
-export const query = graphql ` 
-    query ($slug: String!) {
-        contentfulProductPizza(slug: {eq: $slug}) {
-           id
-           slug
-           price
-           name
-           priceIn33cm
-           weight
-           weight33
-           count
-           description
-           image {
-              gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
-            }
-        }
-    }
-  `
+// export const query = graphql `
+//     query ($slug: String!) {
+//         contentfulProductPizza(slug: {eq: $slug}) {
+//            id
+//            slug
+//            price
+//            name
+//            priceIn33cm
+//            weight
+//            weight33
+//            count
+//            description
+//            image {
+//               gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+//             }
+//         }
+//     }
+//   `
  
 
    

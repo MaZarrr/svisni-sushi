@@ -40,7 +40,7 @@ const SaleTeamplate = ({ data: { contentfulProductSale: {
 }
 export default SaleTeamplate
 
-export const pageQuery = graphql `
+export const query = graphql `
     query PageSale ($slug: String!) {
         contentfulProductSale(slug: {eq: $slug}) {
             description
@@ -48,10 +48,7 @@ export const pageQuery = graphql `
             name
             slug
             image {
-            gatsbyImageData(
-                placeholder: BLURRED
-                formats: [WEBP, AUTO]
-            )
+            gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
             }
             detailedDescription {
               childMarkdownRemark {

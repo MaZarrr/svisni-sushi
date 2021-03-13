@@ -16,16 +16,24 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `components`,
+        path: `${__dirname}/src/components`,
+      },
+    },
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     'gatsby-transformer-remark',
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        stripMetadata: true,
-        defaultQuality: 100,
-      },
-    },
+    `gatsby-plugin-sharp`,
     {
     resolve: `gatsby-plugin-manifest`,
     options: {
@@ -38,22 +46,10 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-    `gatsby-plugin-material-ui`,
     {
-      resolve: `gatsby-plugin-webfonts`,
+      resolve: `gatsby-plugin-postcss`,
       options: {
-        fonts: {
-          google: [
-            {
-              family: "Montserrat",
-              variants: ["500", "800"],
-            },
-          ],
-        },
-        formats: ['woff2'],
-        useMinify: true,
-        usePreload: true,
-        usePreconnect: true,
+        postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
       },
     },
     `gatsby-plugin-styled-components`,
@@ -74,13 +70,12 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: "o3pzpw68fwfi",
-        accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         pageLimit: 50,
         assetDownloadWorkers: 25
       },
     },
-    `gatsby-plugin-ramda`,
     `gatsby-plugin-sitemap`,
     {
       resolve: 'gatsby-plugin-robots-txt',

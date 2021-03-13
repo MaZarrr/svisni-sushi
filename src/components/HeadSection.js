@@ -4,7 +4,6 @@ import CustomizedInputSearch from "./CustomizedInputSearch"
 import Categories from "./Categories"
 import { setCategory } from "../reducers/filters"
 import { connect } from "react-redux"
-// import { useStyleH1 } from "../components/common/style"
 import { makeStyles } from "@material-ui/core/styles"
 
 const HeadSection = memo(({ isFilter = false, categoryNames, category, path, titleTXT, dispatch }) => {

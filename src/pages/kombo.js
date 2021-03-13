@@ -36,7 +36,7 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(Kombo)
 
-export const queryKombo = graphql `
+export const query = graphql `
     {
         allContentfulProductKombo {
           edges {
@@ -50,14 +50,14 @@ export const queryKombo = graphql `
               count
               description
                image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                 gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
               }
             }
           }
            contentfulIconMenuLeftPanel(name: {eq: "Комбо"}) {
              image {
-                    gatsbyImageData(placeholder: BLURRED)
+                    gatsbyImageData
                   }
           }
         }

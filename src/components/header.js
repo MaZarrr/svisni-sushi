@@ -4,16 +4,18 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { StaticImage } from "gatsby-plugin-image";
 import Hidden from "@material-ui/core/Hidden";
-import loadable from "@loadable/component";
+// import loadable from "@loadable/component";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles"
 
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
 import ScrollTop from './common/ScrollTop'
+import ProgressBar from './common/progressBar'
+import Baskets from './korzinaComponent'
 
-const ProgressBar = loadable(() => import('./common/progressBar'));
-const Korzina = loadable(() => import('./korzinaComponent'));
+// const ProgressBar = loadable(() => import());
+// const Korzina = loadable(() => import('./korzinaComponent'));
 
 const links = [
   {
@@ -58,12 +60,10 @@ const Header = () => {
               </Hidden>
 
                 <Hidden xsDown>
-
                 <Grid item sm={1}>
                   <Link to="/">
                     <StaticImage layout="constrained"
                                  loading={"eager"}
-                                 placeholder="blurred"
                                  style={{maxWidth: 70}}
                                  src="../images/logosvisni.png"
                                  alt={"Свисни суши в Уразово"}/>
@@ -97,7 +97,6 @@ const Header = () => {
                             <StaticImage layout="constrained"
                                          loading={"eager"}
                                          style={{maxWidth: 65}}
-                                         placeholder="blurred"
                                          src="../images/logosvisni.png"
                                          alt={"Свисни суши в Уразово"}/>
                         </Link>
@@ -105,7 +104,7 @@ const Header = () => {
                 </Hidden>
 
                 <Grid item xs={4} sm={2} style={{margin: `auto 0`, display: `flex`, justifyContent: `flex-end`}}>
-                    <Korzina />
+                    <Baskets />
                 </Grid>
             </Grid>
 

@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import loadable from '@loadable/component'
 import { Hidden } from "@material-ui/core";
-import { YMaps } from 'react-yandex-maps';
 
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import { makeStyles } from "@material-ui/core/styles"
@@ -26,9 +25,7 @@ const Layout = ({ children }) => {
       <div style={{height: 75, width: 100}} />
       <main>
         <div className={classes.toolbar} />
-        <YMaps>
           {children}
-        </YMaps>
       </main>
       </div>
     </ErrorBoundary>

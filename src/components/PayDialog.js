@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PayDialog({ total, open = false, handleClose, phone = "", name = ""}) {
   const classes = useStyles();
-  //
   return (
     <React.Fragment>
 

@@ -73,14 +73,14 @@ export const query = graphql `
                 filter
                 count
                  image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
               }
             }
           }
         contentfulIconMenuLeftPanel(name: {eq: "Горячие роллы"}) {
               image {
-                    gatsbyImageData(placeholder: BLURRED)
+                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
             }
         }

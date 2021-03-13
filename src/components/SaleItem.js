@@ -26,7 +26,6 @@ const MetterContent = styled.div `
   p {
     padding-left: 20px;
     }
-  }
   @media (max-width: 475px) {
     margin: 20px 0 20px 0;
   }

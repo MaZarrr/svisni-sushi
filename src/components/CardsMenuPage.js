@@ -19,9 +19,8 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, product, dispatch, timePrice, isSale }) => {
     const classes = useStylesCart();
-    console.log("render timer");
-    return <>
 
+    return <>
         { visibleItems.map((products) => {
 
             const {id, name, slug, description,

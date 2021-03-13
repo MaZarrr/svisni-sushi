@@ -39,7 +39,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, null)(Wok)
 
-export const queryWok = graphql `
+export const query = graphql `
   {
   allContentfulProductWok {
     edges {

@@ -49,14 +49,14 @@ export const query = graphql `
                   count
                   weight
                 image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
               }
           }
       }
       contentfulIconMenuLeftPanel(name: {eq: "Соусы"}) {
         image {
-          gatsbyImageData(placeholder: BLURRED)
+          gatsbyImageData
           }
        }
     }

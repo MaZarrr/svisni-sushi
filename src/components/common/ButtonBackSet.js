@@ -6,9 +6,6 @@ import {Link} from "gatsby";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        // '& > *': {
-        //     margin: theme.spacing(1),
-        // },
         position: `fixed`,
         zIndex: 1200,
         top: theme.spacing(28),

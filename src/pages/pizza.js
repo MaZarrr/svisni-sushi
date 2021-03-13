@@ -179,7 +179,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, null)(Pizza)
 
-export const queryPizza = graphql `
+export const query = graphql `
     {
         allContentfulProductPizza  {
             edges {
@@ -197,14 +197,14 @@ export const queryPizza = graphql `
                     weight33
                     description
                     image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
                 }
             }
         }
         contentfulIconMenuLeftPanel(name: {eq: "Пицца"}) {
             image {
-                gatsbyImageData(placeholder: BLURRED)
+                gatsbyImageData
               }
         }
     }

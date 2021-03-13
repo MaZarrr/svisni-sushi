@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { connect } from 'react-redux';
-import {getPriceDecInc} from "../reducers/filters";
+import { getPriceDecInc } from "../reducers/filters";
 
 function FormControlLabelPosition({ filterPrice, priceFilter }) {
 

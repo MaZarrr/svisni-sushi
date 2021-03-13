@@ -7,10 +7,11 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import loadable from "@loadable/component";
 import Typography from "@material-ui/core/Typography";
 import styled from 'styled-components'
+import LayoutItem from './layoutItem';
 
 // my components
 const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
-const LayoutItem = loadable(() => import('./layoutItem'));
+// const LayoutItem = loadable(() => import('./layoutItem'));
 
 
 const ImageItem = styled(GatsbyImage)`

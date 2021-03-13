@@ -7,6 +7,8 @@ import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import styled from "styled-components"
+import { YMaps } from 'react-yandex-maps';
+
 
 import Map from '../components/MapContent'
 import HeadSection from "../components/HeadSection"
@@ -79,7 +81,9 @@ return (
                 </div>
             </div>
             </Container>
-            <Map />
+            <YMaps>
+                <Map />
+            </YMaps>
             <FooterBlock>
                 <Typography variant="body1">ИП Беженова Татьяна Викторовна</Typography>
                 <Typography variant="body1"> ОРГНИП 318312300012678</Typography>

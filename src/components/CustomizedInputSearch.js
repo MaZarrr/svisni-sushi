@@ -4,8 +4,8 @@ import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
-import {useStyleSearchInput} from "./common/style";
 import {getSearchText} from "../reducers/filters";
+import { makeStyles } from "@material-ui/core/styles";
 
 const CustomizedInputSearch = React.memo(({serchProduct, location}) => {
   const classes = useStyleSearchInput();
@@ -42,3 +42,25 @@ const CustomizedInputSearch = React.memo(({serchProduct, location}) => {
     })
 
 export default connect(null, mapDispatchToProps)(CustomizedInputSearch)
+
+export const useStyleSearchInput = makeStyles(theme => ({
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    width: `95%`,
+    [theme.breakpoints.down('500')]: {
+      border: `1px solid #282828`,
+      borderRadius: 20,
+      width: `98%`,
+      padding: 0,
+    }
+  },
+  input: {
+    flex: 1,
+    padding: 0
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  }
+}));

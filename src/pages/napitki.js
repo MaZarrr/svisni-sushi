@@ -36,7 +36,7 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(Napitki)
 
-export const queryDrink = graphql `
+export const query = graphql `
     {
     allContentfulProductNapitki {
         edges {
@@ -46,14 +46,14 @@ export const queryDrink = graphql `
                 name
                 weight
                  image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
             }
         }
     }
         contentfulIconMenuLeftPanel(name: {eq: "Напитки"}) {
             image {
-              gatsbyImageData(placeholder: BLURRED)
+              gatsbyImageData
               }
          }
         }

@@ -56,7 +56,7 @@ const mapStateToProps = (state) => ({
 });
 export default connect(mapStateToProps, null)(Sety)
 
-export const querySet = graphql `
+export const query = graphql `
     {
         allContentfulProduct(sort: {fields: desc}) {
             edges {
@@ -77,10 +77,7 @@ export const querySet = graphql `
                     description
                     komboSale
                     image {
-                     gatsbyImageData(
-                      placeholder: BLURRED
-                      formats: [WEBP, AUTO]
-                  )
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                     }
                 }
             }
@@ -88,7 +85,6 @@ export const querySet = graphql `
         contentfulIconMenuLeftPanel(name: {eq: "Сеты"}) {
             image {
                 gatsbyImageData(
-                      placeholder: BLURRED
                       formats: [WEBP, AUTO]
                   )
             }

@@ -49,14 +49,14 @@ export const query = graphql `
                   price
                   weight
                   image {
-                  gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
               }
           }
       }
      contentfulIconMenuLeftPanel(name: {eq: "Суши"}) {
         image {
-          gatsbyImageData(placeholder: BLURRED)
+          gatsbyImageData
         }
      }
 }

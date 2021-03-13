@@ -4,6 +4,14 @@ yarn-error.log*
 # Dependency directories
 node_modules/
 
+.idea/
+
+# lock files
+yarn.lock
+package-lock.json
+# ignore any lock file other than main lock file
+!/yarn.lock
+
 # dotenv environment variable files
 .env*
 .env.production*
@@ -11,8 +19,6 @@ node_modules/
 # gatsby files
 .cache/
 public
-
-
 
 # Yarn
 yarn-error.log

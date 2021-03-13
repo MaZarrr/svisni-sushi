@@ -75,7 +75,7 @@ const useStyleIndexPage = makeStyles(theme => ({
     }
 }));
 
-export const queryIndexPage = graphql `    
+export const query = graphql `    
    query {
       allContentfulContentIndex {
         edges {
@@ -89,10 +89,7 @@ export const queryIndexPage = graphql `
           price
           slug
           image {
-           gatsbyImageData(
-                placeholder: BLURRED
-                formats: [WEBP, AUTO]
-            )
+         gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
           }
         }
         new {
@@ -105,10 +102,7 @@ export const queryIndexPage = graphql `
               slug
               description
               image {
-                gatsbyImageData(
-                placeholder: BLURRED
-                formats: [WEBP, AUTO]
-            )
+              gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductPizza {
@@ -120,10 +114,7 @@ export const queryIndexPage = graphql `
               slug
               description
               image {
-               gatsbyImageData(
-                placeholder: BLURRED
-                formats: [WEBP, AUTO]
-            )
+             gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductSlognyeRolly {
@@ -133,10 +124,7 @@ export const queryIndexPage = graphql `
               __typename
               price
               image {
-               gatsbyImageData(
-                placeholder: BLURRED
-                formats: [WEBP, AUTO]
-            )
+              gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductHotRolly {
@@ -146,10 +134,7 @@ export const queryIndexPage = graphql `
               description
               price
               image {
-              gatsbyImageData(
-                placeholder: BLURRED
-                formats: [WEBP, AUTO]
-            )
+                gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductKombo {
@@ -160,10 +145,7 @@ export const queryIndexPage = graphql `
               description
               price
               image {
-                gatsbyImageData(
-                placeholder: BLURRED
-                formats: [WEBP, AUTO]
-            )
+               gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
           ... on ContentfulProductSalat {
@@ -175,10 +157,7 @@ export const queryIndexPage = graphql `
             weight
             __typename
             image {
-            gatsbyImageData(
-                        placeholder: BLURRED
-                        formats: [WEBP, AUTO]
-                    )
+           gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                 }
           }
         }
@@ -194,10 +173,7 @@ export const queryIndexPage = graphql `
                     category
                     desc
                     image {
-                    gatsbyImageData(
-                        placeholder: BLURRED
-                        formats: [WEBP, AUTO]
-                    )
+                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                     }
                 }
             }
@@ -209,10 +185,7 @@ export const queryIndexPage = graphql `
                     slug
                     nameAkcii
                     imgCarouselPc {
-                    gatsbyImageData(
-                     placeholder: BLURRED
-                     formats: [WEBP, AUTO]
-                    )
+                  gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                     }
                 }
             }

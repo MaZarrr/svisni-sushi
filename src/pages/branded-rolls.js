@@ -31,8 +31,7 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
         dispatch(checkSaleLanch(priceIsSale));
         dispatch(defFilters())
     }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
-
-return ( 
+return (
    <section>
     <SEO title="Меню сложных роллов. Заказать доставку на дом в Валуйки"  
     description="Пять видов роллов Филадельфия которых вы еще не пробовали. Закажи доставку или приходи к нам в гости!"
@@ -57,34 +56,34 @@ const mapStateToProps = (state, props) => ({
   
 export default connect(mapStateToProps, null)(BrandedRolls)
 
-export const queryBrandedRolls = graphql `
+export const query = graphql `
     {
-        allContentfulProductSlognyeRolly(sort: {fields: desc}) {
-          edges {
-            node {
-                id
-                slug
-                name
-                desc
-                price
-                filter
-                lanchprice
-                defaultPrice
-                lanch
-                sale
-                description
-                weight
-                count
-                 image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
-                  }
-              }
-            }
-          }
-          contentfulIconMenuLeftPanel(name: {eq: "Сложные роллы"}) {
-           image {
-            gatsbyImageData(placeholder: BLURRED)
-            }
-            }
+     allContentfulProductSlognyeRolly {
+    edges {
+      node {
+        id
+        slug
+        name
+        desc
+        price
+        filter
+        lanchprice
+        defaultPrice
+        lanch
+        sale
+        description
+        weight
+        count
+        image {
+          gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
         }
+      }
+    }
+  }
+      contentfulIconMenuLeftPanel(name: {eq: "Сложные роллы"}) {
+       image {
+            gatsbyImageData
+    }
+    }
+}
     `

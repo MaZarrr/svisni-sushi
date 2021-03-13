@@ -70,7 +70,7 @@ export const query = graphql `
             count
             description
              image {
-              gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+              gatsbyImageData
             }
         }
         allContentfulProductHotRolly {
@@ -81,7 +81,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                    gatsbyImageData
                   }
                 }
             }
@@ -94,7 +94,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                    gatsbyImageData
                   }
                 }
             }
@@ -108,7 +108,7 @@ export const query = graphql `
                     description
                     price
                     image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                    gatsbyImageData
                   }
                 }
             }
@@ -122,7 +122,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                    gatsbyImageData
                   }
                 }
             }
@@ -137,13 +137,61 @@ export const query = graphql `
                     price
                     weight
                     image {
-                    gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                    gatsbyImageData
                   }
                 }
             }
         }
     }
  `
+
+
+
+
+// `gatsby-plugin-postcss`,
+
+// {
+//   resolve: `gatsby-theme-material-ui`,
+//     options: {
+//   webFontsConfig: {
+//     fonts: {
+//       google: [
+//         {
+//           family: `Montserrat`,
+//           variants: [`500`, `800`],
+//         },
+//       ],
+//     },
+//     formats: ['woff2'],
+//       useMinify: true,
+//       usePreload: true
+//   },
+// },
+// },
+
+
+
+// "postcss": "^8.2.8",
+//   `gatsby-plugin-react-helmet`,
+// "gatsby-plugin-react-helmet": "^4.0.0",
+
+
+// "gatsby-plugin-webfonts": "^2.0.0",
+//   "gatsby-plugin-material-ui": "^2.1.10",
+// {
+//   resolve: `gatsby-plugin-sharp`,
+//      options: {
+//      stripMetadata: true,
+//      defaultQuality: 100,
+// },
+// },
+
+// GATSBY_CONTENTFUL_OFFLINE=true
+// "browserslist": [
+//   ">0.25%",
+//   "not dead"
+// ],
+
 // "gatsby-plugin-webfonts": "^2.0.0",
 // "gatsby-plugin-material-ui": "^2.1.10",
 
