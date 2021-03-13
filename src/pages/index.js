@@ -6,10 +6,17 @@ import { addedCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import { graphql } from "gatsby"
 import { Hidden, Typography } from "@material-ui/core";
-import Carousel from '../components/common/CarouselSvisni';
-import IndexCards from '../components/Card';
+import loadable from "@loadable/component";
+import Spinner from "../components/spinner/spinner-new";
 
-    const IndexPage = ({ addedCart, data: { allContentfulContentIndex: { edges : indexProduct },
+import Carousel from '../components/common/CarouselSvisni';
+const IndexCards = loadable(() => import('../components/Card'), {
+    fallback: <Spinner />
+});
+// const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
+// import IndexCards from '../components/Card';
+
+const IndexPage = ({ addedCart, data: { allContentfulContentIndex: { edges : indexProduct },
                      allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
 
         const classes = useStyleIndexPage();

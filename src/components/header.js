@@ -4,18 +4,18 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { StaticImage } from "gatsby-plugin-image";
 import Hidden from "@material-ui/core/Hidden";
-// import loadable from "@loadable/component";
+import loadable from "@loadable/component";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles"
 
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
 import ScrollTop from './common/ScrollTop'
-import ProgressBar from './common/progressBar'
-import Baskets from './korzinaComponent'
+// import ProgressBar from './common/progressBar'
+// import Baskets from './korzinaComponent'
 
-// const ProgressBar = loadable(() => import());
-// const Korzina = loadable(() => import('./korzinaComponent'));
+const ProgressBar = loadable(() => import('./common/progressBar'));
+const Baskets = loadable(() => import('./korzinaComponent'));
 
 const links = [
   {
@@ -43,7 +43,7 @@ const links = [
 const Header = () => {
     const classes = useStyleHeader();
 
-  return (
+    return (
       <>
       <div className={classes.root}>
 
@@ -65,6 +65,7 @@ const Header = () => {
                     <StaticImage layout="constrained"
                                  loading={"eager"}
                                  style={{maxWidth: 70}}
+                                 placeholder="tracedSVG"
                                  src="../images/logosvisni.png"
                                  alt={"Свисни суши в Уразово"}/>
                   </Link>
@@ -96,6 +97,7 @@ const Header = () => {
                         <Link to="/">
                             <StaticImage layout="constrained"
                                          loading={"eager"}
+                                         placeholder="tracedSVG"
                                          style={{maxWidth: 65}}
                                          src="../images/logosvisni.png"
                                          alt={"Свисни суши в Уразово"}/>

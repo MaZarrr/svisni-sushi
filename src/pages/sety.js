@@ -9,7 +9,7 @@ import filtersProducts from '../utils/filtersProducts'
 import loadable from '@loadable/component'
 import { productLoaded } from "../reducers/app";
 import { defFilters, checkSaleLanch } from "../reducers/filters";
-import {productList} from "../reducers/selectors";
+import { productList } from "../reducers/selectors";
 import useTimer from "../utils/useTimer";
 import HeadSection from "../components/HeadSection"
 

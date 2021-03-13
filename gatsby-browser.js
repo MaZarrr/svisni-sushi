@@ -48,6 +48,18 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
   return <StylesProvider {...stylesProvider}>{element}</StylesProvider>;
 };
 
+export const onServiceWorkerUpdateReady = () => {
+  if(typeof window !== 'undefined') {
+    if (
+      window.confirm(
+        "Cайт был обновлен. Вы хотите перезагрузить сайт, чтобы получить новые товары?"
+      )
+    ) {
+      window.location.reload(true);
+    }
+  }
+};
+
 
 
 

@@ -28,7 +28,7 @@ const styles = {
         padding: '0 20px',
     },
     img: {
-        maxWidth: 350
+        maxWidth: 300
     }
 };
 
@@ -88,7 +88,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
 
     const addedProductKomboToBacket = () => {
         const descriptionKombo = pluck("name")(productSostav).join(", ");
-        console.log(image);
         return {
             id,
             name,
@@ -296,17 +295,18 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                         index={activeItemIndex}
                                         onChangeIndex={value => setActiveItemIndex(value)}>
                             { items.map((el) => (
-                                <Card key={el.id} style={{borderRadius: 10, height: 400, maxWidth: 300}}>
+                                <Card key={el.id} style={{borderRadius: 5, minHeight: 300}}>
                                     <CardMedia
-                                        style={{padding: 8}}
+                                        style={{padding: 8, display: `flex`, justifyContent: `center`}}
                                         title={el.name}>
                                         <GatsbyImage
+                                            style={{maxWidth: 150}}
                                             image={el.image.gatsbyImageData}
                                             alt={el.name} />
                                     </CardMedia>
                                     <CardContent style={{padding: 5}}>
-                                        <Typography style={{fontSize: 14, textAlign: `center`}} variant={"h6"}>{el.name}</Typography>
-                                        <Typography style={{height: `auto`, fontSize: 13, overflowY: `auto`, textAlign: `center`}}
+                                        <Typography style={{fontSize: 14 }} variant={"subtitle1"}>{el.name}</Typography>
+                                        <Typography style={{fontSize: 13, overflowY: `auto`}}
                                                     variant={"subtitle1"}>{el.description}</Typography>
                                         <Button
                                           onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,

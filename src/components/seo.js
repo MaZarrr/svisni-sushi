@@ -41,16 +41,16 @@ const SEO = memo(function Seo({ description, lang, meta, title, keywords, pathna
         {
           rel: "preload",
           href: montserratBold,
-          as: "fonts/woff2",
+          as: "font",
+          type: "font/woff2",
           crossOrigin: "anonymous",
-          type: "font/woff2"
         },
         {
           rel: "preload",
           href: montserratMedium,
-          as: "fonts/woff2",
+          as: "font",
+          type: "font/woff2",
           crossOrigin: "anonymous",
-          type: "font/woff2"
         },
         canonical ? { rel: "canonical", href: canonical } : {}
       ]}

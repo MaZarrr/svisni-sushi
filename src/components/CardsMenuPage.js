@@ -13,9 +13,12 @@ import { addedToCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import ToggleButton from "./common/ToogleButton";
 import { take } from "ramda";
+import loadable from "@loadable/component";
 import { makeStyles } from "@material-ui/core/styles"
+
+const ToggleButton = loadable(() => import("./common/ToogleButton"));
+// import ToggleButton from "./common/ToogleButton";
 
 const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, product, dispatch, timePrice, isSale }) => {
     const classes = useStylesCart();
