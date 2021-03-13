@@ -145,10 +145,50 @@ export const query = graphql `
     }
  `
 
+// {
+//   resolve: `gatsby-plugin-postcss`,
+//     options: {
+//   postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
+// },
+// },
 
 
+// exports.onCreateWebpackConfig = ({ actions, cache, plugins}) => {
+//   actions.setWebpackConfig({
+//     plugins: [
+//       plugins.provide({ process: 'process/browser' })
+//     ]
+//   })
+// }
 
-// `gatsby-plugin-postcss`,
+// exports.onCreateWebpackConfig = ({ actions, stage, plugins }) => {
+//   if (stage === 'build-javascript' || stage === 'develop') {
+//     actions.setWebpackConfig({
+//      plugins: stage === 'build-javascript' || stage === 'develop' && [
+//         plugins.provide({ process: 'process/browser' })
+//       ]
+//     })
+//   }
+// }
+
+
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     node: {
+//       fs: "empty",
+//     },
+//   })
+// }
+
+// exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
+//   const config = getConfig()
+//   if (stage.startsWith('develop') && config.resolve) {
+//     config.resolve.alias = {
+//       ...config.resolve.alias,
+//       'react-dom': '@hot-loader/react-dom'
+//     }
+//   }
+// }
 
 // {
 //   resolve: `gatsby-theme-material-ui`,
@@ -170,12 +210,6 @@ export const query = graphql `
 // },
 
 
-
-// "postcss": "^8.2.8",
-//   `gatsby-plugin-react-helmet`,
-// "gatsby-plugin-react-helmet": "^4.0.0",
-
-
 // "gatsby-plugin-webfonts": "^2.0.0",
 //   "gatsby-plugin-material-ui": "^2.1.10",
 // {
@@ -186,28 +220,10 @@ export const query = graphql `
 // },
 // },
 
-// GATSBY_CONTENTFUL_OFFLINE=true
 // "browserslist": [
 //   ">0.25%",
 //   "not dead"
 // ],
-
-// "gatsby-plugin-webfonts": "^2.0.0",
-// "gatsby-plugin-material-ui": "^2.1.10",
-
-// options: {
-//   webFontsConfig: {
-//     fonts: {
-//       google: [
-//         {
-//           family: `Montserrat`,
-//           variants: [`500`, `800`],
-//         },
-//       ],
-//     },
-//   },
-// },
-
 
 // {
 //   resolve: `gatsby-plugin-webfonts`,
@@ -226,7 +242,6 @@ export const query = graphql `
 //     usePreconnect: true,
 // },
 // },
-// "gatsby-theme-material-ui": "^1.0.13",
 
 // "gatsby-plugin-preload-link-crossorigin": "^1.0.2",
 
@@ -242,11 +257,10 @@ export const query = graphql `
 
 //    "@hot-loader/react-dom": "^17.0.1",
 
-//    "gatsby-image": "^2.11.0",
 // {
 //   resolve: `gatsby-plugin-google-analytics`,
 //     options: {
-//   trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
+//   trackingId:
 //     head: true,
 //     defer: true
 // },

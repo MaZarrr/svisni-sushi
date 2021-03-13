@@ -9,6 +9,7 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "@material-ui/styles": "^4.11.3",
     "autoprefixer": "^10.2.5",
     "babel-plugin-styled-components": "^1.12.0",
     "clean-css": "^5.1.1",
@@ -20,7 +21,6 @@
     "gatsby-plugin-google-analytics": "^3.0.0",
     "gatsby-plugin-google-tagmanager": "^3.0.0",
     "gatsby-plugin-image": "^1.0.1",
-    "gatsby-plugin-loadable-components-ssr": "^2.1.0",
     "gatsby-plugin-manifest": "^3.0.0",
     "gatsby-plugin-material-ui": "^2.1.10",
     "gatsby-plugin-offline": "^4.0.0",
@@ -36,18 +36,15 @@
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-transformer-remark": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
-    "jss": "^10.5.1",
     "moment": "^2.29.1",
     "path-browserify": "^1.0.1",
     "postcss": "^8.2.8",
-    "process": "^0.11.10",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.1",
     "react": "^17.0.1",
     "react-content-loader": "^6.0.2",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "react-jss": "^10.5.1",
     "react-number-format": "^4.4.4",
     "react-redux": "^7.1.3",
     "react-swipeable-views": "^0.13.9",
@@ -65,7 +62,6 @@
     "uniqid": "^5.2.0"
   },
   "devDependencies": {
-    "@material-ui/styles": "^4.11.3",
     "prettier": "^2.2.1"
   },
   "keywords": [
@@ -73,7 +69,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "cross-env GATSBY_CONTENTFUL_OFFLINE=true gatsby build ",
     "develop": "gatsby develop",
     "start": "node index.js",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",

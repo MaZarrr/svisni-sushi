@@ -6,7 +6,6 @@ import theme from './src/theme';
 import stylesProviderProps from "material-ui-plugin-cache-endpoint";
 
 import { hasEntries } from "./src/utils";
-// import autoprefixer from "./src/autoprefixer";
 import { CssBaseline } from "@material-ui/core";
 
 // Keep track of sheets for each page

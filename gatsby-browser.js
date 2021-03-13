@@ -1,11 +1,13 @@
 import React from "react";
 import { StylesProvider, ThemeProvider } from "@material-ui/styles";
 import Layout from './src/components/layout'
+import ReactDOM from 'react-dom'
 import theme from './src/theme';
 import stylesProviderProps from "material-ui-plugin-cache-endpoint";
 
 import { hasEntries } from "./src/utils";
 import { CssBaseline } from "@material-ui/core";
+import { loadableReady } from "@loadable/component";
 
 export const onInitialClientRender = () => {
   if (process.env.BUILD_STAGE === `develop`) {
@@ -17,6 +19,15 @@ export const onInitialClientRender = () => {
   if (jssStyles) {
     jssStyles.parentNode.removeChild(jssStyles);
   }
+};
+
+export const replaceHydrateFunction = () => {
+  return (element, container, callback) => {
+    loadableReady(() => {
+      console.log("rendering!");
+      ReactDOM.render(element, container, callback);
+    });
+  };
 };
 
 export const wrapPageElement = ({ element, props }) => {
