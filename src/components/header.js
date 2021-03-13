@@ -65,7 +65,7 @@ const Header = () => {
                     <StaticImage layout="constrained"
                                  loading={"eager"}
                                  style={{maxWidth: 70}}
-                                 placeholder="tracedSVG"
+                                 placeholder="blurred"
                                  src="../images/logosvisni.png"
                                  alt={"Свисни суши в Уразово"}/>
                   </Link>
@@ -97,7 +97,7 @@ const Header = () => {
                         <Link to="/">
                             <StaticImage layout="constrained"
                                          loading={"eager"}
-                                         placeholder="tracedSVG"
+                                         placeholder="blurred"
                                          style={{maxWidth: 65}}
                                          src="../images/logosvisni.png"
                                          alt={"Свисни суши в Уразово"}/>

@@ -70,7 +70,7 @@ export const query = graphql `
             count
             description
              image {
-              gatsbyImageData
+              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
             }
         }
         allContentfulProductHotRolly {
@@ -81,7 +81,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -94,7 +94,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -108,7 +108,7 @@ export const query = graphql `
                     description
                     price
                     image {
-                    gatsbyImageData
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -122,7 +122,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -137,7 +137,7 @@ export const query = graphql `
                     price
                     weight
                     image {
-                    gatsbyImageData
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }

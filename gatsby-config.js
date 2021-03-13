@@ -23,13 +23,6 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `components`,
-        path: `${__dirname}/src/components`,
-      },
-    },
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     'gatsby-transformer-remark',
@@ -70,8 +63,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: "o3pzpw68fwfi",
-        accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         pageLimit: 50,
         assetDownloadWorkers: 25
       },

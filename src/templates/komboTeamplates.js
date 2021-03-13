@@ -73,7 +73,7 @@ export const query = graphql `
                     slug
                     weight
                     image {
-                      gatsbyImageData
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                     }
                     sostavDefault {
                         ... on ContentfulProductZakuski {
@@ -82,7 +82,7 @@ export const query = graphql `
                             name
                             price
                             image {
-                           gatsbyImageData
+                              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                         ... on ContentfulProductKlassika {
@@ -92,7 +92,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                           gatsbyImageData
+                              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                         ... on ContentfulProductHotRolly {
@@ -102,7 +102,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                           gatsbyImageData
+                           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                         ... on ContentfulProductNapitki {
@@ -112,7 +112,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                           gatsbyImageData
+                           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                         ... on ContentfulProductPizza {
@@ -123,7 +123,7 @@ export const query = graphql `
                             priceIn33cm
                             description
                             image {
-                            gatsbyImageData
+                            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                         ... on ContentfulProductSlognyeRolly {
@@ -133,7 +133,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                           gatsbyImageData
+                           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                         ... on ContentfulProductWok {
@@ -143,7 +143,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                           gatsbyImageData
+                           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                     }
@@ -154,7 +154,7 @@ export const query = graphql `
                         description
                         price
                         image {
-                           gatsbyImageData
+                           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                     }
                     productsKomboRolls {
@@ -165,7 +165,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                          gatsbyImageData
+                          gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                         ... on ContentfulProductHotRolly {
@@ -175,7 +175,7 @@ export const query = graphql `
                             price
                             description
                             image {
-                            gatsbyImageData
+                            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         }
                     }
@@ -183,7 +183,7 @@ export const query = graphql `
                         id
                         __typename
                         image {
-                           gatsbyImageData
+                           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         name
                         price
@@ -195,7 +195,7 @@ export const query = graphql `
                         price
                         priceIn33cm
                         image {
-                           gatsbyImageData
+                           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                         count
                         description
@@ -206,7 +206,7 @@ export const query = graphql `
                       name
                       price
                       image {
-                           gatsbyImageData
+                           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                           }
                       count
                       description
@@ -218,7 +218,7 @@ export const query = graphql `
                 price
                 count
                 image {
-                  gatsbyImageData
+                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                 }
             }
         }

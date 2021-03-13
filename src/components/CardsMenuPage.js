@@ -18,7 +18,6 @@ import loadable from "@loadable/component";
 import { makeStyles } from "@material-ui/core/styles"
 
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
-// import ToggleButton from "./common/ToogleButton";
 
 const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, product, dispatch, timePrice, isSale }) => {
     const classes = useStylesCart();

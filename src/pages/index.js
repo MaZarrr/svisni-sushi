@@ -6,15 +6,9 @@ import { addedCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import { graphql } from "gatsby"
 import { Hidden, Typography } from "@material-ui/core";
-import loadable from "@loadable/component";
-import Spinner from "../components/spinner/spinner-new";
 
+import IndexCards from '../components/Card';
 import Carousel from '../components/common/CarouselSvisni';
-const IndexCards = loadable(() => import('../components/Card'), {
-    fallback: <Spinner />
-});
-// const Carousel = loadable(() => import('../components/common/CarouselSvisni'));
-// import IndexCards from '../components/Card';
 
 const IndexPage = ({ addedCart, data: { allContentfulContentIndex: { edges : indexProduct },
                      allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
@@ -83,7 +77,7 @@ const useStyleIndexPage = makeStyles(theme => ({
 }));
 
 export const query = graphql `    
-   query {
+ query {
       allContentfulContentIndex {
         edges {
         node {
@@ -96,7 +90,7 @@ export const query = graphql `
           price
           slug
           image {
-         gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
           }
         }
         new {
@@ -109,7 +103,7 @@ export const query = graphql `
               slug
               description
               image {
-              gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductPizza {
@@ -121,7 +115,7 @@ export const query = graphql `
               slug
               description
               image {
-             gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductSlognyeRolly {
@@ -131,7 +125,7 @@ export const query = graphql `
               __typename
               price
               image {
-              gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductHotRolly {
@@ -141,7 +135,7 @@ export const query = graphql `
               description
               price
               image {
-                gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductKombo {
@@ -152,7 +146,7 @@ export const query = graphql `
               description
               price
               image {
-               gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
               }
             }
           ... on ContentfulProductSalat {
@@ -164,7 +158,7 @@ export const query = graphql `
             weight
             __typename
             image {
-           gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                 }
           }
         }
@@ -180,7 +174,7 @@ export const query = graphql `
                     category
                     desc
                     image {
-                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                     }
                 }
             }
@@ -192,7 +186,7 @@ export const query = graphql `
                     slug
                     nameAkcii
                     imgCarouselPc {
-                  gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                  gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
                     }
                 }
             }
