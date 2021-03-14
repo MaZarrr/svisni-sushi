@@ -10,7 +10,7 @@ import Zoom from '@material-ui/core/Zoom';
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
-    bottom: theme.spacing(4), // положение от низа
+    bottom: theme.spacing(3), // положение от низа
     right: theme.spacing(1),
     zIndex: '1002'
   },
