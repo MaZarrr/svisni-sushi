@@ -109,7 +109,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                                 variant={"subtitle2"}>28см</Typography>
                                                 </Grid>
                                               <Grid item xs={2} style={{textAlign: "center", padding: `10px 0 0 0`}}>
-                                                <p style={{fontSize: 15, margin: `0 auto`, fontWeight: `bold`}}>{`${mass}кг`}</p>
+                                                <p style={{fontSize: 14, letterSpacing: `-0.5px`, margin: `0 auto`, fontWeight: `bold`}}>{`${mass}кг`}</p>
                                               </Grid>
                                                 <Grid item xs={5}>
                                                     <button style={{paddingLeft: `auto`}} onClick={() => switchSizePizza({
@@ -253,8 +253,7 @@ const useStylesCart = makeStyles(theme => ({
     borderRadius: 5,
     padding: '6px 12px',
     border: '1px solid orange',
-    lineHeight: 1.5,
-    width: `95%`
+    width: `100%`
   },
   buttonT: {
     width: `100%`,

@@ -1,14 +1,10 @@
 import React from "react";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/styles";
-import { readFileSync, existsSync } from 'fs';
-import { ChunkExtractor } from '@loadable/server';
-import { statsPath } from './constants';
 import CleanCSS from "clean-css";
 import Layout from './src/components/layout'
 import theme from './src/theme';
 import stylesProviderProps from "material-ui-plugin-cache-endpoint";
 import { CssBaseline } from "@material-ui/core";
-
 import { hasEntries } from "./src/utils";
 import montserratBold from "./src/assets/Montserrat-ExtraBold.woff2";
 import montserratMedium from "./src/assets/Montserrat-Medium.woff2";
@@ -16,11 +12,6 @@ import montserratMedium from "./src/assets/Montserrat-Medium.woff2";
 // Keep track of sheets for each page
 const globalLeak = new Map();
 const cleanCSS = new CleanCSS();
-
-const extractor = new ChunkExtractor({
-  stats: existsSync(statsPath) ? JSON.parse(readFileSync(statsPath, 'utf8')) : {},
-  entrypoints: [],
-});
 
 export const wrapPageElement = ({ element, props }) => {
   return (
@@ -44,7 +35,7 @@ export const wrapRootElement = ({ element, pathname }, pluginOptions) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {extractor.collectChunks(sheets.collect(element))}
+      {sheets.collect(element)}
     </ThemeProvider>
     )
 };
@@ -65,32 +56,32 @@ export const onRenderBody = (
   css = disableMinification ? css : cleanCSS.minify(css).styles;
 
   setHeadComponents([
-    extractor.getStyleElements(<style
+    <style
       id="jss-server-side"
       key="jss-server-side"
       dangerouslySetInnerHTML={{ __html: css }}
-    />),
-    extractor.getLinkElements(<link
-        key="font-medium"
-        rel="preload"
-        href={montserratMedium}
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />,
-      <link
-        key="font-bold"
-        rel="preload"
-        href={montserratBold}
-        type="font/woff2"
-        as="font"
-        crossOrigin="anonymous"
-      />),
-      extractor.getScriptElements(<script
-        key="vk-retargeting"
-        type="text/javascript"
-        dangerouslySetInnerHTML={{
-          __html: `
+    />,
+    <link
+      key="font-medium"
+      rel="preload"
+      href={montserratMedium}
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+    />,
+    <link
+      key="font-bold"
+      rel="preload"
+      href={montserratBold}
+      type="font/woff2"
+      as="font"
+      crossOrigin="anonymous"
+    />,
+    <script
+      key="vk-retargeting"
+      type="text/javascript"
+      dangerouslySetInnerHTML={{
+        __html: `
                 !function(){
                 var t=document.createElement("script");
                 t.type="text/javascript",
@@ -101,10 +92,10 @@ export const onRenderBody = (
                     VK.Retargeting.Hit()
                     }, document.head.appendChild(t)}();
                 `
-        }}/>,
-      <script key="talk-me" type='text/javascript'
-              dangerouslySetInnerHTML={{
-                __html: `
+      }}/>,
+    <script key="talk-me" type='text/javascript'
+            dangerouslySetInnerHTML={{
+              __html: `
                    (function(d, w, m) {
                     window.supportAPIMethod = m;
                     var s = d.createElement('script');
@@ -118,13 +109,11 @@ export const onRenderBody = (
                     else d.documentElement.firstChild.appendChild(s);
                   })(document, window, 'TalkMe');
                 `
-              }}
-      />)
+            }}
+    />
   ]);
 
   globalLeak.delete(pathname);
-  extractor.chunks = [];
-
 };
 
 
@@ -133,12 +122,141 @@ export const onRenderBody = (
 
 
 
+// ==============================================================================================
 
 
+//
+// import React from "react";
+// import { ServerStyleSheets, ThemeProvider } from "@material-ui/styles";
+// import { readFileSync, existsSync } from 'fs';
+// import { ChunkExtractor } from '@loadable/server';
+// // import { statsPath } from './constants';
+// import CleanCSS from "clean-css";
+// import Layout from './src/components/layout'
+// import theme from './src/theme';
+// // import stylesProviderProps from "material-ui-plugin-cache-endpoint";
+// import { CssBaseline } from "@material-ui/core";
+//
+// import { hasEntries } from "./src/utils";
+// import montserratBold from "./src/assets/Montserrat-ExtraBold.woff2";
+// import montserratMedium from "./src/assets/Montserrat-Medium.woff2";
+//
+// // Keep track of sheets for each page
+// const globalLeak = new Map();
+// const cleanCSS = new CleanCSS();
+//
+// const statsFilename = 'loadable-stats-build-javascript.json';
+// const statsPath = `${process.cwd()}/public/${statsFilename}`;
+//
+// const extractor = new ChunkExtractor({
+//   stats: existsSync(statsPath) ? JSON.parse(readFileSync(statsPath, 'utf8')) : {},
+//   entrypoints: [],
+// });
+//
+// export const wrapPageElement = ({ element, props }) => {
+//   return (
+//     <Layout {...props}>{element}</Layout>
+//   );
+// };
+//
+// export const wrapRootElement = ({ element, pathname }, pluginOptions) => {
+//   if (pluginOptions.stylesProvider) {
+//     throw new Error(
+//       `You specified both pathToStylesProvider and stylesProvider in gatsby-config.js. Remove one of them.`,
+//     );
+//   }
+//
+//   const stylesProvider = pluginOptions.stylesProvider;
+//
+//   const sheets = new ServerStyleSheets(stylesProvider);
+//   globalLeak.set(pathname, sheets);
+//   return (
+//     <ThemeProvider theme={theme}>
+//       <CssBaseline />
+//       {extractor.collectChunks(sheets.collect(element))}
+//     </ThemeProvider>
+//   )
+// };
+//
+// export const onRenderBody = (
+//   { setHeadComponents, pathname },
+//   { disableMinification = false },
+// ) => {
+//   const sheets = globalLeak.get(pathname);
+//
+//   if (!sheets) {
+//     return;
+//   }
+//
+//   let css = sheets.toString();
+//
+//   // css = disableAutoprefixing ? css : autoprefixer(css, pathname);
+//   css = disableMinification ? css : cleanCSS.minify(css).styles;
+//
+//   setHeadComponents([
+//     extractor.getStyleElements(<style
+//       id="jss-server-side"
+//       key="jss-server-side"
+//       dangerouslySetInnerHTML={{ __html: css }}
+//     />),
+//     extractor.getLinkElements(<link
+//         key="font-medium"
+//         rel="preload"
+//         href={montserratMedium}
+//         as="font"
+//         type="font/woff2"
+//         crossOrigin="anonymous"
+//       />,
+//       <link
+//         key="font-bold"
+//         rel="preload"
+//         href={montserratBold}
+//         type="font/woff2"
+//         as="font"
+//         crossOrigin="anonymous"
+//       />),
+//     extractor.getScriptElements(<script
+//         key="vk-retargeting"
+//         type="text/javascript"
+//         dangerouslySetInnerHTML={{
+//           __html: `
+//                 !function(){
+//                 var t=document.createElement("script");
+//                 t.type="text/javascript",
+//                 t.async=!0,
+//                 t.src="https://vk.com/js/api/openapi.js?168",
+//                 t.onload=function(){
+//                     VK.Retargeting.Init("VK-RTRG-493440-aoKed"),
+//                     VK.Retargeting.Hit()
+//                     }, document.head.appendChild(t)}();
+//                 `
+//         }}/>,
+//       <script key="talk-me" type='text/javascript'
+//               dangerouslySetInnerHTML={{
+//                 __html: `
+//                    (function(d, w, m) {
+//                     window.supportAPIMethod = m;
+//                     var s = d.createElement('script');
+//                     s.type ='text/javascript'; s.id = 'supportScript'; s.charset = 'utf-8';
+//                     s.async = true;
+//                     var id = '226d519661c50fd5e16477daf16d89eb';
+//                     s.src = 'https://lcab.talk-me.ru/support/support.js?h='+id;
+//                     var sc = d.getElementsByTagName('script')[0];
+//                     w[m] = w[m] || function() { (w[m].q = w[m].q || []).push(arguments); };
+//                     if (sc) sc.parentNode.insertBefore(s, sc);
+//                     else d.documentElement.firstChild.appendChild(s);
+//                   })(document, window, 'TalkMe');
+//                 `
+//               }}
+//       />)
+//   ]);
+//
+//   globalLeak.delete(pathname);
+//   extractor.chunks = [];
+//
+// };
 
-
-
-
+// ==============================================================================================
 
 
 

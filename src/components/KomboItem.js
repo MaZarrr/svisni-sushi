@@ -305,7 +305,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                             alt={el.name} />
                                     </CardMedia>
                                     <CardContent style={{padding: 5}}>
-                                        <Typography style={{fontSize: 14 }} variant={"subtitle1"}>{el.name}</Typography>
+                                        <Typography style={{fontSize: 14, fontWeight: `bold` }} variant={"subtitle1"}>{el.name}</Typography>
                                         <Typography style={{fontSize: 13, overflowY: `auto`}}
                                                     variant={"subtitle1"}>{el.description}</Typography>
                                         <Button

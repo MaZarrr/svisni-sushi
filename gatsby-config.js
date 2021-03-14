@@ -39,10 +39,10 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-    {
-      resolve: `gatsby-plugin-postcss`,
-      options: {
-        postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
+  {
+    resolve: `gatsby-plugin-postcss`,
+    options: {
+      postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
       },
     },
     `gatsby-plugin-styled-components`,

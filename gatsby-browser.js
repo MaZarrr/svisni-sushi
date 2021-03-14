@@ -61,14 +61,13 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
 
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
-    `Это приложение было обновлено. ` +
+    `Приложение Свисни суши было обновлено. `+
     `Перезагрузить, чтобы отобразить последнюю версию?`
   )
   if (answer === true) {
     window.location.reload()
   }
 }
-
 
 // export const onServiceWorkerUpdateReady = () => {
 //   if(typeof window !== 'undefined') {
