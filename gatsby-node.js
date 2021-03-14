@@ -103,17 +103,6 @@ exports.createPages = async ({ graphql, actions }) => {
       })
     })
 
-    // const productspizza = data.data.allContentfulProductPizza.edges;
-    // productspizza.forEach(({node: product}) => {
-    //   createPage({
-    //     path: `/pizza/${product.slug}`,
-    //     component: pizzaTemplate,
-    //     context: {
-    //       slug: product.slug
-    //     }
-    //   })
-    // });
-
     const productssale = data.data.allContentfulProductSale.edges;
     productssale.forEach(({node}) => {
       createPage({

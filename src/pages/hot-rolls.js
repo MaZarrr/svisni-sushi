@@ -3,29 +3,25 @@ import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
-import Spinner from '../components/spinner/spinner'
-import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 import { defFilters } from "../reducers/filters";
-import {productList} from "../reducers/selectors";
+import Spinner from '../components/spinner/spinner'
 import HeadSection from "../components/HeadSection"
+import { productList } from "../reducers/selectors";
+import filtersProducts from '../utils/filtersProducts'
 
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner count={10}/>
 });
 
-const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с мидиями', 'с курицей', 'веган'];
 
+const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с мидиями', 'с курицей', 'веган'];
 
 const HotRolls = ({ data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter }) => {
-
     useEffect(() => {
-        dispatch(productLoaded(productsHotRolls)); 
-        // setTimeout(() => {
-        //     setLoad(false)
-        // }, 700);
+        dispatch(productLoaded(productsHotRolls));
         dispatch(defFilters())
     }, [productsHotRolls, dispatch]);
 
@@ -38,12 +34,10 @@ return (
           pathname="/sety/"/>
 
         <HeadSection titleTXT={"Горячие роллы"} isFilter={true} categoryNames={categoryNames}/>
-        {/*{load === false ? <>*/}
            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                               image={image} product={product}/>
            </Grid>
-   {/*</> : <Spinner count={10}/>*/}
        }
   </section>
     )

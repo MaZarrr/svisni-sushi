@@ -1,27 +1,25 @@
-import { Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import { GatsbyImage } from "gatsby-plugin-image";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import { Link } from "gatsby";
 import React, { memo } from "react";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 import { addedToCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
-import Paper from "@material-ui/core/Paper";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { take } from "ramda";
 import loadable from "@loadable/component";
 import { makeStyles } from "@material-ui/core/styles"
 
+const Paper = loadable(() => import('@material-ui/core/Paper'))
+const Button = loadable(() => import('@material-ui/core/Button'))
+const ShoppingCartIcon = loadable(() => import('@material-ui/icons/ShoppingCart'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
 
 const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, product, dispatch, timePrice, isSale }) => {
     const classes = useStylesCart();
-
     return <>
         { visibleItems.map((products) => {
 
@@ -268,9 +266,6 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                             </div>
                         </CardContent>
 
-                        <CardActions disableSpacing>
-
-                        </CardActions>
                     </Card>
                 </Grid>
             );

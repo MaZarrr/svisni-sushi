@@ -10,9 +10,6 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
-import ScrollTop from './common/ScrollTop'
-// import ProgressBar from './common/progressBar'
-// import Baskets from './korzinaComponent'
 
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Baskets = loadable(() => import('./korzinaComponent'));
@@ -46,7 +43,6 @@ const Header = () => {
     return (
       <>
       <div className={classes.root}>
-
         <AppBar
             position="fixed"
             classes={{colorPrimary: classes.colorPrimary}}
@@ -112,10 +108,6 @@ const Header = () => {
 
           </Toolbar>
         </AppBar>
-
-        <Hidden smDown>
-          <ScrollTop/>
-        </Hidden>
 
         <ProgressBar/>
       </div>

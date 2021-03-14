@@ -39,7 +39,7 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-  {
+    {
     resolve: `gatsby-plugin-postcss`,
     options: {
       postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
@@ -70,6 +70,18 @@ module.exports = {
       },
     },
     `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          process.env.GATSBY_GOOGLE_ANALYTICS_TRACKINGID,
+        ],
+        pluginConfig: {
+          head: false,
+          defer: true
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
@@ -108,7 +120,6 @@ module.exports = {
         precachePages: [
           `/*`,
           `/sety/*`,
-          `/pizza/*`,
           `/sale/*`,
           `/kombo/*`
         ],

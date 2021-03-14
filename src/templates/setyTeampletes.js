@@ -70,7 +70,7 @@ export const query = graphql `
             count
             description
              image {
-              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+              gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
             }
         }
         allContentfulProductHotRolly {
@@ -81,7 +81,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -94,7 +94,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -108,7 +108,7 @@ export const query = graphql `
                     description
                     price
                     image {
-                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -122,7 +122,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -137,7 +137,7 @@ export const query = graphql `
                     price
                     weight
                     image {
-                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -145,12 +145,22 @@ export const query = graphql `
     }
  `
 
-// {
-//   resolve: `gatsby-plugin-postcss`,
-//     options: {
-//   postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
-// },
-// },
+
+
+
+
+
+
+// const productspizza = data.data.allContentfulProductPizza.edges;
+// productspizza.forEach(({node: product}) => {
+//   createPage({
+//     path: `/pizza/${product.slug}`,
+//     component: pizzaTemplate,
+//     context: {
+//       slug: product.slug
+//     }
+//   })
+// });
 
 
 // exports.onCreateWebpackConfig = ({ actions, cache, plugins}) => {

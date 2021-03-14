@@ -57,7 +57,7 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
   }
 
   return <StylesProvider {...stylesProvider}>{element}</StylesProvider>;
-};
+}
 
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(

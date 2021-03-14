@@ -13,7 +13,6 @@ import LayoutItem from './layoutItem';
 const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
 // const LayoutItem = loadable(() => import('./layoutItem'));
 
-
 const ImageItem = styled(GatsbyImage)`
     max-width: 450px; 
     border-radius: 5px;

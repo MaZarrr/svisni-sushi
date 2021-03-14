@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MaskedInput from 'react-text-mask';
-// import Spinner from '../../components/spinner/spinner-new'
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -22,13 +21,15 @@ import {
   userCommentsFunc, userApartment
 } from "../../reducers/contacts-info";
 import { Container, Paper } from "@material-ui/core";
-import EmptyBasket from '../../components/EmptyBasket';
 import FormHelperText from "@material-ui/core/FormHelperText";
-import HeadSection from "../../components/HeadSection"
 import PayDialog from "../../components/PayDialog"
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from "@material-ui/core/styles";
+import loadable from "@loadable/component";
+import HeadSection from "../../components/HeadSection"
+
+const EmptyBasket = loadable(() => import('../../components/EmptyBasket'))
 
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;

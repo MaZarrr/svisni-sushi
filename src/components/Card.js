@@ -11,7 +11,6 @@ const KomboContent = loadable(() => import("./indexContent/KomboContent"));
 const SelectionContent = loadable(() => import("./indexContent/SelectionContent"));
 const KomboMobileContent = loadable(() => import("./indexContent/KomboMobileContent"));
 
-
 const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
     const classes = useStyle();
     const [menu,] = useState(indexMenu)

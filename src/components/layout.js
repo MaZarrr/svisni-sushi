@@ -3,15 +3,14 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import loadable from '@loadable/component'
 import { Hidden } from "@material-ui/core";
-
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import { makeStyles } from "@material-ui/core/styles"
+
+const ScrollTop = loadable(() => import('../components/common/ScrollTop'));
 const Footer = loadable(() => import('./footer'));
 
-const Layout = ({ children }) => {
-
+const Layout = ({ children, location: { pathname } }) => {
   const classes = useStyleLayout();
-
   return (
       <React.Fragment>        
       <Header/>
@@ -26,6 +25,9 @@ const Layout = ({ children }) => {
       <main>
         <div className={classes.toolbar} />
           {children}
+          { pathname !== "/korzina/" && pathname !== "/korzina/order" &&
+            <ScrollTop />
+          }
       </main>
       </div>
     </ErrorBoundary>

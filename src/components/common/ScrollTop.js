@@ -10,12 +10,9 @@ import Zoom from '@material-ui/core/Zoom';
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
-    bottom: theme.spacing(10), // положение от низа
-    right: theme.spacing(2.8),
-    zIndex: '1002',
-    [theme.breakpoints.down('768')]: {
-      display: `none`
-    }
+    bottom: theme.spacing(4), // положение от низа
+    right: theme.spacing(1),
+    zIndex: '1002'
   },
   scrollToPanel: {
     position: 'absolute',
@@ -56,7 +53,7 @@ export default function BackToTop(props) {
       <React.Fragment>
         <Toolbar className={classes.scrollToPanel} id="back-to-top-anchor" />
         <ScrollTop windows={props.windows}>
-          <Fab color="secondary" size="small" aria-label="scroll back to top">
+          <Fab color="secondary" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>
