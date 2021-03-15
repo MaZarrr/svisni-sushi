@@ -1,21 +1,27 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import loadable from "@loadable/component";
-// import MenuCategory from "./indexContent/MenuCategory";
+import MenuCategory from "./indexContent/MenuCategory";
 
 const SelectionContentMobile = loadable(() => import("./indexContent/SelectionContentMobile"));
-const MenuCategory = loadable(() => import("./indexContent/MenuCategory"));
+// const MenuCategory = loadable(() => import("./indexContent/MenuCategory"));
 const KomboContent = loadable(() => import("./indexContent/KomboContent"));
 const SelectionContent = loadable(() => import("./indexContent/SelectionContent"));
 const KomboMobileContent = loadable(() => import("./indexContent/KomboMobileContent"));
 
 const CardIndex = memo(({ addedCart, indexProduct, indexMenu }) => {
     const classes = useStyle();
-    const [menu,] = useState(indexMenu)
-    const [product,] = useState(indexProduct)
+    const [menu, setMenu] = useState([])
+    const [product, setProduct] = useState([])
+
+    useEffect(() => {
+        setMenu(indexMenu)
+        setProduct(indexProduct)
+    }, [indexMenu, indexProduct])
+
     return <>
         <div className={classes.root}>
             {/*Меню выбор*/}

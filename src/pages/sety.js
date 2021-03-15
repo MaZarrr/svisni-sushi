@@ -2,24 +2,23 @@ import React, { useEffect, useMemo } from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-
-import Spinner from '../components/spinner/spinner'
 import { Grid } from "@material-ui/core";
 import filtersProducts from '../utils/filtersProducts'
-import loadable from '@loadable/component'
 import { productLoaded } from "../reducers/app";
 import { defFilters, checkSaleLanch } from "../reducers/filters";
 import { productList } from "../reducers/selectors";
 import useTimer from "../utils/useTimer";
 import HeadSection from "../components/HeadSection"
 
+import loadable from '@loadable/component'
+import Spinner from '../components/spinner/spinner'
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner count={10}/>
 });
 
 const categoryNames = ['Малые', 'Средние', 'Большие', 'Ланч-сеты'];
 
-const Sety = ( { data: {allContentfulProduct: {edges: setyProduct}, contentfulIconMenuLeftPanel: {image}},
+const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfulIconMenuLeftPanel: { image } },
                   product, searchText, priceFilter, checkboxFilter, location, dispatch }) => {
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);

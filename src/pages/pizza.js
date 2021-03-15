@@ -40,7 +40,6 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
 
     const updatePizza = R.defaultTo(productPizza, pizza);
     const visibleItems = filtersProducts(updatePizza, searchText, priceFilter);
-
     const switchSizePizza = data => dispatch(pizzaCart(data));
 
     return (

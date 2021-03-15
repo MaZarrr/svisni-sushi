@@ -1,10 +1,14 @@
+import React from "react";
 import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
 import { Link } from "gatsby";
 import Typography from "@material-ui/core/Typography";
 import { GatsbyImage } from "gatsby-plugin-image";
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import IconButton from '@material-ui/core/IconButton';
+// import loadable from "@loadable/component";
+// const IconButton = loadable(() => import('@material-ui/core/IconButton'), {
+//   fallback: <div style={{height: 196}} />
+// })
 
 const MenuCategory = ({ menu }) => {
   const classes = useStyleMenu();

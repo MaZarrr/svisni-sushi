@@ -1,13 +1,12 @@
 import React from "react";
 import { StylesProvider, ThemeProvider } from "@material-ui/styles";
 import Layout from './src/components/layout'
-import ReactDOM from 'react-dom'
 import theme from './src/theme';
 import stylesProviderProps from "material-ui-plugin-cache-endpoint";
+import ReactDOM from 'react-dom'
 
 import { hasEntries } from "./src/utils";
 import { CssBaseline } from "@material-ui/core";
-// import { loadableReady } from "@loadable/component";
 
 export const onInitialClientRender = () => {
   if (process.env.BUILD_STAGE === `develop`) {
@@ -50,14 +49,12 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
   return <StylesProvider {...stylesProvider}>{element}</StylesProvider>;
 }
 
-// export const replaceHydrateFunction = () => {
-//   return (element, container, callback) => {
-//     // loadableReady(() => {
-//     console.log("rendering!");
-//     ReactDOM.render(element, container, callback);
-//     // });
-//   };
-// };
+export const replaceHydrateFunction = () => {
+  return (element, container, callback) => {
+    console.log("rendering!");
+    ReactDOM.render(element, container, callback);
+  };
+};
 
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
