@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import SEO from "../components/seo";
 import TextField from "@material-ui/core/TextField";
 import HeadSection from "../components/HeadSection"
@@ -58,8 +58,7 @@ const Container = styled.div`
     }
 `
 
-const Vacancy = () => {
-
+const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
     const [expanded, setExpanded] = React.useState({nameCart: false});
     const [state, setState] = React.useState({status: ""});
 
@@ -81,30 +80,6 @@ const Vacancy = () => {
         };
         xhr.send(data);
     }
-    const {
-
-        allContentfulInfoModel: {edges: allMd}
-    } = useStaticQuery(graphql`
-     query {
-            allContentfulInfoModel {
-                edges {
-                    node {
-                        childContentfulInfoModelJobSvisniTextNode {
-                            childMarkdownRemark {
-                                id
-                                html
-                                frontmatter {
-                                    vacancy
-                                    experience
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `)
-    // console.log(md);
     const handleExpandClick = (id) => {
         setExpanded({[id]: !expanded[id]});
     };
@@ -117,7 +92,7 @@ const Vacancy = () => {
                 <HeadSection titleTXT={"Вакансии Свисни Суши"} />
                 <Container>
                     <div className="item-section">
-                    <Typography style={{padding: `10px 50px 10px 0`, width: `90%`}}>
+                    <Typography style={{padding: `10px 50px 10px 0`, width: `98%`}}>
                         Бренд Свисни Суши — был основан в 2018 году, когда открылся первый ресторан японской кухни формата «возьми с собой» в
                         Уразово. С 2018 года мы начали активное развитие и сейчас мы хотим, чтобы каждый имел возможность наслаждаться вкусом
                         лучших блюд японской кухни, поэтому планируем освоение новых территорий и открытие суши баров в Валуйках.
@@ -125,7 +100,7 @@ const Vacancy = () => {
                     </Typography>
 
                     <div className="item-section item-section-vacancy">
-                            { allMd.map(({node: { childContentfulInfoModelJobSvisniTextNode: { childMarkdownRemark } }})=> (
+                            { allMd.map(({ node: { childContentfulInfoModelJobSvisniTextNode: { childMarkdownRemark } }})=> (
                               <Card key={childMarkdownRemark.id} raised style={{margin: `8px 0`}}>
                                   <CardHeader
                                     title={childMarkdownRemark.frontmatter.vacancy}
@@ -221,14 +196,32 @@ const Vacancy = () => {
                             </div>
                         </SectionInfo>
                         </div>
-
-
                     </div>
-
                 </Container>
         </section>
     );
 }
 
 export default Vacancy
+
+export const query = graphql `
+  {
+    allContentfulInfoModel {
+        edges {
+            node {
+                childContentfulInfoModelJobSvisniTextNode {
+                    childMarkdownRemark {
+                        id
+                        html
+                        frontmatter {
+                            vacancy
+                            experience
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+`
 
