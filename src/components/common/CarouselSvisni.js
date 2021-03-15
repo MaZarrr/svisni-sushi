@@ -7,9 +7,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
 import { Hidden } from "@material-ui/core";
 import { mod } from 'react-swipeable-views-core';
-import loadable from "@loadable/component";
-
-const Pagination = loadable(() => import('../pagination/Pagination'));
+import Pagination from '../pagination/Pagination';
 
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 

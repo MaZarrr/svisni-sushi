@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import {addedCart} from "../reducers/shopping-cart";
 import * as R from 'ramda'
 import { graphql } from 'gatsby'
-import loadable from '@loadable/component'
-import Spinner from  "../components/spinner/spinner-new"
-
-const ProductItem = loadable(() => import('../components/SetyItem'), {
-    fallback: <Spinner />});
+import ProductItem from '../components/SetyItem'
 
 const SetyTeamplate = ({ data: { contentfulProduct,
     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},

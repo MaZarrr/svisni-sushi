@@ -50,14 +50,14 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
   return <StylesProvider {...stylesProvider}>{element}</StylesProvider>;
 }
 
-export const replaceHydrateFunction = () => {
-  return (element, container, callback) => {
-    // loadableReady(() => {
-    console.log("rendering!");
-    ReactDOM.render(element, container, callback);
-    // });
-  };
-};
+// export const replaceHydrateFunction = () => {
+//   return (element, container, callback) => {
+//     // loadableReady(() => {
+//     console.log("rendering!");
+//     ReactDOM.render(element, container, callback);
+//     // });
+//   };
+// };
 
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(

@@ -9,7 +9,7 @@ import HeadSection from "../components/HeadSection"
 
 const CardsMenuPage = loadable(()=> import('../components/CardsMenuPage'))
 
-const Kombo = ({ data: { allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: {image}},
+const Kombo = ({ data: { allContentfulProductKombo: {edges: productsKombo}, contentfulIconMenuLeftPanel: { image }},
     dispatch, product }) => {
 
     useEffect(() => {

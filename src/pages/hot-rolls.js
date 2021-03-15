@@ -6,15 +6,15 @@ import { Grid } from "@material-ui/core";
 import loadable from "@loadable/component";
 import { productLoaded } from "../reducers/app";
 import { defFilters } from "../reducers/filters";
-import Spinner from '../components/spinner/spinner'
+// import Spinner from '../components/spinner/spinner'
 import HeadSection from "../components/HeadSection"
 import { productList } from "../reducers/selectors";
 import filtersProducts from '../utils/filtersProducts'
+import CardsMenuPage from '../components/CardsMenuPage'
 
-const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
-    fallback: <Spinner count={10}/>
-});
-
+// const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
+//     fallback: <Spinner count={10}/>
+// });
 
 const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с мидиями', 'с курицей', 'веган'];
 

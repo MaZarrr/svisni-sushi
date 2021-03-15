@@ -11,7 +11,6 @@ import LayoutItem from './layoutItem';
 
 // my components
 const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
-// const LayoutItem = loadable(() => import('./layoutItem'));
 
 const ImageItem = styled(GatsbyImage)`
     max-width: 450px; 
@@ -51,16 +50,16 @@ const ImageWrapped = styled(Grid)`
   }
 `
 
-const SetyItem = ({ name, image, count, weight, price, added, kitProduct, location, back }) => {
+const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }) => {
   return <>
   <SEO title={`Сет роллов ${name}`}
        description={`Набор роллов ${name}, количество ${count} с общим весом ${weight}`}
        pathname="/sety/"/>
-      <LayoutItem name={name} image={null} location={location}>
+      <LayoutItem name={name}>
           <ButtonBackSet back={back} />
           <Grid container>
               <ImageWrapped item xs={12} sm={5}>
-                  <ImageItem image={image.gatsbyImageData} />
+                  <ImageItem image={image.gatsbyImageData} alt={name} />
               </ImageWrapped>
 
               <Grid item xs={12} sm={6} md={5}
