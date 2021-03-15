@@ -4,9 +4,10 @@ import Grid from "@material-ui/core/Grid";
 import { Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import loadable from "@loadable/component";
-import MenuCategory from "./indexContent/MenuCategory";
+// import MenuCategory from "./indexContent/MenuCategory";
 
 const SelectionContentMobile = loadable(() => import("./indexContent/SelectionContentMobile"));
+const MenuCategory = loadable(() => import("./indexContent/MenuCategory"));
 const KomboContent = loadable(() => import("./indexContent/KomboContent"));
 const SelectionContent = loadable(() => import("./indexContent/SelectionContent"));
 const KomboMobileContent = loadable(() => import("./indexContent/KomboMobileContent"));

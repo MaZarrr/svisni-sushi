@@ -5,8 +5,8 @@ import PaginationDot from './PaginationDot';
 const styles = {
   root: {
     position: 'absolute',
-    bottom: 5,
-    right: 30,
+    bottom: 15,
+    right: 25,
     zIndex: 998,
     display: 'flex',
     flexDirection: 'row',

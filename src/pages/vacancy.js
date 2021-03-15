@@ -68,8 +68,8 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
         setInfoVacancy(allMd)
         setTimeout(() => {
             setLoading(false)
-        }, 1000)
-    }, [])
+        }, 700)
+    }, [allMd])
 
     const submitForm = (ev) => {
         ev.preventDefault();
