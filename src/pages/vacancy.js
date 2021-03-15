@@ -61,6 +61,15 @@ const Container = styled.div`
 const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
     const [expanded, setExpanded] = React.useState({nameCart: false});
     const [state, setState] = React.useState({status: ""});
+    const [infoVacancy, setInfoVacancy] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        setInfoVacancy(allMd)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
+    }, [])
 
     const submitForm = (ev) => {
         ev.preventDefault();
@@ -98,104 +107,110 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
                         лучших блюд японской кухни, поэтому планируем освоение новых территорий и открытие суши баров в Валуйках.
                         И нам требуются ответственные и трудолюбивые сотрудники на постоянную работу. Так-же мы приглашаем на работу студентов на временную работу.
                     </Typography>
+                        { !loading ?
+                            <div className="item-section item-section-vacancy">
+                                {infoVacancy.map(({ node: { childContentfulInfoModelJobSvisniTextNode: { childMarkdownRemark } } }) => (
+                                  <Card key={childMarkdownRemark.id} raised style={{ margin: `8px 0` }}>
+                                      <CardHeader
+                                        title={childMarkdownRemark.frontmatter.vacancy}
+                                        subheader={childMarkdownRemark.frontmatter.experience} />
 
-                    <div className="item-section item-section-vacancy">
-                            { allMd.map(({ node: { childContentfulInfoModelJobSvisniTextNode: { childMarkdownRemark } }})=> (
-                              <Card key={childMarkdownRemark.id} raised style={{margin: `8px 0`}}>
-                                  <CardHeader
-                                    title={childMarkdownRemark.frontmatter.vacancy}
-                                    subheader={childMarkdownRemark.frontmatter.experience}/>
+                                      <CardActions disableSpacing>
+                                          <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            startIcon={<ExpandMoreIcon />}
+                                            id={childMarkdownRemark.id}
+                                            style={{ width: `50%` }}
+                                            onClick={() => handleExpandClick(childMarkdownRemark.id)}
+                                            aria-expanded={expanded["one"]}
+                                            aria-label="show more">
+                                              Подробнее
+                                          </Button>
+                                      </CardActions>
 
-                                  <CardActions disableSpacing>
-                                      <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        startIcon={<ExpandMoreIcon />}
-                                        id={childMarkdownRemark.id}
-                                        style={{width: `50%`}}
-                                        onClick={() => handleExpandClick(childMarkdownRemark.id)}
-                                        aria-expanded={expanded["one"]}
-                                        aria-label="show more">
-                                          Подробнее
-                                      </Button>
-                                  </CardActions>
+                                      <Collapse in={expanded[childMarkdownRemark.id]} timeout="auto" unmountOnExit>
+                                          <CardContent>
+                                              <Typography
+                                                dangerouslySetInnerHTML={{ __html: childMarkdownRemark.html }} />
 
-                                  <Collapse in={expanded[childMarkdownRemark.id]} timeout="auto" unmountOnExit>
-                                      <CardContent>
-                                          <Typography dangerouslySetInnerHTML={{__html: childMarkdownRemark.html}} />
+                                              <form onSubmit={submitForm}
+                                                    action="https://formspree.io/xbjdqevk"
+                                                    method="POST">
+                                                  <Typography variant="h6">
+                                                      Отклик на вакансию:
+                                                  </Typography>
+                                                  <TextField
+                                                    id="filled-secondary"
+                                                    label="Ваше имя"
+                                                    required
+                                                    fullWidth
+                                                    inputProps={{ maxLength: 50, minLength: 3 }}
+                                                    variant="filled"
+                                                    color="primary"
+                                                    name="name" />
+                                                  <TextField
+                                                    id="filled-secondary"
+                                                    label="Телефон"
+                                                    required
+                                                    fullWidth
+                                                    inputProps={{ maxLength: 20, minLength: 10 }}
+                                                    variant="filled"
+                                                    color="primary"
+                                                    name="phone"
+                                                    style={{ marginTop: 10 }} />
+                                                  {state.status === "SUCCESS" ?
+                                                    <h3 style={{ paddingTop: 15 }}>Спасибо! В ближайшее время с вами
+                                                        свяжутся.</h3> : <Button
+                                                      style={{ margin: `8px 0 8px 0 ` }}
+                                                      variant="contained"
+                                                      color="primary"
+                                                      type="submit">
+                                                        Откликнуться
+                                                    </Button>}
+                                                  {state.status === "ERROR" && <h3>Ooops! Произошла ошибка.</h3>}
+                                              </form>
+                                          </CardContent>
+                                      </Collapse>
+                                  </Card>
+                                ))}
+                                <SectionInfo>
+                                    <h2>Плюсы работы в Свисни Суши</h2>
 
-                                          <form onSubmit={submitForm}
-                                                action="https://formspree.io/xbjdqevk"
-                                                method="POST">
-                                              <Typography variant="h6">
-                                                  Отклик на вакансию:
-                                              </Typography>
-                                              <TextField
-                                                id="filled-secondary"
-                                                label="Ваше имя"
-                                                required
-                                                fullWidth
-                                                inputProps={{maxLength: 50, minLength: 3}}
-                                                variant="filled"
-                                                color="primary"
-                                                name="name"/>
-                                              <TextField
-                                                id="filled-secondary"
-                                                label="Телефон"
-                                                required
-                                                fullWidth
-                                                inputProps={{maxLength: 20, minLength: 10}}
-                                                variant="filled"
-                                                color="primary"
-                                                name="phone"
-                                                style={{marginTop: 10}}/>
-                                              {state.status === "SUCCESS" ? <h3 style={{paddingTop: 15}}>Спасибо! В ближайшее время с вами свяжутся.</h3> : <Button
-                                                style={{margin: `8px 0 8px 0 `}}
-                                                variant="contained"
-                                                color="primary"
-                                                type="submit">
-                                                  Откликнуться
-                                              </Button> }
-                                              {state.status === "ERROR" && <h3>Ooops! Произошла ошибка.</h3>}
-                                          </form>
-                                      </CardContent>
-                                  </Collapse>
-                              </Card>
-                            ))}
-                        <SectionInfo>
-                            <h2>Плюсы работы в Свисни Суши</h2>
+                                    <div className="items-container">
+                                        <div>
+                                            <div>
+                                                <StaticImage src="../images/money.png"
+                                                             alt="Возможность влиять на доход" />
+                                            </div>
+                                            <div className="item-content">
+                                                <p>Возможность влиять на доход</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <StaticImage src="../images/icEducation.png" alt="Обучение у наставника" />
+                                            <div className="item-content">
+                                                <p>Обучение у наставника</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <StaticImage src="../images/growth.png"
+                                                         alt="Возможность карьерного роста" />
+                                            <div className="item-content">
+                                                <p>Возможность карьерного роста</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <StaticImage src="../images/home.png" alt="Выбор графика работы" />
+                                            <div className="item-content">
+                                                <p>Выбор графика работы</p>
+                                            </div>
+                                        </div>
 
-                            <div className="items-container">
-                                <div>
-                                    <div>
-                                        <StaticImage src="../images/money.png" alt="Возможность влиять на доход"/>
                                     </div>
-                                    <div className="item-content">
-                                        <p>Возможность влиять на доход</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <StaticImage src="../images/icEducation.png" alt="Обучение у наставника"/>
-                                    <div className="item-content">
-                                        <p>Обучение у наставника</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <StaticImage src="../images/growth.png" alt="Возможность карьерного роста"/>
-                                    <div className="item-content">
-                                        <p>Возможность карьерного роста</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <StaticImage src="../images/home.png" alt="Выбор графика работы"/>
-                                    <div className="item-content">
-                                        <p>Выбор графика работы</p>
-                                    </div>
-                                </div>
-
+                                </SectionInfo>
                             </div>
-                        </SectionInfo>
-                        </div>
+                          : <h6>Загрузка...</h6>}
                     </div>
                 </Container>
         </section>
