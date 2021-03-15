@@ -4,14 +4,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
-import {Divider} from "@material-ui/core";
+import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 650,
     },
     button: {
-        marginTop: `20px`
+        marginTop: `10px`,
+        marginRight: `8px`
     }
 }));
 
@@ -75,21 +76,35 @@ const OrderProcessed = ({ location: { state } }) => {
                         <Typography style={{textAlign: `right`, paddingRight: 20}} variant={'h6'}>Общая цена к оплате <strong>{priceTotal} руб</strong></Typography>
                     </Grid>
                     <Divider/>
-                    <Grid item xs={12} style={{background: `lightgrey`}}>
+                    <Grid item xs={12}>
+                        <div style={{background: `lightgrey`}}>
                         {delivery === "Самовывоз" && (
-                          <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>Время готовки заказа: <strong>25 - 45
+                          <Typography style={{textAlign: `right`}} variant={"body1"}>Время готовки заказа: <strong>25 - 45
                               мин</strong></Typography>
                         )}
                         { delivery !== "Самовывоз" && <>
-                            <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>Время доставки
+                            <Typography style={{textAlign: `right`, paddingRight: 10}} variant={"body1"}>Время доставки
                                 заказа(вместе с готовкой)<strong> 1ч - 1ч 30 мин</strong></Typography>
-                            <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body1"}>В часы пик, и праздничные дни время доставки может увеличиться<strong> на 30 минут</strong></Typography>
-                            <Typography style={{textAlign: `right`, paddingRight: 20}} variant={"body2"}>(оформляйте предзаказ заранее)</Typography>
+                            <Typography style={{textAlign: `right`, paddingRight: 10}} variant={"body1"}>В часы пик, и праздничные дни время доставки может увеличиться<strong> на 30 минут</strong></Typography>
+                            <Typography style={{textAlign: `right`, paddingRight: 10, marginTop: 5}} variant={"subtitle2"}> оформляйте заказы заранее к определенному времени *</Typography>
+
                         </>}
+                        </div>
+                        <div style={{padding: `8px 0`}}>
+                            <Typography style={{textAlign: `left`}} variant={"body1"}>Заказ оформленный ко времени будет готов/доставлен к указанному времени.</Typography>
+                        </div>
+
+                        <div style={{padding: `8px 0`}}>
+                            <Typography style={{textAlign: `left`}} variant={"body1"}>Оператор с вами свяжется для подтверждения заказа.</Typography>
+                        </div>
+                        <div style={{padding: `8px 0`}}>
+                            <Typography style={{textAlign: `left`}} variant={"body1"}>График работы с 10:00 до 22:00 без перерывов и выходных.</Typography>
+                        </div>
+
                     </Grid>
                     <Divider/>
                     <Grid item xs={12}>
-                        <Typography style={{textAlign: `left`}} variant={'h6'}>Спасибо что выбираете Свисни Sushi!</Typography>
+                        <Typography style={{textAlign: `left`, padding: `8px 0`}} variant={"body1"}>Спасибо что выбираете Свисни Суши!</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Button component={Link}
@@ -99,13 +114,20 @@ const OrderProcessed = ({ location: { state } }) => {
                                 className={classes.button}>
                             Перейти на главную
                         </Button>
+                        <Button component={"a"}
+                                href="tel:+79040949222"
+                                variant={"contained"}
+                                className={classes.button}
+                                color={"secondary"}>
+                            Позвонить
+                        </Button>
                     </Grid>
                 </Grid>
-            </> : <Grid item xs={12}>
+            </>: <Grid item xs={12}>
                 <Typography style={{textAlign: `center`}} variant={'h4'}>Ваша корзина пуста.</Typography>
-                <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>Добавьте товары в корзину</Typography>
-            </Grid>
-            }
+                 <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>Добавьте товары в корзину</Typography>
+       </Grid>
+         }
         </Grid>
     )
 }

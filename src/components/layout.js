@@ -25,7 +25,10 @@ const Layout = ({ children, location: { pathname } }) => {
       <main>
         <div className={classes.toolbar} />
           {children}
-          { pathname !== "/korzina/" && pathname !== "/korzina/order" &&
+          { pathname !== "/korzina/" &&
+            pathname !== "/korzina/order" &&
+            pathname !== "/korzina/order/order-processed" &&
+            pathname !== "/korzina/order/order-success" &&
             <ScrollTop />
           }
       </main>

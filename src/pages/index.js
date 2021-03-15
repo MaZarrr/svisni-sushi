@@ -103,7 +103,7 @@ export const query = graphql `
               slug
               description
               image {
-              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+               gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductPizza {
@@ -115,7 +115,7 @@ export const query = graphql `
               slug
               description
               image {
-             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductSlognyeRolly {
@@ -125,7 +125,7 @@ export const query = graphql `
               __typename
               price
               image {
-              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+               gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductHotRolly {
@@ -135,7 +135,7 @@ export const query = graphql `
               description
               price
               image {
-                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                 gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
             ... on ContentfulProductKombo {
@@ -146,7 +146,7 @@ export const query = graphql `
               description
               price
               image {
-               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
               }
             }
           ... on ContentfulProductSalat {
@@ -158,7 +158,7 @@ export const query = graphql `
             weight
             __typename
             image {
-           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                 gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
                 }
           }
         }
@@ -174,7 +174,7 @@ export const query = graphql `
                     category
                     desc
                     image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                        gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                     }
                 }
             }

@@ -16,9 +16,11 @@ import { StaticImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 
 const SectionInfo = styled.section `
-    padding: 10px 0 10px 0;
+    padding: 10px 0 50px 0;
     .items-container {
         display: flex;
+        justify-content: space-around;
+        //max-width: 40%;
         @media (max-width: 500px) {
             flex-direction: column;
         }
@@ -40,10 +42,19 @@ const Container = styled.div`
         flex-direction: column;
     }
     .item-section {
-        width: 50%;
+        width: 99%;
+        display: flex;
+        margin-top: 10px;
         @media (max-width: 500px) {
-            width: 90%;
+            width: 99%;
+            flex-wrap: wrap;
         }
+    }
+    .item-section-vacancy {
+        display: flex;
+        width: 96%;
+        flex-direction: column;
+        margin-bottom: 30px;
     }
 `
 
@@ -71,7 +82,7 @@ const Vacancy = () => {
         xhr.send(data);
     }
     const {
-        contentfulInfoModel: {childContentfulInfoModelJobSvisniTextNode: {childMarkdownRemark: md}},
+
         allContentfulInfoModel: {edges: allMd}
     } = useStaticQuery(graphql`
      query {
@@ -91,18 +102,9 @@ const Vacancy = () => {
                     }
                 }
             }
-            contentfulInfoModel {
-                childContentfulInfoModelJobSvisniTextNode {
-                    childMarkdownRemark {
-                        frontmatter {
-                            infoBrend
-                        }
-                    }
-                }
-            }
         }
     `)
-
+    // console.log(md);
     const handleExpandClick = (id) => {
         setExpanded({[id]: !expanded[id]});
     };
@@ -115,11 +117,79 @@ const Vacancy = () => {
                 <HeadSection titleTXT={"Вакансии Свисни Суши"} />
                 <Container>
                     <div className="item-section">
-                    <Typography style={{padding: `10px 0 10px 0`, width: `90%`}}>
-                        {md.frontmatter.infoBrend}
+                    <Typography style={{padding: `10px 50px 10px 0`, width: `90%`}}>
+                        Бренд Свисни Суши — был основан в 2018 году, когда открылся первый ресторан японской кухни формата «возьми с собой» в
+                        Уразово. С 2018 года мы начали активное развитие и сейчас мы хотим, чтобы каждый имел возможность наслаждаться вкусом
+                        лучших блюд японской кухни, поэтому планируем освоение новых территорий и открытие суши баров в Валуйках.
+                        И нам требуются ответственные и трудолюбивые сотрудники на постоянную работу. Так-же мы приглашаем на работу студентов на временную работу.
                     </Typography>
-                        <h2>Плюсы работы в Свисни Суши</h2>
+
+                    <div className="item-section item-section-vacancy">
+                            { allMd.map(({node: { childContentfulInfoModelJobSvisniTextNode: { childMarkdownRemark } }})=> (
+                              <Card key={childMarkdownRemark.id} raised style={{margin: `8px 0`}}>
+                                  <CardHeader
+                                    title={childMarkdownRemark.frontmatter.vacancy}
+                                    subheader={childMarkdownRemark.frontmatter.experience}/>
+
+                                  <CardActions disableSpacing>
+                                      <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        startIcon={<ExpandMoreIcon />}
+                                        id={childMarkdownRemark.id}
+                                        style={{width: `50%`}}
+                                        onClick={() => handleExpandClick(childMarkdownRemark.id)}
+                                        aria-expanded={expanded["one"]}
+                                        aria-label="show more">
+                                          Подробнее
+                                      </Button>
+                                  </CardActions>
+
+                                  <Collapse in={expanded[childMarkdownRemark.id]} timeout="auto" unmountOnExit>
+                                      <CardContent>
+                                          <Typography dangerouslySetInnerHTML={{__html: childMarkdownRemark.html}} />
+
+                                          <form onSubmit={submitForm}
+                                                action="https://formspree.io/xbjdqevk"
+                                                method="POST">
+                                              <Typography variant="h6">
+                                                  Отклик на вакансию:
+                                              </Typography>
+                                              <TextField
+                                                id="filled-secondary"
+                                                label="Ваше имя"
+                                                required
+                                                fullWidth
+                                                inputProps={{maxLength: 50, minLength: 3}}
+                                                variant="filled"
+                                                color="primary"
+                                                name="name"/>
+                                              <TextField
+                                                id="filled-secondary"
+                                                label="Телефон"
+                                                required
+                                                fullWidth
+                                                inputProps={{maxLength: 20, minLength: 10}}
+                                                variant="filled"
+                                                color="primary"
+                                                name="phone"
+                                                style={{marginTop: 10}}/>
+                                              {state.status === "SUCCESS" ? <h3 style={{paddingTop: 15}}>Спасибо! В ближайшее время с вами свяжутся.</h3> : <Button
+                                                style={{margin: `8px 0 8px 0 `}}
+                                                variant="contained"
+                                                color="primary"
+                                                type="submit">
+                                                  Откликнуться
+                                              </Button> }
+                                              {state.status === "ERROR" && <h3>Ooops! Произошла ошибка.</h3>}
+                                          </form>
+                                      </CardContent>
+                                  </Collapse>
+                              </Card>
+                            ))}
                         <SectionInfo>
+                            <h2>Плюсы работы в Свисни Суши</h2>
+
                             <div className="items-container">
                                 <div>
                                     <div>
@@ -129,7 +199,6 @@ const Vacancy = () => {
                                         <p>Возможность влиять на доход</p>
                                     </div>
                                 </div>
-
                                 <div>
                                     <StaticImage src="../images/icEducation.png" alt="Обучение у наставника"/>
                                     <div className="item-content">
@@ -151,71 +220,11 @@ const Vacancy = () => {
 
                             </div>
                         </SectionInfo>
-                    </div>
-                    <div style={{paddingBottom: 100}} className="item-section">
-                            { allMd.map(({node})=> (
-                              <Card key={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.id}>
-                                  <CardHeader
-                                    title={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.vacancy}
-                                    subheader={node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.frontmatter.experience}/>
-
-                                  <CardActions disableSpacing>
-                                      <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        startIcon={<ExpandMoreIcon />}
-                                        id={"one"}
-                                        style={{width: `50%`}}
-                                        onClick={() => handleExpandClick("one")}
-                                        aria-expanded={expanded["one"]}
-                                        aria-label="show more">
-                                          Подробнее
-                                      </Button>
-                                  </CardActions>
-
-                                  <Collapse in={expanded["one"]} timeout="auto" unmountOnExit>
-                                      <CardContent>
-                                          <Typography dangerouslySetInnerHTML={{__html: node.childContentfulInfoModelJobSvisniTextNode.childMarkdownRemark.html}} />
-
-                                          <form onSubmit={submitForm}
-                                                action="https://formspree.io/xbjdqevk"
-                                                method="POST">
-                                              <Typography variant="h6">
-                                                  Отклик на вакансию:
-                                              </Typography>
-                                              <TextField
-                                                id="filled-secondary"
-                                                label="Ф.И.О"
-                                                required
-                                                fullWidth
-                                                inputProps={{maxLength: 50, minLength: 3}}
-                                                variant="filled"
-                                                color="primary"
-                                                name="name"/>
-                                              <TextField
-                                                id="filled-secondary"
-                                                label="Телефон"
-                                                required
-                                                fullWidth
-                                                inputProps={{maxLength: 20, minLength: 10}}
-                                                variant="filled"
-                                                color="primary"
-                                                name="phone"
-                                                style={{marginTop: 10}}/>
-                                              {state.status === "SUCCESS" ? <h6 style={{paddingTop: 15}}>В ближайшее время с вами свяжутся.</h6> : <Button
-                                                style={{margin: `8px 0 8px 0 `}}
-                                                variant="contained"
-                                                color="primary"
-                                                type="submit">
-                                                  Откликнуться
-                                              </Button> }
-                                              {state.status === "ERROR" && <h6>Ooops! Произошла ошибка.</h6>}
-                                          </form>
-                                      </CardContent>
-                                  </Collapse>
-                              </Card>
-                            ))}
                         </div>
+
+
+                    </div>
+
                 </Container>
         </section>
     );
