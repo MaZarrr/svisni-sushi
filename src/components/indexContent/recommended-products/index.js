@@ -20,8 +20,7 @@ const Title = styled.h2`
 `
 
 const RecommendedProducts = () => {
-
-  const RecommendedProduct = useStaticQuery(
+  const RecommendedQuery = useStaticQuery(
     graphql`
     query {
       allContentfulContentIndex {
@@ -102,7 +101,7 @@ const RecommendedProducts = () => {
 }
 }
 `)
-const { allContentfulContentIndex: { edges : indexProduct }} = RecommendedProduct;
+  const { allContentfulContentIndex: { edges : indexProduct }} = RecommendedQuery;
   return (
   <>
     <Title variant={"h2"}>Блюда которые понравятся каждому</Title>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import { graphql } from "gatsby";
@@ -8,33 +8,47 @@ import Carousel from '../components/common/CarouselSvisni';
 import MenuCategory from "../components/indexContent/MenuCategory";
 import Combo from '../components/indexContent/combo/index'
 import RecommendedProducts from "../components/indexContent/recommended-products";
+// import loadable from "@loadable/component";
+import SpinnerNew from "../components/spinner/spinner-new";
+
+// const MenuCategory = loadable(() => import('../components/indexContent/MenuCategory'))
+// const Combo = loadable(() => import('../components/indexContent/combo/index'))
+// const RecommendedProducts = loadable(() => import('../components/indexContent/recommended-products'))
 
 const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
         const classes = useStyleIndexPage();
+        const [loading, setLoading] = useState(true)
+
+        useEffect(() => {
+         setLoading(false)
+        })
+
         return (
             <>
             <section>
                   <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
-                    <Grid container className={classes.root}>
-                    <Hidden xsDown>
+              { !loading ? <>
+                <Grid container className={classes.root}>
+                  <Hidden xsDown>
                     <Typography className={classes.title}
-                        variant={"inherit"}
-                        component={"h1"}>
-                        Свисни Суши в Уразово</Typography>
-                    </Hidden>
+                                variant={"inherit"}
+                                component={"h1"}>
+                      Свисни Суши в Уразово</Typography>
+                  </Hidden>
 
-                        {/* Меню категории */}
-                        <Hidden smUp>
-                          <Grid container style={{marginBottom: 20}}>
-                            <MenuCategory />
-                          </Grid>
-                        </Hidden>
-
-                      {/* Комбо */}
-                      <Combo />
-                      {/* Новинки/рекомендованые */}
-                      <RecommendedProducts />
+                  {/* Меню категории */}
+                  <Hidden smUp>
+                    <Grid container style={{ marginBottom: 20 }}>
+                      <MenuCategory />
                     </Grid>
+                  </Hidden>
+
+                  {/* Комбо */}
+                  <Combo />
+                  {/* Новинки/рекомендованые */}
+                  <RecommendedProducts />
+                </Grid>
+              </> : <SpinnerNew />}
             </section>
  </>
  )}
