@@ -1,13 +1,9 @@
 import React from "react"
-import SEO from "../components/seo"
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
-// import { addedCart } from "../reducers/shopping-cart";
-// import { connect } from "react-redux";
 import { graphql } from "gatsby";
 import { Hidden, Typography } from "@material-ui/core";
 
-// import IndexCards from '../components/Card';
 import Carousel from '../components/common/CarouselSvisni';
 import MenuCategory from "../components/indexContent/MenuCategory";
 import Combo from '../components/indexContent/combo/index'
@@ -17,9 +13,6 @@ const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
         const classes = useStyleIndexPage();
         return (
             <>
-             <SEO title="Заказать любимые суши роллы c доставкой в Валуйки"
-                        description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
-                        Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
             <section>
                   <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid container className={classes.root}>
@@ -30,14 +23,12 @@ const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
                         Свисни Суши в Уразово</Typography>
                     </Hidden>
 
-                      {/*<div className={classes.root}>*/}
                         {/* Меню категории */}
                         <Hidden smUp>
                           <Grid container style={{marginBottom: 20}}>
                             <MenuCategory />
                           </Grid>
                         </Hidden>
-                      {/*</div>*/}
 
                       {/* Комбо */}
                       <Combo />

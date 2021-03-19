@@ -4,6 +4,43 @@ const os = require(`os`);
 
 let didRunAlready = false;
 
+exports.onCreatePage = async ({ page, actions, graphql }) => {
+  const { createPage, deletePage } = actions
+
+  if (page.path.match(/^\/special-menu/)) {
+    console.log(page);
+    page.matchPath = "/special-menu/*"
+    // Update the page.
+    // deletePage(page)
+        createPage(page)
+  }
+}
+
+// exports.onCreatePage = async ({ page, actions, graphql }) => {
+//   const { createPage, deletePage } = actions
+//
+//   // if (page.path.match(/^\/vegetarians/)) {
+//     // const vegetarians = path.resolve('./src/templates/indexPage.js');
+//     page.matchPath = '/vegetarians/'
+// //     await graphql(`
+// //       {
+// //         contentfulProduct(name: "Постный") {
+// //           id
+// //           name
+// //           price
+// //           slug
+// //           description
+// //     }
+// //   }
+// // `).then(data => {
+//     if (page.path.match(/^\/vegetarians/)) {
+//       page.matchPath = '/vegetarians/'
+//       createPage(page)
+//     }
+//     // })
+//   // }
+// }
+
 exports.onPreInit = () => {
   if (didRunAlready) {
     throw new Error(
@@ -55,14 +92,14 @@ exports.onCreateWebpackConfig = ({ actions, cache }) => {
   })
 }
 
-exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions, page }) => {
   const { createPage } = actions;
   const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
   // const pizzaTemplate = path.resolve('./src/templates/pizzaTeamplates.js');
   const saleTeamplates = path.resolve('./src/templates/saleTemplates.js');
   const komboTeamplates = path.resolve('./src/templates/komboTeamplates.js');
 
-  await graphql(`
+    await graphql(`
     {
       allContentfulProduct {
         edges {
