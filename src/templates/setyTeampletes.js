@@ -66,7 +66,7 @@ export const query = graphql `
             count
             description
              image {
-             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
             }
         }
         allContentfulProductHotRolly {
@@ -77,7 +77,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -90,7 +90,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -104,7 +104,7 @@ export const query = graphql `
                     description
                     price
                     image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -118,7 +118,7 @@ export const query = graphql `
                     description
                     count
                     image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -140,134 +140,3 @@ export const query = graphql `
         }
     }
  `
-
-
-
-
-
-
-
-// const productspizza = data.data.allContentfulProductPizza.edges;
-// productspizza.forEach(({node: product}) => {
-//   createPage({
-//     path: `/pizza/${product.slug}`,
-//     component: pizzaTemplate,
-//     context: {
-//       slug: product.slug
-//     }
-//   })
-// });
-
-
-// exports.onCreateWebpackConfig = ({ actions, cache, plugins}) => {
-//   actions.setWebpackConfig({
-//     plugins: [
-//       plugins.provide({ process: 'process/browser' })
-//     ]
-//   })
-// }
-
-// exports.onCreateWebpackConfig = ({ actions, stage, plugins }) => {
-//   if (stage === 'build-javascript' || stage === 'develop') {
-//     actions.setWebpackConfig({
-//      plugins: stage === 'build-javascript' || stage === 'develop' && [
-//         plugins.provide({ process: 'process/browser' })
-//       ]
-//     })
-//   }
-// }
-
-
-// exports.onCreateWebpackConfig = ({ actions }) => {
-//   actions.setWebpackConfig({
-//     node: {
-//       fs: "empty",
-//     },
-//   })
-// }
-
-// exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
-//   const config = getConfig()
-//   if (stage.startsWith('develop') && config.resolve) {
-//     config.resolve.alias = {
-//       ...config.resolve.alias,
-//       'react-dom': '@hot-loader/react-dom'
-//     }
-//   }
-// }
-
-// {
-//   resolve: `gatsby-theme-material-ui`,
-//     options: {
-//   webFontsConfig: {
-//     fonts: {
-//       google: [
-//         {
-//           family: `Montserrat`,
-//           variants: [`500`, `800`],
-//         },
-//       ],
-//     },
-//     formats: ['woff2'],
-//       useMinify: true,
-//       usePreload: true
-//   },
-// },
-// },
-
-
-// "gatsby-plugin-webfonts": "^2.0.0",
-//   "gatsby-plugin-material-ui": "^2.1.10",
-// {
-//   resolve: `gatsby-plugin-sharp`,
-//      options: {
-//      stripMetadata: true,
-//      defaultQuality: 100,
-// },
-// },
-
-// "browserslist": [
-//   ">0.25%",
-//   "not dead"
-// ],
-
-// {
-//   resolve: `gatsby-plugin-webfonts`,
-//     options: {
-//   fonts: {
-//     google: [
-//       {
-//         family: "Montserrat",
-//         variants: ["500", "800"],
-//       },
-//     ],
-//   },
-//   formats: ['woff2'],
-//     useMinify: true,
-//     usePreload: true,
-//     usePreconnect: true,
-// },
-// },
-
-// "gatsby-plugin-preload-link-crossorigin": "^1.0.2",
-
-// {
-//   resolve: `gatsby-source-contentful`,
-//     options: {
-//   spaceId: "o3pzpw68fwfi",
-//     accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
-//     pageLimit: 50,
-//     assetDownloadWorkers: 25
-// },
-// },
-
-//    "@hot-loader/react-dom": "^17.0.1",
-
-// {
-//   resolve: `gatsby-plugin-google-analytics`,
-//     options: {
-//   trackingId:
-//     head: true,
-//     defer: true
-// },
-// },

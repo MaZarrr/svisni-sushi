@@ -1,48 +1,68 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 import Typography from "@material-ui/core/Typography";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from '@material-ui/core/IconButton';
-// import loadable from "@loadable/component";
-// const IconButton = loadable(() => import('@material-ui/core/IconButton'), {
-//   fallback: <div style={{height: 196}} />
-// })
 
-const MenuCategory = ({ menu }) => {
+const MenuCategory = () => {
+
+  const { allContentfulHomePageImageMenu: { edges: itemsCategory }} = useStaticQuery(graphql`
+  query {
+   allContentfulHomePageImageMenu {
+            edges {
+                node {
+                    id
+                    slug
+                    category
+                    desc
+                    image {
+                        gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                    }
+                }
+            }
+        }
+  }
+`)
+
   const classes = useStyleMenu();
   return (
-    <>
-      {menu.map(({ node: homeMenu }) => (
+    <div className={classes.root}>
+      {itemsCategory.map(({ node: item }) => (
         <Grid item xs={6} sm={4}
               className={classes.itemMenu}
-              key={homeMenu.id}>
-          <IconButton style={{ padding: `20px 0 10px 0` }}>
-            <Link style={{ textDecoration: `none`, color: "grey" }} to={`/${homeMenu.slug}/`}>
+              key={item.id}>
+          <IconButton style={{ padding: `10px 0 10px 0` }}>
+            <Link style={{ textDecoration: `none`, color: "grey" }} to={`/${item.slug}/`}>
               <div className={classes.cartTitle}>
-                <Typography className={classes.menuTitle} variant={"h2"}>{homeMenu.category}</Typography>
+                <Typography className={classes.menuTitle} variant={"h2"}>{item.category}</Typography>
               </div>
               <div style={{ margin: `0 auto` }}>
                 <GatsbyImage
                   loading={"eager"}
-                  image={homeMenu.image.gatsbyImageData}
-                  style={{ width: `43vmin`, borderRadius: 10 }}
-                  alt={homeMenu.category} />
+                  image={item.image.gatsbyImageData}
+                  alt={item.category} />
               </div>
             </Link>
           </IconButton>
         </Grid>
       ))}
-    </>
+    </div>
   );
 }
 export default MenuCategory
 
-const useStyleMenu = makeStyles(theme => ({
+const useStyleMenu = makeStyles({
+  root: {
+    margin: `0 auto`,
+    display: `flex`,
+    flexWrap: "wrap",
+    alignItems: "baseline",
+    borderRadius: `3px`
+  },
   itemMenu: {
-    display: "flex",
-    justifyContent: "space-around"
+    padding: `5px`
   },
   cartTitle: {
     position: `absolute`,
@@ -60,4 +80,4 @@ const useStyleMenu = makeStyles(theme => ({
     padding: `10px 0 10px 0`,
     fontSize: `4vmin`,
   },
-}));
+});

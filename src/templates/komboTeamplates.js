@@ -6,7 +6,7 @@ import Spinner from "../components/spinner/spinner-new"
 const KomboItem = loadable(() => import('../components/KomboItem'), {
     fallback: <Spinner/>});
 
-const KomboTeamplate = ({data: {contentfulProductKombo}}) => {
+const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
 
     const pizzas = () => {
     if(contentfulProductKombo.largePizza === null) return;

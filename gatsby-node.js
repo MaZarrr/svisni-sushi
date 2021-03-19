@@ -14,7 +14,6 @@ exports.onPreInit = () => {
   didRunAlready = true;
 };
 
-// Copy and past from https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-typography
 exports.onPreBootstrap = ({ store, cache }, pluginOptions) => {
   const program = store.getState().program;
 
@@ -44,9 +43,6 @@ exports.onPreBootstrap = ({ store, cache }, pluginOptions) => {
 exports.onCreateWebpackConfig = ({ actions, cache }) => {
   const cacheFile = path.join(cache.directory, `styles-provider-props.js`);
   actions.setWebpackConfig({
-    // plugins: [
-    //   plugins.provide({ process: 'process/browser' })
-    // ],
     resolve: {
       alias: {
         path: require.resolve("path-browserify"),
@@ -58,7 +54,6 @@ exports.onCreateWebpackConfig = ({ actions, cache }) => {
     }
   })
 }
-
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -125,6 +120,3 @@ exports.createPages = async ({ graphql, actions }) => {
 
   }).catch((err) => console.log(err))
 };
-
-
-

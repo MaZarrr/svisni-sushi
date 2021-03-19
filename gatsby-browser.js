@@ -55,7 +55,7 @@ export const replaceHydrateFunction = () => {
     ReactDOM.render(element, container, callback);
   };
 };
-
+//
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
     `Приложение Свисни суши было обновлено. `+

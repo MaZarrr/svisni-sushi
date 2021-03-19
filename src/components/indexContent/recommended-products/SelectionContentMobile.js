@@ -11,6 +11,8 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
+import { addedCart } from "../../../reducers/shopping-cart";
+import { connect } from "react-redux";
 
 const styles = {
   img: {
@@ -25,7 +27,7 @@ const styles = {
   },
 };
 
-const SelectionContentMobile = ({ product, indexProduct, addedCart }) => {
+const SelectionContentMobile = ({ product, addedCart }) => {
   const classes = useStyleSelection()
   return (
   <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
@@ -57,13 +59,13 @@ const SelectionContentMobile = ({ product, indexProduct, addedCart }) => {
               className={classes.button}
               onClick={() => addedCart({
                 id: homeProduct.id,
-                productPrice: null, product: indexProduct.node.new
+                productPrice: null, product: product.node.new
               })}>
               <ShoppingCartIcon />
             </Button>
           }
           <Typography style={{ fontSize: 18, fontWeight: 800, marginLeft: `auto`, marginRight: 10 }}
-                      variant={"body1"}>{homeProduct.price} ₽</Typography>
+                      variant={"body1"}>{homeProduct.price}₽</Typography>
         </CardActions>
       </Card>
       ))}
@@ -71,7 +73,11 @@ const SelectionContentMobile = ({ product, indexProduct, addedCart }) => {
   )
 };
 
-export default SelectionContentMobile
+const mapDispatchToProps = {
+  addedCart
+};
+
+export default connect(null, mapDispatchToProps)(SelectionContentMobile)
 
 const useStyleSelection = makeStyles(theme => ({
   cardCombo: {

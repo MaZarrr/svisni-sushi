@@ -37,7 +37,7 @@ export const wrapRootElement = ({ element, pathname }, pluginOptions) => {
       <CssBaseline />
       {sheets.collect(element)}
     </ThemeProvider>
-    )
+  )
 };
 
 export const onRenderBody = (
@@ -257,9 +257,6 @@ export const onRenderBody = (
 // };
 
 // ==============================================================================================
-
-
-
 
 
 // import React from 'react'

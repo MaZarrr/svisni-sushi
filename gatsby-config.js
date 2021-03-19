@@ -8,6 +8,11 @@ module.exports = {
       keywords: `доставка, заказать, роллы, суши, еду, сеты, пиццу, на заказ`,
       author: `@mazarrr`,
   },
+  flags: {
+    DEV_SSR: true,
+    PRESERVE_WEBPACK_CACHE: true,
+    GATSBY_CONTENTFUL_OFFLINE: true,
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -40,9 +45,9 @@ module.exports = {
     },
   },
     {
-    resolve: `gatsby-plugin-postcss`,
-    options: {
-      postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
       },
     },
     `gatsby-plugin-styled-components`,
@@ -63,8 +68,11 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+        spaceId: "o3pzpw68fwfi",
+        accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
+        pageLimit: 50,
+        assetDownloadWorkers: 25,
+        downloadLocal: true
       },
     },
     `gatsby-plugin-sitemap`,

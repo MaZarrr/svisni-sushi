@@ -11,16 +11,13 @@ import { Link } from "gatsby";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { addedCart } from "../../../reducers/shopping-cart";
+import { connect } from "react-redux";
 
-const SelectionContent = ({ product, addedCart, indexProduct }) => {
+const SelectionContent = ({ product, addedCart }) => {
   const classes = useStyle();
   return (
-  <>
-  <Typography style={{ marginTop: 50 }}
-              className={classes.titleIndex}
-              variant={"h2"}>{isNil(product.node.title) ? "" :
-    product.node.title}</Typography>;
-    <Grid container justify={"space-between"}>
+  <Grid container justify={"space-between"}>
   {
     isNil(product.node.new) ? "" : product.node.new.map((homeProduct) => (
       <Grid key={homeProduct.id} item sm={6} md={3} className={classes.cardComboPc}>
@@ -49,25 +46,28 @@ const SelectionContent = ({ product, addedCart, indexProduct }) => {
                 className={classes.button}
                 onClick={() => addedCart({
                   id: homeProduct.id,
-                  productPrice: null, product: indexProduct[0].node.new
+                  productPrice: null, product: product.node.new
                 })}>
                 <ShoppingCartIcon />
               </Button>
             }
 
             <Typography style={{ fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10 }}
-                        variant={"body1"}>{homeProduct.price} ₽</Typography>
+                        variant={"body1"}>{homeProduct.price}₽</Typography>
           </CardActions>
         </Card>
       </Grid>
     ))
   }
-    </Grid>
-  </>
+  </Grid>
   )
 }
 
-export default SelectionContent;
+const mapDispatchToProps = {
+  addedCart
+};
+
+export default connect(null, mapDispatchToProps)(SelectionContent)
 
 const useStyle = makeStyles(theme => ({
   cardComboPc: {

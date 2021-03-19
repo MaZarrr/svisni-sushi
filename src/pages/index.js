@@ -2,64 +2,59 @@ import React from "react"
 import SEO from "../components/seo"
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
-import { addedCart } from "../reducers/shopping-cart";
-import { connect } from "react-redux";
-import { graphql } from "gatsby"
+// import { addedCart } from "../reducers/shopping-cart";
+// import { connect } from "react-redux";
+import { graphql } from "gatsby";
 import { Hidden, Typography } from "@material-ui/core";
 
-import IndexCards from '../components/Card';
+// import IndexCards from '../components/Card';
 import Carousel from '../components/common/CarouselSvisni';
+import MenuCategory from "../components/indexContent/MenuCategory";
+import Combo from '../components/indexContent/combo/index'
+import RecommendedProducts from "../components/indexContent/recommended-products";
 
-const IndexPage = ({ addedCart, data: { allContentfulContentIndex: { edges : indexProduct },
-                     allContentfulHomePageImageMenu: { edges: indexMenu }, allContentfulCarouselSiteImage}}) => {
-
+const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
         const classes = useStyleIndexPage();
         return (
             <>
              <SEO title="Заказать любимые суши роллы c доставкой в Валуйки"
                         description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                         Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-                <section>
-                    <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
+            <section>
+                  <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
                     <Grid container className={classes.root}>
-                        <Hidden xsDown>
-                        <Typography className={classes.title}
-                                    variant={"inherit"}
-                                    component={"h1"}>
-                            Свисни Суши в Уразово</Typography>
+                    <Hidden xsDown>
+                    <Typography className={classes.title}
+                        variant={"inherit"}
+                        component={"h1"}>
+                        Свисни Суши в Уразово</Typography>
+                    </Hidden>
+
+                      {/*<div className={classes.root}>*/}
+                        {/* Меню категории */}
+                        <Hidden smUp>
+                          <Grid container style={{marginBottom: 20}}>
+                            <MenuCategory />
+                          </Grid>
                         </Hidden>
-                        <IndexCards addedCart={addedCart}
-                           indexProduct={indexProduct}
-                           indexMenu={indexMenu} />
+                      {/*</div>*/}
+
+                      {/* Комбо */}
+                      <Combo />
+                      {/* Новинки/рекомендованые */}
+                      <RecommendedProducts />
                     </Grid>
-                </section>
-         </>
-         )}
+            </section>
+ </>
+ )}
 
-
-const mapDispatchToProps = {
-    addedCart
-};
-
-export default connect(null, mapDispatchToProps)(IndexPage)
+export default IndexPage
 
 const useStyleIndexPage = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         width: `95%`,
-        margin: `auto`,
-    },
-    titleIndex: {
-        fontSize: '28px',
-        fontWeight: `bold`,
-        width: `100%`,
-        paddingBottom: 20,
-        [theme.breakpoints.down('600')]: {
-            fontSize: '22px',
-            paddingTop: 20,
-            paddingRight: 20,
-            paddingBottom: 0,
-        },
+        margin: `auto`
     },
     title: {
         fontWeight: 900,
@@ -76,109 +71,8 @@ const useStyleIndexPage = makeStyles(theme => ({
     }
 }));
 
-export const query = graphql `    
+export const query = graphql `
  query {
-      allContentfulContentIndex {
-        edges {
-        node {
-        title
-        combos {
-          id
-          description
-          name
-          __typename
-          price
-          slug
-          image {
-            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-          }
-        }
-        new {
-          __typename
-          ... on Node {
-            ... on ContentfulProduct {
-              id
-              name
-              price
-              slug
-              description
-              image {
-               gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
-              }
-            }
-            ... on ContentfulProductPizza {
-              id
-              name
-              __typename
-              price
-              priceIn33cm
-              slug
-              description
-              image {
-                gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
-              }
-            }
-            ... on ContentfulProductSlognyeRolly {
-              id
-              name
-              description
-              __typename
-              price
-              image {
-               gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
-              }
-            }
-            ... on ContentfulProductHotRolly {
-              id
-              name
-              __typename
-              description
-              price
-              image {
-                 gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
-              }
-            }
-            ... on ContentfulProductKombo {
-              id
-              name
-              __typename
-              count
-              description
-              price
-              image {
-                gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
-              }
-            }
-          ... on ContentfulProductSalat {
-            id
-            name
-            __typename
-            price
-            description
-            weight
-            __typename
-            image {
-                 gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
-                }
-          }
-        }
-      }
-    }
-  }
-  }
-        allContentfulHomePageImageMenu(sort: {fields: desc}) {
-            edges {
-                node {
-                    id
-                    slug
-                    category
-                    desc
-                    image {
-                        gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                    }
-                }
-            }
-        }
         allContentfulCarouselSiteImage {
             edges {
                 node {
@@ -186,7 +80,7 @@ export const query = graphql `
                     slug
                     nameAkcii
                     imgCarouselPc {
-                  gatsbyImageData(placeholder: BLURRED formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED)
                     }
                 }
             }

@@ -10,11 +10,12 @@ import { productList } from "../reducers/selectors";
 import useTimer from "../utils/useTimer";
 import HeadSection from "../components/HeadSection"
 
-import loadable from '@loadable/component'
-import Spinner from '../components/spinner/spinner'
-const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
-    fallback: <Spinner count={10}/>
-});
+// import loadable from '@loadable/component'
+// import Spinner from '../components/spinner/spinner'
+import CardsMenuPage from '../components/CardsMenuPage'
+// const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
+//     fallback: <Spinner count={10}/>
+// });
 
 const categoryNames = ['Малые', 'Средние', 'Большие', 'Ланч-сеты'];
 

@@ -38,7 +38,8 @@ const KomboContent = ({ product }) => {
               to={`/kombo/${homeProduct.slug}`}>
               Выбрать
             </Button>
-            <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}} variant={"body1"}>{homeProduct.price} ₽</Typography>
+            <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
+                        variant={"body1"}>{homeProduct.price} ₽</Typography>
           </CardActions>
         </Card>
       </Grid>

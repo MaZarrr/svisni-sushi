@@ -24,18 +24,18 @@ const SaleTeamplate = ({ data: { contentfulProductSale: {
     }, [detailedDescription])
 
     return (
-    <ErrorBoundary>
-        { load === false ?
-        <SaleItem
-            name={name}
-            image={img}
-            slug={detailedDescription.childMarkdownRemark.frontmatter.sluginfo}
-            textSlug={detailedDescription.childMarkdownRemark.frontmatter.sluginfotext}
-            md={mdr}
-            path={slug}
-        />
-        : <Spinner/> }
-    </ErrorBoundary>
+      <ErrorBoundary>
+          { load === false ?
+            <SaleItem
+              name={name}
+              image={img}
+              slug={detailedDescription.childMarkdownRemark.frontmatter.sluginfo}
+              textSlug={detailedDescription.childMarkdownRemark.frontmatter.sluginfotext}
+              md={mdr}
+              path={slug}
+            />
+            : <Spinner/> }
+      </ErrorBoundary>
     )
 }
 export default SaleTeamplate
@@ -65,4 +65,3 @@ export const query = graphql `
         }
     }
 `
-

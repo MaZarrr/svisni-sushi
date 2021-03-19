@@ -27,13 +27,13 @@ const styles = theme =>( {
             height: '78px'
         },
     },
-    labelIcon: {
-        minHeight: 0,
-        textDecoration: `none`,
-        [theme.breakpoints.up('600')]: {
-            minHeight: '72px'
-        },
-    }
+    // labelIcon: {
+    //     minHeight: 0,
+    //     textDecoration: `none`,
+    //     [theme.breakpoints.up('600')]: {
+    //         minHeight: '72px'
+    //     },
+    // }
 });
 
 function HideOnScroll(props) {
@@ -121,7 +121,6 @@ const AppBars = (props) => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     function a11yProps(index){
         return {
             id: `scrollable-auto-tab-${index}`,
@@ -138,7 +137,8 @@ const AppBars = (props) => {
                 variant="scrollable"
                 value={value}
                 onChange={handleChange}
-                scrollButtons="auto">
+                scrollButtons="auto"
+            >
                 { barsLinks.map(({key, name, slug}, index) => (
                                 <Tab key={key}
                                 textColor={"primary"}

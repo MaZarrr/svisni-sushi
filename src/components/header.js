@@ -45,7 +45,6 @@ const Header = () => {
       <div className={classes.root}>
         <AppBar
             position="fixed"
-            classes={{colorPrimary: classes.colorPrimary}}
             className={classes.appBar}>
           <Toolbar>
               <Grid container>
@@ -73,7 +72,8 @@ const Header = () => {
                   links.map(({name, link, id}) => (
                       <Grid item component={"li"} key={id} sm={3} style={{ textDecoration: `none`,
                         listStyle: `none`, fontFamily: 'Montserrat, sans-serif', textAlign: `center`}}>
-                        <Link to={link}  activeStyle={{ border: `solid 1px #FC5185`,
+                        <Link to={link} activeStyle={{
+                          border: `solid 1px #FC5185`,
                           borderBottomWidth: `3px`,
                           borderRadius: `8px`,
                           padding: 10,
@@ -128,12 +128,16 @@ export const useStyleHeader = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-around',
     width: `100%`,
+    height: `75px`,
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     backgroundColor: "white",
+    [theme.breakpoints.down('sm')]: {
+      height: `69px`,
+    }
   },
   content_header: {
     display: 'flex',

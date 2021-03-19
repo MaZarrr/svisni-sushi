@@ -3,12 +3,12 @@ import { Container } from '@material-ui/core'
 import { setCategory } from "../reducers/filters"
 import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
-import loadable from "@loadable/component";
 import Categories from "./Categories"
+import CustomizedInputSearch from "./CustomizedInputSearch"
 
-const CustomizedInputSearch = loadable(() => import("./CustomizedInputSearch"), {
-  fallback: <div style={{ minHeight: 46 }}/>
-});
+// const CustomizedInputSearch = loadable(() => import("./CustomizedInputSearch"), {
+//   fallback: <div style={{ minHeight: 46 }}/>
+// });
 
 const HeadSection = memo(({ isFilter = false, categoryNames, category, path, titleTXT, dispatch }) => {
   const { title, wrapped } = useStyleH1();
