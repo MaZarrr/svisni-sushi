@@ -21,7 +21,7 @@ const Title = styled.h2`
 
 const ComboProduct = () => {
 
-  const  { allContentfulContentIndex: { edges : indexProduct }} = useStaticQuery(graphql`
+  const ComboData = useStaticQuery(graphql`
    query {
       allContentfulContentIndex {
         edges {
@@ -42,6 +42,8 @@ const ComboProduct = () => {
 }
 }
 `)
+
+  const { allContentfulContentIndex: { edges : indexProduct }} = ComboData
   return (
     <>
       <Title>Комбо из пиццы суши роллов</Title>
