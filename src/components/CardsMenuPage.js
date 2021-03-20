@@ -24,7 +24,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
         { visibleItems.map((products) => {
 
             const {id, name, slug, description,
-                price, weight, count,
+                price, weight = "от 150", count = 1,
                 edit, komboSale, variant = false,
                 image: { gatsbyImageData }, sale, nonprice, lanchprice, lanch, defaultPrice} = products;
             return (

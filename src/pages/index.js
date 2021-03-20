@@ -25,8 +25,10 @@ const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
 
         return (
             <section>
+              <SEO title="Заказать любимые суши роллы c доставкой в Валуйки"
+                   description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
+                        Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
               <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
-
                 <Grid container className={classes.root}>
                   <Hidden xsDown>
                     <Typography className={classes.title}

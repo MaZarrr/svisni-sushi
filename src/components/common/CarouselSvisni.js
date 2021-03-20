@@ -60,24 +60,23 @@ function Carousel({ dataCarousel }) {
                         </Link>
                     </div>
                 );
-
             case 2:
                 return (
-                    <div key={key}>
-                        <Link to={data.edges[2].node.slug}>
-                            <GatsbyImage
-                                image={data.edges[2].node.imgCarouselPc.gatsbyImageData}
-                                className={classes.image}
-                                loading={"eager"}
-                                imgStyle={{maxWidth: 1900}}
-                                alt={data.edges[2].node.nameAkcii} />
-                        </Link>
-                    </div>
+                  <div key={key}>
+                      <Link to={data.edges[2].node.slug}>
+                          <GatsbyImage
+                            image={data.edges[2].node.imgCarouselPc.gatsbyImageData}
+                            className={classes.image}
+                            loading={"eager"}
+                            imgStyle={{maxWidth: 1900}}
+                            alt={data.edges[2].node.nameAkcii} />
+                      </Link>
+                  </div>
                 );
 
             case 3:
                 return (
-                    <div key={key} style={styles.slide}>
+                    <div key={key}>
                         <Link to={data.edges[3].node.slug}>
                             <GatsbyImage
                                 image={data.edges[3].node.imgCarouselPc.gatsbyImageData}
@@ -99,6 +98,20 @@ function Carousel({ dataCarousel }) {
                                 loading={"eager"}
                                 imgStyle={{maxWidth: 1900}}
                                 alt={data.edges[4].node.nameAkcii} />
+                        </Link>
+                    </div>
+                );
+
+            case 5:
+                return (
+                    <div key={key} style={styles.slide}>
+                        <Link to={data.edges[5].node.slug}>
+                            <GatsbyImage
+                                image={data.edges[5].node.imgCarouselPc.gatsbyImageData}
+                                className={classes.image}
+                                loading={"eager"}
+                                imgStyle={{maxWidth: 1900}}
+                                alt={data.edges[5].node.nameAkcii} />
                         </Link>
                     </div>
                 );

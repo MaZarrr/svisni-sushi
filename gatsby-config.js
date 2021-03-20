@@ -72,7 +72,7 @@ module.exports = {
         accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
         pageLimit: 50,
         assetDownloadWorkers: 25,
-        downloadLocal: true
+        // downloadLocal: true
       },
     },
     `gatsby-plugin-sitemap`,
