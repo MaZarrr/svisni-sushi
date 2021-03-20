@@ -28,6 +28,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from "@material-ui/core/styles";
 import loadable from "@loadable/component";
 import HeadSection from "../../components/HeadSection"
+import SpinnerNew from "../../components/spinner/spinner-new";
 
 const EmptyBasket = loadable(() => import('../../components/EmptyBasket'))
 
@@ -88,7 +89,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                  setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
 
   const [open, setOpen] = useState(false);
-  // const [load, setLoad] = React.useState(true);
+  const [load, setLoad] = React.useState(true);
   const [age, setAge] = useState('');
   const [delivery, setDelivery] = useState('');
   const [checkPushOrder, setCheckPushOrder] = useState(false);
@@ -101,11 +102,9 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   const inputLabel = React.useRef(null);
   const classes = useStyleOrder();
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoad(false)
-  //   }, 500)
-  // }, []);
+  React.useEffect(() => {
+      setLoad(false)
+  }, []);
 
   const handleChangee = name => event => setState(name);
   const onSwitchPay = (pay) => () => setVariantPay(pay);
@@ -279,7 +278,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
            noindex={true}/>
       <div className={classes.root}>
         <HeadSection titleTXT={"Оформление заказа"} />
-        {/*{load === false ?*/}
+        {load === false ?
           <Container maxWidth={"xl"}>
             { !isEmpty(items) ?
               <Grid container className={classes.gridContainer}>
@@ -673,7 +672,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                 </Snackbar>
               </Grid> : <EmptyBasket/> }
           </Container>
-          {/*: <Spinner />}*/}
+          : <SpinnerNew />}
       </div>
     </section>
   )

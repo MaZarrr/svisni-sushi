@@ -7,11 +7,12 @@ import { Grid } from "@material-ui/core";
 import Spinner from '../components/spinner/spinner'
 import filtersProducts from '../utils/filtersProducts'
 import loadable from "@loadable/component";
-import { productLoaded } from "../reducers/app";
 import {checkSaleLanch, defFilters } from "../reducers/filters";
-import {productList} from "../reducers/selectors";
+import { productLoaded, spinnerLoading } from "../reducers/app";
+import { productList, checkedLoading} from "../reducers/selectors";
 import useTimer from "../utils/useTimer";
 import HeadSection from "../components/HeadSection"
+import SpinnerNew from "../components/spinner/spinner-new";
 
 const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
     fallback: <Spinner count={10}/>
@@ -19,7 +20,7 @@ const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
 const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с беконом', 'с курицей', 'веган'];
 
 const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: productsBrandedRolls}, contentfulIconMenuLeftPanel: {image}},
-    dispatch, product, searchText, priceFilter }) => {
+    dispatch, product, searchText, priceFilter, loading }) => {
   
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
     const priceIsSale = useMemo(() => isSale, [isSale]);
@@ -30,6 +31,7 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
         doStart({endTime: 15, startTime: 10});
         dispatch(checkSaleLanch(priceIsSale));
         dispatch(defFilters())
+        dispatch(spinnerLoading(false))
     }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
 return (
    <section>
@@ -39,17 +41,20 @@ return (
 
     <HeadSection titleTXT={"Сложные роллы"} isFilter={true} categoryNames={categoryNames}/>
      <Grid container justify="center">
-         <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
-                        visibleItems={visibleItems}
-                        image={image} product={product}
-                        timePrice={{hours, minutes, seconds}} isSale={priceIsSale}/>
+         {!loading ?
+           <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
+                                     visibleItems={visibleItems}
+                                     image={image} product={product}
+                                     timePrice={{hours, minutes, seconds}} isSale={priceIsSale}/> : <SpinnerNew />}
+
      </Grid>
   </section>
     )
 };
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state) => ({
     product: productList(state),
+    loading: checkedLoading(state),
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter
 });

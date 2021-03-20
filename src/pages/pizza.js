@@ -7,7 +7,6 @@ import filtersProducts from '../utils/filtersProducts'
 import * as R from 'ramda'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-import { productPizzaLoaded } from "../reducers/app";
 import { defFilters } from "../reducers/filters";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -17,25 +16,28 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import { addedToCart, pizzaCart } from "../reducers/shopping-cart";
+import { productPizzaLoaded, spinnerLoading } from "../reducers/app";
+import { checkedLoading, productList } from "../reducers/selectors";
 import clsx from "clsx";
 import Paper from "@material-ui/core/Paper";
 import SplitButton from "../components/SplitButton";
-import { productList } from "../reducers/selectors";
 import HeadSection from "../components/HeadSection"
 import { makeStyles } from "@material-ui/core/styles"
+import SpinnerNew from "../components/spinner/spinner-new";
+import { addedToCart, pizzaCart } from "../reducers/shopping-cart";
 
 const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
 
 const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image} },
-                   productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path }) => {
+                   productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path, loading }) => {
 
     const classes = useStylesCart();
 
     useEffect(() => {
         dispatch(productPizzaLoaded(pizzaProduct))
-        dispatch(pizzaCart({productPizza: pizzaProduct}))
+        dispatch(pizzaCart({ productPizza: pizzaProduct }))
         dispatch(defFilters())
+        dispatch(spinnerLoading(false))
     }, [dispatch, pizzaProduct]);
 
     const updatePizza = R.defaultTo(productPizza, pizza);
@@ -48,6 +50,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                  description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно, именинникам дарим пиццу. Меню на сайте, большая пицца от 249 руб"
                   pathname=""/>
             <HeadSection titleTXT={"Доставка пиццы"} path={path} isFilter={true} categoryNames={categoryNames} />
+          {!loading ?
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                         {visibleItems.map((products) => {
                             const {id, name, pizzaSale,
@@ -165,12 +168,14 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                             );
                         })}
                     </Grid>
+            : <SpinnerNew /> }
         </section>
     );
 };
 
 const mapStateToProps = (state) => ({
     productPizza: productList(state, true),
+    loading: checkedLoading(state),
     searchText: state.filters.searchText,
     category: state.filters.category,
     priceFilter: state.filters.priceFilter

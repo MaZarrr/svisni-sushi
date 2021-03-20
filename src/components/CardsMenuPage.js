@@ -11,11 +11,11 @@ import { addedToCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import { take } from "ramda";
 import loadable from "@loadable/component";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import Button from '@material-ui/core/Button'
 import { makeStyles } from "@material-ui/core/styles"
 
 const Paper = loadable(() => import('@material-ui/core/Paper'))
-const Button = loadable(() => import('@material-ui/core/Button'))
-const ShoppingCartIcon = loadable(() => import('@material-ui/icons/ShoppingCart'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
 
 const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, product, dispatch, timePrice, isSale }) => {

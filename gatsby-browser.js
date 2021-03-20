@@ -3,7 +3,7 @@ import { StylesProvider, ThemeProvider } from "@material-ui/styles";
 import Layout from './src/components/layout'
 import theme from './src/theme';
 import stylesProviderProps from "material-ui-plugin-cache-endpoint";
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 
 import { hasEntries } from "./src/utils";
 import { CssBaseline } from "@material-ui/core";

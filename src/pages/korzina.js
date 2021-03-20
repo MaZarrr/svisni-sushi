@@ -33,8 +33,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
   allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
   allContentfulProductGunkan}, items = [], total = 0, palochkiTotal,
                              onIncrease, onDecrise, onDelete, addedPriborCount, addedSaleRoll,
-  addedSalePizza, deletePizzaSale, deleteFilaSale, location }) => {
-
+  addedSalePizza, deletePizzaSale, deleteFilaSale, location: { pathname } }) => {
   const [value, setValue] = React.useState([]);
   const classes = useStyleBasket();
 
@@ -71,7 +70,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                              image={pizza().image} alt={pizza().name}/>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
-                <Typography gutterBottom variant="h6" style={{fontSize: 14}}>
+                <Typography variant="h6" style={{fontSize: 14}}>
                   {pizza().name}
                 </Typography>
                 <div style={{display: `flex`, fontSize: 14, fontWeight: `bold`}}>
@@ -177,7 +176,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
       <section>
         <div className={classes.root}>
           <HeadSection titleTXT={"Корзина товаров"} />
-            { R.isEmpty(items) ? <EmptyBasket/> :
+          {R.isEmpty(items) ? <EmptyBasket/> :
               <Grid container spacing={2} style={{ width: `100%` }}>
                 <Grid item sm={7}>
                   <Grid container spacing={2} className={classes.wrappedContainer}>
@@ -187,106 +186,106 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         textRollSale, textPizza, pizzaSale, description, edit = null, size,
                         wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
                         descriptionIngrideents = ""} = item
-                    return (
-                    <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
-                            <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
-                              <div style={{margin: `auto 0`, zIndex: 10}}>
-                                <GatsbyImage
-                                  // style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}}
-                                  image={image} alt={name} />
-                              </div>
-                              <div style={{width: `100%`}}>
-                                <div style={{padding: `8px 0 8px 0`, width: `100%`}}>
-                                  <Typography variant="subtitle1" style={{paddingLeft: 8}}>
-                                    {name}
-                                  </Typography>
-                                  {/*button added count product*/}
-                                  <div style={{display: `flex`, paddingLeft: 10}}>
-                                    <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 0`}} variant="subtitle2">
-                                      {priceDef === 0 ? "1шт" : `${count}шт`}
-                                    </Typography>
-
-                                    <div style={{display: `flex`, alignItems: `center`, margin: `auto`}}>
-                                      {price !== 79 && priceDef !== 0 ?
-                                        <>
-                                          <IconButton aria-label="plus" component="span"
-                                                      onClick={()=> onIncrease( {id, price, product: items} )}
-                                                      // style={{padding: `7px`}}
-                                          >
-                                            <AddBoxOutlinedIcon />
-                                          </IconButton>
-                                          <IconButton aria-label="remove" component="span"
-                                                      onClick={()=> onDecrise({ id, price, product: items})}>
-                                            <IndeterminateCheckBoxOutlinedIcon/>
-                                          </IconButton>
-                                        </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
-
-                                      { price > 78 &&
-                                      <IconButton aria-label="remove" component="span"
-                                                  // style={{padding: `7px`}}
-                                                  onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
-                                                    : () => deleteFilaSale(id)}>
-                                        <DeleteOutlineOutlinedIcon/>
-                                      </IconButton>
-
-                                      }
-                                      { pizzaSale &&
-                                      <IconButton aria-label="remove" component="span"
-                                                  onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }>
-                                        <DeleteOutlineOutlinedIcon/>
-                                      </IconButton>
-                                      }
-                                    </div>
-                                    <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 20px auto 0`}}
-                                                variant="subtitle2">{price === 79 ? null : `${total}₽`}</Typography>
-                                  </div>
-                                </div>
-
-                                { !!priceIn33cm &&
-                                <>
-                                  <FormControl component="fieldset" style={{width: `95%`}}>
-                                    <RadioGroup aria-label="position" name="position"
-                                                value={value[idx]} onChange={handleChange} row style={{marginLeft: 8}}>
-                                      <FormControlLabel
-                                        value={name}
-                                        control={<ButtonSize
-                                          sizePizzaStyle={slug}
-                                          title="Средняя"
-                                          pizzaSize={size}
-                                          id={id}
-                                          edges={items}
-                                          pricePizza={priceDef}/>}
-                                        labelPlacement="bottom"
-                                        id={id}
-                                        name={name}
-                                        style={{margin: `0 6px 0 0`, padding: 0}}/>
-                                      <FormControlLabel
-                                        value={name + "a"}
-                                        control={<ButtonSize
-                                          sizePizzaStyle={contentful_id}
-                                          title="Большая"
-                                          pizzaSize={size}
-                                          id={id}
-                                          edges={items}
-                                          pricePizza={priceIn33cm}/>}
-                                        labelPlacement="bottom"
-                                        id={id}
-                                        name={name}
-                                        style={{margin: `0 0 5px 0`, padding: 0}}/>
-                                    </RadioGroup>
-                                  </FormControl>
-                                  <Typography style={{fontSize: 12, marginLeft: 8}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
-                                </>
-                                }
-                                {wok &&
-                                <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
-                                }
-                                {edit !== null &&
-                                <Typography style={{fontSize: 13, padding: `0 10px`}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
-                                }
-
-                              </div>
+                      return (
+                        <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+                          <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
+                            <div style={{margin: `auto 0`, zIndex: 10}}>
+                              <GatsbyImage
+                                // style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}}
+                                image={image} alt={name} />
                             </div>
+                            <div style={{width: `100%`}}>
+                              <div style={{padding: `8px 0 8px 0`, width: `100%`}}>
+                                <Typography variant="subtitle1" style={{paddingLeft: 8}}>
+                                  {name}
+                                </Typography>
+                                {/*button added count product*/}
+                                <div style={{display: `flex`, paddingLeft: 10}}>
+                                  <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 0`}} variant="subtitle2">
+                                    {priceDef === 0 ? "1шт" : `${count}шт`}
+                                  </Typography>
+
+                                  <div style={{display: `flex`, alignItems: `center`, margin: `auto`}}>
+                                    {price !== 79 && priceDef !== 0 ?
+                                      <>
+                                        <IconButton aria-label="plus" component="span"
+                                                    onClick={()=> onIncrease( {id, price, product: items} )}
+                                          // style={{padding: `7px`}}
+                                        >
+                                          <AddBoxOutlinedIcon />
+                                        </IconButton>
+                                        <IconButton aria-label="remove" component="span"
+                                                    onClick={()=> onDecrise({ id, price, product: items})}>
+                                          <IndeterminateCheckBoxOutlinedIcon/>
+                                        </IconButton>
+                                      </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
+
+                                    { price > 78 &&
+                                    <IconButton aria-label="remove" component="span"
+                                      // style={{padding: `7px`}}
+                                                onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
+                                                  : () => deleteFilaSale(id)}>
+                                      <DeleteOutlineOutlinedIcon/>
+                                    </IconButton>
+
+                                    }
+                                    { pizzaSale &&
+                                    <IconButton aria-label="remove" component="span"
+                                                onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }>
+                                      <DeleteOutlineOutlinedIcon/>
+                                    </IconButton>
+                                    }
+                                  </div>
+                                  <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 20px auto 0`}}
+                                              variant="subtitle2">{price === 79 ? null : `${total}₽`}</Typography>
+                                </div>
+                              </div>
+
+                              { !!priceIn33cm &&
+                              <>
+                                <FormControl component="fieldset" style={{width: `95%`}}>
+                                  <RadioGroup aria-label="position" name="position"
+                                              value={value[idx]} onChange={handleChange} row style={{marginLeft: 8}}>
+                                    <FormControlLabel
+                                      value={name}
+                                      control={<ButtonSize
+                                        sizePizzaStyle={slug}
+                                        title="Средняя"
+                                        pizzaSize={size}
+                                        id={id}
+                                        edges={items}
+                                        pricePizza={priceDef}/>}
+                                      labelPlacement="bottom"
+                                      id={id}
+                                      name={name}
+                                      style={{margin: `0 6px 0 0`, padding: 0}}/>
+                                    <FormControlLabel
+                                      value={name + "a"}
+                                      control={<ButtonSize
+                                        sizePizzaStyle={contentful_id}
+                                        title="Большая"
+                                        pizzaSize={size}
+                                        id={id}
+                                        edges={items}
+                                        pricePizza={priceIn33cm}/>}
+                                      labelPlacement="bottom"
+                                      id={id}
+                                      name={name}
+                                      style={{margin: `0 0 5px 0`, padding: 0}}/>
+                                  </RadioGroup>
+                                </FormControl>
+                                <Typography style={{fontSize: 12, marginLeft: 8}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
+                              </>
+                              }
+                              {wok &&
+                              <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
+                              }
+                              {edit !== null &&
+                              <Typography style={{fontSize: 13, padding: `0 10px`}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
+                              }
+
+                            </div>
+                          </div>
                         </Grid>
                       )})}
                     {saleRollFunc()}
@@ -329,15 +328,15 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                     <Paper style={{padding: 5, opacity: `90%`}}>
                       <Typography variant="body1" style={{fontSize: 18}}>Сумма заказа <b>{total} ₽</b></Typography>
                     </Paper>
-                      <Button
-                        component={Link}
-                        to={`${location.pathname}order`}
-                        size={'small'}
-                        color={"secondary"}
-                        className={classes.buttonCheckout}
-                        variant="contained" >
-                        Перейти к оформлению
-                      </Button>
+                    <Button
+                      component={Link}
+                      to={`${pathname}order`}
+                      size={'small'}
+                      color={"secondary"}
+                      className={classes.buttonCheckout}
+                      variant="contained" >
+                      Перейти к оформлению
+                    </Button>
                   </div>
                 </Hidden>
 
@@ -364,7 +363,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                       <Typography variant="body1" style={{fontSize: 24}}>Сумма заказа <b>{total} ₽</b></Typography>
                       <Button
                         component={Link}
-                        to={`${location.pathname}order`}
+                        to={`${pathname}order`}
                         color={"primary"}
                         size={'large'}
                         variant="contained" >
@@ -375,7 +374,8 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                 </Hidden>
 
               </Grid>
-            }
+          }
+
           </div>
       </section>
     </>
@@ -384,6 +384,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
 const mapStateToProps = (state) => ({
   items: state.shoppingCart.cartItems,
+  // loading: checkedLoading(state),
   palochkiTotal: state.shoppingCart.palochkiTotal,
   total: state.shoppingCart.orderTotal,
 });

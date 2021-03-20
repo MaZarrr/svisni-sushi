@@ -21,13 +21,12 @@ const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
 
         useEffect(() => {
          setLoading(false)
-        })
+        }, [])
 
         return (
-            <>
             <section>
-                  <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
-              { !loading ? <>
+              <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
+
                 <Grid container className={classes.root}>
                   <Hidden xsDown>
                     <Typography className={classes.title}
@@ -35,23 +34,22 @@ const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
                                 component={"h1"}>
                       Свисни Суши в Уразово</Typography>
                   </Hidden>
-
                   {/* Меню категории */}
                   <Hidden smUp>
                     <Grid container style={{ marginBottom: 20 }}>
                       <MenuCategory />
                     </Grid>
                   </Hidden>
-
+                  { !loading ? <>
                   {/* Комбо */}
                   <Combo />
                   {/* Новинки/рекомендованые */}
                   <RecommendedProducts />
+                  </> : <> <SpinnerNew /> </>}
                 </Grid>
-              </> : <SpinnerNew />}
             </section>
- </>
  )}
+
 
 export default IndexPage
 
