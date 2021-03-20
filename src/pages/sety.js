@@ -12,12 +12,6 @@ import HeadSection from "../components/HeadSection"
 import CardsMenuPage from '../components/CardsMenuPage'
 import SpinnerNew from "../components/spinner/spinner-new";
 
-// import loadable from '@loadable/component'
-// import Spinner from '../components/spinner/spinner'
-// const CardsMenuPage = loadable(() => import('../components/CardsMenuPage'), {
-//     fallback: <Spinner count={10}/>
-// });
-
 const categoryNames = ['Малые', 'Средние', 'Большие', 'Ланч-сеты'];
 
 const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfulIconMenuLeftPanel: { image } },

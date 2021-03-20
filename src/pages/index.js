@@ -8,12 +8,8 @@ import Carousel from '../components/common/CarouselSvisni';
 import MenuCategory from "../components/indexContent/MenuCategory";
 import Combo from '../components/indexContent/combo/index'
 import RecommendedProducts from "../components/indexContent/recommended-products";
-// import loadable from "@loadable/component";
 import SpinnerNew from "../components/spinner/spinner-new";
-
-// const MenuCategory = loadable(() => import('../components/indexContent/MenuCategory'))
-// const Combo = loadable(() => import('../components/indexContent/combo/index'))
-// const RecommendedProducts = loadable(() => import('../components/indexContent/recommended-products'))
+import SEO from "../components/seo";
 
 const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
         const classes = useStyleIndexPage();

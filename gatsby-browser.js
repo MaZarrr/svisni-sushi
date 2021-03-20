@@ -3,7 +3,6 @@ import { StylesProvider, ThemeProvider } from "@material-ui/styles";
 import Layout from './src/components/layout'
 import theme from './src/theme';
 import stylesProviderProps from "material-ui-plugin-cache-endpoint";
-// import ReactDOM from 'react-dom'
 
 import { hasEntries } from "./src/utils";
 import { CssBaseline } from "@material-ui/core";
@@ -49,13 +48,6 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
   return <StylesProvider {...stylesProvider}>{element}</StylesProvider>;
 }
 
-// export const replaceHydrateFunction = () => {
-//   return (element, container, callback) => {
-//     console.log("rendering!");
-//     ReactDOM.render(element, container, callback);
-//   };
-// };
-//
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
     `Приложение Свисни суши было обновлено. `+
@@ -65,3 +57,11 @@ export const onServiceWorkerUpdateReady = () => {
     window.location.reload()
   }
 }
+
+// export const replaceHydrateFunction = () => {
+//   return (element, container, callback) => {
+//     console.log("rendering!");
+//     ReactDOM.render(element, container, callback);
+//   };
+// };
+//

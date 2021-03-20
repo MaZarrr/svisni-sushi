@@ -66,25 +66,23 @@ const Header = () => {
                   </Link>
                 </Grid>
 
-                <Grid item xs={9} component={`ul`} style={{margin: `auto 0`}}>
-                <Grid container>
+                <Grid item xs={9} component={`ul`} style={{margin: `auto 0`, display: `flex`, justifyContent: `space-around`}}>
                 {
                   links.map(({name, link, id}) => (
-                      <Grid item component={"li"} key={id} sm={3} style={{ textDecoration: `none`,
+                      <li key={id} style={{ textDecoration: `none`,
                         listStyle: `none`, fontFamily: 'Montserrat, sans-serif', textAlign: `center`}}>
                         <Link to={link} activeStyle={{
                           border: `solid 1px #FC5185`,
                           borderBottomWidth: `3px`,
                           borderRadius: `8px`,
-                          padding: 10,
+                          padding: 8,
                           color: `blueviolet`}}>
                             {name}
                         </Link>
-                      </Grid>
+                      </li>
 
                   ))
                 }
-                </Grid>
                 </Grid>
                 </Hidden>
 
