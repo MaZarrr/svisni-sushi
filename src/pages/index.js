@@ -11,13 +11,15 @@ import RecommendedProducts from "../components/indexContent/recommended-products
 import SpinnerNew from "../components/spinner/spinner-new";
 import SEO from "../components/seo";
 
-const IndexPage = ( { data: { allContentfulCarouselSiteImage, allContentfulContentIndex: { edges : indexProduct }}}) => {
-        const classes = useStyleIndexPage();
+const IndexPage = ({ data: { allContentfulContentIndex: { edges }, allContentfulCarouselSiteImage } }) => {
         const [loading, setLoading] = useState(true)
+        const [indexProduct, setIndexProduct] = useState(true)
+        const classes = useStyleIndexPage();
 
         useEffect(() => {
-         setLoading(false)
-        }, [])
+          setIndexProduct(edges)
+          setLoading(false)
+        }, [edges])
 
         return (
             <section>
@@ -43,7 +45,7 @@ const IndexPage = ( { data: { allContentfulCarouselSiteImage, allContentfulConte
                   <Combo product={indexProduct[1]}/>
                   {/* Новинки/рекомендованые */}
                   <RecommendedProducts product={indexProduct[0]} />
-                  </> : <> <SpinnerNew /> </>}
+                  </> : <SpinnerNew /> }
                 </Grid>
             </section>
  )}
