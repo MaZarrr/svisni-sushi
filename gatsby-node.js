@@ -4,42 +4,21 @@ const os = require(`os`);
 
 let didRunAlready = false;
 
-exports.onCreatePage = async ({ page, actions, graphql }) => {
-  const { createPage, deletePage } = actions
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
 
   if (page.path.match(/^\/special-menu/)) {
     console.log(page);
-    page.matchPath = "/special-menu/*"
-    // Update the page.
-    // deletePage(page)
-        createPage(page)
-  }
+    page.matchPath = "/special-menu/vegetarian/"
+        createPage({
+          ...page,
+          context: {
+            ...page.context,
+            slug: "vegetarian"
+          }
+      })
+    }
 }
-
-// exports.onCreatePage = async ({ page, actions, graphql }) => {
-//   const { createPage, deletePage } = actions
-//
-//   // if (page.path.match(/^\/vegetarians/)) {
-//     // const vegetarians = path.resolve('./src/templates/indexPage.js');
-//     page.matchPath = '/vegetarians/'
-// //     await graphql(`
-// //       {
-// //         contentfulProduct(name: "Постный") {
-// //           id
-// //           name
-// //           price
-// //           slug
-// //           description
-// //     }
-// //   }
-// // `).then(data => {
-//     if (page.path.match(/^\/vegetarians/)) {
-//       page.matchPath = '/vegetarians/'
-//       createPage(page)
-//     }
-//     // })
-//   // }
-// }
 
 exports.onPreInit = () => {
   if (didRunAlready) {
@@ -157,3 +136,28 @@ exports.createPages = async ({ graphql, actions, page }) => {
 
   }).catch((err) => console.log(err))
 };
+
+// exports.onCreatePage = async ({ page, actions, graphql }) => {
+//   const { createPage, deletePage } = actions
+//
+//   // if (page.path.match(/^\/vegetarians/)) {
+//     // const vegetarians = path.resolve('./src/templates/indexPage.js');
+//     page.matchPath = '/vegetarians/'
+// //     await graphql(`
+// //       {
+// //         contentfulProduct(name: "Постный") {
+// //           id
+// //           name
+// //           price
+// //           slug
+// //           description
+// //     }
+// //   }
+// // `).then(data => {
+//     if (page.path.match(/^\/vegetarians/)) {
+//       page.matchPath = '/vegetarians/'
+//       createPage(page)
+//     }
+//     // })
+//   // }
+// }

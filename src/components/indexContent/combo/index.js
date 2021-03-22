@@ -1,5 +1,4 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import KomboContent from "./KomboContent";
 import KomboMobileContent from "./KomboMobileContent";
 import styled from "styled-components";
@@ -19,43 +18,20 @@ const Title = styled.h2`
   }
 `
 
-const ComboProduct = () => {
+const ComboProduct = ({ product }) => {
 
-  const ComboData = useStaticQuery(graphql`
-   query {
-      allContentfulContentIndex {
-        edges {
-        node {
-        combos {
-          id
-          description
-          name
-          __typename
-          price
-          slug
-          image {
-            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-          }
-        }
-    }
-  }
-}
-}
-`)
-
-  const { allContentfulContentIndex: { edges : indexProduct }} = ComboData
   return (
     <>
       <Title>Комбо из пиццы суши роллов</Title>
       {/*Комбо компьютер*/}
       <Hidden xsDown>
         <Grid container justify={"space-between"} style={{ width: `100%`, marginBottom: 50 }}>
-          <KomboContent product={indexProduct[1]} />
+          <KomboContent product={product} />
         </Grid>
       </Hidden>
 
       {/* Комбо телефон */}
-      <Hidden smUp> <KomboMobileContent product={indexProduct[1]} /> </Hidden>
+      <Hidden smUp> <KomboMobileContent product={product} /> </Hidden>
     </>
   )
 }

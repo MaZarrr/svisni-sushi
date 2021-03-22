@@ -72,7 +72,7 @@ export default connect(null, mapDispatchToProps)(SelectionContent)
 const useStyle = makeStyles(theme => ({
   cardComboPc: {
     borderRadius: `3px`,
-    maxWidth: `350px`,
+    maxWidth: `420px`,
     padding: `0 10px`,
     margin: `20px 0`
   },

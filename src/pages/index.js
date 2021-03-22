@@ -11,7 +11,7 @@ import RecommendedProducts from "../components/indexContent/recommended-products
 import SpinnerNew from "../components/spinner/spinner-new";
 import SEO from "../components/seo";
 
-const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
+const IndexPage = ( { data: { allContentfulCarouselSiteImage, allContentfulContentIndex: { edges : indexProduct }}}) => {
         const classes = useStyleIndexPage();
         const [loading, setLoading] = useState(true)
 
@@ -40,9 +40,9 @@ const IndexPage = ( { data: { allContentfulCarouselSiteImage }}) => {
                   </Hidden>
                   { !loading ? <>
                   {/* Комбо */}
-                  <Combo />
+                  <Combo product={indexProduct[1]}/>
                   {/* Новинки/рекомендованые */}
-                  <RecommendedProducts />
+                  <RecommendedProducts product={indexProduct[0]} />
                   </> : <> <SpinnerNew /> </>}
                 </Grid>
             </section>
@@ -73,18 +73,117 @@ const useStyleIndexPage = makeStyles(theme => ({
 }));
 
 export const query = graphql `
- query {
-        allContentfulCarouselSiteImage {
-            edges {
-                node {
-                    id
-                    slug
-                    nameAkcii
-                    imgCarouselPc {
-                      gatsbyImageData(placeholder: BLURRED)
-                    }
-                }
+{  
+    allContentfulContentIndex {
+        edges {
+        node {
+          combos {
+          id
+          description
+          name
+          __typename
+          price
+          slug
+          image {
+            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+          }
+        }
+        new {
+          __typename
+          ... on Node {
+            ... on ContentfulProduct {
+              id
+              name
+              price
+              slug
+              description
+              image {
+               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+              }
+            }
+            ... on ContentfulProductPizza {
+              id
+              name
+              __typename
+              price
+              priceIn33cm
+              slug
+              description
+              image {
+                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+              }
+            }
+            ... on ContentfulProductSlognyeRolly {
+              id
+              name
+              description
+              __typename
+              price
+              image {
+               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+              }
+            }
+            ... on ContentfulProductHotRolly {
+              id
+              name
+              __typename
+              description
+              price
+              image {
+                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+              }
+            }
+            ... on ContentfulProductKombo {
+              id
+              name
+              __typename
+              count
+              description
+              price
+              image {
+                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+              }
+            }
+          ... on ContentfulProductSalat {
+            id
+            name
+            __typename
+            price
+            description
+            weight
+            __typename
+            image {
+                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+            }
+          }
+          ... on ContentfulProductZakuski {
+            id
+            name
+            __typename
+            price
+            description
+            weight
+            __typename
+            image {
+                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+            }
+          }
+        }
+      }
+    }
+  }
+}
+allContentfulCarouselSiteImage {
+    edges {
+        node {
+            id
+            slug
+            nameAkcii
+            imgCarouselPc {
+              gatsbyImageData(placeholder: BLURRED)
             }
         }
+      }
     }
+}
 `

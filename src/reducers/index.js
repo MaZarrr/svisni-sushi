@@ -1,4 +1,4 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 
 import app from './app'
 import shoppingCart from './shopping-cart';
