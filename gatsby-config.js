@@ -66,8 +66,7 @@ module.exports = {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         pageLimit: 50,
-        assetDownloadWorkers: 25,
-        downloadLocal: true
+        assetDownloadWorkers: 25
       },
     },
     `gatsby-plugin-sitemap`,
