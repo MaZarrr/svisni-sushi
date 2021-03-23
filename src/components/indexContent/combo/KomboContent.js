@@ -13,7 +13,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const KomboContent = ({ product }) => {
   const classes = useStyle();
-
   return (
   <>
     { isNil(product.node.combos) ? '' : product.node.combos.map((homeProduct) => (
@@ -35,8 +34,8 @@ const KomboContent = ({ product }) => {
               variant="contained"
               className={classes.buttonCombo}
               component={Link}
-              to={`/kombo/${homeProduct.slug}`}>
-              Выбрать
+              to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
+              {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
             </Button>
             <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
                         variant={"body1"}>{homeProduct.price} ₽</Typography>

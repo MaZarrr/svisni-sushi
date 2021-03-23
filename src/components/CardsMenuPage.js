@@ -131,13 +131,14 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                             </div>}
 
                             <Typography itemProp="description"
-                                        className={slugCategogy === "/sety" ||
-                                        slugCategogy === "/kombo" ||
-                                        slugCategogy === "/hot-rolls" ||
-                                        slugCategogy === "/branded-rolls" ||
-                                        slugCategogy === "/salaty" ||
-                                        slugCategogy === "/wok" ||
-                                        slugCategogy === "/zakyski" ? classes.deckript : classes.deckriptSmall}
+                                        className={classes.deckript}
+                                        // className={slugCategogy === "/sety" ||
+                                        // slugCategogy === "/kombo" ||
+                                        // slugCategogy === "/hot-rolls" ||
+                                        // slugCategogy === "/branded-rolls" ||
+                                        // slugCategogy === "/salaty" ||
+                                        // slugCategogy === "/wok" ||
+                                        // slugCategogy === "/zakyski" ? classes.deckript : classes.deckriptSmall}
                                         variant="body2">
 
                                 { slugCategogy === "/sety" && !komboSale &&
@@ -276,21 +277,21 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
 export default connect(null, null)(CardsMenuPage)
 
 export const useStylesCart = makeStyles(theme => ({
-    deckriptSmall: {
-        fontWeight: 600,
-        height: 35,
-        overflowY: `auto`,
-        padding: 14,
-        [theme.breakpoints.down('500')]: {
-            minHeight: `20px`,
-            padding: 14,
-        },
-        [theme.breakpoints.down('425')]: {
-            margin: `auto 0`,
-            padding: 14,
-            height: `auto`,
-        },
-    },
+    // deckriptSmall: {
+    //     fontWeight: 600,
+    //     height: 35,
+    //     overflowY: `auto`,
+    //     padding: 14,
+    //     [theme.breakpoints.down('500')]: {
+    //         minHeight: `20px`,
+    //         padding: 14,
+    //     },
+    //     [theme.breakpoints.down('425')]: {
+    //         margin: `auto 0`,
+    //         padding: 14,
+    //         height: `auto`,
+    //     },
+    // },
     deckript: {
         height: 80,
         padding: 14,

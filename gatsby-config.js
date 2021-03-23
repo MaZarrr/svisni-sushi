@@ -44,12 +44,7 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-    {
-      resolve: `gatsby-plugin-postcss`,
-      options: {
-        postCssPlugins: [require(`autoprefixer`)({ stage: 0 })],
-      },
-    },
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-react-redux`,

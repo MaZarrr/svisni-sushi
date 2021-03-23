@@ -47,8 +47,8 @@ const KomboMobileContent = ({ product }) => {
                 className={classes.buttonCombo}
                 component={Link}
                 size={"small"}
-                to={`/kombo/${homeProduct.slug}`}>
-                Выбрать
+                to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
+                {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
               </Button>
               <Typography style={{ fontSize: 18, marginLeft: `auto`, marginRight: 10, fontWeight: 800 }}
                           variant={"body1"}>{homeProduct.price}₽</Typography>
