@@ -6,18 +6,18 @@ import montserratBold from "./src/assets/Montserrat-ExtraBold.woff2";
 import montserratMedium from "./src/assets/Montserrat-Medium.woff2";
 import theme from './src/theme';
 
+export const wrapPageElement = ({ element, props }) => {
+  return (
+     <Layout {...props}>{element}</Layout>
+  );
+ };
+
 export const wrapRootElement = ({ element }) => {
  return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
     {element}
   </ThemeProvider>
- );
-};
-
-export const wrapPageElement = ({ element, props }) => {
- return (
-    <Layout {...props}>{element}</Layout>
  );
 };
 

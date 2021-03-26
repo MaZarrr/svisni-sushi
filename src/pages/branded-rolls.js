@@ -80,7 +80,7 @@ export const query = graphql `
         weight
         count
         image {
-          gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+          gatsbyImageData
         }
       }
     }

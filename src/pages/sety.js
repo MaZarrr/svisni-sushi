@@ -38,7 +38,6 @@ const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfu
         <>
             <SEO title="Заказать суши сет. Меню наборов роллов — доставка в Валуйки"
                  description="Широкий выбор сетов из запечённых роллов и суши в суши баре Свисни Суши Уразово с выгодой до 40%. Акция ланч-тайм, скидки с 10 до 15:00"/>
-            <section>
                     <HeadSection titleTXT={"Заказать суши сет"} path={location.pathname} isFilter={true} categoryNames={categoryNames}/>
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                       {!load ?
@@ -47,7 +46,6 @@ const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfu
                                        isSale={priceIsSale} />
                         :  <SpinnerNew />   }
                     </Grid>
-            </section>
         </>
     )
 };

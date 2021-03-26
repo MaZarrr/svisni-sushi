@@ -4,17 +4,15 @@ import Header from "./header"
 import loadable from '@loadable/component'
 import { Hidden } from "@material-ui/core";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-import { makeStyles } from "@material-ui/core/styles"
 
 const ScrollTop = loadable(() => import('../components/common/ScrollTop'));
 const Footer = loadable(() => import('./footer'));
 
-const Layout = ({ children, location: { pathname } }) => {
-  const classes = useStyleLayout();
+const Layout = ({ children, location: { pathname = "" } }) => {
   return (
-      <React.Fragment>        
-      <Header/>
+      <div>        
       <ErrorBoundary>
+      <Header/>
       <div style={{
         maxWidth: `1920px`,
         backgroundColor: "#fafafa",
@@ -22,16 +20,20 @@ const Layout = ({ children, location: { pathname } }) => {
         minHeight: `100vh`
       }}>
       <div style={{height: 75, width: 100}} />
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 0 }} />
       <main>
-        <div className={classes.toolbar} />
           {children}
-          { pathname !== "/korzina/" &&
+      </main>
+      { pathname !== "/korzina/" &&
             pathname !== "/korzina/order" &&
             pathname !== "/korzina/order/order-processed" &&
             pathname !== "/korzina/order/order-success" &&
             <ScrollTop />
           }
-      </main>
       </div>
     </ErrorBoundary>
     <div>
@@ -40,7 +42,7 @@ const Layout = ({ children, location: { pathname } }) => {
     <Hidden xsDown>
       <Footer/>
     </Hidden>
-    </React.Fragment>
+    </div>
   )
 };
 
@@ -50,12 +52,3 @@ Layout.propTypes = {
 };
 
 export default Layout
-
-const useStyleLayout = makeStyles({
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 0,
-  }
-});

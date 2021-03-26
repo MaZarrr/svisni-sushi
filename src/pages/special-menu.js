@@ -126,18 +126,6 @@ query MyQuery($slug: String!) {
         weight
         price
       }
-      ... on ContentfulProductSushi {
-        id
-        name
-        count
-        description
-        image {
-          gatsbyImageData
-          description
-        }
-        price
-        weight
-      }
       ... on ContentfulProductWok {
         id
         name
