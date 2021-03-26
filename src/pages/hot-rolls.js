@@ -72,7 +72,7 @@ export const query = graphql `
           }
         contentfulIconMenuLeftPanel(name: {eq: "Горячие роллы"}) {
               image {
-                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                   gatsbyImageData
                   }
             }
         }

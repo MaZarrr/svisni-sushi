@@ -92,7 +92,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   const [load, setLoad] = React.useState(true);
   const [age, setAge] = useState('');
   const [delivery, setDelivery] = useState('');
-  const [checkPushOrder, setCheckPushOrder] = useState(false);
+  // const [checkPushOrder, setCheckPushOrder] = useState(false);
   const [openPay, setOpenPay] = useState(false)
   const [openAlert, setOpenAlert] = React.useState(false);
   const [state, setState] = React.useState("promptly");
@@ -167,8 +167,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         comments: ev.target.comments.value || "Без комментария",
       };
 
-
-      if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {
+      if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
          axios({
           method: 'POST',
           data: infoSuccess,
@@ -179,19 +178,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
 
       } else if(variantPay === "bank" && navigator.onLine) {
-
-        if(!checkPushOrder) {
-             axios({
+           axios({
               method: 'POST',
               data: infoSuccess,
               url: process.env.GATSBY_NODE_SERVE
         });
-        }
           setOpenPay(true)
-          setCheckPushOrder(true)
-          setTimeout(() => {
-          setCheckPushOrder(false)
-        }, 8000)
       } else {
         setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
         handleClickAlert()

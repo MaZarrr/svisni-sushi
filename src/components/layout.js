@@ -9,8 +9,7 @@ const ScrollTop = loadable(() => import('../components/common/ScrollTop'));
 const Footer = loadable(() => import('./footer'));
 
 const Layout = ({ children, location: { pathname = "" } }) => {
-  return (
-      <div>        
+  return (     
       <ErrorBoundary>
       <Header/>
       <div style={{
@@ -35,14 +34,13 @@ const Layout = ({ children, location: { pathname = "" } }) => {
             <ScrollTop />
           }
       </div>
-    </ErrorBoundary>
     <div>
     </div>
-
+    
     <Hidden xsDown>
       <Footer/>
     </Hidden>
-    </div>
+    </ErrorBoundary>
   )
 };
 
