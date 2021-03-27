@@ -15,7 +15,7 @@ const MenuCategory = () => {
         <IconButton style={{ padding: `10px 0 10px 0` }}>
           <Link style={{ textDecoration: `none`, color: "grey" }} to="special-menu/vegetarian">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Постно, веган меню</Typography>
+              <Typography className={classes.menuTitle} variant={"h2"}>Пост\веган</Typography>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -161,18 +161,15 @@ const useStyleMenu = makeStyles({
   },
   cartTitle: {
     position: `absolute`,
-    bottom: `0`,
-    opacity: `90%`,
-    borderRadius: 3,
-    backgroundColor: "#303032",
-    color: `#fff`,
-    left: 0,
-    width: `100%`,
+    bottom: `7vmin`,
+    color: `#000`,
+    left: 10,
     zIndex: 1000
   },
   menuTitle: {
+    fontWeight: 500,
     textAlign: `center`,
     padding: `10px 0 10px 0`,
-    fontSize: `4vmin`,
+    fontSize: `5vmin`,
   },
 });
