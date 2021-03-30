@@ -11,7 +11,7 @@ import filtersProducts from '../utils/filtersProducts'
 import CardsMenuPage from '../components/CardsMenuPage'
 import SpinnerNew from "../components/spinner/spinner-new";
 
-const categoryNames = ['с крабом', 'с лососем', 'с угрем', 'с креветкой', 'с мидиями', 'с курицей', 'веган'];
+const categoryNames = ['с крабом', 'с лососем', 'с окунем', 'с угрем', 'с креветкой', 'с мидиями', 'с курицей', 'веган'];
 
 const HotRolls = ({ data: {allContentfulProductHotRolly: {edges: productsHotRolls}, contentfulIconMenuLeftPanel: {image}},
     dispatch, product, searchText, priceFilter, loading }) => {

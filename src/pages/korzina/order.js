@@ -54,7 +54,7 @@ function Alert(props) {
 
 const city = {
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
-  kol: {id: 1, priceDel: 150, deliverySalePrice: 1400, name: "Колыхалино"},
+  kol: {id: 1, priceDel: 200, deliverySalePrice: 1500, name: "Колыхалино"},
   dvyl: {id: 2, priceDel: 130, deliverySalePrice: 1000, name: "Двулучное"},
   val: {id: 3, priceDel: 300, deliverySalePrice: 1500, name: "Валуйки(центр)"},
   yraz: {id: 4, priceDel: 80, deliverySalePrice: 500, name: "Уразово"},
@@ -74,7 +74,7 @@ const city = {
   valsoshgor: {id: 18, priceDel: 250, deliverySalePrice: 1500, name: "Валуйки(соц.городок)"},
   valrazdol: {id: 19, priceDel: 250, deliverySalePrice: 1500, name: "Валуйки(раздолье)"},
   togobi: {id: 20, priceDel: 100, deliverySalePrice: 700, name: "Тогобиевка"},
-  novopetr: {id: 21, priceDel: 300, deliverySalePrice: 1500, name: "Новопетровка"},
+  novopetr: {id: 21, priceDel: 300, deliverySalePrice: 2300, name: "Новопетровка"},
   babki: {id: 22, priceDel: 300, deliverySalePrice: 1500, name: "Бабки"},
   syxarevo: {id: 23, priceDel: 200, deliverySalePrice: 1200, name: "Сухарево"},
   tatarievka: {id: 24, priceDel: 100, deliverySalePrice: 700, name: "Татариевка"},
