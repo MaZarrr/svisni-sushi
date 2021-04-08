@@ -170,7 +170,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
          axios({
           method: 'POST',
-          headers: { 'Access-Control-Allow-Origin ': '*' },
+          headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
           url: process.env.GATSBY_NODE_SERVE
         })
