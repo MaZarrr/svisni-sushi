@@ -170,10 +170,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
          axios({
           method: 'POST',
-          headers: { 'Access-Control-Allow-Origin ': 'https://svisni-sushi.ru' },
+          headers: { 'Access-Control-Allow-Origin ': '*' },
           data: infoSuccess,
           url: process.env.GATSBY_NODE_SERVE
-        });
+        })
+        .then(res =>  console.log(res))
+        .catch(err => console.log(err))
         typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
         typeof window !== undefined && localStorage.removeItem('basketProduct');
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
@@ -181,9 +183,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       } else if(variantPay === "bank" && navigator.onLine) {
            axios({
               method: 'POST',
+              headers: { 'Access-Control-Allow-Origin ': '*' },
               data: infoSuccess,
               url: process.env.GATSBY_NODE_SERVE
-        });
+        })
+        .then(res =>  console.log(res))
+        .catch(err => console.log(err))
           setOpenPay(true)
       } else {
         setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
