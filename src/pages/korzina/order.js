@@ -96,6 +96,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   const [openPay, setOpenPay] = useState(false)
   const [openAlert, setOpenAlert] = React.useState(false);
   const [state, setState] = React.useState("promptly");
+  const [socketT, setSocketT] = useState({})
   const [textAlert, setTextAlert] = React.useState("");
   const [variantPay, setVariantPay] = React.useState("cash");
   const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
@@ -103,7 +104,20 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   const classes = useStyleOrder();
 
   React.useEffect(() => {
-      setLoad(false)
+    const msg = {
+      version: 1, 
+      user_name:"tbezhenova@yandex.ru", 
+      api_key:"t8jf5szp7iabqq4uv4dykoqsezyk7n79", 
+      action:"auth.login", 
+      app_name: "svisni-sushi"
+  }
+  const socket = new WebSocket("wss://tanak.moizvonki.ru/wsapi/");
+  socket.onopen = function (event) {
+    socket.send(JSON.stringify(msg));
+    // socket.send("{"version": 1, "user_name":"tbezhenova@yandex.ru", "api_key":"t8jf5szp7iabqq4uv4dykoqsezyk7n79", "action":"auth.login", "app_name": "svisni-sushi"}");
+  };
+  setSocketT(socket)
+  setLoad(false)
   }, []);
 
   const handleChangee = name => event => setState(name);
@@ -166,9 +180,42 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         chopsticks: palochkiTotal,
         comments: ev.target.comments.value || "Без комментария",
       };
-
+      
       if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
-         axios({
+  
+      
+        const msg = {action: "calls.send_sms", to: "89040949222", text: `
+        НОВЫЙ ЗАКАЗ
+        Имя: ${infoSuccess.name}
+        Телефон: ${infoSuccess.phone}
+        Товары: ${items.map((elem) => {
+
+          const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
+           ? "" : `Доп/ингридеент: ${elem.descriptionIngrideents}`;
+          const productSize = elem.productSize === "" || elem.productSize === undefined ? "" 
+          : `Размер: ${elem.productSize}`;
+          const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? "" 
+          : `Ингридеент/вок: ${elem.descriptionWok}`; 
+          
+          return `
+          Название: ${elem.name}
+          Cостав: ${elem.description}
+          Количество: ${elem.count}
+          Цена: ${elem.total}
+          ${descriptionIngrideents}
+          ${productSize}
+          ${descriptionWok}
+          `
+        })}
+        Доставка/сами: ${deliveru}
+        Время: ${deliveryTimeOrder}
+        Общая сумма: ${infoSuccess.totalPrice}
+        Сдача: ${infoSuccess.sdacha}
+        Палочки: ${infoSuccess.chopsticks}
+        Комментарий: ${infoSuccess.comments}
+        `}
+        socketT.send(JSON.stringify(msg)) 
+        axios({
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
@@ -181,6 +228,37 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
 
       } else if(variantPay === "bank" && navigator.onLine) {
+        const msg = {action: "calls.send_sms", to: "89040949222", text: `
+        НОВЫЙ ЗАКАЗ
+        Имя: ${infoSuccess.name}
+        Телефон: ${infoSuccess.phone}
+        Товары: ${items.map((elem) => {
+
+          const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
+           ? "" : `Доп/ингридеент: ${elem.descriptionIngrideents}`;
+          const productSize = elem.productSize === "" || elem.productSize === undefined ? "" 
+          : `Размер: ${elem.productSize}`;
+          const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? "" 
+          : `Ингридеент/вок: ${elem.descriptionWok}`; 
+          
+          return `
+          Название: ${elem.name}
+          Cостав: ${elem.description}
+          Количество: ${elem.count}
+          Цена: ${elem.total}
+          ${descriptionIngrideents}
+          ${productSize}
+          ${descriptionWok}
+          `
+        })}
+        Доставка/сами: ${deliveru}
+        Время: ${deliveryTimeOrder}
+        Общая сумма: ${infoSuccess.totalPrice}
+        Сдача: ${infoSuccess.sdacha}
+        Палочки: ${infoSuccess.chopsticks}
+        Комментарий: ${infoSuccess.comments}
+        `}
+        socketT.send(JSON.stringify(msg)) 
            axios({
               method: 'POST',
               headers: { 'Access-Control-Allow-Origin ': '*' },
