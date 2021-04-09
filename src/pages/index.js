@@ -20,27 +20,7 @@ const IndexPage = ({ data: { allContentfulContentIndex: { edges }, allContentful
         useEffect(() => {
           setIndexProduct(edges)
           setLoading(false)
-        //   const msg = {
-        //     version: 1, 
-        //     user_name:"tbezhenova@yandex.ru", 
-        //     api_key:"t8jf5szp7iabqq4uv4dykoqsezyk7n79", 
-        //     action:"auth.login", 
-        //     app_name: "svisni-sushi"
-        // }
-        // const socket = new WebSocket("wss://tanak.moizvonki.ru/wsapi/");
-        // socket.onopen = function (event) {
-        //   socket.send(JSON.stringify(msg));
-        //   // socket.send("{"version": 1, "user_name":"tbezhenova@yandex.ru", "api_key":"t8jf5szp7iabqq4uv4dykoqsezyk7n79", "action":"auth.login", "app_name": "svisni-sushi"}");
-        // };
-        // setSocketT(socket)
-        // console.log(socket);
         }, [edges])
-
-        // const testSocket = () => {
-        //   const msg = {action: "calls.send_sms", to: "89040949222", text: "Привет! Это Свисни Суши!"}
-        //   socketT.send(JSON.stringify(msg))
-          
-        // }
         return (
             <section>
               <SEO title="Заказать любимые суши роллы c доставкой в Валуйки"
@@ -63,7 +43,6 @@ const IndexPage = ({ data: { allContentfulContentIndex: { edges }, allContentful
                   { !loading ? <>
                   {/* Комбо */}
                   <Combo product={indexProduct[1]}/>
-                  {/* <button onClick={testSocket}>TesttSosket</button> */}
                   {/* Новинки/рекомендованые */}
                   <RecommendedProducts product={indexProduct[0]} />
                   </> : <SpinnerNew /> }
