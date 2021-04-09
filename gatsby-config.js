@@ -10,8 +10,7 @@ module.exports = {
   },
   flags: {
     DEV_SSR: true,
-    PRESERVE_WEBPACK_CACHE: true,
-    GATSBY_CONTENTFUL_OFFLINE: true,
+    PRESERVE_WEBPACK_CACHE: true
   },
   plugins: [
     {
