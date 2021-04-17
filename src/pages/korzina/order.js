@@ -229,7 +229,7 @@ Cум: ${infoSuccess.totalPrice}
     socketT.send(JSON.stringify(msg)) 
        axios({
           method: 'POST',
-          headers: { 'Access-Control-Allow-Origin ': '*' },
+          headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
           url: process.env.GATSBY_NODE_SERVE
     })
