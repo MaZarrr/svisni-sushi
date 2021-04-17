@@ -119,7 +119,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   setSocketT(socket)
   setLoad(false)
   }, []);
-
   const handleChangee = name => event => setState(name);
   const onSwitchPay = (pay) => () => setVariantPay(pay);
 
@@ -139,148 +138,115 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       }
     }
 
-    const pushOrder = () => {
-      const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
-        formDelivery: ev.target.delivery.value,
-        adress: stateDeliveryPrice.name,
-        street: ev.target.street.value,
-        home: ev.target.home.value,
-        apartment: ev.target.apartment.value,
-        podezd: ev.target.podezd.value,
-        etag: ev.target.etag.value,
-        kodDveri: ev.target.kodDveri.value
-      };
-      const deliveryTimeOrder = state !== "deliveryTime" ? "Приготовить сразу" : {
-        dateDelivery: ev.target.date.value,
-        timeDelivery: ev.target.time.value
-      };
-      const infoSuccess = {
-        name: ev.target.name.value,
-        phone: ev.target.phone.value,
-        products: items.map((elem) => {
+const pushOrder = () => {
+  const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
+    formDelivery: ev.target.delivery.value,
+    adress: stateDeliveryPrice.name,
+    street: ev.target.street.value,
+    home: ev.target.home.value,
+    apartment: ev.target.apartment.value,
+    podezd: ev.target.podezd.value,
+    etag: ev.target.etag.value,
+    kodDveri: ev.target.kodDveri.value
+  };
+  const deliveryTimeOrder = state !== "deliveryTime" ? "Сразу" : {
+    dateDelivery: ev.target.date.value,
+    timeDelivery: ev.target.time.value
+  };
+  const infoSuccess = {
+    name: ev.target.name.value,
+    phone: ev.target.phone.value,
+    products: items.map((elem) => {
 
-          const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
-          const productSize = elem.productSize === "" ? "" : elem.productSize;
-          const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
+      const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
+      const productSize = elem.productSize === "" ? "" : elem.productSize;
+      const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
 
-          return {
-            product: elem.name,
-            total: elem.total,
-            count: elem.count,
-            description: elem.description,
-            descriptionIngrideents,
-            productSize,
-            descriptionWok
-          }
-        }),
-        delivery: deliveru,
-        deliveryTime: deliveryTimeOrder,
-        totalPrice: `${totalPriceOrder()} руб. ${variantPay === "cash" ? "Выбрана оплата наличными" : "Выбрана онлайн оплата, ожидаем перевод..."}`,
-        sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
-        chopsticks: palochkiTotal,
-        comments: ev.target.comments.value || "Без комментария",
-      };
-      
-      if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
+      return {
+        product: elem.name,
+        total: elem.total,
+        count: elem.count,
+        description: elem.description,
+        descriptionIngrideents,
+        productSize,
+        descriptionWok
+      }
+    }),
+    delivery: deliveru,
+    deliveryTime: deliveryTimeOrder,
+    totalPrice: `${totalPriceOrder()} ${variantPay === "cash" ? "Нал" : "Он-й"}`,
+    sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
+    chopsticks: palochkiTotal,
+    comments: ev.target.comments.value,
+  };
   
-      
-        const msg = {action: "calls.send_sms", to: "89040949222", text: `
-        НОВЫЙ ЗАКАЗ
-        Имя: ${infoSuccess.name}
-        Телефон: ${infoSuccess.phone}
-        Товары: ${items.map((elem) => {
+  if(!navigator.onLine) {
+    setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
+    handleClickAlert()
+  }
 
-          const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
-           ? "" : `Доп/ингридеент: ${elem.descriptionIngrideents}`;
-          const productSize = elem.productSize === "" || elem.productSize === undefined ? "" 
-          : `Размер: ${elem.productSize}`;
-          const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? "" 
-          : `Ингридеент/вок: ${elem.descriptionWok}`; 
-          
-          return `
-          Название: ${elem.name}
-          Cостав: ${elem.description}
-          Количество: ${elem.count}
-          Цена: ${elem.total}
-          ${descriptionIngrideents}
-          ${productSize}
-          ${descriptionWok}
-          `
-        })}
-        Доставка/сами: ${deliveru}
-        Время: ${deliveryTimeOrder}
-        Общая сумма: ${infoSuccess.totalPrice}
-        Сдача: ${infoSuccess.sdacha}
-        Палочки: ${infoSuccess.chopsticks}
-        Комментарий: ${infoSuccess.comments}
-        `}
-        socketT.send(JSON.stringify(msg)) 
-        axios({
+// const comment = infoSuccess.comments === "" || infoSuccess.comments === undefined ? "" : infoSuccess.comments
+const adress = delivery === "Самовывоз" ? "Сами" : `Адрс: ${deliveru.adress} ${deliveru.street} ${deliveru.home}`
+const text = `
+Новый заказ
+${infoSuccess.name}
+☎: ${infoSuccess.phone}
+Т-ры: ${items.map((elem) => {
+const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
+? "" : `Доп: ${elem.descriptionIngrideents}`;
+const productSize = elem.productSize === "" || elem.productSize === undefined ? "" 
+: `${elem.productSize}`;
+const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? "" 
+: `${elem.descriptionWok}`; 
+return `
+Наз: ${elem.name} ${productSize} ${descriptionWok} ${elem.edit === true ? elem.description : ""} ${descriptionIngrideents}
+Кол-во: ${elem.count}
+₽: ${elem.total}
+`
+})}
+${adress}
+Дата: ${state !== "deliveryTime" ? "Сразу" : `${ev.target.date.value} ${ev.target.time.value}`}
+Cум: ${infoSuccess.totalPrice}
+`
+  if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
+    const msg = {action: "calls.send_sms", to: "89040949222", text}
+    socketT.send(JSON.stringify(msg)) 
+    axios({
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: infoSuccess,
+      url: process.env.GATSBY_NODE_SERVE
+    })
+    .then(res =>  console.log(res))
+    .catch(err => console.log(err))
+    typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
+    typeof window !== undefined && localStorage.removeItem('basketProduct');
+    navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
+  }
+  
+  if(variantPay === "bank" && navigator.onLine) {
+    const msg = {action: "calls.send_sms", to: "89040949222", text}
+    socketT.send(JSON.stringify(msg)) 
+       axios({
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Access-Control-Allow-Origin ': '*' },
           data: infoSuccess,
           url: process.env.GATSBY_NODE_SERVE
-        })
-        .then(res =>  console.log(res))
-        .catch(err => console.log(err))
-        typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
-        typeof window !== undefined && localStorage.removeItem('basketProduct');
-        navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
+    })
+    .then(res =>  console.log(res))
+    .catch(err => console.log(err))
+    setOpenPay(true)
+  }
 
-      } else if(variantPay === "bank" && navigator.onLine) {
-        const msg = {action: "calls.send_sms", to: "89040949222", text: `
-        НОВЫЙ ЗАКАЗ
-        Имя: ${infoSuccess.name}
-        Телефон: ${infoSuccess.phone}
-        Товары: ${items.map((elem) => {
+}
 
-          const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
-           ? "" : `Доп/ингридеент: ${elem.descriptionIngrideents}`;
-          const productSize = elem.productSize === "" || elem.productSize === undefined ? "" 
-          : `Размер: ${elem.productSize}`;
-          const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? "" 
-          : `Ингридеент/вок: ${elem.descriptionWok}`; 
-          
-          return `
-          Название: ${elem.name}
-          Cостав: ${elem.description}
-          Количество: ${elem.count}
-          Цена: ${elem.total}
-          ${descriptionIngrideents}
-          ${productSize}
-          ${descriptionWok}
-          `
-        })}
-        Доставка/сами: ${deliveru}
-        Время: ${deliveryTimeOrder}
-        Общая сумма: ${infoSuccess.totalPrice}
-        Сдача: ${infoSuccess.sdacha}
-        Палочки: ${infoSuccess.chopsticks}
-        Комментарий: ${infoSuccess.comments}
-        `}
-        socketT.send(JSON.stringify(msg)) 
-           axios({
-              method: 'POST',
-              headers: { 'Access-Control-Allow-Origin ': '*' },
-              data: infoSuccess,
-              url: process.env.GATSBY_NODE_SERVE
-        })
-        .then(res =>  console.log(res))
-        .catch(err => console.log(err))
-          setOpenPay(true)
-      } else {
-        setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
-        handleClickAlert()
-      }
-    }
-
-    if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true') {
-      setTextAlert("Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.")
-      handleClickAlert()
-    } else {
-      pushOrder()
-    }
-  };
+if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true') {
+  setTextAlert("Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.")
+  handleClickAlert()
+} else {
+  pushOrder()
+}
+};
 
   const handleChange = event => setAge(event.target.value);
   const handleChangeDelivery = event => setDelivery(event.target.value);
