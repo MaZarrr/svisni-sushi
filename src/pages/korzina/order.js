@@ -121,7 +121,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   }, []);
   const handleChangee = name => event => setState(name);
   const onSwitchPay = (pay) => () => setVariantPay(pay);
-
+  console.log(deliveryAdress);
   const handleSubmit = (ev) => {
     ev.preventDefault();
 
@@ -142,7 +142,7 @@ const pushOrder = () => {
   const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
     formDelivery: ev.target.delivery.value,
     adress: stateDeliveryPrice.name,
-    street: ev.target.street.value,
+    street: deliveryAdress,
     home: ev.target.home.value,
     apartment: ev.target.apartment.value,
     podezd: ev.target.podezd.value,
