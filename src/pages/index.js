@@ -41,9 +41,9 @@ const IndexPage = ({ data: { allContentfulContentIndex: { edges }, allContentful
                   </Hidden>
                   { !loading ? <>
                   {/* Комбо */}
-                  <Combo product={indexProduct[1]}/>
+                  <Combo product={indexProduct[0]}/>
                   {/* Новинки/рекомендованые */}
-                  <RecommendedProducts product={indexProduct[0]} />
+                  <RecommendedProducts product={indexProduct[1]} />
                   </> : <SpinnerNew /> }
                 </Grid>
             </section>
