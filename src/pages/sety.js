@@ -33,7 +33,6 @@ const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfu
         setLoad(false)
         // dispatch(spinnerLoading(false))
     }, [setyProduct, dispatch, doStart, priceIsSale]);
-
     return (
         <>
             <SEO title="Заказать суши сет. Меню наборов роллов — доставка в Валуйки"

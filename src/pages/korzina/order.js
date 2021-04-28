@@ -121,7 +121,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   }, []);
   const handleChangee = name => event => setState(name);
   const onSwitchPay = (pay) => () => setVariantPay(pay);
-  console.log(deliveryAdress);
   const handleSubmit = (ev) => {
     ev.preventDefault();
 

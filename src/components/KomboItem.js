@@ -111,7 +111,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
     }, [products.sostavDefault]);
     React.useEffect(() => {
         if(activeType === '') return;
-
         switchItems(products[activeType])
 
     },[activeItem, activeType, products, switchItems]);
@@ -182,7 +181,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                 </div>
                                 <Button fullWidth={true}
                                         variant={"contained"}
-                                        color={"primary"}
+                                        // color={"primary"}
                                         className={classes.buttonCheckout}
                                         onClick={() => addedCart({id, price,
                                             product: [addedProductKomboToBacket()]})}>
