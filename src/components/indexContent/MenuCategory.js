@@ -11,23 +11,7 @@ const MenuCategory = () => {
   const classes = useStyleMenu();
   return (
     <div className={classes.root}>
-      <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }}>
-          <Link style={{ textDecoration: `none`, color: "grey" }} to="special-menu/vegetarian">
-            <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Пост\веган</Typography>
-            </div>
-            <div style={{ margin: `0 auto` }}>
-              <StaticImage
-                loading={"eager"}
-                placeholder="blurred"
-                src="../../images/veganMenu.jpg"
-                alt="Постное, вегетарианское меню" />
-            </div>
-          </Link>
-        </IconButton>
-      </Grid>
-
+      
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
           <IconButton style={{ padding: `10px 0 10px 0` }}>
             <Link style={{ textDecoration: `none`, color: "grey" }} to="/sety/">
@@ -143,6 +127,24 @@ const MenuCategory = () => {
           </Link>
         </IconButton>
       </Grid>
+
+      <Grid item xs={6} sm={4} className={classes.itemMenu}>
+        <IconButton style={{ padding: `10px 0 10px 0` }}>
+          <Link style={{ textDecoration: `none`, color: "grey" }} to="special-menu/vegetarian">
+            <div className={classes.cartTitle}>
+              <Typography className={classes.menuTitle} variant={"h2"}>Пост\веган</Typography>
+            </div>
+            <div style={{ margin: `0 auto` }}>
+              <StaticImage
+                loading={"eager"}
+                placeholder="blurred"
+                src="../../images/veganMenu.jpg"
+                alt="Постное, вегетарианское меню" />
+            </div>
+          </Link>
+        </IconButton>
+      </Grid>
+
     </div>
   );
 }
