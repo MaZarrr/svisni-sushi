@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import SEO from "../../components/seo"
+import Seo from "../../components/seo"
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby'
 import FormControl from '@material-ui/core/FormControl';
@@ -315,7 +315,7 @@ if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true
 
   return (
     <section>
-      <SEO title="Оформление заказа"
+      <Seo title="Оформление заказа"
            noindex={true}/>
       <div className={classes.root}>
         <HeadSection titleTXT={"Оформление заказа"} />

@@ -1,11 +1,11 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const cookie = () => {
 
 return (
     <>
-    <SEO title="Политика обработки файлов Cookie" 
+    <Seo title="Политика обработки файлов Cookie" 
     description="Политика обработки файлов Cookie на сайте"
     noindex={true} />
     <div className="container">

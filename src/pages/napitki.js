@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql} from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
@@ -18,7 +18,7 @@ const Napitki = ({data: {allContentfulProductNapitki: {edges: productsDrink}, co
 
 return ( 
    <section>
-    <SEO title="Доставка напитков на дом" 
+    <Seo title="Доставка напитков на дом" 
        description="Коктейль Голубая лагуна, Мохито. Фруктовые, охлаждающие коктейли, пепси от 35 рублей"
     />
      <HeadSection titleTXT={"Напитки"} />

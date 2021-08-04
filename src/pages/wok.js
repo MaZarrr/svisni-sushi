@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
@@ -20,10 +20,10 @@ const Wok = ({data: {allContentfulProductWok: {edges: productsWok}, contentfulIc
 
     return (
         <section>
-            <SEO title="Доставка лапши Вок. Заказать лапшу wok в Валуйки"
+            <Seo title="Доставка лапши вок в Уразово"
                  description="Заказать wok с доставкой. Вок с морепродуктами, овощами, курицей, свининой всего от 190 руб"/>
 
-             <HeadSection titleTXT={"Вок"} />
+            <HeadSection titleTXT={"Вок"} />
             <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                 <CardsMenuPage titleCategory="Wok" slugCategogy="/wok" visibleItems={product}
                                image={image} product={product}/>

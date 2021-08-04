@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
@@ -35,7 +35,7 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
     }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
 return (
    <section>
-    <SEO title="Меню сложных роллов. Заказать доставку на дом в Валуйки"  
+    <Seo title="Меню сложных роллов. Заказать доставку на дом в Валуйки"  
     description="Пять видов роллов Филадельфия которых вы еще не пробовали. Закажи доставку или приходи к нам в гости!"
     pathname="/hot-rolls"/>
 

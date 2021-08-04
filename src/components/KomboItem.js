@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import SEO from "./seo"
+import Seo from "./seo"
 import Button from '@material-ui/core/Button';
 import clsx from "clsx";
 import { Grid } from "@material-ui/core";
@@ -123,7 +123,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
     };
 
     return <>
-        <SEO title={`Комбо набор ${name}`}
+        <Seo title={`Комбо набор ${name}`}
              description={`Доставка комбо наборов в Валуйки. Комбо набор ${name}, цена ${price} рублей`} />
 
         <h1 itemProp="name" className={classes.titleClass}>{name}</h1>

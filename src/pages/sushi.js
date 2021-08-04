@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
@@ -18,7 +18,7 @@ const Sushi = ({data: {allContentfulProductSushi: {edges: products}, contentfulI
 
 return ( 
    <section>
-    <SEO title="Недорогие суши с доставкой по Валуйскому району"
+    <Seo title="Недорогие суши с доставкой по Валуйскому району"
       description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте, суши от 50 рублей. Звонок +7(904)094-92-22"
       pathname="/pizza"/>
 

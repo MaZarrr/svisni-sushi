@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Avatar from '@material-ui/core/Avatar';
 import { Grid } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
@@ -246,7 +246,7 @@ const Dostavkaioplata = () => {
 
 return (
     <>
-    <SEO title="Зоны и стоимость доставки суши и пиццы в Валуйском районе"
+    <Seo title="Зоны и стоимость доставки суши и пиццы в Валуйском районе"
        description="Доставка осуществляется с 10:00 до 22:00 в Валуйки и Уразово. Бесплатная доставка от 500 рублей"
        pathname=""
     />

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
@@ -35,8 +35,8 @@ const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfu
     }, [setyProduct, dispatch, doStart, priceIsSale]);
     return (
         <>
-            <SEO title="Заказать суши сет. Меню наборов роллов — доставка в Валуйки"
-                 description="Широкий выбор сетов из запечённых роллов и суши в суши баре Свисни Суши Уразово с выгодой до 40%. Акция ланч-тайм, скидки с 10 до 15:00"/>
+            <Seo title="Заказать суши сет. Меню наборов роллов — доставка в Валуйки"
+                 description="Широкий выбор сетов из фирменных и запечённых роллов в Свисни Суши Уразово с выгодой до 40%. Акция ланч-тайм, скидки с 10 до 15:00"/>
                     <HeadSection titleTXT={"Заказать суши сет"} path={location.pathname} isFilter={true} categoryNames={categoryNames}/>
                     <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
                       {!load ?

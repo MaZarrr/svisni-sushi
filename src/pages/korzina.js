@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { connect } from 'react-redux';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -170,7 +170,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
   const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items));
   return (
     <>
-      <SEO title="Корзина"
+      <Seo title="Корзина"
            description="Корзина товаров"
            noindex={true}/>
       <section>

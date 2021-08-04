@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql, Link} from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image";
 import Grid from '@material-ui/core/Grid';
@@ -11,8 +11,8 @@ const Sale = (props) => {
   const classes = useStyleSalePage();
 
   return <>
-  <SEO title="Акции и скидки на пиццу, роллы и суши в Уразово"
-  description="Акции на роллы суши и пиццу в Валуйках. Скидки до 60%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
+  <Seo title="Акции и скидки на пиццу, роллы и суши в Уразово"
+  description="Акции на роллы суши и пиццу в Валуйках. Скидки до 50%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
   <HeadSection titleTXT={"Акции"} />
   <Grid container className={classes.container}>
       {props.data.allContentfulProductSale.edges.map((product) => (

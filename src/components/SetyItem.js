@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "./seo"
+import Seo from "./seo"
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
@@ -52,7 +52,7 @@ const ImageWrapped = styled(Grid)`
 
 const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }) => {
   return <>
-  <SEO title={`Сет роллов ${name}`}
+  <Seo title={`Сет роллов ${name}`}
        description={`Набор роллов ${name}, количество ${count} с общим весом ${weight}`}
        pathname="/sety/"/>
       <LayoutItem name={name}>

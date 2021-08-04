@@ -9,7 +9,7 @@ import MenuCategory from "../components/indexContent/MenuCategory";
 import Combo from '../components/indexContent/combo/index'
 import RecommendedProducts from "../components/indexContent/recommended-products";
 import SpinnerNew from "../components/spinner/spinner-new";
-import SEO from "../components/seo";
+import Seo from "../components/seo";
 
 const IndexPage = ({ data: { allContentfulContentIndex: { edges }, allContentfulCarouselSiteImage } }) => {
         const [loading, setLoading] = useState(true)
@@ -22,7 +22,7 @@ const IndexPage = ({ data: { allContentfulContentIndex: { edges }, allContentful
         }, [edges])
         return (
             <section>
-              <SEO title="Заказать любимые суши роллы c доставкой в Валуйки"
+              <Seo title="Заказать любимые суши роллы c доставкой в Валуйки"
                    description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                         Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
               <Carousel dataCarousel={allContentfulCarouselSiteImage}/>

@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
@@ -18,7 +18,7 @@ const Kombo = ({ data: { allContentfulProductKombo: {edges: productsKombo}, cont
 
 return (
     <section>
-    <SEO title="Доставка комбо наборов из суши, роллов и пиццы в Валуйки"
+    <Seo title="Доставка комбо наборов из суши, роллов и пиццы в Валуйки"
     description="Заказать специальные комбо наборы, собирай свои блюда из суши и пиццы выгодно. Работаем с 10 до 22:00"
     pathname="/pizza"/>
       <HeadSection titleTXT={"Комбо наборы"}/>

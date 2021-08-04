@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql, Link } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
@@ -46,7 +46,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
 
     return (
         <section>
-            <SEO title="Заказать пиццу в Валуйки, доставка пиццы с 10 до 22:00"
+            <Seo title="Заказать пиццу в Валуйки, доставка пиццы с 10 до 22:00"
                  description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно, именинникам дарим пиццу. Меню на сайте, большая пицца от 249 руб"
                   pathname=""/>
             <HeadSection titleTXT={"Доставка пиццы"} path={path} isFilter={true} categoryNames={categoryNames} />
@@ -124,7 +124,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                             className={clsx(classes.buttonD, {
                                                                 [classes.buttonT]: size[contentful_id]})}>
                                                         <Typography variant={"body1"}>Большая</Typography></button>
-                                                    <Typography style={{fontSize: 13, textAlign: `center`}} variant={"subtitle2"}>36см</Typography>
+                                                    <Typography style={{fontSize: 13, textAlign: `center`}} variant={"subtitle2"}>41см</Typography>
                                                 </Grid>
                                             </Grid>
                                             }

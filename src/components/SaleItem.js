@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "./seo"
+import Seo from "./seo"
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from 'gatsby';
 import Button from '@material-ui/core/Button';
@@ -51,7 +51,7 @@ const ImageSale = styled(GatsbyImage) `
 const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
   return (
     <>
-      <SEO title={`Акция ${name}`}
+      <Seo title={`Акция ${name}`}
            description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
            noindex={true}
            pathname="/sale"/>

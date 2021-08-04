@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import {Link}  from 'gatsby';
 import HeadSection from "../components/HeadSection"
 
@@ -7,7 +7,7 @@ const onas = () => {
 
 return (
     <>
-    <SEO title="Узнай больше о компании"
+    <Seo title="Узнай больше о компании"
     description="Мы готовим роллы, суши, пиццу для наших клиентов. Узнай подробнее о Свисни Суши на сайте"
     />
     <HeadSection titleTXT={"О нас"} />

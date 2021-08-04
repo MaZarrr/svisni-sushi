@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
@@ -38,7 +38,7 @@ const Adresikontakty = () => {
 
 return (
     <>
-    <SEO title="Адрес и контакты" 
+    <Seo title="Адрес и контакты Свисни Суши" 
     description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"/>
 
     <HeadSection titleTXT={"Адрес и контакты"} />
