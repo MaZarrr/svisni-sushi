@@ -5,7 +5,7 @@ import theme from './src/theme';
 import { CssBaseline } from '@material-ui/core';
 // import ReactDOM from "react-dom"
 
-// import { ApolloWrapper } from "./src/gatsby-theme-apollo/ApolloWrapper"
+import { ApolloWrapper } from "./src/gatsby-theme-apollo/ApolloWrapper"
 
 export const wrapPageElement = ({ element, props }) => {
   return (
@@ -17,7 +17,9 @@ export const wrapRootElement = ({ element }) => {
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <ApolloWrapper>
           {element}
+        </ApolloWrapper>
       </ThemeProvider>
     )
 }

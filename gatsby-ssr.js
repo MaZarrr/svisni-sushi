@@ -3,7 +3,7 @@ import Layout from './src/components/layout'
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './src/theme';
 import { CssBaseline } from '@material-ui/core';
-// import { ApolloWrapper } from './src/gatsby-theme-apollo/ApolloWrapper';
+import { ApolloWrapper } from './src/gatsby-theme-apollo/ApolloWrapper';
 
 export const wrapPageElement = ({ element, props }) => {
   return (
@@ -15,7 +15,9 @@ export const wrapRootElement = ({ element }) => {
  return (
    <ThemeProvider theme={theme}>
     <CssBaseline/>
+    <ApolloWrapper>
         {element}
+    </ApolloWrapper>
   </ThemeProvider>
  );
 };
