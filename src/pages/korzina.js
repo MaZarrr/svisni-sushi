@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { connect } from 'react-redux';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -66,7 +66,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
         <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
           <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
               <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
-                <GatsbyImage style={{maxWidth: 192, padding: 0, zIndex: 10}}
+                <GatsbyImage style={{maxWidth: 158, padding: 0, zIndex: 10}}
                              image={pizza().image} alt={pizza().name}/>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
@@ -134,7 +134,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
         <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
             <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
               <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
-                <GatsbyImage style={{maxWidth: 192}} image={saleRoll.image} alt={saleRoll.name}/>
+                <GatsbyImage style={{maxWidth: 158}} image={saleRoll.image} alt={saleRoll.name}/>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
                 <Typography variant="subtitle1" style={{fontSize: 16}}>
@@ -170,7 +170,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
   const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items));
   return (
     <>
-      <SEO title="Корзина"
+      <Seo title="Корзина"
            description="Корзина товаров"
            noindex={true}/>
       <section>
@@ -191,7 +191,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                           <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
                             <div style={{margin: `auto 0`, zIndex: 10}}>
                               <GatsbyImage
-                                // style={{width: 70, height: 70, margin: `auto 0`, padding: 0, zIndex: 10}}
+                                style={{maxWidth: 158}}
                                 image={image} alt={name} />
                             </div>
                             <div style={{width: `100%`}}>
@@ -200,12 +200,13 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                   {name}
                                 </Typography>
                                 {/*button added count product*/}
-                                <div style={{display: `flex`, paddingLeft: 10}}>
+                                <div style={{display: `flex`, paddingLeft: 10, position: `relative`}}>
                                   <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 0`}} variant="subtitle2">
                                     {priceDef === 0 ? "1шт" : `${count}шт`}
                                   </Typography>
 
-                                  <div style={{display: `flex`, alignItems: `center`, margin: `auto`}}>
+                                  {/* <div style={{display: `flex`, alignItems: `center`, margin: `auto`}}> */}
+                                  <div>
                                     {price !== 79 && priceDef !== 0 ?
                                       <>
                                         <IconButton aria-label="plus" component="span"
@@ -222,7 +223,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
                                     { price > 78 &&
                                     <IconButton aria-label="remove" component="span"
-                                      // style={{padding: `7px`}}
                                                 onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
                                                   : () => deleteFilaSale(id)}>
                                       <DeleteOutlineOutlinedIcon/>
@@ -236,7 +236,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                     </IconButton>
                                     }
                                   </div>
-                                  <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 20px auto 0`}}
+                                  <Typography style={{fontSize: 14, fontWeight: 600, position: `absolute`, top: 15, right: 10}}
                                               variant="subtitle2">{price === 79 ? null : `${total}₽`}</Typography>
                                 </div>
                               </div>
@@ -326,13 +326,13 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                   }}>
 
                     <Paper style={{padding: 5, opacity: `90%`}}>
-                      <Typography variant="body1" style={{fontSize: 18}}>Сумма заказа <b>{total} ₽</b></Typography>
+                      <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
                     </Paper>
                     <Button
                       component={Link}
                       to={`${pathname}order`}
                       size={'small'}
-                      color={"secondary"}
+                      classes={{label: classes.label}}
                       className={classes.buttonCheckout}
                       variant="contained" >
                       Перейти к оформлению
@@ -360,11 +360,12 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                       </>}
 
                       <Typography variant="h6" style={{fontSize: 24}}>Итого </Typography>
-                      <Typography variant="body1" style={{fontSize: 24}}>Сумма заказа <b>{total} ₽</b></Typography>
+                      <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
                       <Button
+                        color={"primary"}
                         component={Link}
                         to={`${pathname}order`}
-                        color={"primary"}
+                        classes={{label: classes.label}}
                         size={'large'}
                         variant="contained" >
                         Продолжить
@@ -487,6 +488,12 @@ const useStyleBasket  = makeStyles(theme => ({
     flexGrow: 1,
     marginTop: 10
   },
+  label: {
+    color: "white"
+  },
+  color: {
+
+  },
   wrappedContainer: {
     paddingLeft: 25,
     [theme.breakpoints.down('500')]: {
@@ -496,8 +503,8 @@ const useStyleBasket  = makeStyles(theme => ({
     buttonCheckout: {
     position: "fixed",
     bottom: 44,
+    color: 'white',
     backgroundColor: "#303032",
-    color: "white",
     marginTop: 5,
     marginBottom: 15,
     width: '96%',

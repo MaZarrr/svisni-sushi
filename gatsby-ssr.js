@@ -1,10 +1,9 @@
 import React from 'react'
 import Layout from './src/components/layout'
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
-import montserratBold from "./src/assets/Montserrat-ExtraBold.woff2";
-import montserratMedium from "./src/assets/Montserrat-Medium.woff2";
 import theme from './src/theme';
+import { CssBaseline } from '@material-ui/core';
+// import { ApolloWrapper } from './src/gatsby-theme-apollo/ApolloWrapper';
 
 export const wrapPageElement = ({ element, props }) => {
   return (
@@ -14,31 +13,15 @@ export const wrapPageElement = ({ element, props }) => {
 
 export const wrapRootElement = ({ element }) => {
  return (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    {element}
+   <ThemeProvider theme={theme}>
+    <CssBaseline/>
+        {element}
   </ThemeProvider>
  );
 };
 
 export const onRenderBody = ({ setHeadComponents }) => {
       setHeadComponents([
-        <link
-          key="font-medium"
-          rel="preload"
-          href={montserratMedium}
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />,
-        <link
-          key="font-bold"
-          rel="preload"
-          href={montserratBold}
-          type="font/woff2"
-          as="font"
-          crossOrigin="anonymous"
-        />,
         <script
             key="vk-retargeting"
             type="text/javascript"

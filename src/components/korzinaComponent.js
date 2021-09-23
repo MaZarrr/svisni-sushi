@@ -90,12 +90,12 @@ const Korzina = ({ cartItems = [], orderTotal = 0}) => {
 return (
     <KorzinaItem >
         <Link to="/korzina/" state={{ loading: false }}>
-            <IconButton color="secondary" aria-label="cart">
+            <IconButton aria-label="cart">
             <TextTotal count={count} prevCount={prevCount} >
                 <StyledBadge anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'right',
-                }}  badgeContent={totalCount === 0 ? "0" : totalCount} color="secondary"/>
+                }}  badgeContent={totalCount === 0 ? "0" : totalCount}/>
 
                     <ShoppingCartIcon fontSize={'large'}/>
                     <StyledBadge badgeContent={!orderTotal ? "0" : orderTotal} max={9999} anchorOrigin={{

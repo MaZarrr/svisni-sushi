@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
@@ -25,13 +25,13 @@ const HotRolls = ({ data: {allContentfulProductHotRolly: {edges: productsHotRoll
 
 return (
    <section>
-    <SEO title="Заказать запечённые роллы с доставкой на дом в Валуйки"
-          description="Доставка запеченых и горячих роллов в Валуйки с 10 до 22:00 - оцени вкус японской кухни от Свисни Суши"
+    <Seo title="Заказать запечённые роллы с доставкой на дом в Валуйки"
+          description="Запечённые и жаренные роллы, доставка в Валуйки с 10 до 22:00 - оцени вкус японской кухни от Свисни Суши"
           pathname="/sety/"/>
 
         <HeadSection titleTXT={"Горячие роллы"} isFilter={true} categoryNames={categoryNames}/>
      {!loading ?
-           <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+           <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                               image={image} product={product}/>
            </Grid>

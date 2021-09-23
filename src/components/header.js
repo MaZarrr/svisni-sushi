@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { StaticImage } from "gatsby-plugin-image";
 import Hidden from "@material-ui/core/Hidden";
 import loadable from "@loadable/component";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles"
 
 import DrawerMenu from './DrawerMenu'
@@ -34,7 +34,7 @@ const links = [
     id: 5,
     name: 'Адрес и контакты',
     link: '/adres-i-kontakty'
-  }
+  },
 ];
 
 const Header = () => {
@@ -66,23 +66,72 @@ const Header = () => {
                   </Link>
                 </Grid>
 
-                <Grid item xs={9} component={`ul`} style={{margin: `auto 0`, display: `flex`, justifyContent: `space-around`}}>
-                {
+                <Grid item 
+                xs={9} 
+                component={`ul`} 
+                style={{margin: `auto 0`, display: `flex`, justifyContent: `space-around`}}>
+                {/* className={classes.heade_info} */}
+                {/* <Grid 
+                  container 
+                  direction="column"
+                  > 
+                  <Typography>
+                    Уразово
+                  </Typography>
+                  <Typography>
+                    Работаем с 10:00 до 22:00
+                  </Typography>
+                  <Grid container spacing={1}>
+                  <Typography>
+                    Пн
+                  </Typography>
+                  <Typography>
+                    Вт
+                  </Typography>
+                  </Grid>
+                </Grid> */}
+                                {
                   links.map(({name, link, id}) => (
-                      <li key={id} style={{ textDecoration: `none`,
-                        listStyle: `none`, fontFamily: 'Montserrat, sans-serif', textAlign: `center`}}>
+                      <li key={id} 
+                      style={{ 
+                        textDecoration: `none`,
+                        listStyle: `none`, 
+                        textAlign: `center`
+                        }}>
+                          <Typography> 
                         <Link to={link} activeStyle={{
                           border: `solid 1px #FC5185`,
                           borderBottomWidth: `3px`,
                           borderRadius: `8px`,
                           padding: 8,
-                          color: `blueviolet`}}>
-                            {name}
+                          color: 'red'
+                          }} >
+                          {name}
                         </Link>
+                        </Typography> 
                       </li>
-
                   ))
                 }
+                {/* {
+                  links.map(({name, link, id}) => (
+                      <li key={id} 
+                      style={{ 
+                        textDecoration: `none`,
+                        listStyle: `none`, 
+                        textAlign: `center`
+                        }}>
+                        <Link to={link} activeStyle={{
+                          border: `solid 1px #FC5185`,
+                          borderBottomWidth: `3px`,
+                          borderRadius: `8px`,
+                          padding: 8,
+                          textDecoration: 'none'
+                          }}>
+                          <Typography variant="body1">{name}</Typography> 
+                        </Link>
+                      </li>
+                  ))
+                } */}
                 </Grid>
                 </Hidden>
 

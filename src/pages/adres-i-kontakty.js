@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
@@ -38,7 +38,7 @@ const Adresikontakty = () => {
 
 return (
     <>
-    <SEO title="Адрес и контакты" 
+    <Seo title="Адрес и контакты Свисни Суши" 
     description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"/>
 
     <HeadSection titleTXT={"Адрес и контакты"} />
@@ -52,8 +52,8 @@ return (
                     </IconButton>
                 </div>
                 <div>
-                    <Typography variant="h5">Режим работы</Typography>
-                    <Typography variant={"subtitle1"}>С 10:00 до 22:00</Typography>
+                    <Typography variant="subtitle1">Режим работы</Typography>
+                    <Typography variant={"subtitle2"}>С 10:00 до 22:00</Typography>
                 </div>
             </div>
                 <div className="item-info">
@@ -63,8 +63,8 @@ return (
                     </IconButton>
                 </div>
                 <div>
-                    <Typography variant="h5">Телефон</Typography>
-                    <Typography variant={"subtitle1"}>
+                    <Typography variant="subtitle1">Телефон</Typography>
+                    <Typography variant={"subtitle2"}>
                         <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
                     </Typography>
                 </div>
@@ -76,8 +76,8 @@ return (
                     </IconButton>
                 </div>
                 <div>
-                    <Typography className="mt-2" variant="h5">Адрес</Typography>
-                    <Typography className="w-75" variant={"subtitle1"}><span itemProp="streetAddress">ул.3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
+                    <Typography variant="subtitle1">Адрес</Typography>
+                    <Typography variant={"subtitle2"}><span itemProp="streetAddress">ул.3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
                 </div>
             </div>
             </Container>

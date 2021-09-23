@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
@@ -19,12 +19,12 @@ const Souses = ({data: {allContentfulProductSouse: {edges: productsSouses}, cont
 
 return ( 
    <section>
-    <SEO title="Соусы и различные добавки к суши и роллам"
+    <Seo title="Соусы и различные добавки к суши и роллам"
     description="Фирменный соус, барбекю соус, ореховый соус и другие у нас в меню Свисни суши"
     noindex={true}/>
 
      <HeadSection titleTXT={"Соусы"} />
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
         <CardsMenuPage titleCategory="Соус" slugCategogy="/souses" visibleItems={product}
                        image={image} product={product}/>
     </Grid>

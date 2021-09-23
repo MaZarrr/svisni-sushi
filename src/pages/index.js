@@ -9,25 +9,85 @@ import MenuCategory from "../components/indexContent/MenuCategory";
 import Combo from '../components/indexContent/combo/index'
 import RecommendedProducts from "../components/indexContent/recommended-products";
 import SpinnerNew from "../components/spinner/spinner-new";
-import SEO from "../components/seo";
+import Seo from "../components/seo";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/client";
+import useForm from "../utils/useForm";
+import useLocalStorage from "../utils/useLocalStorage"
+import { authTokenVar, isLoggedInVar } from "../gatsby-theme-apollo/client";
+import { TOKENSTORAGE } from "../components/common/constants";
 
-const IndexPage = ({ data: { allContentfulContentIndex: { edges }, allContentfulCarouselSiteImage } }) => {
-        const [loading, setLoading] = useState(true)
+const LOGIN_MUTATION = gql`
+  mutation Login($loginInput: LoginInput!) {
+    login(input: $loginInput) {
+      ok
+      token
+      error
+    }
+  }
+`;
+
+const IndexPage = ({ 
+  data: { allContentfulContentIndex: { edges }, 
+  allContentfulCarouselSiteImage } }) => {
+
+        const [dataCar,] = useState(allContentfulCarouselSiteImage)
+        const [loadingSpinner, setLoading] = useState(true)
         const [indexProduct, setIndexProduct] = useState(true)
-       
         const classes = useStyleIndexPage();
+        const [value, handleChange] = useForm();
+        const [, setToken] = useLocalStorage(TOKENSTORAGE)
+        
+        const onCompleted = (data) => {
+          const { login: { ok, token } } = data;
+          if(ok && token){
+            console.log("ok1", ok);
+            console.log("token1", token);
+            setToken(token)
+            authTokenVar(token)
+            isLoggedInVar(true)
+          }
+        }
+
+          const [loginMutation, { data: loginMutationResult, loading }] = useMutation(
+            LOGIN_MUTATION, {
+            onCompleted
+          })
 
         useEffect(() => {
           setIndexProduct(edges)
           setLoading(false)
         }, [edges])
-        return (
+
+        const onSubmit = (e) => {
+          e.preventDefault();
+          if(!loading){
+            const { phone, password } = value
+            loginMutation({
+              variables: {
+                loginInput: {
+                  phone,
+                  password
+                }
+              }
+            })
+          }
+
+        }
+
             <section>
-              <SEO title="Заказать любимые суши роллы c доставкой в Валуйки"
+              <Seo title="Заказать любимые суши роллы c доставкой в Валуйки"
                    description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
                         Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-              <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
+              <Hidden smUp>
+              <Typography 
+              variant={"body2"}
+              style={{textAlign: 'center', marginTop: 45}}>Доставка роллов и пиццы <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Уразово и Валуйки</span></Typography>  
+              </Hidden>
+              <Carousel dataCarousel={dataCar}/>
+                
                 <Grid container className={classes.root}>
+
                   <Hidden xsDown>
                     <Typography className={classes.title}
                                 variant={"inherit"}
@@ -40,11 +100,12 @@ const IndexPage = ({ data: { allContentfulContentIndex: { edges }, allContentful
                       <MenuCategory />
                     </Grid>
                   </Hidden>
-                  { !loading ? <>
+                  { !loadingSpinner ? <>
                   {/* Комбо */}
-                  <Combo product={indexProduct[1]}/>
+                  <Combo product={indexProduct[0]}/>
+
                   {/* Новинки/рекомендованые */}
-                  <RecommendedProducts product={indexProduct[0]} />
+                  <RecommendedProducts product={indexProduct[1]} />
                   </> : <SpinnerNew /> }
                 </Grid>
             </section>
@@ -63,6 +124,7 @@ const useStyleIndexPage = makeStyles(theme => ({
         fontWeight: 900,
         marginBottom: 30,
         marginTop: 30,
+        textAlign: 'center',
         width: `100%`,
         textTransform: `uppercase`,
         fontSize: 34,
@@ -73,6 +135,11 @@ const useStyleIndexPage = makeStyles(theme => ({
         }
     }
 }));
+
+    // const [loginMutation] = useMutation(LOGIN_MUTATION, {
+        //   onCompleted: () => null,
+        //   onError: () => null
+        // })
 
 export const query = graphql `
 {  
@@ -182,10 +249,40 @@ allContentfulCarouselSiteImage {
             slug
             nameAkcii
             imgCarouselPc {
-              gatsbyImageData(placeholder: BLURRED)
+              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
             }
         }
       }
     }
 }
 `
+
+                  // {/* <form>
+                  // <TextField 
+                  //   id="standard-full-width"
+                  //   label="телефон"
+                  //   error={false}
+                  //   fullWidth
+                  //   variant="filled"
+                  //   placeholder="Введите телефон"
+                  //   required
+                  //   inputProps={{maxLength: 20, minLength: 2}}
+                  //   name="phone"
+                  //   onChange={handleChange}
+                  //   value={value.phone}
+                  //   helperText={""} />
+                  // <TextField 
+                  //   id="standard-full-width"
+                  //   label="пароль"
+                  //   error={false}
+                  //   fullWidth
+                  //   variant="filled"
+                  //   placeholder="Введите пароль"
+                  //   required
+                  //   inputProps={{maxLength: 20, minLength: 2}}
+                  //   name="password"
+                  //   onChange={handleChange}
+                  //   value={value.password}
+                  //   helperText={""} />
+                  //   <Button type="submit" onClick={onSubmit}>Зарегестрироваться</Button>
+                  // </form> */}

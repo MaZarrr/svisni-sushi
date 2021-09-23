@@ -5,10 +5,12 @@ import loadable from '@loadable/component'
 import { Hidden } from "@material-ui/core";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
-const ScrollTop = loadable(() => import('../components/common/ScrollTop'));
+const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const Footer = loadable(() => import('./footer'));
 
-const Layout = ({ children, location: { pathname = "" } }) => {
+const Layout = (
+  { children, location: { pathname = "" }
+}) => {
   return (     
       <ErrorBoundary>
       <Header/>

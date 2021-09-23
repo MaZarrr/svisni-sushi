@@ -38,13 +38,13 @@ export const useStyles = makeStyles(theme => ({
 }));
 
 // dir = "center"
-const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedIngrideents, ingrideentButtonStyle, height = 210}) => {
+const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedIngrideents, ingrideentButtonStyle, height = 210, addTodel}) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     // const classes = useStyles();
 
     const handleChange = (event) =>  {
-        addedIngrideents({id, sostav, name: event.target.name, ingrideents, check: event.target.checked, pizzaIng, path})
+        addedIngrideents({id, sostav, name: event.target.name, ingrideents, check: event.target.checked, pizzaIng, path, addTodel})
     };
 
     const handleToggle = () => setOpen((prevOpen) => !prevOpen);
@@ -52,7 +52,7 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
 
     return (
         <Grid container direction="column">
-            <Grid item xs={12} style={{zIndex: 100}}>
+            <Grid item xs={12} style={{ zIndex: 100 }}>
                 <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
                     {/*<Button className={clsx(classes.buttonD, {*/}
                     {/*    [classes.buttonT]: ingrideentButtonStyle})} onClick={handleToggle}>Ингридеенты</Button>*/}
@@ -78,7 +78,7 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                                 {ingrideents.map((el) => {
                                 return (
                                 <div key={String(el.id)}>
-                                    <Grid container alignItems={"center"} justify={"space-between"}>
+                                    <Grid container alignItems={"center"} justifyContent={"space-between"}>
                                     <Grid item xs={6}>
                                     <FormControlLabel value={el.value} style={{margin: `auto 0`}} control={
                                             <Checkbox
@@ -99,7 +99,7 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                             </FormGroup>
                             </Paper>
                             <Button size={"small"} style={{width: `100%`, fontSize: 12}} variant={"contained"}
-                                    onClick={() => addedIngrideent({sostav, pizzaIng, id})}>Применить</Button>
+                                    onClick={() => addedIngrideent({sostav, pizzaIng, id, addTodel})}>Применить</Button>
                             </div>
                         </Grow>
                         )}

@@ -3,7 +3,7 @@ import ContentLoader from "react-content-loader"
 import { Grid } from "@material-ui/core";
 
 const Spinner = (props) => (
-    <Grid container justify={"space-around"} direction={"row"} style={{marginTop: 15}}>
+    <Grid container justifyContent={"space-around"} direction={"row"} style={{marginTop: 15}}>
         { Array(props.count).fill(0).map((_, index) =>
             <Grid item key={index} xs={12} sm={3} >
             <div style={{width: `290px`, height: `630px`, margin: `0 auto`}}>

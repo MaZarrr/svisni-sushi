@@ -46,6 +46,7 @@ export default connect(null, mapDispatchToProps)(CustomizedInputSearch)
 export const useStyleSearchInput = makeStyles(theme => ({
   root: {
     padding: '2px 4px',
+    marginTop: 10,
     display: 'flex',
     width: `95%`,
     [theme.breakpoints.down('500')]: {

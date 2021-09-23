@@ -17,19 +17,6 @@ exports.onCreatePage = async ({ page, actions }) => {
     }
 }
 
-exports.onCreateWebpackConfig = ({ actions, cache }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        path: require.resolve("path-browserify"),
-      },
-      fallback: {
-        fs: false,
-      }
-    }
-  })
-}
-
 exports.createPages = async ({ graphql, actions, page }) => {
   const { createPage } = actions;
   const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
@@ -94,3 +81,17 @@ exports.createPages = async ({ graphql, actions, page }) => {
 
   }).catch((err) => console.log(err))
 };
+
+
+// exports.onCreateWebpackConfig = ({ actions, cache }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       alias: {
+//         path: require.resolve("path-browserify"),
+//       },
+//       fallback: {
+//         fs: false,
+//       }
+//     }
+//   })
+// }

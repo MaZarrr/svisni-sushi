@@ -1,6 +1,7 @@
 import * as R from 'ramda'
 import uniqid from 'uniqid'
 import {createReducer, createAction} from "redux-act";
+import { isBrowser } from '../components/common/constants';
 
 export const addedToCart = createAction('SET_ADDED_TO_CART');
 const removeFromCart = createAction('SET_REMOVE_FROM_CART');
@@ -168,25 +169,31 @@ export const saleRoll = (objRoll) => async (dispatch) => {
 export const salePizza = (objPizza) => async (dispatch) => await dispatch(addedSalePizza(objPizza))
 export const deletePizza = (id) => (dispatch) => dispatch(deletePizzaDarom(id))
 export const deleteRoll = (id) => (dispatch) => dispatch(deleteRollSale(id))
-export const addedIngrideent = ({id, sostav, name, ingrideents, check, path = null, pizzaIng}) => (dispatch, getStore) => {
+export const addedIngrideent = ({id, sostav, name, addTodel, ingrideents, check, path = null, pizzaIng}) => (dispatch, getStore) => {
     const {app: {productPizza}, shoppingCart: {newPizza}} = getStore();
     const ingrideent = ingrideents.find((el) => el.title === name)
-    const ingrideentIndex = sostav.findIndex((el) => el.id === ingrideent.id)
-    if(ingrideentIndex === -1) {
-        dispatch(ingrideentPlus({id, path, pizzaIng, add: ingrideent.plus, name, check, ingrideents, sostav, productPizza: newPizza, defaultPizza: productPizza}))
-    } else {
-        const ingrideentSostav = R.remove(ingrideentIndex, 1, sostav)
-        dispatch(ingrideentMinus({id, path, pizzaIng, decrice: ingrideent.plus, name, check, ingrideentSostav, ingrideents, productPizza}))
-    }
+    // const ingrideentIndex = sostav.findIndex((el) => el.id === ingrideent.id)
+    // if(ingrideentIndex === -1) {
+        console.log(addTodel);
+        if(addTodel === "inc"){
+            dispatch(ingrideentPlus({id, path, pizzaIng, add: ingrideent.plus, incdesc: 1, name, check, ingrideents, sostav, productPizza: newPizza, defaultPizza: productPizza}))
+        } else {
+            dispatch(ingrideentPlus({id, path, pizzaIng, add: ingrideent.plus, incdesc: -1, name, check, ingrideents, sostav, productPizza: newPizza, defaultPizza: productPizza}))
+        }
+        // } else {
+        // const ingrideentSostav = R.remove(ingrideentIndex, 1, sostav)
+        // dispatch(ingrideentMinus({id, path, pizzaIng, decrice: ingrideent.plus, name, check, ingrideentSostav, ingrideents, productPizza}))
+    // }
 };
+
 // export const pizzaCardsPage = (data) => (dispatch, getState) => {
 //     const {app: {productPizza}} = getState();
 //     dispatch(pizzaCart({data, productPizza}))
 // };
 
 const initialState = {
-    cartItems: typeof window !== `undefined` ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? [] : JSON.parse(localStorage.getItem('basketProduct')).cartItems : [],
-    orderTotal: typeof window !== `undefined` ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? 0 : JSON.parse(localStorage.getItem('basketProduct')).orderTotal : 0,
+    cartItems: isBrowser ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? [] : JSON.parse(localStorage.getItem('basketProduct')).cartItems : [],
+    orderTotal: isBrowser ? R.isNil(JSON.parse(localStorage.getItem('basketProduct'))) ? 0 : JSON.parse(localStorage.getItem('basketProduct')).orderTotal : 0,
     palochkiTotal: 0,
     newPizza: null,
     newWok: null
@@ -195,7 +202,7 @@ const initialState = {
 export default createReducer({
     [addedToCart]: (state, {id, price, product}) => {
         const res = updateOder(state, id, 1, price, product);
-        if (typeof window !== `undefined`) {
+        if (isBrowser) {
             localStorage.setItem('basketProduct', JSON.stringify(res));
             const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
             return {...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}
@@ -203,7 +210,7 @@ export default createReducer({
     },
     [removeFromCart]: (state, {id, price, product}) => {
         const {cartItems, orderTotal} = updateOder(state, id, -1, price, product);
-        if (typeof window !== `undefined`) {
+        if (isBrowser) {
             localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
             const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
             return { ...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal }
@@ -212,7 +219,7 @@ export default createReducer({
     [allRemoveFromCart]: (state, {id, price, product}) => {
         const item = state.cartItems.find((el) => el.id === id);
         const {cartItems, orderTotal} = updateOder(state, id, -item.count, price, product);
-        if (typeof window !== `undefined`) {
+        if (isBrowser) {
             localStorage.setItem('basketProduct', JSON.stringify({orderTotal, cartItems}));
             const storageBasket = JSON.parse(localStorage.getItem('basketProduct'));
             return {...state, cartItems: storageBasket.cartItems, orderTotal: storageBasket.orderTotal}
@@ -458,7 +465,7 @@ export default createReducer({
 
     [addedIngrideents]: (state) => ({...state}),
 
-    [ingrideentPlus]: (state, {path, pizzaIng, id, add, name, check, ingrideents, sostav}) => {
+    [ingrideentPlus]: (state, {path, pizzaIng, id, add, name, check, ingrideents, sostav, incdesc}) => {
         const pizza = pizzaIng.find((pizza) => pizza.id === id);
         const itemIndexPizza = pizzaIng.findIndex((data) => data.id === id);
         // установка чекбоксов
@@ -468,12 +475,15 @@ export default createReducer({
             ...checker,
             [name]: check
         })(ingrideents);
+
         // добавление в состав
-        const updateIngrideents = R.append(checker, sostav);
-        // обновление пиццы в массиве и в path pizza
+        const descriptionArray = pizza.description.split(", ")
+        const updateIngrideents = incdesc === 1 ? R.append(checker["nameI"], descriptionArray).join(",") : R.without([checker["nameI"].trim()], descriptionArray).join(",")
+
         const updateItemPizza = R.update(itemIndexPizza, {
             ...pizza,
             price: pizza.price + add,
+            description:  updateIngrideents,
             ingrideentButtonStyle: R.length(updateIngrideents) > 0 ? true : false,
             priceIn33cm: pizza.priceIn33cm + add,
             priceDef: R.isNil(pizza.priceDef) ? pizza.price + add : pizza.priceDef + add,
@@ -485,8 +495,8 @@ export default createReducer({
         if(path === '/korzina/') {
             const pizzaz = pizzaIng.find((pizza) => pizza.id === id);
             const itemIndexPizzaz = pizzaIng.findIndex((data) => data.id === id)
-
             const descriptionIngrideents = R.pluck('nameI', updateIngrideents).join(", ");
+       
             const updateItem = R.update(itemIndexPizzaz, {
                 ...pizzaz,
                 priceDef: R.isNil(pizzaz.priceDef) ? pizzaz.price + add : pizzaz.priceDef + add,

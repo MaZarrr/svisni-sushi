@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "./seo"
+import Seo from "./seo"
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from 'gatsby';
 import Button from '@material-ui/core/Button';
@@ -51,7 +51,7 @@ const ImageSale = styled(GatsbyImage) `
 const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
   return (
     <>
-      <SEO title={`Акция ${name}`}
+      <Seo title={`Акция ${name}`}
            description={`Акции и скидки, подробнее на сайте. Воспользоввться акцией ${name}`}
            noindex={true}
            pathname="/sale"/>
@@ -67,12 +67,12 @@ const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
                     component={Link}
                     to="/sale"
                     endIcon={<ReplyIcon color={"action"}/>}
-                    style={{margin: `10px 0`}}>Все акции</Button>
+                    style={{margin: `10px 0`, fontSize: 12}}>Все акции</Button>
             { path !== "/pizza-happy/" &&
             <Button variant="contained"
                     component={Link}
                     to={`/${slug}/`}
-                    style={{marginLeft: 10, backgroundColor: `orange`}}>{textSlug}</Button> }
+                    style={{marginLeft: 10, backgroundColor: `orange`, fontSize: 12}}>{textSlug}</Button> }
           </ButtonGroupSale>
         </Grid>
       </Grid>

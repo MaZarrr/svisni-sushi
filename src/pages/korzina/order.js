@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import SEO from "../../components/seo"
+import Seo from "../../components/seo"
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby'
 import FormControl from '@material-ui/core/FormControl';
@@ -29,6 +29,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import loadable from "@loadable/component";
 import HeadSection from "../../components/HeadSection"
 import SpinnerNew from "../../components/spinner/spinner-new";
+import { isBrowser } from "../../components/common/constants";
 
 const EmptyBasket = loadable(() => import('../../components/EmptyBasket'))
 
@@ -106,10 +107,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   React.useEffect(() => {
   setLoad(false)
   }, []);
-
   const handleChangee = name => event => setState(name);
   const onSwitchPay = (pay) => () => setVariantPay(pay);
-
   const handleSubmit = (ev) => {
     ev.preventDefault();
 
@@ -125,19 +124,18 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         return stateDeliveryPrice.priceDel + total
       }
     }
-
     const pushOrder = () => {
       const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
         formDelivery: ev.target.delivery.value,
         adress: stateDeliveryPrice.name,
-        street: ev.target.street.value,
+        street: deliveryAdress,
         home: ev.target.home.value,
         apartment: ev.target.apartment.value,
         podezd: ev.target.podezd.value,
         etag: ev.target.etag.value,
         kodDveri: ev.target.kodDveri.value
       };
-      const deliveryTimeOrder = state !== "deliveryTime" ? "Приготовить сразу" : {
+      const deliveryTimeOrder = state !== "deliveryTime" ? "Сразу" : {
         dateDelivery: ev.target.date.value,
         timeDelivery: ev.target.time.value
       };
@@ -145,11 +143,11 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         name: ev.target.name.value,
         phone: ev.target.phone.value,
         products: items.map((elem) => {
-
+    
           const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
           const productSize = elem.productSize === "" ? "" : elem.productSize;
           const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
-
+    
           return {
             product: elem.name,
             total: elem.total,
@@ -162,13 +160,43 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         }),
         delivery: deliveru,
         deliveryTime: deliveryTimeOrder,
-        totalPrice: `${totalPriceOrder()} руб. ${variantPay === "cash" ? "Выбрана оплата наличными" : "Выбрана онлайн оплата, ожидаем перевод..."}`,
+        totalPrice: `${totalPriceOrder()} ${variantPay === "cash" ? "Нал" : "Он-й"}`,
         sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
         chopsticks: palochkiTotal,
-        comments: ev.target.comments.value || "Без комментария",
+        comments: ev.target.comments.value,
       };
       
-      if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
+      if(!navigator.onLine) {
+        setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
+        handleClickAlert()
+      }
+    
+    // const comment = infoSuccess.comments === "" || infoSuccess.comments === undefined ? "" : infoSuccess.comments
+    const adress = delivery === "Самовывоз" ? "Сами" : `Адрс: ${deliveru.adress} ${deliveru.street} ${deliveru.home}`
+    const text = `
+    Новый заказ
+    ${infoSuccess.name}
+    ☎: ${infoSuccess.phone}
+    Т-ры: ${items.map((elem) => {
+    const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
+    ? "" : `Доп: ${elem.descriptionIngrideents}`;
+    const productSize = elem.productSize === "" || elem.productSize === undefined ? "" 
+    : `${elem.productSize}`;
+    const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? "" 
+    : `${elem.descriptionWok}`; 
+    return `
+    Наз: ${elem.name} ${productSize} ${descriptionWok} ${elem.edit === true ? elem.description : ""} ${descriptionIngrideents}
+    Кол-во: ${elem.count}
+    ₽: ${elem.total}
+    `
+    })}
+    ${adress}
+    Дата: ${state !== "deliveryTime" ? "Сразу" : `${ev.target.date.value} ${ev.target.time.value}`}
+    Cум: ${infoSuccess.totalPrice}
+    `
+      if(variantPay === "cash" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
+        const msg = {action: "calls.send_sms", to: "89040949222", text}
+        socketT.send(JSON.stringify(msg)) 
         axios({
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -177,33 +205,34 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         })
         .then(res =>  console.log(res))
         .catch(err => console.log(err))
-        typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
-        typeof window !== undefined && localStorage.removeItem('basketProduct');
+        isBrowser && sessionStorage.setItem('checkOrder', 'true');
+        isBrowser && localStorage.removeItem('basketProduct');
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
-
-      } else if(variantPay === "bank" && navigator.onLine) {
+      }
+      
+      if(variantPay === "bank" && navigator.onLine) {
+        const msg = {action: "calls.send_sms", to: "89040949222", text}
+        socketT.send(JSON.stringify(msg)) 
            axios({
-              method: 'POST',
-              headers: { 'Access-Control-Allow-Origin ': '*' },
-              data: infoSuccess,
-              url: process.env.GATSBY_NODE_SERVE
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          data: infoSuccess,
+          url: process.env.GATSBY_NODE_SERVE
         })
         .then(res =>  console.log(res))
         .catch(err => console.log(err))
-          setOpenPay(true)
-      } else {
-        setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
-        handleClickAlert()
+        setOpenPay(true)
       }
-    }
 
-    if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true') {
-      setTextAlert("Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.")
-      handleClickAlert()
-    } else {
-      pushOrder()
-    }
-  };
+}
+
+if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
+  setTextAlert("Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.")
+  handleClickAlert()
+} else {
+  pushOrder()
+}
+};
 
   const handleChange = event => setAge(event.target.value);
   const handleChangeDelivery = event => setDelivery(event.target.value);
@@ -273,7 +302,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
   return (
     <section>
-      <SEO title="Оформление заказа"
+      <Seo title="Оформление заказа"
            noindex={true}/>
       <div className={classes.root}>
         <HeadSection titleTXT={"Оформление заказа"} />
@@ -290,7 +319,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                     <Grid container spacing={2}>
                       {/*Имя и Телефон*/}
                       <Grid item xs={12} style={{paddingBottom: 0, marginTop: 14}}>
-                        <Typography variant="h6">
+                        <Typography variant="body1">
                           Укажите данные для связи </Typography>
                       </Grid>
                       <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
@@ -321,25 +350,25 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                    value={phoneUser}/>
                       </Grid>
                       <Grid item xs={12}>
-                        <Typography variant="h6">
+                        <Typography variant="body1">
                           Выберите форму оплаты
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "cash" ? "contained" : "outlined"} color={"secondary"}
+                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "cash" ? "contained" : "outlined"} color="primary"
                                 onClick={onSwitchPay("cash")}>
                           Оплата наличными
                         </Button>
                       </Grid>
                       <Grid item xs={6}>
-                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "bank" ? "contained" : "outlined"} color="secondary"
+                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "bank" ? "contained" : "outlined"} color="primary"
                                  onClick={onSwitchPay("bank")}>
                           Оплатить онлайн
                         </Button>
                       </Grid>
                       <Grid item xs={12}>
                         <Grid item xs={12}>
-                          <Typography variant="h6">
+                          <Typography variant="body1">
                             Как вы хотите получить заказ?
                           </Typography>
                         </Grid>
@@ -357,19 +386,19 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                       {delivery !== '' && <>
                         {/*Предзаказ или сразу время и дата*/}
                         <Grid item xs={12}>
-                          <Typography style={{fontSize: 22}} variant="h5">
+                          <Typography  variant="body1">
                             { delivery !== "Самовывоз" ? "Дата и время доставки заказа"
                               : "Дата и время готовки заказа"}
                           </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                          <Button fullWidth style={{fontSize: 17}} variant={state === "promptly" ? "contained" : "outlined"} color={"secondary"}
+                          <Button fullWidth style={{fontSize: 17}} variant={state === "promptly" ? "contained" : "outlined"} color="primary"
                                   onClick={handleChangee("promptly")}>
                             {delivery === "Самовывоз" ? "Приготовить сразу" : "Доставить сразу"}
                           </Button>
                         </Grid>
                         <Grid item xs={6}>
-                          <Button fullWidth style={{fontSize: 17}} variant={state === "deliveryTime" ? "contained" : "outlined"} color="secondary"
+                          <Button fullWidth style={{fontSize: 17}} variant={state === "deliveryTime" ? "contained" : "outlined"} color="primary"
                                    onClick={handleChangee("deliveryTime")}>
                             {delivery === "Самовывоз" ? "Приготовить ко времени" : "Доставить ко времени"}
                           </Button>
@@ -611,7 +640,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                         <span style={{ position: `relative`}}>
                             <Button
                               type="submit"
-                              color={"secondary"}
+                              color={"primary"}
                               style={{fontWeigh: `bold`, fontSize: 18 }}
                               disabled={buttonDisabled()}
                               variant="contained">

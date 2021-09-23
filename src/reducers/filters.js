@@ -39,7 +39,7 @@ export default createReducer({
         priceFilter: "def",
         checkboxFilter: "def"
     }),
-    [checkSaleLanch]: (state, isSale) => {
+    [checkSaleLanch]: (state, isSale) => { /// ???
         if(isSale) {
             return {...state, isSale}
         }

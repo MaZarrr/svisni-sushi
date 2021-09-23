@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 import { Divider } from "@material-ui/core";
+import { isBrowser } from '../../../components/common/constants';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -32,7 +33,7 @@ const OrderProcessed = ({ location: { state } }) => {
         if(state === null) {
             return
         }
-        if(typeof window !== `undefined`) {
+        if(isBrowser) {
             setData(state.products.map(el => {
                 return createData(el.product, el.count, el.total)
             }));

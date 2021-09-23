@@ -95,3 +95,97 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+subtitle1 - хедер
+subtitle2 - описание
+body1 - заголовко текста
+body2 - описание текста
+
+Хедер
+- Комп
+  - личный кабинет(Мои заказы-промокоды-адреса-настройки-выход)
+    - Телефон
+    - Выбранная локация магазина
+    - дни недели с отметкой текущей
+    - график работы
+    - корзина(пустая или нет)
+
+Регистрация
+- Телефон
+  - ввод телефона
+  - отправка смс с кодом
+  - отправка кода
+  - ответ сервера(тру-фалс)
+  - редирект на страницу
+
+Личный кабинет
+- Имя
+- Телефон
+- электронная почта
+- пароль
+- дата рождения(не изменяется)
+- заказы(сортировка по дате)
+  - дата/время
+  - номер заказ
+  - все детали заказа
+- фото(аватар)
+- баллы ?
+- возможные акции ?
+
+Форма заказа
+- отправка на почту(работа)
+- отправка смс с заказом(работа и клиент)
+- отправка смс заказ принят(клиент) ?
+
+
+
+
+    Генерация типов apollo client:codegen mytypes.d.ts --target=typescript
+    https://github.com/apollographql/apollo-tooling
+    https://www.apollographql.com/docs/devtools/apollo-config/
+     "apollo:codegen": "rm -rf src/__generated__ && apollo client:codegen src/__generated__ --target=typescript --outputFlat",
+     или 
+     npm i rimraf тогда -
+      "apollo:codegen": "rimraf src/__generated__ && apollo client:codegen src/__generated__ --target=typescript --outputFlat",
+
+-----------------
+  package.js
+  flags: {
+    DEV_SSR: true
+  },
+   "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
+    delete
+    - "@material-ui/core": "^4.12.3",
+    - "@material-ui/icons": "^4.11.2",
+    - "@material-ui/lab": "^4.0.0-alpha.60",
+    "gatsby-image-background-slider": "0.0.4",
+    - "path-browserify": "^1.0.1",
+
+
+    https://material-ui.com/ru/customization/color/
+
+    https://www.apollographql.com/blog/apollo-client/architecture/redux-to-apollo-data-access-patterns/#apollo-cache-dependency-graph Redux to Apollo: шаблоны доступа к данным
+
+
+    https://www.apollographql.com/docs/react/api/react/hooks/
+    https://docs.nestjs.com/techniques/cookies
+
+
+
+
+
+
+
+
+    "@types/node": "^16.9.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+
+    "react-transition-group": "^4.4.2",
+
+    "redaxios": "^0.4.1",
+
+    "typescript": "^4.4.3",

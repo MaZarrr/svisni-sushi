@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Avatar from '@material-ui/core/Avatar';
 import { Grid } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
@@ -246,7 +246,7 @@ const Dostavkaioplata = () => {
 
 return (
     <>
-    <SEO title="Зоны и стоимость доставки суши и пиццы в Валуйском районе"
+    <Seo title="Зоны и стоимость доставки суши и пиццы в Валуйском районе"
        description="Доставка осуществляется с 10:00 до 22:00 в Валуйки и Уразово. Бесплатная доставка от 500 рублей"
        pathname=""
     />
@@ -262,7 +262,7 @@ return (
             style={{flex: 1, padding: 0, width: `100%`}}
             value={value}
             name="search"
-            placeholder={"Начните вводить ваш нас.пункт"}
+            placeholder={"Введите населённый пункт"}
             inputProps={{ 'aria-label': 'search google maps' }}
             onChange={handleChange}
         />
@@ -271,22 +271,22 @@ return (
         {deliveryState.map((el) => (
         <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
-        <Typography variant="h6">
-        <b>Доставка {el.adress}</b> 
+        <Typography variant="subtitle1">
+            Доставка {el.adress}
         </Typography>
         <Grid container >
         <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-          <Typography >до {el.do} ₽</Typography>
+          <Typography variant="subtitle2">до {el.do} ₽</Typography>
         </Grid>
         <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-          <Typography>{el.price} ₽</Typography>
+          <Typography variant="subtitle2">{el.price} ₽</Typography>
         </Grid>
 
         <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-          <Typography >от {el.posle} ₽</Typography>
+          <Typography variant="subtitle2">от {el.posle} ₽</Typography>
         </Grid>
         <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-          <Typography>Бесплатно</Typography>
+          <Typography variant="subtitle2">Бесплатно</Typography>
         </Grid>
         </Grid>
         <hr></hr>
@@ -306,8 +306,8 @@ return (
         </div>
         </Grid>
         <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `15px`, color: `white`}}>
-          <Typography variant="body1"><strong>График работы: с 10:00 до 22:00</strong></Typography>
-          <Typography variant="body1"><strong>+7(904)094-92-22</strong></Typography>
+          <Typography variant="body2"><strong>График работы: с 10:00 до 22:00</strong></Typography>
+          <Typography variant="body2"><strong>+7(904)094-92-22</strong></Typography>
     </Grid>
         <Grid item xs={6} style={{backgroundColor: `#000`, padding: `15px`, color: `white`}}>
           <Typography  variant="body1"><strong>Доставка от 60 до 90 мин</strong></Typography>

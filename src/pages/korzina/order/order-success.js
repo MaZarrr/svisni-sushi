@@ -5,11 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import { Divider } from "@material-ui/core"
 import Button from "@material-ui/core/Button"
 import { Link } from "gatsby"
+import { isBrowser } from '../../../components/common/constants';
 
 const OrderSuccess = () => {
 
   useEffect(() => {
-    typeof window !== undefined && localStorage.removeItem('basketProduct');
+    isBrowser && localStorage.removeItem('basketProduct');
   }, [])
 
   return (

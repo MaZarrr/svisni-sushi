@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
@@ -18,12 +18,12 @@ const Gunkany = ({data: {allContentfulProductGunkan: {edges: productsGunkan}, co
 
 return ( 
    <section>
-    <SEO title="Заказать гунканы с доставкой в Валуйках"
+    <Seo title="Заказать гунканы с доставкой в Валуйках"
     description="Гунканы с икрой, крабом, угрём. Гунканы от 55 рублей. Подробнее в нашем меню на сайте Свисни Суши "
     noindex={true} />
 
       <HeadSection titleTXT={"Гунканы"} />
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <CardsMenuPage titleCategory="Гункан" slugCategogy="/gunkany" visibleItems={product}
                        image={image} product={product}/>
     </Grid>

@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
 import { graphql } from "gatsby"
-import SEO from "../components/seo";
+import Seo from "../components/seo";
 import TextField from "@material-ui/core/TextField";
 import HeadSection from "../components/HeadSection"
 import { StaticImage } from "gatsby-plugin-image";
@@ -95,7 +95,7 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
 
     return (
         <section>
-            <SEO title="Работа, вакансии"
+            <Seo title="Работа, вакансии в Уразово"
                  description="Работа в Свисни Суши. Повар сушист, пиццмейкер"
                  noindex={true}/>
                 <HeadSection titleTXT={"Вакансии Свисни Суши"} />
@@ -131,13 +131,13 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
 
                                       <Collapse in={expanded[childMarkdownRemark.id]} timeout="auto" unmountOnExit>
                                           <CardContent>
-                                              <Typography
+                                              <Typography variant="body2"
                                                 dangerouslySetInnerHTML={{ __html: childMarkdownRemark.html }} />
 
                                               <form onSubmit={submitForm}
                                                     action="https://formspree.io/xbjdqevk"
                                                     method="POST">
-                                                  <Typography variant="h6">
+                                                  <Typography variant="body1">
                                                       Отклик на вакансию:
                                                   </Typography>
                                                   <TextField
@@ -175,7 +175,8 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
                                   </Card>
                                 ))}
                                 <SectionInfo>
-                                    <h2>Плюсы работы в Свисни Суши</h2>
+                                <Typography 
+                                variant="h2">Плюсы работы в Свисни Суши</Typography>
 
                                     <div className="items-container">
                                         <div>

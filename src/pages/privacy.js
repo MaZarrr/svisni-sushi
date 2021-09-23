@@ -1,11 +1,11 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const privacy = () => {
 
 return (
     <>
-    <SEO title="Условия обработки персональных данных" 
+    <Seo title="Условия обработки персональных данных" 
     description="Условия обработки персональных данных"
     noindex={true} />
     <div className="container">

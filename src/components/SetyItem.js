@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "./seo"
+import Seo from "./seo"
 import Button from '@material-ui/core/Button';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Grid } from "@material-ui/core";
@@ -52,7 +52,7 @@ const ImageWrapped = styled(Grid)`
 
 const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }) => {
   return <>
-  <SEO title={`Сет роллов ${name}`}
+  <Seo title={`Сет роллов ${name}`}
        description={`Набор роллов ${name}, количество ${count} с общим весом ${weight}`}
        pathname="/sety/"/>
       <LayoutItem name={name}>
@@ -79,7 +79,7 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
                               alt={product.name} />
                       </Grid>
                   <Grid item xs={8} style={{paddingLeft: 8, margin: `auto 0`}}>
-                      <Typography variant={"body1"} style={{fontWeight: 600, margin: 0, padding: 0}}>{product.name}</Typography>
+                      <Typography variant={"body1"} style={{margin: 0, padding: 0}}>{product.name}</Typography>
                       <Typography variant={"subtitle2"} style={{margin: `auto`}}>{product.description}</Typography>
                   </Grid>
 

@@ -2,7 +2,10 @@ import React from "react";
 import { ThemeProvider } from "@material-ui/styles";
 import Layout from './src/components/layout'
 import theme from './src/theme';
-import { CssBaseline } from "@material-ui/core";
+import { CssBaseline } from '@material-ui/core';
+// import ReactDOM from "react-dom"
+
+// import { ApolloWrapper } from "./src/gatsby-theme-apollo/ApolloWrapper"
 
 export const wrapPageElement = ({ element, props }) => {
   return (
@@ -14,7 +17,7 @@ export const wrapRootElement = ({ element }) => {
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {element}
+          {element}
       </ThemeProvider>
     )
 }
@@ -32,7 +35,7 @@ export const onServiceWorkerUpdateReady = () => {
 // export const replaceHydrateFunction = () => {
 //   return (element, container, callback) => {
 //     console.log("rendering!");
-//     ReactDOM.render(element, container, callback);
+//     // ReactDOM.render(element, container, callback);
+//     ReactDOM.hydrate(element, container, callback);
 //   };
 // };
-//

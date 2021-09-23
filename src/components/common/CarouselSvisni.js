@@ -8,6 +8,9 @@ import { virtualize } from 'react-swipeable-views-utils';
 import { Hidden } from "@material-ui/core";
 import { mod } from 'react-swipeable-views-core';
 import Pagination from '../pagination/Pagination';
+// import Fab from '@material-ui/core/Fab';
+// import AddIcon from '@material-ui/icons/Add';
+// import Grid from '@material-ui/core/Grid';
 
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
@@ -132,6 +135,7 @@ function Carousel({ dataCarousel }) {
                 index={state}
                 onChangeIndex={handleChangeIndex}
               />
+
             <Hidden smUp>
                 <Pagination dots={5} index={state} onChangeIndex={handleChangeIndex} />
             </Hidden>
@@ -144,16 +148,22 @@ export default Carousel;
 const useStyleCarousel = makeStyles(theme => ({
     root: {
         flexGrow: '1',
-        marginTop: 75,
+        marginTop: 40,
         position: 'relative',
+        [theme.breakpoints.down('1200')]: {
+            marginTop: 50,
+        },
         [theme.breakpoints.down('768')]: {
-            marginBottom: 30,
+            marginTop: 50,
+            marginBottom: 20,
         },
         [theme.breakpoints.down('475')]: {
             marginBottom: 0,
-            marginTop: 37,
+            marginTop: 5,
         }
     },
+    // fabBtn: {
+    // },
     image: {
         borderRadius: 5,
         maxWidth: 1920,
@@ -162,12 +172,23 @@ const useStyleCarousel = makeStyles(theme => ({
         },
     },
     rootAutoSwipeable: {
-        padding: '0 20vw 0 20vw',
+        padding: '0 30vw 0 30vw',
     },
     rootCarousel: {
-        padding: '0 9vw 0 9vw',
+        padding: '0 20vw 0 20vw',
         [theme.breakpoints.down('475')]: {
             padding: 0,
         },
     }
 }));
+
+            //   {/* <Grid justifyContent='center'>
+            //       <div style={{position: 'absolute'}}>
+            //   <Fab style={{marginRight: '40%'}}>
+            //         <AddIcon />
+            //   </Fab>
+            //   <Fab>
+            //         <AddIcon />
+            //   </Fab>
+            //   </div> */}
+            //   </Grid>
