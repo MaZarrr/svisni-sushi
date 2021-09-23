@@ -51,25 +51,26 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                   pathname=""/>
             <HeadSection titleTXT={"Доставка пиццы"} path={path} isFilter={true} categoryNames={categoryNames} />
           {!loading ?
-                    <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+                    <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
                         {visibleItems.map((products) => {
-                            const {id, name, pizzaSale,
+                            const { id, name, pizzaSale,
                                 slug, description,
                                 price, weight, weight33, mass = weight, priceIn33cm,
                                 count, total = price,
                                 ingrideentButtonStyle = false,
                                 image: {gatsbyImageData}, ingrideents, sostav,
-                                contentful_id, priceDef = price, size={[slug]: true},
+                                contentful_id, priceDef = price, size={[slug]: true }
                             } = products;
 
                             return (
                                 <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                                       item xs={12} sm={6} md={4} lg={3} key={id}>
                                     <Card className={classes.card}>
-                                        <CardHeader avatar={<GatsbyImage image={image.gatsbyImageData} style={{width: 40}} alt={name} />}
+                                        <CardHeader avatar={<GatsbyImage image={image.gatsbyImageData} 
+                                        style={{width: 40}} alt={name} />}
                                                     title={"Пицца"}
                                                     subheader={<span itemProp="name">
-                                                      <Typography style={{fontWeight: 600}} variant={"subtitle1"}>
+                                                      <Typography variant={"subtitle1"}>
                                                         {name}</Typography></span>}/>
                                         <CardMedia
                                             className={classes.media}
@@ -77,15 +78,18 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                             <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} />
                                         </CardMedia>
                                         <CardContent>
-                                            {!pizzaSale &&
+                                            {!pizzaSale && <>
                                             <SplitButton id={id}
                                                          pizzaIng={updatePizza}
                                                          ingrideents={ingrideents}
                                                          sostav={sostav}
                                                          path={path}
+                                                         addTodel="inc"
                                                          ingrideentButtonStyle={ingrideentButtonStyle}
                                                          dir={"center"}/>
-                                            }
+                                                         </>
+                                                         
+                                            } 
                                             <Typography itemProp="description"
                                                         className={classes.deckriptPizza}
                                                         variant={"body2"}>
@@ -95,7 +99,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                             {/*выбор размера пиццы*/}
                                             {/*проверка цены на 1 для того что бы убарать или показать выбор размеров пиццы*/}
                                             { priceIn33cm !== 1 &&
-                                            <Grid container justify={"space-between"}>
+                                            <Grid container justifyContent={"space-between"}>
                                                 <Grid style={{padding: `0`, margin: 0}} item xs={5}>
                                                     <button onClick={() => switchSizePizza({
                                                         id,
@@ -106,25 +110,29 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                         mass: weight})}
                                                             className={clsx(classes.buttonD, {
                                                                 [classes.buttonT]: size[slug]})}>
-                                                        <Typography variant={"body1"}>Средняя</Typography></button>
-                                                    <Typography style={{fontSize: 13, textAlign: `center`}}
+                                                        <Typography variant={"subtitle2"}>Средняя</Typography></button>
+                                                    <Typography style={{textAlign: `center`}}
                                                                 variant={"subtitle2"}>28см</Typography>
                                                 </Grid>
-                                              <Grid item xs={2} style={{textAlign: "center", padding: `10px 0 0 0`}}>
-                                                <p style={{fontSize: 14, letterSpacing: `-0.5px`, margin: `0 auto`, fontWeight: `bold`}}>{`${mass}кг`}</p>
+                                              <Grid item xs={2} style={{textAlign: "center", padding: `10px 0 0 0`, fontWeight: 'bold'}}>
+                                                <p style={{letterSpacing: `-0.5px`, margin: `0 auto`}}>{`${mass}кг`}</p>
                                               </Grid>
                                                 <Grid item xs={5}>
-                                                    <button style={{paddingLeft: `auto`}} onClick={() => switchSizePizza({
+                                                    <button style={{paddingLeft: `auto`}} 
+                                                    onClick={() => switchSizePizza({
                                                         id,
                                                         productPizza: updatePizza,
                                                         total: priceIn33cm,
                                                         priceDef,
                                                         size: contentful_id,
                                                         mass: weight33})}
-                                                            className={clsx(classes.buttonD, {
+                                                        className={clsx(classes.buttonD, {
                                                                 [classes.buttonT]: size[contentful_id]})}>
-                                                        <Typography variant={"body1"}>Большая</Typography></button>
-                                                    <Typography style={{fontSize: 13, textAlign: `center`}} variant={"subtitle2"}>41см</Typography>
+                                                        <Typography 
+                                                        variant={"subtitle2"}>Большая</Typography></button>
+                                                    <Typography 
+                                                    style={{textAlign: `center`}} 
+                                                    variant={"subtitle2"}>41см</Typography>
                                                 </Grid>
                                             </Grid>
                                             }
@@ -136,12 +144,17 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                         <Grid container itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                             <Grid item xs={6}>
                                                 <Paper style={{width: `85%`, margin: `0 auto`}}>
-                                                    <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 600}} itemProp="price">{`от ${total}₽`}</Typography>
+                                                    <Typography 
+                                                    variant="body1" 
+                                                    style={{textAlign: `center`}} 
+                                                    itemProp="price">{`от ${total}₽`}</Typography>
                                                 </Paper>
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Paper style={{width: `85%`, margin: `0 auto`}}>
-                                                    <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 600}}>{`${count}шт`}</Typography>
+                                                    <Typography 
+                                                    variant="body1" 
+                                                    style={{textAlign: `center`}}>{`${count}шт`}</Typography>
                                                 </Paper>
                                             </Grid>
                                         </Grid>
@@ -150,8 +163,8 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                         { priceIn33cm !== 1 ?
                                             <Button
                                                 variant="contained"
-                                                color="secondary"
                                                 className={classes.button}
+                                                style={{ color: 'white', marginTop: 10 }}
                                                 onClick={() => dispatch(addedToCart({id, productPrice: null, product: updatePizza}))}>
                                                 <ShoppingCartIcon/></Button> : <Button
                                                 itemProp="url"
@@ -216,7 +229,6 @@ export const query = graphql `
 
 const useStylesCart = makeStyles(theme => ({
   deckriptSmall: {
-    fontWeight: 600,
     height: 35,
     overflowY: `auto`,
     padding: 14,
@@ -239,7 +251,6 @@ const useStylesCart = makeStyles(theme => ({
     }
   },
   deckript: {
-    fontWeight: 600,
     height: 80,
     overflowY: `auto`,
     padding: 14,
@@ -253,7 +264,6 @@ const useStylesCart = makeStyles(theme => ({
     },
   },
   buttonD: {
-    fontSize: 11,
     borderRadius: 5,
     padding: '6px 12px',
     border: '1px solid orange',
@@ -262,7 +272,6 @@ const useStylesCart = makeStyles(theme => ({
   buttonT: {
     width: `100%`,
     borderRadius: 5,
-    fontSize: 11,
     border: '1px solid orange',
     '&:active': {
       boxShadow: 'none',
@@ -308,4 +317,14 @@ const useStylesCart = makeStyles(theme => ({
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
   },
 }));
+
+
+// {/* <SplitButton id={id}
+// pizzaIng={updatePizza}
+// ingrideents={ingrideents}
+// sostav={sostav}
+// addTodel="inc"
+// path={path}
+// ingrideentButtonStyle={ingrideentButtonStyle}
+// dir={"right"}/> */}
 

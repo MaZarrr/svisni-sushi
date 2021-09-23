@@ -38,8 +38,8 @@ const KomboMobileContent = ({ product }) => {
                 alt={homeProduct.name} />
             </CardMedia>
             <CardContent style={{ minHeight: 140 }}>
-              <Typography style={{ fontSize: 18, fontWeight: 600 }} variant={"h6"}>{homeProduct.name}</Typography>
-              <Typography style={{ position: `absolute`, width: `78%` }}>{homeProduct.description}</Typography>
+              <Typography variant={"h3"}>{homeProduct.name}</Typography>
+              <Typography variant="subtitle2" style={{ position: `absolute`, width: `78%` }}>{homeProduct.description}</Typography>
             </CardContent>
             <CardActions disableSpacing>
               <Button
@@ -50,7 +50,7 @@ const KomboMobileContent = ({ product }) => {
                 to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
                 {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
               </Button>
-              <Typography style={{ fontSize: 18, marginLeft: `auto`, marginRight: 10, fontWeight: 800 }}
+              <Typography style={{marginLeft: `auto`, marginRight: 10, fontWeight: 800 }}
                           variant={"body1"}>{homeProduct.price}₽</Typography>
             </CardActions>
           </Card>

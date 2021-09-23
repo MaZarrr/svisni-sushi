@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import { StaticImage } from "gatsby-plugin-image";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from '@material-ui/core/IconButton';
+import { hardPink } from "../../theme";
 
 const MenuCategory = () => {
 
@@ -16,10 +17,11 @@ const MenuCategory = () => {
           <IconButton style={{ padding: `10px 0 10px 0` }}>
             <Link style={{ textDecoration: `none`, color: "grey" }} to="/sety/">
               <div className={classes.cartTitle}>
-                <Typography className={classes.menuTitle} variant={"h2"}>Сеты</Typography>
+                <Typography className={classes.menuTitle}>Сеты</Typography>
               </div>
               <div style={{ margin: `0 auto` }}>
                 <StaticImage
+                className={classes.image}
                   loading={"eager"}
                   placeholder="blurred"
                   src="../../images/setyMG.jpg"
@@ -37,6 +39,7 @@ const MenuCategory = () => {
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
+                className={classes.image}
                 loading={"eager"}
                 placeholder="blurred"
                 src="../../images/pizzaG.jpg"
@@ -50,10 +53,11 @@ const MenuCategory = () => {
         <IconButton style={{ padding: `10px 0 10px 0` }}>
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/kombo/">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Комбо</Typography>
+              <Typography className={classes.menuTitle} variant={"h3"}>Комбо</Typography>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
+                className={classes.image}
                 loading={"eager"}
                 placeholder="blurred"
                 src="../../images/komboG.jpg"
@@ -71,6 +75,7 @@ const MenuCategory = () => {
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
+                className={classes.image}
                 loading={"eager"}
                 placeholder="blurred"
                 src="../../images/hotRG.jpg"
@@ -88,6 +93,7 @@ const MenuCategory = () => {
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
+                className={classes.image}
                 placeholder="blurred"
                 src="../../images/slogRG.jpg"
                 alt="Сложные роллы" />
@@ -104,6 +110,7 @@ const MenuCategory = () => {
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
+                className={classes.image}
                 placeholder="blurred"
                 src="../../images/wokG.jpg"
                 alt="Лапша wok" />
@@ -120,6 +127,7 @@ const MenuCategory = () => {
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
+                className={classes.image}
                 placeholder="blurred"
                 src="../../images/zakuskiS.jpg"
                 alt="Закуски, бургер, мидии, палочки" />
@@ -136,6 +144,7 @@ const MenuCategory = () => {
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
+                className={classes.image}
                 loading={"eager"}
                 placeholder="blurred"
                 src="../../images/veganMenu.jpg"
@@ -158,20 +167,87 @@ const useStyleMenu = makeStyles({
     alignItems: "baseline",
     borderRadius: `3px`
   },
+  image: {
+    boxShadow: '-3px 6px 8px 0px rgba(34, 60, 80, 0.2)',
+    borderRadius: '10% 30% 50% 70%'
+  },
   itemMenu: {
-    padding: `5px`
+    padding: `5px 10px 5px 10px`
   },
   cartTitle: {
     position: `absolute`,
-    bottom: `7vmin`,
+    bottom: `4vmin`,
     color: `#000`,
-    left: 10,
-    zIndex: 1000
+    borderRadius: '25% 10%',
+    backgroundColor: "white",
+    border: `2px solid ${hardPink}`,
+    fontWeight: "bold",
+    width: "100%",
+    zIndex: 1000,
   },
   menuTitle: {
     fontWeight: 500,
     textAlign: `center`,
     padding: `10px 0 10px 0`,
-    fontSize: `5vmin`,
+    fontSize: `4vmin`,
   },
 });
+
+// const itemsMenu = [
+//   {
+//     id: 1,
+//     slug: "/sety/",
+//     title: "Сеты",
+//     imageSrc: "../../images/setyMG.jpg",
+//     alt: "Наборы, суши сеты"
+//   },
+//   {
+//     id: 2,
+//     slug: "/pizza/",
+//     title: "Пицца",
+//     imageSrc: "../../images/pizzaG.jpg",
+//     alt: "Пицца"
+//   },
+//   {
+//     id: 3,
+//     slug: "/kombo/",
+//     title: "Комбо",
+//     imageSrc: "../../images/komboG.jpg",
+//     alt: "Комбо наборы"
+//   },
+//   {
+//     id: 4,
+//     slug: "/hot-rolls/",
+//     title: "Горячие роллы",
+//     imageSrc: "../../images/hotRG.jpg",
+//     alt: "Горячие запечённые роллы"
+//   },
+//   {
+//     id: 5,
+//     slug: "/branded-rolls/",
+//     title: "Сложные роллы",
+//     imageSrc: "../../images/slogRG.jpg",
+//     alt: "Сложные роллы"
+//   },
+//   {
+//     id: 6,
+//     slug: "/wok/",
+//     title: "Wok лапша",
+//     imageSrc: "../../images/wokG.jpg",
+//     alt: "Лапша wok"
+//   },
+//   {
+//     id: 7,
+//     slug: "/zakyski/",
+//     title: "Закуски",
+//     imageSrc: "../../images/zakuskiS.jpg",
+//     alt: "Закуски, бургер, мидии"
+//   },
+//   {
+//     id: 8,
+//     slug: "special-menu/vegetarian",
+//     title: "Вегетарианское",
+//     imageSrc: "../../images/veganMenu.jpg",
+//     alt: "Постное, вегетарианское меню"
+//   },
+// ]

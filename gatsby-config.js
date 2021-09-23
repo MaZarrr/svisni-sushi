@@ -9,9 +9,7 @@ module.exports = {
       author: `@mazarrr`,
   },
   flags: {
-    DEV_SSR: true,
-    PRESERVE_WEBPACK_CACHE: true,
-    GATSBY_CONTENTFUL_OFFLINE: true,
+    DEV_SSR: true
   },
   plugins: [
     {
@@ -59,16 +57,25 @@ module.exports = {
         cleanupOnClient: true
       },
     },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Montserrat:700, 600, 500, 400, 300:cyrillic"]
+        }
+      }
+    },
    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: "o3pzpw68fwfi",
+        accessToken: "V5vHDhqcjgBFBNucB7_7HHHcBWq_zm5IKZXHMbktuN4",
         pageLimit: 50,
         assetDownloadWorkers: 25
       },
     },
+    
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-gtag`,

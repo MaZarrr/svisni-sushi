@@ -18,15 +18,28 @@ import { makeStyles } from "@material-ui/core/styles"
 const Paper = loadable(() => import('@material-ui/core/Paper'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
 
-const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, product, dispatch, timePrice, isSale }) => {
+const CardsMenuPage = memo(({ 
+    titleCategory, 
+    slugCategogy, 
+    visibleItems, 
+    image, 
+    product, 
+    dispatch, 
+    timePrice, 
+    isSale }) => {
+
     const classes = useStylesCart();
+
     return <>
         { visibleItems.map((products) => {
-
-            const {id, name, slug, description,
+            const { 
+                id, name, slug, description,
                 price, weight = "от 150", count = 1,
                 edit, komboSale, variant = false,
-                image: { gatsbyImageData }, sale, nonprice, lanchprice, lanch, defaultPrice} = products;
+                image: { gatsbyImageData }, 
+                sale, nonprice, lanchprice, lanch, defaultPrice
+            } = products;
+            
             return (
                 <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                       item xs={12} sm={6} md={4} lg={3} key={id}>
@@ -34,7 +47,8 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                         <CardHeader
                             avatar={slugCategogy !== "/wok" ? <GatsbyImage image={image.gatsbyImageData} style={{width: 40}} alt={name} /> : ''}
                             title={variant ? variant : titleCategory}
-                            subheader={<span itemProp="name"><Typography style={{ fontWeight: 600 }} variant={"subtitle1"}>{name}</Typography></span>}/>
+                            subheader={<span itemProp="name">
+                                <Typography variant={"subtitle1"}>{name}</Typography></span>}/>
                         { slugCategogy === "/sety" &&
                         <CardMedia
                             className={classes.media}
@@ -42,13 +56,21 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
 
                             {!komboSale &&
                                 <Link to={`${slugCategogy}/${slug}`}>
-                                    <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} style={{maxWidth: `100%`}} />
+                                    <GatsbyImage 
+                                    image={gatsbyImageData} 
+                                    itemProp="image" 
+                                    alt={name} 
+                                    style={{maxWidth: `100%`}} />
                                 </Link>
                             }
 
                             {komboSale &&
                             <Link to={`/${slug}`}>
-                                <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} style={{maxWidth: `100%`}} />
+                                <GatsbyImage 
+                                image={gatsbyImageData} 
+                                itemProp="image" 
+                                alt={name} 
+                                style={{maxWidth: `100%`}} />
                             </Link>
                             }
 
@@ -62,11 +84,19 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
 
                             {edit &&
                             <Link to={`${slugCategogy}/${slug}`}>
-                                <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} style={{maxWidth: `100%`}} />
+                                <GatsbyImage 
+                                image={gatsbyImageData} 
+                                itemProp="image" 
+                                alt={name} 
+                                style={{maxWidth: `100%`}} />
                             </Link>
                             }
                             {!edit &&
-                            <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} style={{maxWidth: `100%`}} />
+                            <GatsbyImage 
+                            image={gatsbyImageData} 
+                            itemProp="image" 
+                            alt={name} 
+                            style={{maxWidth: `100%`}} />
                             }
                         </CardMedia>
                         }
@@ -89,7 +119,7 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                         style={{maxWidth: 50, bottom: 45, marginLeft: 15}}
                                         alt={"Коробка wok box"} />
                                     <div style={{position: `absolute`, bottom: 60, left: 55, width: 180}}>
-                                        <Typography style={{fontSize: 13}} variant={"subtitle2"}>
+                                        <Typography variant={"subtitle2"}>
                                             Доставим в коробке</Typography>
                                     </div>
                                 </div>
@@ -103,14 +133,12 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                             <div style={{padding: 5, border: `1px solid lightgrey`, borderRadius: 5, margin: `8px 14px 8px 14px`}}>
                             {/* Выгода */}
                                 { lanch && (slugCategogy === "/sety" || slugCategogy === "/branded-rolls") && (
-                                    <Typography variant={"subtitle2"} style={{
-                                        fontSize: 16,
-                                        fontWeight: `bold`}}>
+                                    <Typography variant={"body1"}>
                                       <span role="img" aria-label="accessible-emoji">  ⏱️ </span>{timePrice.hours}:{timePrice.minutes}:{timePrice.seconds}</Typography>
                                 )}
 
-                                { sale && <Typography variant={"subtitle1"} style={{
-                                        fontSize: 16,
+                                { sale && <Typography variant={"subtitle2"} 
+                                style={{
                                         color: `tomato`,
                                         fontWeight: `bold`}}>
                                     {slugCategogy === "/sety" && <>
@@ -171,17 +199,17 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                     <Grid item xs={6}>
                                         <Paper style={{width: `90%`, margin: `0 auto`}}>
                                             { slugCategogy !== "/napitki" &&
-                                            <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
+                                            <Typography variant="subtitle2" style={{textAlign: `center`}}>{slugCategogy ===
                                             "/sety" ? `${weight}кг` : `${weight}гр`}</Typography>
                                             }
                                             { slugCategogy === "/napitki" &&
-                                            <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{weight}л</Typography>
+                                            <Typography variant="subtitle2" style={{textAlign: `center`}}>{weight}л</Typography>
                                             }
                                         </Paper>
                                     </Grid>
                                     <Grid item xs={6}>
                                         <Paper style={{width: `90%`, margin: `0 auto`}}>
-                                            <Typography variant="subtitle1" style={{textAlign: `center`, fontWeight: 500}}>{slugCategogy ===
+                                            <Typography variant="subtitle2" style={{textAlign: `center`}}>{slugCategogy ===
                                             "/souses" || slugCategogy === "/napitki" || slugCategogy === "/salaty" ? "1шт" : `${count}шт`}
                                             </Typography>
                                         </Paper>
@@ -235,10 +263,14 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                     </Grid>
 
                                     {/* Цена */}
-                                    <Grid item xs={6} style={{position: `relative`, textAlign: 'center', paddingRight: 15}}>
+                                    <Grid item xs={6} style={{
+                                        position: `relative`, 
+                                        textAlign: 'center', 
+                                        margin: 'auto 0',
+                                        paddingRight: 15}}>
                                         <Typography
-                                            variant="overline"
-                                            style={{fontSize: 22, margin: `0 auto`, width: `85%`, fontWeight: `bold`}}
+                                            variant="subtitle1"
+                                            style={{ margin: `0 auto`, width: `85%`}}
                                             itemProp="price">
 
                                             { lanch && <>
@@ -250,15 +282,15 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
                                         </Typography>
 
                                         {lanch && isSale &&
-                                        <div style={{position: `absolute`, bottom: 12, right: 5}}>
+                                        <div style={{position: `absolute`, bottom: 0, right: 5}}>
                                             <Typography style={{textDecoration: `line-through`, color: `#000`,
-                                            textDecorationColor: `red`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{defaultPrice}</Typography>
+                                            textDecorationColor: `red`,  fontWeight: 600}} variant="subtitle1">{defaultPrice}</Typography>
                                         </div>
                                         }
                                         {lanch && !isSale &&
-                                        <div style={{position: `absolute`, bottom: 12, right: 2}}>
+                                        <div style={{position: `absolute`,  bottom: 0, right: 2}}>
                                             <Typography style={{textDecoration: `line-through`, color: `red`,
-                                                textDecorationColor: `#000`, fontSize: 19, fontWeight: 600}} variant={"subtitle1"}>{lanchprice}</Typography>
+                                                textDecorationColor: `#000`}} variant="subtitle1">{lanchprice}</Typography>
                                         </div>
                                         }
                                     </Grid>
@@ -277,21 +309,6 @@ const CardsMenuPage = memo(({ titleCategory, slugCategogy, visibleItems, image, 
 export default connect(null, null)(CardsMenuPage)
 
 export const useStylesCart = makeStyles(theme => ({
-    // deckriptSmall: {
-    //     fontWeight: 600,
-    //     height: 35,
-    //     overflowY: `auto`,
-    //     padding: 14,
-    //     [theme.breakpoints.down('500')]: {
-    //         minHeight: `20px`,
-    //         padding: 14,
-    //     },
-    //     [theme.breakpoints.down('425')]: {
-    //         margin: `auto 0`,
-    //         padding: 14,
-    //         height: `auto`,
-    //     },
-    // },
     deckript: {
         height: 80,
         padding: 14,
@@ -305,7 +322,6 @@ export const useStylesCart = makeStyles(theme => ({
         },
     },
     buttonD: {
-        fontSize: 11,
         borderRadius: 8,
         padding: '6px 12px',
         border: '1px solid orange',
@@ -315,7 +331,6 @@ export const useStylesCart = makeStyles(theme => ({
     buttonT: {
         width: 105,
         borderRadius: 8,
-        fontSize: 11,
         padding: '6px 12px',
         border: '1px solid orange',
         lineHeight: 1.5,

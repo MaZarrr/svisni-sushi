@@ -24,7 +24,7 @@ const Wok = ({data: {allContentfulProductWok: {edges: productsWok}, contentfulIc
                  description="Заказать wok с доставкой. Вок с морепродуктами, овощами, курицей, свининой всего от 190 руб"/>
 
             <HeadSection titleTXT={"Вок"} />
-            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+            <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
                 <CardsMenuPage titleCategory="Wok" slugCategogy="/wok" visibleItems={product}
                                image={image} product={product}/>
             </Grid>

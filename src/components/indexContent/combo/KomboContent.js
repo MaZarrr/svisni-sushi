@@ -25,9 +25,8 @@ const KomboContent = ({ product }) => {
               alt={homeProduct.name} />
           </CardMedia>
           <CardContent>
-            <Typography style={{fontSize: 18, fontWeight: 600}} variant={"h6"}>{homeProduct.name}</Typography>
-            <Typography style={{fontSize: 14, height: 75, width: `100%`, overflowY: `auto`}}
-                        variant={"subtitle1"}>{homeProduct.description}</Typography>
+            <Typography variant={"h3"}>{homeProduct.name}</Typography>
+            <Typography variant={"subtitle2"}>{homeProduct.description}</Typography>
           </CardContent>
           <CardActions disableSpacing>
             <Button
@@ -37,7 +36,7 @@ const KomboContent = ({ product }) => {
               to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
               {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
             </Button>
-            <Typography style={{fontSize: 22, fontWeight: 800, marginLeft: `auto`, marginRight: 10}}
+            <Typography style={{marginLeft: `auto`, marginRight: 10}}
                         variant={"body1"}>{homeProduct.price} ₽</Typography>
           </CardActions>
         </Card>

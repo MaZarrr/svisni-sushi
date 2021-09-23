@@ -29,6 +29,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import loadable from "@loadable/component";
 import HeadSection from "../../components/HeadSection"
 import SpinnerNew from "../../components/spinner/spinner-new";
+import { isBrowser } from "../../components/common/constants";
 
 const EmptyBasket = loadable(() => import('../../components/EmptyBasket'))
 
@@ -207,7 +208,7 @@ ${adress}
 Дата: ${state !== "deliveryTime" ? "Сразу" : `${ev.target.date.value} ${ev.target.time.value}`}
 Cум: ${infoSuccess.totalPrice}
 `
-  if(variantPay === "cash" && typeof window !== undefined && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
+  if(variantPay === "cash" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
     const msg = {action: "calls.send_sms", to: "89040949222", text}
     socketT.send(JSON.stringify(msg)) 
     axios({
@@ -218,8 +219,8 @@ Cум: ${infoSuccess.totalPrice}
     })
     .then(res =>  console.log(res))
     .catch(err => console.log(err))
-    typeof window !== undefined && sessionStorage.setItem('checkOrder', 'true');
-    typeof window !== undefined && localStorage.removeItem('basketProduct');
+    isBrowser && sessionStorage.setItem('checkOrder', 'true');
+    isBrowser && localStorage.removeItem('basketProduct');
     navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
   }
   
@@ -239,7 +240,7 @@ Cум: ${infoSuccess.totalPrice}
 
 }
 
-if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true') {
+if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
   setTextAlert("Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.")
   handleClickAlert()
 } else {
@@ -332,7 +333,7 @@ if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true
                     <Grid container spacing={2}>
                       {/*Имя и Телефон*/}
                       <Grid item xs={12} style={{paddingBottom: 0, marginTop: 14}}>
-                        <Typography variant="h6">
+                        <Typography variant="body1">
                           Укажите данные для связи </Typography>
                       </Grid>
                       <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
@@ -363,25 +364,25 @@ if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true
                                    value={phoneUser}/>
                       </Grid>
                       <Grid item xs={12}>
-                        <Typography variant="h6">
+                        <Typography variant="body1">
                           Выберите форму оплаты
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "cash" ? "contained" : "outlined"} color={"secondary"}
+                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "cash" ? "contained" : "outlined"} color="primary"
                                 onClick={onSwitchPay("cash")}>
                           Оплата наличными
                         </Button>
                       </Grid>
                       <Grid item xs={6}>
-                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "bank" ? "contained" : "outlined"} color="secondary"
+                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "bank" ? "contained" : "outlined"} color="primary"
                                  onClick={onSwitchPay("bank")}>
                           Оплатить онлайн
                         </Button>
                       </Grid>
                       <Grid item xs={12}>
                         <Grid item xs={12}>
-                          <Typography variant="h6">
+                          <Typography variant="body1">
                             Как вы хотите получить заказ?
                           </Typography>
                         </Grid>
@@ -399,19 +400,19 @@ if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true
                       {delivery !== '' && <>
                         {/*Предзаказ или сразу время и дата*/}
                         <Grid item xs={12}>
-                          <Typography style={{fontSize: 22}} variant="h5">
+                          <Typography  variant="body1">
                             { delivery !== "Самовывоз" ? "Дата и время доставки заказа"
                               : "Дата и время готовки заказа"}
                           </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                          <Button fullWidth style={{fontSize: 17}} variant={state === "promptly" ? "contained" : "outlined"} color={"secondary"}
+                          <Button fullWidth style={{fontSize: 17}} variant={state === "promptly" ? "contained" : "outlined"} color="primary"
                                   onClick={handleChangee("promptly")}>
                             {delivery === "Самовывоз" ? "Приготовить сразу" : "Доставить сразу"}
                           </Button>
                         </Grid>
                         <Grid item xs={6}>
-                          <Button fullWidth style={{fontSize: 17}} variant={state === "deliveryTime" ? "contained" : "outlined"} color="secondary"
+                          <Button fullWidth style={{fontSize: 17}} variant={state === "deliveryTime" ? "contained" : "outlined"} color="primary"
                                    onClick={handleChangee("deliveryTime")}>
                             {delivery === "Самовывоз" ? "Приготовить ко времени" : "Доставить ко времени"}
                           </Button>
@@ -653,7 +654,7 @@ if(typeof window !== undefined && sessionStorage.getItem('checkOrder') === 'true
                         <span style={{ position: `relative`}}>
                             <Button
                               type="submit"
-                              color={"secondary"}
+                              color={"primary"}
                               style={{fontWeigh: `bold`, fontSize: 18 }}
                               disabled={buttonDisabled()}
                               variant="contained">

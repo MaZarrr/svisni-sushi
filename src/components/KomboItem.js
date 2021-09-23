@@ -125,12 +125,13 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
     return <>
         <Seo title={`Комбо набор ${name}`}
              description={`Доставка комбо наборов в Валуйки. Комбо набор ${name}, цена ${price} рублей`} />
-
-        <h1 itemProp="name" className={classes.titleClass}>{name}</h1>
+        <Typography 
+        className={classes.titleClass}
+        variant="h1">{name}</Typography>
 
         <div style={{width: `100%`}}>
         <div>
-            <Typography style={{marginLeft: 30, fontWeight: 500, padding: `0 10px 5px 0`}}
+            <Typography style={{marginLeft: 30, padding: `0 10px 5px 0`}}
                         variant={"body1"}>{description}</Typography>
             <Hidden xsDown>
                 <div style={{marginLeft: 30}}>
@@ -174,9 +175,9 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                     </div>
                                 ))}
                                 <div className={classes.checkoutInfo}>
-                                        <Typography style={{fontSize: 20}} variant={"body1"}>
+                                        <Typography variant={"body1"}>
                                             Стоимость:</Typography>
-                                        <Typography style={{fontSize: 22, marginLeft: `auto`, fontWeight: 800}} variant={"body1"}>
+                                        <Typography style={{marginLeft: `auto`}} variant={"body1"}>
                                             <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                                 </div>
                                 <Button fullWidth={true}
@@ -191,7 +192,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
 
                         {/*Выбор товаров из предложенных компьютер*/}
                         <Grid item xs={12} sm={7}>
-                            <Grid container justify={"space-around"} style={{
+                            <Grid container justifyContent={"space-around"} style={{
                                 borderRadius: 10,
                                 // height: 500,
                                 position: `sticky`,
@@ -242,7 +243,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                              onKeyPress={onActiveItem}
                              className={classes.activeItemPhone}
                              onClick={() => onActiveItem(el.id, el.__typename, idx)}>
-                            <Grid container justify={"space-between"} alignItems={"center"}>
+                            <Grid container justifyContent={"space-between"} alignItems={"center"}>
                                 <GatsbyImage
                                     image={el.image.gatsbyImageData}
                                     style={{width: `35%`, margin: `0`}}
@@ -268,9 +269,9 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                     backgroundColor: `white`,
                     opacity: `80%`,
                     bottom: 60 }}>
-                    <Typography style={{fontSize: 14}} variant={"body1"}>
+                    <Typography variant={"body1"}>
                         Стоимость:</Typography>
-                    <Typography style={{fontSize: 18, fontWeight: 800, marginLeft: `auto`}} variant={"body1"}>
+                    <Typography style={{marginLeft: `auto`}} variant={"body1"}>
                         <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                 </div>
                 <Button className={classes.buttonCheckout}
@@ -299,20 +300,19 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                         style={{padding: 8, display: `flex`, justifyContent: `center`}}
                                         title={el.name}>
                                         <GatsbyImage
-                                            style={{maxWidth: 150}}
                                             image={el.image.gatsbyImageData}
                                             alt={el.name} />
                                     </CardMedia>
                                     <CardContent style={{padding: 5}}>
                                         <Typography style={{fontSize: 14, fontWeight: `bold` }} variant={"subtitle1"}>{el.name}</Typography>
                                         <Typography style={{fontSize: 13, overflowY: `auto`}}
-                                                    variant={"subtitle1"}>{el.description}</Typography>
+                                                    variant={"subtitle2"}>{el.description}</Typography>
                                         <Button
                                           onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
                                               name: el.name, image: el.image, __typename: activeType, price: el.price })}
                                           variant="contained"
                                           size={"small"}
-                                          style={{backgroundColor: "orange", position: `absolute`, bottom: `10px`, marginTop: 10}}>
+                                          style={{backgroundColor: "orange",  bottom: `10px`, marginTop: 15}}>
                                             Выбрать
                                         </Button>
                                     </CardContent>

@@ -40,7 +40,7 @@ return (
     pathname="/hot-rolls"/>
 
     <HeadSection titleTXT={"Сложные роллы"} isFilter={true} categoryNames={categoryNames}/>
-     <Grid container justify="center">
+     <Grid container justifyContent="center">
          {!loading ?
            <CardsMenuPage titleCategory="Сложные роллы" slugCategogy="/branded-rolls"
                                      visibleItems={visibleItems}

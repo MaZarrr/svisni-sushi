@@ -22,7 +22,7 @@ return (
     description="Заказать специальные комбо наборы, собирай свои блюда из суши и пиццы выгодно. Работаем с 10 до 22:00"
     pathname="/pizza"/>
       <HeadSection titleTXT={"Комбо наборы"}/>
-            <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+            <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
                 <CardsMenuPage titleCategory="Комбо" slugCategogy="/kombo" visibleItems={product}
                                image={image} product={product}/>
             </Grid>

@@ -24,7 +24,7 @@ return (
     description="Салат цезарь с креветками и курицей, салат коктейль. Заказывайте популярные салаты приготовленные из свежих продуктов."/>
 
       <HeadSection titleTXT={"Салаты"} />
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <CardsMenuPage titleCategory="Салат" slugCategogy="/salaty" visibleItems={product}
                                    image={image} product={product}/>
         </Grid>

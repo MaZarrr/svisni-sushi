@@ -42,8 +42,8 @@ const SelectionContentMobile = ({ product, addedCart }) => {
             alt={homeProduct.name} />
         </CardMedia>
         <CardContent style={{ minHeight: 140 }}>
-          <Typography style={{ fontSize: 18, fontWeight: 600 }} variant={"h6"}>{homeProduct.name}</Typography>
-          <Typography style={{ position: `absolute`, width: `77%` }}>{homeProduct.description}</Typography>
+          <Typography variant={"h3"}>{homeProduct.name}</Typography>
+          <Typography variant={"subtitle2"} style={{ position: `absolute`, width: `77%` }}>{homeProduct.description}</Typography>
         </CardContent>
         <CardActions disableSpacing>
           {homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
@@ -64,7 +64,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
               <ShoppingCartIcon />
             </Button>
           }
-          <Typography style={{ fontSize: 18, fontWeight: 800, marginLeft: `auto`, marginRight: 10 }}
+          <Typography style={{ marginLeft: `auto`, marginRight: 10 }}
                       variant={"body1"}>{homeProduct.price}₽</Typography>
         </CardActions>
       </Card>

@@ -1,14 +1,10 @@
 import React, { useCallback, memo } from "react"
-import { Container } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { setCategory } from "../reducers/filters"
 import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
 import Categories from "./Categories"
 import CustomizedInputSearch from "./CustomizedInputSearch"
-
-// const CustomizedInputSearch = loadable(() => import("./CustomizedInputSearch"), {
-//   fallback: <div style={{ minHeight: 46 }}/>
-// });
 
 const HeadSection = memo(({ isFilter = false, categoryNames, category, path, titleTXT, dispatch }) => {
   const { title, wrapped } = useStyleH1();
@@ -19,7 +15,7 @@ const HeadSection = memo(({ isFilter = false, categoryNames, category, path, tit
 
   return (
     <Container className={wrapped} maxWidth={'xl'}>
-      <h1 className={title}>{titleTXT}</h1>
+      <Typography className={title} variant="h1" color="initial">{titleTXT}</Typography>
       { isFilter && <>
         <CustomizedInputSearch location={path}/>
         <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/> </>

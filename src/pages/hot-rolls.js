@@ -31,7 +31,7 @@ return (
 
         <HeadSection titleTXT={"Горячие роллы"} isFilter={true} categoryNames={categoryNames}/>
      {!loading ?
-           <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+           <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
                <CardsMenuPage titleCategory="Горячие роллы" slugCategogy="/hot-rolls" visibleItems={visibleItems}
                               image={image} product={product}/>
            </Grid>

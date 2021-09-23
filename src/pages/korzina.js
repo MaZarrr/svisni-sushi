@@ -326,13 +326,13 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                   }}>
 
                     <Paper style={{padding: 5, opacity: `90%`}}>
-                      <Typography variant="body1" style={{fontSize: 18}}>Сумма заказа <b>{total} ₽</b></Typography>
+                      <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
                     </Paper>
                     <Button
                       component={Link}
                       to={`${pathname}order`}
                       size={'small'}
-                      color={"secondary"}
+                      classes={{label: classes.label}}
                       className={classes.buttonCheckout}
                       variant="contained" >
                       Перейти к оформлению
@@ -360,11 +360,12 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                       </>}
 
                       <Typography variant="h6" style={{fontSize: 24}}>Итого </Typography>
-                      <Typography variant="body1" style={{fontSize: 24}}>Сумма заказа <b>{total} ₽</b></Typography>
+                      <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
                       <Button
+                        color={"primary"}
                         component={Link}
                         to={`${pathname}order`}
-                        color={"primary"}
+                        classes={{label: classes.label}}
                         size={'large'}
                         variant="contained" >
                         Продолжить
@@ -487,6 +488,12 @@ const useStyleBasket  = makeStyles(theme => ({
     flexGrow: 1,
     marginTop: 10
   },
+  label: {
+    color: "white"
+  },
+  color: {
+
+  },
   wrappedContainer: {
     paddingLeft: 25,
     [theme.breakpoints.down('500')]: {
@@ -496,8 +503,8 @@ const useStyleBasket  = makeStyles(theme => ({
     buttonCheckout: {
     position: "fixed",
     bottom: 44,
+    color: 'white',
     backgroundColor: "#303032",
-    color: "white",
     marginTop: 5,
     marginBottom: 15,
     width: '96%',

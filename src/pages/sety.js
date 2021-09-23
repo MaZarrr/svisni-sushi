@@ -38,7 +38,7 @@ const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfu
             <Seo title="Заказать суши сет. Меню наборов роллов — доставка в Валуйки"
                  description="Широкий выбор сетов из фирменных и запечённых роллов в Свисни Суши Уразово с выгодой до 40%. Акция ланч-тайм, скидки с 10 до 15:00"/>
                     <HeadSection titleTXT={"Заказать суши сет"} path={location.pathname} isFilter={true} categoryNames={categoryNames}/>
-                    <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+                    <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
                       {!load ?
                         <CardsMenuPage titleCategory="Набор" slugCategogy="/sety" visibleItems={visibleItems}
                                        image={image} product={product} timePrice={{ hours, minutes, seconds }}

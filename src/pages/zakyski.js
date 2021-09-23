@@ -23,7 +23,7 @@ return (
     description="Доставка закусок от суши-бара Свисни в Уразово ☛ Телефон для заказа ☎ +7(904)094-92-22"/>
 
      <HeadSection titleTXT={"Закуски"} />
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
         <CardsMenuPage titleCategory="Закуски" slugCategogy="/zakyski" visibleItems={product}
                                    image={image} product={product}/>
         </Grid>

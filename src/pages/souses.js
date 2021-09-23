@@ -24,7 +24,7 @@ return (
     noindex={true}/>
 
      <HeadSection titleTXT={"Соусы"} />
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
         <CardsMenuPage titleCategory="Соус" slugCategogy="/souses" visibleItems={product}
                        image={image} product={product}/>
     </Grid>

@@ -79,7 +79,7 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
                               alt={product.name} />
                       </Grid>
                   <Grid item xs={8} style={{paddingLeft: 8, margin: `auto 0`}}>
-                      <Typography variant={"body1"} style={{fontWeight: 600, margin: 0, padding: 0}}>{product.name}</Typography>
+                      <Typography variant={"body1"} style={{margin: 0, padding: 0}}>{product.name}</Typography>
                       <Typography variant={"subtitle2"} style={{margin: `auto`}}>{product.description}</Typography>
                   </Grid>
 

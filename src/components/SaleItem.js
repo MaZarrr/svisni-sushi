@@ -67,12 +67,12 @@ const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
                     component={Link}
                     to="/sale"
                     endIcon={<ReplyIcon color={"action"}/>}
-                    style={{margin: `10px 0`}}>Все акции</Button>
+                    style={{margin: `10px 0`, fontSize: 12}}>Все акции</Button>
             { path !== "/pizza-happy/" &&
             <Button variant="contained"
                     component={Link}
                     to={`/${slug}/`}
-                    style={{marginLeft: 10, backgroundColor: `orange`}}>{textSlug}</Button> }
+                    style={{marginLeft: 10, backgroundColor: `orange`, fontSize: 12}}>{textSlug}</Button> }
           </ButtonGroupSale>
         </Grid>
       </Grid>

@@ -131,13 +131,13 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
 
                                       <Collapse in={expanded[childMarkdownRemark.id]} timeout="auto" unmountOnExit>
                                           <CardContent>
-                                              <Typography
+                                              <Typography variant="body2"
                                                 dangerouslySetInnerHTML={{ __html: childMarkdownRemark.html }} />
 
                                               <form onSubmit={submitForm}
                                                     action="https://formspree.io/xbjdqevk"
                                                     method="POST">
-                                                  <Typography variant="h6">
+                                                  <Typography variant="body1">
                                                       Отклик на вакансию:
                                                   </Typography>
                                                   <TextField
@@ -175,7 +175,8 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
                                   </Card>
                                 ))}
                                 <SectionInfo>
-                                    <h2>Плюсы работы в Свисни Суши</h2>
+                                <Typography 
+                                variant="h2">Плюсы работы в Свисни Суши</Typography>
 
                                     <div className="items-container">
                                         <div>

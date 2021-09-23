@@ -14,7 +14,7 @@ return (
             <h1>Договор оферты</h1>
           
         </header>
-        <div class="confidential-info">
+        <div className="confidential-info">
 <h2 style={{marginBottom: `1.5rem`}}>ПУБЛИЧНАЯ ОФЕРТА О&nbsp;ПРОДАЖЕ ТОВАРОВ ДИСТАНЦИОННЫМ СПОСОБОМ</h2>
 
 <h3>Термины и&nbsp;определения</h3>

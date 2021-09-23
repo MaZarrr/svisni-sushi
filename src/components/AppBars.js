@@ -12,21 +12,33 @@ import Typography from "@material-ui/core/Typography";
 const styles = theme =>( {
     root: {
         top: '60px',
-        background: `#ffcccc`,
+        background: `#fff`,
         margin: 0,
         padding: 0,
         [theme.breakpoints.up('600')]: {
             top: '75px',
         },
     },
-    tabs: {
-        height: 50,
-        backgroundColor: `white`,
-        textDecoration: `none`,
-        [theme.breakpoints.up('600')]: {
-            height: '78px'
+        scrollButtons: {
+            backgroundColor: theme.palette.common.hardPink
         },
-    },
+        indicator: {
+            backgroundColor: theme.palette.common.blueDef
+        },
+        // "@global": {
+        //     ".MuiTypography-h1": {
+        //         fontSize: "30rem"
+        //     }
+        // }
+
+// tabs: {
+    //     height: 50,
+    //     backgroundColor: `white`,
+    //     textDecoration: `none`,
+    //     [theme.breakpoints.up('600')]: {
+    //         height: '78px'
+    //     },
+    // },
     // labelIcon: {
     //     minHeight: 0,
     //     textDecoration: `none`,
@@ -132,23 +144,18 @@ const AppBars = (props) => {
         <HideOnScroll>
             <AppBar component="ul" className={props.classes.root}>
             <Tabs
-                indicatorColor="primary"
-                textColor="primary"
                 variant="scrollable"
                 value={value}
+                classes={{ indicator: props.classes.indicator, scrollButtons: props.classes.scrollButtons }}
                 onChange={handleChange}
                 scrollButtons="auto"
             >
                 { barsLinks.map(({key, name, slug}, index) => (
                                 <Tab key={key}
-                                textColor={"primary"}
-                                classes={{ labelIcon: props.classes.labelIcon }}
-                                className={props.classes.tabs}
                                 component={Link}
                                 to={`/${slug}/`}
                                 value={index + 1}
-                                label={<Typography style={{fontSize: 16}}
-                                               variant={"subtitle2"}>{name}
+                                label={<Typography variant={"body1"}>{name}
                                     </Typography>} {...a11yProps(key)}/>))}
                             </Tabs>
                     </AppBar>

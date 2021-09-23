@@ -3,17 +3,15 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby"
 import { Typography } from "@material-ui/core";
 import styled from 'styled-components';
+import { SocialButtons } from "./common/SocialButtons";
 
 const FooterSection = styled.footer `
-   background-color: #303032;
-   color: white;
-   padding: 30px 0 30px 0;
-   font-family: 'Comfortaa', cursive;
-   font-style: normal;
-    font-weight: 400;
+    background-color: #303032;
+    color: white;
+    padding: 30px 0 30px 0;
 
-  @media screen and (max-width: 768px) {
-  padding-left: 10px;
+    @media screen and (max-width: 768px) {
+    padding-left: 10px;
 `
 
 const FooterUl = styled.ul `
@@ -28,7 +26,7 @@ const FooterUl = styled.ul `
   }
 
   .footer_item p {
-    max-width: 300px;
+    max-width: 500px;
   }
 
  .footer_item a {
@@ -61,7 +59,7 @@ const FooterUl = styled.ul `
 
   .footer_items li {
     list-style: none;
-    margin: auto 0;
+    margin: 0 auto;
   }
 
   .foter_t {
@@ -114,37 +112,27 @@ return (
   <div className="footer_info">
   <div className="footer_items">
     <li className="footer_item footer_info_st">
-        <Link to="/"><Typography variant={"subtitle1"}>Главная</Typography></Link>
-        <Link to="/sale"><Typography variant={"subtitle1"}>Акции</Typography></Link>
-        <Link to="/dostavka-i-oplata"><Typography variant={"subtitle1"}>Доставка и оплата</Typography></Link>
-        <Link to="/adres-i-kontakty"><Typography variant={"subtitle1"}>Адрес и контакты</Typography></Link>
-        <Link to="/vacancy"><Typography variant={"subtitle1"}>Вакансии</Typography></Link>
+        <Link to="/"><Typography variant={"body1"} style={{color: "white"}}>Главная</Typography></Link>
+        <Link to="/sale"><Typography variant={"body1"} style={{color: "white"}}>Акции</Typography></Link>
+        <Link to="/dostavka-i-oplata"><Typography variant={"body1"} style={{color: "white"}}>Доставка и оплата</Typography></Link>
+        <Link to="/adres-i-kontakty"><Typography variant={"body1"} style={{color: "white"}}>Адрес и контакты</Typography></Link>
+        <Link to="/vacancy"><Typography variant={"body1"} style={{color: "white"}}>Вакансии</Typography></Link>
     </li>
   </div>
   
   <div className="footer_items">
     <li className="footer_item footer_info_st">
-      <Link to="/o-nas"><Typography variant={"subtitle1"}>О нас</Typography></Link>
-      <Link to="/privacy"><Typography variant={"subtitle1"}>Условия обработки персональных данных</Typography></Link>
-      <Link to="/cookie"><Typography variant={"subtitle1"}>Политика обработки файлов Cookie</Typography></Link>
-      <Link to="/offer"><Typography variant={"subtitle1"}>Договор оферты</Typography></Link>
+      <Link to="/o-nas"><Typography variant={"body1"} style={{color: "white"}}>О нас</Typography></Link>
+      <Link to="/privacy"><Typography variant={"body1"} style={{color: "white"}}>Условия обработки персональных данных</Typography></Link>
+      <Link to="/cookie"><Typography variant={"body1"} style={{color: "white"}}>Политика обработки файлов Cookie</Typography></Link>
+      <Link to="/offer"><Typography variant={"body1"} style={{color: "white"}}>Договор оферты</Typography></Link>
     </li>
   </div>
 
   <div className="footer_items">
   <div className="footer_item footer_social">
   <p>Узнавайте об акциях первыми — <span className="txt_social">подписывайтесь на наши группы в соцсетях</span></p>
-      <div style={{display: `flex`}}>
-          <div style={{marginRight: 15}}>
-              <a href="https://ok.ru/group/55132913991911" aria-label="odnoklassniki">Мы в одноклассниках</a>
-          </div>
-          <div style={{marginRight: 15}}>
-              <a href="https://vk.com/sushi_urazovo" aria-label="vk">Мы в вконтакте</a>
-          </div>
-          <div>
-              <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagram">Мы в инстаграм</a>
-          </div>
-      </div>
+    <SocialButtons />
    </div>
   </div>
   </div>

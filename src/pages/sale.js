@@ -35,13 +35,10 @@ export default Sale
 const useStyleSalePage = makeStyles(theme => ({
    imageSale: {
      cursor: `pointer`,
-     maxWidth: `32vmax`,
+     maxWidth: `80vmax`,
      borderRadius: 2,
-     [theme.breakpoints.down('md')]: {
-       maxWidth: `42vmax`
-     },
      [theme.breakpoints.down('475')]: {
-       maxWidth: `48vmax`
+       maxWidth: `80vmax`
      }
    },
     container: {

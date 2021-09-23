@@ -22,7 +22,7 @@ return (
        description="Коктейль Голубая лагуна, Мохито. Фруктовые, охлаждающие коктейли, пепси от 35 рублей"
     />
      <HeadSection titleTXT={"Напитки"} />
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
             <CardsMenuPage titleCategory="Напитки" slugCategogy="/napitki" visibleItems={product}
                                    image={image} product={product}/>
     </Grid>

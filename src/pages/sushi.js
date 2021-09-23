@@ -23,7 +23,7 @@ return (
       pathname="/pizza"/>
 
     <HeadSection titleTXT={"Суши"} />
-    <Grid container justify="center" itemScope itemType="http://schema.org/ItemList">
+    <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
         <CardsMenuPage titleCategory="Суши" slugCategogy="/sushi" visibleItems={product}
                        image={image} product={product}/>
     </Grid>

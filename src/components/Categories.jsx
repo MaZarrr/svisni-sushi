@@ -76,7 +76,7 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
                     onKeyPress={handleChange}
                     className={classes.active}
                     onClick={() => handleChange(activeCategory)}>
-                    <Typography variant={"subtitle2"}>
+                    <Typography variant={"body2"}>
                         {activeCategory === null ? "Все" : activeTxt}
                     </Typography>
                     <IconButton
@@ -96,20 +96,20 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
                     onKeyPress={handleChange}
                     className={activeCategory === null ? classes.active : classes.nonactiveCategory}
                     onClick={() => handleChange(null)}>
-                    <Typography variant={"subtitle2"}>
+                    <Typography variant={"body2"}>
                         Все
                     </Typography>
                 </li>
                 {items &&
                 items.map((name, index) => (
                     <li
+                        key={`${name}_${index}`}    
                         role="option" aria-selected={"true"}
                         onKeyPress={handleChange}
                         value={name}
                         className={activeCategory === name ? classes.active : classes.nonactiveCategory}
-                        onClick={() => handleChange(name)}
-                        key={`${name}_${index}`}>
-                        <Typography variant={"subtitle2"}>
+                        onClick={() => handleChange(name)}>
+                        <Typography variant={"body2"}>
                             {name}
                         </Typography>
                     </li>
@@ -122,7 +122,7 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
                         onKeyPress={onClickCategory}
                         className={activeCategory === null ? classes.active : classes.nonactiveCategory}
                         onClick={() => onClickCategory(null)}>
-                        <Typography variant={"subtitle2"}>
+                        <Typography>
                             Все
                         </Typography>
                     </li>
