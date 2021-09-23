@@ -114,7 +114,6 @@ export default function TemporaryDrawer() {
         <div
             className={clsx(classes.list, {[classes.fullList]: anchor === 'top' || anchor === 'bottom'})}
             role="presentation"
-            style={{zIndex: 1400}}
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}>
 
@@ -137,7 +136,7 @@ export default function TemporaryDrawer() {
     );
 
     return (
-        <React.Fragment key={'left'}>
+        <React.Fragment key={'left'} style={{zIndex: 2000}}>
             <IconButton
                 sx={{
                     color: `tomato`,
@@ -151,6 +150,7 @@ export default function TemporaryDrawer() {
             </IconButton>
             <SwipeableDrawer
                 anchor={'left'}
+                sx={{zIndex: 2000}}
                 open={state['left']}
                 onClose={toggleDrawer('left', false)}
                 onOpen={toggleDrawer('left', true)}>

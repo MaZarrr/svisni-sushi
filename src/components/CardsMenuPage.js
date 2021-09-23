@@ -14,9 +14,35 @@ import loadable from "@loadable/component";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Button from '@mui/material/Button'
 import makeStyles from '@mui/styles/makeStyles';
+import { styled } from "@mui/system";
 
 const Paper = loadable(() => import('@mui/material/Paper'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
+
+
+export const CardStyle = styled(Card)(({ theme }) => ({
+    maxWidth: `350px`,
+    margin: `20px auto 10px auto`,
+    [theme.breakpoints.up('1900')]: {
+        maxWidth: `400px`,
+    },
+    [theme.breakpoints.down('1281')]: {
+        maxWidth: `300px`,
+    },
+    [theme.breakpoints.down('600')]: {
+        maxWidth: `400px`,
+    },
+    [theme.breakpoints.down('475')]: {
+        maxWidth: `340px`,
+    },
+    [theme.breakpoints.down('376')]: {
+        maxWidth: `320px`,
+    },
+    [theme.breakpoints.down('340')]: {
+        maxWidth: `280px`,
+    },
+}))
+
 
 const CardsMenuPage = memo(({ 
     titleCategory, 
@@ -43,7 +69,7 @@ const CardsMenuPage = memo(({
             return (
                 <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                       item xs={12} sm={6} md={4} lg={3} key={id}>
-                    <Card className={classes.card}>
+                    <CardStyle>
                         <CardHeader
                             avatar={slugCategogy !== "/wok" ? <GatsbyImage image={image.gatsbyImageData} style={{width: 40}} alt={name} /> : ''}
                             title={variant ? variant : titleCategory}
@@ -299,7 +325,7 @@ const CardsMenuPage = memo(({
                             </div>
                         </CardContent>
 
-                    </Card>
+                    </CardStyle>
                 </Grid>
             );
         })}
@@ -343,28 +369,6 @@ export const useStylesCart = makeStyles(theme => ({
             backgroundColor: 'orange',
         },
         backgroundColor: 'orange'
-    },
-    card: {
-        maxWidth: `350px`,
-        margin: `20px auto 10px auto`,
-        [theme.breakpoints.up('1900')]: {
-            maxWidth: `400px`,
-        },
-        [theme.breakpoints.down(undefined)]: {
-            maxWidth: `300px`,
-        },
-        [theme.breakpoints.down(undefined)]: {
-            maxWidth: `400px`,
-        },
-        [theme.breakpoints.down(undefined)]: {
-            maxWidth: `340px`,
-        },
-        [theme.breakpoints.down(undefined)]: {
-            maxWidth: `320px`,
-        },
-        [theme.breakpoints.down(undefined)]: {
-            maxWidth: `280px`,
-        },
     },
     media: {
         width: `99%`,
