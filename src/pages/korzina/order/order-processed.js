@@ -1,10 +1,10 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { Link } from 'gatsby';
-import { makeStyles } from '@material-ui/core/styles';
-import { Divider } from "@material-ui/core";
+import makeStyles from '@mui/styles/makeStyles';
+import { Divider } from "@mui/material";
 import { isBrowser } from '../../../components/common/constants';
 
 const useStyles = makeStyles((theme) => ({

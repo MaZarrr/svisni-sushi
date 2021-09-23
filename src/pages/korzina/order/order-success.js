@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import { StaticImage } from "gatsby-plugin-image";
-import Typography from '@material-ui/core/Typography';
-import { Divider } from "@material-ui/core"
-import Button from "@material-ui/core/Button"
+import Typography from '@mui/material/Typography';
+import { Divider } from "@mui/material"
+import Button from "@mui/material/Button"
 import { Link } from "gatsby"
 import { isBrowser } from '../../../components/common/constants';
 

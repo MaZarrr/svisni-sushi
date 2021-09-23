@@ -1,16 +1,16 @@
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 import { isNil } from "ramda";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 import { GatsbyImage } from "gatsby-plugin-image";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
 import { Link } from "gatsby";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import { addedCart } from "../../../reducers/shopping-cart";
 import { connect } from "react-redux";
 
@@ -37,13 +37,25 @@ const SelectionContent = ({ product, addedCart }) => {
             {homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
               <Button
                 variant="contained"
-                className={classes.buttonCombo}
+                sx={{
+                  backgroundColor: `orange`,
+                  border: 0,
+                  borderRadius: 3,
+                  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+                  color: 'white',
+                }}
                 component={Link}
                 to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
                 Посмотреть
               </Button> : <Button
                 variant="contained"
-                className={classes.button}
+                sx={{
+                  backgroundColor: `orange`,
+                  border: 0,
+                  borderRadius: 3,
+                  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+                  color: 'white',
+                }}
                 onClick={() => addedCart({
                   id: homeProduct.id,
                   productPrice: null, product: product.node.new
@@ -81,22 +93,11 @@ const useStyle = makeStyles(theme => ({
     fontWeight: `bold`,
     width: `100%`,
     paddingBottom: 20,
-    [theme.breakpoints.down('600')]: {
+    [theme.breakpoints.down(500)]: {
       fontSize: '22px',
       paddingTop: 20,
       paddingRight: 20,
       paddingBottom: 0,
     },
-  },
-  buttonCombo: {
-    backgroundColor: `orange`,
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-  },
-  button: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    color: 'white',
   }
 }));

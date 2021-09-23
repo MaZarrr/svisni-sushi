@@ -1,10 +1,9 @@
 import React from 'react'
 import Layout from './src/components/layout'
-import { ThemeProvider } from '@material-ui/styles';
 import theme from './src/theme';
-import { CssBaseline } from '@material-ui/core';
 // import { ApolloWrapper } from './src/gatsby-theme-apollo/ApolloWrapper';
-
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from "@mui/material";
 export const wrapPageElement = ({ element, props }) => {
   return (
      <Layout {...props}>{element}</Layout>
@@ -13,10 +12,12 @@ export const wrapPageElement = ({ element, props }) => {
 
 export const wrapRootElement = ({ element }) => {
  return (
+   <StyledEngineProvider>
    <ThemeProvider theme={theme}>
     <CssBaseline/>
         {element}
   </ThemeProvider>
+   </StyledEngineProvider>
  );
 };
 

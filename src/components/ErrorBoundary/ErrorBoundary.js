@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Button from "@material-ui/core/Button";
-import {Typography} from "@material-ui/core";
+import Button from "@mui/material/Button";
+import {Typography} from "@mui/material";
 
 
 class ErrorBoundary extends Component {

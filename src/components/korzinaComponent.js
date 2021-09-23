@@ -2,11 +2,11 @@ import React, {useState, useEffect, useRef} from "react"
 import { Link } from 'gatsby';
 import * as R from 'ramda'
 import { connect } from 'react-redux';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import { withStyles } from '@material-ui/core/styles';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import styled from 'styled-components';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import withStyles from '@mui/styles/withStyles';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import styled from '@emotion/styled'
 
 const KorzinaItem = styled.div `
   min-width: 90px;
@@ -88,26 +88,26 @@ const Korzina = ({ cartItems = [], orderTotal = 0}) => {
   }, [totalCount]);
 
 return (
-    <KorzinaItem >
-        <Link to="/korzina/" state={{ loading: false }}>
-            <IconButton aria-label="cart">
-            <TextTotal count={count} prevCount={prevCount} >
-                <StyledBadge anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}  badgeContent={totalCount === 0 ? "0" : totalCount}/>
+  <KorzinaItem >
+      <Link to="/korzina/" state={{ loading: false }}>
+          <IconButton aria-label="cart" size="large">
+          <TextTotal count={count} prevCount={prevCount} >
+              <StyledBadge anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+              }}  badgeContent={totalCount === 0 ? "0" : totalCount}/>
 
-                    <ShoppingCartIcon fontSize={'large'}/>
-                    <StyledBadge badgeContent={!orderTotal ? "0" : orderTotal} max={9999} anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
-                    }} />
+                  <ShoppingCartIcon fontSize={'large'}/>
+                  <StyledBadge badgeContent={!orderTotal ? "0" : orderTotal} max={9999} anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                  }} />
 
-            </TextTotal>
-            </IconButton>
-        </Link>
-    </KorzinaItem>
-        )
+          </TextTotal>
+          </IconButton>
+      </Link>
+  </KorzinaItem>
+);
 };
 
 const mapStateToProps = (state) => ({

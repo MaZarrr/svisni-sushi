@@ -1,15 +1,15 @@
 import { isNil } from "ramda";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 import { GatsbyImage } from "gatsby-plugin-image";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
 import { Link } from "gatsby";
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 
 const KomboContent = ({ product }) => {
   const classes = useStyle();
@@ -31,7 +31,13 @@ const KomboContent = ({ product }) => {
           <CardActions disableSpacing>
             <Button
               variant="contained"
-              className={classes.buttonCombo}
+              sx={{
+                backgroundColor: `orange`,
+                border: 0,
+                borderRadius: 3,
+                boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+                color: 'white',
+              }}
               component={Link}
               to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
               {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
@@ -54,12 +60,5 @@ const useStyle = makeStyles(theme => ({
     maxWidth: `420px`,
     padding: `0 10px`,
     margin: `20px 0`
-  },
-  buttonCombo: {
-    backgroundColor: `orange`,
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
   }
 }));

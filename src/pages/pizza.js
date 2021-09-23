@@ -2,27 +2,27 @@ import React, { useEffect } from "react"
 import Seo from "../components/seo"
 import { graphql, Link } from "gatsby";
 import { connect } from 'react-redux';
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import filtersProducts from '../utils/filtersProducts'
 import * as R from 'ramda'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import { defFilters } from "../reducers/filters";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
 import { GatsbyImage } from "gatsby-plugin-image";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
 import { productPizzaLoaded, spinnerLoading } from "../reducers/app";
 import { checkedLoading, productList } from "../reducers/selectors";
 import clsx from "clsx";
-import Paper from "@material-ui/core/Paper";
+import Paper from "@mui/material/Paper";
 import SplitButton from "../components/SplitButton";
 import HeadSection from "../components/HeadSection"
-import { makeStyles } from "@material-ui/core/styles"
+import makeStyles from '@mui/styles/makeStyles';
 import SpinnerNew from "../components/spinner/spinner-new";
 import { addedToCart, pizzaCart } from "../reducers/shopping-cart";
 
@@ -232,11 +232,11 @@ const useStylesCart = makeStyles(theme => ({
     height: 35,
     overflowY: `auto`,
     padding: 14,
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(undefined)]: {
       minHeight: `20px`,
       padding: 14,
     },
-    [theme.breakpoints.down('425')]: {
+    [theme.breakpoints.down(undefined)]: {
       margin: `auto 0`,
       padding: 14,
       height: `auto`,
@@ -246,7 +246,7 @@ const useStylesCart = makeStyles(theme => ({
     height: 80,
     overflowY: `auto`,
     padding: `10px 0 10px 0`,
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(undefined)]: {
       height: `auto`,
     }
   },
@@ -254,10 +254,10 @@ const useStylesCart = makeStyles(theme => ({
     height: 80,
     overflowY: `auto`,
     padding: 14,
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(undefined)]: {
       padding: 10,
     },
-    [theme.breakpoints.down('425')]: {
+    [theme.breakpoints.down(undefined)]: {
       height: `auto`,
       margin: `auto 0`,
       padding: `6px 6px 6px 14px`
@@ -289,19 +289,19 @@ const useStylesCart = makeStyles(theme => ({
     [theme.breakpoints.up('1900')]: {
       maxWidth: `400px`,
     },
-    [theme.breakpoints.down('1281')]: {
+    [theme.breakpoints.down(undefined)]: {
       maxWidth: `300px`,
     },
-    [theme.breakpoints.down('600')]: {
+    [theme.breakpoints.down(undefined)]: {
       maxWidth: `400px`,
     },
-    [theme.breakpoints.down('475')]: {
+    [theme.breakpoints.down(undefined)]: {
       maxWidth: `340px`,
     },
-    [theme.breakpoints.down('376')]: {
+    [theme.breakpoints.down(undefined)]: {
       maxWidth: `320px`,
     },
-    [theme.breakpoints.down('340')]: {
+    [theme.breakpoints.down(undefined)]: {
       maxWidth: `280px`,
     }
   },

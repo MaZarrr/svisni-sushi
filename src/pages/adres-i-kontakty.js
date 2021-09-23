@@ -1,12 +1,12 @@
 import React from "react"
 import Seo from "../components/seo"
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
-import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined';
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import IconButton from '@material-ui/core/IconButton';
-import styled from "styled-components"
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
+import PhoneIphoneOutlinedIcon from '@mui/icons-material/PhoneIphoneOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import IconButton from '@mui/material/IconButton';
+import styled from '@emotion/styled'
 import { YMaps } from 'react-yandex-maps';
 
 
@@ -36,63 +36,61 @@ const FooterBlock = styled.div`
 
 const Adresikontakty = () => {
 
-return (
-    <>
-    <Seo title="Адрес и контакты Свисни Суши" 
-    description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"/>
+return <>
+<Seo title="Адрес и контакты Свисни Суши" 
+description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"/>
 
-    <HeadSection titleTXT={"Адрес и контакты"} />
-    <Grid container itemScope itemType="https://schema.org/Organization">
-        <Grid item xs={12}>
-            <Container>
-                <div className="item-info">
-                <div>
-                    <IconButton aria-label="add an alarm">
-                        <AccessTimeOutlinedIcon color={"secondary"} fontSize={"large"}/>
-                    </IconButton>
-                </div>
-                <div>
-                    <Typography variant="subtitle1">Режим работы</Typography>
-                    <Typography variant={"subtitle2"}>С 10:00 до 22:00</Typography>
-                </div>
+<HeadSection titleTXT={"Адрес и контакты"} />
+<Grid container itemScope itemType="https://schema.org/Organization">
+    <Grid item xs={12}>
+        <Container>
+            <div className="item-info">
+            <div>
+                <IconButton aria-label="add an alarm" size="large">
+                    <AccessTimeOutlinedIcon color={"secondary"} fontSize={"large"}/>
+                </IconButton>
             </div>
-                <div className="item-info">
-                <div>
-                    <IconButton aria-label="phone">
-                        <PhoneIphoneOutlinedIcon color={"secondary"} fontSize={"large"}/>
-                    </IconButton>
-                </div>
-                <div>
-                    <Typography variant="subtitle1">Телефон</Typography>
-                    <Typography variant={"subtitle2"}>
-                        <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
-                    </Typography>
-                </div>
+            <div>
+                <Typography variant="subtitle1">Режим работы</Typography>
+                <Typography variant={"subtitle2"}>С 10:00 до 22:00</Typography>
             </div>
-                <div className="item-info">
-                <div>
-                    <IconButton>
-                        <LocationOnOutlinedIcon color={"secondary"} fontSize={"large"}/>
-                    </IconButton>
-                </div>
-                <div>
-                    <Typography variant="subtitle1">Адрес</Typography>
-                    <Typography variant={"subtitle2"}><span itemProp="streetAddress">ул.3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
-                </div>
+        </div>
+            <div className="item-info">
+            <div>
+                <IconButton aria-label="phone" size="large">
+                    <PhoneIphoneOutlinedIcon color={"secondary"} fontSize={"large"}/>
+                </IconButton>
             </div>
-            </Container>
-            <YMaps>
-                <Map />
-            </YMaps>
-            <FooterBlock>
-                <Typography variant="body1">ИП Беженова Татьяна Викторовна</Typography>
-                <Typography variant="body1"> ОРГНИП 318312300012678</Typography>
-            </FooterBlock>
-        </Grid>
-
+            <div>
+                <Typography variant="subtitle1">Телефон</Typography>
+                <Typography variant={"subtitle2"}>
+                    <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
+                </Typography>
+            </div>
+        </div>
+            <div className="item-info">
+            <div>
+                <IconButton size="large">
+                    <LocationOnOutlinedIcon color={"secondary"} fontSize={"large"}/>
+                </IconButton>
+            </div>
+            <div>
+                <Typography variant="subtitle1">Адрес</Typography>
+                <Typography variant={"subtitle2"}><span itemProp="streetAddress">ул.3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
+            </div>
+        </div>
+        </Container>
+        <YMaps>
+            <Map />
+        </YMaps>
+        <FooterBlock>
+            <Typography variant="body1">ИП Беженова Татьяна Викторовна</Typography>
+            <Typography variant="body1"> ОРГНИП 318312300012678</Typography>
+        </FooterBlock>
     </Grid>
-    </>
-    )
+
+</Grid>
+</>;
 };
 
 export default Adresikontakty

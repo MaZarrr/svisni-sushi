@@ -1,8 +1,8 @@
 import React from "react";
-import { ThemeProvider } from "@material-ui/styles";
 import Layout from './src/components/layout'
 import theme from './src/theme';
-import { CssBaseline } from '@material-ui/core';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from "@mui/material";
 // import ReactDOM from "react-dom"
 
 // import { ApolloWrapper } from "./src/gatsby-theme-apollo/ApolloWrapper"
@@ -15,10 +15,12 @@ export const wrapPageElement = ({ element, props }) => {
 
 export const wrapRootElement = ({ element }) => {
     return (
+      <StyledEngineProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
           {element}
       </ThemeProvider>
+      </StyledEngineProvider>
     )
 }
 

@@ -43,7 +43,6 @@ module.exports = {
     },
   },
     `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-react-redux`,
       options: {

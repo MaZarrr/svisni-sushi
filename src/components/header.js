@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from "gatsby"
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import { StaticImage } from "gatsby-plugin-image";
-import Hidden from "@material-ui/core/Hidden";
+import Hidden from "@mui/material/Hidden";
 import loadable from "@loadable/component";
-import { Grid, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles"
+import { Grid, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
@@ -40,127 +40,93 @@ const links = [
 const Header = () => {
     const classes = useStyleHeader();
 
-    return (
-      <>
-      <div className={classes.root}>
-        <AppBar
-            position="fixed"
-            className={classes.appBar}>
-          <Toolbar>
-              <Grid container>
+    return <>
+    <div className={classes.root}>
+      <AppBar
+          position="fixed"
+          className={classes.appBar}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-around',
+            width: `100%`,
+            height: `75px`,
+            backgroundColor: "white",
+          }}
+          >
+        <Toolbar>
+            <Grid container>
+            <Hidden smUp>
+                <Grid item xs={4} style={{margin: `auto auto`}}>
+                      <DrawerMenu />
+                </Grid>
+            </Hidden>
+
+              <Hidden smDown>
+              <Grid item sm={1}>
+                <Link to="/">
+                  <StaticImage layout="constrained"
+                               loading={"eager"}
+                               style={{maxWidth: 70}}
+                               placeholder="blurred"
+                               src="../images/logosvisni.png"
+                               alt={"Свисни суши в Уразово"}/>
+                </Link>
+              </Grid>
+
+              <Grid item 
+              xs={9} 
+              component={`ul`} 
+              style={{margin: `auto 0`, display: `flex`, justifyContent: `space-around`}}>
+                {
+                links.map(({name, link, id}) => (
+                    <li key={id} 
+                    style={{ 
+                      textDecoration: `none`,
+                      listStyle: `none`, 
+                      textAlign: `center`
+                      }}>
+                        <Typography> 
+                      <Link to={link} activeStyle={{
+                        border: `solid 1px #FC5185`,
+                        borderBottomWidth: `3px`,
+                        borderRadius: `8px`,
+                        padding: 8,
+                        color: 'red'
+                        }} >
+                        {name}
+                      </Link>
+                      </Typography> 
+                    </li>
+                ))
+              }
+              </Grid>
+              </Hidden>
+
               <Hidden smUp>
-                  <Grid item xs={4} style={{margin: `auto auto`}}>
-                        <DrawerMenu />
+                  <Grid item xs={4} style={{display: `flex`, justifyContent: `center`}}>
+                      <Link to="/">
+                          <StaticImage layout="constrained"
+                                       loading={"eager"}
+                                       placeholder="blurred"
+                                       style={{maxWidth: 65}}
+                                       src="../images/logosvisni.png"
+                                       alt={"Свисни суши в Уразово"}/>
+                      </Link>
                   </Grid>
               </Hidden>
 
-                <Hidden xsDown>
-                <Grid item sm={1}>
-                  <Link to="/">
-                    <StaticImage layout="constrained"
-                                 loading={"eager"}
-                                 style={{maxWidth: 70}}
-                                 placeholder="blurred"
-                                 src="../images/logosvisni.png"
-                                 alt={"Свисни суши в Уразово"}/>
-                  </Link>
-                </Grid>
+              <Grid item xs={4} sm={2} style={{margin: `auto 0`, display: `flex`, justifyContent: `flex-end`}}>
+                  <Baskets />
+              </Grid>
+          </Grid>
 
-                <Grid item 
-                xs={9} 
-                component={`ul`} 
-                style={{margin: `auto 0`, display: `flex`, justifyContent: `space-around`}}>
-                {/* className={classes.heade_info} */}
-                {/* <Grid 
-                  container 
-                  direction="column"
-                  > 
-                  <Typography>
-                    Уразово
-                  </Typography>
-                  <Typography>
-                    Работаем с 10:00 до 22:00
-                  </Typography>
-                  <Grid container spacing={1}>
-                  <Typography>
-                    Пн
-                  </Typography>
-                  <Typography>
-                    Вт
-                  </Typography>
-                  </Grid>
-                </Grid> */}
-                                {
-                  links.map(({name, link, id}) => (
-                      <li key={id} 
-                      style={{ 
-                        textDecoration: `none`,
-                        listStyle: `none`, 
-                        textAlign: `center`
-                        }}>
-                          <Typography> 
-                        <Link to={link} activeStyle={{
-                          border: `solid 1px #FC5185`,
-                          borderBottomWidth: `3px`,
-                          borderRadius: `8px`,
-                          padding: 8,
-                          color: 'red'
-                          }} >
-                          {name}
-                        </Link>
-                        </Typography> 
-                      </li>
-                  ))
-                }
-                {/* {
-                  links.map(({name, link, id}) => (
-                      <li key={id} 
-                      style={{ 
-                        textDecoration: `none`,
-                        listStyle: `none`, 
-                        textAlign: `center`
-                        }}>
-                        <Link to={link} activeStyle={{
-                          border: `solid 1px #FC5185`,
-                          borderBottomWidth: `3px`,
-                          borderRadius: `8px`,
-                          padding: 8,
-                          textDecoration: 'none'
-                          }}>
-                          <Typography variant="body1">{name}</Typography> 
-                        </Link>
-                      </li>
-                  ))
-                } */}
-                </Grid>
-                </Hidden>
+        </Toolbar>
+      </AppBar>
 
-                <Hidden smUp>
-                    <Grid item xs={4} style={{display: `flex`, justifyContent: `center`}}>
-                        <Link to="/">
-                            <StaticImage layout="constrained"
-                                         loading={"eager"}
-                                         placeholder="blurred"
-                                         style={{maxWidth: 65}}
-                                         src="../images/logosvisni.png"
-                                         alt={"Свисни суши в Уразово"}/>
-                        </Link>
-                    </Grid>
-                </Hidden>
-
-                <Grid item xs={4} sm={2} style={{margin: `auto 0`, display: `flex`, justifyContent: `flex-end`}}>
-                    <Baskets />
-                </Grid>
-            </Grid>
-
-          </Toolbar>
-        </AppBar>
-
-        <ProgressBar/>
-      </div>
-      <AppBars/>
-</>
-  );
+      <ProgressBar/>
+    </div>
+    <AppBars/>
+</>;
 };
 
 export default Header
@@ -182,9 +148,9 @@ export const useStyleHeader = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     backgroundColor: "white",
-    [theme.breakpoints.down('sm')]: {
-      height: `69px`,
-    }
+    // [theme.breakpoints.down('md')]: {
+    //   height: `69px`,
+    // }
   },
   content_header: {
     display: 'flex',

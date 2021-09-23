@@ -1,21 +1,21 @@
 import React, { memo } from "react";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { addedToCart } from "../reducers/shopping-cart";
 import { connect } from "react-redux";
 import { take } from "ramda";
 import loadable from "@loadable/component";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from "@material-ui/core/styles"
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import Button from '@mui/material/Button'
+import makeStyles from '@mui/styles/makeStyles';
 
-const Paper = loadable(() => import('@material-ui/core/Paper'))
+const Paper = loadable(() => import('@mui/material/Paper'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
 
 const CardsMenuPage = memo(({ 
@@ -312,10 +312,10 @@ export const useStylesCart = makeStyles(theme => ({
     deckript: {
         height: 80,
         padding: 14,
-        [theme.breakpoints.down('500')]: {
+        [theme.breakpoints.down(undefined)]: {
             padding: 10,
         },
-        [theme.breakpoints.down('425')]: {
+        [theme.breakpoints.down(undefined)]: {
             height: `auto`,
             margin: `auto 0`,
             padding: `5px 5px 5px 14px`
@@ -350,19 +350,19 @@ export const useStylesCart = makeStyles(theme => ({
         [theme.breakpoints.up('1900')]: {
             maxWidth: `400px`,
         },
-        [theme.breakpoints.down('1281')]: {
+        [theme.breakpoints.down(undefined)]: {
             maxWidth: `300px`,
         },
-        [theme.breakpoints.down('600')]: {
+        [theme.breakpoints.down(undefined)]: {
             maxWidth: `400px`,
         },
-        [theme.breakpoints.down('475')]: {
+        [theme.breakpoints.down(undefined)]: {
             maxWidth: `340px`,
         },
-        [theme.breakpoints.down('376')]: {
+        [theme.breakpoints.down(undefined)]: {
             maxWidth: `320px`,
         },
-        [theme.breakpoints.down('340')]: {
+        [theme.breakpoints.down(undefined)]: {
             maxWidth: `280px`,
         },
     },

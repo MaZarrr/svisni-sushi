@@ -3,7 +3,7 @@ import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
 
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import loadable from "@loadable/component";
 import {productLoaded} from "../reducers/app";
 import HeadSection from "../components/HeadSection"

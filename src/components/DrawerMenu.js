@@ -1,24 +1,24 @@
 import React from 'react';
 import clsx from 'clsx';
-import PhoneIcon from '@material-ui/icons/Phone';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import PhoneIcon from '@mui/icons-material/Phone';
+import makeStyles from '@mui/styles/makeStyles';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 import {Link} from "gatsby";
-import RoomIcon from "@material-ui/icons/Room";
-import LocalTaxiIcon from "@material-ui/icons/LocalTaxi";
-import Divider from '@material-ui/core/Divider';
-import WorkIcon from '@material-ui/icons/Work';
-import { SwipeableDrawer, Typography } from "@material-ui/core"
+import RoomIcon from "@mui/icons-material/Room";
+import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
+import Divider from '@mui/material/Divider';
+import WorkIcon from '@mui/icons-material/Work';
+import { SwipeableDrawer, Typography } from "@mui/material"
 import { StaticImage } from "gatsby-plugin-image";
-import EventNoteTwoToneIcon from '@material-ui/icons/EventNoteTwoTone';
-import PersonOutlineTwoToneIcon from '@material-ui/icons/PersonOutlineTwoTone';
-import CardGiftcardTwoToneIcon from '@material-ui/icons/CardGiftcardTwoTone';
-import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
+import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
+import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
+import CardGiftcardTwoToneIcon from '@mui/icons-material/CardGiftcardTwoTone';
+import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import { SocialButtons } from './common/SocialButtons';
 
 // import { useReactiveVar } from '@apollo/client';
@@ -30,11 +30,6 @@ const useStyles = makeStyles(({
     },
     fullList: {
         width: 'auto',
-    },
-    menuButton: {
-        color: `tomato`,
-        borderRadius: `50px`,
-        border: `1px solid tomato`
     }
 }));
 
@@ -119,6 +114,7 @@ export default function TemporaryDrawer() {
         <div
             className={clsx(classes.list, {[classes.fullList]: anchor === 'top' || anchor === 'bottom'})}
             role="presentation"
+            style={{zIndex: 1400}}
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}>
 
@@ -142,7 +138,15 @@ export default function TemporaryDrawer() {
 
     return (
         <React.Fragment key={'left'}>
-            <IconButton className={classes.menuButton} onClick={toggleDrawer('left', true)}>
+            <IconButton
+                sx={{
+                    color: `tomato`,
+                    borderRadius: `50px`,
+                    border: `1px solid tomato`
+                }}
+                className={classes.root}
+                onClick={toggleDrawer('left', true)}
+                size="large">
                 <MenuIcon fontSize={"small"} />
             </IconButton>
             <SwipeableDrawer

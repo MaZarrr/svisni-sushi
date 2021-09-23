@@ -2,15 +2,15 @@ import React, {useState} from "react"
 import Seo from "../../components/seo"
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby'
-import FormControl from '@material-ui/core/FormControl';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import MaskedInput from 'react-text-mask';
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import axios from 'axios';
 import {
   setAdresUser, setCityUser,
@@ -20,12 +20,12 @@ import {
   setPhoneUser, setTimeDeliveryUser,
   userCommentsFunc, userApartment
 } from "../../reducers/contacts-info";
-import { Container, Paper } from "@material-ui/core";
-import FormHelperText from "@material-ui/core/FormHelperText";
+import { Container, Paper } from "@mui/material";
+import FormHelperText from "@mui/material/FormHelperText";
 import PayDialog from "../../components/PayDialog"
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from "@material-ui/core/styles";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import makeStyles from '@mui/styles/makeStyles';
 import loadable from "@loadable/component";
 import HeadSection from "../../components/HeadSection"
 import SpinnerNew from "../../components/spinner/spinner-new";
@@ -39,9 +39,6 @@ function TextMaskCustom(props) {
   return (
     <MaskedInput
       {...other}
-      ref={(ref) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
       mask={[/[7, 8]/, '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
       placeholderChar={'\u2000'}
       guide={false}
@@ -286,7 +283,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
     if(comments === '') {
       return true
     } else if(comments !== '') {
-      return ((/^[а-я_А-Я_0-9\-?()!,.ё:]{3,230}$/).test(commentTextArea.toLowerCase()))
+      return ((((((((((((((((((((((((((((((((((((((((/^[а-я_А-Я_0-9\-?()!,.ё:]{3,230}$/)))))))))))))))))))))))))))))))))))))))).test(commentTextArea.toLowerCase());
     }
   };
   const validatePhone = () => {
@@ -613,7 +610,34 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
 
                   {/*Кнопка заказать*/}
                   <Grid container>
-                    <Grid item xs={12} style={{ margin: `12px auto 8px auto`}}>
+                      {/*Если онлайн оплата не показывать сдачу*/}
+                      {variantPay === 'cash' &&
+                          <Grid item xs={12}>
+
+                              <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
+                              <Select
+                                labelId="demo-controlled-open-select-label"
+                                id="demo-controlled-open-select"
+                                open={open}
+                                onClose={handleClose}
+                                onOpen={handleOpen}
+                                value={age}
+                                name="sdacha"
+                                label="Без сдачи"
+                                onChange={handleChange}>
+                                <MenuItem value="Без сдачи">
+                                  <em>Без сдачи</em>
+                                </MenuItem>
+                                <MenuItem value={700}>С 700 руб</MenuItem>
+                                <MenuItem value={1000}>С 1000 руб</MenuItem>
+                                <MenuItem value={1500}>С 1500 руб</MenuItem>
+                                <MenuItem value={2000}>С 2000 руб</MenuItem>
+                                <MenuItem value={3000}>С 3000 руб</MenuItem>
+                                <MenuItem value={5000}>С 5000 руб</MenuItem>
+                              </Select>
+                          </Grid>
+                          }
+                    <Grid item xs={12} style={{ margin: `20px auto 50px auto`}}>
                       <Paper elevation={3} className={classes.paperEndOrder}>
                         { delivery !== "Самовывоз" && !isEmpty(stateDeliveryPrice) &&
                         <>
@@ -646,7 +670,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
 
                         { isEmpty(stateDeliveryPrice) || delivery === "Самовывоз" ?
                           <div>
-                            <Typography variant={"h6"} style={{fontSize: 18}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
+                            <Typography variant={"h6"} style={{fontSize: 16}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
                           </div> : ''
                         }
                         {/*/!*если онлай оплата показывать другую кнопку*!/*/}
@@ -654,39 +678,10 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                         <span style={{ position: `relative`}}>
                             <Button
                               type="submit"
-                              color={"primary"}
-                              style={{fontWeigh: `bold`, fontSize: 18 }}
                               disabled={buttonDisabled()}
                               variant="contained">
                                 { variantPay === "cash" ? "Сделать заказ" : "Оплатить заказ"}
                             </Button>
-                          {/*Если онлайн оплата не показывать сдачу*/}
-                          {variantPay === 'cash' &&
-                          <Grid item xs={12}>
-                            <div className={classes.cashCdacha}>
-                              <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
-                              <Select
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                open={open}
-                                onClose={handleClose}
-                                onOpen={handleOpen}
-                                value={age}
-                                name="sdacha"
-                                onChange={handleChange}>
-                                <MenuItem value="Без сдачи">
-                                  <em>Без сдачи</em>
-                                </MenuItem>
-                                <MenuItem value={700}>С 700 руб</MenuItem>
-                                <MenuItem value={1000}>С 1000 руб</MenuItem>
-                                <MenuItem value={1500}>С 1500 руб</MenuItem>
-                                <MenuItem value={2000}>С 2000 руб</MenuItem>
-                                <MenuItem value={3000}>С 3000 руб</MenuItem>
-                                <MenuItem value={5000}>С 5000 руб</MenuItem>
-                              </Select>
-                            </div>
-                          </Grid>
-                          }
                           </span>
 
                         { buttonDisabled() === true &&
@@ -749,7 +744,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(Order)
 const useStyleOrder = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    width: `100%`
+    margin: 'auto',
+    maxWidth: 1536
   },
   paperEndOrder: {
     padding: `10px 50px`,
@@ -762,11 +758,6 @@ const useStyleOrder = makeStyles(theme => ({
   },
   formControl: {
     width: `100%`
-  },
-  cashCdacha: {
-    position: `absolute`,
-    left: 210,
-    top: -15
   },
   paper: {
     textAlign: 'center',

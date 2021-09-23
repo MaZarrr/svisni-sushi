@@ -2,10 +2,10 @@ import React from "react"
 import Seo from "../components/seo"
 import { graphql, Link} from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image";
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import HeadSection from "../components/HeadSection"
-import { makeStyles } from "@material-ui/core/styles"
+import makeStyles from '@mui/styles/makeStyles';
 
 const Sale = (props) => {
   const classes = useStyleSalePage();
@@ -22,8 +22,8 @@ const Sale = (props) => {
                 image={product.node.image.gatsbyImageData}
                 className={classes.imageSale}
                 alt={`Акция ${product.node.name}`} />
-              <Typography className={classes.saleName} variant="h4">{product.node.name}</Typography>
-              <Typography className={classes.saleDescription} variant="h4">{product.node.description}</Typography>
+              <Typography variant="h4">{product.node.name}</Typography>
+              <Typography variant="subtitle2">{product.node.description}</Typography>
           </Link>
       </Grid> ))}
   </Grid>
@@ -37,36 +37,18 @@ const useStyleSalePage = makeStyles(theme => ({
      cursor: `pointer`,
      maxWidth: `80vmax`,
      borderRadius: 2,
-     [theme.breakpoints.down('475')]: {
+     [theme.breakpoints.down(undefined)]: {
        maxWidth: `80vmax`
      }
    },
     container: {
       padding: `30px 0 50px 30px`,
-      [theme.breakpoints.down('475')]: {
+      [theme.breakpoints.down(undefined)]: {
         padding: `20px 0 50px 20px`
       }
     },
     item: {
       padding: `0 10px 30px 0`
-    },
-    saleName: {
-      fontSize: 24,
-      fontWeight: 600,
-      padding: `15px 0 15px 0`,
-      width: `85%`,
-      [theme.breakpoints.down('475')]: {
-        fontSize: 22,
-        padding: `10px 0 10px 0`
-      }
-    },
-    saleDescription: {
-      fontSize: 15,
-      width: `85%`,
-      fontWeight: 500,
-      [theme.breakpoints.down('475')]: {
-        fontSize: 14
-      }
     }
 }));
 

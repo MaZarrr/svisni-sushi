@@ -1,7 +1,7 @@
 import React from "react"
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby"
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import styled from 'styled-components';
 import { SocialButtons } from "./common/SocialButtons";
 

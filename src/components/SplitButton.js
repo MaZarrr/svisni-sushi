@@ -1,18 +1,18 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import Grow from '@material-ui/core/Grow';
-import {makeStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Grow from '@mui/material/Grow';
+import makeStyles from '@mui/styles/makeStyles';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
 // import clsx from "clsx";
-import Checkbox from "@material-ui/core/Checkbox";
-import Divider from "@material-ui/core/Divider";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import {Typography} from "@material-ui/core";
+import Checkbox from "@mui/material/Checkbox";
+import Divider from "@mui/material/Divider";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import {Typography} from "@mui/material";
 import {connect} from "react-redux";
 import {addedIngrideent} from "../reducers/shopping-cart";
 
@@ -68,8 +68,7 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                         <AddCircleOutlineIcon/>
                     </Button>
                 </ButtonGroup>
-                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal
-                        modifiers={{flip: {enabled: false}}}>
+                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (
                         <Grow {...TransitionProps} style={{transformOrigin: 'bottom'}}>
                             <div>
@@ -113,3 +112,10 @@ const mapDispatchToProps = {
     addedIngrideents: addedIngrideent
 };
 export default connect(null, mapDispatchToProps)(SplitButton)
+
+
+// <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal
+// // modifiers={[
+// //     {flip: {enabled: false}}
+    
+// //     ]}>

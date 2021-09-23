@@ -1,51 +1,42 @@
 import React from "react"
 import { Link } from "gatsby"
 import PropTypes from 'prop-types';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import AppBar from '@material-ui/core/AppBar';
-import { withStyles } from '@material-ui/core/styles';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Slide from "@material-ui/core/Slide";
-import Typography from "@material-ui/core/Typography";
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import AppBar from '@mui/material/AppBar';
+import withStyles from '@mui/styles/withStyles';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Slide from "@mui/material/Slide";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/system";
+
+
+const TabsStyle = styled(Tabs)(({ theme }) => ({
+    '.MuiTabs-indicator': {
+        backgroundColor: theme.palette.common.lightBlue
+    },
+    '.MuiTabs-scrollButtons': {
+        backgroundColor: theme.palette.common.hardPink
+    },
+    '.MuiTabs-flexContainer': {
+        justifyContent: 'center',
+    }
+    
+}))
 
 const styles = theme =>( {
     root: {
         top: '60px',
-        background: `#fff`,
+        backgroundColor: '#fff',
         margin: 0,
-        padding: 0,
-        [theme.breakpoints.up('600')]: {
-            top: '75px',
-        },
+        padding: 0
     },
         scrollButtons: {
             backgroundColor: theme.palette.common.hardPink
         },
         indicator: {
-            backgroundColor: theme.palette.common.blueDef
-        },
-        // "@global": {
-        //     ".MuiTypography-h1": {
-        //         fontSize: "30rem"
-        //     }
-        // }
-
-// tabs: {
-    //     height: 50,
-    //     backgroundColor: `white`,
-    //     textDecoration: `none`,
-    //     [theme.breakpoints.up('600')]: {
-    //         height: '78px'
-    //     },
-    // },
-    // labelIcon: {
-    //     minHeight: 0,
-    //     textDecoration: `none`,
-    //     [theme.breakpoints.up('600')]: {
-    //         minHeight: '72px'
-    //     },
-    // }
+            backgroundColor: "yellow"
+        }
 });
 
 function HideOnScroll(props) {
@@ -142,11 +133,18 @@ const AppBars = (props) => {
 
     return (
         <HideOnScroll>
-            <AppBar component="ul" className={props.classes.root}>
-            <Tabs
+            <AppBar
+            sx={{
+                top: '70px',
+                backgroundColor: '#fff',
+                margin: 0,
+                padding: 0,
+                zIndex: 1050
+            }}
+            component="ul">
+            <TabsStyle
                 variant="scrollable"
                 value={value}
-                classes={{ indicator: props.classes.indicator, scrollButtons: props.classes.scrollButtons }}
                 onChange={handleChange}
                 scrollButtons="auto"
             >
@@ -157,7 +155,7 @@ const AppBars = (props) => {
                                 value={index + 1}
                                 label={<Typography variant={"body1"}>{name}
                                     </Typography>} {...a11yProps(key)}/>))}
-                            </Tabs>
+            </TabsStyle>
                     </AppBar>
         </HideOnScroll>
     );

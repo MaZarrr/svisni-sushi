@@ -1,19 +1,19 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Button from '@material-ui/core/Button';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Collapse from '@mui/material/Collapse';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Button from '@mui/material/Button';
 
 import { graphql } from "gatsby"
 import Seo from "../components/seo";
-import TextField from "@material-ui/core/TextField";
+import TextField from "@mui/material/TextField";
 import HeadSection from "../components/HeadSection"
 import { StaticImage } from "gatsby-plugin-image";
-import styled from "styled-components";
+import styled from '@emotion/styled'
 
 const SectionInfo = styled.section `
     padding: 10px 0 50px 0;
@@ -62,13 +62,9 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
     const [expanded, setExpanded] = React.useState({nameCart: false});
     const [state, setState] = React.useState({status: ""});
     const [infoVacancy, setInfoVacancy] = React.useState([]);
-    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         setInfoVacancy(allMd)
-        setTimeout(() => {
-            setLoading(false)
-        }, 700)
     }, [allMd])
 
     const submitForm = (ev) => {
@@ -101,13 +97,12 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
                 <HeadSection titleTXT={"Вакансии Свисни Суши"} />
                 <Container>
                     <div className="item-section">
-                    <Typography style={{padding: `10px 50px 10px 0`, width: `98%`}}>
+                    <Typography variant="subtitle2" style={{padding: `10px 50px 10px 0`, width: `98%`}}>
                         Бренд Свисни Суши — был основан в 2018 году, когда открылся первый ресторан японской кухни формата «возьми с собой» в
                         Уразово. С 2018 года мы начали активное развитие и сейчас мы хотим, чтобы каждый имел возможность наслаждаться вкусом
                         лучших блюд японской кухни, поэтому планируем освоение новых территорий и открытие суши баров в Валуйках.
                         И нам требуются ответственные и трудолюбивые сотрудники на постоянную работу.
                     </Typography>
-                        { !loading ?
                             <div className="item-section item-section-vacancy">
                                 {infoVacancy.map(({ node: { childContentfulInfoModelJobSvisniTextNode: { childMarkdownRemark } } }) => (
                                   <Card key={childMarkdownRemark.id} raised style={{ margin: `8px 0` }}>
@@ -131,7 +126,7 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
 
                                       <Collapse in={expanded[childMarkdownRemark.id]} timeout="auto" unmountOnExit>
                                           <CardContent>
-                                              <Typography variant="body2"
+                                              <Typography variant="subtitle2"
                                                 dangerouslySetInnerHTML={{ __html: childMarkdownRemark.html }} />
 
                                               <form onSubmit={submitForm}
@@ -211,7 +206,6 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
                                     </div>
                                 </SectionInfo>
                             </div>
-                          : <h6>Загрузка...</h6>}
                     </div>
                 </Container>
         </section>

@@ -1,13 +1,13 @@
 import React from "react"
 import Seo from "../components/seo"
-import Avatar from '@material-ui/core/Avatar';
-import { Grid } from "@material-ui/core";
-import Typography from '@material-ui/core/Typography';
-import Divider from "@material-ui/core/Divider";
-import InputBase from '@material-ui/core/InputBase';
-import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from '@material-ui/icons/Search';
+import Avatar from '@mui/material/Avatar';
+import { Grid } from "@mui/material";
+import Typography from '@mui/material/Typography';
+import Divider from "@mui/material/Divider";
+import InputBase from '@mui/material/InputBase';
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from '@mui/icons-material/Search';
 import HeadSection from "../components/HeadSection"
 
 const delivery = [
@@ -244,95 +244,92 @@ const Dostavkaioplata = () => {
             setDeliveryState(sity)
     };
 
-return (
-    <>
-    <Seo title="Зоны и стоимость доставки суши и пиццы в Валуйском районе"
-       description="Доставка осуществляется с 10:00 до 22:00 в Валуйки и Уразово. Бесплатная доставка от 500 рублей"
-       pathname=""
+return <>
+<Seo title="Зоны и стоимость доставки суши и пиццы в Валуйском районе"
+   description="Доставка осуществляется с 10:00 до 22:00 в Валуйки и Уразово. Бесплатная доставка от 500 рублей"
+   pathname=""
+/>
+<HeadSection titleTXT={"Стоимость доставки"} />
+<Divider/>
+<Grid container>
+<Grid item xs={12} sm={6}>
+    <Paper style={{padding: '6px 0', paddingLeft: 10, margin: `5px 0`, display: 'flex'}}>
+    <IconButton style={{padding: `5px 10px 5px 8px`}} aria-label="menu" size="large">
+        <SearchIcon />
+    </IconButton>
+    <InputBase
+        style={{flex: 1, padding: 0, width: `100%`}}
+        value={value}
+        name="search"
+        placeholder={"Введите населённый пункт"}
+        inputProps={{ 'aria-label': 'search google maps' }}
+        onChange={handleChange}
     />
-    <HeadSection titleTXT={"Стоимость доставки"} />
+    </Paper>
+    <div style={{overflowY: `scroll`, paddingLeft: 20, height: `450px`}}>
+    {deliveryState.map((el) => (
+    <div key={el.id}>
+    <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
+    <Typography variant="subtitle1">
+        Доставка {el.adress}
+    </Typography>
+    <Grid container >
+    <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
+      <Typography variant="subtitle2">до {el.do} ₽</Typography>
+    </Grid>
+    <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
+      <Typography variant="subtitle2">{el.price} ₽</Typography>
+    </Grid>
+
+    <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
+      <Typography variant="subtitle2">от {el.posle} ₽</Typography>
+    </Grid>
+    <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
+      <Typography variant="subtitle2">Бесплатно</Typography>
+    </Grid>
+    </Grid>
+    <hr></hr>
+    </div>
+  ))}
+  </div>
     <Divider/>
-    <Grid container>
-    <Grid item xs={12} sm={6}>
-        <Paper style={{padding: '6px 0', paddingLeft: 10, margin: `5px 0`, display: 'flex'}}>
-        <IconButton style={{padding: `5px 10px 5px 8px`}} aria-label="menu">
-            <SearchIcon />
-        </IconButton>
-        <InputBase
-            style={{flex: 1, padding: 0, width: `100%`}}
-            value={value}
-            name="search"
-            placeholder={"Введите населённый пункт"}
-            inputProps={{ 'aria-label': 'search google maps' }}
-            onChange={handleChange}
-        />
-        </Paper>
-        <div style={{overflowY: `scroll`, paddingLeft: 20, height: `450px`}}>
-        {deliveryState.map((el) => (
-        <div key={el.id}>
-        <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
-        <Typography variant="subtitle1">
-            Доставка {el.adress}
-        </Typography>
-        <Grid container >
-        <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-          <Typography variant="subtitle2">до {el.do} ₽</Typography>
-        </Grid>
-        <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-          <Typography variant="subtitle2">{el.price} ₽</Typography>
-        </Grid>
+ </Grid>
+    <Grid item xs={12} sm={5} style={{margin: `14px auto 0 auto`, borderRadius: 15}}>
 
-        <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-          <Typography variant="subtitle2">от {el.posle} ₽</Typography>
-        </Grid>
-        <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-          <Typography variant="subtitle2">Бесплатно</Typography>
-        </Grid>
-        </Grid>
-        <hr></hr>
-        </div>
-      ))}
-      </div>
-        <Divider/>
-     </Grid>
-        <Grid item xs={12} sm={5} style={{margin: `14px auto 0 auto`, borderRadius: 15}}>
-
-        <div style={{borderRadius: 15}}>
-             <img src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A6c9654ff4500960caa168410dc7e08e8c8364690cf5a89b544e20cd237dc3970&amp;width=592&amp;height=422&amp;lang=ru_RU"
-                  alt="Адрес Свисни суши" style={{borderRadius: `10px`,
-                    border: `1px solid lightgrey`,
-                    width: `100%`,
-                    height: `420px`}} className="mapDelivery" />
-        </div>
-        </Grid>
-        <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `15px`, color: `white`}}>
-          <Typography variant="body2"><strong>График работы: с 10:00 до 22:00</strong></Typography>
-          <Typography variant="body2"><strong>+7(904)094-92-22</strong></Typography>
-    </Grid>
-        <Grid item xs={6} style={{backgroundColor: `#000`, padding: `15px`, color: `white`}}>
-          <Typography  variant="body1"><strong>Доставка от 60 до 90 мин</strong></Typography>
-    </Grid>
-
-    <div style={{padding: `30px`}}>
-    <h2>
-    Как заказать
-    </h2>
-    <p>Заказывайте доставку роллов удобным Вам способом: по телефону или через сайт.</p>
-    <p>Чтобы сделать заказ через сайт:</p>
-        <ul>
-            <li>добавьте товар в корзину (иконка Корзина)</li>
-            <li>перейдите в корзину (значёк в правом верхнем углу)</li>
-            <li>нажмите кнопку «Продолжить»</li>
-            <li>введите Ваши данные и способ получения заказа</li>
-            <li>нажмите кнопку «Сделать заказ»</li>
-        </ul>
-    <p>Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени<strong>. После оформления заказа вам поступит звонок с подтверждением</strong>. Если у вас нет возможности совершить заказ
-    через интернет, звоните нам по телефону <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>.</p>
+    <div style={{borderRadius: 15}}>
+         <img src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A6c9654ff4500960caa168410dc7e08e8c8364690cf5a89b544e20cd237dc3970&amp;width=592&amp;height=422&amp;lang=ru_RU"
+              alt="Адрес Свисни суши" style={{borderRadius: `10px`,
+                border: `1px solid lightgrey`,
+                width: `100%`,
+                height: `420px`}} className="mapDelivery" />
     </div>
     </Grid>
-    </>
-    
-    )
+    <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `15px`, color: `white`}}>
+      <Typography variant="body2"><strong>График работы: с 10:00 до 22:00</strong></Typography>
+      <Typography variant="body2"><strong>+7(904)094-92-22</strong></Typography>
+</Grid>
+    <Grid item xs={6} style={{backgroundColor: `#000`, padding: `15px`, color: `white`}}>
+      <Typography  variant="body1"><strong>Доставка от 60 до 90 мин</strong></Typography>
+</Grid>
+
+<div style={{padding: `30px`}}>
+<h2>
+Как заказать
+</h2>
+<p>Заказывайте доставку роллов удобным Вам способом: по телефону или через сайт.</p>
+<p>Чтобы сделать заказ через сайт:</p>
+    <ul>
+        <li>добавьте товар в корзину (иконка Корзина)</li>
+        <li>перейдите в корзину (значёк в правом верхнем углу)</li>
+        <li>нажмите кнопку «Продолжить»</li>
+        <li>введите Ваши данные и способ получения заказа</li>
+        <li>нажмите кнопку «Сделать заказ»</li>
+    </ul>
+<p>Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени<strong>. После оформления заказа вам поступит звонок с подтверждением</strong>. Если у вас нет возможности совершить заказ
+через интернет, звоните нам по телефону <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>.</p>
+</div>
+</Grid>
+</>;
 };
 
 export default Dostavkaioplata

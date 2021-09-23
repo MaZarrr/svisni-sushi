@@ -1,7 +1,7 @@
 import React from "react";
 import CardsMenuPage from "./CardsMenuPage";
 import HeadSection from "./HeadSection";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import Seo from "./seo";
 
 const SpecialMenu = ({ menu: { categoryName, products, iconImage} }) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react"
 import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import filtersProducts from '../utils/filtersProducts'
 import { productLoaded,
   // spinnerLoading
