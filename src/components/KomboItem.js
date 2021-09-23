@@ -43,15 +43,15 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const KomboItem = React.memo(( { id, name, description, addedCart, image, price, slug, edit, products } ) => {
 
-    const [activeItem, setActiveItem] = React.useState({nameItem: false});
-    const [activeItems, setActiveItems] = React.useState({nameItem: false});
-    const [activeType, setActiveType] = React.useState('');
-    const [items, switchItems] = React.useState([]);
-    const [productSostav, setProduct] = React.useState([]);
-    const [activeIndexSostav, setActiveIndexSosvav] = React.useState(0);
-    const [openAlert, setOpenAlert] = React.useState(false);
+    const [activeItem, setActiveItem] = useState({nameItem: false});
+    const [activeItems, setActiveItems] = useState({nameItem: false});
+    const [activeType, setActiveType] = useState('');
+    const [items, switchItems] = useState([]);
+    const [productSostav, setProduct] = useState([]);
+    const [activeIndexSostav, setActiveIndexSosvav] = useState(0);
+    const [openAlert, setOpenAlert] = useState(false);
     const [open, setOpen] = React.useState(false);
-    const [{vertical, horizontal}, setState] = React.useState({
+    const [{vertical, horizontal},] = useState({
         vertical: 'bottom',
         horizontal: 'center',
       });

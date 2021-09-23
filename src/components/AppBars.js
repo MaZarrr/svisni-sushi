@@ -19,7 +19,9 @@ const TabsStyle = styled(Tabs)(({ theme }) => ({
         backgroundColor: theme.palette.common.hardPink
     },
     '.MuiTabs-flexContainer': {
-        justifyContent: 'center',
+        '@media screen and (min-width: 1700px) ': {
+            justifyContent: 'center',
+          },
     }
     
 }))
