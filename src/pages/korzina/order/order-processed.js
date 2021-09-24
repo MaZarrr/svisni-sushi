@@ -111,13 +111,15 @@ const OrderProcessed = ({ location: { state } }) => {
                         <Button component={Link}
                                 to="/"
                                 variant="contained"
-                                color="primary"
+                                color="info"
+                                size={'small'}
                                 className={classes.button}>
                             Перейти на главную
                         </Button>
                         <Button component={"a"}
                                 href="tel:+79040949222"
                                 variant={"contained"}
+                                size={'small'}
                                 className={classes.button}
                                 color={"secondary"}>
                             Позвонить

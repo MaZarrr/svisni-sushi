@@ -335,7 +335,9 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                 <Card key={el.id} style={{
                                     borderRadius: '5px',
                                     width: '300px',
-                                    margin: 'auto'
+                                    height: '480px',
+                                    margin: 'auto',
+                                    position: "relative"
                                     }}>
                                     <CardMedia
                                         style={{padding: 8, display: `flex`, justifyContent: `center`}}
@@ -347,7 +349,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                             image={el.image.gatsbyImageData}
                                             alt={el.name} />
                                     </CardMedia>
-                                    <CardContent style={{padding: 5}}>
+                                    <CardContent style={{padding: 5, height: '200px'}}>
                                         <Typography style={{fontSize: 14, fontWeight: `bold` }} variant={"subtitle1"}>{el.name}</Typography>
                                         <Typography style={{fontSize: 13, overflowY: `auto`}}
                                                     variant={"subtitle2"}>{el.description}</Typography>
@@ -356,7 +358,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                               name: el.name, image: el.image, __typename: activeType, price: el.price })}
                                           variant="contained"
                                           size={"small"}
-                                          style={{backgroundColor: "orange",  bottom: `10px`, marginTop: 15}}>
+                                          style={{backgroundColor: "orange",  position: 'absolute', bottom: `15px`}}>
                                             Выбрать
                                         </Button>
                                     </CardContent>

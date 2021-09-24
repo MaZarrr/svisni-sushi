@@ -43,41 +43,36 @@ const OrderSuccess = () => {
           <Typography style={{textAlign: `right`, paddingRight: 10, marginTop: 5}} variant={"subtitle2"}> оформляйте заказы заранее к определенному времени *</Typography>
         </div>
         <div style={{padding: `8px 0`}}>
-          <Typography style={{textAlign: `left`}} variant={"body1"}>Оплата заказа онлайн.
-            <p>Оператор может не позвонить для
-              подтверждения заказа, если вы указали все необходимые данные при оформлении заказа. </p>
-            <p>Ваш заказ будет готов в течении часа или к указанному времени.</p>
-            <p>Ожидайте доставку на указанный адрес, если выбрана доставка.</p>
-            <p style={{fontWeight: `bold`}}>Оператор перезвонит если:</p>
-            <ul>
-              <li>не указана вся необходимая информация;</li>
-              <li>выбрана доставка/готовка к определённому времени и это время занято.</li>
-            </ul>
-            <p>График работы с 10:00 до 22:00 без перерывов и выходных.</p>
-            </Typography>
+          <Typography style={{textAlign: `left`}} variant={"body2"}>Оператор с вами свяжется для подтверждения заказа.</Typography>
+        </div>
+        <div style={{padding: `8px 0`}}>
+            <Typography style={{textAlign: `left`}} variant={"body2"}>График работы с 10:00 до 22:00 без перерывов и выходных.</Typography>
         </div>
           <Divider />
         <div style={{padding: `8px 0`}}>
-          <Typography style={{textAlign: `left`}} variant={"body1"}>Заказ оформленный ко времени будет готов/доставлен к указанному времени.</Typography>
+          <Typography style={{textAlign: `left`}} variant={"body2"}>Заказ оформленный ко времени будет готов/доставлен к указанному времени.</Typography>
         </div>
 
         </Grid>
       <Divider/>
       <Grid item xs={12}>
-        <Typography style={{textAlign: `left`, padding: `8px 0`}} variant={"body1"}>Спасибо что выбираете Свисни Sushi!</Typography>
+        <Typography style={{textAlign: `left`, padding: `8px 0`}} variant={"body2"}>Спасибо что выбираете Свисни Sushi!</Typography>
       </Grid>
       <Grid item xs={12} style={{ marginBottom: 60, display: `flex`}}>
         <Button component={Link}
                 to="/"
+                size={'small'}
                 variant="contained"
-                color="primary">
+                color="info">
           Перейти на главную
         </Button>
         <Button component={"a"}
                 href="tel:+79040949222"
                 variant={"contained"}
                 style={{marginLeft: `10px`}}
-                color={"secondary"}>
+                color={"secondary"}
+                size={'small'}
+                >
           Позвонить
         </Button>
       </Grid>
