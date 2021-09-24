@@ -115,12 +115,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-facebook-pixel`,
-      options: {
-        pixelId: "1086855725085525",
-      },
-    },
-    {
       resolve: `gatsby-plugin-offline`,
       options: {
         precachePages: [
