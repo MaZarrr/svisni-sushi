@@ -2,11 +2,11 @@ import React from "react"
 import Seo from "./seo"
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from 'gatsby';
-import Button from '@material-ui/core/Button';
-import ReplyIcon from '@material-ui/icons/Reply';
+import Button from '@mui/material/Button';
+import ReplyIcon from '@mui/icons-material/Reply';
 import HeadSection from "./HeadSection"
-import styled from 'styled-components';
-import Grid from "@material-ui/core/Grid"
+import styled from '@emotion/styled'
+import Grid from "@mui/material/Grid"
 
 const MetterContent = styled.div `
   max-width: 94%;
@@ -58,13 +58,14 @@ const SaleItem = ({ image, md, name, path, slug, textSlug}) => {
       <HeadSection titleTXT={name} />
       <Grid container>
         <Grid item xs={12} md={6}>
-          <ImageSale image={image} />
+          <ImageSale image={image} alt={`Акция ${name}`} />
         </Grid>
         <Grid item xs={12} md={6}>
           <MetterContent dangerouslySetInnerHTML={{__html: md.childMarkdownRemark.html}} />
           <ButtonGroupSale>
             <Button variant="contained"
                     component={Link}
+                    color="inherit"
                     to="/sale"
                     endIcon={<ReplyIcon color={"action"}/>}
                     style={{margin: `10px 0`, fontSize: 12}}>Все акции</Button>

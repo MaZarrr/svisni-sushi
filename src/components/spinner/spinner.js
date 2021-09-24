@@ -1,6 +1,6 @@
 import React from 'react'
 import ContentLoader from "react-content-loader"
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 
 const Spinner = (props) => (
     <Grid container justifyContent={"space-around"} direction={"row"} style={{marginTop: 15}}>

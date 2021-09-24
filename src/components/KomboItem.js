@@ -1,23 +1,23 @@
 import React, {useState} from "react"
 import Seo from "./seo"
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import clsx from "clsx";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@mui/material/Typography";
+import makeStyles from '@mui/styles/makeStyles';
 import { pluck, sum, compose } from "ramda";
-import Hidden from "@material-ui/core/Hidden";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
+import Hidden from "@mui/material/Hidden";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
 import {addedCart} from "../reducers/shopping-cart";
 import { connect } from "react-redux";
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 import SwipeableViews from 'react-swipeable-views';
-import Modal from "@material-ui/core/Modal";
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import Modal from "@mui/material/Modal";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const styles = {
     root: {
@@ -32,20 +32,29 @@ const styles = {
     }
 };
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+// function Alert(props) {
+//     return <MuiAlert elevation={6} variant="filled" {...props} />;
+// }
 
 const KomboItem = React.memo(( { id, name, description, addedCart, image, price, slug, edit, products } ) => {
 
-    const [activeItem, setActiveItem] = React.useState({nameItem: false});
-    const [activeItems, setActiveItems] = React.useState({nameItem: false});
-    const [activeType, setActiveType] = React.useState('');
-    const [items, switchItems] = React.useState([]);
-    const [productSostav, setProduct] = React.useState([]);
-    const [activeIndexSostav, setActiveIndexSosvav] = React.useState(0);
-    const [openAlert, setOpenAlert] = React.useState(false);
+    const [activeItem, setActiveItem] = useState({nameItem: false});
+    const [activeItems, setActiveItems] = useState({nameItem: false});
+    const [activeType, setActiveType] = useState('');
+    const [items, switchItems] = useState([]);
+    const [productSostav, setProduct] = useState([]);
+    const [activeIndexSostav, setActiveIndexSosvav] = useState(0);
+    const [openAlert, setOpenAlert] = useState(false);
     const [open, setOpen] = React.useState(false);
+    const [{vertical, horizontal},] = useState({
+        vertical: 'bottom',
+        horizontal: 'center',
+      });
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const classes = useStyleKombo();
@@ -125,15 +134,26 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
     return <>
         <Seo title={`Комбо набор ${name}`}
              description={`Доставка комбо наборов в Валуйки. Комбо набор ${name}, цена ${price} рублей`} />
-        <Typography 
-        className={classes.titleClass}
-        variant="h1">{name}</Typography>
+        <Typography
+            variant="h1"
+            sx={{
+                fontWeight: 900,
+                marginTop: '50px',
+                textTransform: `uppercase`,
+                fontSize: 34,
+                marginBottom: '6px',
+                letterSpacing: `-1.6px`,
+                marginLeft: '25px',
+                '@media screen and (max-width: 475px) ': {
+                    fontSize: 24,
+                }
+        }}>{name}</Typography>
 
         <div style={{width: `100%`}}>
         <div>
             <Typography style={{marginLeft: 30, padding: `0 10px 5px 0`}}
                         variant={"body1"}>{description}</Typography>
-            <Hidden xsDown>
+            <Hidden smDown>
                 <div style={{marginLeft: 30}}>
                 <Typography style={{
                     fontSize: 22,
@@ -182,8 +202,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                 </div>
                                 <Button fullWidth={true}
                                         variant={"contained"}
-                                        // color={"primary"}
-                                        className={classes.buttonCheckout}
+                                        color={"primary"}
                                         onClick={() => addedCart({id, price,
                                             product: [addedProductKomboToBacket()]})}>
                                     Добавить в корзину</Button>
@@ -254,7 +273,13 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                                 variant={"body2"}>{el.description}</Typography>
                                 </div>
                             </Grid>
-                            <Button size={"small"} fullWidth className={classes.button} variant={"contained"}>
+                            <Button size={"small"} 
+                            sx={{
+                                backgroundColor: 'orange',
+                                color: "#000",
+                                margin: `10px 0 6px 0`,
+                            }}
+                            fullWidth className={classes.button} variant={"contained"}>
                                 Поменять</Button>
                         </div>
                     </Grid>
@@ -274,11 +299,21 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                     <Typography style={{marginLeft: `auto`}} variant={"body1"}>
                         <s style={{fontSize: 20, fontWeight: 600}}>{priceSale()}</s> {price} ₽</Typography>
                 </div>
-                <Button className={classes.buttonCheckout}
+                <Button 
+                        sx={{
+                            position: "sticky",
+                            bottom: 30,
+                            backgroundColor: "#303032",
+                            color: "white",
+                            marginTop: 5,
+                            marginBottom: 15,
+                            width: '100%',
+                            opacity: `93%`
+                        }}
                         style={{margin: `0 auto 0 auto`, padding: 5, width: `90%`, }}
                         size={"small"}
                         variant={"contained"}
-                        color={"secondary"}
+                        color={"primary"}
                         onClick={() => addedCart({id, price, product: [addedProductKomboToBacket()]})}>
                         Добавить в корзину</Button>
             </Grid>
@@ -287,7 +322,9 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             <Grid container>
                 <Modal
                     open={open}
-                    className={classes.backdrop}
+                    sx={{
+                        color: '#fff',
+                    }}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description">
                     <div style={{width: `100%`, marginTop: `37%`}}>
@@ -333,14 +370,15 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             </Grid>
         </Hidden>
 
-        <Snackbar open={openAlert} autoHideDuration={2500} style={{bottom: 90}} onClose={handleCloseAlert}>
-                <Alert onClose={handleCloseAlert} severity="error">
+        <Snackbar open={openAlert} autoHideDuration={2500} 
+        anchorOrigin={{ vertical, horizontal }}
+        key={vertical + horizontal}
+        style={{bottom: 90}} onClose={handleCloseAlert}>
+                <Alert onClose={handleCloseAlert} severity="info">
                    В составе такой товар есть, выберите другой.
                 </Alert>
-            </Snackbar>
-
+        </Snackbar>
         </div>
-
     </>;
 });
 
@@ -391,16 +429,6 @@ const useStyleKombo = makeStyles(theme => ({
         transition: `transform 0.3s`,
         position: "relative",
     },
-    buttonCheckout: {
-        position: "sticky",
-        bottom: 30,
-        backgroundColor: "#303032",
-        color: "white",
-        marginTop: 5,
-        marginBottom: 15,
-        width: '100%',
-        opacity: `93%`
-    },
     checkoutInfo: {
         borderRadius: 5,
         border: `1px solid lightgrey`,
@@ -423,26 +451,9 @@ const useStyleKombo = makeStyles(theme => ({
         margin: `0 auto`,
         transform: `scale(1.03)`,
     },
-    backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
-        color: '#fff',
-    },
     button: {
         backgroundColor: 'orange',
         padding: 5,
         margin: `10px 0 6px 0`,
-    },
-    titleClass: {
-        fontWeight: 900,
-        marginTop: 80,
-        textTransform: `uppercase`,
-        fontSize: 34,
-        marginBottom: 6,
-        letterSpacing: `-1.6px`,
-        marginLeft: 30,
-        [theme.breakpoints.down('475')]: {
-            fontSize: 24,
-            marginTop: 40
-        }
     }
 }));

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react"
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from "@material-ui/core/styles";
+import Grid from '@mui/material/Grid';
+import makeStyles from '@mui/styles/makeStyles';
 import { graphql } from "gatsby";
-import { Hidden, Typography } from "@material-ui/core";
+import { Hidden, Typography } from "@mui/material";
 
 import Carousel from '../components/common/CarouselSvisni';
 import MenuCategory from "../components/indexContent/MenuCategory";
@@ -75,42 +75,42 @@ const IndexPage = ({
 
         }
 
-            <section>
-              <Seo title="Заказать любимые суши роллы c доставкой в Валуйки"
-                   description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
-                        Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
-              <Hidden smUp>
-              <Typography 
-              variant={"body2"}
-              style={{textAlign: 'center', marginTop: 45}}>Доставка роллов и пиццы <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Уразово и Валуйки</span></Typography>  
-              </Hidden>
-              <Carousel dataCarousel={dataCar}/>
-                
-                <Grid container className={classes.root}>
+        return (
+          <section>
+            <Seo title="Заказать любимые суши роллы c доставкой в Валуйки"
+                 description="Бесплатная доставка суши, роллов, пиццы и воков в Валуйках.
+                      Наше меню суши порадует широким выбором и низкими ценами. Заказ еды c 10 до 22:00"/>
+            <Hidden smUp>
+            <Typography 
+            variant={"body2"}
+            style={{textAlign: 'center', marginTop: 50}}>Доставка роллов и пиццы <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Уразово и Валуйки</span></Typography>  
+            </Hidden>
+            <Carousel dataCarousel={dataCar}/>
+              
+              <Grid container className={classes.root}>
 
-                  <Hidden xsDown>
-                    <Typography className={classes.title}
-                                variant={"inherit"}
-                                component={"h1"}>
-                      Свисни Суши в Уразово</Typography>
-                  </Hidden>
-                  {/* Меню категории */}
-                  <Hidden smUp>
-                    <Grid container style={{ marginBottom: 20 }}>
-                      <MenuCategory />
-                    </Grid>
-                  </Hidden>
-                  { !loadingSpinner ? <>
-                  {/* Комбо */}
-                  <Combo product={indexProduct[0]}/>
-
-                  {/* Новинки/рекомендованые */}
-                  <RecommendedProducts product={indexProduct[1]} />
-                  </> : <SpinnerNew /> }
-                </Grid>
-            </section>
- )}
-
+                <Hidden smDown>
+                  <Typography className={classes.title}
+                              variant={"inherit"}
+                              component={"h1"}>
+                    Свисни Суши в Уразово</Typography>
+                </Hidden>
+                {/* Меню категории */}
+                <Hidden smUp>
+                  <Grid container style={{ marginBottom: 20 }}>
+                    <MenuCategory />
+                  </Grid>
+                </Hidden>
+                { !loadingSpinner ? <>
+                {/* Комбо */}
+                <Combo product={indexProduct[0]}/>
+                {/* Новинки/рекомендованые */}
+                <RecommendedProducts product={indexProduct[1]} />
+                </> : <SpinnerNew /> }
+              </Grid>
+          </section>
+        );
+      }
 
 export default IndexPage
 
@@ -128,7 +128,7 @@ const useStyleIndexPage = makeStyles(theme => ({
         width: `100%`,
         textTransform: `uppercase`,
         fontSize: 34,
-        [theme.breakpoints.down('475')]: {
+        [theme.breakpoints.down(undefined)]: {
             fontSize: 24,
             letterSpacing: `-1px`,
             margin: `20px 0 0 0`

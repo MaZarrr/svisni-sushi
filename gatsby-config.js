@@ -43,7 +43,6 @@ module.exports = {
     },
   },
     `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-react-redux`,
       options: {
@@ -114,12 +113,6 @@ module.exports = {
         defer: true,
         useCDN: true
       }
-    },
-    {
-      resolve: `gatsby-plugin-facebook-pixel`,
-      options: {
-        pixelId: "1086855725085525",
-      },
     },
     {
       resolve: `gatsby-plugin-offline`,

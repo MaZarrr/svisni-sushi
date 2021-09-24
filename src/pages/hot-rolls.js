@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import Seo from "../components/seo"
 import { graphql } from "gatsby";
 import { connect } from 'react-redux';
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import { productLoaded, spinnerLoading } from "../reducers/app";
 import { checkedLoading, productList } from "../reducers/selectors";
 import { defFilters } from "../reducers/filters";

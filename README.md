@@ -164,6 +164,15 @@ body2 - описание текста
     - "path-browserify": "^1.0.1",
 
 
+    "gatsby-plugin-facebook-pixel": "^1.0.8",
+    {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: "1086855725085525",
+      },
+    },
+
+
     https://material-ui.com/ru/customization/color/
 
     https://www.apollographql.com/blog/apollo-client/architecture/redux-to-apollo-data-access-patterns/#apollo-cache-dependency-graph Redux to Apollo: шаблоны доступа к данным

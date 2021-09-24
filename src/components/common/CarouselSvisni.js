@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
-import { Hidden } from "@material-ui/core";
+import { Hidden } from "@mui/material";
 import { mod } from 'react-swipeable-views-core';
 import Pagination from '../pagination/Pagination';
-// import Fab from '@material-ui/core/Fab';
-// import AddIcon from '@material-ui/icons/Add';
-// import Grid from '@material-ui/core/Grid';
+// import Fab from '@mui/material/Fab';
+// import AddIcon from '@mui/icons-material/Add';
+// import Grid from '@mui/material/Grid';
 
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
@@ -150,14 +150,14 @@ const useStyleCarousel = makeStyles(theme => ({
         flexGrow: '1',
         marginTop: 40,
         position: 'relative',
-        [theme.breakpoints.down('1200')]: {
+        [theme.breakpoints.down(1024)]: {
             marginTop: 50,
         },
-        [theme.breakpoints.down('768')]: {
+        [theme.breakpoints.down(768)]: {
             marginTop: 50,
             marginBottom: 20,
         },
-        [theme.breakpoints.down('475')]: {
+        [theme.breakpoints.down(600)]: {
             marginBottom: 0,
             marginTop: 5,
         }
@@ -167,7 +167,7 @@ const useStyleCarousel = makeStyles(theme => ({
     image: {
         borderRadius: 5,
         maxWidth: 1920,
-        [theme.breakpoints.down('600')]: {
+        [theme.breakpoints.down(600)]: {
             borderRadius: 5,
         },
     },
@@ -176,7 +176,7 @@ const useStyleCarousel = makeStyles(theme => ({
     },
     rootCarousel: {
         padding: '0 20vw 0 20vw',
-        [theme.breakpoints.down('475')]: {
+        [theme.breakpoints.down(600)]: {
             padding: 0,
         },
     }

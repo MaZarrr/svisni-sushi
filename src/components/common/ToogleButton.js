@@ -1,8 +1,7 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from "clsx";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 import {checkedWok} from '../../reducers/shopping-cart';
 import {connect} from "react-redux";
 
@@ -37,20 +36,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const BootstrapButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        border: '1px solid orange',
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: 'orange',
-        },
-        '&:focus': {
-            boxShadow: 'none',
-            backgroundColor: 'orange',
-        },
-    }
-})(Button);
+// export const BootstrapButton = withStyles({
+//     root: {
+//         boxShadow: 'none',
+//         border: '1px solid orange',
+//         '&:active': {
+//             boxShadow: 'none',
+//             backgroundColor: 'orange',
+//         },
+//         '&:focus': {
+//             boxShadow: 'none',
+//             backgroundColor: 'orange',
+//         },
+//     }
+// })(Button);
 
 const BasicButtonGroup = ({dispatch, id, productWok}) => {
     const [wokVariant, setWokVariant] = React.useState({udon: true}, {soba: false}, {funshoza: false});

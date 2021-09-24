@@ -1,11 +1,19 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import { Link } from "gatsby";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 import { StaticImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
-import IconButton from '@material-ui/core/IconButton';
+import makeStyles from '@mui/styles/makeStyles';
+import IconButton from '@mui/material/IconButton';
 import { hardPink } from "../../theme";
+import { styled } from "@mui/system";
+
+const TypographyStyle = styled(Typography)(({ theme }) => ({
+    fontWeight: 500,
+    textAlign: `center`,
+    padding: `10px 0 10px 0`,
+    fontSize: `4vmin`
+}))
 
 const MenuCategory = () => {
 
@@ -14,10 +22,10 @@ const MenuCategory = () => {
     <div className={classes.root}>
       
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
-          <IconButton style={{ padding: `10px 0 10px 0` }}>
+          <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
             <Link style={{ textDecoration: `none`, color: "grey" }} to="/sety/">
               <div className={classes.cartTitle}>
-                <Typography className={classes.menuTitle}>Сеты</Typography>
+                <TypographyStyle className={classes.menuTitle}>Сеты</TypographyStyle>
               </div>
               <div style={{ margin: `0 auto` }}>
                 <StaticImage
@@ -32,10 +40,10 @@ const MenuCategory = () => {
         </Grid>
 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }}>
+        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/pizza/">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Пицца</Typography>
+              <TypographyStyle className={classes.menuTitle}>Пицца</TypographyStyle>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -50,10 +58,10 @@ const MenuCategory = () => {
       </Grid>
 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }}>
+        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/kombo/">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h3"}>Комбо</Typography>
+              <TypographyStyle className={classes.menuTitle}>Комбо</TypographyStyle>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -68,10 +76,10 @@ const MenuCategory = () => {
       </Grid>
 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }}>
+        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/hot-rolls/">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Горячие роллы</Typography>
+              <TypographyStyle className={classes.menuTitle}>Горячие роллы</TypographyStyle>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -86,10 +94,10 @@ const MenuCategory = () => {
       </Grid>
 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }}>
+        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/branded-rolls/">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Сложные роллы</Typography>
+              <TypographyStyle className={classes.menuTitle}>Сложные роллы</TypographyStyle>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -103,10 +111,10 @@ const MenuCategory = () => {
       </Grid>
 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }}>
+        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/wok/">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Wok лапша</Typography>
+              <TypographyStyle className={classes.menuTitle}>Wok лапша</TypographyStyle>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -120,10 +128,10 @@ const MenuCategory = () => {
       </Grid>
 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }}>
+        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/zakyski/">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Закуски</Typography>
+              <TypographyStyle className={classes.menuTitle}>Закуски</TypographyStyle>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -137,10 +145,10 @@ const MenuCategory = () => {
       </Grid>
 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }}>
+        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="special-menu/vegetarian">
             <div className={classes.cartTitle}>
-              <Typography className={classes.menuTitle} variant={"h2"}>Пост\веган</Typography>
+              <TypographyStyle className={classes.menuTitle}>Пост\веган</TypographyStyle>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -185,12 +193,7 @@ const useStyleMenu = makeStyles({
     width: "100%",
     zIndex: 1000,
   },
-  menuTitle: {
-    fontWeight: 500,
-    textAlign: `center`,
-    padding: `10px 0 10px 0`,
-    fontSize: `4vmin`,
-  },
+
 });
 
 // const itemsMenu = [

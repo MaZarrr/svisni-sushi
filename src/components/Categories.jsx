@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography } from "@material-ui/core";
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from "@material-ui/core/IconButton";
+import { Typography } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from "@mui/material/IconButton";
 import clsx from "clsx";
-import Hidden from "@material-ui/core/Hidden";
-import { makeStyles } from '@material-ui/core/styles';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Hidden from "@mui/material/Hidden";
+import Collapse from '@mui/material/Collapse';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
     expand: {
@@ -36,10 +36,22 @@ const useStyles = makeStyles((theme) => ({
         marginRight: `8px`,
         marginTop: `7px`,
         color: `#fff`,
+        width: '95%',
         borderRadius: `30px`,
         '&:hover': {
             backgroundColor: `#282828`,
         }},
+
+        activePc: {
+            backgroundColor: `#282828`,
+            padding: `5px 15px`,
+            marginRight: `8px`,
+            marginTop: `7px`,
+            color: `#fff`,
+            borderRadius: `30px`,
+            '&:hover': {
+                backgroundColor: `#282828`,
+            }},
     nonactiveCategory: {
         border: `1px solid lightgray`,
         marginTop: `7px`,
@@ -71,11 +83,12 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
         <div>
             <ul className={classes.ulList} role="listbox">
                 <Hidden smUp>
-                <MenuItem
+                <li
                     role="option" aria-selected={"true"}
                     onKeyPress={handleChange}
                     className={classes.active}
                     onClick={() => handleChange(activeCategory)}>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
                     <Typography variant={"body2"}>
                         {activeCategory === null ? "Все" : activeTxt}
                     </Typography>
@@ -89,7 +102,8 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
                     >
                         <ExpandMoreIcon style={{color: `white`}} />
                     </IconButton>
-                </MenuItem>
+                    </div>
+                </li>
                 <Collapse in={expanded} timeout="auto">
                 <li
                     role="option" aria-selected={"true"}
@@ -116,11 +130,11 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
                 ))}
                 </Collapse>
                 </Hidden>
-                <Hidden xsDown>
+                <Hidden mdDown>
                     <li
                         role="option" aria-selected={"true"}
                         onKeyPress={onClickCategory}
-                        className={activeCategory === null ? classes.active : classes.nonactiveCategory}
+                        className={activeCategory === null ? classes.activePc : classes.nonactiveCategory}
                         onClick={() => onClickCategory(null)}>
                         <Typography>
                             Все
@@ -131,7 +145,7 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
                         <li
                             role="option" aria-selected={"true"}
                             onKeyPress={onClickCategory}
-                            className={activeCategory === name ? classes.active : classes.nonactiveCategory}
+                            className={activeCategory === name ? classes.activePc : classes.nonactiveCategory}
                             onClick={() => onClickCategory(name)}
                             key={`${name}_${index}`}>
                             <Typography>
@@ -144,7 +158,6 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
         </div>
     );
 });
-
 Categories.propTypes = {
     // activeCategory: PropTypes.oneOf([PropTypes.number, null]),
     items: PropTypes.arrayOf(PropTypes.string).isRequired,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image';
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 const EmptyBasket = () => (
         <div className="container">

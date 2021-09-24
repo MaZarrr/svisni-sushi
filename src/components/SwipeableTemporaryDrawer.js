@@ -1,25 +1,16 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Button from '@material-ui/core/Button';
+import makeStyles from '@mui/styles/makeStyles';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Button from '@mui/material/Button';
 import RadioButtonsFiltr from './RadioButtonsFiltr'
 import FormControlLabelPosition from './FormControlLabelPosition'
-import FilterListIcon from '@material-ui/icons/FilterList';
-import IconButton from '@material-ui/core/IconButton';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import IconButton from '@mui/material/IconButton';
 
 const useStyles = makeStyles(theme => ({
   list: {
-    width: 250,
-  },
-  iconButton: {
-    padding: 10,
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    color: `white`,
-    [theme.breakpoints.down('500')]: {
-      color: `grey`,
-      background: `white`
-    }
-}
+    width: 250
+  }
 }));
 
 export default function SwipeableTemporaryDrawer({location}) {
@@ -57,8 +48,13 @@ export default function SwipeableTemporaryDrawer({location}) {
   return (
     <div style={{marginLeft: `auto`, marginRight: 40}}>
    
-    <IconButton onClick={toggleDrawer('left', true)} 
-      className={classes.iconButton} aria-label="menu">
+    <IconButton
+      onClick={toggleDrawer('left', true)}
+      sx={{
+        border: `1px solid tomato`,
+      }}
+      aria-label="menu"
+      size="large">
       <FilterListIcon />
     </IconButton>
       <SwipeableDrawer

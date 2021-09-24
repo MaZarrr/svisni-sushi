@@ -4,13 +4,10 @@ import { connect } from 'react-redux';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image";
 import * as R from 'ramda'
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Button from '@material-ui/core/Button';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import ButtonSize from "../components/common/ButtonSizePizza";
 import { addedCart, removeCart,
   allRemoveCart, addPribor,
@@ -18,12 +15,12 @@ import { addedCart, removeCart,
   deletePizza, deleteRoll } from "../reducers/shopping-cart";
 import { getProduct } from "../reducers/app";
 import uniqid from 'uniqid'
-import IconButton from "@material-ui/core/IconButton";
-import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
-import IndeterminateCheckBoxOutlinedIcon from '@material-ui/icons/IndeterminateCheckBoxOutlined';
-import Hidden from "@material-ui/core/Hidden";
-import { makeStyles } from "@material-ui/core/styles"
+import IconButton from "@mui/material/IconButton";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import IndeterminateCheckBoxOutlinedIcon from '@mui/icons-material/IndeterminateCheckBoxOutlined';
+import Hidden from "@mui/material/Hidden";
+import makeStyles from '@mui/styles/makeStyles';
 import loadable from "@loadable/component";
 import HeadSection from "../components/HeadSection";
 
@@ -34,7 +31,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
   allContentfulProductGunkan}, items = [], total = 0, palochkiTotal,
                              onIncrease, onDecrise, onDelete, addedPriborCount, addedSaleRoll,
   addedSalePizza, deletePizzaSale, deleteFilaSale, location: { pathname } }) => {
-  const [value, setValue] = React.useState([]);
   const classes = useStyleBasket();
 
   const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
@@ -160,227 +156,236 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
     }
   };
 
-  const handleChange = event => {
-    setValue(() => {
-      return R.update(event.target.id, [
-        event.target.value
-      ])(value)
-    });
-  };
   const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items));
-  return (
-    <>
-      <Seo title="Корзина"
-           description="Корзина товаров"
-           noindex={true}/>
-      <section>
-        <div className={classes.root}>
-          <HeadSection titleTXT={"Корзина товаров"} />
-          {R.isEmpty(items) ? <EmptyBasket/> :
-              <Grid container spacing={2} style={{ width: `100%` }}>
-                <Grid item sm={7}>
-                  <Grid container spacing={2} className={classes.wrappedContainer}>
+  return <>
+    <Seo title="Корзина"
+         description="Корзина товаров"
+         noindex={true}/>
+    <section>
+      <div className={classes.root}>
+        <div style={{
+          margin: '0 0 20px 0'
+        }}>
+        <HeadSection titleTXT={"Корзина товаров"} />
+        </div>
+        {R.isEmpty(items) ? <EmptyBasket/> :
+            <Grid container spacing={2} style={{ width: `100%` }}>
+              <Grid item sm={7}>
+                <Grid container spacing={2} className={classes.wrappedContainer}>
 
-                    { items.map((item, idx) => {
-                      const { id, name, count, total, image, priceIn33cm, price, priceDef,
-                        textRollSale, textPizza, pizzaSale, description, edit = null, size,
-                        wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
-                        descriptionIngrideents = ""} = item
-                      return (
-                        <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
-                          <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
-                            <div style={{margin: `auto 0`, zIndex: 10}}>
-                              <GatsbyImage
-                                style={{maxWidth: 158}}
-                                image={image} alt={name} />
-                            </div>
-                            <div style={{width: `100%`}}>
-                              <div style={{padding: `8px 0 8px 0`, width: `100%`}}>
-                                <Typography variant="subtitle1" style={{paddingLeft: 8}}>
-                                  {name}
-                                </Typography>
-                                {/*button added count product*/}
-                                <div style={{display: `flex`, paddingLeft: 10, position: `relative`}}>
-                                  <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 0`}} variant="subtitle2">
-                                    {priceDef === 0 ? "1шт" : `${count}шт`}
-                                  </Typography>
-
-                                  {/* <div style={{display: `flex`, alignItems: `center`, margin: `auto`}}> */}
-                                  <div>
-                                    {price !== 79 && priceDef !== 0 ?
-                                      <>
-                                        <IconButton aria-label="plus" component="span"
-                                                    onClick={()=> onIncrease( {id, price, product: items} )}
-                                          // style={{padding: `7px`}}
-                                        >
-                                          <AddBoxOutlinedIcon />
-                                        </IconButton>
-                                        <IconButton aria-label="remove" component="span"
-                                                    onClick={()=> onDecrise({ id, price, product: items})}>
-                                          <IndeterminateCheckBoxOutlinedIcon/>
-                                        </IconButton>
-                                      </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
-
-                                    { price > 78 &&
-                                    <IconButton aria-label="remove" component="span"
-                                                onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
-                                                  : () => deleteFilaSale(id)}>
-                                      <DeleteOutlineOutlinedIcon/>
-                                    </IconButton>
-
-                                    }
-                                    { pizzaSale &&
-                                    <IconButton aria-label="remove" component="span"
-                                                onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }>
-                                      <DeleteOutlineOutlinedIcon/>
-                                    </IconButton>
-                                    }
-                                  </div>
-                                  <Typography style={{fontSize: 14, fontWeight: 600, position: `absolute`, top: 15, right: 10}}
-                                              variant="subtitle2">{price === 79 ? null : `${total}₽`}</Typography>
-                                </div>
-                              </div>
-
-                              { !!priceIn33cm &&
-                              <>
-                                <FormControl component="fieldset" style={{width: `95%`}}>
-                                  <RadioGroup aria-label="position" name="position"
-                                              value={value[idx]} onChange={handleChange} row style={{marginLeft: 8}}>
-                                    <FormControlLabel
-                                      value={name}
-                                      control={<ButtonSize
-                                        sizePizzaStyle={slug}
-                                        title="Средняя"
-                                        pizzaSize={size}
-                                        id={id}
-                                        edges={items}
-                                        pricePizza={priceDef}/>}
-                                      labelPlacement="bottom"
-                                      id={id}
-                                      name={name}
-                                      style={{margin: `0 6px 0 0`, padding: 0}}/>
-                                    <FormControlLabel
-                                      value={name + "a"}
-                                      control={<ButtonSize
-                                        sizePizzaStyle={contentful_id}
-                                        title="Большая"
-                                        pizzaSize={size}
-                                        id={id}
-                                        edges={items}
-                                        pricePizza={priceIn33cm}/>}
-                                      labelPlacement="bottom"
-                                      id={id}
-                                      name={name}
-                                      style={{margin: `0 0 5px 0`, padding: 0}}/>
-                                  </RadioGroup>
-                                </FormControl>
-                                <Typography style={{fontSize: 12, marginLeft: 8}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
-                              </>
-                              }
-                              {wok &&
-                              <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
-                              }
-                              {edit !== null &&
-                              <Typography style={{fontSize: 13, padding: `0 10px`}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
-                              }
-
-                            </div>
+                  { items.map((item, idx) => {
+                    const { id, name, count, total, image, priceIn33cm, price, priceDef,
+                      textRollSale, textPizza, pizzaSale, description, edit = null, size,
+                      wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
+                      descriptionIngrideents = ""} = item
+                    return (
+                      <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+                        <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
+                          <div style={{margin: `auto 0`, zIndex: 10}}>
+                            <GatsbyImage
+                              style={{maxWidth: 158}}
+                              image={image} alt={name} />
                           </div>
-                        </Grid>
-                      )})}
-                    {saleRollFunc()}
-                    {pizzaDarom()}
+                          <div style={{width: `100%`}}>
+                            <div style={{padding: `8px 0 8px 0`, width: `100%`}}>
+                              <Typography variant="subtitle1" style={{paddingLeft: 8}}>
+                                {name}
+                              </Typography>
+                              {/*button added count product*/}
+                              <div style={{display: `flex`, paddingLeft: 10, position: `relative`}}>
+                                <Typography style={{fontSize: 14, fontWeight: 600, margin: `auto 0`}} variant="subtitle2">
+                                  {priceDef === 0 ? "1шт" : `${count}шт`}
+                                </Typography>
 
-                    <Hidden smUp>
-                      { addPanelPribors  &&
-                      <Paper style={{marginTop: 0, marginBottom: 40, padding: 8, width: `100%`}}>
-                        <div style={{display: `flex`, flexDirection: `column`}}>
-                          <Typography variant={"subtitle2"}>Количество палочек</Typography>
-                          <div style={{display: `flex`, alignItems: `center`}}>
-                            <IconButton aria-label="plus" component="span"
-                                        onClick={()=> addedPriborCount(1)}>
-                              <AddBoxOutlinedIcon aria-label="plus" />
-                            </IconButton>
-                            <Typography variant={"h6"}>{palochkiTotal}</Typography>
-                            <IconButton aria-label="remove" component="span"
-                                        onClick={()=> addedPriborCount(-1)}>
-                              <IndeterminateCheckBoxOutlinedIcon aria-label="remove" />
-                            </IconButton>
+                                {/* <div style={{display: `flex`, alignItems: `center`, margin: `auto`}}> */}
+                                <div>
+                                  {price !== 79 && priceDef !== 0 ?
+                                    <>
+                                      <IconButton
+                                        aria-label="plus"
+                                        component="span"
+                                        // style={{padding: `7px`}}
+                                        onClick={()=> onIncrease( {id, price, product: items} )}
+                                        size="large">
+                                        <AddBoxOutlinedIcon />
+                                      </IconButton>
+                                      <IconButton
+                                        aria-label="remove"
+                                        component="span"
+                                        onClick={()=> onDecrise({ id, price, product: items})}
+                                        size="large">
+                                        <IndeterminateCheckBoxOutlinedIcon/>
+                                      </IconButton>
+                                    </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
+
+                                  { price > 78 &&
+                                  <IconButton
+                                    aria-label="remove"
+                                    component="span"
+                                    onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
+                                      : () => deleteFilaSale(id)}
+                                    size="large">
+                                    <DeleteOutlineOutlinedIcon/>
+                                  </IconButton>
+
+                                  }
+                                  { pizzaSale &&
+                                  <IconButton
+                                    aria-label="remove"
+                                    component="span"
+                                    onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
+                                    size="large">
+                                    <DeleteOutlineOutlinedIcon/>
+                                  </IconButton>
+                                  }
+                                </div>
+                                <Typography style={{fontSize: 14, fontWeight: 600, position: `absolute`, top: 15, right: 10}}
+                                            variant="subtitle2">{price === 79 ? null : `${total}₽`}</Typography>
+                              </div>
+                            </div>
+
+                            { !!priceIn33cm &&
+                            <>
+                                <ButtonSize
+                                      sizePizzaStyle={slug}
+                                      title="Средняя"
+                                      pizzaSize={size}
+                                      id={id}
+                                      edges={items}
+                                      pricePizza={priceDef}/>
+                                <ButtonSize
+                                      sizePizzaStyle={contentful_id}
+                                      title="Большая"
+                                      pizzaSize={size}
+                                      id={id}
+                                      edges={items}
+                                      pricePizza={priceIn33cm}/>
+                              <Typography style={{fontSize: 12, marginLeft: 8}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
+                            </>
+                            }
+                            {wok &&
+                            <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
+                            }
+                            {edit !== null &&
+                            <Typography style={{fontSize: 13, padding: `0 10px`}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
+                            }
+
                           </div>
                         </div>
-                      </Paper>
-                      }
-                    </Hidden>
-                  </Grid>
+                      </Grid>
+                    );})}
+                  {saleRollFunc()}
+                  {pizzaDarom()}
 
-                </Grid>
-
-                {/*phone next order*/}
-                <Hidden smUp>
-                  <div style={{margin: `20px auto 0 auto`,
-                    position: `fixed`,
-                    padding: `0 0 0 15px`,
-                    bottom: 25,
-                    width: `100%`,
-                    zIndex: 1200
-                  }}>
-
-                    <Paper style={{padding: 5, opacity: `90%`}}>
-                      <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
-                    </Paper>
-                    <Button
-                      component={Link}
-                      to={`${pathname}order`}
-                      size={'small'}
-                      classes={{label: classes.label}}
-                      className={classes.buttonCheckout}
-                      variant="contained" >
-                      Перейти к оформлению
-                    </Button>
-                  </div>
-                </Hidden>
-
-                {/*PC block*/}
-                <Hidden xsDown>
-                  <Grid item xs={12} sm={4} style={{margin: `20px 0`, padding: 0}}>
-                    <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`, width: `100%`}}>
-                      { addPanelPribors  && <>
-                        <Typography variant={"subtitle2"}>Количество <br></br> приборов(палочки)</Typography>
-                        <div style={{display: `flex`}}>
-                          <IconButton aria-label="plus" component="span"
-                                      onClick={()=> addedPriborCount(1)}>
+                  <Hidden smUp>
+                    { addPanelPribors  &&
+                    <Paper style={{marginTop: 0, marginBottom: 40, padding: 8, width: `100%`}}>
+                      <div style={{display: `flex`, flexDirection: `column`}}>
+                        <Typography variant={"subtitle2"}>Количество палочек</Typography>
+                        <div style={{display: `flex`, alignItems: `center`}}>
+                          <IconButton
+                            aria-label="plus"
+                            component="span"
+                            onClick={()=> addedPriborCount(1)}
+                            size="large">
                             <AddBoxOutlinedIcon aria-label="plus" />
                           </IconButton>
-                          <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
-                          <IconButton aria-label="remove" component="span"
-                                      onClick={()=> addedPriborCount(-1)}>
+                          <Typography variant={"h6"}>{palochkiTotal}</Typography>
+                          <IconButton
+                            aria-label="remove"
+                            component="span"
+                            onClick={()=> addedPriborCount(-1)}
+                            size="large">
                             <IndeterminateCheckBoxOutlinedIcon aria-label="remove" />
                           </IconButton>
                         </div>
-                      </>}
-
-                      <Typography variant="h6" style={{fontSize: 24}}>Итого </Typography>
-                      <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
-                      <Button
-                        color={"primary"}
-                        component={Link}
-                        to={`${pathname}order`}
-                        classes={{label: classes.label}}
-                        size={'large'}
-                        variant="contained" >
-                        Продолжить
-                      </Button>
+                      </div>
                     </Paper>
-                  </Grid>
-                </Hidden>
+                    }
+                  </Hidden>
+                </Grid>
 
               </Grid>
-          }
 
-          </div>
-      </section>
-    </>
-  )
+              {/*phone next order*/}
+              <Hidden smUp>
+                <div style={{
+                  margin: `20px auto 0 auto`,
+                  position: `fixed`,
+                  bottom: 25,
+                  width: '93%',
+                  left: 13,
+                  zIndex: 1200
+                }}>
+
+                  <Paper style={{padding: 5, opacity: `95%`}}>
+                    <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
+                  </Paper>
+                  <Button
+                    component={Link}
+                    to={`${pathname}order`}
+                    sx={{
+                      position: "fixed",
+                      bottom: 55,
+                      margin: '0 auto',
+                      backgroundColor: "#303032",
+                      width: '93%',
+                      left: 13,
+                      opacity: `95%`
+                    }}>
+                      <Typography color="white" variant="subtitle1">
+                          Перейти к оформлению
+                      </Typography>
+                  </Button>
+                </div>
+              </Hidden>
+
+              {/*PC block*/}
+              <Hidden smDown>
+                <Grid item xs={12} sm={4} style={{margin: `20px 0`, padding: 0}}>
+                  <Paper elevation={3} style={{padding: 20, position: `sticky`, top: `170px`, width: `100%`}}>
+                    { addPanelPribors  && <>
+                      <Typography variant={"subtitle2"}>Количество <br></br> приборов(палочки)</Typography>
+                      <div style={{display: `flex`}}>
+                        <IconButton
+                          aria-label="plus"
+                          component="span"
+                          onClick={()=> addedPriborCount(1)}
+                          size="large">
+                          <AddBoxOutlinedIcon aria-label="plus" />
+                        </IconButton>
+                        <Typography variant={"h6"} style={{margin: `auto 8px`}}>{palochkiTotal}</Typography>
+                        <IconButton
+                          aria-label="remove"
+                          component="span"
+                          onClick={()=> addedPriborCount(-1)}
+                          size="large">
+                          <IndeterminateCheckBoxOutlinedIcon aria-label="remove" />
+                        </IconButton>
+                      </div>
+                    </>}
+
+                    <Typography variant="h6" style={{fontSize: 24}}>Итого </Typography>
+                    <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
+                    <Button
+                      component={Link}
+                      to={`${pathname}order`}
+                      size={'large'}
+                      variant="contained" >
+                      <Typography color="white" variant="subtitle1">
+                          Продолжить
+                      </Typography>
+                    </Button>
+                  </Paper>
+                </Grid>
+              </Hidden>
+
+            </Grid>
+        }
+
+        </div>
+    </section>
+  </>;
 };
 
 const mapStateToProps = (state) => ({
@@ -490,9 +495,6 @@ const useStyleBasket  = makeStyles(theme => ({
   },
   label: {
     color: "white"
-  },
-  color: {
-
   },
   wrappedContainer: {
     paddingLeft: 25,

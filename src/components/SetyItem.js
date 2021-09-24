@@ -1,12 +1,12 @@
 import React from "react"
 import Seo from "./seo"
-import Button from '@material-ui/core/Button';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import { Grid } from "@material-ui/core";
+import Button from '@mui/material/Button';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { Grid } from "@mui/material";
 import { GatsbyImage } from "gatsby-plugin-image";
 import loadable from "@loadable/component";
-import Typography from "@material-ui/core/Typography";
-import styled from 'styled-components'
+import Typography from "@mui/material/Typography";
+import styled from '@emotion/styled'
 import LayoutItem from './layoutItem';
 
 // my components

@@ -1,7 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import makeStyles from '@mui/styles/makeStyles';
+import Fab from '@mui/material/Fab';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {Link} from "gatsby";
 
 const useStyles = makeStyles((theme) => ({
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1200,
         top: theme.spacing(28),
         left: theme.spacing(2.8),
-        [theme.breakpoints.down('768')]: {
+        [theme.breakpoints.down(undefined)]: {
             top: theme.spacing(25),
             left: theme.spacing(1.8),
         },

@@ -1,5 +1,5 @@
-// import { purple, red } from '@material-ui/core/colors';
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+// import { purple, red } from '@mui/material/colors';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 const lightRed = '#f4511e';
 const hardBrown = '#3e2723';
@@ -11,31 +11,31 @@ const blueDef = '#1976d2';
 const yellowDef = '#ffeb3b';
 
 // A custom theme for this app
-const theme = createTheme({
-    overrides: {
+const theme = createTheme(({
+    components: {
         MuiCssBaseline: {
-            '@global': {
-                body: {
-                    background: `red`,
-                    color: `hsla(0, 0%, 0%, 0.8)`,
-                    fontFamily: `Montserrat, sans-serif`,
-                    fontWeight: `normal`,
-                    wordWrap: `break-word`,
-                    fontKerning: `normal`
-                },
-                p: {
-                  fontSize: 16,
-                },
-                a: {
-                    color: `#3e2723 !important`,
-                    textDecoration: `none`
-                },
-                li: {
-                    margin: 0,
-                    padding: 0,
-                    boxSizing: `border-box`
-                }
+            styleOverrides: `
+            body {
+                color: hsla(0 0% 0% 0.8);
+                font-family: Montserrat, sans-serif;
+                font-weight: normal;
+                word-wrap: break-word;
+                font-kerning: normal;
             },
+            p {
+              font-size: 16px;
+            },
+            a {
+                color: #3e2723 !important;
+                text-decoration: none;
+            },
+            li {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            `
         },
     },
     typography: {
@@ -44,12 +44,12 @@ const theme = createTheme({
             'sans-serif'
         ].join(','),
         h1: {
-            fontSize: "4.5rem",
+            fontSize: "2.5rem",
             fontFamily: "Montserrat",
             fontWeight: 700
         },
         h2: {
-            fontSize: "3rem",
+            fontSize: "2rem",
             fontFamily: "Montserrat",
             fontWeight: 500
         },
@@ -126,6 +126,6 @@ const theme = createTheme({
             yellowDef
         }
     },
-});
+}));
 
 export default responsiveFontSizes(theme);
