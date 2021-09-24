@@ -4,6 +4,7 @@ import theme from './src/theme';
 // import { ApolloWrapper } from './src/gatsby-theme-apollo/ApolloWrapper';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from "@mui/material";
+
 export const wrapPageElement = ({ element, props }) => {
   return (
      <Layout {...props}>{element}</Layout>
@@ -15,9 +16,9 @@ export const wrapRootElement = ({ element }) => {
    <StyledEngineProvider>
    <ThemeProvider theme={theme}>
     <CssBaseline/>
-    <ApolloWrapper>
+    {/* <ApolloWrapper> */}
         {element}
-    </ApolloWrapper>
+    {/* </ApolloWrapper> */}
   </ThemeProvider>
    </StyledEngineProvider>
  );

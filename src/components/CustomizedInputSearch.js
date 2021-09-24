@@ -49,10 +49,8 @@ export const useStyleSearchInput = makeStyles(theme => ({
     marginTop: 10,
     display: 'flex',
     width: `95%`,
-    [theme.breakpoints.down(undefined)]: {
-      border: `1px solid #282828`,
-      borderRadius: 20,
-      width: `98%`,
+    [theme.breakpoints.down('500')]: {
+      width: `95%`,
       padding: 0,
     }
   },

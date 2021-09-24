@@ -94,7 +94,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   const [openPay, setOpenPay] = useState(false)
   const [openAlert, setOpenAlert] = React.useState(false);
   const [state, setState] = React.useState("promptly");
-  // const [socketT, setSocketT] = useState({})
+  const [socketT, setSocketT] = useState({})
   const [textAlert, setTextAlert] = React.useState("");
   const [variantPay, setVariantPay] = React.useState("cash");
   const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
@@ -102,6 +102,19 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   const classes = useStyleOrder();
 
   React.useEffect(() => {
+    const msg = {
+      version: 1, 
+      user_name:"tbezhenova@yandex.ru", 
+      api_key:"t8jf5szp7iabqq4uv4dykoqsezyk7n79", 
+      action:"auth.login", 
+      app_name: "svisni-sushi"
+  }
+  const socket = new WebSocket("wss://tanak.moizvonki.ru/wsapi/");
+  socket.onopen = function (event) {
+    socket.send(JSON.stringify(msg));
+    // socket.send("{"version": 1, "user_name":"tbezhenova@yandex.ru", "api_key":"t8jf5szp7iabqq4uv4dykoqsezyk7n79", "action":"auth.login", "app_name": "svisni-sushi"}");
+  };
+  setSocketT(socket)
   setLoad(false)
   }, []);
   const handleChangee = name => event => setState(name);
@@ -121,105 +134,106 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         return stateDeliveryPrice.priceDel + total
       }
     }
-    const pushOrder = () => {
-      const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
-        formDelivery: ev.target.delivery.value,
-        adress: stateDeliveryPrice.name,
-        street: deliveryAdress,
-        home: ev.target.home.value,
-        apartment: ev.target.apartment.value,
-        podezd: ev.target.podezd.value,
-        etag: ev.target.etag.value,
-        kodDveri: ev.target.kodDveri.value
-      };
-      const deliveryTimeOrder = state !== "deliveryTime" ? "Сразу" : {
-        dateDelivery: ev.target.date.value,
-        timeDelivery: ev.target.time.value
-      };
-      const infoSuccess = {
-        name: ev.target.name.value,
-        phone: ev.target.phone.value,
-        products: items.map((elem) => {
-    
-          const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
-          const productSize = elem.productSize === "" ? "" : elem.productSize;
-          const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
-    
-          return {
-            product: elem.name,
-            total: elem.total,
-            count: elem.count,
-            description: elem.description,
-            descriptionIngrideents,
-            productSize,
-            descriptionWok
-          }
-        }),
-        delivery: deliveru,
-        deliveryTime: deliveryTimeOrder,
-        totalPrice: `${totalPriceOrder()} ${variantPay === "cash" ? "Нал" : "Он-й"}`,
-        sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
-        chopsticks: palochkiTotal,
-        comments: ev.target.comments.value,
-      };
-      
-      if(!navigator.onLine) {
-        setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
-        handleClickAlert()
+
+const pushOrder = () => {
+  const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
+    formDelivery: ev.target.delivery.value,
+    adress: stateDeliveryPrice.name,
+    street: deliveryAdress,
+    home: ev.target.home.value,
+    apartment: ev.target.apartment.value,
+    podezd: ev.target.podezd.value,
+    etag: ev.target.etag.value,
+    kodDveri: ev.target.kodDveri.value
+  };
+  const deliveryTimeOrder = state !== "deliveryTime" ? "Сразу" : {
+    dateDelivery: ev.target.date.value,
+    timeDelivery: ev.target.time.value
+  };
+  const infoSuccess = {
+    name: ev.target.name.value,
+    phone: ev.target.phone.value,
+    products: items.map((elem) => {
+
+      const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
+      const productSize = elem.productSize === "" ? "" : elem.productSize;
+      const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
+
+      return {
+        product: elem.name,
+        total: elem.total,
+        count: elem.count,
+        description: elem.description,
+        descriptionIngrideents,
+        productSize,
+        descriptionWok
       }
-    
-    // const comment = infoSuccess.comments === "" || infoSuccess.comments === undefined ? "" : infoSuccess.comments
-    const adress = delivery === "Самовывоз" ? "Сами" : `Адрс: ${deliveru.adress} ${deliveru.street} ${deliveru.home}`
-    const text = `
-    Новый заказ
-    ${infoSuccess.name}
-    ☎: ${infoSuccess.phone}
-    Т-ры: ${items.map((elem) => {
-    const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
-    ? "" : `Доп: ${elem.descriptionIngrideents}`;
-    const productSize = elem.productSize === "" || elem.productSize === undefined ? "" 
-    : `${elem.productSize}`;
-    const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? "" 
-    : `${elem.descriptionWok}`; 
-    return `
-    Наз: ${elem.name} ${productSize} ${descriptionWok} ${elem.edit === true ? elem.description : ""} ${descriptionIngrideents}
-    Кол-во: ${elem.count}
-    ₽: ${elem.total}
-    `
-    })}
-    ${adress}
-    Дата: ${state !== "deliveryTime" ? "Сразу" : `${ev.target.date.value} ${ev.target.time.value}`}
-    Cум: ${infoSuccess.totalPrice}
-    `
-      if(variantPay === "cash" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
-        const msg = {action: "calls.send_sms", to: "89040949222", text}
-        socketT.send(JSON.stringify(msg)) 
-        axios({
+    }),
+    delivery: deliveru,
+    deliveryTime: deliveryTimeOrder,
+    totalPrice: `${totalPriceOrder()} ${variantPay === "cash" ? "Нал" : "Он-й"}`,
+    sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
+    chopsticks: palochkiTotal,
+    comments: ev.target.comments.value,
+  };
+  
+  if(!navigator.onLine) {
+    setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
+    handleClickAlert()
+  }
+
+// const comment = infoSuccess.comments === "" || infoSuccess.comments === undefined ? "" : infoSuccess.comments
+const adress = delivery === "Самовывоз" ? "Сами" : `Адрс: ${deliveru.adress} ${deliveru.street} ${deliveru.home}`
+const text = `
+Новый заказ
+${infoSuccess.name}
+☎: ${infoSuccess.phone}
+Т-ры: ${items.map((elem) => {
+const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
+? "" : `Доп: ${elem.descriptionIngrideents}`;
+const productSize = elem.productSize === "" || elem.productSize === undefined ? "" 
+: `${elem.productSize}`;
+const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? "" 
+: `${elem.descriptionWok}`; 
+return `
+Наз: ${elem.name} ${productSize} ${descriptionWok} ${elem.edit === true ? elem.description : ""} ${descriptionIngrideents}
+Кол-во: ${elem.count}
+₽: ${elem.total}
+`
+})}
+${adress}
+Дата: ${state !== "deliveryTime" ? "Сразу" : `${ev.target.date.value} ${ev.target.time.value}`}
+Cум: ${infoSuccess.totalPrice}
+`
+  if(variantPay === "cash" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {        
+    const msg = {action: "calls.send_sms", to: "89040949222", text}
+    socketT.send(JSON.stringify(msg)) 
+    axios({
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: infoSuccess,
+      url: process.env.GATSBY_NODE_SERVE
+    })
+    .then(res =>  console.log(res))
+    .catch(err => console.log(err))
+    isBrowser && sessionStorage.setItem('checkOrder', 'true');
+    isBrowser && localStorage.removeItem('basketProduct');
+    navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
+  }
+  
+  if(variantPay === "bank" && navigator.onLine) {
+    const msg = {action: "calls.send_sms", to: "89040949222", text}
+    socketT.send(JSON.stringify(msg)) 
+       axios({
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
           url: process.env.GATSBY_NODE_SERVE
-        })
-        .then(res =>  console.log(res))
-        .catch(err => console.log(err))
-        isBrowser && sessionStorage.setItem('checkOrder', 'true');
-        isBrowser && localStorage.removeItem('basketProduct');
-        navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
-      }
-      
-      if(variantPay === "bank" && navigator.onLine) {
-        const msg = {action: "calls.send_sms", to: "89040949222", text}
-        socketT.send(JSON.stringify(msg)) 
-           axios({
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          data: infoSuccess,
-          url: process.env.GATSBY_NODE_SERVE
-        })
-        .then(res =>  console.log(res))
-        .catch(err => console.log(err))
-        setOpenPay(true)
-      }
+    })
+    .then(res =>  console.log(res))
+    .catch(err => console.log(err))
+    setOpenPay(true)
+  }
 
 }
 
@@ -753,14 +767,3 @@ const useStyleOrder = makeStyles(theme => ({
     },
   },
 }));
-
-
-
-
-
-
-
-
-
-
-

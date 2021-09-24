@@ -327,16 +327,23 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                     }}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description">
-                    <div style={{width: `100%`, marginTop: `37%`}}>
+                    <div style={{width: `100%`, marginTop: `23%`}}>
                         <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}
                                         index={activeItemIndex}
                                         onChangeIndex={value => setActiveItemIndex(value)}>
                             { items.map((el) => (
-                                <Card key={el.id} style={{borderRadius: 5, minHeight: 300}}>
+                                <Card key={el.id} style={{
+                                    borderRadius: '5px',
+                                    width: '300px',
+                                    margin: 'auto'
+                                    }}>
                                     <CardMedia
                                         style={{padding: 8, display: `flex`, justifyContent: `center`}}
                                         title={el.name}>
                                         <GatsbyImage
+                                            style={{
+                                                maxWidth: '300px'
+                                            }}
                                             image={el.image.gatsbyImageData}
                                             alt={el.name} />
                                     </CardMedia>
@@ -357,9 +364,9 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                 </Card>
                             ))}
                         </SwipeableViews>
-                        <div style={{width: `100%`, margin: `10px 0 0 0`, textAlign: `center`}}>
+                        <div style={{width: `100%`, textAlign: `center`}}>
                             <div>
-                                <Typography style={{fontSize: 20}} variant={"caption"}>{activeItemIndex} / {items.length}</Typography>
+                                <Typography style={{fontSize: 20}} variant={"caption"}>{activeItemIndex + 1} / {items.length}</Typography>
                             </div>
                             <div>
                                 <CloseIcon fontSize="large" onClick={handleClose}/>

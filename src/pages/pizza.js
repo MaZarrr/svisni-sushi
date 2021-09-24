@@ -8,7 +8,6 @@ import * as R from 'ramda'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import { defFilters } from "../reducers/filters";
-import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import { GatsbyImage } from "gatsby-plugin-image";
 import CardMedia from "@mui/material/CardMedia";
@@ -25,7 +24,7 @@ import HeadSection from "../components/HeadSection"
 import makeStyles from '@mui/styles/makeStyles';
 import SpinnerNew from "../components/spinner/spinner-new";
 import { addedToCart, pizzaCart } from "../reducers/shopping-cart";
-import { CardStyle } from "../components/CardsMenuPage";
+import { CardStyle } from "../components/common/styles-components";
 
 const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
 
@@ -99,9 +98,10 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
 
                                             {/*выбор размера пиццы*/}
                                             {/*проверка цены на 1 для того что бы убарать или показать выбор размеров пиццы*/}
+                                            <div style={{marginTop: '10px'}}>
                                             { priceIn33cm !== 1 &&
                                             <Grid container justifyContent={"space-between"}>
-                                                <Grid style={{padding: `0`, margin: 0}} item xs={5}>
+                                                <Grid style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}} item xs={5}>
                                                     <button onClick={() => switchSizePizza({
                                                         id,
                                                         productPizza: updatePizza,
@@ -111,14 +111,14 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                         mass: weight})}
                                                             className={clsx(classes.buttonD, {
                                                                 [classes.buttonT]: size[slug]})}>
-                                                        <Typography variant={"subtitle2"}>Средняя</Typography></button>
+                                                        <Typography  style={{margin: 'auto'}} variant={"subtitle2"}>Средняя</Typography></button>
                                                     <Typography style={{textAlign: `center`}}
                                                                 variant={"subtitle2"}>28см</Typography>
                                                 </Grid>
                                               <Grid item xs={2}>
-                                                <p style={{margin: `10px auto 0 auto`, fontWeight: 'bold', fontSize: 14}}>{`${mass}кг`}</p>
+                                                <p style={{margin: `10px auto 0 auto`, fontWeight: 'bold', fontSize: 14, textAlign: 'center'}}>{`${mass}кг`}</p>
                                               </Grid>
-                                                <Grid item xs={5}>
+                                                <Grid item xs={5} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                                                     <button style={{paddingLeft: `auto`}} 
                                                     onClick={() => switchSizePizza({
                                                         id,
@@ -129,7 +129,8 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                         mass: weight33})}
                                                         className={clsx(classes.buttonD, {
                                                                 [classes.buttonT]: size[contentful_id]})}>
-                                                        <Typography 
+                                                        <Typography
+                                                         style={{margin: 'auto'}}
                                                         variant={"subtitle2"}>Большая</Typography></button>
                                                     <Typography 
                                                     style={{textAlign: `center`}} 
@@ -137,7 +138,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                 </Grid>
                                             </Grid>
                                             }
-
+                                            </div>
 
                                         </CardContent>
 
@@ -228,23 +229,20 @@ export const query = graphql `
     }
 `
 
-export const useStylesCart = makeStyles(theme => ({
-    deckript: {
+const useStylesCart = makeStyles(theme => ({
+    deckriptPizza: {
         height: 80,
-        padding: 14,
-        [theme.breakpoints.down(undefined)]: {
-            padding: 10,
-        },
-        [theme.breakpoints.down(undefined)]: {
-            height: `auto`,
-            margin: `auto 0`,
-            padding: `5px 5px 5px 14px`
-        },
-    },
+        overflowY: `auto`,
+        padding: `10px 0 10px 0`,
+        [theme.breakpoints.down('500')]: {
+          height: `auto`,
+        }
+      },
     buttonD: {
         borderRadius: 8,
         padding: '6px 12px',
         border: '1px solid orange',
+        display: "flex",
         lineHeight: 1.5,
         width: 105,
     },
@@ -276,4 +274,3 @@ export const useStylesCart = makeStyles(theme => ({
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
     },
 }));
-

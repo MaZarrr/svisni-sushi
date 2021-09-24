@@ -8,9 +8,6 @@ module.exports = {
       keywords: `доставка, заказать, роллы, суши, еду, сеты, пиццу, на заказ`,
       author: `@mazarrr`,
   },
-  flags: {
-  DEV_SSR: true
-  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,

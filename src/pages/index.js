@@ -10,22 +10,22 @@ import Combo from '../components/indexContent/combo/index'
 import RecommendedProducts from "../components/indexContent/recommended-products";
 import SpinnerNew from "../components/spinner/spinner-new";
 import Seo from "../components/seo";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
-import useForm from "../utils/useForm";
-import useLocalStorage from "../utils/useLocalStorage"
-import { authTokenVar, isLoggedInVar } from "../gatsby-theme-apollo/client";
-import { TOKENSTORAGE } from "../components/common/constants";
+// import gql from "graphql-tag";
+// import { useMutation } from "@apollo/client";
+// import useForm from "../utils/useForm";
+// import useLocalStorage from "../utils/useLocalStorage"
+// import { authTokenVar, isLoggedInVar } from "../gatsby-theme-apollo/client";
+// import { TOKENSTORAGE } from "../components/common/constants";
 
-const LOGIN_MUTATION = gql`
-  mutation Login($loginInput: LoginInput!) {
-    login(input: $loginInput) {
-      ok
-      token
-      error
-    }
-  }
-`;
+// const LOGIN_MUTATION = gql`
+//   mutation Login($loginInput: LoginInput!) {
+//     login(input: $loginInput) {
+//       ok
+//       token
+//       error
+//     }
+//   }
+// `;
 
 const IndexPage = ({ 
   data: { allContentfulContentIndex: { edges }, 
@@ -35,45 +35,45 @@ const IndexPage = ({
         const [loadingSpinner, setLoading] = useState(true)
         const [indexProduct, setIndexProduct] = useState(true)
         const classes = useStyleIndexPage();
-        const [value, handleChange] = useForm();
-        const [, setToken] = useLocalStorage(TOKENSTORAGE)
+        // const [value, handleChange] = useForm();
+        // const [, setToken] = useLocalStorage(TOKENSTORAGE)
         
-        const onCompleted = (data) => {
-          const { login: { ok, token } } = data;
-          if(ok && token){
-            console.log("ok1", ok);
-            console.log("token1", token);
-            setToken(token)
-            authTokenVar(token)
-            isLoggedInVar(true)
-          }
-        }
+        // const onCompleted = (data) => {
+        //   const { login: { ok, token } } = data;
+        //   if(ok && token){
+        //     console.log("ok1", ok);
+        //     console.log("token1", token);
+        //     setToken(token)
+        //     authTokenVar(token)
+        //     isLoggedInVar(true)
+        //   }
+        // }
 
-          const [loginMutation, { data: loginMutationResult, loading }] = useMutation(
-            LOGIN_MUTATION, {
-            onCompleted
-          })
+          // const [loginMutation, { data: loginMutationResult, loading }] = useMutation(
+          //   LOGIN_MUTATION, {
+          //   onCompleted
+          // })
 
         useEffect(() => {
           setIndexProduct(edges)
           setLoading(false)
         }, [edges])
 
-        const onSubmit = (e) => {
-          e.preventDefault();
-          if(!loading){
-            const { phone, password } = value
-            loginMutation({
-              variables: {
-                loginInput: {
-                  phone,
-                  password
-                }
-              }
-            })
-          }
+        // const onSubmit = (e) => {
+        //   e.preventDefault();
+        //   if(!loading){
+        //     const { phone, password } = value
+        //     loginMutation({
+        //       variables: {
+        //         loginInput: {
+        //           phone,
+        //           password
+        //         }
+        //       }
+        //     })
+        //   }
 
-        }
+        // }
 
         return (
           <section>
@@ -128,18 +128,13 @@ const useStyleIndexPage = makeStyles(theme => ({
         width: `100%`,
         textTransform: `uppercase`,
         fontSize: 34,
-        [theme.breakpoints.down(undefined)]: {
+        [theme.breakpoints.down('475')]: {
             fontSize: 24,
             letterSpacing: `-1px`,
             margin: `20px 0 0 0`
         }
     }
 }));
-
-    // const [loginMutation] = useMutation(LOGIN_MUTATION, {
-        //   onCompleted: () => null,
-        //   onError: () => null
-        // })
 
 export const query = graphql `
 {  

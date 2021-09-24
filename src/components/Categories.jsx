@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from "@mui/material";
-import MenuItem from '@mui/material/MenuItem';
 import IconButton from "@mui/material/IconButton";
 import clsx from "clsx";
 import Hidden from "@mui/material/Hidden";
@@ -23,11 +22,13 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: `30px`,
         padding: 0,
         fontWeight: 600,
+        marginTop: '10px',
         cursor: `pointer`,
         listStyle: `none`,
         transition: `background-color 0.1s ease-in-out`,
         [theme.breakpoints.down('600')]: {
             display: `block`,
+            margin: 0,
         }
     },
     active: {

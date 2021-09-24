@@ -37,13 +37,13 @@ const useStyleSalePage = makeStyles(theme => ({
      cursor: `pointer`,
      maxWidth: `80vmax`,
      borderRadius: 2,
-     [theme.breakpoints.down(undefined)]: {
+     [theme.breakpoints.down('md')]: {
        maxWidth: `80vmax`
      }
    },
     container: {
       padding: `30px 0 50px 30px`,
-      [theme.breakpoints.down(undefined)]: {
+      [theme.breakpoints.down('475')]: {
         padding: `20px 0 50px 20px`
       }
     },

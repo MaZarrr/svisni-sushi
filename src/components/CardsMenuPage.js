@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -8,41 +7,15 @@ import Typography from "@mui/material/Typography";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { addedToCart } from "../reducers/shopping-cart";
-import { connect } from "react-redux";
 import { take } from "ramda";
 import loadable from "@loadable/component";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Button from '@mui/material/Button'
 import makeStyles from '@mui/styles/makeStyles';
-import { styled } from "@mui/system";
+import { CardStyle } from "./common/styles-components";
 
 const Paper = loadable(() => import('@mui/material/Paper'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
-
-
-export const CardStyle = styled(Card)(({ theme }) => ({
-    maxWidth: `350px`,
-    margin: `20px auto 10px auto`,
-    [theme.breakpoints.up('1900')]: {
-        maxWidth: `400px`,
-    },
-    [theme.breakpoints.down('1281')]: {
-        maxWidth: `300px`,
-    },
-    [theme.breakpoints.down('600')]: {
-        maxWidth: `400px`,
-    },
-    [theme.breakpoints.down('475')]: {
-        maxWidth: `340px`,
-    },
-    [theme.breakpoints.down('376')]: {
-        maxWidth: `320px`,
-    },
-    [theme.breakpoints.down('340')]: {
-        maxWidth: `280px`,
-    },
-}))
-
 
 const CardsMenuPage = memo(({ 
     titleCategory, 
@@ -332,16 +305,16 @@ const CardsMenuPage = memo(({
     </>;
 });
 
-export default connect(null, null)(CardsMenuPage)
+export default CardsMenuPage
 
 export const useStylesCart = makeStyles(theme => ({
     deckript: {
         height: 80,
         padding: 14,
-        [theme.breakpoints.down(undefined)]: {
+        [theme.breakpoints.down('500')]: {
             padding: 10,
         },
-        [theme.breakpoints.down(undefined)]: {
+        [theme.breakpoints.down('425')]: {
             height: `auto`,
             margin: `auto 0`,
             padding: `5px 5px 5px 14px`

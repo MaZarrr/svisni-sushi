@@ -136,7 +136,7 @@ export default function TemporaryDrawer() {
     );
 
     return (
-        <React.Fragment key={'left'} style={{zIndex: 2000}}>
+        <div key={'left'} style={{zIndex: 2000}}>
             <IconButton
                 sx={{
                     color: `tomato`,
@@ -156,7 +156,7 @@ export default function TemporaryDrawer() {
                 onOpen={toggleDrawer('left', true)}>
                 {list('left')}
             </SwipeableDrawer>
-        </React.Fragment>
+        </div>
     );
 }
 
