@@ -162,11 +162,8 @@ const useStyleCarousel = makeStyles(theme => ({
             marginTop: 5,
         }
     },
-    // fabBtn: {
-    // },
     image: {
         borderRadius: 5,
-        maxWidth: 1920,
         [theme.breakpoints.down(600)]: {
             borderRadius: 5,
         },

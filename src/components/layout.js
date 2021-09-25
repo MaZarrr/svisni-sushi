@@ -27,12 +27,11 @@ const Layout = (
     </Vk>
     <Header/>
     <div style={{
-      maxWidth: `1920px`,
+      // maxWidth: `1920px`,
       backgroundColor: "#fafafa",
       margin: `0 auto`,
       minHeight: `100vh`
     }}>
-    <div id="recommended"></div>
     <div style={{height: 75, width: 100}} />
     <div style={{
       display: 'flex',
