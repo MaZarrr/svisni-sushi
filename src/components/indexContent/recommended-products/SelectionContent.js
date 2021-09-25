@@ -10,18 +10,26 @@ import Button from "@mui/material/Button";
 import { Link } from "gatsby";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
-import makeStyles from '@mui/styles/makeStyles';
 import { addedCart } from "../../../reducers/shopping-cart";
 import { connect } from "react-redux";
 
 const SelectionContent = ({ product, addedCart }) => {
-  const classes = useStyle();
   return (
   <Grid container justifyContent={"space-between"}>
   {
     isNil(product.node.new) ? "" : product.node.new.map((homeProduct) => (
-      <Grid key={homeProduct.id} item sm={6} md={3} className={classes.cardComboPc}>
-        <Card raised={true}>
+      <Grid key={homeProduct.id} item sm={6} md={3} sx={{
+        borderRadius: `3px`,
+        maxWidth: `420px`,
+        padding: `0 10px`,
+        margin: `30px 0`
+      }} >
+        <Card sx={{
+            height: '570px',
+            position: 'relative',
+            width: '85%',
+            margin: '0 auto'
+          }} raised={true}>
           <CardMedia
             title={homeProduct.name}>
             <GatsbyImage
@@ -30,17 +38,15 @@ const SelectionContent = ({ product, addedCart }) => {
           </CardMedia>
           <CardContent>
             <Typography variant={"h3"}>{homeProduct.name}</Typography>
-            <Typography style={{ height: 75, width: `100%` }}
-                        variant={"subtitle2"}>{homeProduct.description}</Typography>
+            <Typography variant={"subtitle2"}>{homeProduct.description}</Typography>
           </CardContent>
-          <CardActions disableSpacing>
+          <CardActions disableSpacing sx={{ position: 'absolute', bottom: '10px', width: '100%'}}>
             {homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
               <Button
                 variant="contained"
                 sx={{
                   backgroundColor: `orange`,
                   border: 0,
-                  borderRadius: 3,
                   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
                   color: 'white',
                 }}
@@ -50,9 +56,8 @@ const SelectionContent = ({ product, addedCart }) => {
               </Button> : <Button
                 variant="contained"
                 sx={{
-                  backgroundColor: `orange`,
+                  backgroundColor: `tomato`,
                   border: 0,
-                  borderRadius: 3,
                   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
                   color: 'white',
                 }}
@@ -64,8 +69,8 @@ const SelectionContent = ({ product, addedCart }) => {
               </Button>
             }
 
-            <Typography style={{ marginLeft: `auto`, marginRight: 10 }}
-                        variant={"body1"}>{homeProduct.price}₽</Typography>
+          <Typography style={{marginLeft: `auto`, marginRight: '25px'}}
+                          variant={"subtitle1"}>{homeProduct.price}₽</Typography>
           </CardActions>
         </Card>
       </Grid>
@@ -80,24 +85,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(SelectionContent)
-
-const useStyle = makeStyles(theme => ({
-  cardComboPc: {
-    borderRadius: `3px`,
-    maxWidth: `420px`,
-    padding: `0 10px`,
-    margin: `20px 0`
-  },
-  titleIndex: {
-    fontSize: '28px',
-    fontWeight: `bold`,
-    width: `100%`,
-    paddingBottom: 20,
-    [theme.breakpoints.down(500)]: {
-      fontSize: '22px',
-      paddingTop: 20,
-      paddingRight: 20,
-      paddingBottom: 0,
-    },
-  }
-}));

@@ -1,14 +1,15 @@
 // import { purple, red } from '@mui/material/colors';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-const lightRed = '#f4511e';
+export const lightRed = '#f4511e';
 const hardBrown = '#3e2723';
-const hardGrey = '#212121';
+export const hardGrey = '#212121';
 const lightBlue = '#03a9f4';
 export const hardPink = '#ad1457';
 const hardRed = '#e53935';
-const blueDef = '#1976d2';
-const yellowDef = '#ffeb3b';
+export const blueDef = '#1976d2';
+export const yellowDef = '#ffeb3b';
+export const orange = '#ffab00';
 
 // A custom theme for this app
 const theme = createTheme(({
@@ -49,9 +50,9 @@ const theme = createTheme(({
             fontWeight: 700
         },
         h2: {
-            fontSize: "2rem",
+            fontSize: "1.7rem",
             fontFamily: "Montserrat",
-            fontWeight: 500
+            fontWeight: 600
         },
         h3: {
             fontSize: "1.4rem",

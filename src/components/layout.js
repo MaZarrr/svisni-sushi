@@ -4,6 +4,7 @@ import Header from "./header"
 import loadable from '@loadable/component'
 import { Hidden } from "@mui/material";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import Vk, { CommunityMessages } from "react-vk";
 
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const Footer = loadable(() => import('./footer'));
@@ -15,7 +16,15 @@ const Layout = (
   { children, location: { pathname = "" }
 }) => {
   return (
-    <ErrorBoundary>
+    <ErrorBoundary>       
+    <Vk apiId={161250465}>
+      <CommunityMessages 
+        groupId={161250465}
+        options={{
+          disableButtonTooltip : 1
+        }}>
+      </CommunityMessages>
+    </Vk>
     <Header/>
     <div style={{
       maxWidth: `1920px`,
@@ -23,6 +32,7 @@ const Layout = (
       margin: `0 auto`,
       minHeight: `100vh`
     }}>
+    <div id="recommended"></div>
     <div style={{height: 75, width: 100}} />
     <div style={{
       display: 'flex',
@@ -30,7 +40,7 @@ const Layout = (
       justifyContent: 'center',
       height: 0 }} />
     <main>
-        {children}
+      {children}
     </main>
     { pathname !== "/korzina/" &&
           pathname !== "/korzina/order" &&

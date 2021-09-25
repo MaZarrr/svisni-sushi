@@ -49,6 +49,7 @@
     "react-swipeable-views-core": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",
     "react-text-mask": "^5.4.3",
+    "react-vk": "^5.0.2",
     "react-yandex-maps": "^4.6.0",
     "redux": "^4.1.1",
     "redux-act": "^1.8.0",

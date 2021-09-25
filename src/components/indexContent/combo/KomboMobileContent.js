@@ -12,42 +12,48 @@ import makeStyles from '@mui/styles/makeStyles';
 import SwipeableViews from "react-swipeable-views";
 
 const styles = {
-  root: {
-    padding: '0 30px 0 0',
-    maxWidth: `100%`
+  img: {
+    maxWidth: 200
   },
   slideContainer: {
-    padding: '15px 0 30px 0',
+    padding: '15px 0 30px 0'
   },
-  img: {
-    maxWidth: 350
-  }
 };
+
+export const useStyleKombo = makeStyles(theme => ({
+  cardCombo: {
+      padding: '0 20% 0 15%',
+      [theme.breakpoints.down('330')]: {
+        padding: '0 10% 0 15%'
+  }}
+}));
 
 const KomboMobileContent = ({ product }) => {
   const classes = useStyleKombo();
   return (
-    <SwipeableViews style={styles.root} slideStyle={styles.slideContainer}>
+    <SwipeableViews className={classes.cardCombo} slideStyle={styles.slideContainer}>
       {
         isNil(product.node.combos) ? <div style={{width: 300, height: 400, backgroundColor: "red"}}> </div> : product.node.combos.map((homeProduct) => (
-          <Card key={homeProduct.id} className={classes.cardCombo} raised={true}>
+          <Card key={homeProduct.id}  sx={{
+            maxWidth: '200px',
+            height: '380px'
+          }} raised={true}>
             <CardMedia title={homeProduct.name}>
               <GatsbyImage
                 image={homeProduct.image.gatsbyImageData}
                 style={styles.img}
                 alt={homeProduct.name} />
             </CardMedia>
-            <CardContent style={{ minHeight: 140 }}>
+            <CardContent sx={{padding: '10px 0 10px 10px'}}>
               <Typography variant={"h3"}>{homeProduct.name}</Typography>
-              <Typography variant="subtitle2" style={{ position: `absolute`, width: `78%` }}>{homeProduct.description}</Typography>
+              <Typography variant={"subtitle2"} sx={{fontSize: '12px', position: `absolute`, width: `65%`, lineHeight: '15px' }}>{homeProduct.description}</Typography>
             </CardContent>
-            <CardActions disableSpacing>
+            <CardActions disableSpacing sx={{ position: 'absolute', bottom: '35px'}}>
               <Button
                 variant="contained"
                 sx={{
                   backgroundColor: `orange`,
                   border: 0,
-                  borderRadius: 3,
                   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
                   color: 'white',
                 }}
@@ -56,7 +62,7 @@ const KomboMobileContent = ({ product }) => {
                 to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
                 {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
               </Button>
-              <Typography style={{marginLeft: `auto`, marginRight: 10, fontWeight: 800 }}
+              <Typography sx={{marginLeft: `15px`}}
                           variant={"body1"}>{homeProduct.price}₽</Typography>
             </CardActions>
           </Card>
@@ -68,8 +74,3 @@ const KomboMobileContent = ({ product }) => {
 
 export default KomboMobileContent
 
-const useStyleKombo = makeStyles(theme => ({
-  cardCombo: {
-    maxWidth: 300
-  }
-}));

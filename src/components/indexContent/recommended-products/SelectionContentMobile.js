@@ -9,31 +9,41 @@ import Button from "@mui/material/Button";
 import { Link } from "gatsby";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
-import makeStyles from '@mui/styles/makeStyles';
 import SwipeableViews from "react-swipeable-views";
 import { addedCart } from "../../../reducers/shopping-cart";
 import { connect } from "react-redux";
+import makeStyles from '@mui/styles/makeStyles';
 
 const styles = {
   img: {
-    maxWidth: 350
-  },
-  rootNewProd: {
-    padding: '0 30px 0 0',
-    maxWidth: `100%`
+    maxWidth: 200
   },
   slideContainer: {
     padding: '15px 0 30px 0',
+    margin: '0 0 90px 0'
   },
 };
 
+export const useStyle = makeStyles(theme => ({
+  cardCombo: {
+      padding: '0 20% 0 15%',
+      [theme.breakpoints.down('330')]: {
+        padding: '0 10% 0 15%'
+  }}
+}));
+
 const SelectionContentMobile = ({ product, addedCart }) => {
-  const classes = useStyleSelection()
+  const classes = useStyle()
   return (
-  <SwipeableViews style={styles.rootNewProd} slideStyle={styles.slideContainer}>
+  <SwipeableViews className={classes.cardCombo} slideStyle={styles.slideContainer}>
     {
     isNil(product.node.new) ? "" : product.node.new.map((homeProduct) => (
-      <Card key={homeProduct.id} className={classes.cardCombo} raised={true}>
+      <Card key={homeProduct.id}
+      sx={{
+        maxWidth: '200px',
+        height: '395px'
+      }}
+     raised={true}>
         <CardMedia
           title={homeProduct.name}>
           <GatsbyImage
@@ -43,7 +53,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
         </CardMedia>
         <CardContent style={{ minHeight: 140 }}>
           <Typography variant={"h3"}>{homeProduct.name}</Typography>
-          <Typography variant={"subtitle2"} style={{ position: `absolute`, width: `77%` }}>{homeProduct.description}</Typography>
+          <Typography variant={"subtitle2"} sx={{fontSize: '12px', position: `absolute`, width: `65%`, lineHeight: '15px'}}>{homeProduct.description}</Typography>
         </CardContent>
         <CardActions disableSpacing>
           {homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
@@ -52,7 +62,6 @@ const SelectionContentMobile = ({ product, addedCart }) => {
               sx={{
                 backgroundColor: `orange`,
                 border: 0,
-                borderRadius: 3,
                 boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
                 color: 'white',
               }}
@@ -65,7 +74,6 @@ const SelectionContentMobile = ({ product, addedCart }) => {
               sx={{
                 backgroundColor: 'tomato',
                 border: 0,
-                borderRadius: 3,
                 boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
                 color: 'white',
               }}
@@ -90,9 +98,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(SelectionContentMobile)
-
-const useStyleSelection = makeStyles(theme => ({
-  cardCombo: {
-    maxWidth: 300
-  }
-}));

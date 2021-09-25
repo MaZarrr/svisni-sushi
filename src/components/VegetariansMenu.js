@@ -10,7 +10,7 @@ const SpecialMenu = ({ menu: { categoryName, products, iconImage} }) => {
       <Seo title={"Постное меню роллов, пиццы в Свисни Суши"} description={"Меню для вегетарианцев, постное меню. Овощные салаты, пицца Маргарита. Вкусные роллы"}/>
       <HeadSection titleTXT={categoryName}/>
       <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
-        <CardsMenuPage image={iconImage} titleCategory="Пост/Вег" slugCategogy="/zakyski" visibleItems={products} product={products} />
+        <CardsMenuPage image={iconImage} titleCategory="Вегетарианское" slugCategogy="/zakyski" visibleItems={products} product={products} />
       </Grid>
       </>
 

@@ -35,6 +35,7 @@ export const onServiceWorkerUpdateReady = () => {
   }
 }
 
+
 // export const onClientEntry = () => {
 //   window.VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
 // }

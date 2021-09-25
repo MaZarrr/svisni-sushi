@@ -197,7 +197,6 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                   {priceDef === 0 ? "1шт" : `${count}шт`}
                                 </Typography>
 
-                                {/* <div style={{display: `flex`, alignItems: `center`, margin: `auto`}}> */}
                                 <div>
                                   {price !== 79 && priceDef !== 0 ?
                                     <>
@@ -289,7 +288,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
                   <Hidden smUp>
                     { addPanelPribors  &&
-                    <Paper style={{marginTop: 0, marginBottom: 40, padding: 8, width: `100%`}}>
+                    <Paper style={{marginTop: 0, marginBottom: 90, padding: 8, width: `100%`}}>
                       <div style={{display: `flex`, flexDirection: `column`}}>
                         <Typography variant={"subtitle2"}>Количество палочек</Typography>
                         <div style={{display: `flex`, alignItems: `center`}}>

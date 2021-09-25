@@ -5,13 +5,12 @@ import Typography from "@mui/material/Typography";
 import { StaticImage } from "gatsby-plugin-image";
 import makeStyles from '@mui/styles/makeStyles';
 import IconButton from '@mui/material/IconButton';
-import { hardPink } from "../../theme";
+import { hardPink, hardGrey} from "../../theme";
 import { styled } from "@mui/system";
 
 const TypographyStyle = styled(Typography)(({ theme }) => ({
     fontWeight: 500,
     textAlign: `center`,
-    padding: `10px 0 10px 0`,
     fontSize: `4vmin`
 }))
 
@@ -148,7 +147,7 @@ const MenuCategory = () => {
         <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="special-menu/vegetarian">
             <div className={classes.cartTitle}>
-              <TypographyStyle className={classes.menuTitle}>Пост\веган</TypographyStyle>
+              <TypographyStyle className={classes.menuTitle}>Вегетарианское</TypographyStyle>
             </div>
             <div style={{ margin: `0 auto` }}>
               <StaticImage
@@ -177,18 +176,19 @@ const useStyleMenu = makeStyles({
   },
   image: {
     boxShadow: '-3px 6px 8px 0px rgba(34, 60, 80, 0.2)',
-    borderRadius: '10% 30% 50% 70%'
+    borderRadius: '50% 20% / 10% 40%',
+    border: `1px solid ${hardGrey}`,
   },
   itemMenu: {
-    padding: `5px 10px 5px 10px`
+    padding: `15px 25px 0 25px`
   },
   cartTitle: {
     position: `absolute`,
     bottom: `4vmin`,
     color: `#000`,
-    borderRadius: '25% 10%',
+    borderRadius: '100px 100px 100px 100px',
     backgroundColor: "white",
-    border: `2px solid ${hardPink}`,
+    border: `1px solid ${hardPink}`,
     fontWeight: "bold",
     width: "100%",
     zIndex: 1000,

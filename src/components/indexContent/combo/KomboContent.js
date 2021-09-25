@@ -17,7 +17,12 @@ const KomboContent = ({ product }) => {
   <>
     { isNil(product.node.combos) ? '' : product.node.combos.map((homeProduct) => (
       <Grid key={homeProduct.id} item sm={6} md={3} className={classes.cardComboPc} >
-        <Card raised={true}>
+        <Card sx={{
+            height: '570px',
+            position: 'relative',
+            width: '85%',
+            margin: '0 auto'
+          }}  raised={true}>
           <CardMedia
             title={homeProduct.name}>
             <GatsbyImage
@@ -28,13 +33,12 @@ const KomboContent = ({ product }) => {
             <Typography variant={"h3"}>{homeProduct.name}</Typography>
             <Typography variant={"subtitle2"}>{homeProduct.description}</Typography>
           </CardContent>
-          <CardActions disableSpacing>
+          <CardActions disableSpacing sx={{ position: 'absolute', bottom: '10px', width: '100%'}}>
             <Button
               variant="contained"
               sx={{
                 backgroundColor: `orange`,
                 border: 0,
-                borderRadius: 3,
                 boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
                 color: 'white',
               }}
@@ -42,8 +46,8 @@ const KomboContent = ({ product }) => {
               to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
               {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
             </Button>
-            <Typography style={{marginLeft: `auto`, marginRight: 10}}
-                        variant={"body1"}>{homeProduct.price} ₽</Typography>
+            <Typography style={{marginLeft: `auto`, marginRight: '25px'}}
+                          variant={"subtitle1"}>{homeProduct.price}₽</Typography>
           </CardActions>
         </Card>
       </Grid>

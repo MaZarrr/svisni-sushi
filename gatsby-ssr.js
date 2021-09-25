@@ -46,32 +46,52 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents, setPreB
                     }, document.head.appendChild(t)}();
                 `
             }}/>
-      ]),
-      setPreBodyComponents([
-        <div key='vk-talk-container' id="vk_community_messages"></div>,
-        <script key='vk-talk' type="text/javascript"
-        dangerouslySetInnerHTML={{
-          __html: `
-              VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
-          `
-        }}/>
-      ]),
-      setPostBodyComponents([
-        <script key="vk-api" type="text/javascript"
-        dangerouslySetInnerHTML={{
-          __html: `
-          VK.init({
-            apiId: 7311665
-          });`
-        }}/>,
-      ])
-};
-        <script type="text/javascript"
-        dangerouslySetInnerHTML={{
-          __html: `
-          VK.Widgets.CommunityMessages("vk_community_messages", 127607773);
-          `
-        }}/>
+      ])}
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      // setPreBodyComponents([
+      //   <div key='vk-talk-container' id="vk_community_messages"></div>,
+      //   <script key='vk-talk' type="text/javascript"
+      //   dangerouslySetInnerHTML={{
+      //     __html: `
+      //         VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
+      //     `
+      //   }}/>
+      // ]),
+      // setPostBodyComponents([
+      //   <script key="vk-api" type="text/javascript"
+      //   dangerouslySetInnerHTML={{
+      //     __html: `
+      //     VK.init({
+      //       apiId: 7311665
+      //     });`
+      //   }}/>,
+      //   <div key='vk-talk-container' id="vk_community_messages"></div>,
+      //   <script key='vk-talk' type="text/javascript"
+      //   dangerouslySetInnerHTML={{
+      //     __html: `
+      //         VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
+      //     `
+      //   }}/>
+      // ])
+
+        // <script type="text/javascript"
+        // dangerouslySetInnerHTML={{
+        //   __html: `
+        //   VK.Widgets.CommunityMessages("vk_community_messages", 127607773);
+        //   `
+        // }}/>
     //     <script key="talk-me" type='text/javascript'
     //     dangerouslySetInnerHTML={{
     //       __html: `
