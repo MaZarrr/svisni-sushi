@@ -6,6 +6,34 @@ import makeStyles from '@mui/styles/makeStyles';
 import Categories from "./Categories"
 import CustomizedInputSearch from "./CustomizedInputSearch"
 
+
+export const useStyleH1 = makeStyles(theme => ({
+  // title: {
+  //   fontWeight: 900,
+  //   marginBottom: 0,
+  //   textTransform: `uppercase`,
+  //   letterSpacing: `-1.6px`,
+  //   fontSize: `2rem`,
+  //   [theme.breakpoints.down('600')]: {
+  //     paddingTop: 10,
+  //     fontSize: `1.6rem`,
+  //   }
+  // },
+  wrapped: {
+    marginTop: 70,
+    paddingLeft: 15,
+    [theme.breakpoints.down('600')]: {
+      paddingLeft: 20,
+      margin: `40px 0 0 0`,
+    },
+    [theme.breakpoints.down('475')]: {
+      fontSize: 24,
+      margin: `40px 0 0 0`,
+    }
+  }
+}));
+
+
 const HeadSection = memo(({ isFilter = false, categoryNames, category, path, titleTXT, dispatch }) => {
   const { title, wrapped } = useStyleH1();
 
@@ -17,6 +45,11 @@ const HeadSection = memo(({ isFilter = false, categoryNames, category, path, tit
     <div className={wrapped}>
       <Typography variant="h1"
       sx={{
+        fontWeight: 900,
+        marginBottom: 0,
+        textTransform: `uppercase`,
+        letterSpacing: `-1.6px`,
+        fontSize: `2rem`,
         '@media screen and (max-width: 600px) ': {
           margin: `40px 0 0 0`,
         },
@@ -39,31 +72,6 @@ const mapStateToProps = (state) => ({
 });
 export default connect(mapStateToProps, null)(HeadSection)
 
-export const useStyleH1 = makeStyles(theme => ({
-  title: {
-    fontWeight: 900,
-    marginBottom: 0,
-    textTransform: `uppercase`,
-    letterSpacing: `-1.6px`,
-    fontSize: `2rem`,
-    [theme.breakpoints.down('600')]: {
-      paddingTop: 10,
-      fontSize: `1.6rem`,
-    }
-  },
-  wrapped: {
-    marginTop: 70,
-    paddingLeft: 15,
-    // borderBottom: `1px solid #000`,
-    [theme.breakpoints.down('600')]: {
-      paddingLeft: 20,
-      margin: `40px 0 0 0`,
-    },
-    [theme.breakpoints.down('475')]: {
-      fontSize: 24,
-      margin: `40px 0 0 0`,
-    }
-  }
-}));
+
 
 

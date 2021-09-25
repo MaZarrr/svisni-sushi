@@ -16,7 +16,6 @@ const Layout = (
 }) => {
   return (
     <ErrorBoundary>
-    <div id="vk_community_messages"></div>
     <Header/>
     <div style={{
       maxWidth: `1920px`,

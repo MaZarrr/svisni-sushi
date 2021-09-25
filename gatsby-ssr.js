@@ -48,6 +48,7 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents, setPreB
             }}/>
       ]),
       setPreBodyComponents([
+        <div key='vk-talk-container' id="vk_community_messages"></div>,
         <script key='vk-talk' type="text/javascript"
         dangerouslySetInnerHTML={{
           __html: `
