@@ -46,7 +46,7 @@ const ImageWrapped = styled(Grid)`
   width: 100%;
   padding: 5px 0 0 30px;
   @media (max-width: 600px) {
-    padding: 10px;
+    padding: 15px;
   }
 `
 
@@ -65,12 +65,12 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
               <Grid item xs={12} sm={6} md={5}
                     style={{paddingLeft: 10}}>
                   <div style={{padding: 3, borderRadius: 5, width: `95%`}}>
-                      <Typography variant={"h3"} style={{marginTop: 15}}>Состав:</Typography>
+                      <Typography variant={"h3"}>Состав:</Typography>
                   </div>
               <ContainerContentProducts>
               { kitProduct.map(({node: product}) => (
                   <Grid container key={product.id}
-                        style={{margin: `7px 0 7px 0`, padding: `7px 0 7px 0`, border: `1px solid lightgrey`, width: `95%`}}
+                        sx={{ margin: `5px 0`, padding: `2px 0 2px 0`, border: `1px solid lightgrey`, width: `95%`}}
                         direction={"row"}>
                       <Grid item xs={2}>
                           <GatsbyImage
@@ -79,8 +79,8 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
                               alt={product.name} />
                       </Grid>
                   <Grid item xs={8} style={{paddingLeft: 8, margin: `auto 0`}}>
-                      <Typography variant={"body1"} style={{margin: 0, padding: 0}}>{product.name}</Typography>
-                      <Typography variant={"subtitle2"} style={{margin: `auto`}}>{product.description}</Typography>
+                      <Typography variant={"body1"}>{product.name}</Typography>
+                      <Typography variant={"body2"} style={{letterSpacing: '-0.5px', lineHeight: '15px'}}>{product.description}</Typography>
                   </Grid>
 
                   <Grid item xs={2} style={{margin: `auto auto`, textAlign: `center`}}>
@@ -91,7 +91,7 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
           </ContainerContentProducts>
 
           <CheckoutContainer>
-                  <div style={{width: `95%`, borderRadius: 3, display: `flex`, justifyContent: `space-between`}}>
+                  <div style={{width: `95%`, borderRadius: 3}}>
                     <Typography variant={"subtitle2"}>Кол-во: <strong>{count}шт</strong></Typography>
                     <Typography variant={"subtitle2"}>Общий вес: <strong>{weight}кг</strong></Typography>
                     <Typography variant={"subtitle2"}>Цена: <strong>{price}₽</strong></Typography>
