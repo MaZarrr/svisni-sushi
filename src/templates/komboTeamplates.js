@@ -91,7 +91,7 @@ query ($slug: String!) {
                     price
                     description
                     image {
-                      gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
                 ... on ContentfulProductHotRolly {
@@ -101,7 +101,7 @@ query ($slug: String!) {
                     price
                     description
                     image {
-                      gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
                 ... on ContentfulProductNapitki {
@@ -111,7 +111,7 @@ query ($slug: String!) {
                     price
                     description
                     image {
-                      gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
                 ... on ContentfulProductPizza {
@@ -122,7 +122,7 @@ query ($slug: String!) {
                     priceIn33cm
                     description
                     image {
-                      gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
                 ... on ContentfulProductSlognyeRolly {
@@ -132,7 +132,7 @@ query ($slug: String!) {
                     price
                     description
                     image {
-                      gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
                 ... on ContentfulProductWok {
@@ -142,7 +142,7 @@ query ($slug: String!) {
                     price
                     description
                     image {
-                      gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -153,7 +153,7 @@ query ($slug: String!) {
                 description
                 price
                 image {
-                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                 }
             }
             productsKomboRolls {
@@ -164,7 +164,7 @@ query ($slug: String!) {
                     price
                     description
                     image {
-                      gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 }
             }
@@ -172,7 +172,7 @@ query ($slug: String!) {
                 id
                 __typename
                 image {
-                  gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 name
                 price
@@ -184,7 +184,7 @@ query ($slug: String!) {
                 price
                 priceIn33cm
                 image {
-                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
                 count
                 description
@@ -196,7 +196,7 @@ query ($slug: String!) {
                     price
                     description
                     image {
-                      gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
             }
 contentfulProductKlassika {
@@ -205,7 +205,7 @@ contentfulProductKlassika {
               name
               price
               image {
-                   gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
               count
               description
@@ -217,7 +217,7 @@ contentfulProductKlassika {
         price
         count
         image {
-          gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+          gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
         }
     }
 }

@@ -48,7 +48,7 @@ export const query = graphql `
             name
             slug
             image {
-            gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
             }
             detailedDescription {
               childMarkdownRemark {

@@ -49,7 +49,7 @@ export const query = graphql `
         description
         weight
         image {
-          gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+          gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
         }
       }
     }

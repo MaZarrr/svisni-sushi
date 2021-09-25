@@ -50,7 +50,7 @@ export const query = graphql `
               count
               description
                image {
-                 gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
               }
             }

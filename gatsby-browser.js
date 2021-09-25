@@ -35,9 +35,9 @@ export const onServiceWorkerUpdateReady = () => {
   }
 }
 
-export const onClientEntry = () => {
-  window.VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
-}
+// export const onClientEntry = () => {
+//   window.VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
+// }
 
 // export const replaceHydrateFunction = () => {
 //   return (element, container, callback) => {

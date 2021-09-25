@@ -65,7 +65,7 @@ export const query = graphql `
                 filter
                 count
                  image {
-                    gatsbyImageData(placeholder: TRACED_SVG, formats: [WEBP, AUTO])
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
                   }
               }
             }

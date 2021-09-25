@@ -25,7 +25,7 @@ export const wrapRootElement = ({ element }) => {
  );
 };
 
-export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
+export const onRenderBody = ({ setHeadComponents, setPostBodyComponents, setPreBodyComponents }) => {
       setHeadComponents([
         <script 
         src="https://vk.com/js/api/openapi.js?169" 
@@ -47,8 +47,16 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
                 `
             }}/>
       ]),
+      setPreBodyComponents([
+        <script key='vk-talk' type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `
+              VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
+          `
+        }}/>
+      ]),
       setPostBodyComponents([
-        <script key="vk-talk" type="text/javascript"
+        <script key="vk-api" type="text/javascript"
         dangerouslySetInnerHTML={{
           __html: `
           VK.init({
@@ -57,12 +65,12 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
         }}/>,
       ])
 };
-        // <script type="text/javascript"
-        // dangerouslySetInnerHTML={{
-        //   __html: `
-        //   VK.Widgets.CommunityMessages("vk_community_messages", 127607773);
-        //   `
-        // }}/>
+        <script type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `
+          VK.Widgets.CommunityMessages("vk_community_messages", 127607773);
+          `
+        }}/>
     //     <script key="talk-me" type='text/javascript'
     //     dangerouslySetInnerHTML={{
     //       __html: `
