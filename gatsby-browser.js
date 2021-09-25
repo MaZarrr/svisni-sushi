@@ -4,7 +4,6 @@ import theme from './src/theme';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from "@mui/material";
 // import ReactDOM from "react-dom"
-
 // import { ApolloWrapper } from "./src/gatsby-theme-apollo/ApolloWrapper"
 
 export const wrapPageElement = ({ element, props }) => {
@@ -34,6 +33,10 @@ export const onServiceWorkerUpdateReady = () => {
   if (answer === true) {
     window.location.reload()
   }
+}
+
+export const onClientEntry = () => {
+  window.VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
 }
 
 // export const replaceHydrateFunction = () => {

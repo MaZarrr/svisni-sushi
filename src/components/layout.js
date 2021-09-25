@@ -4,13 +4,12 @@ import Header from "./header"
 import loadable from '@loadable/component'
 import { Hidden } from "@mui/material";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-import { isBrowser } from "./common/constants";
 
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const Footer = loadable(() => import('./footer'));
 
-const VK = isBrowser && window.VK
-isBrowser && VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
+// const VK = isBrowser && window.VK
+// isBrowser && VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
 // isBrowser && VK.Widgets.Group("vk_groups", {mode: 3}, 161250465)
 const Layout = (
   { children, location: { pathname = "" }

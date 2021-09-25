@@ -14,10 +14,6 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(2.5),
     zIndex: '1002'
   },
-  scrollToPanel: {
-    position: 'absolute',
-    top: theme.spacing(0),
-  },
 }));
 
 function ScrollTop(props) {
@@ -49,10 +45,12 @@ function ScrollTop(props) {
 }
 
 export default function BackToTop(props) {
-    const classes = useStyles();
     return (
       <React.Fragment>
-        <Toolbar className={classes.scrollToPanel} id="back-to-top-anchor" />
+        <Toolbar sx={{
+          position: 'absolute',
+          top: 0,
+        }} id="back-to-top-anchor" />
         <ScrollTop windows={props.windows}>
           <Fab sx={{width: '50px', height: '50px'}} color="secondary" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
