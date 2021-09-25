@@ -10,8 +10,8 @@ import Zoom from '@mui/material/Zoom';
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
-    bottom: theme.spacing(3), // положение от низа
-    right: theme.spacing(1),
+    bottom: theme.spacing(10), // положение от низа
+    right: theme.spacing(2.5),
     zIndex: '1002'
   },
   scrollToPanel: {
@@ -39,7 +39,8 @@ function ScrollTop(props) {
   };
 
   return (
-    <Zoom in={trigger}>
+    <Zoom in={trigger}
+    >
       <div onClick={handleClick} role="presentation" className={classes.root}>
         {children}
       </div>
@@ -53,7 +54,7 @@ export default function BackToTop(props) {
       <React.Fragment>
         <Toolbar className={classes.scrollToPanel} id="back-to-top-anchor" />
         <ScrollTop windows={props.windows}>
-          <Fab color="secondary" aria-label="scroll back to top">
+          <Fab sx={{width: '50px', height: '50px'}} color="secondary" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>

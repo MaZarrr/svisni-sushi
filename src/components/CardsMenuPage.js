@@ -13,6 +13,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Button from '@mui/material/Button'
 import makeStyles from '@mui/styles/makeStyles';
 import { CardStyle } from "./common/styles-components";
+import { connect } from "react-redux";
 
 const Paper = loadable(() => import('@mui/material/Paper'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
@@ -305,7 +306,7 @@ const CardsMenuPage = memo(({
     </>;
 });
 
-export default CardsMenuPage
+export default connect(null, null)(CardsMenuPage)
 
 export const useStylesCart = makeStyles(theme => ({
     deckript: {

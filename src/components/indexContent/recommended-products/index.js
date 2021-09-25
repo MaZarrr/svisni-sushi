@@ -28,6 +28,7 @@ const RecommendedProducts = ({ product }) => {
     <Hidden smDown>
     <Grid container justifyContent={"space-between"} style={{width: `100%`, marginBottom: 50}}>
         <SelectionContent product={product} />
+        
     </Grid>
     </Hidden>
   </>;

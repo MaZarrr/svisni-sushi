@@ -86,7 +86,13 @@ const IndexPage = ({
             style={{textAlign: 'center', marginTop: 50}}>Доставка роллов и пиццы <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Уразово и Валуйки</span></Typography>  
             </Hidden>
             <Carousel dataCarousel={dataCar}/>
-              
+           
+              {/* <div dangerouslySetInnerHTML={{__html: `
+               <script>
+                VK.Widgets.CommunityMessages("vk_community_messages", 127607773, {expandTimeout: "5000"})
+                </script>
+              `}}>
+              </div> */}
               <Grid container className={classes.root}>
 
                 <Hidden smDown>

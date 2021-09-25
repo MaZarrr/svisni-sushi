@@ -17,7 +17,6 @@
     "@types/react-dom": "^17.0.9",
     "apollo": "^2.33.6",
     "axios": "^0.21.4",
-    "babel-plugin-styled-components": "^1.13.2",
     "cross-env": "^7.0.3",
     "gatsby": "^4.0.0-zz-next.1",
     "gatsby-plugin-facebook-pixel": "^1.0.8",
@@ -31,7 +30,6 @@
     "gatsby-plugin-robots-txt": "^1.6.10",
     "gatsby-plugin-sharp": "^3.14.0",
     "gatsby-plugin-sitemap": "^4.10.0",
-    "gatsby-plugin-styled-components": "^4.14.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-plugin-yandex-metrika": "^2.5.0",
     "gatsby-source-contentful": "^5.14.0",
@@ -58,7 +56,6 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "rimraf": "^3.0.2",
-    "styled-components": "^5.3.1",
     "uniqid": "^5.4.0"
   },
   "devDependencies": {

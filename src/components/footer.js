@@ -2,8 +2,9 @@ import React from "react"
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby"
 import { Typography } from "@mui/material";
-import styled from 'styled-components';
 import { SocialButtons } from "./common/SocialButtons";
+import styled  from "@emotion/styled";
+
 
 const FooterSection = styled.footer `
     background-color: #303032;
@@ -12,6 +13,7 @@ const FooterSection = styled.footer `
 
     @media screen and (max-width: 768px) {
     padding-left: 10px;
+    }
 `
 
 const FooterUl = styled.ul `
@@ -121,6 +123,7 @@ return (
   </div>
   
   <div className="footer_items">
+
     <li className="footer_item footer_info_st">
       <Link to="/o-nas"><Typography variant={"body1"} style={{color: "white"}}>О нас</Typography></Link>
       <Link to="/privacy"><Typography variant={"body1"} style={{color: "white"}}>Условия обработки персональных данных</Typography></Link>
@@ -142,3 +145,6 @@ return (
 }
 
 export default Footer;
+
+  // {/* <div id="vk_groups"></div> */}
+  // {/* <div></div> */}
