@@ -53,7 +53,7 @@ const ImageWrapped = styled(Grid)`
 const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }) => {
   return <>
   <Seo title={`Сет роллов ${name}`}
-       description={`Набор роллов ${name}, количество ${count} с общим весом ${weight}`}
+       description={`Набор роллов, суши сет ${name}, количество ${count} с общим весом ${weight}`}
        pathname="/sety/"/>
       <LayoutItem name={name}>
           <ButtonBackSet back={back} />
