@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import Seo from "./seo"
 import Button from '@mui/material/Button';
 import clsx from "clsx";
-import { Grid } from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Typography from "@mui/material/Typography";
 import makeStyles from '@mui/styles/makeStyles';
@@ -26,9 +26,6 @@ const styles = {
     },
     slideContainer: {
         padding: '0 20px',
-    },
-    img: {
-        maxWidth: 300
     }
 };
 
@@ -332,27 +329,46 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                         index={activeItemIndex}
                                         onChangeIndex={value => setActiveItemIndex(value)}>
                             { items.map((el) => (
-                                <Card key={el.id} style={{
+                                <Card key={el.id} 
+                                sx={{
                                     borderRadius: '5px',
                                     width: '300px',
                                     height: '480px',
                                     margin: 'auto',
-                                    position: "relative"
-                                    }}>
+                                    position: "relative",
+                                    '@media screen and (max-width: 330px)': {
+                                        width: '250px',
+                                        height: '350px',
+                                    }
+                                }}>
                                     <CardMedia
                                         style={{padding: 8, display: `flex`, justifyContent: `center`}}
                                         title={el.name}>
+                                        <Button 
+                                        onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
+                                            name: el.name, image: el.image, __typename: activeType, price: el.price })}
+                                        sx={{
+                                            maxWidth: '300px',
+                                            '@media (max-width: 330px)': {
+                                                maxWidth: '200px'
+                                            }
+                                        }}>
                                         <GatsbyImage
-                                            style={{
-                                                maxWidth: '300px'
-                                            }}
                                             image={el.image.gatsbyImageData}
                                             alt={el.name} />
+                                        </Button>
                                     </CardMedia>
                                     <CardContent style={{padding: 5, height: '200px'}}>
                                         <Typography style={{fontSize: 14, fontWeight: `bold` }} variant={"subtitle1"}>{el.name}</Typography>
-                                        <Typography style={{fontSize: 13, overflowY: `auto`}}
-                                                    variant={"subtitle2"}>{el.description}</Typography>
+                                        <Typography
+                                        sx={{
+                                            fontSize: 13, 
+                                            overflowY: `auto`,
+                                            '@media (max-width: 330px)': {
+                                                fontSize: 11,
+                                            }
+                                        }}
+                                        variant={"subtitle2"}>{el.description}</Typography>
                                         <Button
                                           onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
                                               name: el.name, image: el.image, __typename: activeType, price: el.price })}

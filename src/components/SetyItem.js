@@ -23,7 +23,7 @@ const ContainerContentProducts = styled.div`
     max-height: 440px;
     overflow: scroll;
     border-radius: 5px;
-    marginTop: 4px;
+    margin-top: 4px;
     padding: 5px;
     position: relative;
     @media (max-width: 600px) {
@@ -32,7 +32,7 @@ const ContainerContentProducts = styled.div`
     }
 `
 const CheckoutContainer = styled.div`
-    margin-topp: 20px;
+    margin-top: 20px;
     position: sticky;
     bottom: -50px;
     div {
@@ -46,7 +46,7 @@ const ImageWrapped = styled(Grid)`
   width: 100%;
   padding: 5px 0 0 30px;
   @media (max-width: 600px) {
-    padding: 0;
+    padding: 10px;
   }
 `
 
@@ -64,8 +64,8 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
 
               <Grid item xs={12} sm={6} md={5}
                     style={{paddingLeft: 10}}>
-                  <div style={{padding: 3, borderRadius: 5, boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)', width: `95%`}}>
-                      <Typography variant={"h6"} style={{marginTop: 10, marginBottom: 10}}>Состав:</Typography>
+                  <div style={{padding: 3, borderRadius: 5, width: `95%`}}>
+                      <Typography variant={"h3"} style={{marginTop: 15}}>Состав:</Typography>
                   </div>
               <ContainerContentProducts>
               { kitProduct.map(({node: product}) => (

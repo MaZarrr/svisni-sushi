@@ -46,12 +46,13 @@ export default function SwipeableTemporaryDrawer({location}) {
   );
 
   return (
-    <div style={{marginLeft: `auto`, marginRight: 40}}>
+    <div style={{margin: 'auto 15px auto 0'}}>
    
     <IconButton
       onClick={toggleDrawer('left', true)}
       sx={{
         border: `1px solid tomato`,
+
       }}
       aria-label="menu"
       size="large">

@@ -222,6 +222,11 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                   <IconButton
                                     aria-label="remove"
                                     component="span"
+                                    sx={{
+                                      '@media screen and (max-width: 330px) ': {
+                                        display: 'none',
+                                      }
+                                    }}
                                     onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
                                       : () => deleteFilaSale(id)}
                                     size="large">
@@ -233,6 +238,11 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                   <IconButton
                                     aria-label="remove"
                                     component="span"
+                                    sx={{
+                                      '@media screen and (max-width: 330px) ': {
+                                        display: 'none',
+                                      }
+                                    }}
                                     onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
                                     size="large">
                                     <DeleteOutlineOutlinedIcon/>

@@ -1,14 +1,11 @@
 import React from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
 import { connect } from 'react-redux';
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
 import {getSearchText} from "../reducers/filters";
-import makeStyles from '@mui/styles/makeStyles';
 
 const CustomizedInputSearch = React.memo(({serchProduct, location}) => {
-  const classes = useStyleSearchInput();
   const [value, setValue] = React.useState('');
 
     const handleSabmit = (e) => {
@@ -22,17 +19,29 @@ const CustomizedInputSearch = React.memo(({serchProduct, location}) => {
     };
 
   return (
-    <Paper component="form" onSubmit={handleSabmit} className={classes.root}>
+    <Paper component="form" onSubmit={handleSabmit}
+    sx={{
+      padding: '2px 4px',
+      marginTop: '5px',
+      display: 'flex',
+      width: `95%`,
+      height: '60px',
+      '@media screen and (max-width: 500px) ': {
+        padding: 0,
+      }
+    }}>
       <SwipeableTemporaryDrawer location={location}/>
       <InputBase
-        className={classes.input}
+        sx={{
+          flex: 1,
+          padding: 0
+        }}
         value={value}
         name="search"
         placeholder={"Поиск по названию"}
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={handleChange}
       />
-     <Divider className={classes.divider} orientation="vertical" />
     </Paper>
   );
 });
@@ -42,24 +51,3 @@ const CustomizedInputSearch = React.memo(({serchProduct, location}) => {
     })
 
 export default connect(null, mapDispatchToProps)(CustomizedInputSearch)
-
-export const useStyleSearchInput = makeStyles(theme => ({
-  root: {
-    padding: '2px 4px',
-    marginTop: 10,
-    display: 'flex',
-    width: `95%`,
-    [theme.breakpoints.down('500')]: {
-      width: `95%`,
-      padding: 0,
-    }
-  },
-  input: {
-    flex: 1,
-    padding: 0
-  },
-  divider: {
-    height: 28,
-    margin: 4,
-  }
-}));
