@@ -181,6 +181,14 @@ const delivery = [
     },
     {
         id: 22,
+        adress: 'Тимоново',
+        do: 2999,
+        posle: 3000,
+        color: '#D9D827',
+        price: 650,
+    },
+    {
+        id: 23,
         adress: 'Бабки',
         do: 1499,
         posle: 1500,
@@ -188,7 +196,7 @@ const delivery = [
         price: 300,
     },
     {
-        id: 23,
+        id: 24,
         adress: 'Сухарево',
         do: 1199,
         posle: 1200,
@@ -196,7 +204,7 @@ const delivery = [
         price: 200,
     },
     {
-        id: 24,
+        id: 25,
         adress: 'Татариевка',
         do: 699,
         posle: 700,
@@ -204,7 +212,7 @@ const delivery = [
         price: 100,
     },
     {
-        id: 25,
+        id: 26,
         adress: 'Пристень',
         do: 1199,
         posle: 1200,
@@ -212,7 +220,7 @@ const delivery = [
         price: 200,
     },
     {
-        id: 26,
+        id: 27,
         adress: 'Лобковка',
         do: 999,
         posle: 1000,
@@ -220,7 +228,7 @@ const delivery = [
         price: 150,
     },
     {
-        id: 27,
+        id: 28,
         adress: 'Самарино',
         do: 2499,
         posle: 2500,

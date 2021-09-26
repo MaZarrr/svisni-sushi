@@ -73,13 +73,14 @@ const city = {
   valrazdol: {id: 19, priceDel: 250, deliverySalePrice: 1500, name: "Валуйки(раздолье)"},
   togobi: {id: 20, priceDel: 100, deliverySalePrice: 700, name: "Тогобиевка"},
   novopetr: {id: 21, priceDel: 300, deliverySalePrice: 2300, name: "Новопетровка"},
-  babki: {id: 22, priceDel: 300, deliverySalePrice: 1500, name: "Бабки"},
-  syxarevo: {id: 23, priceDel: 200, deliverySalePrice: 1200, name: "Сухарево"},
-  tatarievka: {id: 24, priceDel: 100, deliverySalePrice: 700, name: "Татариевка"},
-  pricten: {id: 25, priceDel: 200, deliverySalePrice: 1200, name: "Пристень"},
-  lobkovka: {id: 26, priceDel: 150, deliverySalePrice: 1000, name: "Лобковка"},
-  nasonovo: {id: 27, priceDel: 500, deliverySalePrice: 2400 , name: "Насоново"},
-  yablonovo: {id: 28, priceDel: 500, deliverySalePrice: 2400 , name: "Яблоново"}
+  timonovo: {id: 22, priceDel: 650, deliverySalePrice: 3000, name: "Тимоново"},
+  babki: {id: 23, priceDel: 300, deliverySalePrice: 1500, name: "Бабки"},
+  syxarevo: {id: 24, priceDel: 200, deliverySalePrice: 1200, name: "Сухарево"},
+  tatarievka: {id: 25, priceDel: 100, deliverySalePrice: 700, name: "Татариевка"},
+  pricten: {id: 26, priceDel: 200, deliverySalePrice: 1200, name: "Пристень"},
+  lobkovka: {id: 27, priceDel: 150, deliverySalePrice: 1000, name: "Лобковка"},
+  nasonovo: {id: 28, priceDel: 500, deliverySalePrice: 2400 , name: "Насоново"},
+  yablonovo: {id: 29, priceDel: 500, deliverySalePrice: 2400 , name: "Яблоново"}
 };
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
@@ -472,17 +473,18 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                               <option value="pricten">Пристень</option>
                               <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
                               <option value="soloti">Солоти</option>
-                              <option style={{background: `#f0ecec`}} value="borki">Борки</option>
-                              <option value="znamenk">Знаменка</option>
-                              <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
-                              <option value="kazink">Казинка</option>
-                              <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
-                              <option value="kyky">Кукуевка</option>
-                              <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
-                              <option value="nasonovo">Насоново</option>
-                              <option style={{background: `#f0ecec`}} value="yablonovo">Яблоново</option>
-                              <option value="rogdestv">Рождественно</option>
-                              <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
+                              <option style={{background: `#f0ecec`}} value="timonovo">Тимоново</option>
+                              <option value="borki">Борки</option>
+                              <option style={{background: `#f0ecec`}} value="znamenk">Знаменка</option>
+                              <option value="gera">Герасимовка</option>
+                              <option style={{background: `#f0ecec`} }value="kazink">Казинка</option>
+                              <option value="loga">Логачевка</option>
+                              <option style={{background: `#f0ecec`}} value="kyky">Кукуевка</option>
+                              <option value="kolos">Колосково</option>
+                              <option style={{background: `#f0ecec`}} value="nasonovo">Насоново</option>
+                              <option value="yablonovo">Яблоново</option>
+                              <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
+                              <option value="samar">Самарино</option>
                             </Select>
 
                             <FormHelperText id="my-helper-text">Выберите населенный пункт</FormHelperText>

@@ -1,3 +1,4 @@
+   
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -49,6 +50,11 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
 
     const handleToggle = () => setOpen((prevOpen) => !prevOpen);
     // const addedIngrideent = ({sostav, pizzaIng, id}) => handleToggle();
+    const sost = ['зелень', 'бекон', 'маслины', 'корнишоны']
+    const ing = ingrideents.filter(item => { 
+        return sost.includes(item.nameI)
+        // return ingrideents.includes(sost.forEach(el => item.name))
+    })
 
     return (
         <Grid container direction="column">
@@ -74,7 +80,7 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                             <div>
                             <Paper style={{overflowY: `scroll`, height: `${height}px`}}>
                             <FormGroup style={{width: 200}}>
-                                {ingrideents.map((el) => {
+                                { addTodel === 'inc' ? ingrideents.map((el) => {
                                 return (
                                 <div key={String(el.id)}>
                                     <Grid container alignItems={"center"} justifyContent={"space-between"}>
@@ -94,7 +100,33 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                                         </Grid>
                                         </Grid>
                                     <Divider/>
-                                </div>)})}
+                                </div>
+                                )}
+                            ) : <div>
+                        { ing.map((el) => {
+                        return (
+                        <div key={String(el.id)}>
+                            <Grid container alignItems={"center"} justifyContent={"space-between"}>
+                            <Grid item xs={6}>
+                            <FormControlLabel value={el.value} style={{margin: `auto 0`}} control={
+                                    <Checkbox
+                                        id={String(el.id)}
+                                        checked={el[el.title]}
+                                        onChange={handleChange}
+                                        name={el.title}
+                                        color="primary"/>}
+                                        label={<Typography style={{fontSize: 13}}>{el.nameI}</Typography>}/>
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <Typography style={{textAlign: `center`,fontSize: 13}} variant={"h6"}>
+                                        {`${el.value}₽`}</Typography>
+                                </Grid>
+                                </Grid>
+                            <Divider/>
+                                </div>
+                                )})}
+                            </div>
+                            }
                             </FormGroup>
                             </Paper>
                             <Button size={"small"} style={{width: `100%`, fontSize: 12}} variant={"contained"}
@@ -113,90 +145,6 @@ const mapDispatchToProps = {
 };
 export default connect(null, mapDispatchToProps)(SplitButton)
 
-
-
-// console.log(sostav);
-// // console.log(ingrideents);
-// // const sost = ['зелень', 'грибы', 'бекон']
-// // const ing = ingrideents.filter(item => {
-// //     return ingrideents.includes(sost.forEach(el => el.name))
-// // })
-// const ing = ingrideents.filter(item => { 
-//     return sostav.includes(item.nameI)
-//     // return ingrideents.includes(sost.forEach(el => item.name))
-// })
-// console.log("ing", ing);
-// return (
-//     <Grid container direction="column">
-//         <Grid item xs={12} style={{ zIndex: 100 }}>
-//             <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-//                 {/*<Button className={clsx(classes.buttonD, {*/}
-//                 {/*    [classes.buttonT]: ingrideentButtonStyle})} onClick={handleToggle}>Ингридеенты</Button>*/}
-//                 <Button
-//                     variant="outlined"
-//                     color="primary"
-//                     size="small"
-//                     aria-controls={open ? 'split-button-menu' : undefined}
-//                     aria-expanded={open ? 'true' : undefined}
-//                     aria-label="select merge strategy"
-//                     aria-haspopup="menu"
-//                     onClick={handleToggle}>
-//                     {addTodel === "inc" ?  <AddCircleOutlineIcon/> : <RemoveOutlinedIcon/>}
-                   
-//                 </Button>
-//             </ButtonGroup>
-//             <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-//                 {({ TransitionProps, placement }) => (
-//                     <Grow {...TransitionProps} style={{transformOrigin: 'bottom'}}>
-//                         <div>
-//                         <Paper style={{overflowY: `scroll`, height: `${height}px`}}>
-//                         {addTodel === "inc" ? 
-//                             <FormGroup style={{width: 200}}>
-//                             { ingrideents.map((el) => {
-//                             return (
-//                             <div key={String(el.id)}>
-//                                 <Grid container alignItems={"center"} justifyContent={"space-between"}>
-//                                 <Grid item xs={6}>
-//                                 <FormControlLabel value={el.value} style={{margin: `auto 0`}} control={
-//                                         <Checkbox
-//                                             id={String(el.id)}
-//                                             checked={el[el.title]}
-//                                             onChange={handleChange}
-//                                             name={el.title}
-//                                             color="primary"/>}
-//                                             label={<Typography style={{fontSize: 13}}>{el.nameI}</Typography>}/>
-//                                     </Grid>
-//                                     <Grid item xs={4}>
-//                                         <Typography style={{textAlign: `center`,fontSize: 13}} variant={"h6"}>
-//                                             {`${el.value}₽`}</Typography>
-//                                     </Grid>
-//                                     </Grid>
-//                                 <Divider/>
-//                             </div>)})}
-//                         </FormGroup>
-                                    
-//                         : <FormGroup style={{width: 200}}>
-//                         { ing.map((el) => {
-//                         return (
-//                         <div key={String(el.id)}>
-//                             <Grid container alignItems={"center"} justifyContent={"space-between"}>
-//                             <Grid item xs={6}>
-//                             <FormControlLabel value={el.value} style={{margin: `auto 0`}} control={
-//                                     <Checkbox
-//                                         id={String(el.id)}
-//                                         checked={el[el.title]}
-//                                         onChange={handleChange}
-//                                         name={el.title}
-//                                         color="primary"/>}
-//                                         label={<Typography style={{fontSize: 13}}>{el.nameI}</Typography>}/>
-//                                 </Grid>
-//                                 <Grid item xs={4}>
-//                                     <Typography style={{textAlign: `center`,fontSize: 13}} variant={"h6"}>
-//                                         {`${el.value}₽`}</Typography>
-//                                 </Grid>
-//                                 </Grid>
-//                             <Divider/>
-//                         </div>)})}
 
 // <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal
 // // modifiers={[
