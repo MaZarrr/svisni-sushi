@@ -78,7 +78,8 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                             <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} />
                                         </CardMedia>
                                         <CardContent>
-                                            {!pizzaSale && <>
+                                            {!pizzaSale && <Grid display="flex" justifyContent="space-between">
+                                            <Grid item sx={{margin: 'auto'}}>
                                             <SplitButton id={id}
                                                          pizzaIng={updatePizza}
                                                          ingrideents={ingrideents}
@@ -87,7 +88,23 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                          addTodel="inc"
                                                          ingrideentButtonStyle={ingrideentButtonStyle}
                                                          dir={"center"}/>
-                                                         </>
+                                            </Grid>
+                                            <Grid item sx={{margin: 'auto'}}>
+                                                    <Typography>
+                                                        Ингридеенты
+                                                    </Typography>
+                                            </Grid>
+                                            <Grid item sx={{margin: 'auto'}}>
+                                            <SplitButton id={id}
+                                                         pizzaIng={updatePizza}
+                                                         ingrideents={ingrideents}
+                                                         sostav={sostav}
+                                                         path={path}
+                                                         addTodel="deck"
+                                                         ingrideentButtonStyle={ingrideentButtonStyle}
+                                                         dir={"center"}/>
+                                            </Grid>
+                                            </Grid>
                                                          
                                             } 
                                             <Typography itemProp="description"
@@ -111,7 +128,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                         mass: weight})}
                                                             className={clsx(classes.buttonD, {
                                                                 [classes.buttonT]: size[slug]})}>
-                                                        <Typography  style={{margin: 'auto'}} variant={"subtitle2"}>Средняя</Typography></button>
+                                                    <Typography  style={{margin: 'auto'}} variant={"subtitle2"}>Средняя</Typography></button>
                                                     <Typography style={{textAlign: `center`}}
                                                                 variant={"subtitle2"}>28см</Typography>
                                                 </Grid>
