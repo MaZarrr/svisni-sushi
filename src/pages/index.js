@@ -61,7 +61,7 @@ const IndexPage = ({
         const onSubmit = (e) => {
           e.preventDefault();
           if(!loading){
-              console.log("value", value)
+              // console.log("value", value)
             const { phone, password } = value
               loginMutation({
                   variables: {
