@@ -11,7 +11,7 @@ import { styled } from "@mui/system";
 const TypographyStyle = styled(Typography)(({ theme }) => ({
     fontWeight: 500,
     textAlign: `center`,
-    fontSize: `4vmin`
+    fontSize: `3vmin`
 }))
 
 const MenuCategory = () => {

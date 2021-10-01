@@ -19,6 +19,8 @@ export default function SwipeableTemporaryDrawer({location}) {
     left: false,
   });
 
+  const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
   const toggleDrawer = (side, open) => event => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -60,6 +62,8 @@ export default function SwipeableTemporaryDrawer({location}) {
     </IconButton>
       <SwipeableDrawer
         anchor="left"
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
         open={state.left}
         onClose={toggleDrawer('left', false)}
         onOpen={toggleDrawer('left', true)}

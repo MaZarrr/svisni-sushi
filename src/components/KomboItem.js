@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import Seo from "./seo"
 import Button from '@mui/material/Button';
 import clsx from "clsx";
-import { Grid, IconButton } from "@mui/material";
+import { Grid } from "@mui/material";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Typography from "@mui/material/Typography";
 import makeStyles from '@mui/styles/makeStyles';
@@ -33,10 +33,6 @@ const styles = {
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-
-// function Alert(props) {
-//     return <MuiAlert elevation={6} variant="filled" {...props} />;
-// }
 
 const KomboItem = React.memo(( { id, name, description, addedCart, image, price, slug, edit, products } ) => {
 
@@ -332,8 +328,8 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                 <Card key={el.id} 
                                 sx={{
                                     borderRadius: '5px',
-                                    width: '300px',
-                                    height: '480px',
+                                    width: '260px',
+                                    height: '420px',
                                     margin: 'auto',
                                     position: "relative",
                                     '@media screen and (max-width: 330px)': {
@@ -348,7 +344,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                         onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
                                             name: el.name, image: el.image, __typename: activeType, price: el.price })}
                                         sx={{
-                                            maxWidth: '300px',
+                                            maxWidth: '260px',
                                             '@media (max-width: 330px)': {
                                                 maxWidth: '200px'
                                             }

@@ -134,6 +134,7 @@ export default Header
 export const useStyleHeader = makeStyles(theme => ({
   root: {
     display: 'flex',
+    marginBottom: '55px',
     justifyContent: 'space-between',
     zIndex: '1000'
   },

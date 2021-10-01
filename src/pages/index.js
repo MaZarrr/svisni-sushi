@@ -15,14 +15,13 @@ const IndexPage = ({
   data: { allContentfulContentIndex: { edges }, 
   allContentfulCarouselSiteImage } }) => {
 
-        const [dataCar,] = useState(allContentfulCarouselSiteImage)
         const [loadingSpinner, setLoading] = useState(true)
         const [indexProduct, setIndexProduct] = useState(true)
         const classes = useStyleIndexPage();
 
         useEffect(() => {
-          setIndexProduct(edges)
-          setLoading(false)
+            setIndexProduct(edges)
+            setLoading(false)
         }, [edges])
 
         return (
@@ -33,10 +32,10 @@ const IndexPage = ({
             <Hidden smUp>
             <Typography 
             variant={"body2"}
-            style={{textAlign: 'center', marginTop: 50}}>Доставка роллов и пиццы
-                <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Уразово и Валуйки</span></Typography>
+            style={{textAlign: 'center'}}>Доставка роллов и пиццы
+                <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Уразово и Валуйки</span></Typography>
             </Hidden>
-            <Carousel dataCarousel={dataCar}/>
+            <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
 
               <Grid container className={classes.root}>
 
