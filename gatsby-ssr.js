@@ -1,7 +1,6 @@
 import React from 'react'
 import Layout from './src/components/layout'
 import theme from './src/theme';
-// import { ApolloWrapper } from './src/gatsby-theme-apollo/ApolloWrapper';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from "@mui/material";
 
@@ -17,19 +16,14 @@ export const wrapRootElement = ({ element }) => {
     window.VK.Widgets.CommunityMessages("vk_community_messages", 20003922)
    <ThemeProvider theme={theme}>
     <CssBaseline/>
-    {/* <ApolloWrapper> */}
         {element}
-    {/* </ApolloWrapper> */}
   </ThemeProvider>
    </StyledEngineProvider>
  );
 };
 
-export const onRenderBody = ({ setHeadComponents, setPostBodyComponents, setPreBodyComponents }) => {
+export const onRenderBody = ({ setHeadComponents }) => {
       setHeadComponents([
-        <script 
-        src="https://vk.com/js/api/openapi.js?169" 
-        type="text/javascript" />,
         <script
             key="vk-retargeting"
             type="text/javascript"
