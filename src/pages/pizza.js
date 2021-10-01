@@ -27,6 +27,7 @@ import { addedToCart, pizzaCart } from "../reducers/shopping-cart";
 import { CardStyle } from "../components/common/styles-components";
 
 const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
+// const deleteDefaultIngrideents = ['зелень', 'грибы', 'лук репчатый', 'репчатый лук', 'лук', 'лук синий'];
 
 const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image} },
                    productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path, loading }) => {
@@ -44,6 +45,10 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
     const visibleItems = filtersProducts(updatePizza, searchText, priceFilter);
     const switchSizePizza = data => dispatch(pizzaCart(data));
 
+    // const deleteIngrideents = ingrideents.filter(item => { 
+    //     return deleteDefaultIngrideents.includes(item.nameI.trim())
+    // })
+
     return (
         <section>
             <Seo title="Заказать пиццу в Валуйки, доставка пиццы с 10 до 22:00"
@@ -52,7 +57,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
             <HeadSection titleTXT={"Доставка пиццы"} path={path} isFilter={true} categoryNames={categoryNames} />
           {!loading ?
                     <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
-                        {visibleItems.map((products) => {
+                        { visibleItems.map((products) => {
                             const { id, name, pizzaSale,
                                 slug, description,
                                 price, weight, weight33, mass = weight, priceIn33cm,

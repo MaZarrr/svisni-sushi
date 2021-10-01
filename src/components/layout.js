@@ -28,6 +28,7 @@ const Layout = (
     <Header/>
     <div style={{
       // maxWidth: `1920px`,
+      padding: '0 15px',
       backgroundColor: "#fafafa",
       margin: `0 auto`,
       minHeight: `100vh`

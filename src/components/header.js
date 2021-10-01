@@ -85,14 +85,13 @@ const Header = () => {
                       listStyle: `none`, 
                       textAlign: `center`
                       }}>
-                        <Typography> 
+                    <Typography>
                       <Link to={link} activeStyle={{
                         border: `solid 1px #FC5185`,
                         borderBottomWidth: `3px`,
                         borderRadius: `8px`,
                         padding: 8,
-                        color: 'red'
-                        }} >
+                        color: 'red'}}>
                         {name}
                       </Link>
                       </Typography> 
@@ -105,17 +104,18 @@ const Header = () => {
               <Hidden smUp>
                   <Grid item xs={4} style={{display: `flex`, justifyContent: `center`}}>
                       <Link to="/">
-                          <StaticImage layout="constrained"
-                                       loading={"eager"}
-                                       placeholder="blurred"
-                                       style={{maxWidth: 65}}
-                                       src="../images/logosvisni.png"
-                                       alt={"Свисни суши в Уразово"}/>
+                      <StaticImage layout="constrained"
+                                   loading={"eager"}
+                                   placeholder="blurred"
+                                   style={{maxWidth: 65}}
+                                   src="../images/logosvisni.png"
+                                   alt={"Свисни суши в Уразово"}/>
                       </Link>
                   </Grid>
               </Hidden>
 
-              <Grid item xs={4} sm={2} style={{margin: `auto 0`, display: `flex`, justifyContent: `flex-end`}}>
+              <Grid item xs={4} sm={2} style={{
+                  margin: `auto 0`, display: `flex`, justifyContent: `flex-end`}}>
                   <Baskets />
               </Grid>
           </Grid>
@@ -135,6 +135,7 @@ export const useStyleHeader = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
+    marginBottom: '55px',
     zIndex: '1000'
   },
   appBar: {
@@ -147,10 +148,7 @@ export const useStyleHeader = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "white",
-    // [theme.breakpoints.down('md')]: {
-    //   height: `69px`,
-    // }
+    backgroundColor: "white"
   },
   content_header: {
     display: 'flex',

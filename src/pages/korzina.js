@@ -127,7 +127,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
     if(test() > 789 && !disabled()) {
       return (
-        <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+        <Grid item xs={12} sm={7} style={{padding: `0 0 5px 0`}}>
             <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
               <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
                 <GatsbyImage style={{maxWidth: 158}} image={saleRoll.image} alt={saleRoll.name}/>

@@ -14,7 +14,7 @@ const Sale = (props) => {
   <Seo title="Акции и скидки на пиццу, роллы и суши в Уразово"
   description="Акции на роллы суши и пиццу в Валуйках. Скидки до 50%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
   <HeadSection titleTXT={"Акции"} />
-  <Grid container className={classes.container}>
+  <Grid container>
       {props.data.allContentfulProductSale.edges.map((product) => (
       <Grid key={product.node.id} item xs={12} sm={6} md={4} className={classes.item}>
           <Link to={`/sale${product.node.slug}`} style={{textDecoration: `none`, color: '#000'}}>
@@ -41,12 +41,6 @@ const useStyleSalePage = makeStyles(theme => ({
        maxWidth: `80vmax`
      }
    },
-    container: {
-      padding: `30px 0 50px 30px`,
-      [theme.breakpoints.down('475')]: {
-        padding: `20px 0 50px 20px`
-      }
-    },
     item: {
       padding: `0 10px 30px 0`
     }

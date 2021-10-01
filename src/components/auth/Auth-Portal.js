@@ -25,7 +25,7 @@ const AuthPortal= (props) => {
             <Grid item>
                 <Paper elevation={6} classes={{root: classes.paper}}>
                     <Grid container direction="column" alignItems='center' classes={{root: classes.inner}}>
-sdsdsd
+
                     </Grid>
                 </Paper>
 

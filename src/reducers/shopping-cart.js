@@ -478,8 +478,13 @@ export default createReducer({
 
         // добавление в состав
         const descriptionArray = pizza.description.split(", ")
-        const updateIngrideents = incdesc === 1 ? R.append(checker["nameI"], descriptionArray).join(",") : R.without([checker["nameI"].trim()], descriptionArray).join(",")
-
+        console.log("descriptionArray", descriptionArray);
+        // const newDescription = R.isNil(descriptionArray) ? pizza.description.split(",") : descriptionArray
+        // console.log('descriptionArray', descriptionArray);
+        const updateIngrideents = incdesc === 1 ? R.append(checker["nameI"], descriptionArray).join(",") : R.without([checker["nameI"]], descriptionArray).join(",")
+        console.log("updateIngrideents", updateIngrideents);
+        console.log("R.without([checke", R.without([checker["nameI"]], descriptionArray));
+        
         const updateItemPizza = R.update(itemIndexPizza, {
             ...pizza,
             price: pizza.price + add,

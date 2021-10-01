@@ -16,6 +16,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import {Typography} from "@mui/material";
 import {connect} from "react-redux";
 import {addedIngrideent} from "../reducers/shopping-cart";
+import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+import { isEmpty } from 'ramda';
 
 export const useStyles = makeStyles(theme => ({
     buttonD: {
@@ -38,30 +40,64 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
+
+const deleteDefaultIngrideents = ['зелень', 'грибы', 'лук репчатый', 'репчатый лук', 'лук', 'лук синий', 'маслины', 'оливки', 'ветчина']
+
 // dir = "center"
-const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedIngrideents, ingrideentButtonStyle, height = 210, addTodel}) => {
+const SplitButton = React.memo(({
+    id, pizzaIng, ingrideents, path, sostav, 
+    addedIngrideents, ingrideentButtonStyle, height = 210, addTodel}) => {
+
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     // const classes = useStyles();
 
     const handleChange = (event) =>  {
-        addedIngrideents({id, sostav, name: event.target.name, ingrideents, check: event.target.checked, pizzaIng, path, addTodel})
+        // if(addTodel === "inc"){
+            addedIngrideents({id, sostav, name: event.target.name, ingrideents, check: event.target.checked, pizzaIng, path, addTodel})
+        // }
     };
+
+    // console.log("sostav", sostav);
 
     const handleToggle = () => setOpen((prevOpen) => !prevOpen);
     // const addedIngrideent = ({sostav, pizzaIng, id}) => handleToggle();
-    const sost = ['зелень', 'бекон', 'маслины', 'корнишоны']
-    const ing = ingrideents.filter(item => { 
-        return sost.includes(item.nameI)
-        // return ingrideents.includes(sost.forEach(el => item.name))
+
+    // const deleteIngrideents = ingrideents.filter(items => { 
+    //     // return deleteDefaultIngrideents.forEach(element => {
+    //     //     element === item.nameI.trim().toLowerCase()
+    //     // });
+
+    //         // return items.nameI.toLowerCase().indexOf(deleteDefaultIngrideents.forEach(item => item.toLowerCase())) > -1;
+    //         return deleteDefaultIngrideents.indexOf(items.nameI.trim().toLowerCase()) > -1;
+    //     // return deleteDefaultIngrideents.includes(item.nameI.trim().toLowerCase())
+    // })
+    const sostavPizza = isEmpty(sostav) ? [] :  sostav.trim().toLowerCase().split(",")
+    // console.log("sostavPizza", sostavPizza);
+    // console.log(sostavPizza);
+    // console.log(deleteDefaultIngrideents);
+    const defaultIngrideents = ingrideents.filter(items => { 
+        // return deleteDefaultIngrideents.forEach(element => {
+        //     element === item.nameI.trim().toLowerCase()
+        // });
+
+            // return items.nameI.toLowerCase().indexOf(deleteDefaultIngrideents.forEach(item => item.toLowerCase())) > -1;
+            return sostavPizza.indexOf(items.nameI.trim().toLowerCase()) > -1;
+        // return deleteDefaultIngrideents.includes(item.nameI.trim().toLowerCase())
     })
+    
+    // const sost = ['зелень', 'бекон', 'маслины', 'корнишоны']
+    // const ing = ingrideents.filter(item => { 
+    //     return sost.includes(item.nameI.trim())
+    //     // return ingrideents.includes(sost.forEach(el => item.name))
+    // })
+    // console.log("defaultIngrideents", defaultIngrideents);
 
     return (
         <Grid container direction="column">
             <Grid item xs={12} style={{ zIndex: 100 }}>
                 <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                    {/*<Button className={clsx(classes.buttonD, {*/}
-                    {/*    [classes.buttonT]: ingrideentButtonStyle})} onClick={handleToggle}>Ингридеенты</Button>*/}
+
                     <Button
                         variant="outlined"
                         color="primary"
@@ -71,7 +107,7 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                         aria-label="select merge strategy"
                         aria-haspopup="menu"
                         onClick={handleToggle}>
-                        <AddCircleOutlineIcon/>
+                        { addTodel === "inc" ? <AddCircleOutlineIcon/> :<RemoveOutlinedIcon /> } 
                     </Button>
                 </ButtonGroup>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
@@ -80,7 +116,7 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                             <div>
                             <Paper style={{overflowY: `scroll`, height: `${height}px`}}>
                             <FormGroup style={{width: 200}}>
-                                { addTodel === 'inc' ? ingrideents.map((el) => {
+                                { addTodel === "inc" ? ingrideents.map((el) => {
                                 return (
                                 <div key={String(el.id)}>
                                     <Grid container alignItems={"center"} justifyContent={"space-between"}>
@@ -95,15 +131,16 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                                                 label={<Typography style={{fontSize: 13}}>{el.nameI}</Typography>}/>
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <Typography style={{textAlign: `center`,fontSize: 13}} variant={"h6"}>
-                                                {`${el.value}₽`}</Typography>
+                                        <Typography style={{textAlign: `center`,fontSize: 13}} variant={"h6"}>
+                                            {`${el.value}₽`}
+                                        </Typography>
                                         </Grid>
                                         </Grid>
                                     <Divider/>
                                 </div>
                                 )}
                             ) : <div>
-                        { ing.map((el) => {
+                        { defaultIngrideents.map((el) => {
                         return (
                         <div key={String(el.id)}>
                             <Grid container alignItems={"center"} justifyContent={"space-between"}>
@@ -116,10 +153,6 @@ const SplitButton = React.memo(({id, pizzaIng, ingrideents, path, sostav, addedI
                                         name={el.title}
                                         color="primary"/>}
                                         label={<Typography style={{fontSize: 13}}>{el.nameI}</Typography>}/>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <Typography style={{textAlign: `center`,fontSize: 13}} variant={"h6"}>
-                                        {`${el.value}₽`}</Typography>
                                 </Grid>
                                 </Grid>
                             <Divider/>
@@ -145,6 +178,9 @@ const mapDispatchToProps = {
 };
 export default connect(null, mapDispatchToProps)(SplitButton)
 
+
+                    // {/*<Button className={clsx(classes.buttonD, {*/}
+                    // {/*    [classes.buttonT]: ingrideentButtonStyle})} onClick={handleToggle}>Ингридеенты</Button>*/}
 
 // <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal
 // // modifiers={[

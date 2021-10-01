@@ -21,8 +21,8 @@ import CardGiftcardTwoToneIcon from '@mui/icons-material/CardGiftcardTwoTone';
 import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import { SocialButtons } from './common/SocialButtons';
 
-// import { useReactiveVar } from '@apollo/client';
-// import { isLoggedInVar } from '../gatsby-theme-apollo/client';
+import { useReactiveVar } from '@apollo/client';
+import { isLoggedInVar } from '../gatsby-theme-apollo/client';
 
 const useStyles = makeStyles(({
     list: {
@@ -39,7 +39,7 @@ const drawerMenuProps = [
         slug: "/orders",
         nameCategory: "Мои заказы",
         componentIcon: EventNoteTwoToneIcon,
-        isAuth: false
+        isAuth: true
     },
     {
         id: 2,
@@ -99,7 +99,7 @@ const drawerMenuProps = [
 export default function TemporaryDrawer() {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
-    // const isLoggedIn = useReactiveVar(isLoggedInVar)p
+    const isLoggedIn = useReactiveVar(isLoggedInVar)
 
 
     const toggleDrawer = (anchor, open) => (event) => {

@@ -20,7 +20,6 @@ const SectionInfo = styled.section `
     .items-container {
         display: flex;
         justify-content: space-around;
-        //max-width: 40%;
         @media (max-width: 500px) {
             flex-direction: column;
         }

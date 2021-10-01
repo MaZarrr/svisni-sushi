@@ -1,8 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react"
 import AccountTabs from "../components/AccountTabs";
-// import AuthPortal from "../components/auth/Auth-Portal";
-// import Layout from "../components/layout"
+import AuthPortal from "../components/auth/Auth-Portal";
 
 
 const Account = () => {
@@ -11,16 +10,18 @@ const Account = () => {
     // адреса
     // настройки
     return (
-        // <AuthPortal/>
-        <Grid container style={{marginTop: 70}}>
-            <Typography> 
+        <div>
+        {/*<AuthPortal/>*/}
+        <Grid container direction={"column"}>
+            <Typography variant={"subtitle1"}>
                 Привет, Виталий
             </Typography>
-            <Typography> 
+            <Typography variant={"subtitle2"} sx={{paddingTop: '10px'}}>
                 +7(941)123-33-44
             </Typography>
-            <AccountTabs />
         </Grid>
+        <AccountTabs />
+        </div>
     )
 
 }
