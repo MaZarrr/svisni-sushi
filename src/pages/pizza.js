@@ -52,8 +52,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
     return (
         <section>
             <Seo title="Заказать пиццу в Валуйки, доставка пиццы с 10 до 22:00"
-                 description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно, именинникам дарим пиццу. Меню на сайте, большая пицца от 249 руб"
-                  pathname=""/>
+                 description="Доставка пиццы в Валуйках на дом, 4я пицца бесплатно, именинникам дарим пиццу. Меню на сайте, большая пицца от 249 руб"/>
             <HeadSection titleTXT={"Доставка пиццы"} path={path} isFilter={true} categoryNames={categoryNames} />
           {!loading ?
                     <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">

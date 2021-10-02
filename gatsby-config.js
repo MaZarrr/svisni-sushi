@@ -26,7 +26,16 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     'gatsby-transformer-remark',
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: 'blurred',
+          breakpoints: [300, 600, 960, 1280, 1920]
+        }
+      }
+    },
     {
     resolve: `gatsby-plugin-manifest`,
     options: {
@@ -39,7 +48,6 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-    `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-plugin-react-redux`,
       options: {
@@ -89,7 +97,7 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://svisni-sushi.ru',
-        sitemap: 'https://svisni-sushi.ru/sitemap.xml',
+        sitemap: 'https://svisni-sushi.ru/sitemap/sitemap-index.xml',
         policy: [{
           userAgent: '*',
           allow: '/',

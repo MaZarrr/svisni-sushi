@@ -182,7 +182,8 @@ body2 - описание текста
     https://docs.nestjs.com/techniques/cookies
 
 
-
+    `gatsby-plugin-material-ui`,
+    "gatsby-plugin-material-ui": "^4.0.2",
 
 
 

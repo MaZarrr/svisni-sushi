@@ -7,6 +7,7 @@ import CustomizedInputSearch from "./CustomizedInputSearch"
 import styled from "@emotion/styled";
 
 const ContentHead = styled.div `
+  margin-bottom: 5px;
   @media(min-width: 768px) {
     padding-left: 20px; 
   }
@@ -19,7 +20,7 @@ const HeadSection = memo(({ isFilter = false, categoryNames, category, path, tit
   },[dispatch]);
 
   return (
-    <ContentHead style={{marginBottom: '5px'}}>
+    <ContentHead>
       <Typography variant="h1"
       sx={{
         marginBottom: 0,
