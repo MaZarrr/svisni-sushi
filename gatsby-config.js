@@ -89,7 +89,7 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://svisni-sushi.ru',
-        sitemap: 'https://svisni-sushi.ru/sitemap.xml',
+        sitemap: 'https://svisni-sushi.ru/sitemap/sitemap-index.xml',
         policy: [{
           userAgent: '*',
           allow: '/',
