@@ -39,7 +39,6 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-    `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-plugin-react-redux`,
       options: {

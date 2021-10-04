@@ -145,13 +145,8 @@ export default Carousel;
 const useStyleCarousel = makeStyles(theme => ({
     root: {
         flexGrow: '1',
-        marginTop: 40,
         position: 'relative',
-        [theme.breakpoints.down(1024)]: {
-            marginTop: 50,
-        },
         [theme.breakpoints.down(768)]: {
-            marginTop: 50,
             marginBottom: 20,
         },
         [theme.breakpoints.down(600)]: {

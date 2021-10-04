@@ -102,6 +102,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
         }
     };
     const handleClose = () => {
+        setActiveItemIndex(0);
         setOpen(false);
     };
     const handleToggle = () => {
@@ -131,15 +132,10 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             variant="h1"
             sx={{
                 fontWeight: 900,
-                marginTop: '50px',
                 textTransform: `uppercase`,
-                fontSize: 34,
                 marginBottom: '6px',
                 letterSpacing: `-1.6px`,
                 marginLeft: '25px',
-                '@media screen and (max-width: 475px) ': {
-                    fontSize: 24,
-                }
         }}>{name}</Typography>
 
         <div style={{width: `100%`}}>
@@ -206,7 +202,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                         <Grid item xs={12} sm={7}>
                             <Grid container justifyContent={"space-around"} style={{
                                 borderRadius: 10,
-                                // height: 500,
                                 position: `sticky`,
                                 top: 150,
                                 overflowY: `scroll`,
@@ -243,7 +238,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             <Grid container style={{marginBottom: 50}}>
                 <div style={{marginLeft: 30}}>
                     <Typography style={{
-                        fontSize: 22,
                         fontWeight: 500,
                         padding: `10px 10px 0 0`}}
                         variant={"subtitle1"}>Состав набора:</Typography>
