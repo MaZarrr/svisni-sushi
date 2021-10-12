@@ -24,9 +24,9 @@ export const client = new ApolloClient({
                         },
                     },
                     token: {
-                     read() {
-                         return authTokenVar()
-                     }   
+                        read() {
+                            return authTokenVar()
+                        }
                     }
                 }
             }

@@ -8,9 +8,6 @@ import { virtualize } from 'react-swipeable-views-utils';
 import { Hidden } from "@mui/material";
 import { mod } from 'react-swipeable-views-core';
 import Pagination from '../pagination/Pagination';
-// import Fab from '@mui/material/Fab';
-// import AddIcon from '@mui/icons-material/Add';
-// import Grid from '@mui/material/Grid';
 
 const VirtualizeSwipeableViews = autoPlay(virtualize(SwipeableViews));
 
@@ -65,16 +62,16 @@ function Carousel({ dataCarousel }) {
                 );
             case 2:
                 return (
-                  <div key={key}>
-                      <Link to={data.edges[2].node.slug}>
-                          <GatsbyImage
-                            image={data.edges[2].node.imgCarouselPc.gatsbyImageData}
-                            className={classes.image}
-                            loading={"eager"}
-                            imgStyle={{maxWidth: 1900}}
-                            alt={data.edges[2].node.nameAkcii} />
-                      </Link>
-                  </div>
+                    <div key={key}>
+                        <Link to={data.edges[2].node.slug}>
+                            <GatsbyImage
+                                image={data.edges[2].node.imgCarouselPc.gatsbyImageData}
+                                className={classes.image}
+                                loading={"eager"}
+                                imgStyle={{maxWidth: 1900}}
+                                alt={data.edges[2].node.nameAkcii} />
+                        </Link>
+                    </div>
                 );
 
             case 3:
@@ -127,14 +124,14 @@ function Carousel({ dataCarousel }) {
 
     return (
         <div className={classes.root}>
-            <VirtualizeSwipeableViews 
+            <VirtualizeSwipeableViews
                 className={classes.rootCarousel}
                 slideRenderer={slideRenderer}
                 // slideCount={5}
                 slideStyle={styles.slideContainer}
                 index={state}
                 onChangeIndex={handleChangeIndex}
-              />
+            />
 
             <Hidden smUp>
                 <Pagination dots={5} index={state} onChangeIndex={handleChangeIndex} />
@@ -148,13 +145,8 @@ export default Carousel;
 const useStyleCarousel = makeStyles(theme => ({
     root: {
         flexGrow: '1',
-        marginTop: 40,
         position: 'relative',
-        [theme.breakpoints.down(1024)]: {
-            marginTop: 50,
-        },
         [theme.breakpoints.down(768)]: {
-            marginTop: 50,
             marginBottom: 20,
         },
         [theme.breakpoints.down(600)]: {
@@ -178,14 +170,3 @@ const useStyleCarousel = makeStyles(theme => ({
         },
     }
 }));
-
-            //   {/* <Grid justifyContent='center'>
-            //       <div style={{position: 'absolute'}}>
-            //   <Fab style={{marginRight: '40%'}}>
-            //         <AddIcon />
-            //   </Fab>
-            //   <Fab>
-            //         <AddIcon />
-            //   </Fab>
-            //   </div> */}
-            //   </Grid>

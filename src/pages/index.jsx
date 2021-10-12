@@ -13,17 +13,18 @@ import Seo from "../components/seo";
 import { useMutation, gql } from "@apollo/client";
 import useForm from "../utils/useForm";
 import useLocalStorage from "../utils/useLocalStorage"
-import { authTokenVar, isLoggedInVar } from "../gatsby-theme-apollo/client";
+import { authTokenVar, isLoggedInVar } from "../apollo/client";
 import { TOKENSTORAGE } from "../components/common/constants";
+import { LoginInput } from  "../__generated__/globalTypes"
 
 const LOGIN_MUTATION = gql`
-  mutation Login($loginInput: LoginInput!) {
-    login(input: $loginInput) {
-      ok
-      token
-      error
+    mutation Login($loginInput: LoginInput!) {
+        login(input: $loginInput) {
+            ok
+            token
+            error
+        }
     }
-  }
 `;
 
 const IndexPage = ({ 
@@ -54,8 +55,8 @@ const IndexPage = ({
       })
 
         useEffect(() => {
-          setIndexProduct(edges)
-          setLoading(false)
+            setIndexProduct(edges)
+            setLoading(false)
         }, [edges])
 
         const onSubmit = (e) => {
@@ -89,34 +90,34 @@ const IndexPage = ({
             <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
             <div>
                 <form>
-                  <TextField
-                    id="standard-full-width"
-                    label="телефон"
-                    error={false}
-                    fullWidth
-                    variant="filled"
-                    placeholder="Введите телефон"
-                    required
-                    inputProps={{maxLength: 20, minLength: 2}}
-                    name="phone"
-                    onChange={handleChange}
-                    value={value.phone}
-                    helperText={""} />
-                  <TextField
-                    id="standard-full-width"
-                    label="пароль"
-                    error={false}
-                    fullWidth
-                    variant="filled"
-                    placeholder="Введите пароль"
-                    required
-                    inputProps={{maxLength: 20, minLength: 2}}
-                    name="password"
-                    onChange={handleChange}
-                    value={value.password}
-                    helperText={""} />
+                    <TextField
+                        id="standard-full-width"
+                        label="телефон"
+                        error={false}
+                        fullWidth
+                        variant="filled"
+                        placeholder="Введите телефон"
+                        required
+                        inputProps={{maxLength: 20, minLength: 2}}
+                        name="phone"
+                        onChange={handleChange}
+                        value={value.phone}
+                        helperText={""} />
+                    <TextField
+                        id="standard-full-width"
+                        label="пароль"
+                        error={false}
+                        fullWidth
+                        variant="filled"
+                        placeholder="Введите пароль"
+                        required
+                        inputProps={{maxLength: 20, minLength: 2}}
+                        name="password"
+                        onChange={handleChange}
+                        value={value.password}
+                        helperText={""} />
                     <Button type="submit" onClick={onSubmit}>Зарегестрироваться</Button>
-                  </form>
+                </form>
             </div>
             <Grid container className={classes.root}>
 
@@ -141,7 +142,7 @@ const IndexPage = ({
             </Grid>
         </section>
     );
-      }
+}
 
 export default IndexPage
 

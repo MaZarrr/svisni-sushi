@@ -22,7 +22,7 @@ import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import { SocialButtons } from './common/SocialButtons';
 
 import { useReactiveVar } from '@apollo/client';
-import { isLoggedInVar } from '../gatsby-theme-apollo/client';
+import { isLoggedInVar } from '../apollo/client';
 
 const useStyles = makeStyles(({
     list: {

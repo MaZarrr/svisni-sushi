@@ -8,9 +8,7 @@ import styled from "@emotion/styled";
 
 const ContentHead = styled.div `
   margin-bottom: 5px;
-  @media(min-width: 768px) {
-    padding-left: 20px; 
-  }
+  padding: 0 20px;
 `
 
 const HeadSection = memo(({ isFilter = false, categoryNames, category, path, titleTXT, dispatch }) => {
@@ -20,19 +18,19 @@ const HeadSection = memo(({ isFilter = false, categoryNames, category, path, tit
   },[dispatch]);
 
   return (
-    <ContentHead>
-      <Typography variant="h1"
-      sx={{
-        marginBottom: 0,
-        textTransform: `uppercase`,
-        letterSpacing: `-1px`
-      }}>{titleTXT}</Typography>
-      { isFilter && <>
-        <CustomizedInputSearch location={path}/>
-        <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/> </>
-  
-  }
-  </ContentHead>
+      <ContentHead>
+          <Typography variant="h1"
+                      sx={{
+                          marginBottom: 0,
+                          textTransform: `uppercase`,
+                          letterSpacing: `-1px`
+                      }}>{titleTXT}</Typography>
+          { isFilter && <>
+              <CustomizedInputSearch location={path}/>
+              <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/> </>
+
+          }
+      </ContentHead>
   )
 })
 

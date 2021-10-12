@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import Seo from "./seo"
 import Button from '@mui/material/Button';
 import clsx from "clsx";
-import { Grid, IconButton } from "@mui/material";
+import { Grid } from "@mui/material";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Typography from "@mui/material/Typography";
 import makeStyles from '@mui/styles/makeStyles';
@@ -33,10 +33,6 @@ const styles = {
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-
-// function Alert(props) {
-//     return <MuiAlert elevation={6} variant="filled" {...props} />;
-// }
 
 const KomboItem = React.memo(( { id, name, description, addedCart, image, price, slug, edit, products } ) => {
 
@@ -106,6 +102,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
         }
     };
     const handleClose = () => {
+        setActiveItemIndex(0);
         setOpen(false);
     };
     const handleToggle = () => {
@@ -135,15 +132,10 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             variant="h1"
             sx={{
                 fontWeight: 900,
-                marginTop: '50px',
                 textTransform: `uppercase`,
-                fontSize: 34,
                 marginBottom: '6px',
                 letterSpacing: `-1.6px`,
                 marginLeft: '25px',
-                '@media screen and (max-width: 475px) ': {
-                    fontSize: 24,
-                }
         }}>{name}</Typography>
 
         <div style={{width: `100%`}}>
@@ -210,7 +202,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                         <Grid item xs={12} sm={7}>
                             <Grid container justifyContent={"space-around"} style={{
                                 borderRadius: 10,
-                                // height: 500,
                                 position: `sticky`,
                                 top: 150,
                                 overflowY: `scroll`,
@@ -247,7 +238,6 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
             <Grid container style={{marginBottom: 50}}>
                 <div style={{marginLeft: 30}}>
                     <Typography style={{
-                        fontSize: 22,
                         fontWeight: 500,
                         padding: `10px 10px 0 0`}}
                         variant={"subtitle1"}>Состав набора:</Typography>
@@ -332,8 +322,8 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                 <Card key={el.id} 
                                 sx={{
                                     borderRadius: '5px',
-                                    width: '300px',
-                                    height: '480px',
+                                    width: '260px',
+                                    height: '420px',
                                     margin: 'auto',
                                     position: "relative",
                                     '@media screen and (max-width: 330px)': {
@@ -348,7 +338,7 @@ const KomboItem = React.memo(( { id, name, description, addedCart, image, price,
                                         onClick={() => onActiveItems(el.id, { id: el.id, description: el.description,
                                             name: el.name, image: el.image, __typename: activeType, price: el.price })}
                                         sx={{
-                                            maxWidth: '300px',
+                                            maxWidth: '260px',
                                             '@media (max-width: 330px)': {
                                                 maxWidth: '200px'
                                             }
