@@ -19,7 +19,6 @@ import { productPizzaLoaded, spinnerLoading } from "../reducers/app";
 import { checkedLoading, productList } from "../reducers/selectors";
 import clsx from "clsx";
 import Paper from "@mui/material/Paper";
-import SplitButton from "../components/SplitButton";
 import HeadSection from "../components/HeadSection"
 import makeStyles from '@mui/styles/makeStyles';
 import SpinnerNew from "../components/spinner/spinner-new";
@@ -52,12 +51,11 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
           {!loading ?
                     <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
                         {visibleItems.map((products) => {
-                            const { id, name, pizzaSale,
+                            const { id, name,
                                 slug, description,
                                 price, weight, weight33, mass = weight, priceIn33cm,
                                 count, total = price,
-                                ingrideentButtonStyle = false,
-                                image: {gatsbyImageData}, ingrideents, sostav,
+                                image: {gatsbyImageData},
                                 contentful_id, priceDef = price, size={[slug]: true }
                             } = products;
 
@@ -77,35 +75,6 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                             <GatsbyImage image={gatsbyImageData} itemProp="image" alt={name} />
                                         </CardMedia>
                                         <CardContent>
-                                            {!pizzaSale && <Grid display="flex" justifyContent="space-between">
-                                            <Grid item sx={{margin: 'auto'}}>
-                                            <SplitButton id={id}
-                                                         pizzaIng={updatePizza}
-                                                         ingrideents={ingrideents}
-                                                         sostav={sostav}
-                                                         path={path}
-                                                         addTodel="inc"
-                                                         ingrideentButtonStyle={ingrideentButtonStyle}
-                                                         dir={"center"}/>
-                                            </Grid>
-                                            <Grid item sx={{margin: 'auto'}}>
-                                                    <Typography>
-                                                        Ингридеенты
-                                                    </Typography>
-                                            </Grid>
-                                            <Grid item sx={{margin: 'auto'}}>
-                                            <SplitButton id={id}
-                                                         pizzaIng={updatePizza}
-                                                         ingrideents={ingrideents}
-                                                         sostav={sostav}
-                                                         path={path}
-                                                         addTodel="deck"
-                                                         ingrideentButtonStyle={ingrideentButtonStyle}
-                                                         dir={"center"}/>
-                                            </Grid>
-                                            </Grid>
-                                                         
-                                            } 
                                             <Typography itemProp="description"
                                                         className={classes.deckriptPizza}
                                                         variant={"body2"}>
@@ -290,3 +259,34 @@ const useStylesCart = makeStyles(theme => ({
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
     },
 }));
+
+//
+// {!pizzaSale && <Grid display="flex" justifyContent="space-between">
+//     <Grid item sx={{margin: 'auto'}}>
+//         <SplitButton id={id}
+//                      pizzaIng={updatePizza}
+//                      ingrideents={ingrideents}
+//                      sostav={sostav}
+//                      path={path}
+//                      addTodel="inc"
+//                      ingrideentButtonStyle={ingrideentButtonStyle}
+//                      dir={"center"}/>
+//     </Grid>
+//     <Grid item sx={{margin: 'auto'}}>
+//         <Typography>
+//             Ингридеенты
+//         </Typography>
+//     </Grid>
+//     <Grid item sx={{margin: 'auto'}}>
+//         <SplitButton id={id}
+//                      pizzaIng={updatePizza}
+//                      ingrideents={ingrideents}
+//                      sostav={sostav}
+//                      path={path}
+//                      addTodel="deck"
+//                      ingrideentButtonStyle={ingrideentButtonStyle}
+//                      dir={"center"}/>
+//     </Grid>
+// </Grid>
+//
+// }

@@ -35,8 +35,11 @@ const delivery = [
         color: '#d2143a',
         price: 300,
     },
+    {id: 4, do: 1799, posle: 1800, color: '#27G943',  price: 350, adress: "Валуйки(Нов.Симоновка)"},
+    {id: 5, do: 1799, posle: 1800, color: '#A6CCDE',  price: 350, adress: "Валуйки(совхоз)"},
+    {id: 6, do: 1799, posle: 1800, color: '#5c3c35',  price: 350, adress: "Валуйки(байрацкий.корд)"},
     {
-        id: 4,
+        id: 7,
         adress: 'Соболёвка',
         do: 699,
         posle: 700,
@@ -44,7 +47,7 @@ const delivery = [
         price: 100,
     },
     {
-        id: 5,
+        id: 8,
         adress: 'Шелаево',
         do: 999,
         posle: 1000,
@@ -52,7 +55,7 @@ const delivery = [
         price: 130,
     },
     {
-        id: 6,
+        id: 9,
         adress: 'Двулучное',
         do: 999,
         posle: 1000,
@@ -60,7 +63,7 @@ const delivery = [
         price: 130,
     },
     {
-        id: 7,
+        id: 10,
         adress: 'Шведуновка',
         do: 999,
         posle: 1000,
@@ -68,7 +71,7 @@ const delivery = [
         price: 130,
     },
     {
-        id: 8,
+        id: 11,
         adress: 'Колыхалино',
         do: 1499,
         posle: 1500,
@@ -76,15 +79,17 @@ const delivery = [
         price: 200,
     },
     {
-        id: 9,
+        id: 12,
         adress: 'Борки',
         do: 1499,
         posle: 1500,
         color: '#27G943',
         price: 200,
     },
+    {id: 13, do: 1799, posle: 1800, color: '#DADEA6',  price: 350, adress: "Храпово"},
+    {id: 14, do: 799, posle: 800, color: '#27D943', price: 100, adress: "Жердевка"},
     {
-        id: 10,
+        id: 15,
         adress: 'Солоти',
         do: 2399,
         posle: 2400,
@@ -92,7 +97,7 @@ const delivery = [
         price: 500,
     },
     {
-        id: 11,
+        id: 16,
         adress: 'Герасимовка',
         do: 1499,
         posle: 1500,
@@ -100,7 +105,7 @@ const delivery = [
         price: 250,
     },
     {
-        id: 12,
+        id: 17,
         adress: 'Логачёвка',
         do: 1499,
         posle: 1500,
@@ -108,7 +113,7 @@ const delivery = [
         price: 250,
     },
     {
-        id: 13,
+        id: 18,
         adress: 'Кукуевка',
         do: 1199,
         posle: 1200,
@@ -116,7 +121,7 @@ const delivery = [
         price: 200,
     },
     {
-        id: 14,
+        id: 19,
         adress: 'Казинка',
         do: 2299,
         posle: 2300,
@@ -124,15 +129,16 @@ const delivery = [
         price: 400,
     },
     {
-        id: 15,
+        id: 20,
         adress: 'Колосково',
         do: 2399,
         posle: 2400,
         color: '#DA288F',
         price: 500,
     },
+    {id: 21, do: 1799, posle: 1800, color: '#27G943',  price: 350, adress: "Ураево"},
     {
-        id: 16,
+        id: 22,
         adress: 'Насоново',
         do: 2399,
         posle: 2400,
@@ -140,7 +146,7 @@ const delivery = [
         price: 500,
     },
     {
-        id: 17,
+        id: 23,
         adress: 'Рождественно',
         do: 2399,
         posle: 2400,
@@ -148,7 +154,7 @@ const delivery = [
         price: 500,
     },
     {
-        id: 18,
+        id: 24,
         adress: 'Яблоново',
         do: 2399,
         posle: 2400,
@@ -156,7 +162,7 @@ const delivery = [
         price: 500,
     },
     {
-        id: 19,
+        id: 25,
         adress: 'Знаменка',
         do: 699,
         posle: 700,
@@ -164,7 +170,7 @@ const delivery = [
         price: 100,
     },
     {
-        id: 20,
+        id: 26,
         adress: 'Тогобиевка',
         do: 699,
         posle: 700,
@@ -172,7 +178,7 @@ const delivery = [
         price: 100,
     },
     {
-        id: 21,
+        id: 27,
         adress: 'Новопетровка',
         do: 2299,
         posle: 2300,
@@ -180,7 +186,7 @@ const delivery = [
         price: 300,
     },
     {
-        id: 22,
+        id: 28,
         adress: 'Бабки',
         do: 1499,
         posle: 1500,
@@ -188,7 +194,7 @@ const delivery = [
         price: 300,
     },
     {
-        id: 23,
+        id: 29,
         adress: 'Сухарево',
         do: 1199,
         posle: 1200,
@@ -196,7 +202,7 @@ const delivery = [
         price: 200,
     },
     {
-        id: 24,
+        id: 30,
         adress: 'Татариевка',
         do: 699,
         posle: 700,
@@ -204,7 +210,7 @@ const delivery = [
         price: 100,
     },
     {
-        id: 25,
+        id: 31,
         adress: 'Пристень',
         do: 1199,
         posle: 1200,
@@ -212,7 +218,7 @@ const delivery = [
         price: 200,
     },
     {
-        id: 26,
+        id: 32,
         adress: 'Лобковка',
         do: 999,
         posle: 1000,
@@ -220,7 +226,7 @@ const delivery = [
         price: 150,
     },
     {
-        id: 27,
+        id: 33,
         adress: 'Самарино',
         do: 2499,
         posle: 2500,

@@ -82,7 +82,13 @@ const city = {
   pricten: {id: 25, priceDel: 200, deliverySalePrice: 1200, name: "Пристень"},
   lobkovka: {id: 26, priceDel: 150, deliverySalePrice: 1000, name: "Лобковка"},
   nasonovo: {id: 27, priceDel: 500, deliverySalePrice: 2400 , name: "Насоново"},
-  yablonovo: {id: 28, priceDel: 500, deliverySalePrice: 2400 , name: "Яблоново"}
+  yablonovo: {id: 28, priceDel: 500, deliverySalePrice: 2400 , name: "Яблоново"},
+  valsim: {id: 29, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(Нов.Симоновка)"},
+  valsovhoz: {id: 30, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(совхоз)"},
+  valkordon: {id: 31, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(байрацкий.корд)"},
+  hrapovo: {id: 32, priceDel: 350, deliverySalePrice: 1800, name: "Храпово"},
+  zerdevk: {id: 33, priceDel: 100, deliverySalePrice: 800, name: "Жердевка"},
+  yraevo: {id: 34, priceDel: 350, deliverySalePrice: 1800, name: "Ураево"},
 };
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
@@ -112,14 +118,13 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     const msg = {
       version: 1,
       user_name:"tbezhenova@yandex.ru",
-      api_key:"t8jf5szp7iabqq4uv4dykoqsezyk7n79",
+      api_key: process.env.GATSBY_API_MOIZVONKI,
       action:"auth.login",
       app_name: "svisni-sushi"
     }
     const socket = new WebSocket("wss://tanak.moizvonki.ru/wsapi/");
     socket.onopen = function (event) {
       socket.send(JSON.stringify(msg));
-      // socket.send("{"version": 1, "user_name":"tbezhenova@yandex.ru", "api_key":"t8jf5szp7iabqq4uv4dykoqsezyk7n79", "action":"auth.login", "app_name": "svisni-sushi"}");
     };
     setSocketT(socket)
     setLoad(false)
@@ -466,15 +471,19 @@ Cум: ${infoSuccess.totalPrice}
                                     <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
                                     <option value="valsoshgor">Валуйки(соц.городок)</option>
                                     <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
-                                    <option value="dvyl">Двулучное</option>
-                                    <option style={{background: `#f0ecec`}} value="shel">Шелаево</option>
-                                    <option value="sobo">Соболевка</option>
-                                    <option style={{background: `#f0ecec`}} value="kol">Колыхалино</option>
-                                    <option value="sved">Шведуновка</option>
-                                    <option style={{background: `#f0ecec`}} value="togobi">Тогобиевка</option>
-                                    <option value="novopetr">Новопетровка</option>
-                                    <option style={{background: `#f0ecec`}} value="babki">Бабки</option>
-                                    <option value="syxarevo">Сухарево</option>
+                                    <option value="valsim">Валуйки(нов.симоновка)</option>
+                                    <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
+                                    <option value="valkordon">Валуйки(байрацкий.корд)</option>
+                                    <option style={{background: `#f0ecec`}} value="dvyl">Двулучное</option>
+                                    <option value="shel">Шелаево</option>
+                                    <option style={{background: `#f0ecec`}} value="sobo">Соболевка</option>
+                                    <option value="kol">Колыхалино</option>
+                                    <option style={{background: `#f0ecec`}} value="sved">Шведуновка</option>
+                                    <option value="togobi">Тогобиевка</option>
+                                    <option style={{background: `#f0ecec`}} value="novopetr">Новопетровка</option>
+                                    <option value="babki">Бабки</option>
+                                    <option style={{background: `#f0ecec`}} value="syxarevo">Сухарево</option>
+                                    <option value="zerdevk">Жердевка</option>
                                     <option style={{background: `#f0ecec`}} value="tatarievka">Татариевка</option>
                                     <option value="pricten">Пристень</option>
                                     <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
@@ -486,9 +495,11 @@ Cум: ${infoSuccess.totalPrice}
                                     <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
                                     <option value="kyky">Кукуевка</option>
                                     <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
-                                    <option value="nasonovo">Насоново</option>
-                                    <option style={{background: `#f0ecec`}} value="yablonovo">Яблоново</option>
-                                    <option value="rogdestv">Рождественно</option>
+                                    <option value="hrapovo">Храпово</option>
+                                    <option style={{background: `#f0ecec`}} value="nasonovo">Насоново</option>
+                                    <option value="yablonovo">Яблоново</option>
+                                    <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
+                                    <option value="yraevo">Ураево</option>
                                     <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
                                   </Select>
 
