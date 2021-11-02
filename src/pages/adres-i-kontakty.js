@@ -76,7 +76,7 @@ description="Ждем вас в гости по адресу улица 3-го �
             </div>
             <div>
                 <Typography variant="subtitle1">Адрес</Typography>
-                <Typography variant={"subtitle2"}><span itemProp="streetAddress">ул.3-го Интернационала, дом 48а,</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
+                <Typography variant={"subtitle2"}><span itemProp="streetAddress">ул.Красная Площадь 30А</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
             </div>
         </div>
         </Container>

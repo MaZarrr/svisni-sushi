@@ -22,8 +22,8 @@ const MapContent = () => (
     <MapContainer>
       <Map
         defaultState={{
-          center: [50.077763, 38.031733],
-          zoom: 14.5,
+          center: [50.081738, 38.025075],
+          zoom: 16.5,
           controls: ['zoomControl', 'fullscreenControl'],
           behaviors: ['drag', 'dblClickZoom', 'multiTouch'] }}
         modules={['control.ZoomControl', 'control.FullscreenControl']}
@@ -33,11 +33,11 @@ const MapContent = () => (
             'Суши бар Свисни Суши в Уразово',
         }}>
         <Placemark
-          defaultGeometry={[50.077763, 38.031733]}
+          defaultGeometry={[50.081738, 38.025075]}
           modules={["geoObject.addon.balloon"]}
           properties={{
             balloonContentHeader: "Свисни Суши",
-            balloonContent: 'ул.3-го Интернационала д.48а, Уразово'
+            balloonContent: 'ул.Красная Площадь 30А, Уразово'
           }}
         />
       </Map>
