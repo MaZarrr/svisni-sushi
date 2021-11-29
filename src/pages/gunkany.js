@@ -18,8 +18,8 @@ const Gunkany = ({data: {allContentfulProductGunkan: {edges: productsGunkan}, co
 
 return ( 
    <section>
-    <Seo title="Заказать гунканы с доставкой в Валуйках"
-    description="Гунканы с икрой, крабом, угрём. Гунканы от 55 рублей. Подробнее в нашем меню на сайте Свисни Суши "
+    <Seo title="Гунканы с икрой, креветками, угрём | Свисни Суши"
+    description="Заказать гунканы с лососем, креветками от 100 рублей. Подробнее в нашем меню"
     noindex={true} />
 
       <HeadSection titleTXT={"Гунканы"} />

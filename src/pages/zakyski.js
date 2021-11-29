@@ -19,8 +19,8 @@ const Zakyski = ({data: {allContentfulProductZakuski: {edges: productsZakyski}, 
 
 return ( 
    <section>
-    <Seo title="Доставка закусок в Уразово | Заказать на дом или в офис"
-    description="Доставка закусок от суши-бара Свисни в Уразово ☛ Телефон для заказа ☎ +7(904)094-92-22"/>
+    <Seo title="Заказать закуски для фуршета на день рождения, закуски на праздничный стол - заказать в Валуйках"
+    description="Заказать закуски в Уразово с доставкой рядом. Доставка закусок на дом по цене от 189 руб от Свистни Суши"/>
 
      <HeadSection titleTXT={"Закуски"} />
     <Grid container justifyContent="center">

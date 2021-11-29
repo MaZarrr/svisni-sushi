@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 // import montserratBold from '../assets/Montserrat-ExtraBold.woff2'
 // import montserratMedium from '../assets/Montserrat-Medium.woff2'
 
-const Seo = memo(function Seo({ description, lang, meta, title, keywords, pathname = null, noindex }) {
+const Seo = memo(function Seo({ description, lang, meta, title, keywords, pathname = null, noindex = false }) {
 
   const { site } = useStaticQuery(
     graphql`
@@ -22,7 +22,6 @@ const Seo = memo(function Seo({ description, lang, meta, title, keywords, pathna
       }
     `
   )
-
     const metaDescription = description || site.siteMetadata.description
     const metaKeywords = keywords || site.siteMetadata.keywords
     const canonical = pathname !== null ? `${site.siteMetadata.siteUrl}${pathname}` : null

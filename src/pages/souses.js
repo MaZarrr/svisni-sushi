@@ -19,11 +19,11 @@ const Souses = ({data: {allContentfulProductSouse: {edges: productsSouses}, cont
 
 return ( 
    <section>
-    <Seo title="Соусы и различные добавки к суши и роллам"
-    description="Фирменный соус, барбекю соус, ореховый соус и другие у нас в меню Свисни суши"
+    <Seo title=" Соусы для суши и роллов в Свисни суши"
+    description="Фирменный соус, барбекю соус, ореховый соус и другие"
     noindex={true}/>
 
-     <HeadSection titleTXT={"Соусы"} />
+    <HeadSection titleTXT={"Соусы"} />
     <Grid container justifyContent="center">
         <CardsMenuPage titleCategory="Соус" slugCategogy="/souses" visibleItems={product}
                        image={image} product={product}/>

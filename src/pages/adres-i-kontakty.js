@@ -37,8 +37,8 @@ const FooterBlock = styled.div`
 const Adresikontakty = () => {
 
 return <>
-<Seo title="Адрес и контакты Свисни Суши" 
-description="Ждем вас в гости по адресу улица 3-го Интернационала д.48а, Уразово. Телефон 8(904)094-92-22. Меню на сайте"/>
+<Seo title="Адрес и контакты Свисни Суши в Уразово" 
+description="Ждем вас в гости по адресу улица Красная Площадь 30А, Уразово. Телефон 8(904)094-92-22. График 10:00-22:00"/>
 
 <HeadSection titleTXT={"Адрес и контакты"} />
 <Grid container itemScope itemType="https://schema.org/Organization">

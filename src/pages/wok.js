@@ -20,8 +20,8 @@ const Wok = ({data: {allContentfulProductWok: {edges: productsWok}, contentfulIc
 
     return (
         <section>
-            <Seo title="Доставка лапши вок в Уразово"
-                 description="Заказать wok с доставкой. Вок с морепродуктами, овощами, курицей, свининой всего от 190 руб"/>
+            <Seo title="Лапша Wok с доставкой в Уразово, заказать лапшу Wok на дом"
+                 description="Заказать вок (wok) в Валуйках на дом. Доставка еды в коробочках по цене от 290 руб от Свистни Суши."/>
 
             <HeadSection titleTXT={"Вок"} />
             <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">

@@ -39,7 +39,8 @@ const CardsMenuPage = memo(({
                 image: { gatsbyImageData }, 
                 sale, nonprice, lanchprice, lanch, defaultPrice
             } = products;
-            
+            console.log("variant", variant);
+            console.log("titleCategory", titleCategory);
             return (
                 <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                       item xs={12} sm={6} md={4} lg={3} key={id}>

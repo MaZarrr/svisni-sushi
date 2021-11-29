@@ -21,7 +21,7 @@ const Salaty = ({data: {allContentfulProductSalat: {edges: productsSalaty}, cont
 return ( 
    <section>
     <Seo title="Заказать популярные салаты в Свисни Суши"
-    description="Салат цезарь с креветками и курицей, салат коктейль. Заказывайте популярные салаты приготовленные из свежих продуктов."/>
+    description="Салат цезарь с креветками и курицей, салат коктейль. Вкусные салаты из свежих продуктов."/>
 
       <HeadSection titleTXT={"Салаты"} />
       <Grid container justifyContent="center">

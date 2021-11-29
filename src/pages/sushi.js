@@ -18,8 +18,8 @@ const Sushi = ({data: {allContentfulProductSushi: {edges: products}, contentfulI
 
 return ( 
    <section>
-    <Seo title="Недорогие суши с доставкой по Валуйскому району"
-      description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте, суши от 50 рублей. Звонок +7(904)094-92-22"
+    <Seo title="Заказать Суши с лососем в Валуйском районе"
+      description="Суши с лососем, авокадо, тунцом, угрём - меню на сайте, суши от 90 рублей. Звонок +7(904)094-92-22"
       pathname="/pizza"/>
 
     <HeadSection titleTXT={"Суши"} />

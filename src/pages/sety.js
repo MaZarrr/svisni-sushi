@@ -35,7 +35,7 @@ const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfu
     }, [setyProduct, dispatch, doStart, priceIsSale]);
     return (
         <>
-            <Seo title="Заказать суши сет. Меню наборов роллов — доставка в Валуйки"
+            <Seo title="Заказать сет суши ассорти - доставка в Валуйки - роллы суши сет в Свистни Суши"
                  description="Широкий выбор сетов из фирменных и запечённых роллов в Свисни Суши Уразово с выгодой до 40%. Акция ланч-тайм, скидки с 10 до 15:00"/>
                     <HeadSection titleTXT={"Заказать суши сет"} path={location.pathname} isFilter={true} categoryNames={categoryNames}/>
                     <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
@@ -73,6 +73,7 @@ export const query = graphql `
                     filter
                     lanchprice
                     lanch
+                    variant
                     sale
                     defaultPrice
                     count
