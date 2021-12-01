@@ -35,8 +35,8 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
     }, [productsBrandedRolls, dispatch, doStart, priceIsSale]);
 return (
    <section>
-    <Seo title="Меню сложных роллов. Заказать доставку на дом в Уразово"  
-    description="Доставка фирменных роллов в Валуйках на дом от Свисни Суши. Роллы Филадельфия и Калифорния которых вы еще не пробовали!"
+    <Seo title="Заказать Роллы в Уразово с доставкой от "  
+    description="Доставка фирменных роллов в Валуйках на дом. Роллы Филадельфия и Калифорния которых вы еще не пробовали!"
     pathname="/hot-rolls"/>
 
     <HeadSection titleTXT={"Сложные роллы"} isFilter={true} categoryNames={categoryNames}/>

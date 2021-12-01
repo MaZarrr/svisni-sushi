@@ -19,7 +19,7 @@ const Souses = ({data: {allContentfulProductSouse: {edges: productsSouses}, cont
 
 return ( 
    <section>
-    <Seo title=" Соусы для суши и роллов в Свисни суши"
+    <Seo title=" Соусы для суши и роллов"
     description="Фирменный соус, барбекю соус, ореховый соус и другие"
     noindex={true}/>
 

@@ -92,7 +92,7 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
     return (
         <section>
             <Seo title="Работа, вакансии в Уразово"
-                 description="Работа в Свисни Суши. Повар сушист, пиццмейкер"
+                 description="Работа в Свисни Суши. Повар сушист, оператор, пиццмейкер"
                  noindex={true}/>
                 <HeadSection titleTXT={"Вакансии Свисни Суши"} />
                 <Container>

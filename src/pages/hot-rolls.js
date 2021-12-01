@@ -26,7 +26,7 @@ const HotRolls = ({ data: {allContentfulProductHotRolly: {edges: productsHotRoll
 return (
    <section>
     <Seo title="Заказать запечённые роллы с доставкой на дом в Валуйки"
-          description="Запечённые и жаренные роллы, доставка в Валуйки с 10 до 22:00 - оцени вкус японской кухни от Свисни Суши"
+          description="Запечённые и жаренные роллы, доставка в Валуйки с 10 до 22:00 - оцени вкус японской кухни"
           pathname="/sety/"/>
 
         <HeadSection titleTXT={"Горячие роллы"} isFilter={true} categoryNames={categoryNames}/>

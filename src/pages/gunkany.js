@@ -18,7 +18,7 @@ const Gunkany = ({data: {allContentfulProductGunkan: {edges: productsGunkan}, co
 
 return ( 
    <section>
-    <Seo title="Гунканы с икрой, креветками, угрём | Свисни Суши"
+    <Seo title="Гунканы с икрой, креветками, угрём"
     description="Заказать гунканы с лососем, креветками от 100 рублей. Подробнее в нашем меню"
     noindex={true} />
 

@@ -37,7 +37,7 @@ const FooterBlock = styled.div`
 const Adresikontakty = () => {
 
 return <>
-<Seo title="Адрес и контакты Свисни Суши в Уразово" 
+<Seo title="Адрес и контакты" 
 description="Ждем вас в гости по адресу улица Красная Площадь 30А, Уразово. Телефон 8(904)094-92-22. График 10:00-22:00"/>
 
 <HeadSection titleTXT={"Адрес и контакты"} />

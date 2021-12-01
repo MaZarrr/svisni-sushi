@@ -20,7 +20,7 @@ const Salaty = ({data: {allContentfulProductSalat: {edges: productsSalaty}, cont
 
 return ( 
    <section>
-    <Seo title="Заказать популярные салаты в Свисни Суши"
+    <Seo title="Заказать популярные салаты"
     description="Салат цезарь с креветками и курицей, салат коктейль. Вкусные салаты из свежих продуктов."/>
 
       <HeadSection titleTXT={"Салаты"} />
