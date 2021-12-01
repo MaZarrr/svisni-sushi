@@ -26,8 +26,8 @@ const Seo = memo(function Seo({ description, lang, meta, title, keywords, pathna
     const metaKeywords = keywords || site.siteMetadata.keywords
     const canonical = pathname !== null ? `${site.siteMetadata.siteUrl}${pathname}` : null
     const noindexTxt = noindex ? "noindex" : false
-      console.log(noindex);
-  return (
+
+    return (
     <Helmet
       htmlAttributes={{
         lang,
