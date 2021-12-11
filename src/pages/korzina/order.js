@@ -56,39 +56,40 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const city = {
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
   kol: {id: 1, priceDel: 200, deliverySalePrice: 1500, name: "Колыхалино"},
-  dvyl: {id: 2, priceDel: 130, deliverySalePrice: 1000, name: "Двулучное"},
+  dvyl: {id: 2, priceDel: 150, deliverySalePrice: 1000, name: "Двулучное"},
   val: {id: 3, priceDel: 300, deliverySalePrice: 1500, name: "Валуйки(центр)"},
   yraz: {id: 4, priceDel: 80, deliverySalePrice: 500, name: "Уразово"},
-  shel: {id: 5, priceDel: 130, deliverySalePrice: 1000, name: "Шелаево"},
+  shel: {id: 5, priceDel: 150, deliverySalePrice: 1000, name: "Шелаево"},
   gera: {id: 6, priceDel: 250, deliverySalePrice: 1500, name: "Герасимовка"},
-  sobo: {id: 7, priceDel: 100, deliverySalePrice: 700, name: "Соболёвка"},
-  sved: {id: 8, priceDel: 130, deliverySalePrice: 1000, name: "Шведуновка"},
+  sobo: {id: 7, priceDel: 100, deliverySalePrice: 800, name: "Соболёвка"},
+  sved: {id: 8, priceDel: 150, deliverySalePrice: 1000, name: "Шведуновка"},
   borki: {id: 9, priceDel: 200, deliverySalePrice: 1500, name: "Борки"},
   znamenk: {id: 10, priceDel: 100, deliverySalePrice: 700, name: "Знаменка"},
   loga: {id: 11, priceDel: 250, deliverySalePrice: 1500, name: "Логачевка"},
-  kyky: {id: 12, priceDel: 200, deliverySalePrice: 1200, name: "Кукуевка"},
-  kolos: {id: 13, priceDel: 500, deliverySalePrice: 2400, name: "Колосково"},
-  kazink: {id: 14, priceDel: 400, deliverySalePrice: 2300, name: "Казинка"},
-  soloti: {id: 15, priceDel: 500, deliverySalePrice: 2400, name: "Солоти"},
-  rogdestv: {id: 16, priceDel: 500, deliverySalePrice: 2400, name: "Рождественно"},
-  samar: {id: 17, priceDel: 600, deliverySalePrice: 2500, name: "Самарино"},
+  kyky: {id: 12, priceDel: 250, deliverySalePrice: 1300, name: "Кукуевка"},
+  kolos: {id: 13, priceDel: 550, deliverySalePrice: 2900, name: "Колосково"},
+  kazink: {id: 14, priceDel: 550, deliverySalePrice: 2900, name: "Казинка"},
+  soloti: {id: 15, priceDel: 600, deliverySalePrice: 3200, name: "Солоти"},
+  rogdestv: {id: 16, priceDel: 550, deliverySalePrice: 2900, name: "Рождественно"},
+  samar: {id: 17, priceDel: 650, deliverySalePrice: 4200, name: "Самарино"},
   valsoshgor: {id: 18, priceDel: 250, deliverySalePrice: 1500, name: "Валуйки(соц.городок)"},
   valrazdol: {id: 19, priceDel: 250, deliverySalePrice: 1500, name: "Валуйки(раздолье)"},
   togobi: {id: 20, priceDel: 100, deliverySalePrice: 700, name: "Тогобиевка"},
-  novopetr: {id: 21, priceDel: 300, deliverySalePrice: 2300, name: "Новопетровка"},
+  novopetr: {id: 21, priceDel: 500, deliverySalePrice: 3100, name: "Новопетровка"},
   babki: {id: 22, priceDel: 300, deliverySalePrice: 1500, name: "Бабки"},
-  syxarevo: {id: 23, priceDel: 200, deliverySalePrice: 1200, name: "Сухарево"},
+  syxarevo: {id: 23, priceDel: 250, deliverySalePrice: 1400, name: "Сухарево"},
   tatarievka: {id: 24, priceDel: 100, deliverySalePrice: 700, name: "Татариевка"},
-  pricten: {id: 25, priceDel: 200, deliverySalePrice: 1200, name: "Пристень"},
+  pricten: {id: 25, priceDel: 250, deliverySalePrice: 1500, name: "Пристень"},
   lobkovka: {id: 26, priceDel: 150, deliverySalePrice: 1000, name: "Лобковка"},
-  nasonovo: {id: 27, priceDel: 500, deliverySalePrice: 2400 , name: "Насоново"},
-  yablonovo: {id: 28, priceDel: 500, deliverySalePrice: 2400 , name: "Яблоново"},
+  nasonovo: {id: 27, priceDel: 550, deliverySalePrice: 2900 , name: "Насоново"},
+  yablonovo: {id: 28, priceDel: 550, deliverySalePrice: 2700 , name: "Яблоново"},
   valsim: {id: 29, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(Нов.Симоновка)"},
   valsovhoz: {id: 30, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(совхоз)"},
   valkordon: {id: 31, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(байрацкий.корд)"},
   hrapovo: {id: 32, priceDel: 350, deliverySalePrice: 1800, name: "Храпово"},
   zerdevk: {id: 33, priceDel: 100, deliverySalePrice: 800, name: "Жердевка"},
   yraevo: {id: 34, priceDel: 350, deliverySalePrice: 1800, name: "Ураево"},
+  hohlovo: {id: 35, priceDel: 600, deliverySalePrice: 3600, name: "Хохлово"},
 };
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
@@ -501,6 +502,7 @@ Cум: ${infoSuccess.totalPrice}
                                     <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
                                     <option value="yraevo">Ураево</option>
                                     <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
+                                    <option value="hohlovo">Хохлово</option>
                                   </Select>
 
                                   <FormHelperText id="my-helper-text">Выберите населенный пункт</FormHelperText>
