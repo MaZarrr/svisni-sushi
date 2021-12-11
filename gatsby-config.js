@@ -6,7 +6,7 @@ module.exports = {
       title: `Свистни Суши`,
       description: `Заказать роллы, пиццу и суши c 10 до 22:00 в службе доставки Свисни-Суши Уразово. Доставка в Валуйки, на дом, приятные цены, именинникам скидки.`,
       keywords: `доставка, заказать, роллы, суши, еду, сеты, пиццу, на заказ`,
-      author: `@mazarrr`,
+      author: `Нестеров Виталий`,
   },
   plugins: [
     {
@@ -71,8 +71,12 @@ module.exports = {
         assetDownloadWorkers: 25
       },
     },
-    
-    `gatsby-plugin-sitemap`,
+    {
+      resolve:`gatsby-plugin-sitemap`,
+      options: {
+        output: '.'
+    },
+    },
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
