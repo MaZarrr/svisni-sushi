@@ -49,7 +49,7 @@ const delivery = [
     {
         id: 8,
         adress: 'Шелаево',
-        do: 999,
+        do: 1099,
         posle: 1100,
         color: '#6aa241',
         price: 150,
@@ -57,7 +57,7 @@ const delivery = [
     {
         id: 9,
         adress: 'Двулучное',
-        do: 999,
+        do: 1099,
         posle: 1100,
         color: '#3099f0',
         price: 150,
@@ -65,7 +65,7 @@ const delivery = [
     {
         id: 10,
         adress: 'Шведуновка',
-        do: 999,
+        do: 1099,
         posle: 1100,
         color: '#0a4475',
         price: 150,
