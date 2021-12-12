@@ -43,7 +43,8 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
                 edit={contentfulProductKombo.edit}
                 largePizza={contentfulProductKombo.largePizza}
                 slug={contentfulProductKombo.slug}
-                products={{sostavDefault: sostavDefault(),
+                products={{
+                    sostavDefault: sostavDefault(),
                     ContentfulProductHotRolly: contentfulProductKombo.productsKomboHotRolls,
                     ContentfulProductSlognyeRolly: contentfulProductKombo.productsKomboRolls,
                     ContentfulProductWok: contentfulProductKombo.productsKomboWok,

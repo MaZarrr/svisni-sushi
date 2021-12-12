@@ -2,7 +2,9 @@ import { createSelector } from 'reselect'
 
 const loadingStatus = (state) => state.app.loading;
 const categories = (state) => state.filters.category;
-const product = (state, isPizzas) => !isPizzas ? state.app.product : state.shoppingCart.newPizza === null ? state.app.productPizza : state.shoppingCart.newPizza;
+const product = (state, isPizzas) => !isPizzas ? 
+    state.app.product : state.shoppingCart.newPizza === null ? 
+    state.app.productPizza : state.shoppingCart.newPizza;
 
 const isSaleLanch = (state) => state.filters.isSale;
 
