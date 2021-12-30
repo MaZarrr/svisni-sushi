@@ -14,25 +14,25 @@ export const productList = createSelector(
     isSaleLanch,
     (category, product, isLanch) => {
 
-    if(category){
-        return product.filter(({filter = category}) => {
-            return filter.toLowerCase().split(", ").includes(category.toLowerCase())})
-    }
+        if(category){
+            return product.filter(({filter = category}) => {
+                return filter.toLowerCase().split(", ").includes(category.toLowerCase())})
+        }
 
-    if(isLanch) {
-        const productLanch = product.filter((el) => el.lanch === true);
-        const productNotLanch = product.filter((el) => !el.lanch);
-        const updateProdLanch = productLanch.map(el => {
-           return {
-               ...el,
-               price: el.lanchprice
-           }
-        });
-
-        const updateItemsProduct = updateProdLanch.concat(productNotLanch);
-
-        return updateItemsProduct
-    }
+        if(isLanch) {
+            const productLanch = product.filter((el) => el.lanch === true);
+            const productNotLanch = product.filter((el) => !el.lanch);
+            const updateProdLanch = productLanch.map(el => {
+               return {
+                   ...el,
+                   price: el.lanchprice
+               }
+            });
+    
+            const updateItemsProduct = updateProdLanch.concat(productNotLanch);
+    
+            return updateItemsProduct
+        }
 
     return product
 });

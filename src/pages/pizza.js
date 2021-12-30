@@ -119,7 +119,7 @@ const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, conte
                                                         variant={"subtitle2"}>Большая</Typography></button>
                                                     <Typography 
                                                     style={{textAlign: `center`}} 
-                                                    variant={"subtitle2"}>41см</Typography>
+                                                    variant={"subtitle2"}>36см</Typography>
                                                 </Grid>
                                             </Grid>
                                             }
