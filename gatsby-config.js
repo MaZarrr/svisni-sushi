@@ -89,18 +89,18 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        host: 'https://svisni-sushi.ru',
-        sitemap: 'https://svisni-sushi.ru/sitemap/sitemap-index.xml',
-        policy: [{
-          userAgent: '*',
-          allow: '/',
-          disallow: ['/korzina/', '/korzina/order', '/cookie', '/offer', '/privacy']
-        }]
-      }
-    },
+    // {
+    //   resolve: 'gatsby-plugin-robots-txt',
+    //   options: {
+    //     host: 'https://svisni-sushi.ru',
+    //     sitemap: 'https://svisni-sushi.ru/sitemap/sitemap-index.xml',
+    //     policy: [{
+    //       userAgent: '*',
+    //       allow: '/',
+    //       disallow: ['/korzina/', '/korzina/order', '/cookie', '/offer', '/privacy']
+    //     }]
+    //   }
+    // },
     {
       resolve: `gatsby-plugin-yandex-metrika`,
       options: {
