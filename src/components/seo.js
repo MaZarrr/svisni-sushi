@@ -48,10 +48,10 @@ const Seo = memo(function Seo({ description, lang, meta, title, keywords, pathna
           name: `keywords`,
           content: metaKeywords
         },
-        noindexTxt ? {
-          name: "robots",
-          content: noindexTxt
-        } : {},
+        // noindexTxt ? {
+        //   name: "robots",
+        //   content: noindexTxt
+        // } : {},
         {
           property: `og:title`,
           content: title,

@@ -36,7 +36,8 @@ const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfu
     return (
         <>
             <Seo title="Сет суши роллов, ассорти на заказ - доставка в Валуйки"
-                 description="Меню сетов из фирменных и запечённых роллов с выгодой до 40%. Акция ланч-тайм, скидки с 10 до 15:00, собери свой набор роллов"/>
+                 description="Меню сетов из фирменных и запечённых роллов с выгодой до 40%. Акция ланч-тайм, скидки с 10 до 15:00, собери свой набор роллов"
+                 pathname="/"/>
                     <HeadSection titleTXT={"Заказать суши сет"} path={location.pathname} isFilter={true} categoryNames={categoryNames}/>
                     <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
                       {!load ?

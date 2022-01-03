@@ -97,7 +97,7 @@ module.exports = {
         policy: [{
           userAgent: '*',
           allow: '/',
-          disallow: ['/korzina', '/korzina/order', '/cookie']
+          disallow: ['/korzina/', '/korzina/order', '/cookie', '/offer', '/privacy']
         }]
       }
     },
