@@ -37,10 +37,10 @@ export const onServiceWorkerUpdateReady = () => {
 //   window.VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
 // }
 
-export const replaceHydrateFunction = () => {
-  return (element, container, callback) => {
-    console.log("rendering!");
-    ReactDOM.render(element, container, callback);
-    // ReactDOM.hydrate(element, container, callback);
-  };
-};
+// export const replaceHydrateFunction = () => {
+//   return (element, container, callback) => {
+//     console.log("rendering!");
+//     ReactDOM.render(element, container, callback);
+//     // ReactDOM.hydrate(element, container, callback);
+//   };
+// };
