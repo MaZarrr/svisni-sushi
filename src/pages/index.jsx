@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import Grid from '@mui/material/Grid';
 import makeStyles from '@mui/styles/makeStyles';
 import { graphql } from "gatsby";
-import {Button, Hidden, Typography, TextField} from "@mui/material";
+import { Hidden, Typography } from "@mui/material";
 
 import Carousel from '../components/common/CarouselSvisni';
 import MenuCategory from "../components/indexContent/MenuCategory";
@@ -10,71 +10,20 @@ import Combo from '../components/indexContent/combo/index'
 import RecommendedProducts from "../components/indexContent/recommended-products";
 import SpinnerNew from "../components/spinner/spinner-new";
 import Seo from "../components/seo";
-import { useMutation, gql } from "@apollo/client";
-import useForm from "../utils/useForm";
-import useLocalStorage from "../utils/useLocalStorage"
-import { authTokenVar, isLoggedInVar } from "../apollo/client";
-import { TOKENSTORAGE } from "../components/common/constants";
-import { LoginInput } from  "../__generated__/globalTypes"
-
-const LOGIN_MUTATION = gql`
-    mutation Login($loginInput: LoginInput!) {
-        login(input: $loginInput) {
-            ok
-            token
-            error
-        }
-    }
-`;
 
 const IndexPage = ({ 
   data: { allContentfulContentIndex: { edges }, 
   allContentfulCarouselSiteImage } }) => {
-
+    
         const [loadingSpinner, setLoading] = useState(true)
         const [indexProduct, setIndexProduct] = useState(true)
         const classes = useStyleIndexPage();
-        const [value, handleChange] = useForm();
-        const [, setToken] = useLocalStorage(TOKENSTORAGE)
 
-        const onCompleted = (data) => {
-            console.log("data", data)
-          const { login: { ok, token } } = data;
-          if(ok && token){
-            console.log("ok1", ok);
-            console.log("token1", token);
-            setToken(token)
-            authTokenVar(token)
-            isLoggedInVar(true)
-          }
-        }
-
-      const [loginMutation, { data: loginMutationResult, loading }] = useMutation(
-        LOGIN_MUTATION, {
-        onCompleted
-      })
-
+        // console.log("da me", sData);
         useEffect(() => {
             setIndexProduct(edges)
             setLoading(false)
         }, [edges])
-
-        const onSubmit = (e) => {
-          e.preventDefault();
-          if(!loading){
-              console.log("value", value)
-            const { phone, password } = value
-              loginMutation({
-                  variables: {
-                      loginInput: {
-                          phone,
-                          password
-                      }
-                  }
-              });
-          }
-        }
-    console.log("loginMutationResult", loginMutationResult)
 
     return (
         <section>
@@ -88,37 +37,6 @@ const IndexPage = ({
                     style={{color: '#ff6b1a', textDecoration: "underline"}}>Уразово и Валуйки</span></Typography>
             </Hidden>
             <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
-            <div>
-                <form>
-                    <TextField
-                        id="standard-full-width"
-                        label="телефон"
-                        error={false}
-                        fullWidth
-                        variant="filled"
-                        placeholder="Введите телефон"
-                        required
-                        inputProps={{maxLength: 20, minLength: 2}}
-                        name="phone"
-                        onChange={handleChange}
-                        value={value.phone}
-                        helperText={""} />
-                    <TextField
-                        id="standard-full-width"
-                        label="пароль"
-                        error={false}
-                        fullWidth
-                        variant="filled"
-                        placeholder="Введите пароль"
-                        required
-                        inputProps={{maxLength: 20, minLength: 2}}
-                        name="password"
-                        onChange={handleChange}
-                        value={value.password}
-                        helperText={""} />
-                    <Button type="submit" onClick={onSubmit}>Зарегестрироваться</Button>
-                </form>
-            </div>
             <Grid container className={classes.root}>
 
                 <Hidden smDown>

@@ -6,7 +6,6 @@ import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import MaskedInput from 'react-text-mask';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -30,21 +29,9 @@ import loadable from "@loadable/component";
 import HeadSection from "../../components/HeadSection"
 import SpinnerNew from "../../components/spinner/spinner-new";
 import { isBrowser } from "../../components/common/constants";
+import { validateDelivery, validatePhone, validateUserName, validateTextAria, TextMaskPhone} from "../../utils/index"
 
 const EmptyBasket = loadable(() => import('../../components/EmptyBasket'))
-
-function TextMaskCustom(props) {
-  const { inputRef, ...other } = props;
-
-  return (
-    <MaskedInput
-      {...other}
-      mask={[/[7, 8]/, '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={'\u2000'}
-      guide={false}
-    />
-  );
-}
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="standard" {...props} />;
@@ -274,37 +261,9 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
     return false
   };
 
-  const validateUserName = () => {
-    const nameValidate = /^[а-яё]{3,16}$/gi;
-    const name = nameUser.trim().replace(/\s/g, "");
-    return nameValidate.test(String(name).toLowerCase())
-  };
-  const validateTextAria = () => {
-    const commentTextArea = comments.trim().replace(/\s/g, "")
-    if(comments === '') {
-      return true
-    } else if(comments !== '') {
-      return ((((((((((((((((((((((((((((((((((((((((/^[а-я_А-Я_0-9\-?()!,.ё:]{3,230}$/)))))))))))))))))))))))))))))))))))))))).test(commentTextArea.toLowerCase());
-    }
-  };
-  const validatePhone = () => {
-    const phoneValidate =  /^\+?(\d{1,3})?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/
-    const phone = phoneUser.trim().replace(/\s/g, "")
-    return phoneValidate.test(phone.toLowerCase())
-  };
-  const validateDelivery = () => {
-    if(delivery === "Доставка курьером" && deliverySity !== "Не выбрано" && deliverySity !== "") {
-      return true
-    } else if (delivery === "Самовывоз") {
-      return true
-    }
-
-    return false
-  };
-
   const buttonDisabled = () => {
-    if(validateUserName() === true && validatePhone() === true &&
-      validateTextAria() === true && validateDelivery() === true ) {
+    if(validateUserName({nameUser}) === true && validatePhone({phoneUser}) === true &&
+      validateTextAria({comments}) === true && validateDelivery({delivery, deliverySity}) === true ) {
       return false
     }
     return true
@@ -337,7 +296,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                       <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
                         <TextField id="standard-full-width"
                                    label="Ваше имя"
-                                   error={!validateUserName() && nameUser.length > 2}
+                                   error={!validateUserName({nameUser}) && nameUser.length > 2}
                                    fullWidth
                                    variant="filled"
                                    placeholder="Введите ваше имя"
@@ -345,21 +304,21 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                    inputProps={{maxLength: 20, minLength: 2}}
                                    name="name"
                                    onChange={(e) => {setName(e.target.value)}}
-                                   value={nameUser}
-                                   helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
+                                   value={nameUser || ""}
+                                   helperText={validateUserName({nameUser}) === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
                       </Grid>
                       <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
                         <TextField id="standard-full-width"
-                                   helperText={validatePhone() === false ? "Введите телефон с 7 или 8" : "Ваш телефон" }
+                                   helperText={validatePhone({phoneUser}) === false ? "Введите телефон с 7 или 8" : "Ваш телефон" }
                                    fullWidth
                                    variant="filled"
                                    type="tel"
                                    required
                                    inputProps={{minLength: 14}}
-                                   InputProps={{inputComponent: TextMaskCustom, minLength: 14}}
+                                   InputProps={{inputComponent: TextMaskPhone, minLength: 14}}
                                    name="phone"
                                    onChange={(e) => {setPhone(e.target.value)}}
-                                   value={phoneUser}/>
+                                   value={phoneUser || ""}/>
                       </Grid>
                       <Grid item xs={12}>
                         <Typography variant="body1">
@@ -427,7 +386,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                      name="date"
                                      onChange={(e) => {setDate(e.target.value);
                                      }}
-                                     value={dateDelivery}
+                                     value={dateDelivery || ""}
                                      helperText="Дата доставки/готовки"/>
                         </Grid>
 
@@ -441,7 +400,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                      onChange={(e) => {
                                        setTime(e.target.value);
                                      }}
-                                     value={timeDelivery}
+                                     value={timeDelivery || ""}
                                      helperText="К какому времени доставить/приготовить"/>
                         </Grid>
                       </>}
@@ -451,7 +410,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                             <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                               Населённый пункт
                             </InputLabel>
-                            <Select native value={deliverySity.city}
+                            <Select native value={deliverySity.city || ""}
                                     onChange={handleChangeCity(city)}
                                     inputProps={{ name: 'city',
                                       id: 'outlined-age-native-simple'}}>
@@ -501,7 +460,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                      onChange={(e) => {
                                        setAdress(e.target.value);
                                      }}
-                                     value={deliveryAdress}
+                                     value={deliveryAdress || ""}
                                      helperText="Ваша улица"/>
                         </Grid>
                         <Grid item xs={12} sm={4}>
@@ -516,7 +475,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                      onChange={(e) => {
                                        setHome(e.target.value);
                                      }}
-                                     value={homeNumber}
+                                     value={homeNumber || ""}
                                      helperText="Ваш номер дома"/>
                         </Grid>
                         <Grid item xs={6}>
@@ -531,7 +490,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                      inputProps={{ maxLength: 5 }}
                                      name="apartment"
                                      onChange={(e) => userApartment(e.target.value)}
-                                     value={apartment}
+                                     value={apartment || ""}
                                      helperText="Номер квартиры"/>
                         </Grid>
                         <Grid item xs={6}>
@@ -548,7 +507,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                      onChange={(e) => {
                                        setEntrance(e.target.value);
                                      }}
-                                     value={entranceNumber}
+                                     value={entranceNumber || ""}
                                      helperText="Номер подъезда"/>
                         </Grid>
                         <Grid item xs={6}>
@@ -567,7 +526,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                      onChange={(e) => {
                                        setLevel(e.target.value);
                                      }}
-                                     value={levelNumber}
+                                     value={levelNumber || ""}
                                      helperText="Введите ваш этаж."/>
                         </Grid>
                         <Grid item xs={6}>
@@ -584,7 +543,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                      onChange={(e) => {
                                        setDoor(e.target.value);
                                      }}
-                                     value={doorPassword}
+                                     value={doorPassword || ""}
                                      helperText="Код двери"/>
                         </Grid>
                       </>}
@@ -594,17 +553,17 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                           id="outlined-multiline-static"
                           label="Комментарий к заказу"
                           multiline
-                          value={comments}
+                          value={comments || ""}
                           onChange={(e) => userCommentsFunc(e.target.value)}
                           rows="3"
-                          error={!validateTextAria() && comments.length > 2}
+                          error={!validateTextAria({comments}) && comments.length > 2}
                           inputProps={{minLength: 3, maxLength: 255}}
                           name="comments"
                           variant="filled"
                           margin="normal"
                           fullWidth
                           style={{ margin: `8px auto`}}
-                          helperText={!validateTextAria() && comments.length > 2 ? "Удалите лишние знаки и символы" : ""}
+                          helperText={!validateTextAria({comments}) && comments.length > 2 ? "Удалите лишние знаки и символы" : ""}
                         />
                       </Grid>
                     </Grid>
@@ -623,7 +582,7 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                                 open={open}
                                 onClose={handleClose}
                                 onOpen={handleOpen}
-                                value={age}
+                                value={age || ""}
                                 name="sdacha"
                                 label="Без сдачи"
                                 onChange={handleChange}>
@@ -691,9 +650,9 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
                           <hr></hr>
                           <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
                           <ul>
-                            { !validateUserName() && <li>Введите имя из букв</li>}
-                            { !validatePhone() && <li>Введите корректный телефон</li>}
-                            { !validateDelivery() && delivery === "Доставка курьером" && <li>Выберите населенный пункт</li>}
+                            { !validateUserName({nameUser}) && <li>Введите имя из букв</li>}
+                            { !validatePhone({phoneUser}) && <li>Введите корректный телефон</li>}
+                            { !validateDelivery({delivery, deliverySity}) && delivery === "Доставка курьером" && <li>Выберите населенный пункт</li>}
                           </ul>
                         </>
                         }

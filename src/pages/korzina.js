@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Seo from "../components/seo"
 import { connect } from 'react-redux';
 import { graphql, Link } from 'gatsby'
@@ -23,16 +23,17 @@ import Hidden from "@mui/material/Hidden";
 import makeStyles from '@mui/styles/makeStyles';
 import loadable from "@loadable/component";
 import HeadSection from "../components/HeadSection";
+import Dialogs from "../components/Dialogs";
 
 const EmptyBasket = loadable(() => import('../components/EmptyBasket'))
 
-const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProductKlassika,
+const ShoppingCartTable = ({ isAuth, user, data: {allContentfulProductPizza, allContentfulProductKlassika,
   allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
   allContentfulProductGunkan}, items = [], total = 0, palochkiTotal,
                              onIncrease, onDecrise, onDelete, addedPriborCount, addedSaleRoll,
   addedSalePizza, deletePizzaSale, deleteFilaSale, location: { pathname } }) => {
   const classes = useStyleBasket();
-
+  const [ openDialog, setOpenDialog ] = useState(false)
   const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
   const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
 
@@ -155,7 +156,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
       deleteFilaSale(node.id)
     }
   };
-
+  console.log("user user korzina", user);
   const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items));
   return <>
     <Seo title="Корзина"
@@ -330,22 +331,41 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                   <Paper style={{padding: 5, opacity: `95%`}}>
                     <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
                   </Paper>
-                  <Button
-                    component={Link}
-                    to={`${pathname}order`}
-                    sx={{
-                      position: "fixed",
-                      bottom: 55,
-                      margin: '0 auto',
-                      backgroundColor: "#303032",
-                      width: '93%',
-                      left: 13,
-                      opacity: `95%`
-                    }}>
+                  {user?.verified ? 
+                    <Button
+                        component={Link}
+                        to={`${pathname}order`}
+                        sx={{
+                          position: "fixed",
+                          bottom: 55,
+                          margin: '0 auto',
+                          backgroundColor: "#303032",
+                          width: '93%',
+                          left: 13,
+                          opacity: `95%`
+                        }}>
+                        <Typography color="white" variant="subtitle1">
+                            Перейти к оформлению
+                        </Typography>
+                    </Button>
+                      :
+                      <Button
+                      sx={{
+                        position: "fixed",
+                        bottom: 55,
+                        margin: '0 auto',
+                        backgroundColor: "#303032",
+                        width: '93%',
+                        left: 13,
+                        opacity: `95%`
+                      }}
+                      onClick={() => setOpenDialog(true)}>
                       <Typography color="white" variant="subtitle1">
                           Перейти к оформлению
                       </Typography>
                   </Button>
+                    }
+
                 </div>
               </Hidden>
 
@@ -376,18 +396,31 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
                     <Typography variant="h6" style={{fontSize: 24}}>Итого </Typography>
                     <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
-                    <Button
-                      component={Link}
-                      to={`${pathname}order`}
-                      size={'large'}
-                      variant="contained" >
-                      <Typography color="white" variant="subtitle1">
-                          Продолжить
-                      </Typography>
+                    
+                      {user?.verified ? 
+                        <Button
+                          component={Link}
+                          to={`${pathname}order`}
+                          size={'large'}
+                          variant="contained" >
+                        <Typography color="white" variant="subtitle1">
+                            Продолжить
+                        </Typography>
+                      </Button>
+                      :
+                      <Button
+                        size={'large'}
+                        onClick={() => setOpenDialog(true)}
+                        variant="contained" >
+                        <Typography color="white" variant="subtitle1">
+                            Продолжить
+                        </Typography>
                     </Button>
+                    }
                   </Paper>
                 </Grid>
               </Hidden>
+              <Dialogs isOpen={openDialog} setOpenDialog={setOpenDialog} />
 
             </Grid>
         }
@@ -399,6 +432,8 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
 
 const mapStateToProps = (state) => ({
   items: state.shoppingCart.cartItems,
+  isAuth: state.app.isAuth,
+  user: state.app.user,
   // loading: checkedLoading(state),
   palochkiTotal: state.shoppingCart.palochkiTotal,
   total: state.shoppingCart.orderTotal,

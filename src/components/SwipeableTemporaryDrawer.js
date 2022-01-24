@@ -64,7 +64,6 @@ export default function SwipeableTemporaryDrawer({location}) {
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
         anchor="left"
-        disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
         open={state.left}
         onClose={toggleDrawer('left', false)}

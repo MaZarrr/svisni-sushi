@@ -14,14 +14,14 @@ export const wrapPageElement = ({ element, props }) => {
 
 export const wrapRootElement = ({ element }) => {
     return (
-      <StyledEngineProvider>
+      // <StyledEngineProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
          <ApolloWrapper>
           {element}
          </ApolloWrapper>
       </ThemeProvider>
-      </StyledEngineProvider>
+      // </StyledEngineProvider>
 
     )
 }

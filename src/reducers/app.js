@@ -4,11 +4,16 @@ export const productLoaded = createAction('PRODUCT_LOADED');
 export const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA');
 export const spinnerLoading = createAction('PRODUCT_SPINNER');
 const productLoadedIndex = createAction('PRODUCT_LOADED_INDEX');
+export const getUserAction = createAction('GET_USER');
 
 export const loadIndexItems = (data) => (dispatch) => dispatch(productLoadedIndex(data));
 // export const loadingSpinner = (status) => (dispatch) => dispatch(spinnerLoad(status));
 export const getProduct = (product) => async (dispatch) => {
     await dispatch(productLoaded(product))
+};
+export const setUser = (user) => (dispatch) => {
+    console.log("user setUser", user);
+    dispatch(getUserAction(user))
 };
 
 const initialState = {
@@ -17,10 +22,24 @@ const initialState = {
     indexProduct: [],
     indexMenu: [],
     loading: true,
-    error: false
+    error: false,
+    user: null,
+    isAuth: false
 };
 
 export default createReducer({
+    [getUserAction]: (state, user) => {
+        console.log("statestate getUser", {
+            ...state,
+            user,
+            isAuth: user?.id ? true : false
+        });
+        return {
+            ...state,
+            user,
+            isAuth: user ? true : false
+        }
+    },
     [productLoaded]: (state, productCategory) => {
         const product = productCategory.map(({node: el}) => el)
         return {...state, product}

@@ -1,10 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import Header from "./header"
 import loadable from '@loadable/component'
 import { Hidden } from "@mui/material";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import Vk, { CommunityMessages } from "react-vk";
+import { setUser } from "../reducers/app";
+import { connect } from "react-redux";
+import { useMeLazy } from "../utils/useMeLazy";
+import { Router } from "@reach/router"
 
 const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const Footer = loadable(() => import('./footer'));
@@ -12,12 +16,22 @@ const Footer = loadable(() => import('./footer'));
 // const VK = isBrowser && window.VK
 // isBrowser && VK.Widgets.CommunityMessages("vk_community_messages", 161250465);
 // isBrowser && VK.Widgets.Group("vk_groups", {mode: 3}, 161250465)
-const Layout = (
-  { children, location: { pathname = "" }
+const Layout = ( 
+  {isAuth, user, children, setUser, location: { pathname = "" }
 }) => {
+  const [getUser, { data } ] = useMeLazy()
+
+  useEffect(() => {
+    getUser()
+    if(data) {
+      setUser(data?.me)
+    }
+  }, [data])
+  
+  // console.log('layout data', data);
   return (
     <ErrorBoundary>       
-    <Vk apiId={161250465}>
+      <Vk apiId={161250465}>
       <CommunityMessages 
         groupId={161250465}
         options={{
@@ -55,13 +69,24 @@ const Layout = (
   <Hidden smDown>
     <Footer/>
   </Hidden>
-  </ErrorBoundary>
+    </ErrorBoundary>
   );
 };
+
+const mapDispatchToProps = {
+  setUser
+};
+
+const mapStateToProps = (state) => ({
+  user: state.app.user,
+  isAuth: state.app.isAuth
+});
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   pathname: PropTypes.string
 };
 
-export default Layout
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout)
