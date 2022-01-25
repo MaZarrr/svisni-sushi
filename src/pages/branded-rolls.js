@@ -28,7 +28,7 @@ const BrandedRolls = ({data: {allContentfulProductSlognyeRolly: {edges: products
 
     useEffect(() => {
         dispatch(productLoaded(productsBrandedRolls));
-        doStart({endTime: 15, startTime: 10});
+        doStart({endTime: 15, startTime: 10, startDayNumber: 1, firstDayNumber: 5});
         dispatch(checkSaleLanch(priceIsSale));
         dispatch(defFilters())
         dispatch(spinnerLoading(false))

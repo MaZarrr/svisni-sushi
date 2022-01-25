@@ -25,7 +25,7 @@ import SpinnerNew from "../components/spinner/spinner-new";
 import { addedToCart, pizzaCart } from "../reducers/shopping-cart";
 import { CardStyle } from "../components/common/styles-components";
 
-const categoryNames = ['новинки', 'мясные', 'с колбасками', 'морские', 'вегетарианские', 'без грибов'];
+const categoryNames = ['новинки', 'мясные', 'с колбасками', 'сладкие', 'морские', 'вегетарианские', 'без грибов'];
 
 const Pizza = ({ data: { allContentfulProductPizza: {edges: pizzaProduct}, contentfulIconMenuLeftPanel: {image} },
                    productPizza, searchText, priceFilter, dispatch, updatePizza: pizza, path, loading }) => {

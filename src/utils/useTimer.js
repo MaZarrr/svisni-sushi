@@ -8,6 +8,7 @@ const useTimer = () => {
     const [hours, setHours] = useState("00");
     const [minutes, setMinutes] = useState("00");
     const [seconds, setSeconds] = useState("00");
+    const [{ startDay, firsDay }, setDayNumber] = useState({startDay: 1, firsDay: 5});
     const [startTimeSale, setStartTimeSale] = useState(null);
     const [endTimeSale, setEndTimeSale] = useState(null);
     const [isSale, setIsSale] = useState(null);
@@ -15,22 +16,31 @@ const useTimer = () => {
 
     let interval = useRef();
 
+   /**
+    * функция запуска таймера в любом компоненте
+    * @param {object} options
+    * @param {number} endTime, число в 24 формате, до какого времени работает таймер
+    * @param {number} startTime, число в 24 формате, с какого часа начинает работает таймер
+    * @param {number} startDayNumber, от 0 до 7 где 0 - воскресенье, 7 суббота - день недели с которого запускается таймер
+    * @param {number} firstDayNumber, от 0 до 7 где 0 - воскресенье, 7 суббота - последний день работы таймера
+    */
     const doStart = useCallback((options = {}) => {
-        const {endTime, startTime} = options;
-
+        const {endTime, startTime, startDayNumber, firstDayNumber} = options;
+        
         const secondToEnd = Math.floor(endTime * 60 * 60);
         const saleTime = daySeconds - secondToEnd;
 
         setSecondsInSale(saleTime);
         setEndTimeSale(endTime);
         setStartTimeSale(startTime);
+        setDayNumber({startDay: startDayNumber ? startDayNumber : startDay, firsDay: firstDayNumber ? firstDayNumber : firsDay})
     }, []);
 
     const startTimer = useCallback( () => {
         interval.current = setInterval(() => {
             const time = moment().format("HH:mm:ss");
             let currentTime = moment.duration(time).asSeconds();
-
+            
             let timeToSale = currentTime + secondsInSale;
             let timer = daySeconds - timeToSale;
             let timeEndSale = timer - 1;
@@ -48,7 +58,9 @@ const useTimer = () => {
 
     useEffect(() => {
         const hoursToSale = moment().hour();
-        if(hoursToSale >= startTimeSale && hoursToSale < endTimeSale) {
+        const currendDayNumber = moment().day()
+        console.log(startDay, firsDay);
+        if(hoursToSale >= startTimeSale && hoursToSale < endTimeSale && currendDayNumber >= startDay && currendDayNumber < firsDay) {
             startTimer();
             setIsSale(true);
             return () => clearInterval(interval.current);

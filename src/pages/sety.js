@@ -16,7 +16,7 @@ import HeadSection from "../components/HeadSection"
 import CardsMenuPage from '../components/CardsMenuPage'
 import SpinnerNew from "../components/spinner/spinner-new";
 
-const categoryNames = ['Малые', 'Средние', 'Большие', 'Ланч-сеты'];
+const categoryNames = ['Малые', 'Средние', 'Большие', '⏱️Ланч-тайм'];
 
 const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfulIconMenuLeftPanel: { image } },
                   product, searchText, priceFilter, checkboxFilter, location, dispatch }) => {
@@ -27,7 +27,7 @@ const Sety = ( { data: { allContentfulProduct: { edges: setyProduct }, contentfu
 
     useEffect(() => {
         dispatch(productLoaded(setyProduct));
-        doStart({endTime: 15, startTime: 10});
+        doStart({endTime: 15, startTime: 10, startDayNumber: 1, firstDayNumber: 5});
         dispatch(checkSaleLanch(priceIsSale));
         dispatch(defFilters());
         setLoad(false)
