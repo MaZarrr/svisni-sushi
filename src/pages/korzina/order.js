@@ -229,9 +229,13 @@ if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
   setTextAlert("Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.")
   handleClickAlert()
 } else {
-  pushOrder()
+  // pushOrder()
 }
 };
+
+  function createDish() {
+    
+  }
 
   const handleChange = event => setAge(event.target.value);
   const handleChangeDelivery = event => setDelivery(event.target.value);

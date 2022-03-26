@@ -8,16 +8,17 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { useMutation, gql, useLazyQuery } from "@apollo/client";
+import { useMutation, gql, useReactiveVar } from "@apollo/client";
 import useForm from "../utils/useForm";
 import useLocalStorage from "../utils/useLocalStorage"
 import { authTokenVar, isLoggedInVar } from "../apollo/client";
-import { TOKENSTORAGE } from "../components/common/constants";
+import { TOKENSTORAGE } from "./common/constants";
 import { setUser } from '../reducers/app';
 import { connect } from 'react-redux';
 import useCheckTime from '../utils/useCheckTime';
 import { Typography } from '@mui/material';
 import { useMeLazy } from '../utils/useMeLazy';
+import { navigate } from 'gatsby';
 // import { TextMaskPhone } from '../utils';
 
 
@@ -62,14 +63,15 @@ return (
 );
 };
 
-function Dialogs({ isOpen, setOpenDialog, setUser, user, isAuth }) {
+function DialogAuth({ isOpen, setOpenDialog, setUser, user, isAuth, navigateTo }) {
     // const [checkToken, setCheckToken] = useState(true);
+    const isLoggedIn = useReactiveVar(isLoggedInVar)
     const [helpError, setHelpError] = useState("");
     const [checkForm, setCheckForm]= useState(false)
     const [value, handleChange, clearValueForm] = useForm();
-    const [{ seconds, isTime }, startTimer]= useCheckTime(50)
     const [tokenStorage, setToken] = useLocalStorage(TOKENSTORAGE)
     const [getUser, { data: userData }] = useMeLazy()
+    const [{ seconds, isTime }, startTimer]= useCheckTime(50, isLoggedIn)
 
     let myRef = {}
 
@@ -86,6 +88,7 @@ function Dialogs({ isOpen, setOpenDialog, setUser, user, isAuth }) {
             isLoggedInVar(true)
             getUser()
             handleClose()
+            navigate(navigateTo)
         }
         console.log("userData onCompletedLogin2", userData)
         if(error) {
@@ -189,26 +192,26 @@ function Dialogs({ isOpen, setOpenDialog, setUser, user, isAuth }) {
           { !checkForm ? (
             <>
             <TextField
-            autoFocus
-            margin="dense"
-            id="phone"
-            label="Номер телефона"
-            type="phone"
-            fullWidth
-            inputRef={myRef}
-            value={value.phone || ""}
-            onChange={handleChange}
-            // InputProps={{inputComponent: TextMaskPhone}}
-            // placeholder="Введите телефон"
-            variant="standard"
-            required={true}
-            inputProps={{maxLength: 18, minLength: 10}}
-            name="phone"
-            helperText={data?.createAccount?.error} />
-            {!isTime &&
-                <Typography variant='caption'>
-                    Запросить код повторно через 00:{seconds}</Typography>
-                }
+                autoFocus
+                margin="dense"
+                id="phone"
+                label="Номер телефона"
+                type="phone"
+                fullWidth
+                inputRef={myRef}
+                value={value.phone || ""}
+                onChange={handleChange}
+                // InputProps={{inputComponent: TextMaskPhone}}
+                // placeholder="Введите телефон"
+                variant="standard"
+                required={true}
+                inputProps={{maxLength: 18, minLength: 10}}
+                name="phone"
+                helperText={data?.createAccount?.error} />
+                {!isTime &&
+                    <Typography variant='caption'>
+                        Запросить код повторно через 00:{seconds}</Typography>
+                    }
             </>
             ) : (
             <>
@@ -271,4 +274,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.app.isAuth
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export default connect(mapStateToProps, mapDispatchToProps)(DialogAuth)

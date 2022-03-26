@@ -25,6 +25,7 @@ console.log("isLoggedInVar ======", isLoggedInVar());
 console.log("authTokenVar  ========", authTokenVar());
 
 export const client = new ApolloClient({
+    connectToDevTools: true,
     link: authLink.concat(httpLink),
     cache: new InMemoryCache({
         typePolicies: {
@@ -45,3 +46,5 @@ export const client = new ApolloClient({
         }
     })
 })
+
+window.__APOLLO_CLIENT__ = client;

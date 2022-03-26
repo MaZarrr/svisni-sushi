@@ -23,7 +23,7 @@ import Hidden from "@mui/material/Hidden";
 import makeStyles from '@mui/styles/makeStyles';
 import loadable from "@loadable/component";
 import HeadSection from "../components/HeadSection";
-import Dialogs from "../components/Dialogs";
+import DialogAuth from "../components/DialogAuth";
 
 const EmptyBasket = loadable(() => import('../components/EmptyBasket'))
 
@@ -420,7 +420,7 @@ const ShoppingCartTable = ({ isAuth, user, data: {allContentfulProductPizza, all
                   </Paper>
                 </Grid>
               </Hidden>
-              <Dialogs isOpen={openDialog} setOpenDialog={setOpenDialog} />
+              <DialogAuth isOpen={openDialog} setOpenDialog={setOpenDialog} navigateTo="/korzina/order" />
 
             </Grid>
         }

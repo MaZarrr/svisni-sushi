@@ -10,6 +10,8 @@ import makeStyles from '@mui/styles/makeStyles';
 
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
+import { useReactiveVar } from '@apollo/client';
+import { isLoggedInVar } from '../apollo/client';
 
 const ProgressBar = loadable(() => import('./common/progressBar'));
 const Baskets = loadable(() => import('./korzinaComponent'));
@@ -39,7 +41,8 @@ const links = [
 
 const Header = () => {
     const classes = useStyleHeader();
-
+    const isLoggedIn = useReactiveVar(isLoggedInVar)
+    
     return <>
     <div className={classes.root}>
       <AppBar
@@ -57,7 +60,7 @@ const Header = () => {
             <Grid container>
             <Hidden smUp>
                 <Grid item xs={4} style={{margin: `auto auto`}}>
-                      <DrawerMenu />
+                      <DrawerMenu isLoggedIn={isLoggedIn} />
                 </Grid>
             </Hidden>
 

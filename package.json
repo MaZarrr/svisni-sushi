@@ -65,7 +65,7 @@
   "license": "MIT",
   "scripts": {
     "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true GATSBY_CONTENTFUL_OFFLINE=true gatsby build --log-pages",
-    "develop": "cross-env GATSBY_EXPERIMENTAL_LAZY_DEVJS=true GATSBY_CONTENTFUL_OFFLINE=true npm run apollo:codegen & gatsby develop --log-pages",
+    "develop": "cross-env GATSBY_EXPERIMENTAL_LAZY_DEVJS=true GATSBY_CONTENTFUL_OFFLINE=true npm run apollo:codegen & gatsby develop NODE_ENV='production' --log-pages",
     "start": "node index.js",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "apollo:codegen": "rimraf src/__generated__ && apollo client:codegen src/__generated__ --target=typescript --outputFlat",

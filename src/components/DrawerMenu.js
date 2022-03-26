@@ -20,9 +20,8 @@ import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
 import CardGiftcardTwoToneIcon from '@mui/icons-material/CardGiftcardTwoTone';
 import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import { SocialButtons } from './common/SocialButtons';
-
-import { useReactiveVar } from '@apollo/client';
-import { isLoggedInVar } from '../apollo/client';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const useStyles = makeStyles(({
     list: {
@@ -33,75 +32,74 @@ const useStyles = makeStyles(({
     }
 }));
 
-const drawerMenuProps = [
-    {
-        id: 1,
-        slug: "/orders",
-        nameCategory: "Мои заказы",
-        componentIcon: EventNoteTwoToneIcon,
-        isAuth: true
-    },
-    {
-        id: 2,
-        slug: "/settings",
-        nameCategory: "Настройки профиля",
-        componentIcon: PersonOutlineTwoToneIcon,
-        isAuth: false
-    },
-    {
-        id: 3,
-        slug: "/sale",
-        nameCategory: "Акции",
-        componentIcon: CardGiftcardTwoToneIcon,
-        isAuth: true
-    },
-    {
-        id: 4,
-        slug: "/adres-i-kontakty",
-        nameCategory: "Адрес",
-        componentIcon: RoomIcon,
-        isAuth: true
-    },
-    {
-        id: 5,
-        slug: "/dostavka-i-oplata",
-        nameCategory: "Доставка",
-        componentIcon: LocalTaxiIcon,
-        isAuth: true
-    },
-    {
-        id: 6,
-        slug: "/vacancy",
-        nameCategory: "Вакансии",
-        componentIcon: WorkIcon,
-        isAuth: true
-    },
-    {
-        id: 7,
-        slug: "",
-        href: "tel:+79040949222",
-        nameCategory: "Позвоните нам",
-        componentIcon: PhoneIcon,
-        isAuth: true,
-        callPhone: true
-    },
-    {
-        id: 8,
-        slug: "",
-        nameCategory: "Выход",
-        componentIcon: ExitToAppTwoToneIcon,
-        logout: true,
-        isAuth: false
-    }
-    
-]
 
-export default function TemporaryDrawer() {
+
+export default function TemporaryDrawer({ isLoggedIn }) {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
-    const isLoggedIn = useReactiveVar(isLoggedInVar)
-
-
+    const drawerMenuProps = [
+        {
+            id: 1,
+            slug: "/orders",
+            nameCategory: "Мои заказы",
+            componentIcon: EventNoteTwoToneIcon,
+            isAuth: true
+        },
+        {
+            id: 2,
+            slug: "/settings",
+            nameCategory: "Настройки профиля",
+            componentIcon: PersonOutlineTwoToneIcon,
+            isAuth: false
+        },
+        {
+            id: 3,
+            slug: "/sale",
+            nameCategory: "Акции",
+            componentIcon: CardGiftcardTwoToneIcon,
+            isAuth: true
+        },
+        {
+            id: 4,
+            slug: "/adres-i-kontakty",
+            nameCategory: "Адрес",
+            componentIcon: RoomIcon,
+            isAuth: true
+        },
+        {
+            id: 5,
+            slug: "/dostavka-i-oplata",
+            nameCategory: "Доставка",
+            componentIcon: LocalTaxiIcon,
+            isAuth: true
+        },
+        {
+            id: 6,
+            slug: "/vacancy",
+            nameCategory: "Вакансии",
+            componentIcon: WorkIcon,
+            isAuth: true
+        },
+        {
+            id: 7,
+            slug: "",
+            href: "tel:+79040949222",
+            nameCategory: "Позвоните нам",
+            componentIcon: PhoneIcon,
+            isAuth: true,
+            callPhone: true
+        },
+        {
+            id: 8,
+            slug: "",
+            nameCategory: isLoggedIn ? "Выйти" : "Войти" ,
+            componentIcon: isLoggedIn ? LogoutIcon : LoginIcon,
+            checkAuth: true,
+            callPhone: false,
+            isAuth: true
+        }
+    ]
+    console.log("isLoggedIn", isLoggedIn);
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -129,7 +127,7 @@ export default function TemporaryDrawer() {
             variant={'subtitle1'}>Уразово</Typography>
             </div>
 
-            <NavigationButtons />
+            <NavigationButtons isLoggedIn={isLoggedIn} drawerMenuProps={drawerMenuProps} />
             <SocialButtons />
 
         </div>
@@ -160,19 +158,32 @@ export default function TemporaryDrawer() {
     );
 }
 
+function logout() {}
 
+function loggedIn(){}
 
-const NavigationButtons = () => (
+const NavigationButtons = ({isLoggedIn, drawerMenuProps}) => (
         <List>
         {
             drawerMenuProps.map(item => {
                 const TheIcon = item.componentIcon
                 return item.isAuth && (
-                <div key={item.slug}>
+                <div key={item.id}>
+                {item.checkAuth ? 
                 <ListItem
-                    button 
+                    button
+                    onClick={ isLoggedIn ? logout() : loggedIn() }
+                    activeStyle={{ color: "#000", backgroundColor: `#f0ecec`}}>
+                <ListItemIcon>
+                    <TheIcon color={"primary"} />
+                </ListItemIcon>
+                <ListItemText primary={item.nameCategory} />
+                </ListItem>
+                :
+                <ListItem
+                    button
                     component={item.slug !== "" ? Link: "a"}
-                    {...(item.callPhone && { href: item.href })}
+                    {...(item.callPhone && { href: item.href })} // ???
                     to={item.slug} 
                     activeStyle={{ color: "#000", backgroundColor: `#f0ecec`}}>
                 <ListItemIcon>
@@ -180,6 +191,9 @@ const NavigationButtons = () => (
                 </ListItemIcon>
                 <ListItemText primary={item.nameCategory} />
                 </ListItem>
+
+                }
+
                 <Divider/>
                 </div>
                 )

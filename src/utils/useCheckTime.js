@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 
-const useCheckTime = (time) => {
+const useCheckTime = (time, isAuth) => {
     const [seconds, setSeconds] = useState(time);
     const [isTime, setIsTime] = useState(true);
     let interval = useRef();
@@ -17,13 +17,14 @@ const useCheckTime = (time) => {
 
   useEffect(() => {
     console.log("interval.current2", seconds);
-    if(seconds === 1) {
+    console.log("interval isAuth", isAuth);
+    if(seconds === 1 || isAuth) {
         setSeconds(time)
         setIsTime(true)
         console.log("secondssss", seconds);
         return () => clearInterval(interval.current);
     }
-  }, [seconds]);
+  }, [seconds, isAuth]);
 
   return [{ seconds, isTime }, startTimer];
 };
