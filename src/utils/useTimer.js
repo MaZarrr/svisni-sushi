@@ -59,7 +59,6 @@ const useTimer = () => {
     useEffect(() => {
         const hoursToSale = moment().hour();
         const currendDayNumber = moment().day()
-        console.log(startDay, firsDay);
         if(hoursToSale >= startTimeSale && hoursToSale < endTimeSale && currendDayNumber >= startDay && currendDayNumber < firsDay) {
             startTimer();
             setIsSale(true);
