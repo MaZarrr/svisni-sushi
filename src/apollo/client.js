@@ -47,4 +47,4 @@ export const client = new ApolloClient({
     })
 })
 
-window.__APOLLO_CLIENT__ = client;
+// window.__APOLLO_CLIENT__ = client;

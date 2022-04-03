@@ -26,15 +26,15 @@ export const wrapRootElement = ({ element }) => {
     )
 }
 
-export const onServiceWorkerUpdateReady = () => {
-  const answer = window.confirm(
-    `Приложение Свисни суши было обновлено. `+
-    `Перезагрузить, чтобы отобразить последнюю версию?`
-  )
-  if (answer === true) {
-    window.location.reload()
-  }
-}
+// export const onServiceWorkerUpdateReady = () => {
+//   const answer = window.confirm(
+//     `Приложение Свисни суши было обновлено. `+
+//     `Перезагрузить, чтобы отобразить последнюю версию?`
+//   )
+//   if (answer === true) {
+//     window.location.reload()
+//   }
+// }
 
 
 // export const onClientEntry = () => {

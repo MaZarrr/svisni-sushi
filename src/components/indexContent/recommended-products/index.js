@@ -11,7 +11,7 @@ const RecommendedProducts = ({ product }) => {
    <Typography sx={{
      marginLeft: '25px', 
      margin: '20px 0 20px 50px'
-     }} variant={'h2'}>Блюда которые понравятся каждому</Typography>
+     }} variant={'h2'}>Новинки, популярное</Typography>
     <Hidden smUp>
       <SelectionContentMobile product={product} />
     </Hidden>
