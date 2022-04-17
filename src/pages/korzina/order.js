@@ -285,7 +285,6 @@ Cум: ${infoSuccess.totalPrice}
     }
     return false
   };
-
   const validateUserName = () => {
     const nameValidate = /^[а-яё]{3,16}$/gi;
     const name = nameUser.trim().replace(/\s/g, "");
@@ -323,7 +322,6 @@ Cум: ${infoSuccess.totalPrice}
   };
 
   const itemCartPizza = items.includes(items.find((data) => data.priceDef === 0));
-
   return (
       <section>
         <Seo title="Оформление заказа"

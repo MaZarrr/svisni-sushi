@@ -22,6 +22,47 @@ export const wrapRootElement = ({ element }) => {
     )
 }
 
+
+// function anchorScroll(location){
+//   // Check for location so build does not fail
+//   if (location && location.hash) {
+//   console.log(location);
+
+//     setTimeout(() => {
+//       // document.querySelector(${location.hash}).scrollIntoView({ behavior: 'smooth', block: 'start' });
+//       const item = document.querySelector(`${location.hash}`).offsetTop;
+//       const mainNavHeight = document.querySelector('header').offsetHeight;
+//       window.scrollTo({top: item - mainNavHeight, left: 0});
+//     }, 0);
+//   }
+// }
+
+// export const onRouteUpdate = ({location}) => {
+//   anchorScroll(location);
+//   return true;
+// };
+
+
+export const shouldUpdateScroll = ({
+  routerProps: { location },
+  getSavedScrollPosition
+}) => {
+  setTimeout(() => {
+    const currentPosition = getSavedScrollPosition(location)
+    // const currentPosition = getSavedScrollPosition(location, location.state.key)
+    const queriedPosition = getSavedScrollPosition({ pathname: `/sety` })
+    console.log("getSavedScrollPosition", getSavedScrollPosition);
+    console.log("currentPosition", currentPosition);
+    console.log("queriedPosition ", queriedPosition);
+    console.log("location ", location);
+    window.scrollTo(...(currentPosition || [0, 0]))
+    // anchorScroll(location)
+    return false
+  }, 0)
+
+}
+
+
 export const onServiceWorkerUpdateReady = () => {
     window.location.reload()
 }
