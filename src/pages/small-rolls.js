@@ -37,29 +37,29 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(SmallRolls)
 
-export const query = graphql `
-    {
-       allContentfulProductKlassika {
-           edges {
-               node {
-                   id
-                   name
-                   price
-                   variant
-                   description
-                   weight
-                   count
-                   image {
-                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-               }
-           }
-       }
-         contentfulIconMenuLeftPanel(name: {eq: "Классические роллы"}) {
-          image {
-          gatsbyImageData
-          }
-        }
-        }
-    `
+// export const query = graphql `
+//     {
+//        allContentfulProductKlassika {
+//            edges {
+//                node {
+//                    id
+//                    name
+//                    price
+//                    variant
+//                    description
+//                    weight
+//                    count
+//                    image {
+//                     gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                }
+//            }
+//        }
+//          contentfulIconMenuLeftPanel(name: {eq: "Классические роллы"}) {
+//           image {
+//           gatsbyImageData
+//           }
+//         }
+//         }
+//     `
 

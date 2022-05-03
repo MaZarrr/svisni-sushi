@@ -30,6 +30,7 @@
     "gatsby-plugin-yandex-metrika": "^2.5.0",
     "gatsby-source-contentful": "^7.2.0",
     "gatsby-source-filesystem": "^4.0.0-zz-next.1",
+    "gatsby-source-graphql": "^4.12.1",
     "gatsby-transformer-remark": "^5.0.0-zz-next.1",
     "gatsby-transformer-sharp": "^4.0.0-zz-next.1",
     "isomorphic-fetch": "^3.0.0",

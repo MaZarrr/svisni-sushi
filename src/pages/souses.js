@@ -38,26 +38,26 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(Souses)
 
-export const query = graphql `
-    {
-      allContentfulProductSouse {
-          edges {
-              node {
-                  id
-                  price
-                  name
-                  count
-                  weight
-                image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-              }
-          }
-      }
-      contentfulIconMenuLeftPanel(name: {eq: "Соусы"}) {
-        image {
-          gatsbyImageData
-          }
-       }
-    }
-    `
+// export const query = graphql `
+//     {
+//       allContentfulProductSouse {
+//           edges {
+//               node {
+//                   id
+//                   price
+//                   name
+//                   count
+//                   weight
+//                 image {
+//                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//               }
+//           }
+//       }
+//       contentfulIconMenuLeftPanel(name: {eq: "Соусы"}) {
+//         image {
+//           gatsbyImageData
+//           }
+//        }
+//     }
+//     `

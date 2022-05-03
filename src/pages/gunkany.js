@@ -37,27 +37,27 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(Gunkany)
 
-export const query = graphql `
-    {
-      allContentfulProductGunkan {
-          edges {
-              node {
-                  id
-                  name
-                  count
-                  description
-                  price
-                  weight
-                   image {
-                     gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-              }
-          }
-      }
-      contentfulIconMenuLeftPanel(name: {eq: "Гунканы"}) {
-          image {
-             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-          }
-       }
-        }
-    `
+// export const query = graphql `
+//     {
+//       allContentfulProductGunkan {
+//           edges {
+//               node {
+//                   id
+//                   name
+//                   count
+//                   description
+//                   price
+//                   weight
+//                    image {
+//                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//               }
+//           }
+//       }
+//       contentfulIconMenuLeftPanel(name: {eq: "Гунканы"}) {
+//           image {
+//              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//           }
+//        }
+//         }
+//     `

@@ -49,31 +49,31 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(HotRolls)
 
-export const query = graphql `
-    {
-       allContentfulProductHotRolly(sort: {fields: desc}) {
-          edges {
-            node {
-                id
-                slug
-                name
-                desc
-                price
-                description
-                weight
-                variant
-                filter
-                count
-                 image {
-                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-              }
-            }
-          }
-        contentfulIconMenuLeftPanel(name: {eq: "Горячие роллы"}) {
-              image {
-                   gatsbyImageData
-                  }
-            }
-        }
-    `
+// export const query = graphql `
+//     {
+//        allContentfulProductHotRolly(sort: {fields: desc}) {
+//           edges {
+//             node {
+//                 id
+//                 slug
+//                 name
+//                 desc
+//                 price
+//                 description
+//                 weight
+//                 variant
+//                 filter
+//                 count
+//                  image {
+//                     gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//               }
+//             }
+//           }
+//         contentfulIconMenuLeftPanel(name: {eq: "Горячие роллы"}) {
+//               image {
+//                    gatsbyImageData
+//                   }
+//             }
+//         }
+//     `

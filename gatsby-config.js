@@ -1,5 +1,24 @@
 require('dotenv').config();
 
+const fetch = require("isomorphic-fetch");
+const { createHttpLink, from  } = require('@apollo/client')
+const { RetryLink } = require(`@apollo/client/link/retry`)
+
+const retryLink = new RetryLink({
+  delay: {
+    initial: 100,
+    max: 2000,
+    jitter: true,
+  },
+  attempts: {
+    max: 5,
+    retryIf: (error, operation) =>
+      Boolean(error) && ![500, 400].includes(error.statusCode),
+  },
+})
+
+
+
 module.exports = {
     siteMetadata: {
       siteUrl: `https://svisni-sushi.ru`,
@@ -23,6 +42,24 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "SvisniSushi",
+        fieldName: "svisnisushi",
+        // Create Apollo Link manually. Can return a Promise.
+        createLink: pluginOptions => {
+          return from([retryLink, createHttpLink({
+            uri: 'http://localhost:3000/graphql',
+            fetch,
+            // headers: {
+            //   Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            // },
+          })
+        ])
+      }
+    }
+  },
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     'gatsby-transformer-remark',
@@ -70,15 +107,15 @@ module.exports = {
       }
     },
    `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        pageLimit: 50,
-        assetDownloadWorkers: 25
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-contentful`,
+    //   options: {
+    //     spaceId: process.env.CONTENTFUL_SPACE_ID,
+    //     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    //     pageLimit: 50,
+    //     assetDownloadWorkers: 25
+    //   },
+    // },
     
     `gatsby-plugin-sitemap`,
     {

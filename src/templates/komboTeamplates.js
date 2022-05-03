@@ -58,167 +58,167 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
 
 export default KomboTeamplate
 
-export const query = graphql `
-query ($slug: String!) {
-  contentfulProductKombo(slug: {eq: $slug}) {
-            __typename
-            id
-            name
-            count
-            description
-            price
-            edit
-            largePizza
-            slug
-            weight
-            image {
-              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-            sostavDefault {
-                ... on ContentfulProductZakuski {
-                    __typename
-                    id
-                    name
-                    price
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                }
-                ... on ContentfulProductKlassika {
-                    __typename
-                    id
-                    name
-                    price
-                    description
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                }
-                ... on ContentfulProductHotRolly {
-                    __typename  
-                    id
-                    name
-                    price
-                    description
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                }
-                ... on ContentfulProductNapitki {
-                    __typename  
-                    id
-                    name
-                    price
-                    description
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                }
-                ... on ContentfulProductPizza {
-                    __typename
-                    id
-                    name
-                    price
-                    priceIn33cm
-                    description
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                }
-                ... on ContentfulProductSlognyeRolly {
-                    __typename
-                    id
-                    name
-                    price
-                    description
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                }
-                ... on ContentfulProductWok {
-                    __typename
-                    id
-                    name
-                    price
-                    description
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                }
-            }
-            productsKomboWok {
-                __typename
-                id
-                name
-                description
-                price
-                image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                }
-            }
-            productsKomboRolls {
-                ... on ContentfulProductSlognyeRolly {
-                   __typename
-                    id
-                    name
-                    price
-                    description
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                }
-            }
-            productsKomboNapitki {
-                id
-                __typename
-                image {
-                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                name
-                price
-            }
-            productsCombo {
-              __typename
-                id
-                name
-                price
-                priceIn33cm
-                image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-                count
-                description
-            }
-            productsKomboHotRolls{
-            __typename
-                 id
-                    name
-                    price
-                    description
-                    image {
-                      gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-            }
-contentfulProductKlassika {
-              __typename
-              id
-              name
-              price
-              image {
-                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-              count
-              description
-    }
-            productsKomboZakuski {
-        __typename
-        id
-        name
-        price
-        count
-        image {
-          gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-        }
-    }
-}
-}`;
+// export const query = graphql `
+// query ($slug: String!) {
+//   contentfulProductKombo(slug: {eq: $slug}) {
+//             __typename
+//             id
+//             name
+//             count
+//             description
+//             price
+//             edit
+//             largePizza
+//             slug
+//             weight
+//             image {
+//               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//             sostavDefault {
+//                 ... on ContentfulProductZakuski {
+//                     __typename
+//                     id
+//                     name
+//                     price
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 }
+//                 ... on ContentfulProductKlassika {
+//                     __typename
+//                     id
+//                     name
+//                     price
+//                     description
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 }
+//                 ... on ContentfulProductHotRolly {
+//                     __typename  
+//                     id
+//                     name
+//                     price
+//                     description
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 }
+//                 ... on ContentfulProductNapitki {
+//                     __typename  
+//                     id
+//                     name
+//                     price
+//                     description
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 }
+//                 ... on ContentfulProductPizza {
+//                     __typename
+//                     id
+//                     name
+//                     price
+//                     priceIn33cm
+//                     description
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 }
+//                 ... on ContentfulProductSlognyeRolly {
+//                     __typename
+//                     id
+//                     name
+//                     price
+//                     description
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 }
+//                 ... on ContentfulProductWok {
+//                     __typename
+//                     id
+//                     name
+//                     price
+//                     description
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 }
+//             }
+//             productsKomboWok {
+//                 __typename
+//                 id
+//                 name
+//                 description
+//                 price
+//                 image {
+//                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                 }
+//             }
+//             productsKomboRolls {
+//                 ... on ContentfulProductSlognyeRolly {
+//                    __typename
+//                     id
+//                     name
+//                     price
+//                     description
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 }
+//             }
+//             productsKomboNapitki {
+//                 id
+//                 __typename
+//                 image {
+//                   gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 name
+//                 price
+//             }
+//             productsCombo {
+//               __typename
+//                 id
+//                 name
+//                 price
+//                 priceIn33cm
+//                 image {
+//                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//                 count
+//                 description
+//             }
+//             productsKomboHotRolls{
+//             __typename
+//                  id
+//                     name
+//                     price
+//                     description
+//                     image {
+//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//             }
+// contentfulProductKlassika {
+//               __typename
+//               id
+//               name
+//               price
+//               image {
+//                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//               count
+//               description
+//     }
+//             productsKomboZakuski {
+//         __typename
+//         id
+//         name
+//         price
+//         count
+//         image {
+//           gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//         }
+//     }
+// }
+// }`;

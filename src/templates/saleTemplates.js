@@ -40,28 +40,28 @@ const SaleTeamplate = ({ data: { contentfulProductSale: {
 }
 export default SaleTeamplate
 
-export const query = graphql `
-    query PageSale ($slug: String!) {
-        contentfulProductSale(slug: {eq: $slug}) {
-            description
-            id
-            name
-            slug
-            image {
-            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-            detailedDescription {
-              childMarkdownRemark {
-                frontmatter {
-                  slug
-                  sluginfo
-                  sluginfotext
-                  title
-                  name
-                }
-                html
-                }
-            }
-        }
-    }
-`
+// export const query = graphql `
+//     query PageSale ($slug: String!) {
+//         contentfulProductSale(slug: {eq: $slug}) {
+//             description
+//             id
+//             name
+//             slug
+//             image {
+//             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//             detailedDescription {
+//               childMarkdownRemark {
+//                 frontmatter {
+//                   slug
+//                   sluginfo
+//                   sluginfotext
+//                   title
+//                   name
+//                 }
+//                 html
+//                 }
+//             }
+//         }
+//     }
+// `

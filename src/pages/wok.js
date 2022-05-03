@@ -39,28 +39,28 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, null)(Wok)
 
-export const query = graphql `
-  {
-  allContentfulProductWok {
-    edges {
-      node {
-        id
-        name
-        price
-        weight
-        count
-        description
-        private
-        image {
-          gatsbyImageData
-        }
-      }
-    }
-  }
-  contentfulIconMenuLeftPanel(name: {eq: "Вок"}) {
-    image {
-      gatsbyImageData
-    }
-  }
-}
-`
+// export const query = graphql `
+//   {
+//   allContentfulProductWok {
+//     edges {
+//       node {
+//         id
+//         name
+//         price
+//         weight
+//         count
+//         description
+//         private
+//         image {
+//           gatsbyImageData
+//         }
+//       }
+//     }
+//   }
+//   contentfulIconMenuLeftPanel(name: {eq: "Вок"}) {
+//     image {
+//       gatsbyImageData
+//     }
+//   }
+// }
+// `

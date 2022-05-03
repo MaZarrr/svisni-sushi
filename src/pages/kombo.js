@@ -36,30 +36,30 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(Kombo)
 
-export const query = graphql `
-    {
-        allContentfulProductKombo {
-          edges {
-            node {
-                id
-              slug
-              name
-              price
-                edit
-              weight
-              count
-              description
-               image {
-                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-              }
-            }
-          }
-           contentfulIconMenuLeftPanel(name: {eq: "Комбо"}) {
-             image {
-                    gatsbyImageData
-                  }
-          }
-        }
-    `
+// export const query = graphql `
+//     {
+//         allContentfulProductKombo {
+//           edges {
+//             node {
+//                 id
+//               slug
+//               name
+//               price
+//                 edit
+//               weight
+//               count
+//               description
+//                image {
+//                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//               }
+//             }
+//           }
+//            contentfulIconMenuLeftPanel(name: {eq: "Комбо"}) {
+//              image {
+//                     gatsbyImageData
+//                   }
+//           }
+//         }
+//     `
 

@@ -61,34 +61,34 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(BrandedRolls)
 
-export const query = graphql `
-    {
-     allContentfulProductSlognyeRolly {
-    edges {
-      node {
-        id
-        slug
-        name
-        desc
-        price
-        filter
-        lanchprice
-        defaultPrice
-        lanch
-        sale
-        description
-        weight
-        count
-        image {
-          gatsbyImageData
-        }
-      }
-    }
-  }
-      contentfulIconMenuLeftPanel(name: {eq: "Сложные роллы"}) {
-       image {
-            gatsbyImageData
-    }
-    }
-}
-    `
+// export const query = graphql `
+//     {
+//      allContentfulProductSlognyeRolly {
+//     edges {
+//       node {
+//         id
+//         slug
+//         name
+//         desc
+//         price
+//         filter
+//         lanchprice
+//         defaultPrice
+//         lanch
+//         sale
+//         description
+//         weight
+//         count
+//         image {
+//           gatsbyImageData
+//         }
+//       }
+//     }
+//   }
+//       contentfulIconMenuLeftPanel(name: {eq: "Сложные роллы"}) {
+//        image {
+//             gatsbyImageData
+//     }
+//     }
+// }
+//     `

@@ -36,25 +36,25 @@ const mapStateToProps = (state) => ({
   
 export default connect(mapStateToProps, null)(Napitki)
 
-export const query = graphql `
-    {
-    allContentfulProductNapitki {
-        edges {
-            node {
-                id
-                price
-                name
-                weight
-                 image {
-                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                  }
-            }
-        }
-    }
-        contentfulIconMenuLeftPanel(name: {eq: "Напитки"}) {
-            image {
-              gatsbyImageData
-              }
-         }
-        }
-    `
+// export const query = graphql `
+//     {
+//     allContentfulProductNapitki {
+//         edges {
+//             node {
+//                 id
+//                 price
+//                 name
+//                 weight
+//                  image {
+//                     gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                   }
+//             }
+//         }
+//     }
+//         contentfulIconMenuLeftPanel(name: {eq: "Напитки"}) {
+//             image {
+//               gatsbyImageData
+//               }
+//          }
+//         }
+//     `

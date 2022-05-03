@@ -452,85 +452,85 @@ const mapDispatchToProps = {
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
 
-export const query = graphql `
-    {
-      allContentfulProductPizza  {
-      edges {
-        node {
-            id
-            contentful_id
-            name
-            slug
-            price
-            priceIn33cm
-            image {
-                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-          }
-        }
-      }
-allContentfulProductKlassika {
-  edges {
-    node {
-      id
-      name
-      price
-      image {
-            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-    }
-  }
-}
-  allContentfulProductSlognyeRolly {
-    edges {
-      node {
-        id
-        name
-        price
-        image {
-             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-      }
-    }
-  }
-       allContentfulProductSushi {
-         edges {
-           node {
-             id
-             name
-             price
-             image {
-             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-           }
-         }
-       }
-           allContentfulProductHotRolly {
-             edges {
-               node {
-                 id
-                 name
-                 price
-                 image {
-               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                }
-               }
-             }
-           }
-          allContentfulProductGunkan {
-            edges {
-              node {
-                id
-                name
-                price
-                image {
-               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-              }
-            }
-          }
-        }
-    `
+// export const query = graphql `
+//     {
+//       allContentfulProductPizza  {
+//       edges {
+//         node {
+//             id
+//             contentful_id
+//             name
+//             slug
+//             price
+//             priceIn33cm
+//             image {
+//                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//           }
+//         }
+//       }
+// allContentfulProductKlassika {
+//   edges {
+//     node {
+//       id
+//       name
+//       price
+//       image {
+//             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//     }
+//   }
+// }
+//   allContentfulProductSlognyeRolly {
+//     edges {
+//       node {
+//         id
+//         name
+//         price
+//         image {
+//              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//       }
+//     }
+//   }
+//        allContentfulProductSushi {
+//          edges {
+//            node {
+//              id
+//              name
+//              price
+//              image {
+//              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//            }
+//          }
+//        }
+//            allContentfulProductHotRolly {
+//              edges {
+//                node {
+//                  id
+//                  name
+//                  price
+//                  image {
+//                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                 }
+//                }
+//              }
+//            }
+//           allContentfulProductGunkan {
+//             edges {
+//               node {
+//                 id
+//                 name
+//                 price
+//                 image {
+//                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//               }
+//             }
+//           }
+//         }
+//     `
 
 const useStyleBasket  = makeStyles(theme => ({
   root: {
