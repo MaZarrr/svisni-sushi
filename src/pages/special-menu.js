@@ -12,10 +12,10 @@ const BounceToHome = () => {
 }
 
 
-const SpecialMenuProduct = ({ data: {contentfulSpecialMenu} }) => {
+const SpecialMenuProduct = () => {
   return (
       <Router>
-        <SpecialMenu menu={contentfulSpecialMenu} path="special-menu/:menuID" />
+        {/* <SpecialMenu menu={contentfulSpecialMenu} path="special-menu/:menuID" /> */}
         <BounceToHome default />
       </Router>
   )
