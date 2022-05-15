@@ -66,12 +66,12 @@ useEffect(() => {
         // categoryNames={categoryNames}
         />
         <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
-            {!load ?
+            { visibleItems && visibleItems.length > 0 ?
             <CardsMenuPage titleCategory="Набор" slugCategogy={`/${pageData.field_slug}`} visibleItems={visibleItems}
                             // image={pageData.relationships.field_avatar.localFile.childImageSharp}
                             product={product} timePrice={{ hours, minutes, seconds }}
                             isSale={priceIsSale} />
-            :  <SpinnerNew />   }
+            :   <h3 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Сайт на обслуживании!</h3> }
         </Grid>
         </>
     )

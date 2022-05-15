@@ -270,9 +270,9 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                               <Typography style={{fontSize: 12, marginLeft: 8}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
                             </>
                             }
-                            {wok &&
+                            {/* {wok &&
                             <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
-                            }
+                            } */}
                             {edit !== null &&
                             <Typography style={{fontSize: 13, padding: `0 10px`}} variant={"subtitle2"}><b>Состав:</b> {description}</Typography>
                             }
