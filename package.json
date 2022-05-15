@@ -29,6 +29,7 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-plugin-yandex-metrika": "^2.5.0",
     "gatsby-source-contentful": "^7.4.0",
+    "gatsby-source-drupal": "^5.14.0",
     "gatsby-source-filesystem": "^4.6.0",
     "gatsby-source-graphql": "^4.12.1",
     "gatsby-transformer-remark": "^5.6.0",

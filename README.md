@@ -199,3 +199,13 @@ body2 - описание текста
     "redaxios": "^0.4.1",
 
     "typescript": "^4.4.3",
+
+        // {
+    //   resolve: `gatsby-source-contentful`,
+    //   options: {
+    //     spaceId: process.env.CONTENTFUL_SPACE_ID,
+    //     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    //     pageLimit: 50,
+    //     assetDownloadWorkers: 25
+    //   },
+    // },
