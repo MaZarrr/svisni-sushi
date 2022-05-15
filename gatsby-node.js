@@ -21,20 +21,50 @@ exports.createPages = async ({ graphql, actions, page }) => {
   const { createPage } = actions;
   const productTeamplate = path.resolve('./src/templates/productsTeamplate.js')
 
-  const result = await graphql(`
-    {
-      svisnisushi {
-        getPages {
-          ok
-          pages {
-            categories
-            id
-            slug
-            title
+//  sales platform - возможное апи для отображение статики
+//   const result = await graphql(`
+//     {
+//       svisnisushi {
+//         getPages {
+//           ok
+//           pages {
+//             categories
+//             id
+//             slug
+//             title
+//           }
+//         }
+//       }
+//     }
+// `)
+
+const result = await graphql(`
+    query MyQuery {
+    allNodeBlyudaMenyu {
+      edges {
+        node {
+          field_name
+          field_price_lanch_time
+          field_price_not_sale
+          field_price_product
+          field_private
+          field_weight
+          id
+          relationships {
+            field_image_product {
+              localFile {
+                childrenImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
         }
       }
-    }
+  }
+}
+
+
 `)
 
   // // Handle errors
