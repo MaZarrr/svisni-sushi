@@ -48,13 +48,13 @@ const drawerMenuProps = [
         componentIcon: PersonOutlineTwoToneIcon,
         isAuth: false
     },
-    {
-        id: 3,
-        slug: "/sale",
-        nameCategory: "Акции",
-        componentIcon: CardGiftcardTwoToneIcon,
-        isAuth: true
-    },
+    // {
+    //     id: 3,
+    //     slug: "/sale",
+    //     nameCategory: "Акции",
+    //     componentIcon: CardGiftcardTwoToneIcon,
+    //     isAuth: true
+    // },
     {
         id: 4,
         slug: "/adres-i-kontakty",
@@ -69,13 +69,13 @@ const drawerMenuProps = [
         componentIcon: LocalTaxiIcon,
         isAuth: true
     },
-    {
-        id: 6,
-        slug: "/vacancy",
-        nameCategory: "Вакансии",
-        componentIcon: WorkIcon,
-        isAuth: true
-    },
+    // {
+    //     id: 6,
+    //     slug: "/vacancy",
+    //     nameCategory: "Вакансии",
+    //     componentIcon: WorkIcon,
+    //     isAuth: true
+    // },
     {
         id: 7,
         slug: "",

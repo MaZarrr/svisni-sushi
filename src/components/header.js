@@ -15,11 +15,11 @@ const ProgressBar = loadable(() => import('./common/progressBar'));
 const Baskets = loadable(() => import('./korzinaComponent'));
 
 const links = [
-  {
-    id: 1,
-    name: 'Акции',
-    link: '/sale/'
-  },
+  // {
+  //   id: 1,
+  //   name: 'Акции',
+  //   link: '/sale/'
+  // },
   {
     id: 2,
     name: 'О нас',

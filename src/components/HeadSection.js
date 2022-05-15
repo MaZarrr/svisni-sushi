@@ -27,7 +27,8 @@ const HeadSection = memo(({ isFilter = false, categoryNames, category, path, tit
                     }}>{titleTXT}</Typography>
         { isFilter && <>
           <CustomizedInputSearch location={path}/>
-          <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/> </>
+          {/* <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>  */}
+          </>
 
         }
       </ContentHead>

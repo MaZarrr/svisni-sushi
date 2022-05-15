@@ -5,7 +5,7 @@
           return items
         }
         return items.filter((node) => {
-            return node.name.toLowerCase().indexOf(txt.toLowerCase()) > -1
+            return node.field_name.toLowerCase().indexOf(txt.toLowerCase()) > -1
         })
       };
 

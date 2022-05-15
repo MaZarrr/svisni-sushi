@@ -46,26 +46,26 @@ const useStyleSalePage = makeStyles(theme => ({
     }
 }));
 
-export const query = graphql `
-    {
-        allContentfulProductSale {
-            edges {
-                node {
-                    id
-                    variant
-                    name
-                    slug
-                    description
-                    image {
-                        gatsbyImageData(
-                            formats: [WEBP, AUTO]
-                        )
-                    }
-                }
-            }
-        }
-    }
-`
+// export const query = graphql `
+//     {
+//         allContentfulProductSale {
+//             edges {
+//                 node {
+//                     id
+//                     variant
+//                     name
+//                     slug
+//                     description
+//                     image {
+//                         gatsbyImageData(
+//                             formats: [WEBP, AUTO]
+//                         )
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// `
 
 
 

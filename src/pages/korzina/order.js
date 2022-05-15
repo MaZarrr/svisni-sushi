@@ -218,7 +218,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 Дата: ${state !== "deliveryTime" ? "Сразу" : `${ev.target.date.value} ${ev.target.time.value}`}
 Cум: ${infoSuccess.totalPrice}
 `
-      if(variantPay === "cash" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {
+      if(variantPay === "cash" || variantPay === "bank" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {
         const msg = {action: "calls.send_sms", to: "89040949222", text}
         socketT.send(JSON.stringify(msg))
         axios({
@@ -234,19 +234,19 @@ Cум: ${infoSuccess.totalPrice}
         navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
       }
 
-      if(variantPay === "bank" && navigator.onLine) {
-        const msg = {action: "calls.send_sms", to: "89040949222", text}
-        socketT.send(JSON.stringify(msg))
-        axios({
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          data: infoSuccess,
-          url: process.env.GATSBY_NODE_SERVE
-        })
-            .then(res =>  console.log(res))
-            .catch(err => console.log(err))
-        setOpenPay(true)
-      }
+      // if(variantPay === "bank" && navigator.onLine) {
+      //   const msg = {action: "calls.send_sms", to: "89040949222", text}
+      //   socketT.send(JSON.stringify(msg))
+      //   axios({
+      //     method: 'POST',
+      //     headers: { 'Content-Type': 'application/json' },
+      //     data: infoSuccess,
+      //     url: process.env.GATSBY_NODE_SERVE
+      //   })
+      //       .then(res =>  console.log(res))
+      //       .catch(err => console.log(err))
+      //     setOpenPay(true)
+      // }
 
     }
 
@@ -385,7 +385,7 @@ Cум: ${infoSuccess.totalPrice}
                             <Grid item xs={6}>
                               <Button fullWidth style={{fontSize: 17}} variant={variantPay === "bank" ? "contained" : "outlined"} color="primary"
                                       onClick={onSwitchPay("bank")}>
-                                Оплатить онлайн
+                                Онлайн перевод
                               </Button>
                             </Grid>
                             <Grid item xs={12}>
@@ -698,7 +698,7 @@ Cум: ${infoSuccess.totalPrice}
                                 type="submit"
                                 disabled={buttonDisabled()}
                                 variant="contained">
-                                { variantPay === "cash" ? "Сделать заказ" : "Оплатить заказ"}
+                                { variantPay === "cash" ? "Сделать заказ" : "Сделать заказ"}
                             </Button>
                           </span>
 
@@ -718,8 +718,8 @@ Cум: ${infoSuccess.totalPrice}
                         </Grid>
 
                       </form>
-                      <PayDialog open={openPay} handleClose={() => handleClosePay()} name={nameUser} phone={phoneUser}
-                                 total={delivery === "Самовывоз" ? total : total < stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total}/>
+                      {/* <PayDialog open={openPay} handleClose={() => handleClosePay()} name={nameUser} phone={phoneUser}
+                                 total={delivery === "Самовывоз" ? total : total < stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total}/> */}
 
                       <Snackbar open={openAlert} autoHideDuration={5000} style={{bottom: 90}} onClose={handleCloseAlert}
                                 anchorOrigin={{ vertical, horizontal }}

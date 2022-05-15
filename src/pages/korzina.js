@@ -26,135 +26,133 @@ import HeadSection from "../components/HeadSection";
 
 const EmptyBasket = loadable(() => import('../components/EmptyBasket'))
 
-const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProductKlassika,
-  allContentfulProductSlognyeRolly, allContentfulProductSushi, allContentfulProductHotRolly,
-  allContentfulProductGunkan}, items = [], total = 0, palochkiTotal,
+const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                              onIncrease, onDecrise, onDelete, addedPriborCount, addedSaleRoll,
   addedSalePizza, deletePizzaSale, deleteFilaSale, location: { pathname } }) => {
   const classes = useStyleBasket();
 
-  const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
-  const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
+  // const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
+  // const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
 
-  const pizzaDarom = () => {
-    const cart = items.filter((el) => {
-      return el.priceIn33cm !== undefined
-    });
-    const countPizza = R.compose(
-      R.sum,
-      R.pluck('count')
-    )(cart);
+  // const pizzaDarom = () => {
+  //   const cart = items.filter((el) => {
+  //     return el.priceIn33cm !== undefined
+  //   });
+  //   const countPizza = R.compose(
+  //     R.sum,
+  //     R.pluck('count')
+  //   )(cart);
 
-    const pizza = () => {
-      const {node: pizzaSale} = allContentfulProductPizza.edges.find((el) => el.node.name === 'Ветчина-Грибы-Бекон' )
-      return {
-        id: uniqid(),
-        name: pizzaSale.name,
-        priceDef: 0,
-        image: pizzaSale.image.gatsbyImageData,
-        count: 1,
-        pizzaCountSale: 1,
-        total: 0
-      }
-    };
-    if(countPizza > 2 && pizzaSaleFlag === false ) {
-      return (
-        <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
-          <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
-              <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
-                <GatsbyImage style={{maxWidth: 158, padding: 0, zIndex: 10}}
-                             image={pizza().image} alt={pizza().name}/>
-              </div>
-              <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
-                <Typography variant="h6" style={{fontSize: 14}}>
-                  {pizza().name}
-                </Typography>
-                <div style={{display: `flex`, fontSize: 14, fontWeight: `bold`}}>
-                  <Typography variant="subtitle2">
-                    <b>{pizza().count}шт</b>
-                  </Typography>
-                  <Typography style={{marginLeft: 50}} variant="subtitle2"><b>{pizza().total}₽</b></Typography>
-                </div>
-                <Grid item>
-                  <Typography variant="subtitle1" style={{fontSize: 14, fontWeight: `bold`}}>
-                    Пицца бесплатно!
-                  </Typography>
-                  <Button variant={"contained"} color={"secondary"}
-                          style={{cursor: 'pointer'}}
-                          size={"small"}
-                          disabled={false}
-                          onClick={() => addedSalePizza(pizza())}>
-                    Добавить
-                  </Button>
-                </Grid>
-              </div>
-            </div>
-        </Grid>
+  //   const pizza = () => {
+  //     const {node: pizzaSale} = allContentfulProductPizza.edges.find((el) => el.node.name === 'Ветчина-Грибы-Бекон' )
+  //     return {
+  //       id: uniqid(),
+  //       name: pizzaSale.name,
+  //       priceDef: 0,
+  //       image: pizzaSale.image.gatsbyImageData,
+  //       count: 1,
+  //       pizzaCountSale: 1,
+  //       total: 0
+  //     }
+  //   };
+  //   if(countPizza > 2 && pizzaSaleFlag === false ) {
+  //     return (
+  //       <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+  //         <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
+  //             <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
+  //               <GatsbyImage style={{maxWidth: 158, padding: 0, zIndex: 10}}
+  //                            image={pizza().image} alt={pizza().name}/>
+  //             </div>
+  //             <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
+  //               <Typography variant="h6" style={{fontSize: 14}}>
+  //                 {pizza().name}
+  //               </Typography>
+  //               <div style={{display: `flex`, fontSize: 14, fontWeight: `bold`}}>
+  //                 <Typography variant="subtitle2">
+  //                   <b>{pizza().count}шт</b>
+  //                 </Typography>
+  //                 <Typography style={{marginLeft: 50}} variant="subtitle2"><b>{pizza().total}₽</b></Typography>
+  //               </div>
+  //               <Grid item>
+  //                 <Typography variant="subtitle1" style={{fontSize: 14, fontWeight: `bold`}}>
+  //                   Пицца бесплатно!
+  //                 </Typography>
+  //                 <Button variant={"contained"} color={"secondary"}
+  //                         style={{cursor: 'pointer'}}
+  //                         size={"small"}
+  //                         disabled={false}
+  //                         onClick={() => addedSalePizza(pizza())}>
+  //                   Добавить
+  //                 </Button>
+  //               </Grid>
+  //             </div>
+  //           </div>
+  //       </Grid>
 
-      )
-    } else if(countPizza < 3 && pizzaSaleFlag === true) {
-      deletePizzaSale(pizza().id)
-    }
-  }
-  const test = () => {
-    const cart = items.filter((el) => {
-      return allContentfulProductHotRolly.edges.concat(allContentfulProductSlognyeRolly.edges, allContentfulProductKlassika.edges, allContentfulProductGunkan.edges, allContentfulProductSushi.edges).find((data) => data.node.id === el.id)
-    })
+  //     )
+  //   } else if(countPizza < 3 && pizzaSaleFlag === true) {
+  //     deletePizzaSale(pizza().id)
+  //   }
+  // }
+  // const test = () => {
+  //   const cart = items.filter((el) => {
+  //     return allContentfulProductHotRolly.edges.concat(allContentfulProductSlognyeRolly.edges, allContentfulProductKlassika.edges, allContentfulProductGunkan.edges, allContentfulProductSushi.edges).find((data) => data.node.id === el.id)
+  //   })
 
-    const res = cart.findIndex((data) => data.name === "Филадельфия one")
-    if(res >= 0) {
-      const price = R.remove(res, 1, cart)
-      return R.compose(
-        R.sum,
-        R.pluck('total')
-      )(price)
-    }
-    return R.compose(
-      R.sum,
-      R.pluck('total')
-    )(cart)
-  }
-  const saleRollFunc = () => {
-    const {node} = allContentfulProductSlognyeRolly.edges.find((el) => el.node.name === 'Филадельфия one' )
-    const saleRoll = {
-      id: uniqid(),
-      name: node.name,
-      price: 79,
-      total: 79,
-      image: node.image.gatsbyImageData,
-      count: 1
-    }
+  //   const res = cart.findIndex((data) => data.name === "Филадельфия one")
+  //   if(res >= 0) {
+  //     const price = R.remove(res, 1, cart)
+  //     return R.compose(
+  //       R.sum,
+  //       R.pluck('total')
+  //     )(price)
+  //   }
+  //   return R.compose(
+  //     R.sum,
+  //     R.pluck('total')
+  //   )(cart)
+  // }
+  // const saleRollFunc = () => {
+  //   const {node} = allContentfulProductSlognyeRolly.edges.find((el) => el.node.name === 'Филадельфия one' )
+  //   const saleRoll = {
+  //     id: uniqid(),
+  //     name: node.name,
+  //     price: 79,
+  //     total: 79,
+  //     image: node.image.gatsbyImageData,
+  //     count: 1
+  //   }
 
-    if(test() > 789 && !disabled()) {
-      return (
-        <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
-            <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
-              <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
-                <GatsbyImage style={{maxWidth: 158}} image={saleRoll.image} alt={saleRoll.name}/>
-              </div>
-              <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
-                <Typography variant="subtitle1" style={{fontSize: 16}}>
-                  Акция
-                </Typography>
-                <Typography variant="subtitle1">
-                  {saleRoll.name} за 79₽
-                </Typography>
+  //   if(test() > 789 && !disabled()) {
+  //     return (
+  //       <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+  //           <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
+  //             <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
+  //               <GatsbyImage style={{maxWidth: 158}} image={saleRoll.image} alt={saleRoll.name}/>
+  //             </div>
+  //             <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
+  //               <Typography variant="subtitle1" style={{fontSize: 16}}>
+  //                 Акция
+  //               </Typography>
+  //               <Typography variant="subtitle1">
+  //                 {saleRoll.name} за 79₽
+  //               </Typography>
 
-                <Button variant={"contained"} color={"secondary"}
-                        size={"small"}
-                        disabled={false}
-                        onClick={() => addedSaleRoll(saleRoll)}>
-                  Добавить
-                </Button>
-              </div>
-            </div>
-        </Grid>
+  //               <Button variant={"contained"} color={"secondary"}
+  //                       size={"small"}
+  //                       disabled={false}
+  //                       onClick={() => addedSaleRoll(saleRoll)}>
+  //                 Добавить
+  //               </Button>
+  //             </div>
+  //           </div>
+  //       </Grid>
 
-      )
-    } else if (test() < 790 && disabled()) {
-      deleteFilaSale(node.id)
-    }
-  };
+  //     )
+  //   } else if (test() < 790 && disabled()) {
+  //     deleteFilaSale(node.id)
+  //   }
+  // };
 
   const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items));
   return <>
@@ -242,7 +240,7 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                                         display: 'none',
                                       }
                                     }}
-                                    onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
+                                    // onClick={pizzaSaleFlag ? () => deletePizzaSale(id) : null }
                                     size="large">
                                     <DeleteOutlineOutlinedIcon/>
                                   </IconButton>
@@ -283,8 +281,8 @@ const ShoppingCartTable = ({ data: {allContentfulProductPizza, allContentfulProd
                         </div>
                       </Grid>
                     );})}
-                  {saleRollFunc()}
-                  {pizzaDarom()}
+                  {/* {saleRollFunc()}
+                  {pizzaDarom()} */}
 
                   <Hidden smUp>
                     { addPanelPribors  &&
@@ -417,85 +415,85 @@ const mapDispatchToProps = {
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
 
-export const query = graphql `
-    {
-      allContentfulProductPizza  {
-      edges {
-        node {
-            id
-            contentful_id
-            name
-            slug
-            price
-            priceIn33cm
-            image {
-                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-          }
-        }
-      }
-allContentfulProductKlassika {
-  edges {
-    node {
-      id
-      name
-      price
-      image {
-            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-    }
-  }
-}
-  allContentfulProductSlognyeRolly {
-    edges {
-      node {
-        id
-        name
-        price
-        image {
-             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-      }
-    }
-  }
-       allContentfulProductSushi {
-         edges {
-           node {
-             id
-             name
-             price
-             image {
-             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-           }
-         }
-       }
-           allContentfulProductHotRolly {
-             edges {
-               node {
-                 id
-                 name
-                 price
-                 image {
-               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-                }
-               }
-             }
-           }
-          allContentfulProductGunkan {
-            edges {
-              node {
-                id
-                name
-                price
-                image {
-               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-              }
-            }
-          }
-        }
-    `
+// export const query = graphql `
+//     {
+//       allContentfulProductPizza  {
+//       edges {
+//         node {
+//             id
+//             contentful_id
+//             name
+//             slug
+//             price
+//             priceIn33cm
+//             image {
+//                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//           }
+//         }
+//       }
+// allContentfulProductKlassika {
+//   edges {
+//     node {
+//       id
+//       name
+//       price
+//       image {
+//             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//     }
+//   }
+// }
+//   allContentfulProductSlognyeRolly {
+//     edges {
+//       node {
+//         id
+//         name
+//         price
+//         image {
+//              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//       }
+//     }
+//   }
+//        allContentfulProductSushi {
+//          edges {
+//            node {
+//              id
+//              name
+//              price
+//              image {
+//              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//            }
+//          }
+//        }
+//            allContentfulProductHotRolly {
+//              edges {
+//                node {
+//                  id
+//                  name
+//                  price
+//                  image {
+//                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//                 }
+//                }
+//              }
+//            }
+//           allContentfulProductGunkan {
+//             edges {
+//               node {
+//                 id
+//                 name
+//                 price
+//                 image {
+//                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//               }
+//             }
+//           }
+//         }
+//     `
 
 const useStyleBasket  = makeStyles(theme => ({
   root: {

@@ -214,24 +214,24 @@ const Vacancy = ({ data: { allContentfulInfoModel: { edges: allMd } }}) => {
 
 export default Vacancy
 
-export const query = graphql `
-  {
-    allContentfulInfoModel {
-        edges {
-            node {
-                childContentfulInfoModelJobSvisniTextNode {
-                    childMarkdownRemark {
-                        id
-                        html
-                        frontmatter {
-                            vacancy
-                            experience
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-`
+// export const query = graphql `
+//   {
+//     allContentfulInfoModel {
+//         edges {
+//             node {
+//                 childContentfulInfoModelJobSvisniTextNode {
+//                     childMarkdownRemark {
+//                         id
+//                         html
+//                         frontmatter {
+//                             vacancy
+//                             experience
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+// `
 

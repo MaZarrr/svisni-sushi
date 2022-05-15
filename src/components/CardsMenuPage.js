@@ -44,7 +44,7 @@ const CardsMenuPage = memo(({
                       item xs={12} sm={6} md={4} lg={3} key={id}>
                     <CardStyle>
                         <CardHeader
-                            avatar={slugCategogy !== "/wok" ? <GatsbyImage image={image.gatsbyImageData} style={{width: 40}} alt={name} /> : ''}
+                            // avatar={slugCategogy !== "/wok" ? <GatsbyImage image={image.gatsbyImageData} style={{width: 40}} alt={name} /> : ''}
                             title={variant ? variant : titleCategory}
                             subheader={<span itemProp="name">
                                 <Typography variant={"subtitle1"}>{name}</Typography></span>}/>

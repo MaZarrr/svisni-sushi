@@ -6,23 +6,21 @@ import { Hidden, Typography } from "@mui/material";
 
 import Carousel from '../components/common/CarouselSvisni';
 import MenuCategory from "../components/indexContent/MenuCategory";
-import Combo from '../components/indexContent/combo/index'
-import RecommendedProducts from "../components/indexContent/recommended-products";
+// import Combo from '../components/indexContent/combo/index'
+// import RecommendedProducts from "../components/indexContent/recommended-products";
 import SpinnerNew from "../components/spinner/spinner-new";
 import Seo from "../components/seo";
-
-const IndexPage = ({ 
-  data: { allContentfulContentIndex: { edges }, 
-  allContentfulCarouselSiteImage } }) => {
+// капрусель
+const IndexPage = () => {
 
         const [loadingSpinner, setLoading] = useState(true)
         const [indexProduct, setIndexProduct] = useState(true)
         const classes = useStyleIndexPage();
 
-        useEffect(() => {
-            setIndexProduct(edges)
-            setLoading(false)
-        }, [edges])
+        // useEffect(() => {
+        //     setIndexProduct(edges)
+        //     setLoading(false)
+        // }, [edges])
 
         return (
           <section>
@@ -35,7 +33,7 @@ const IndexPage = ({
             style={{textAlign: 'center'}}>Доставка роллов и пиццы
                 <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Уразово и Валуйки</span></Typography>
             </Hidden>
-            <Carousel dataCarousel={allContentfulCarouselSiteImage}/>
+            {/* <Carousel dataCarousel={allContentfulCarouselSiteImage}/> */}
 
               <Grid container className={classes.root}>
 
@@ -53,9 +51,9 @@ const IndexPage = ({
                 </Hidden>
                 { !loadingSpinner ? <>
                 {/* Комбо */}
-                <Combo product={indexProduct[0]}/>
+                {/* <Combo product={indexProduct[0]}/> */}
                 {/* Новинки/рекомендованые */}
-                <RecommendedProducts product={indexProduct[1]} />
+                {/* <RecommendedProducts product={indexProduct[1]} /> */}
                 </> : <SpinnerNew /> }
               </Grid>
           </section>
@@ -86,118 +84,118 @@ const useStyleIndexPage = makeStyles(theme => ({
     }
 }));
 
-export const query = graphql `
-{  
-    allContentfulContentIndex {
-        edges {
-        node {
-          combos {
-          id
-          description
-          name
-          __typename
-          price
-          slug
-          image {
-            gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-          }
-        }
-        new {
-          __typename
-          ... on Node {
-            ... on ContentfulProduct {
-              id
-              name
-              price
-              slug
-              description
-              image {
-               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-              }
-            }
-            ... on ContentfulProductPizza {
-              id
-              name
-              __typename
-              price
-              priceIn33cm
-              slug
-              description
-              image {
-                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-              }
-            }
-            ... on ContentfulProductSlognyeRolly {
-              id
-              name
-              description
-              __typename
-              price
-              image {
-               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-              }
-            }
-            ... on ContentfulProductHotRolly {
-              id
-              name
-              __typename
-              description
-              price
-              image {
-                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-              }
-            }
-            ... on ContentfulProductKombo {
-              id
-              name
-              __typename
-              count
-              description
-              price
-              image {
-                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-              }
-            }
-          ... on ContentfulProductSalat {
-            id
-            name
-            __typename
-            price
-            description
-            weight
-            __typename
-            image {
-                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-          }
-          ... on ContentfulProductZakuski {
-            id
-            name
-            __typename
-            price
-            description
-            weight
-            __typename
-            image {
-                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-          }
-        }
-      }
-    }
-  }
-}
-allContentfulCarouselSiteImage {
-    edges {
-        node {
-            id
-            slug
-            nameAkcii
-            imgCarouselPc {
-              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-            }
-        }
-      }
-    }
-}
-`
+// export const query = graphql `
+// {  
+//     allContentfulContentIndex {
+//         edges {
+//         node {
+//           combos {
+//           id
+//           description
+//           name
+//           __typename
+//           price
+//           slug
+//           image {
+//             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//           }
+//         }
+//         new {
+//           __typename
+//           ... on Node {
+//             ... on ContentfulProduct {
+//               id
+//               name
+//               price
+//               slug
+//               description
+//               image {
+//                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//               }
+//             }
+//             ... on ContentfulProductPizza {
+//               id
+//               name
+//               __typename
+//               price
+//               priceIn33cm
+//               slug
+//               description
+//               image {
+//                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//               }
+//             }
+//             ... on ContentfulProductSlognyeRolly {
+//               id
+//               name
+//               description
+//               __typename
+//               price
+//               image {
+//                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//               }
+//             }
+//             ... on ContentfulProductHotRolly {
+//               id
+//               name
+//               __typename
+//               description
+//               price
+//               image {
+//                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//               }
+//             }
+//             ... on ContentfulProductKombo {
+//               id
+//               name
+//               __typename
+//               count
+//               description
+//               price
+//               image {
+//                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//               }
+//             }
+//           ... on ContentfulProductSalat {
+//             id
+//             name
+//             __typename
+//             price
+//             description
+//             weight
+//             __typename
+//             image {
+//                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//           }
+//           ... on ContentfulProductZakuski {
+//             id
+//             name
+//             __typename
+//             price
+//             description
+//             weight
+//             __typename
+//             image {
+//                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// allContentfulCarouselSiteImage {
+//     edges {
+//         node {
+//             id
+//             slug
+//             nameAkcii
+//             imgCarouselPc {
+//               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+//             }
+//         }
+//       }
+//     }
+// }
+// `
