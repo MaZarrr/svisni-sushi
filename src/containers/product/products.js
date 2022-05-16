@@ -45,8 +45,7 @@ const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: {
     const priceIsSale = useMemo(() => isSale, [isSale]);
 
 
-    console.log("pageData__", pageData);
-    console.log("location___", location);
+
 
 useEffect(() => {
     dispatch(productLoaded(transformData));
@@ -55,7 +54,6 @@ useEffect(() => {
     dispatch(defFilters());
     setLoad(false)
 }, [dispatch, doStart, priceIsSale]);
-    
     return (
         <>
         <Seo title={pageData.field_seo_title} 
@@ -66,12 +64,14 @@ useEffect(() => {
         // categoryNames={categoryNames}
         />
         <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
-            { visibleItems && visibleItems.length > 0 ?
-            <CardsMenuPage titleCategory="Набор" slugCategogy={`/${pageData.field_slug}`} visibleItems={visibleItems}
-                            // image={pageData.relationships.field_avatar.localFile.childImageSharp}
-                            product={product} timePrice={{ hours, minutes, seconds }}
-                            isSale={priceIsSale} />
-            :   <h3 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Сайт на обслуживании!</h3> }
+            { visibleItems && visibleItems.length > 0 ? <>
+                <CardsMenuPage titleCategory="Набор" slugCategogy={`/${pageData.field_slug}`} visibleItems={visibleItems}
+                                // image={pageData.relationships.field_avatar.localFile.childImageSharp}
+                                product={product} timePrice={{ hours, minutes, seconds }}
+                                isSale={priceIsSale} />
+                <h3 style={{display: 'flex', flexDirection: 'column',  alignItems: 'center', justifyContent: 'center', marginBottom: '180px'}}>Обновление меню...</h3>
+            </>
+            :   <h3 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Обновление меню {pageData.field_title}...!</h3> }
         </Grid>
         </>
     )

@@ -92,10 +92,10 @@ const CardsMenuPage = memo(({
                             }
                             {!edit &&
                             <GatsbyImage 
-                            image={gatsbyImageData} 
-                            itemProp="image" 
-                            alt={name} 
-                            style={{maxWidth: `100%`}} />
+                                image={gatsbyImageData} 
+                                itemProp="image" 
+                                alt={name} 
+                                style={{maxWidth: `100%`}} />
                             }
                         </CardMedia>
                         }
@@ -215,7 +215,7 @@ const CardsMenuPage = memo(({
                                     </Grid>
                                     <Grid item xs={6}>
                                         {/*Показывать корзину для всех путей*/}
-                                        { slugCategogy !== "/kombo" && !komboSale &&
+                                        {/* { slugCategogy !== "/kombo" && !komboSale && */}
                                         <Button
                                             variant="contained"
                                             className={classes.button}
@@ -223,7 +223,7 @@ const CardsMenuPage = memo(({
                                             onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
                                             <ShoppingCartIcon/>
                                         </Button>
-                                        }
+                                        {/* } */}
 
                                         {/*Показывать кнопку редактирования комбо*/}
                                         { edit === true ?

@@ -83,11 +83,11 @@ const barsLinks = [
         name: "Классические роллы",
         slug: "small-rolls",
     },
-    {
-        key: 7,
-        name: "Вок",
-        slug: "wok",
-    },
+    // {
+    //     key: 7,
+    //     name: "Вок",
+    //     slug: "wok",
+    // },
     {
         key: 8,
         name: "Суши",

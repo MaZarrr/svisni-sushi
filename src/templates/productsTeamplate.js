@@ -9,7 +9,6 @@ import ProductList from '../containers/product/products';
 
 const ProductsTeamplate = (props) => {
     const { data } = props
-    console.log("props___123", props);
 
  return  (
      <>

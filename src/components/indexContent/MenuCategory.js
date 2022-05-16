@@ -108,7 +108,7 @@ const MenuCategory = () => {
           </Link>
         </IconButton>
       </Grid>
-
+{/* 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
         <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/wok/">
@@ -124,7 +124,7 @@ const MenuCategory = () => {
             </div>
           </Link>
         </IconButton>
-      </Grid>
+      </Grid> */}
 
       <Grid item xs={6} sm={4} className={classes.itemMenu}>
         <IconButton style={{ padding: `10px 0 10px 0` }} size="large">

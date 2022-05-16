@@ -43,24 +43,24 @@ export const wrapRootElement = ({ element }) => {
 // };
 
 
-export const shouldUpdateScroll = ({
-  routerProps: { location },
-  getSavedScrollPosition
-}) => {
-  setTimeout(() => {
-    const currentPosition = getSavedScrollPosition(location)
-    // const currentPosition = getSavedScrollPosition(location, location.state.key)
-    const queriedPosition = getSavedScrollPosition({ pathname: `/sety` })
-    console.log("getSavedScrollPosition", getSavedScrollPosition);
-    console.log("currentPosition", currentPosition);
-    console.log("queriedPosition ", queriedPosition);
-    console.log("location ", location);
-    window.scrollTo(...(currentPosition || [0, 0]))
-    // anchorScroll(location)
-    return false
-  }, 0)
+// export const shouldUpdateScroll = ({
+//   routerProps: { location },
+//   getSavedScrollPosition
+// }) => {
+//   setTimeout(() => {
+//     const currentPosition = getSavedScrollPosition(location)
+//     // const currentPosition = getSavedScrollPosition(location, location.state.key)
+//     const queriedPosition = getSavedScrollPosition({ pathname: `/sety` })
+//     console.log("getSavedScrollPosition", getSavedScrollPosition);
+//     console.log("currentPosition", currentPosition);
+//     console.log("queriedPosition ", queriedPosition);
+//     console.log("location ", location);
+//     window.scrollTo(...(currentPosition || [0, 0]))
+//     // anchorScroll(location)
+//     return false
+//   }, 0)
 
-}
+// }
 
 
 export const onServiceWorkerUpdateReady = () => {
