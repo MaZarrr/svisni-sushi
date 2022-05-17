@@ -54,6 +54,7 @@ export const query = graphql `
         field_price_product
         field_private
         field_slug
+        field_slug_item
         field_variant
         id
         field_weight

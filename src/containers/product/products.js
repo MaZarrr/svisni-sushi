@@ -26,7 +26,7 @@ const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: {
                 ...node,
                 name: node.field_name,
                 price: node.field_price_product,
-                slug: node.field_slug,
+                slug: node.field_slug_item,
                 variant: node.field_variant,
                 private: node.field_private,
                 weight: node.field_weight,
@@ -37,15 +37,11 @@ const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: {
                 lanch: node.field_is_lanchtime,
                 image: node.relationships.field_image_product.localFile.childImageSharp
             }
-
         }
     }) 
 
     const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
     const priceIsSale = useMemo(() => isSale, [isSale]);
-
-
-
 
 useEffect(() => {
     dispatch(productLoaded(transformData));
@@ -65,9 +61,11 @@ useEffect(() => {
         />
         <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
             { visibleItems && visibleItems.length > 0 ? <>
-                <CardsMenuPage titleCategory="Набор" slugCategogy={`/${pageData.field_slug}`} visibleItems={visibleItems}
+                    <CardsMenuPage titleCategory="" 
+                                slugCategogy={`/${pageData.field_slug}`} visibleItems={visibleItems}
                                 // image={pageData.relationships.field_avatar.localFile.childImageSharp}
-                                product={product} timePrice={{ hours, minutes, seconds }}
+                                product={product} 
+                                timePrice={{ hours, minutes, seconds }}
                                 isSale={priceIsSale} />
                 <h3 style={{display: 'flex', flexDirection: 'column',  alignItems: 'center', justifyContent: 'center', marginBottom: '180px'}}>Обновление меню...</h3>
             </>

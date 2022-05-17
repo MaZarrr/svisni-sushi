@@ -54,7 +54,7 @@ const CardsMenuPage = memo(({
                             title={name}>
 
                             {!komboSale &&
-                                <Link to={`${slugCategogy}/${slug}`}>
+                                <Link to={slug ? `${slugCategogy}/${slug}` : `${slugCategogy}/`}>
                                     <GatsbyImage 
                                     image={gatsbyImageData} 
                                     itemProp="image" 

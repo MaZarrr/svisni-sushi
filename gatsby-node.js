@@ -21,7 +21,7 @@ const fs = require('fs');
 exports.createPages = async ({ graphql, actions, page }) => {
   const { createPage } = actions;
   const productTeamplate = path.resolve('./src/templates/productsTeamplate.js')
-
+  const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
 //  sales platform - возможное апи для отображение статики
 //   const result = await graphql(`
 //     {
@@ -44,20 +44,14 @@ const result = await graphql(`
   allNodeStranicy {
     edges {
       node {
-        id
-        field_title
         field_slug
-        field_seo_title
-        field_seo_descrittion
-        relationships {
-          field_avatar {
-            localFile {
-              childImageSharp {
-                id
-              }
-            }
-          }
-        }
+      }
+    }
+  }
+  allNodeBlyudaMenyu {
+    edges {
+      node {
+        field_slug_item
       }
     }
   }
@@ -77,13 +71,22 @@ const result = await graphql(`
         path: `/${node.field_slug}`,
       component: productTeamplate,
       context: {
-        
         slug: node.field_slug
       }
     })
   });
 
 
+  result.data.allNodeBlyudaMenyu.edges.forEach(({ node }) => {
+    // result.data.svisnisushi.getPages.pages.forEach(({ slug }) => {
+      createPage({
+        path: `/sety/${node.field_slug_item}`,
+        component: setyTemplate,
+        context: {
+          slug: node.field_slug_item
+        }
+      })
+  })
 }
 
 
@@ -174,13 +177,13 @@ const result = await graphql(`
 //     `).then((data) => {
 //     const productssets = data.data.allContentfulProduct.edges;
 //     productssets.forEach(({ node: product }) => {
-//       createPage({
-//         path: `/sety/${product.slug}`,
-//         component: setyTemplate,
-//         context: {
-//           slug: product.slug
-//         }
-//       })
+      // createPage({
+      //   path: `/sety/${product.slug}`,
+      //   component: setyTemplate,
+      //   context: {
+      //     slug: product.slug
+      //   }
+      // })
 //     })
 
 //     const productssale = data.data.allContentfulProductSale.edges;

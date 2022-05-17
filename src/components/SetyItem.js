@@ -67,7 +67,7 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
                   <div style={{padding: 3, borderRadius: 5, width: `95%`}}>
                       <Typography variant={"h3"}>Состав:</Typography>
                   </div>
-              <ContainerContentProducts>
+              {/* <ContainerContentProducts>
               { kitProduct.map(({node: product}) => (
                   <Grid container key={product.id}
                         sx={{ margin: `5px 0`, padding: `2px 0 2px 0`, border: `1px solid lightgrey`, width: `95%`}}
@@ -88,7 +88,7 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
                   </Grid>
                   </Grid>
           ))}
-          </ContainerContentProducts>
+          </ContainerContentProducts> */}
 
           <CheckoutContainer>
                   <div style={{width: `95%`, borderRadius: 3}}>
