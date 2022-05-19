@@ -52,6 +52,7 @@ export const query = graphql `
         field_price_lanch_time
         field_price_not_sale
         field_price_product
+        field_is_wok
         field_private
         field_slug
         field_slug_item

@@ -1,11 +1,11 @@
  const filterProducts = (product, searchText, priceFilter, checkboxFilter) => {
-
+  // console.log("filterProducts____", product);
     const search = (items, txt) => {
         if(txt === undefined) {
           return items
         }
         return items.filter((node) => {
-            return node.field_name.toLowerCase().indexOf(txt.toLowerCase()) > -1
+            return node.name.toLowerCase().indexOf(txt.toLowerCase()) > -1
         })
       };
 

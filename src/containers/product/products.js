@@ -23,7 +23,7 @@ const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: {
     const transformData = edges.map(({ node }) => {
         return {
             node: {
-                ...node,
+                id: node.id,
                 name: node.field_name,
                 price: node.field_price_product,
                 slug: node.field_slug_item,
@@ -32,6 +32,7 @@ const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: {
                 weight: node.field_weight,
                 count: node.field_count,
                 description: node.field_description_product,
+                wok: node.field_is_wok,
                 nonprice: node.field_price_not_sale,
                 lanchprice: node.field_price_lanch_time, 
                 lanch: node.field_is_lanchtime,
@@ -40,12 +41,13 @@ const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: {
         }
     }) 
 
-    const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
+    // const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
+    const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter);
     const priceIsSale = useMemo(() => isSale, [isSale]);
 
 useEffect(() => {
     dispatch(productLoaded(transformData));
-    doStart({endTime: 15, startTime: 10, startDayNumber: 1, firstDayNumber: 5});
+    // doStart({endTime: 15, startTime: 10, startDayNumber: 1, firstDayNumber: 5});
     dispatch(checkSaleLanch(priceIsSale));
     dispatch(defFilters());
     setLoad(false)
@@ -67,9 +69,9 @@ useEffect(() => {
                                 product={product} 
                                 timePrice={{ hours, minutes, seconds }}
                                 isSale={priceIsSale} />
-                <h3 style={{display: 'flex', flexDirection: 'column',  alignItems: 'center', justifyContent: 'center', marginBottom: '180px'}}>Обновление меню...</h3>
+                <h4 style={{display: 'flex', flexDirection: 'column',  alignItems: 'center', justifyContent: 'center', marginBottom: '180px'}}>Обновление меню...</h4>
             </>
-            :   <h3 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Обновление меню {pageData.field_title}...!</h3> }
+            :   <h4 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Обновление меню {pageData.field_title}...!</h4> }
         </Grid>
         </>
     )

@@ -22,14 +22,14 @@ const CardsMenuPage = memo(({
     titleCategory, 
     slugCategogy, 
     visibleItems, 
-    image, 
+    // image,
     product, 
     dispatch, 
     timePrice, 
     isSale }) => {
 
     const classes = useStylesCart();
-
+    // console.log("visibleItems____", visibleItems);
     return <>
         { visibleItems.map((products) => {
             const { 
@@ -111,7 +111,7 @@ const CardsMenuPage = memo(({
                                     itemProp="image"
                                     alt={name}
                                     style={{maxWidth: `100%`, margin: 0}} />
-                                {slugCategogy === "/wok" &&
+                                {/* {slugCategogy === "/wok" &&
                                 <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
                                     <GatsbyImage
                                         image={image.gatsbyImageData}
@@ -122,7 +122,7 @@ const CardsMenuPage = memo(({
                                             Доставим в коробке</Typography>
                                     </div>
                                 </div>
-                                }
+                                } */}
                             </div>
                         </CardMedia>
                         }

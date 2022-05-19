@@ -96,6 +96,7 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
     // добавление вока // setу.private - это sety.wok только в CMS в каждом товаре.
     // нужно для def вока. Проверка, действительно добавлен вок или нет
     if (setу.private === false || setу.wok === true) {
+        // console.log("if (setу.wok)", sety);
         const wok = R.isNil(setу.wok) ? true : setу.wok;
         const descriptionWok = R.isNil(setу.descriptionWok) ? "Удон" : setу.descriptionWok;
         return {

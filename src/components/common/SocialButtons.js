@@ -30,13 +30,13 @@ export const SocialButtons = () => {
     
     return (
         <div className={classes.socialContent}>
-        <IconButton size="large">
+        {/* <IconButton size="large">
             <a href="https://www.instagram.com/svisni_sushi/" aria-label="instagramm">
                 <img 
                 className={classes.imageStyle}
                 src={insta} alt="Инстаграм"></img>
             </a>
-        </IconButton>
+        </IconButton> */}
         <IconButton size="large"> 
             <a href="https://vk.com/sushi_urazovo" aria-label="vkontakte">
                 <img 
