@@ -15,21 +15,24 @@ const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges } }}) => {
 
         const [loadingSpinner, setLoading] = useState(true)
         const [indexProduct, setIndexProduct] = useState(true)
+        const [optionsPage, setOptionsPage] = useState({})
         const classes = useStyleIndexPage();
-        const transformData = edges[0].node.relationships.field_recommended_product.map(( item ) => {
-          return {
-            id: item.id,
-            name: item.field_name,
-            price: item.field_price_product,
-            slug: item.field_slug,
-            slugItem: item.field_slug_item,
-            description: item.field_description_product,
-            image: item.relationships.field_image_product.localFile.childrenImageSharp
-          }
-        })
-        
+
         useEffect(() => {
+          const transformData = edges[0].node.relationships.field_recommended_product.map(( item ) => {
+            return {
+              id: item.id,
+              name: item.field_name,
+              price: item.field_price_product,
+              slug: item.field_slug,
+              slugItem: item.field_slug_item,
+              description: item.field_description_product,
+              image: item.relationships.field_image_product.localFile.childrenImageSharp
+            }
+          })
+            
             setIndexProduct(transformData)
+            setOptionsPage({title: edges[0].node.title})
             setLoading(false)
         }, [edges])
 
@@ -64,7 +67,7 @@ const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges } }}) => {
                 {/* Комбо */}
                 {/* <Combo product={indexProduct[0]}/> */}
                 {/* Новинки/рекомендованые */}
-                <RecommendedProducts title={edges[0].node.title} product={indexProduct} />
+                <RecommendedProducts optionsPage={optionsPage} product={indexProduct} />
                 </> : <SpinnerNew /> }
               </Grid>
           </section>

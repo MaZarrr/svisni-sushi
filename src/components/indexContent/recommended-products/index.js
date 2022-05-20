@@ -5,13 +5,13 @@ import Hidden from "@mui/material/Hidden";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 
-const RecommendedProducts = ({ title, product }) => {
+const RecommendedProducts = ({ optionsPage, product }) => {
 
   return <>
    <Typography sx={{
      marginLeft: '25px', 
      margin: '20px 0 20px 50px'
-     }} variant={'h2'}>{title}</Typography>
+     }} variant={'h2'}>{optionsPage.title}</Typography>
     <Hidden smUp>
       <SelectionContentMobile product={product} />
     </Hidden>
