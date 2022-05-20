@@ -174,7 +174,7 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                   { items.map((item, idx) => {
                     const { id, name, count, total, image, priceIn33cm, price, priceDef,
                       textRollSale, textPizza, pizzaSale, description, edit = null, size,
-                      wok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
+                      isWok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
                       descriptionIngrideents = ""} = item
                     return (
                       <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
@@ -270,7 +270,7 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                               <Typography style={{fontSize: 12, marginLeft: 8}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
                             </>
                             }
-                            {wok &&
+                            {isWok &&
                               <Typography style={{fontSize: 13}} variant={"subtitle2"}><b>Лапша:</b> {descriptionWok}</Typography>
                             }
                             {edit !== null &&

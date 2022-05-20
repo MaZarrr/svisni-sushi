@@ -1,4 +1,3 @@
-import { isNil } from "ramda";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -37,7 +36,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
   return (
   <SwipeableViews className={classes.cardCombo} slideStyle={styles.slideContainer}>
     {
-    isNil(product.node.new) ? "" : product.node.new.map((homeProduct) => (
+    product.map((homeProduct) => (
       <Card key={homeProduct.id}
       sx={{
         maxWidth: '200px',
@@ -47,7 +46,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
         <CardMedia
           title={homeProduct.name}>
           <GatsbyImage
-            image={homeProduct.image.gatsbyImageData}
+            image={homeProduct.image[0].gatsbyImageData}
             style={styles.img}
             alt={homeProduct.name} />
         </CardMedia>
@@ -56,7 +55,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
           <Typography variant={"subtitle2"} sx={{fontSize: '12px', position: `absolute`, width: `65%`, lineHeight: '15px'}}>{homeProduct.description}</Typography>
         </CardContent>
         <CardActions disableSpacing>
-          {homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
+          {homeProduct.slug === "sety" || homeProduct.slug === "pizza" ?
             <Button
               variant="contained"
               sx={{
@@ -67,7 +66,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
               }}
               component={Link}
               size={"small"}
-              to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
+              to={homeProduct.slug === "sety" ? `/sety/${homeProduct.slugItem}` : homeProduct.slug === "pizza" ? "/pizza/" : null}>
               Посмотреть
             </Button> : <Button
               variant="contained"
@@ -79,7 +78,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
               }}
               onClick={() => addedCart({
                 id: homeProduct.id,
-                productPrice: null, product: product.node.new
+                productPrice: null, product
               })}>
               <ShoppingCartIcon />
             </Button>

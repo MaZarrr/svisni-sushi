@@ -95,15 +95,15 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
 
     // добавление вока // setу.private - это sety.wok только в CMS в каждом товаре.
     // нужно для def вока. Проверка, действительно добавлен вок или нет
-    if (setу.private === false || setу.wok === true) {
+    if (setу.private === false || setу.isWok === true) {
         // console.log("if (setу.wok)", sety);
-        const wok = R.isNil(setу.wok) ? true : setу.wok;
+        const isWok = R.isNil(setу.wok) ? true : setу.wok;
         const descriptionWok = R.isNil(setу.descriptionWok) ? "Удон" : setу.descriptionWok;
         return {
             id,
             name,
             pribor,
-            wok,
+            isWok,
             descriptionWok,
             priceDef: pricePizza,
             price: priceRadio,
@@ -641,7 +641,7 @@ export default createReducer({
         const newProductsWok = R.update(wokIndex, {
             ...wok,
             descriptionWok: variant,
-            wok: true
+            // isWok: true
         })(productWok)
         return {
             ...state,

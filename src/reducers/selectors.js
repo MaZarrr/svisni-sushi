@@ -1,3 +1,4 @@
+import { defaultTo } from 'ramda';
 import { createSelector } from 'reselect'
 
 const loadingStatus = (state) => state.app.loading;
@@ -5,15 +6,15 @@ const categories = (state) => state.filters.category;
 const product = (state, isPizzas) => !isPizzas ? 
     state.app.product : state.shoppingCart.newPizza === null ? 
     state.app.productPizza : state.shoppingCart.newPizza;
-
+const productWok = (state) => state.shoppingCart.newWok;
 const isSaleLanch = (state) => state.filters.isSale;
 
 export const productList = createSelector(
     categories,
     product,
+    productWok,
     isSaleLanch,
-    (category, product, isLanch) => {
-
+    (category, product, productWok, isLanch) => {
         if(category){
             return product.filter(({filter = category}) => {
                 return filter.toLowerCase().split(", ").includes(category.toLowerCase())})
@@ -33,8 +34,14 @@ export const productList = createSelector(
     
             return updateItemsProduct
         }
-
-    return product
+    const productCheckType = product.some((item) => item.isWok === true);
+    if(productCheckType) {
+        return defaultTo(product, productWok)
+    } else {
+        return product.map((item) => {
+            return { ...item, isWok: false, wok: false }
+        })
+    }
 });
 //
 

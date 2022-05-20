@@ -4,23 +4,34 @@ import makeStyles from '@mui/styles/makeStyles';
 import { graphql } from "gatsby";
 import { Hidden, Typography } from "@mui/material";
 
-import Carousel from '../components/common/CarouselSvisni';
-import MenuCategory from "../components/indexContent/MenuCategory";
+// import Carousel from '../components/common/CarouselSvisni';
 // import Combo from '../components/indexContent/combo/index'
-// import RecommendedProducts from "../components/indexContent/recommended-products";
+import MenuCategory from "../components/indexContent/MenuCategory";
+import RecommendedProducts from "../components/indexContent/recommended-products";
 import SpinnerNew from "../components/spinner/spinner-new";
 import Seo from "../components/seo";
 // капрусель
-const IndexPage = () => {
+const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges } }}) => {
 
         const [loadingSpinner, setLoading] = useState(true)
         const [indexProduct, setIndexProduct] = useState(true)
         const classes = useStyleIndexPage();
-
-        // useEffect(() => {
-        //     setIndexProduct(edges)
-        //     setLoading(false)
-        // }, [edges])
+        const transformData = edges[0].node.relationships.field_recommended_product.map(( item ) => {
+          return {
+            id: item.id,
+            name: item.field_name,
+            price: item.field_price_product,
+            slug: item.field_slug,
+            slugItem: item.field_slug_item,
+            description: item.field_description_product,
+            image: item.relationships.field_image_product.localFile.childrenImageSharp
+          }
+        })
+        
+        useEffect(() => {
+            setIndexProduct(transformData)
+            setLoading(false)
+        }, [edges])
 
         return (
           <section>
@@ -53,7 +64,7 @@ const IndexPage = () => {
                 {/* Комбо */}
                 {/* <Combo product={indexProduct[0]}/> */}
                 {/* Новинки/рекомендованые */}
-                {/* <RecommendedProducts product={indexProduct[1]} /> */}
+                <RecommendedProducts title={edges[0].node.title} product={indexProduct} />
                 </> : <SpinnerNew /> }
               </Grid>
           </section>
@@ -84,6 +95,41 @@ const useStyleIndexPage = makeStyles(theme => ({
     }
 }));
 
+export const query = graphql `
+{
+  allNodePopulyarnyeBlyudaNovinki {
+    edges {
+      node {
+        title
+        relationships {
+          field_recommended_product {
+            field_name
+            field_is_wok
+            field_is_pizza
+            field_price_lanch_time
+            field_slug
+            field_weight
+            id
+            field_description_product
+            field_price_product
+            field_slug_item
+            field_variant
+            relationships {
+              field_image_product {
+                localFile {
+                  childrenImageSharp {
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
 // export const query = graphql `
 // {  
 //     allContentfulContentIndex {

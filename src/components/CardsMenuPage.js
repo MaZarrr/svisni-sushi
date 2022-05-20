@@ -21,7 +21,7 @@ const ToggleButton = loadable(() => import("./common/ToogleButton"));
 const CardsMenuPage = memo(({ 
     titleCategory, 
     slugCategogy, 
-    visibleItems, 
+    visibleItems, // изменил вместо product в addedToCart и вок работает
     // image,
     product, 
     dispatch, 
@@ -36,9 +36,11 @@ const CardsMenuPage = memo(({
                 id, name, slug, description,
                 price, weight = "от 150", count = 1,
                 edit, komboSale, variant = false,
-                image: { gatsbyImageData }, 
+                image: { gatsbyImageData },
+                wok, isWok,
                 sale, nonprice, lanchprice, lanch, defaultPrice
             } = products;
+
             return (
                 <Grid itemScope itemProp="itemListElement" itemType="http://schema.org/Product"
                       item xs={12} sm={6} md={4} lg={3} key={id}>
@@ -220,7 +222,7 @@ const CardsMenuPage = memo(({
                                             variant="contained"
                                             className={classes.button}
                                             style={{color: `white`, marginTop: 10}}
-                                            onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
+                                            onClick={() => dispatch(addedToCart({id, productPrice: null, product: visibleItems}))}>
                                             <ShoppingCartIcon/>
                                         </Button>
                                         {/* } */}
@@ -254,7 +256,7 @@ const CardsMenuPage = memo(({
                                             variant="contained"
                                             className={classes.button}
                                             style={{ color: 'white', marginTop: 10 }}
-                                            onClick={() => dispatch(addedToCart({id, productPrice: null, product}))}>
+                                            onClick={() => dispatch(addedToCart({id, productPrice: null, product: visibleItems}))}>
                                             <ShoppingCartIcon/>
                                         </Button>
                                         }

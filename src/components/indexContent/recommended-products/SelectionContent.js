@@ -14,10 +14,11 @@ import { addedCart } from "../../../reducers/shopping-cart";
 import { connect } from "react-redux";
 
 const SelectionContent = ({ product, addedCart }) => {
+  console.log("SelectionContent___ product", product);
   return (
   <Grid container justifyContent={"space-between"}>
   {
-    isNil(product.node.new) ? "" : product.node.new.map((homeProduct) => (
+    product.map((homeProduct) => (
       <Grid key={homeProduct.id} item sm={6} md={3} sx={{
         borderRadius: `3px`,
         maxWidth: `420px`,
@@ -33,7 +34,7 @@ const SelectionContent = ({ product, addedCart }) => {
           <CardMedia
             title={homeProduct.name}>
             <GatsbyImage
-              image={homeProduct.image.gatsbyImageData}
+              image={homeProduct.image[0].gatsbyImageData}
               alt={homeProduct.name} />
           </CardMedia>
           <CardContent>
@@ -41,7 +42,7 @@ const SelectionContent = ({ product, addedCart }) => {
             <Typography variant={"subtitle2"}>{homeProduct.description}</Typography>
           </CardContent>
           <CardActions disableSpacing sx={{ position: 'absolute', bottom: '10px', width: '100%'}}>
-            {homeProduct.__typename === "ContentfulProduct" || homeProduct.__typename === "ContentfulProductPizza" ?
+            {homeProduct.slug === "sety" || homeProduct.slug === "pizza" ?
               <Button
                 variant="contained"
                 sx={{
@@ -51,7 +52,7 @@ const SelectionContent = ({ product, addedCart }) => {
                   color: 'white',
                 }}
                 component={Link}
-                to={homeProduct.__typename === "ContentfulProduct" ? `/sety/${homeProduct.slug}` : homeProduct.__typename === "ContentfulProductPizza" ? "/pizza/" : null}>
+                to={homeProduct.slug === "sety" ? `/sety/${homeProduct.slugItem}` : homeProduct.slug === "pizza" ? "/pizza/" : null}>
                 Посмотреть
               </Button> : <Button
                 variant="contained"
@@ -63,7 +64,7 @@ const SelectionContent = ({ product, addedCart }) => {
                 }}
                 onClick={() => addedCart({
                   id: homeProduct.id,
-                  productPrice: null, product: product.node.new
+                  productPrice: null, product
                 })}>
                 <ShoppingCartIcon />
               </Button>
