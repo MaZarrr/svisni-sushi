@@ -35,6 +35,7 @@ export const query = graphql `
     field_title
     field_seo_title
     field_seo_descrittion
+    field_caterories
     relationships {
       field_avatar {
         localFile {

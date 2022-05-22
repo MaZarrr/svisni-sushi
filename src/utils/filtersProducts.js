@@ -1,10 +1,8 @@
  const filterProducts = (product, searchText, priceFilter, checkboxFilter) => {
-  // console.log("filterProducts____", product);
     const search = (items, txt) => {
         if(txt === undefined) {
           return items
         }
-        console.log("filterProducts___", items);
         return items.filter((node) => {
             return node.name.toLowerCase().indexOf(txt.toLowerCase()) > -1
         })

@@ -70,9 +70,7 @@ const PizzaSizeBlock = ({ classes, slug, size, id, priceDef, isPizza, mass, drup
 
 }
 
-
-
-const CardsMenuPage = memo(({ 
+const MenuList = memo(({ 
     titleCategory, 
     slugCategogy, 
     visibleItems, // изменил вместо product в addedToCart и вок работает
@@ -84,7 +82,6 @@ const CardsMenuPage = memo(({
     isSale }) => {
 
     const classes = useStylesCart();
-    console.log("visibleItems____", visibleItems);
     return <>
         { visibleItems.map((products) => {
             const { 
@@ -390,7 +387,7 @@ const CardsMenuPage = memo(({
     </>;
 });
 
-export default connect(null, null)(CardsMenuPage)
+export default connect(null, null)(MenuList)
 
 export const useStylesCart = makeStyles(theme => ({
     deckript: {

@@ -1,12 +1,12 @@
 import { Grid } from "@mui/material";
 import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-import CardsMenuPage from "../../components/CardsMenuPage";
+import MenuList from "../../components/MenuList";
 import HeadSection from "../../components/HeadSection"
 import Seo from "../../components/seo"
 import useTimer from "../../utils/useTimer"
-import {productList} from "../../reducers/selectors"
-import {productLoaded, productPizzaLoaded} from "../../reducers/app"
+import { productList } from "../../reducers/selectors"
+import { productLoaded, productPizzaLoaded } from "../../reducers/app"
 import { checkSaleLanch, defFilters } from "../../reducers/filters";
 import filtersProducts from "../../utils/filtersProducts"
 import { pizzaCart } from "../../reducers/shopping-cart";
@@ -54,13 +54,20 @@ const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: {
 
     const bindActions = ({transformData}) => {
         const checkedPizza = transformData.some(({node: {isPizza}}) => isPizza === true)
-        console.log("transformData___", transformData);
         if(checkedPizza) {
             dispatch(productPizzaLoaded(transformData))
         } else {
             dispatch(productLoaded(transformData))
         }
     }
+
+    // const categoryList = () => {
+    //     console.log("pageData.field_caterories", pageData.field_caterories);
+    //     const arrayList = pageData.field_caterories !== null ?
+    //     pageData.field_caterories.split(", ") : [];
+    //     console.log("pageData.field_caterories arrayList", arrayList);
+    //     return arrayList
+    // }
 
 useEffect(() => {
     bindActions({transformData})
@@ -77,19 +84,18 @@ useEffect(() => {
             pathname="/"
         />
         <HeadSection titleTXT={pageData.field_title} path={pageData.field_slug} isFilter={true} 
-        // categoryNames={categoryNames}
-        />
+        // categoryNames={categoryList()} 
+        /> 
         <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
             { visibleItems && visibleItems.length > 0 ? <>
-                    <CardsMenuPage titleCategory="" 
-                                slugCategogy={`/${pageData.field_slug}`} visibleItems={visibleItems}
-                                product={product} 
-                                timePrice={{ hours, minutes, seconds }}
-                                isSale={priceIsSale} 
-                                switchSizePizza={switchSizePizza}
-                                />
-                                {/* image={pageData.relationships.field_avatar.localFile.childImageSharp} */}
-            </>
+            <MenuList titleCategory="" 
+                    slugCategogy={`/${pageData.field_slug}`} visibleItems={visibleItems}
+                    product={product} 
+                    timePrice={{ hours, minutes, seconds }}
+                    isSale={priceIsSale} 
+                    switchSizePizza={switchSizePizza} />
+                    {/* image={pageData.relationships.field_avatar.localFile.childImageSharp} */}
+        </>
             :   <h4 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Нечего не найдено... <span role="img" aria-label="accessible-emoji">🧐</span></h4> }
         </Grid>
         </>

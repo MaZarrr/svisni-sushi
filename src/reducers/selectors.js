@@ -16,7 +16,6 @@ export const productList = createSelector(
     isSaleLanch,
     edges,
     (category, product, productWok, productPizza, isLanch, edges ) => {
-        console.log("edges))))", edges);
         if(category){
             return product.filter(({filter = category}) => {
                 return filter.toLowerCase().split(", ").includes(category.toLowerCase())})
