@@ -170,7 +170,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
           const descriptionIngrideents = elem.descriptionIngrideents === "" ? "" : elem.descriptionIngrideents;
           const productSize = elem.productSize === "" ? "" : elem.productSize;
-          const descriptionWok = elem.descriptionWok === "" ? "" : elem.descriptionWok;
+          const descriptionWok = elem.isWok ? elem.descriptionWok === "" ? "" : elem.descriptionWok : "";
 
           return {
             product: elem.name,
