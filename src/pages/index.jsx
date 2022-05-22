@@ -167,7 +167,7 @@ export const query = graphql `
 //               name
 //               __typename
 //               price
-//               priceIn33cm
+//               pricePizzaLarge
 //               slug
 //               description
 //               image {

@@ -100,7 +100,7 @@ export default SpecialMenuProduct
 //         }
 //         slug
 //         price
-//         priceIn33cm
+//         pricePizzaLarge
 //         weight33
 //       }
 //       ... on ContentfulProductSalat {

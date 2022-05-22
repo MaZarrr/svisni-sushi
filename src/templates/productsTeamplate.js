@@ -57,8 +57,13 @@ export const query = graphql `
         field_slug
         field_slug_item
         field_variant
-        id
+        drupal_id
+        field_is_pizza
         field_weight
+        field_weight_large
+        field_weight_small
+        field_price_large
+        id
         relationships {
           field_image_product {
             localFile {

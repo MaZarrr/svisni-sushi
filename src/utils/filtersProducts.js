@@ -4,6 +4,7 @@
         if(txt === undefined) {
           return items
         }
+        console.log("filterProducts___", items);
         return items.filter((node) => {
             return node.name.toLowerCase().indexOf(txt.toLowerCase()) > -1
         })

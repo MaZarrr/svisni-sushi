@@ -206,7 +206,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             ? "" : `Доп: ${elem.descriptionIngrideents}`;
         const productSize = elem.productSize === "" || elem.productSize === undefined ? ""
             : `${elem.productSize}`;
-        const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined ? ""
+        const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined || !elem.isWok ? ""
             : `${elem.descriptionWok}`;
         return `
     Наз: ${elem.name} ${productSize} ${descriptionWok} ${elem.edit === true ? elem.description : ""} ${descriptionIngrideents}
