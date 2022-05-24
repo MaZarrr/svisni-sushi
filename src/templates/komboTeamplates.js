@@ -12,7 +12,7 @@
 
 //       if(!!contentfulProductKombo.largePizza) {
 //           return contentfulProductKombo.productsCombo.map(el => {
-//               return {...el, price: el.priceIn33cm}
+//               return {...el, price: el.pricePizzaLarge}
 //           })
 //       }
 //       return contentfulProductKombo.productsCombo
@@ -21,7 +21,7 @@
 //         if (!!contentfulProductKombo.largePizza) {
 //             const pizzas = contentfulProductKombo.sostavDefault.filter(el => el.__typename === "ContentfulProductPizza");
 //             const newPizzas = pizzas.map(el => {
-//                 return {...el, price: el.priceIn33cm}
+//                 return {...el, price: el.pricePizzaLarge}
 //             });
 
 //             const notPizza = contentfulProductKombo.sostavDefault.filter(el => el.__typename !== "ContentfulProductPizza");
@@ -120,7 +120,7 @@
 //                     id
 //                     name
 //                     price
-//                     priceIn33cm
+//                     pricePizzaLarge
 //                     description
 //                     image {
 //                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
@@ -183,7 +183,7 @@
 //                 id
 //                 name
 //                 price
-//                 priceIn33cm
+//                 pricePizzaLarge
 //                 image {
 //                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
 //                   }

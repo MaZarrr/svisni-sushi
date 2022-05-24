@@ -79,7 +79,6 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
         onClickCategory(active);
         handleExpandClick()
     };
-
     return (
         <div>
             <ul className={classes.ulList} role="listbox">

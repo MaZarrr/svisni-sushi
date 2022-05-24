@@ -1,5 +1,4 @@
  const filterProducts = (product, searchText, priceFilter, checkboxFilter) => {
-  // console.log("filterProducts____", product);
     const search = (items, txt) => {
         if(txt === undefined) {
           return items

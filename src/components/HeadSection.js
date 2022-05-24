@@ -12,7 +12,6 @@ const ContentHead = styled.div `
 `
 
 const HeadSection = memo(({ isFilter = false, categoryNames, category, path, titleTXT, dispatch }) => {
-
   const onSelectCategory = useCallback((index) => {
     dispatch(setCategory(index));
   },[dispatch]);
@@ -27,7 +26,7 @@ const HeadSection = memo(({ isFilter = false, categoryNames, category, path, tit
                     }}>{titleTXT}</Typography>
         { isFilter && <>
           <CustomizedInputSearch location={path}/>
-          {/* <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>  */}
+          {/* <Categories activeCategory={category} items={categoryNames} onClickCategory={onSelectCategory}/>   */}
           </>
 
         }

@@ -37,7 +37,7 @@ const updateCartItems = (cartItems, item, idx) => {
         return R.append(item, cartItems)
     }
 
-    if(!R.isNil(item.priceIn33cm) && cartItems[idx].price !== item.price) {
+    if(!R.isNil(item.pricePizzaLarge) && cartItems[idx].price !== item.price) {
         const newItem = R.merge(item, {id: uniqid(), count: 1, total: item.price});
         return R.append(newItem, cartItems)
     }
@@ -66,17 +66,17 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
         total = 0,
         image = setу.image.gatsbyImageData,
         priceDef = pricePizza,
-        priceIn33cm = setу.priceIn33cm,
+        pricePizzaLarge = setу.pricePizzaLarge,
         pribor = 0,
     } = item;
 
     // добавление пиццы
-    if (!R.isNil(setу.priceIn33cm)) {
+    if (!R.isNil(setу.pricePizzaLarge)) {
         const descriptionIngrideents = R.pluck('nameI', setу.sostav).join(", ");
         return {
             id,
             name,
-            priceIn33cm: setу.priceIn33cm,
+            pricePizzaLarge: setу.pricePizzaLarge,
             priceDef: pricePizza,
             ingrideents: setу.ingrideents,
             sostav: setу.sostav,
@@ -84,12 +84,12 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
             description: setу.description,
             productSize: R.isNil(setу.size) ? "Маленькая" : Object.keys(setу.size).toString() === setу.slug ? "Маленькая" : "Большая",
             descriptionIngrideents,
-            contentful_id: setу.contentful_id,
+            drupal_id: setу.drupal_id,
             size: sizePizza,
             slug: setу.slug,
             image: {...image},
             count: count + quantity,
-            total: priceRadio > priceDef ? total + quantity * priceIn33cm : total + quantity * priceDef
+            total: priceRadio > priceDef ? total + quantity * pricePizzaLarge : total + quantity * priceDef
         }
     }
 
@@ -410,7 +410,7 @@ export default createReducer({
             size: {[size]: true},
             slug: pizza.slug,
             mass,
-            contentful_id: pizza.contentful_id
+            drupal_id: pizza.drupal_id
         })(pizzaProduct);
         return {
             ...state,
@@ -486,7 +486,7 @@ export default createReducer({
             price: pizza.price + add,
             description:  updateIngrideents,
             ingrideentButtonStyle: R.length(updateIngrideents) > 0 ? true : false,
-            priceIn33cm: pizza.priceIn33cm + add,
+            pricePizzaLarge: pizza.pricePizzaLarge + add,
             priceDef: R.isNil(pizza.priceDef) ? pizza.price + add : pizza.priceDef + add,
             ingrideents: updateCheck,
             sostav: updateIngrideents
@@ -501,7 +501,7 @@ export default createReducer({
             const updateItem = R.update(itemIndexPizzaz, {
                 ...pizzaz,
                 priceDef: R.isNil(pizzaz.priceDef) ? pizzaz.price + add : pizzaz.priceDef + add,
-                priceIn33cm: pizzaz.priceIn33cm + add,
+                pricePizzaLarge: pizzaz.pricePizzaLarge + add,
                 price: pizzaz.price + add,
                 descriptionIngrideents,
                 total: pizzaz.count > 1 ? pizzaz.total + add * pizzaz.count : pizzaz.total + add,
@@ -517,7 +517,7 @@ export default createReducer({
             // const newPizzaUpdate = R.update(itemIndexNewPizza, {
             //     ...pizzaNew,
             //     priceDef: pizzaNew.price + add,
-            //     priceIn33cm: pizzaNew.priceIn33cm + add,
+            //     pricePizzaLarge: pizzaNew.pricePizzaLarge + add,
             //     price: pizzaNew.price + add,
             //     ingrideents: updateCheck,
             //     sostav: updateIngrideents
@@ -550,7 +550,7 @@ export default createReducer({
             const updateItem = R.update(itemIndexPizzazz, {
                 ...pizzazz,
                 priceDef: R.isNil(pizzazz.priceDef) ? pizzazz.price + add : pizzazz.priceDef + add,
-                priceIn33cm: pizzazz.priceIn33cm + add,
+                pricePizzaLarge: pizzazz.pricePizzaLarge + add,
                 // price: pizzazz.count > 1 ? pizzazz.price + add * pizzazz.count : pizzazz.price + add,
                 ingrideents: updateCheck,
                 sostav: updateIngrideents,
@@ -579,7 +579,7 @@ export default createReducer({
         const updateItemPizza = R.update(itemIndexPizza, {
             ...pizza,
             price: pizza.price - decrice,
-            priceIn33cm: pizza.priceIn33cm - decrice,
+            pricePizzaLarge: pizza.pricePizzaLarge - decrice,
             ingrideentButtonStyle: R.length(ingrideentSostav) > 0 ? true : false,
             priceDef: R.isNil(pizza.price) ? pizza.price - decrice : pizza.priceDef - decrice,
             ingrideents: updateCheck,
@@ -594,7 +594,7 @@ export default createReducer({
                 ...pizzaz,
                 descriptionIngrideents,
                 priceDef: R.isNil(pizzaz.priceDef) ? pizzaz.price - decrice : pizzaz.priceDef - decrice,
-                priceIn33cm: pizzaz.priceIn33cm - decrice,
+                pricePizzaLarge: pizzaz.pricePizzaLarge - decrice,
                 total: pizzaz.count > 1 ? pizzaz.total - decrice * pizzaz.count : pizzaz.total - decrice,
                 ingrideents: updateCheck,
                 sostav: ingrideentSostav,
@@ -622,7 +622,7 @@ export default createReducer({
             const updateItem = R.update(itemIndexPizzazz, {
                 ...pizzazz,
                 priceDef: R.isNil(pizzazz.priceDef) ? pizzazz.price - decrice : pizzazz.priceDef - decrice,
-                priceIn33cm: pizzazz.priceIn33cm - decrice,
+                pricePizzaLarge: pizzazz.pricePizzaLarge - decrice,
                 ingrideents: updateCheck,
                 sostav: ingrideentSostav,
                 total: pizzazz.count > 1 ? pizzazz.total - decrice * pizzazz.count : pizzazz.total - decrice

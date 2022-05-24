@@ -3,18 +3,19 @@ import { createSelector } from 'reselect'
 
 const loadingStatus = (state) => state.app.loading;
 const categories = (state) => state.filters.category;
-const product = (state, isPizzas) => !isPizzas ? 
-    state.app.product : state.shoppingCart.newPizza === null ? 
-    state.app.productPizza : state.shoppingCart.newPizza;
+const product = (state) => state.app.product; 
+const productPizza = (state) => state.shoppingCart.newPizza === null ? state.app.productPizza : state.shoppingCart.newPizza;
 const productWok = (state) => state.shoppingCart.newWok;
 const isSaleLanch = (state) => state.filters.isSale;
-
+const edges = (state, edges) => edges; 
 export const productList = createSelector(
     categories,
     product,
     productWok,
+    productPizza,
     isSaleLanch,
-    (category, product, productWok, isLanch) => {
+    edges,
+    (category, product, productWok, productPizza, isLanch, edges ) => {
         if(category){
             return product.filter(({filter = category}) => {
                 return filter.toLowerCase().split(", ").includes(category.toLowerCase())})
@@ -34,17 +35,25 @@ export const productList = createSelector(
     
             return updateItemsProduct
         }
-    const productCheckType = product.some((item) => item.isWok === true);
-    if(productCheckType) {
+
+    
+    const currentSlug = edges.pageData.nodeStranicy.field_slug;
+    // const productCheckAll = product.some((item) => item.isWok === false && item.isPizza === false);
+    const productCheckTypeWok = product.some((item) => item.isWok === true && currentSlug === 'wok');
+    const productCheckTypePizza = productPizza.some((item) => item.isPizza === true && currentSlug === 'pizza');
+
+    if(productCheckTypeWok) {
         return defaultTo(product, productWok)
+    } else if (productCheckTypePizza){
+        // const dd = productCheckAll ? product : productPizza
+        return defaultTo(product, productPizza)
     } else {
         return product.map((item) => {
-            return { ...item, isWok: false, wok: false }
+            return { ...item, isWok: false, wok: false, isPizza: false }
         })
     }
 });
 //
-
 export const checkedLoading = createSelector(
   loadingStatus,
   loading => loading

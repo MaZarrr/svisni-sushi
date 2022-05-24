@@ -12,33 +12,85 @@ import loadable from "@loadable/component";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Button from '@mui/material/Button'
 import makeStyles from '@mui/styles/makeStyles';
-import { CardStyle } from "./common/styles-components";
 import { connect } from "react-redux";
+import clsx from "clsx";
+import { CardStyle } from './common/styles-components'
+
 
 const Paper = loadable(() => import('@mui/material/Paper'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
 
-const CardsMenuPage = memo(({ 
+const PizzaSizeBlock = ({ classes, slug, size, id, priceDef, isPizza, mass, drupal_id, weightPizzaSmall, weightPizzaLarge, pricePizzaLarge, switchSizePizza, product }) => {
+    return <>           
+    { isPizza &&  <div style={{marginTop: '10px'}}>
+        {/*проверка цены на 1 для того что бы убарать или показать выбор размеров пиццы*/}
+                    { pricePizzaLarge !== 1 &&
+                    <Grid container justifyContent={"space-between"}>
+                        <Grid style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}} item xs={5}>
+                            <button onClick={() => switchSizePizza({
+                                id,
+                                productPizza: product,
+                                total: priceDef,
+                                priceDef,
+                                size: slug,
+                                mass: weightPizzaSmall})}
+                                    className={clsx(classes.buttonD, {
+                                        [classes.buttonT]: size[slug]})}>
+                            <Typography  style={{margin: 'auto'}} variant={"subtitle2"}>Средняя</Typography></button>
+                            <Typography style={{textAlign: `center`}}
+                                        variant={"subtitle2"}>28см</Typography>
+                        </Grid>
+                        <Grid item xs={2}>
+                        <p style={{margin: `10px auto 0 auto`, fontWeight: 'bold', fontSize: 14, textAlign: 'center'}}>{`${mass}кг`}</p>
+                        </Grid>
+                        <Grid item xs={5} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                            <button style={{paddingLeft: `auto`}} 
+                            onClick={() => switchSizePizza({
+                                id,
+                                productPizza: product,
+                                total: pricePizzaLarge,
+                                priceDef,
+                                size: drupal_id,
+                                mass: weightPizzaLarge})}
+                                className={clsx(classes.buttonD, {
+                                        [classes.buttonT]: size[drupal_id]})}>
+                                        {/* [classes.buttonT]: size[pricePizzaLarge]})}> */}
+                                <Typography
+                                    style={{margin: 'auto'}}
+                                variant={"subtitle2"}>Большая</Typography></button>
+                            <Typography 
+                            style={{textAlign: `center`}} 
+                            variant={"subtitle2"}>36см</Typography>
+                        </Grid>
+                    </Grid>
+                    }
+    </div>
+}
+</>
+
+}
+
+const MenuList = memo(({ 
     titleCategory, 
     slugCategogy, 
     visibleItems, // изменил вместо product в addedToCart и вок работает
     // image,
     product, 
+    switchSizePizza,
     dispatch, 
     timePrice, 
     isSale }) => {
 
     const classes = useStylesCart();
-    // console.log("visibleItems____", visibleItems);
     return <>
         { visibleItems.map((products) => {
             const { 
                 id, name, slug, description,
                 price, weight = "от 150", count = 1,
-                edit, komboSale, variant = false,
-                image: { gatsbyImageData },
-                wok, isWok,
-                sale, nonprice, lanchprice, lanch, defaultPrice
+                edit, komboSale, variant = false, mass = weight,
+                weightPizzaSmall, weightPizzaLarge, pricePizzaLarge, isPizza,
+                image: { gatsbyImageData }, wok, isWok, priceDef = price, size={[slug]: true },
+                sale, nonprice, lanchprice, lanch, defaultPrice, drupal_id
             } = products;
 
             return (
@@ -190,13 +242,37 @@ const CardsMenuPage = memo(({
                                     description
                                 }
                             </Typography>
+                            
+                     
+                            {/*выбор размера пиццы*/}
+                            <PizzaSizeBlock classes={{buttonD: classes.buttonD, buttonT: classes.buttonT}} 
+                                slug={slug} 
+                                size={size} 
+                                id={id}  
+                                priceDef={priceDef} 
+                                isPizza={isPizza}
+                                mass={mass}
+                                product={product}
+                                drupal_id={drupal_id}
+                                weightPizzaSmall={weightPizzaSmall}
+                                weightPizzaLarge={weightPizzaLarge}
+                                pricePizzaLarge={pricePizzaLarge} 
+                                switchSizePizza={switchSizePizza}
+                            />
 
                             {/*Кнопки выбора wok*/}
                             {slugCategogy === "/wok" && <ToggleButton id={id} productWok={visibleItems}/>}
 
+                            
+
                             <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
                                 {/*total, count*/}
+                                <div>
+
+                                </div>
                                 <Grid style={{padding: 10}} container itemProp="offers" itemScope itemType="http://schema.org/Offer">
+                                {!isPizza && <>
+                                
                                     <Grid item xs={6}>
                                         <Paper style={{width: `90%`, margin: `0 auto`}}>
                                             { slugCategogy !== "/napitki" &&
@@ -215,6 +291,10 @@ const CardsMenuPage = memo(({
                                             </Typography>
                                         </Paper>
                                     </Grid>
+                                </>
+                                }
+
+              
                                     <Grid item xs={6}>
                                         {/*Показывать корзину для всех путей*/}
                                         {/* { slugCategogy !== "/kombo" && !komboSale && */}
@@ -225,7 +305,6 @@ const CardsMenuPage = memo(({
                                             onClick={() => dispatch(addedToCart({id, productPrice: null, product: visibleItems}))}>
                                             <ShoppingCartIcon/>
                                         </Button>
-                                        {/* } */}
 
                                         {/*Показывать кнопку редактирования комбо*/}
                                         { edit === true ?
@@ -298,6 +377,7 @@ const CardsMenuPage = memo(({
                                 </Grid>
 
                             </div>
+
                         </CardContent>
 
                     </CardStyle>
@@ -307,7 +387,7 @@ const CardsMenuPage = memo(({
     </>;
 });
 
-export default connect(null, null)(CardsMenuPage)
+export default connect(null, null)(MenuList)
 
 export const useStylesCart = makeStyles(theme => ({
     deckript: {

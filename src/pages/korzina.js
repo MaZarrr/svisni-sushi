@@ -36,7 +36,7 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
 
   // const pizzaDarom = () => {
   //   const cart = items.filter((el) => {
-  //     return el.priceIn33cm !== undefined
+  //     return el.pricePizzaLarge !== undefined
   //   });
   //   const countPizza = R.compose(
   //     R.sum,
@@ -154,7 +154,7 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
   //   }
   // };
 
-  const addPanelPribors = R.contains(true, R.map(({priceIn33cm}) => priceIn33cm === undefined, items));
+  const addPanelPribors = R.contains(true, R.map(({pricePizzaLarge}) => pricePizzaLarge === undefined, items));
   return <>
     <Seo title="Корзина"
          description="Корзина товаров"
@@ -172,9 +172,9 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                 <Grid container spacing={2} className={classes.wrappedContainer}>
 
                   { items.map((item, idx) => {
-                    const { id, name, count, total, image, priceIn33cm, price, priceDef,
+                    const { id, name, count, total, image, pricePizzaLarge, price, priceDef,
                       textRollSale, textPizza, pizzaSale, description, edit = null, size,
-                      isWok = false, slug = null, descriptionWok, contentful_id = "sizeBig",
+                      isWok = false, slug = null, descriptionWok, drupal_id = "sizeBig",
                       descriptionIngrideents = ""} = item
                     return (
                       <Grid item key={id} xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
@@ -251,7 +251,7 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                               </div>
                             </div>
 
-                            { !!priceIn33cm &&
+                            { !!pricePizzaLarge &&
                             <>
                                 <ButtonSize
                                       sizePizzaStyle={slug}
@@ -261,12 +261,12 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                                       edges={items}
                                       pricePizza={priceDef}/>
                                 <ButtonSize
-                                      sizePizzaStyle={contentful_id}
+                                      sizePizzaStyle={drupal_id}
                                       title="Большая"
                                       pizzaSize={size}
                                       id={id}
                                       edges={items}
-                                      pricePizza={priceIn33cm}/>
+                                      pricePizza={pricePizzaLarge}/>
                               <Typography style={{fontSize: 12, marginLeft: 8}} variant={"subtitle2"}>Доп: {descriptionIngrideents}</Typography>
                             </>
                             }
@@ -425,7 +425,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
 //             name
 //             slug
 //             price
-//             priceIn33cm
+//             pricePizzaLarge
 //             image {
 //                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
 //             }
