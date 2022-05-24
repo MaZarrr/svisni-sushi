@@ -71,7 +71,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(SetyTeamplate)
 
 
 export const query = graphql ` 
-query QuerySetyItem($slug: String!) {
+query QuerySetyItem($slug: String) {
   nodeBlyudaMenyu(field_slug_item: {eq: $slug}) {
         field_name
         field_price_lanch_time
