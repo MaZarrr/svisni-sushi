@@ -54,6 +54,7 @@ const result = await graphql(`
       node {
         field_slug
         field_slug_item
+        field_is_edit_kombo
       }
     }
   }
@@ -88,7 +89,7 @@ const result = await graphql(`
             slug: node.field_slug_item
           }
         })
-      } else if(node.field_slug === 'kombo') {
+      } else if(node.field_slug === 'kombo' && node.field_is_edit_kombo) {
         createPage({
           path: `/kombo/${node.field_slug_item}`,
           component: komboTeamplates,
