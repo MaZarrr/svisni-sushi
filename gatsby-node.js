@@ -1,6 +1,6 @@
 
 const path = require('path');
-const fs = require('fs');
+// const fs = require('fs');
 
 // exports.onCreatePage = async ({ page, actions }) => {
 //   const { createPage } = actions
@@ -22,6 +22,7 @@ exports.createPages = async ({ graphql, actions, page }) => {
   const { createPage } = actions;
   const productTeamplate = path.resolve('./src/templates/productsTeamplate.js')
   const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
+  const komboTeamplates = path.resolve('./src/templates/komboTeamplates.js');
 //  sales platform - возможное апи для отображение статики
 //   const result = await graphql(`
 //     {
@@ -51,6 +52,7 @@ const result = await graphql(`
   allNodeBlyudaMenyu {
     edges {
       node {
+        field_slug
         field_slug_item
       }
     }
@@ -66,9 +68,9 @@ const result = await graphql(`
   }
 
   result.data.allNodeStranicy.edges.forEach(({ node }) => {
-    // result.data.svisnisushi.getPages.pages.forEach(({ slug }) => {
+    // result.data.svisnisushi.getPages.pages.forEach(({ slug }) => { // мой сервер node
     createPage({
-        path: `/${node.field_slug}`,
+      path: `/${node.field_slug}`,
       component: productTeamplate,
       context: {
         slug: node.field_slug
@@ -78,15 +80,37 @@ const result = await graphql(`
 
 
   result.data.allNodeBlyudaMenyu.edges.forEach(({ node }) => {
-    // result.data.svisnisushi.getPages.pages.forEach(({ slug }) => {
-      createPage({
-        path: `/sety/${node.field_slug_item}`,
-        component: setyTemplate,
-        context: {
-          slug: node.field_slug_item
-        }
-      })
+      if(node.field_slug === 'sety') {
+        createPage({
+          path: `/sety/${node.field_slug_item}`,
+          component: setyTemplate,
+          context: {
+            slug: node.field_slug_item
+          }
+        })
+      } else if(node.field_slug === 'kombo') {
+        createPage({
+          path: `/kombo/${node.field_slug_item}`,
+          component: komboTeamplates,
+          context: {
+            slug: node.field_slug_item
+          }
+        })
+      }
   })
+
+  // result.data.allNodeBlyudaMenyu.edges.forEach(({ node }) => {
+  //   // result.data.svisnisushi.getPages.pages.forEach(({ slug }) => {
+  //     if(node.field_slug === 'kombo') {
+  //       createPage({
+  //         path: `/kombo/${node.field_slug_item}`,
+  //         component: komboTeamplates,
+  //         context: {
+  //           slug: node.field_slug_item
+  //         }
+  //       })
+  //     }
+  // })
 }
 
 

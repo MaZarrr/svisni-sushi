@@ -86,7 +86,7 @@ query QuerySetyItem($slug: String) {
           field_image_product {
             localFile {
               childImageSharp {
-                gatsbyImageData
+                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
               }
             }
           }

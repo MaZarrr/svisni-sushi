@@ -294,10 +294,11 @@ const MenuList = memo(({
                                 </>
                                 }
 
-              
+                                
                                     <Grid item xs={6}>
                                         {/*Показывать корзину для всех путей*/}
                                         {/* { slugCategogy !== "/kombo" && !komboSale && */}
+                                        { !edit &&
                                         <Button
                                             variant="contained"
                                             className={classes.button}
@@ -305,7 +306,7 @@ const MenuList = memo(({
                                             onClick={() => dispatch(addedToCart({id, productPrice: null, product: visibleItems}))}>
                                             <ShoppingCartIcon/>
                                         </Button>
-
+                                        }
                                         {/*Показывать кнопку редактирования комбо*/}
                                         { edit === true ?
                                             <Button
@@ -330,7 +331,7 @@ const MenuList = memo(({
                                         }
 
                                         {/* Проверка - комбо редактируется или нет */}
-                                        {edit === false &&
+                                        { edit === false &&
                                         <Button
                                             variant="contained"
                                             className={classes.button}

@@ -67,7 +67,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
               component={Link}
               size={"small"}
               to={homeProduct.slug === "sety" ? `/sety/${homeProduct.slugItem}` : homeProduct.slug === "pizza" ? "/pizza/" : null}>
-              Посмотреть
+              ПосмоСтреть
             </Button> : <Button
               variant="contained"
               sx={{

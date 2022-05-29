@@ -15,7 +15,7 @@ const KomboContent = ({ product }) => {
   const classes = useStyle();
   return (
   <>
-    { isNil(product.node.combos) ? '' : product.node.combos.map((homeProduct) => (
+    { product.map((homeProduct) => (
       <Grid key={homeProduct.id} item sm={6} md={3} className={classes.cardComboPc} >
         <Card sx={{
             height: '570px',
@@ -26,7 +26,7 @@ const KomboContent = ({ product }) => {
           <CardMedia
             title={homeProduct.name}>
             <GatsbyImage
-              image={homeProduct.image.gatsbyImageData}
+              image={homeProduct.image[0].gatsbyImageData}
               alt={homeProduct.name} />
           </CardMedia>
           <CardContent>
@@ -43,8 +43,9 @@ const KomboContent = ({ product }) => {
                 color: 'white',
               }}
               component={Link}
-              to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
-              {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
+              size={"small"}
+              to={!homeProduct?.isEdit ? "/kombo/" : `/kombo/${homeProduct.slugItem}`}>
+              {!homeProduct?.isEdit ? "Перейти" : "Выбрать"}
             </Button>
             <Typography style={{marginLeft: `auto`, marginRight: '25px'}}
                           variant={"subtitle1"}>{homeProduct.price}₽</Typography>

@@ -33,14 +33,14 @@ const KomboMobileContent = ({ product }) => {
   return (
     <SwipeableViews className={classes.cardCombo} slideStyle={styles.slideContainer}>
       {
-        isNil(product.node.combos) ? <div style={{width: 300, height: 400, backgroundColor: "red"}}> </div> : product.node.combos.map((homeProduct) => (
+        product.map((homeProduct) => (
           <Card key={homeProduct.id}  sx={{
             maxWidth: '200px',
             height: '380px'
           }} raised={true}>
             <CardMedia title={homeProduct.name}>
               <GatsbyImage
-                image={homeProduct.image.gatsbyImageData}
+                image={homeProduct.image[0].gatsbyImageData}
                 style={styles.img}
                 alt={homeProduct.name} />
             </CardMedia>
@@ -59,8 +59,8 @@ const KomboMobileContent = ({ product }) => {
                 }}
                 component={Link}
                 size={"small"}
-                to={homeProduct.name === "Комбо №2" ? "/kombo/" : `/kombo/${homeProduct.slug}`}>
-                {homeProduct.name === "Комбо №2" ? "Перейти" : "Посмотреть"}
+                to={!homeProduct?.isEdit ? "/kombo/" : `/kombo/${homeProduct.slugItem}`}>
+                {!homeProduct?.isEdit ? "Перейти" : "Выбрать"}
               </Button>
               <Typography sx={{marginLeft: `15px`}}
                           variant={"body1"}>{homeProduct.price}₽</Typography>

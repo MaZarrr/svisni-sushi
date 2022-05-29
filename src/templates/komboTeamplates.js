@@ -1,63 +1,244 @@
-// import React from 'react'
-// import { graphql } from 'gatsby';
-// import loadable from "@loadable/component";
-// import Spinner from "../components/spinner/spinner-new"
+import React from 'react'
+import { graphql } from 'gatsby';
+import loadable from "@loadable/component";
+import Spinner from "../components/spinner/spinner-new"
 
-// const KomboItem = loadable(() => import('../components/KomboItem'), {
-//     fallback: <Spinner/>});
+const KomboItem = loadable(() => import('../components/KomboItem'), {
+    fallback: <Spinner/>});
 
-// const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
-//     const pizzas = () => {
-//     if(contentfulProductKombo.largePizza === null) return;
+const KomboTeamplate = ({data: { nodeKomboSVyborom }}) => {
+    
+    const { id: ids,
+      field_is_edit_combo,
+      field_large_pizza,
+      field_name_kombo,
+      field_slugkombo,
+      field_price_kombo,
+      field_weight_kombo_item,
+      relationships:{field_image_kombo:{localFile: {childImageSharp}}},
+      field_description_kombo,
+      field_parent_kombo,
+      field_large_pizza_price_kombo,
+      relationships: {
+        field_sostav_default,
+        field_pizzakombo,
+        field_firmenieroll,
+        field_napitki,
+        field_zakuski,
+        field_hotroll
+      }
+    } = nodeKomboSVyborom
+      
+    const { id, name, price, description, weight, count, edit, isLargePizza, slug, image, sostavDefault, pricePizzaLarge } = {
+        id: ids,
+        name: field_name_kombo,
+        price: field_price_kombo,   
+        description: field_description_kombo,
+        weight: field_weight_kombo_item,
+        pricePizzaLarge: field_large_pizza_price_kombo,
+        count: 1,
+        slug: field_parent_kombo,
+        // slug: field_slugkombo,
+        image: childImageSharp,
+        edit: field_is_edit_combo,
+        isLargePizza: field_large_pizza,
+        sostavDefault: field_sostav_default
+    }
 
-//       if(!!contentfulProductKombo.largePizza) {
-//           return contentfulProductKombo.productsCombo.map(el => {
-//               return {...el, price: el.pricePizzaLarge}
-//           })
-//       }
-//       return contentfulProductKombo.productsCombo
-//     };
-//     const sostavDefault = () => {
-//         if (!!contentfulProductKombo.largePizza) {
-//             const pizzas = contentfulProductKombo.sostavDefault.filter(el => el.__typename === "ContentfulProductPizza");
-//             const newPizzas = pizzas.map(el => {
-//                 return {...el, price: el.pricePizzaLarge}
-//             });
+  const updatePizzas = () => {
+    // if(!isLargePizza) return;
+      if(!!isLargePizza) {
+          return field_pizzakombo.map(el => {
+              return {...el, price: pricePizzaLarge}
+          })
+      }
+      return field_pizzakombo
+    };
+    const updateSostavDefault = () => {
+        if (!!isLargePizza) {
+            const pizzas = sostavDefault.filter(el => el.field_slug === "pizza");
+            const newPizzas = pizzas.map(el => {
+                return {...el, price: pricePizzaLarge}
+            });
 
-//             const notPizza = contentfulProductKombo.sostavDefault.filter(el => el.__typename !== "ContentfulProductPizza");
-//             return newPizzas.concat(notPizza)
+            const notPizza = sostavDefault.filter(el => el.field_slug !== "pizza");
+            return newPizzas.concat(notPizza)
 
-//         }
-//         return contentfulProductKombo.sostavDefault
-//     };
+        }
+        return sostavDefault;
+    };
+    const products = {
+        'branded-rolls': field_firmenieroll,
+        'hot-rolls': field_hotroll,
+        napitki: field_napitki,
+        pizza: updatePizzas(),
+        sostavDefault: updateSostavDefault(),
+        zakyski: field_zakuski,
+    }
+    return  <KomboItem
+                id={id}
+                name={name}
+                price={price}
+                description={description}
+                weight={weight}
+                count={count}
+                edit={edit}
+                largePizza={isLargePizza}
+                slug={slug}
+                image={image}
+                products={products}
+                >
+        </KomboItem>
+    };
 
-//     return  (
-//         <KomboItem
-//                 id={contentfulProductKombo.id}
-//                 name={contentfulProductKombo.name}
-//                 price={contentfulProductKombo.price}
-//                 description={contentfulProductKombo.description}
-//                 weight={contentfulProductKombo.weight}
-//                 count={contentfulProductKombo.count}
-//                 image={contentfulProductKombo.image}
-//                 edit={contentfulProductKombo.edit}
-//                 largePizza={contentfulProductKombo.largePizza}
-//                 slug={contentfulProductKombo.slug}
-//                 products={{
-//                     sostavDefault: sostavDefault(),
-//                     ContentfulProductHotRolly: contentfulProductKombo.productsKomboHotRolls,
-//                     ContentfulProductSlognyeRolly: contentfulProductKombo.productsKomboRolls,
-//                     ContentfulProductWok: contentfulProductKombo.productsKomboWok,
-//                     ContentfulProductNapitki: contentfulProductKombo.productsKomboNapitki,
-//                     ContentfulProductPizza: pizzas(),
-//                     ContentfulProductKlassika: contentfulProductKombo.contentfulProductKlassika,
-//                     // ContentfulProductSouse: contentfulProductKombo.contentfulProductSouses,
-//                     ContentfulProductZakuski: contentfulProductKombo.productsKomboZakuski
-//                 }}>
-//         </KomboItem>
-//     )};
+export default KomboTeamplate
 
-// export default KomboTeamplate
+
+export const query = graphql `
+query QueryKomboItem($slug: String!) {
+    nodeKomboSVyborom(field_slugkombo: {eq: $slug}) {
+      id
+      field_is_edit_combo
+      field_large_pizza
+      field_name_kombo
+      field_slugkombo
+      field_price_kombo
+      field_weight_kombo_item
+      field_description_kombo
+      field_large_pizza_price_kombo
+      relationships {
+        field_image_kombo {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+            }
+          }
+        }
+        field_hotroll {
+          id
+          field_name
+          field_weight
+          field_slug_item
+          field_slug
+          field_description_product
+          field_price_product
+          field_weight_large
+          field_weight_small
+          relationships {
+            field_image_product {
+              localFile {
+                childImageSharp {
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                }
+              }
+            }
+          }
+        }
+        field_firmenieroll {
+          id
+          field_name
+          field_weight
+          field_slug_item
+          field_slug
+          field_description_product
+          field_price_product
+          field_weight_large
+          field_weight_small
+          relationships {
+            field_image_product {
+              localFile {
+                childImageSharp {
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                }
+              }
+            }
+          }
+        }
+        field_napitki {
+          field_name
+          id
+          field_weight
+          field_slug_item
+          field_slug
+          field_description_product
+          field_price_product
+          field_weight_large
+          field_weight_small
+          relationships {
+            field_image_product {
+              localFile {
+                childImageSharp {
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                }
+              }
+            }
+          }
+        }
+        field_pizzakombo {
+          field_name
+          id
+          field_weight
+          field_slug_item
+          field_slug
+          field_description_product
+          field_price_product
+          field_weight_large
+          field_weight_small
+          relationships {
+            field_image_product {
+              localFile {
+                childImageSharp {
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                }
+              }
+            }
+          }
+        }
+        field_zakuski {
+          field_name
+          id
+          field_weight
+          field_slug_item
+          field_slug
+          field_description_product
+          field_price_product
+          field_weight_large
+          field_weight_small
+          relationships {
+            field_image_product {
+              localFile {
+                childImageSharp {
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                }
+              }
+            }
+          }
+        }
+        field_sostav_default {
+          field_name
+          id
+          field_weight
+          field_slug_item
+          field_slug
+          field_description_product
+          field_price_product
+          field_weight_large
+          field_weight_small
+          relationships {
+            field_image_product {
+              localFile {
+                childImageSharp {
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+`
 
 // export const query = graphql `
 // query ($slug: String!) {

@@ -40,6 +40,7 @@ const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: {
                 nonprice: node.field_price_not_sale,
                 lanchprice: node.field_price_lanch_time, 
                 lanch: node.field_is_lanchtime,
+                edit: node.field_is_edit_kombo,
                 image: node.relationships.field_image_product.localFile.childImageSharp,
                 private: node.field_private,
             }

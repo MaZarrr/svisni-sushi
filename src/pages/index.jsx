@@ -5,16 +5,19 @@ import { graphql } from "gatsby";
 import { Hidden, Typography } from "@mui/material";
 
 // import Carousel from '../components/common/CarouselSvisni';
-// import Combo from '../components/indexContent/combo/index'
+import Kombo from '../components/indexContent/combo/index'
 import MenuCategory from "../components/indexContent/MenuCategory";
 import RecommendedProducts from "../components/indexContent/recommended-products";
 import SpinnerNew from "../components/spinner/spinner-new";
 import Seo from "../components/seo";
 // капрусель
-const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges } }}) => {
+const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges },
+  allNodeKomboRekomenduemye: { edges: komboItems }
+}}) => {
 
         const [loadingSpinner, setLoading] = useState(true)
         const [indexProduct, setIndexProduct] = useState(true)
+        const [komboProducts, setKomboProducts] = useState(true)
         const [optionsPage, setOptionsPage] = useState({})
         const classes = useStyleIndexPage();
 
@@ -30,7 +33,21 @@ const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges } }}) => {
               image: item.relationships.field_image_product.localFile.childrenImageSharp
             }
           })
+
+          const kombo = komboItems[0].node.relationships.field_items.map((item) => {
+            return {
+              id: item.id,
+              name: item.field_name,
+              price: item.field_price_product,
+              slug: item.field_slug,
+              isEdit: item.field_is_edit_kombo,
+              slugItem: item.field_slug_item,
+              description: item.field_description_product,
+              image: item.relationships.field_image_product.localFile.childrenImageSharp
+            }
+        })
             
+            setKomboProducts(kombo)
             setIndexProduct(transformData)
             setOptionsPage({title: edges[0].node.title})
             setLoading(false)
@@ -57,18 +74,19 @@ const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges } }}) => {
                               component={"h1"}>
                     Свисни Суши в Уразово</Typography>
                 </Hidden>
+                { !loadingSpinner ? <>
+                {/* Комбо */}
+                <Kombo product={komboProducts}/>
+                {/* Новинки/рекомендованые */}
+                <RecommendedProducts optionsPage={optionsPage} product={indexProduct} />
+                </> : <SpinnerNew /> }
                 {/* Меню категории */}
                 <Hidden smUp>
                   <Grid container style={{ marginBottom: 20 }}>
                     <MenuCategory />
                   </Grid>
                 </Hidden>
-                { !loadingSpinner ? <>
-                {/* Комбо */}
-                {/* <Combo product={indexProduct[0]}/> */}
-                {/* Новинки/рекомендованые */}
-                <RecommendedProducts optionsPage={optionsPage} product={indexProduct} />
-                </> : <SpinnerNew /> }
+      
               </Grid>
           </section>
         );
@@ -100,6 +118,32 @@ const useStyleIndexPage = makeStyles(theme => ({
 
 export const query = graphql `
 {
+  allNodeKomboRekomenduemye {
+    edges {
+      node {
+        relationships {
+          field_items {
+            id
+            field_is_edit_kombo
+            field_price_product
+            field_name
+            field_description_product
+            field_slug
+            field_slug_item
+            relationships {
+              field_image_product {
+                localFile {
+                  childrenImageSharp {
+                    gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   allNodePopulyarnyeBlyudaNovinki {
     edges {
       node {
