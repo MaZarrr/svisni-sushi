@@ -28,7 +28,9 @@ const KomboTeamplate = ({data: { nodeKomboSVyborom }}) => {
         field_hotroll
       }
     } = nodeKomboSVyborom
-      
+    
+    // console.log(id, "nodeKomboSVyborom");
+
     const { id, name, price, description, weight, count, edit, isLargePizza, slug, image, sostavDefault, pricePizzaLarge } = {
         id: ids,
         name: field_name_kombo,
