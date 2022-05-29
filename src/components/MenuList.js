@@ -331,7 +331,7 @@ const MenuList = memo(({
                                         }
 
                                         {/* Проверка - комбо редактируется или нет */}
-                                        { edit === false &&
+                                        {/* { edit === false &&
                                         <Button
                                             variant="contained"
                                             className={classes.button}
@@ -339,7 +339,7 @@ const MenuList = memo(({
                                             onClick={() => dispatch(addedToCart({id, productPrice: null, product: visibleItems}))}>
                                             <ShoppingCartIcon/>
                                         </Button>
-                                        }
+                                        } */}
 
                                     </Grid>
 
