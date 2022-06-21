@@ -36,7 +36,7 @@
     "gatsby-transformer-remark": "^5.6.0",
     "gatsby-transformer-sharp": "^4.15.1",
     "isomorphic-fetch": "^3.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.1",
     "react": "^17.0.2",
