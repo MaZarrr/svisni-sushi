@@ -8,7 +8,7 @@ import { Hidden, Typography } from "@mui/material";
 import Kombo from '../components/indexContent/combo/index'
 import MenuCategory from "../components/indexContent/MenuCategory";
 import RecommendedProducts from "../components/indexContent/recommended-products";
-import SpinnerNew from "../components/spinner/spinner-new";
+
 import Seo from "../components/seo";
 // капрусель
 // const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges },
@@ -17,12 +17,27 @@ import Seo from "../components/seo";
 
   const IndexPage = ({data: {allContentfulIndexRecomended: {edges}, allContentfulIndexKombo: {edges: allCombo}}}) => {
 
-        // const [loadingSpinner, setLoading] = useState(true)
-        // const [indexProduct, setIndexProduct] = useState(true)
-        // const [komboProducts, setKomboProducts] = useState(true)
-        // const [optionsPage, setOptionsPage] = useState({})
+        const [indexProduct, setIndexProduct] = useState(true)
+        const [komboProducts, setKomboProducts] = useState(true)
+        const [optionPage, setOptionsPage] = useState({})
+
         const classes = useStyleIndexPage();
-        const transformData = edges[0].node.recomendedProduct.map(( node ) => {
+
+        useEffect(() => {
+          const transformData = edges[0].node.recomendedProduct.map(( node ) => {
+            return {
+              id: node.id,
+              name: node.fieldName,
+              price: node.fieldPriceProduct,
+              slug: node.fieldSlug,
+              slugItem: node.fieldSlugItem,
+              description: node.fieldDescriptionProduct,
+              image: node.image
+            }
+          })
+  
+            
+        const kombos = allCombo[0].node.kombo.map((node) => {
           return {
             id: node.id,
             name: node.fieldName,
@@ -30,46 +45,15 @@ import Seo from "../components/seo";
             slug: node.fieldSlug,
             slugItem: node.fieldSlugItem,
             description: node.fieldDescriptionProduct,
-            image: node.image
+            image: node.image,
+            isEdit: node.fieldIsEditKombo,
           }
-        })
-
-          
-      const kombos = allCombo[0].node.kombo.map((node) => {
-        return {
-          id: node.id,
-          name: node.fieldName,
-          price: node.fieldPriceProduct,
-          slug: node.fieldSlug,
-          slugItem: node.fieldSlugItem,
-          description: node.fieldDescriptionProduct,
-          image: node.image,
-          isEdit: node.fieldIsEditKombo,
-        }
-    })
-          
-          
-          
-
-        // useEffect(() => {
-        //   const transformData = edges[0].node.relationships.field_recommended_product.map(( item ) => {
-        //     return {
-        //       id: item.id,
-        //       name: item.field_name,
-        //       price: item.field_price_product,
-        //       slug: item.field_slug,
-        //       slugItem: item.field_slug_item,
-        //       description: item.field_description_product,
-        //       image: item.relationships.field_image_product.localFile.childrenImageSharp
-        //     }
-        //   })
-
-            
-        //     setKomboProducts(kombo)
-        //     setIndexProduct(transformData)
-        //     setOptionsPage({title: edges[0].node.title})
-        //     setLoading(false)
-        // }, [edges])
+      })
+   
+      setKomboProducts(kombos)
+      setIndexProduct(transformData)
+      setOptionsPage({titleCombo: allCombo[0].node.title, rekomendedTitle: edges[0].node.title})
+        }, [edges, allCombo])
 
         return (
           <section>
@@ -94,9 +78,9 @@ import Seo from "../components/seo";
                 </Hidden>
                 {/* { !loadingSpinner ? <> */}
                 {/* Комбо */}
-                <Kombo title={allCombo[0].node.title} product={kombos}/>
+                <Kombo title={optionPage.titleCombo} product={komboProducts}/>
                 {/* Новинки/рекомендованые */}
-                <RecommendedProducts title={edges[0].node.title} product={transformData} />
+                <RecommendedProducts title={optionPage.rekomendedTitle} product={indexProduct} />
                 {/* </> : <SpinnerNew /> } */}
                 {/* Меню категории */}
                 <Hidden smUp>
