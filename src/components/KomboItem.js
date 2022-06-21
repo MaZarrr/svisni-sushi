@@ -36,7 +36,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const KomboItem = React.memo(( { id, name, description, image, addedCart, price, slug, edit, products } ) => {
     // const KomboItem = React.memo(( { id, name, description, addedCart, image, price, slug, edit, products } ) => {
-
     const [activeItem, setActiveItem] = useState({nameItem: false});
     const [activeItems, setActiveItems] = useState({nameItem: false});
     const [activeType, setActiveType] = useState('');
@@ -52,7 +51,6 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const classes = useStyleKombo();
-    
     const handleClickAlert = () => {
         setOpenAlert(true);
     };
@@ -90,7 +88,7 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
     };
 
     const addedProductKomboToBacket = () => {
-        const descriptionKombo = pluck('field_name')(productSostav).join(", ");
+        const descriptionKombo = pluck('fieldName')(productSostav).join(", ");
         return {
             id,
             name,
@@ -121,7 +119,7 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
     const priceSale = () => {
         return compose(
             sum,
-            pluck('field_price_product')
+            pluck('fieldPriceProduct')
         )(productSostav);
     };
 
@@ -165,12 +163,12 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
                                 position: `sticky`}}>
                                 { productSostav.map(({
                                         id,
-                                        field_name: name,
-                                        field_price_product: price,
-                                        field_slug: slug,
-                                        field_description_product: description, 
-                                        field_weight: weight,
-                                        relationships: {field_image_product: {localFile: {childImageSharp:{gatsbyImageData}}}}
+                                        fieldName: name,
+                                        fieldPriceProduct: price,
+                                        fieldSlug: slug,
+                                        fieldDescriptionProduct: description, 
+                                        fieldWeight: weight,
+                                        image: { gatsbyImageData }
                                     }, idx) => (
                                     <div aria-hidden={true} onKeyPress={onActiveItem} key={id}
                                          className={clsx(classes.defItem, {
@@ -216,21 +214,20 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
                                 margin: `0 auto` }}>
                                 { activeType !== '' ? items.map(({
                                         id,
-                                        field_name: name,
-                                        field_price_product: price,
-                                        field_slug: slug,
-                                        field_description_product: description, 
-                                        field_weight: weight,
-                                        relationships: {field_image_product: {localFile: {childImageSharp:{gatsbyImageData}}}}
+                                        fieldName: name,
+                                        fieldPriceProduct: price,
+                                        fieldSlug: slug,
+                                        fieldDescriptionProduct: description, 
+                                        fieldWeight: weight,
+                                        image: {gatsbyImageData}
                                     }, idx) => (
                                     <Grid item md={4} lg={3} xl={2}
                                           role="button" tabIndex="0" aria-roledescription="attachment button"
                                           onKeyPress={onActiveItems} key={id}
                                           className={clsx(classes.defItemVibor, {
                                             [classes.activeItemPc]: activeItems[id]})}
-                                            onClick={() => onActiveItems(id, { id, field_description_product: description,
-                                                field_name: name, relationships: {field_image_product: {localFile: {childImageSharp:{gatsbyImageData}}}}, field_slug: activeType, field_price_product: price })}
-                                            style={{cursor: 'pointer', margin: 5, border: `1px solid lightgrey`}}>
+                                            onClick={() => onActiveItems(id, { id, fieldDescriptionProduct: description,
+                                                fieldName: name, image: {gatsbyImageData}, fieldSlug: activeType, fieldPriceProduct: price })}                                            style={{cursor: 'pointer', margin: 5, border: `1px solid lightgrey`}}>
 
                                         <GatsbyImage image={gatsbyImageData} alt={name} />
                                         <div>
@@ -259,12 +256,12 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
                 </div>
                 { productSostav.map(({
                     id,
-                    field_name: name,
-                    field_price_product: price,
-                    field_slug: slug,
-                    field_description_product: description, 
-                    field_weight: weight,
-                    relationships: {field_image_product: {localFile: {childImageSharp:{gatsbyImageData}}}}
+                    fieldName: name,
+                    fieldPriceProduct: price,
+                    fieldSlug: slug,
+                    fieldDescriptionProduct: description, 
+                    fieldWeight: weight,
+                    image: {gatsbyImageData}
                 }, idx) => (
                     <Grid key={id} item xs={12} style={{padding: 10}}>
                         <div role="button" tabIndex="0"
@@ -343,12 +340,12 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
                                         onChangeIndex={value => setActiveItemIndex(value)}>
                             { items.map(({
                                         id,
-                                        field_name: name,
-                                        field_price_product: price,
-                                        field_slug: slug,
-                                        field_description_product: description, 
-                                        field_weight: weight,
-                                        relationships: {field_image_product: {localFile: {childImageSharp: {gatsbyImageData}}}}
+                                        fieldName: name,
+                                        fieldPriceProduct: price,
+                                        fieldSlug: slug,
+                                        fieldDescriptionProduct: description, 
+                                        fieldWeight: weight,
+                                        image: {gatsbyImageData}
                                     }, idx) => (
                                 <Card key={id} 
                                 sx={{
@@ -366,9 +363,8 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
                                         style={{padding: 8, display: `flex`, justifyContent: `center`}}
                                         title={name}>
                                         <Button 
-                                        onClick={() => onActiveItems(id, { id, field_description_product: description,
-                                            field_name: name, relationships: {field_image_product: {localFile: {childImageSharp:{gatsbyImageData}}}}, field_slug: activeType, field_price_product: price })}
-                                        sx={{
+                                        onClick={() => onActiveItems(id, { id, fieldDescriptionProduct: description,
+                                            fieldName: name, image: {gatsbyImageData}, fieldSlug: activeType, fieldPriceProduct: price })}                                        sx={{
                                             maxWidth: '260px',
                                             '@media (max-width: 330px)': {
                                                 maxWidth: '200px'
@@ -391,8 +387,8 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
                                         }}
                                         variant={"subtitle2"}>{description}</Typography>
                                         <Button
-                                          onClick={() => onActiveItems(id, { id, field_description_product: description,
-                                            field_name: name, relationships: {field_image_product: {localFile: {childImageSharp:{gatsbyImageData}}}}, field_slug: activeType, field_price_product: price })}
+                                            onClick={() => onActiveItems(id, { id, fieldDescriptionProduct: description,
+                                            fieldName: name, image: {gatsbyImageData}, fieldSlug: activeType, fieldPriceProduct: price })}
                                           variant="contained"
                                           size={"small"}
                                           style={{backgroundColor: "orange",  position: 'absolute', bottom: `15px`}}>

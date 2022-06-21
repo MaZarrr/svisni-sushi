@@ -209,3 +209,21 @@ body2 - описание текста
     //     assetDownloadWorkers: 25
     //   },
     // },
+
+
+        // {
+    //   resolve: `gatsby-source-drupal`,
+    //   options: { 
+    //     baseUrl: `http://ovz1.vitalistarkiii.pv29m.vps.myjino.ru/drupal/`,
+    //     fastBuilds: true,
+    //     // apiBase: `api`, // optional, defaults to `jsonapi`
+    //     // basicAuth: {
+    //     //   username: 'admin', 
+    //     //   password: 'jH5n22c(sss2ff',
+    //     // },
+    //     concurrentFileRequests: 60, // optional, defaults to `20`
+    //     concurrentAPIRequests: 10,
+    //     requestTimeoutMS: 120000
+    //     // skipFileDownloads: true,
+    //   },
+    // },

@@ -46,7 +46,7 @@ const SelectionContentMobile = ({ product, addedCart }) => {
         <CardMedia
           title={homeProduct.name}>
           <GatsbyImage
-            image={homeProduct.image[0].gatsbyImageData}
+            image={homeProduct.image.gatsbyImageData}
             style={styles.img}
             alt={homeProduct.name} />
         </CardMedia>

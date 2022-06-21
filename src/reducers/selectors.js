@@ -7,15 +7,15 @@ const product = (state) => state.app.product;
 const productPizza = (state) => state.shoppingCart.newPizza === null ? state.app.productPizza : state.shoppingCart.newPizza;
 const productWok = (state) => state.shoppingCart.newWok;
 const isSaleLanch = (state) => state.filters.isSale;
-const edges = (state, edges) => edges; 
+const ownProps = (state, props) => props; 
 export const productList = createSelector(
     categories,
     product,
     productWok,
     productPizza,
     isSaleLanch,
-    edges,
-    (category, product, productWok, productPizza, isLanch, edges ) => {
+    ownProps,
+    (category, product, productWok, productPizza, isLanch, ownProps ) => {
         if(category){
             return product.filter(({filter = category}) => {
                 return filter.toLowerCase().split(", ").includes(category.toLowerCase())})
@@ -37,7 +37,7 @@ export const productList = createSelector(
         }
 
     
-    const currentSlug = edges.pageData.nodeStranicy.field_slug;
+    const currentSlug = ownProps.pageData.contentfulPages.fieldSlug;
     // const productCheckAll = product.some((item) => item.isWok === false && item.isPizza === false);
     const productCheckTypeWok = product.some((item) => item.isWok === true && currentSlug === 'wok');
     const productCheckTypePizza = productPizza.some((item) => item.isPizza === true && currentSlug === 'pizza');

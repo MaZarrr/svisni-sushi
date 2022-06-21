@@ -93,7 +93,7 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
           <CheckoutContainer>
                   <div style={{width: `95%`, borderRadius: 3}}>
                     <Typography variant={"subtitle2"}>Кол-во: <strong>{count}шт</strong></Typography>
-                    <Typography variant={"subtitle2"}>Общий вес: <strong>{weight}кг</strong></Typography>
+                    <Typography variant={"subtitle2"}>Общий вес: <strong>{weight}</strong></Typography>
                     <Typography variant={"subtitle2"}>Цена: <strong>{price}₽</strong></Typography>
                   </div>
                 <Button

@@ -10,42 +10,44 @@ import { productLoaded, productPizzaLoaded } from "../../reducers/app"
 import { checkSaleLanch, defFilters } from "../../reducers/filters";
 import filtersProducts from "../../utils/filtersProducts"
 import { pizzaCart } from "../../reducers/shopping-cart";
-// import SpinnerNew from "../../components/spinner/spinner-new";
+import Spinner from "../../components/spinner/spinner";
 
 // const categoryNames = ['Малые', 'Средние', 'Большие', '⏱️Ланч-тайм'];
 
-const ProductList = ({ pageData: { nodeStranicy: pageData, allNodeBlyudaMenyu: { edges } }, context,
+const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProducts: { edges } }, context,
     product, searchText, priceFilter, checkboxFilter, location, dispatch  }) => {
     const [load, setLoad] = React.useState(true);
     const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
     // const [defaultProducts, setDefaultProducts] = React.useState([]);
+
     const transformData = edges.map(({ node }) => {
         return {
             node: {
                 id: node.id,
-                name: node.field_name,
-                price: node.field_price_product,
-                slug: node.field_slug_item,
-                isWok: node.field_is_wok,
-                isPizza: node.field_is_pizza,
-                weightPizzaSmall: node.field_weight_small, 
-                weightPizzaLarge: node.field_weight_large, 
-                pricePizzaLarge: node.field_price_large, 
-                variant: node.field_variant,
-                drupal_id: node.drupal_id,
-                weight: node.field_weight,
-                count: node.field_count,
-                description: node.field_description_product,
-                wok: node.field_is_wok,
-                nonprice: node.field_price_not_sale,
-                lanchprice: node.field_price_lanch_time, 
-                lanch: node.field_is_lanchtime,
-                edit: node.field_is_edit_kombo,
-                image: node.relationships.field_image_product.localFile.childImageSharp,
-                private: node.field_private,
+                name: node.fieldName,
+                price: node.fieldPriceProduct,
+                slug: node.fieldSlugItem,
+                isWok: node.fieldIsWok,
+                isPizza: node.fieldIsPizza,
+                drupal_id: node.contentful_id,
+                weightPizzaSmall: node.fieldWeightSmall, 
+                weightPizzaLarge: node.fieldWeightLarge, 
+                pricePizzaLarge: node.fieldPriceLarge, 
+                variant: node.fieldVariant,
+                weight: node.fieldWeight,
+                count: node.fieldCount,
+                description: node.fieldDescriptionProduct,
+                wok: node.fieldIsWok,
+                nonprice: node.fieldPriceNotSale,
+                lanchprice: node.fieldPriceLanchTime, 
+                lanch: node.fieldPriceLanchTime > 0 ? true : false,
+                edit: node.fieldIsEditKombo,
+                image: node.image,
+                private: node.fieldPrivate,
             }
         }
     })
+        // gatsbyImageData
     
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter);
     const priceIsSale = useMemo(() => isSale, [isSale]);
@@ -80,32 +82,33 @@ useEffect(() => {
 
     return (
         <>
-        <Seo title={pageData.field_seo_title} 
-            description={pageData.field_seo_descrittion}
+        <Seo title={pageData.fieldSeoTitle} 
+            description={pageData.fieldSeoDescrittion}
             pathname="/"
         />
-        <HeadSection titleTXT={pageData.field_title} path={pageData.field_slug} isFilter={true} 
+        <HeadSection titleTXT={pageData.fieldTitle} path={pageData.fieldSlug} isFilter={true} 
         // categoryNames={categoryList()} 
         /> 
         <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
             { visibleItems && visibleItems.length > 0 ? <>
             <MenuList titleCategory="" 
-                    slugCategogy={`/${pageData.field_slug}`} visibleItems={visibleItems}
+                    slugCategogy={`/${pageData.fieldSlug}`} 
+                    visibleItems={visibleItems}
                     product={product} 
                     timePrice={{ hours, minutes, seconds }}
                     isSale={priceIsSale} 
                     switchSizePizza={switchSizePizza} />
                     {/* image={pageData.relationships.field_avatar.localFile.childImageSharp} */}
         </>
-            :   <h4 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Нечего не найдено... <span role="img" aria-label="accessible-emoji">🧐</span></h4> }
+            :   <Spinner count={4} /> }
         </Grid>
         </>
     )
 };
 
 
-const mapStateToProps = (state, edges) => ({
-    product: productList(state, edges),
+const mapStateToProps = (state, ownProps) => ({
+    product: productList(state, ownProps),
     searchText: state.filters.searchText,
     priceFilter: state.filters.priceFilter,
     checkboxFilter: state.filters.checkboxFilter

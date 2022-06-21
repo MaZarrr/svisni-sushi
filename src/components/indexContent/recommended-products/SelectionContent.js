@@ -14,7 +14,6 @@ import { addedCart } from "../../../reducers/shopping-cart";
 import { connect } from "react-redux";
 
 const SelectionContent = ({ product, addedCart }) => {
-  console.log("SelectionContent___ product", product);
   return (
   <Grid container justifyContent={"space-between"}>
   {
@@ -34,7 +33,7 @@ const SelectionContent = ({ product, addedCart }) => {
           <CardMedia
             title={homeProduct.name}>
             <GatsbyImage
-              image={homeProduct.image[0].gatsbyImageData}
+              image={homeProduct.image.gatsbyImageData}
               alt={homeProduct.name} />
           </CardMedia>
           <CardContent>

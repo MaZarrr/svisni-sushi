@@ -41,7 +41,7 @@ const PizzaSizeBlock = ({ classes, slug, size, id, priceDef, isPizza, mass, drup
                                         variant={"subtitle2"}>28см</Typography>
                         </Grid>
                         <Grid item xs={2}>
-                        <p style={{margin: `10px auto 0 auto`, fontWeight: 'bold', fontSize: 14, textAlign: 'center'}}>{`${mass}кг`}</p>
+                        <p style={{margin: `10px auto 0 auto`, fontWeight: 'bold', fontSize: 14, textAlign: 'center'}}>{`${mass}`}</p>
                         </Grid>
                         <Grid item xs={5} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             <button style={{paddingLeft: `auto`}} 
@@ -277,7 +277,7 @@ const MenuList = memo(({
                                         <Paper style={{width: `90%`, margin: `0 auto`}}>
                                             { slugCategogy !== "/napitki" &&
                                             <Typography variant="subtitle2" style={{textAlign: `center`}}>{slugCategogy ===
-                                            "/sety" ? `${weight}кг` : `${weight}гр`}</Typography>
+                                            "/sety" ? `${weight}` : `${weight}`}</Typography>
                                             }
                                             { slugCategogy === "/napitki" &&
                                             <Typography variant="subtitle2" style={{textAlign: `center`}}>{weight}л</Typography>

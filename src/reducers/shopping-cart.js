@@ -56,7 +56,6 @@ const updateCartItems = (cartItems, item, idx) => {
 };
 
 const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) => { // добавление в корзину
-
     const sizePizza = R.defaultTo({[setу.slug]: true}, setу.size);
     const pricePizza = R.defaultTo(setу.price, setу.priceDef);
     const {
@@ -71,7 +70,7 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
     } = item;
 
     // добавление пиццы
-    if (!R.isNil(setу.pricePizzaLarge)) {
+    if (setу.pricePizzaLarge > 0) {
         const descriptionIngrideents = R.pluck('nameI', setу.sostav).join(", ");
         return {
             id,
@@ -131,19 +130,20 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
     };
 };
 
-const updateOder = (state, setId, quantity, priceRadioPizza, categoryName) => {
+const updateOder = (state, setId, quantity, priceRadioPizza, products) => {
     const {cartItems} = state;
-    const sety = categoryName.find((productCategory) => productCategory.id === setId);
+    const product = products.find((productCategory) => productCategory.id === setId);
     const itemIndex = cartItems.findIndex(({id}) => id === setId);
     const item = cartItems[itemIndex];
-
+    
     const totalPrice = R.compose(
         R.sum,
         R.pluck('total')
     )(cartItems);
-    const newItem = updateCartItem(sety, item, quantity, priceRadioPizza);
+
+    const newItem = updateCartItem(product, item, quantity, priceRadioPizza);
     return {
-        orderTotal: priceRadioPizza > (sety.price || item.priceDef) ? totalPrice + priceRadioPizza * quantity : totalPrice + (sety.price || item.priceDef) * quantity,
+        orderTotal: priceRadioPizza > (product.price || item.priceDef) ? totalPrice + priceRadioPizza * quantity : totalPrice + (product.price || item.priceDef) * quantity,
         cartItems: updateCartItems(cartItems, newItem, itemIndex)
     };
 
@@ -175,7 +175,6 @@ export const addedIngrideent = ({id, sostav, name, addTodel, ingrideents, check,
     const ingrideent = ingrideents.find((el) => el.title === name)
     // const ingrideentIndex = sostav.findIndex((el) => el.id === ingrideent.id)
     // if(ingrideentIndex === -1) {
-        console.log(addTodel);
         if(addTodel === "inc"){
             dispatch(ingrideentPlus({id, path, pizzaIng, add: ingrideent.plus, incdesc: 1, name, check, ingrideents, sostav, productPizza: newPizza, defaultPizza: productPizza}))
         } else {
@@ -202,6 +201,7 @@ const initialState = {
 
 export default createReducer({
     [addedToCart]: (state, {id, price, product}) => {
+
         const res = updateOder(state, id, 1, price, product);
         if (isBrowser) {
             localStorage.setItem('basketProduct', JSON.stringify(res));

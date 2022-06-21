@@ -11,22 +11,23 @@ import ProductItem from '../components/SetyItem'
 //     allContentfulProductGunkan: {edges: gunkan},
 // }, addedToCart, isSale }) => {
 
-    const SetyTeamplate = ({ data: {nodeBlyudaMenyu}, addedToCart, isSale }) => {
-        console.log("allNodeBlyudaMenyu__", nodeBlyudaMenyu);
+    const SetyTeamplate = ({ data: {contentfulProducts}, addedToCart, isSale }) => {
+
         const product = {
-            id: nodeBlyudaMenyu.id,
-            name: nodeBlyudaMenyu.field_name,
-            price: nodeBlyudaMenyu.field_price_product,
-            description: nodeBlyudaMenyu.field_description, 
-            weight: nodeBlyudaMenyu.field_weight,
-            count: nodeBlyudaMenyu.field_count,
-            image: nodeBlyudaMenyu.relationships.field_image_product.localFile.childImageSharp
+            id: contentfulProducts.id,
+            name: contentfulProducts.fieldName,
+            price: contentfulProducts.fieldPriceProduct,
+            description: contentfulProducts.fieldDescriptionProduct, 
+            weight: contentfulProducts.fieldWeight,
+            count: contentfulProducts.fieldCount,
+            image: contentfulProducts.image
         }
-//     const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan);
-//     const nameProduct = contentfulProduct.description.toLowerCase().split(', ');
-//     const kitProduct = product.filter(({node: item}) => {
-//       return R.contains(item.name.toLowerCase(), nameProduct)
-//     });
+        
+        //     const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan);
+        //     const nameProduct = contentfulProduct.description.toLowerCase().split(', ');
+        //     const kitProduct = product.filter(({node: item}) => {
+        //       return R.contains(item.name.toLowerCase(), nameProduct)
+        //     });
 
  return  (
      <>
@@ -69,38 +70,39 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(SetyTeamplate)
 
-
+//     query ($slug: String!) {
+//        contentfulProduct
 export const query = graphql ` 
-query QuerySetyItem($slug: String) {
-  nodeBlyudaMenyu(field_slug_item: {eq: $slug}) {
-        field_name
-        field_price_lanch_time
-        field_price_not_sale
-        field_price_product
-        field_private
-        field_slug
-        field_variant
+query QuerySetyItem($slug: String!) {
+  contentfulProducts(fieldSlugItem: {eq: $slug}) {
+        fieldName
+        fieldSlugItem
+        fieldVariant
+        fieldWeight
+        fieldWeightLarge
+        fieldWeightSmall
         id
-        field_weight
-        relationships {
-          field_image_product {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-              }
-            }
-          }
-        }
-        field_is_pizza
-        field_is_lanchtime
-        field_description_product
-        field_count
-        field_price_large
-        field_slug_item
-        field_weight_large
-        field_weight_small
-      }
+        fieldSlug
+        fieldPriceProduct
+        fieldPrivate
+        fieldPriceLarge
+        fieldIsWok
+        fieldIsPizza
+        fieldIsEditKombo
+        fieldDescriptionProduct
+        fieldCount
+        fieldPriceLanchTime
+        fieldPriceNotSale
+        contentful_id
+        image {
+        	gatsbyImageData(
+            placeholder: BLURRED, 
+            formats: [WEBP, AUTO]
+          	sizes:"(max-width: 360px) 360px, 100vw)"
+          )
     }
+  }
+}
 `
 
 

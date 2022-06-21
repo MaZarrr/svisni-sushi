@@ -23,7 +23,7 @@ exports.createPages = async ({ graphql, actions, page }) => {
   const productTeamplate = path.resolve('./src/templates/productsTeamplate.js')
   const setyTemplate = path.resolve('./src/templates/setyTeampletes.js');
   const komboTeamplates = path.resolve('./src/templates/komboTeamplates.js');
-//  sales platform - возможное апи для отображение статики
+//  sales platform - возможное апи для отображение статики и так динамики
 //   const result = await graphql(`
 //     {
 //       svisnisushi {
@@ -40,26 +40,51 @@ exports.createPages = async ({ graphql, actions, page }) => {
 //     }
 // `)
 
+
 const result = await graphql(`
 {
-  allNodeStranicy {
+  allContentfulPages(sort: {fields: fieldTitle}) {
     edges {
       node {
-        field_slug
+        fieldSlug
       }
     }
   }
-  allNodeBlyudaMenyu {
+  allContentfulProducts {
     edges {
       node {
-        field_slug
-        field_slug_item
-        field_is_edit_kombo
+        fieldSlugItem
+        fieldSlug
+        fieldIsEditKombo
       }
     }
   }
 }
 `)
+
+
+
+// const result = await graphql(`
+// {
+//   allNodeStranicy {
+//     edges {
+//       node {
+//         field_slug
+//       }
+//     }
+//   }
+//   allNodeBlyudaMenyu {
+//     edges {
+//       node {
+//         field_name
+//         field_slug
+//         field_slug_item
+//         field_is_edit_kombo
+//       }
+//     }
+//   }
+// }
+// `)
 
   // Handle errors
   if (result.errors) {
@@ -68,33 +93,36 @@ const result = await graphql(`
     return
   }
 
-  result.data.allNodeStranicy.edges.forEach(({ node }) => {
+  result.data.allContentfulPages.edges.forEach(({ node }) => {
     // result.data.svisnisushi.getPages.pages.forEach(({ slug }) => { // мой сервер node
     createPage({
-      path: `/${node.field_slug}`,
+      path: `/${node.fieldSlug}`,
       component: productTeamplate,
       context: {
-        slug: node.field_slug
+        slug: node.fieldSlug
       }
     })
   });
+  
+  
+  
+  
 
-
-  result.data.allNodeBlyudaMenyu.edges.forEach(({ node }) => {
-      if(node.field_slug === 'sety') {
+  result.data.allContentfulProducts.edges.forEach(({ node }) => {
+      if(node.fieldSlug === 'sety') {
         createPage({
-          path: `/sety/${node.field_slug_item}`,
+          path: `/${node.fieldSlug}/${node.fieldSlugItem}`,
           component: setyTemplate,
           context: {
-            slug: node.field_slug_item
+            slug: node.fieldSlugItem
           }
         })
-      } else if(node.field_slug === 'kombo' && node.field_is_edit_kombo) {
+      } else if(node.fieldSlug === 'kombo' && node.fieldIsEditKombo) {
         createPage({
-          path: `/kombo/${node.field_slug_item}`,
+          path: `/${node.fieldSlug}/${node.fieldSlugItem}`,
           component: komboTeamplates,
           context: {
-            slug: node.field_slug_item
+            slug: node.fieldSlugItem
           }
         })
       }

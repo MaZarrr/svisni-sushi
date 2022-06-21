@@ -62,9 +62,10 @@ module.exports = {
     },
    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-drupal`,
-      options: { 
-        baseUrl: `http://ovz1.vitalistarkiii.pv29m.vps.myjino.ru/drupal`,
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     {
