@@ -13,7 +13,7 @@ export const wrapPageElement = ({ element, props }) => {
 export const wrapRootElement = ({ element }) => {
  return (
    <StyledEngineProvider>
-    window.VK.Widgets.CommunityMessages("vk_community_messages", 20003922)
+    {/* window.VK.Widgets.CommunityMessages("vk_community_messages", 20003922) */}
    <ThemeProvider theme={theme}>
     <CssBaseline/>
         {element}
