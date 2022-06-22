@@ -12,7 +12,7 @@ const Sale = (props) => {
 
     return <>
         <Seo title="Акции и скидки на пиццу, роллы и суши в Уразово"
-             description="Акции на роллы суши и пиццу в Валуйках. Скидки до 50%, подарки именинникам, бесплатная пицца, роллы за 79 рублей "/>
+             description="Акции на роллы суши и пиццу в Валуйках. Скидки до 50%, подарки именинникам, бесплатная пицца, роллы за 99 рублей "/>
         <HeadSection titleTXT={"Акции"} />
         {/* <Grid container style={{padding: '0 20px'}}>
             {props.data.allContentfulProductSale.edges.map((product) => (

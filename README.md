@@ -211,7 +211,7 @@ body2 - описание текста
     // },
 
 
-        // {
+    // {
     //   resolve: `gatsby-source-drupal`,
     //   options: { 
     //     baseUrl: `http://ovz1.vitalistarkiii.pv29m.vps.myjino.ru/drupal/`,

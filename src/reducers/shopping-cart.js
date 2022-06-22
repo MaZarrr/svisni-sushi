@@ -433,7 +433,7 @@ export default createReducer({
                 ...objRoll,
                 id: uniqid(),
                 priceSale: 0,
-                textRollSale: "Филадельфия за 79!"
+                textRollSale: "за 99"
             }, state.cartItems)
         }
     },
@@ -459,7 +459,7 @@ export default createReducer({
         const rollSaleIndex = state.cartItems.findIndex((el) => el.id === id)
         return {
             ...state,
-            orderTotal: state.orderTotal - 79,
+            orderTotal: state.orderTotal - 99,
             cartItems: R.remove(rollSaleIndex, 1, state.cartItems)
         }
     },

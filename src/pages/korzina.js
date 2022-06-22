@@ -26,13 +26,13 @@ import HeadSection from "../components/HeadSection";
 
 const EmptyBasket = loadable(() => import('../components/EmptyBasket'))
 
-const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
+const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total = 0, palochkiTotal,
                              onIncrease, onDecrise, onDelete, addedPriborCount, addedSaleRoll,
   addedSalePizza, deletePizzaSale, deleteFilaSale, location: { pathname } }) => {
   const classes = useStyleBasket();
 
   // const pizzaSaleFlag = R.contains(true, items.map((el) => el.pizzaSale));
-  // const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
+  const disabled = () => R.contains(true, items.map((el) => el.priceSale === 0));
 
   // const pizzaDarom = () => {
   //   const cart = items.filter((el) => {
@@ -94,65 +94,66 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
   //     deletePizzaSale(pizza().id)
   //   }
   // }
-  // const test = () => {
-  //   const cart = items.filter((el) => {
-  //     return allContentfulProductHotRolly.edges.concat(allContentfulProductSlognyeRolly.edges, allContentfulProductKlassika.edges, allContentfulProductGunkan.edges, allContentfulProductSushi.edges).find((data) => data.node.id === el.id)
-  //   })
 
-  //   const res = cart.findIndex((data) => data.name === "Филадельфия one")
-  //   if(res >= 0) {
-  //     const price = R.remove(res, 1, cart)
-  //     return R.compose(
-  //       R.sum,
-  //       R.pluck('total')
-  //     )(price)
-  //   }
-  //   return R.compose(
-  //     R.sum,
-  //     R.pluck('total')
-  //   )(cart)
-  // }
-  // const saleRollFunc = () => {
-  //   const {node} = allContentfulProductSlognyeRolly.edges.find((el) => el.node.name === 'Филадельфия one' )
-  //   const saleRoll = {
-  //     id: uniqid(),
-  //     name: node.name,
-  //     price: 79,
-  //     total: 79,
-  //     image: node.image.gatsbyImageData,
-  //     count: 1
-  //   }
+  const findJaranDish = () => {
+    const cart = items.filter((el) => {
+      return allContentfulProducts.edges.find((data) => data.node.id === el.id)
+    })
 
-  //   if(test() > 789 && !disabled()) {
-  //     return (
-  //       <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
-  //           <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
-  //             <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
-  //               <GatsbyImage style={{maxWidth: 158}} image={saleRoll.image} alt={saleRoll.name}/>
-  //             </div>
-  //             <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
-  //               <Typography variant="subtitle1" style={{fontSize: 16}}>
-  //                 Акция
-  //               </Typography>
-  //               <Typography variant="subtitle1">
-  //                 {saleRoll.name} за 79₽
-  //               </Typography>
+    const res = cart.findIndex((data) => data.fieldName === "Филадельфия one")
+    if(res >= 0) {
+      const price = R.remove(res, 1, cart)
+      return R.compose(
+        R.sum,
+        R.pluck('total')
+      )(price)
+    }
+    return R.compose(
+      R.sum,
+      R.pluck('total')
+    )(cart)
+  }
+  const saleRollFunc = () => {
+    const {node} = allContentfulProducts.edges.find((el) => el.node.fieldName === 'Филадельфия one' )
+    const saleRoll = {
+      id: uniqid(),
+      name: node.fieldName,
+      price: 99,
+      total: 99,
+      image: node.image.gatsbyImageData,
+      count: 1
+    }
+    console.log("saleRoll___", saleRoll);
+    if(findJaranDish() > 889 && !disabled()) {
+      return (
+        <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
+            <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
+              <div style={{margin: `auto 0`, zIndex: 10, maxWidth: 192}}>
+                <GatsbyImage style={{maxWidth: 158}} image={saleRoll.image} alt={saleRoll.name}/>
+              </div>
+              <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
+                <Typography variant="subtitle1" style={{fontSize: 16}}>
+                  Акция {saleRoll.name}
+                </Typography>
+                <Typography variant="subtitle1">
+                  за 99₽
+                </Typography>
 
-  //               <Button variant={"contained"} color={"secondary"}
-  //                       size={"small"}
-  //                       disabled={false}
-  //                       onClick={() => addedSaleRoll(saleRoll)}>
-  //                 Добавить
-  //               </Button>
-  //             </div>
-  //           </div>
-  //       </Grid>
+                <Button variant={"contained"} color={"secondary"}
+                        size={"small"}
+                        disabled={false}
+                        onClick={() => addedSaleRoll(saleRoll)}>
+                  Добавить
+                </Button>
+              </div>
+            </div>
+        </Grid>
 
-  //     )
-  //   } else if (test() < 790 && disabled()) {
-  //     deleteFilaSale(node.id)
-  //   }
-  // };
+      )
+    } else if (findJaranDish() < 890 && disabled()) {
+      deleteFilaSale(node.id)
+    }
+  };
 
   const addPanelPribors = R.contains(true, R.map(({pricePizzaLarge}) => pricePizzaLarge === undefined, items));
   return <>
@@ -182,7 +183,8 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                           <div style={{margin: `auto 0`, zIndex: 10}}>
                             <GatsbyImage
                               style={{maxWidth: 158}}
-                              image={image} alt={name} />
+                              image={image} alt={name} 
+                              />
                           </div>
                           <div style={{width: `100%`}}>
                             <div style={{padding: `8px 0 8px 0`, width: `100%`}}>
@@ -196,7 +198,7 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                                 </Typography>
 
                                 <div>
-                                  {price !== 79 && priceDef !== 0 ?
+                                  {price !== 99 && priceDef !== 0 ?
                                     <>
                                       <IconButton
                                         aria-label="plus"
@@ -213,18 +215,18 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                                         size="large">
                                         <IndeterminateCheckBoxOutlinedIcon/>
                                       </IconButton>
-                                    </> : <Typography variant="subtitle2">{textPizza || textRollSale}</Typography> }
+                                    </> : <Typography variant="subtitle2">{textPizza}</Typography> }
 
-                                  { price > 78 &&
+                                  { price > 98 &&
                                   <IconButton
                                     aria-label="remove"
                                     component="span"
                                     sx={{
-                                      '@media screen and (max-width: 330px) ': {
-                                        display: 'none',
+                                      '@media screen and (max-width: 330px)': {
+                                        display: price === 99  ? 'block' : 'none',
                                       }
                                     }}
-                                    onClick={price !== 79 ? ()=> onDelete( { id, price, product: items } )
+                                    onClick={price !== 99 ? ()=> onDelete( { id, price, product: items } )
                                       : () => deleteFilaSale(id)}
                                     size="large">
                                     <DeleteOutlineOutlinedIcon/>
@@ -247,7 +249,7 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                                   }
                                 </div>
                                 <Typography style={{fontSize: 14, fontWeight: 600, position: `absolute`, top: 15, right: 10}}
-                                            variant="subtitle2">{price === 79 ? null : `${total}₽`}</Typography>
+                                            variant="subtitle2">{price === 99 ? null : `${total}₽`}</Typography>
                               </div>
                             </div>
 
@@ -281,8 +283,9 @@ const ShoppingCartTable = ({items = [], total = 0, palochkiTotal,
                         </div>
                       </Grid>
                     );})}
-                  {/* {saleRollFunc()}
-                  {pizzaDarom()} */}
+                  
+                    {saleRollFunc()}
+                    {/* {pizzaDarom()} */}
 
                   <Hidden smUp>
                     { addPanelPribors  &&
@@ -415,85 +418,30 @@ const mapDispatchToProps = {
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
 
-// export const query = graphql `
-//     {
-//       allContentfulProductPizza  {
-//       edges {
-//         node {
-//             id
-//             contentful_id
-//             name
-//             slug
-//             price
-//             pricePizzaLarge
-//             image {
-//                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//             }
-//           }
-//         }
-//       }
-// allContentfulProductKlassika {
-//   edges {
-//     node {
-//       id
-//       name
-//       price
-//       image {
-//             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//             }
-//     }
-//   }
-// }
-//   allContentfulProductSlognyeRolly {
-//     edges {
-//       node {
-//         id
-//         name
-//         price
-//         image {
-//              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//             }
-//       }
-//     }
-//   }
-//        allContentfulProductSushi {
-//          edges {
-//            node {
-//              id
-//              name
-//              price
-//              image {
-//              gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//             }
-//            }
-//          }
-//        }
-//            allContentfulProductHotRolly {
-//              edges {
-//                node {
-//                  id
-//                  name
-//                  price
-//                  image {
-//                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//                 }
-//                }
-//              }
-//            }
-//           allContentfulProductGunkan {
-//             edges {
-//               node {
-//                 id
-//                 name
-//                 price
-//                 image {
-//                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//             }
-//               }
-//             }
-//           }
-//         }
-//     `
+export const query = graphql `
+
+query MyQueryKorzina {
+  allContentfulProducts(filter: {fieldSlug: {in: ["hot-rolls", "branded-rolls", "small-rolls", "sushi", "gunkany"]}}) {
+    edges {
+      node {
+        id
+        contentful_id
+        fieldName
+        fieldSlug
+        fieldPriceProduct
+        fieldPriceLarge
+        image {
+          gatsbyImageData(
+            placeholder: BLURRED, 
+            formats: [WEBP, AUTO]
+            sizes:"(max-width: 360px) 360px, 100vw)"
+          )
+         }
+      }
+    }
+  }
+}
+`
 
 const useStyleBasket  = makeStyles(theme => ({
   root: {

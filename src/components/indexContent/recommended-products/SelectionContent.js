@@ -1,5 +1,4 @@
 import Typography from "@mui/material/Typography";
-import { isNil } from "ramda";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -50,11 +49,13 @@ const SelectionContent = ({ product, addedCart }) => {
                   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
                   color: 'white',
                 }}
+                size={"small"}
                 component={Link}
                 to={homeProduct.slug === "sety" ? `/sety/${homeProduct.slugItem}` : homeProduct.slug === "pizza" ? "/pizza/" : null}>
                 Посмотреть
               </Button> : <Button
                 variant="contained"
+                size={"small"}
                 sx={{
                   backgroundColor: `tomato`,
                   border: 0,

@@ -280,7 +280,7 @@ const MenuList = memo(({
                                             "/sety" ? `${weight}` : `${weight}`}</Typography>
                                             }
                                             { slugCategogy === "/napitki" &&
-                                            <Typography variant="subtitle2" style={{textAlign: `center`}}>{weight}л</Typography>
+                                            <Typography variant="subtitle2" style={{textAlign: `center`}}>{weight}</Typography>
                                             }
                                         </Paper>
                                     </Grid>

@@ -67,9 +67,10 @@ const SelectionContentMobile = ({ product, addedCart }) => {
               component={Link}
               size={"small"}
               to={homeProduct.slug === "sety" ? `/sety/${homeProduct.slugItem}` : homeProduct.slug === "pizza" ? "/pizza/" : null}>
-              ПосмоСтреть
+              Посмотреть
             </Button> : <Button
               variant="contained"
+              size={"small"}
               sx={{
                 backgroundColor: 'tomato',
                 border: 0,
