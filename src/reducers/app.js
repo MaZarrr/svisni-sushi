@@ -3,18 +3,23 @@ import {createReducer, createAction} from "redux-act";
 export const productLoaded = createAction('PRODUCT_LOADED');
 export const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA');
 export const spinnerLoading = createAction('PRODUCT_SPINNER');
+// export const indexProducLoadi = createAction('PRODUCT_SPINNER');
 const productLoadedIndex = createAction('PRODUCT_LOADED_INDEX');
 
 export const loadIndexItems = (data) => (dispatch) => dispatch(productLoadedIndex(data));
-// export const loadingSpinner = (status) => (dispatch) => dispatch(spinnerLoad(status));
 export const getProduct = (product) => async (dispatch) => {
     await dispatch(productLoaded(product))
 };
+// export const loadingSpinner = (status) => (dispatch) => dispatch(spinnerLoad(status));
 
 const initialState = {
+    indexProduct: {
+        optionPage: {},
+        combo: [],
+        recommendedProduct: []
+    },
     product: [],
     productPizza: [],
-    indexProduct: [],
     indexMenu: [],
     loading: true,
     error: false
@@ -25,8 +30,38 @@ export default createReducer({
         const product = productCategory.map(({node: el}) => el)
         return {...state, product}
     },
-    [productLoadedIndex]: (state, {edges, menu}) => {
-        return {...state, indexProduct: edges, indexMenu: menu}
+    [productLoadedIndex]: (state, {combo: {edges: comboList}, recomendedProduct: {edges: recomendedProductList}}) => {
+        
+        const recomendedProductData = recomendedProductList[0].node.recomendedProduct.map(( node ) => {
+            return {
+              id: node.id,
+              name: node.fieldName,
+              price: node.fieldPriceProduct,
+              slug: node.fieldSlug,
+              slugItem: node.fieldSlugItem,
+              description: node.fieldDescriptionProduct,
+              image: node.image
+            }
+        });   
+        const comboData = comboList[0].node.kombo.map((node) => {
+        return {
+            id: node.id,
+            name: node.fieldName,
+            price: node.fieldPriceProduct,
+            slug: node.fieldSlug,
+            slugItem: node.fieldSlugItem,
+            description: node.fieldDescriptionProduct,
+            image: node.image,
+            isEdit: node.fieldIsEditKombo,
+        }
+        })
+
+      const optionIndexPage = {
+        titleCombo: comboList[0].node.title,
+        recomendedTitle: recomendedProductList[0].node.title
+      };
+
+        return {...state, indexProduct: { optionPage: optionIndexPage, combo: comboData, recomendedProduct: recomendedProductData }}
     },
     [productPizzaLoaded]: (state, productCategory) => {
         const productPizza = productCategory.map(({node: el}) => {
@@ -174,5 +209,4 @@ export default createReducer({
     [spinnerLoading]: (state, status) => {
         return {...state, loading: status}
     }
-
 }, initialState)

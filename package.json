@@ -45,6 +45,7 @@
     "react-helmet": "^6.1.0",
     "react-number-format": "^4.7.3",
     "react-redux": "^7.2.5",
+    "react-spinners": "^0.12.0",
     "react-swipeable-views": "^0.14.0",
     "react-swipeable-views-core": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",

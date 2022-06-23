@@ -10,50 +10,28 @@ import MenuCategory from "../components/indexContent/MenuCategory";
 import RecommendedProducts from "../components/indexContent/recommended-products";
 
 import Seo from "../components/seo";
+import { connect } from "react-redux";
+import { loadIndexItems } from "../reducers/app";
+import ClipLoader from "react-spinners/ClipLoader";
 // капрусель
 // const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges },
 //   allNodeKomboRekomenduemye: { edges: komboItems }
 // }}) => {
 
-  const IndexPage = ({data: {allContentfulIndexRecomended: {edges}, allContentfulIndexKombo: {edges: allCombo}}}) => {
-
-        const [indexProduct, setIndexProduct] = useState(true)
-        const [komboProducts, setKomboProducts] = useState(true)
-        const [optionPage, setOptionsPage] = useState({})
-
+        const IndexPage = ({data: {
+            allContentfulIndexRecomended, 
+            allContentfulIndexKombo,
+          },
+          loadItems,
+          indexProduct: { optionPage = {}, combo = [], recomendedProduct = [] }
+        }) => {
+        
         const classes = useStyleIndexPage();
-
+        console.log(combo);
+        console.log(recomendedProduct);
         useEffect(() => {
-          const transformData = edges[0].node.recomendedProduct.map(( node ) => {
-            return {
-              id: node.id,
-              name: node.fieldName,
-              price: node.fieldPriceProduct,
-              slug: node.fieldSlug,
-              slugItem: node.fieldSlugItem,
-              description: node.fieldDescriptionProduct,
-              image: node.image
-            }
-          })
-  
-            
-        const kombos = allCombo[0].node.kombo.map((node) => {
-          return {
-            id: node.id,
-            name: node.fieldName,
-            price: node.fieldPriceProduct,
-            slug: node.fieldSlug,
-            slugItem: node.fieldSlugItem,
-            description: node.fieldDescriptionProduct,
-            image: node.image,
-            isEdit: node.fieldIsEditKombo,
-          }
-      })
-   
-      setKomboProducts(kombos)
-      setIndexProduct(transformData)
-      setOptionsPage({titleCombo: allCombo[0].node.title, rekomendedTitle: edges[0].node.title})
-        }, [edges, allCombo])
+          loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended})
+        }, [])
 
         return (
           <section>
@@ -76,47 +54,60 @@ import Seo from "../components/seo";
                               component={"h1"}>
                     Свисни Суши в Уразово</Typography>
                 </Hidden>
-                {/* { !loadingSpinner ? <> */}
+                { combo.length && recomendedProduct.length > 0 ? <>
                 {/* Комбо */}
-                <Kombo title={optionPage.titleCombo} product={komboProducts}/>
+                <Kombo title={optionPage.titleCombo} product={combo}/>
                 {/* Новинки/рекомендованые */}
-                <RecommendedProducts title={optionPage.rekomendedTitle} product={indexProduct} />
-                {/* </> : <SpinnerNew /> } */}
+                <RecommendedProducts title={optionPage.recomendedTitle} product={recomendedProduct} />
+                {/* <Loader></Loader> */}
                 {/* Меню категории */}
                 <Hidden smUp>
                   <Grid container style={{ marginBottom: 20 }}>
+                  <Typography sx={{
+                    marginLeft: '25px', 
+                    margin: '0 0 0 50px'
+                    }} variant={'h2'}>Меню</Typography>
                     <MenuCategory />
                   </Grid>
                 </Hidden>
-      
+                </> : <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div> }      
               </Grid>
           </section>
         );
       }
 
-export default IndexPage
 
-const useStyleIndexPage = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        width: `95%`,
-        margin: `auto`
-    },
-    title: {
-        fontWeight: 900,
-        marginBottom: 30,
-        marginTop: 30,
-        textAlign: 'center',
-        width: `100%`,
-        textTransform: `uppercase`,
-        fontSize: 34,
-        [theme.breakpoints.down('475')]: {
-            fontSize: 24,
-            letterSpacing: `-1px`,
-            margin: `20px 0 0 0`
+      const mapDispatchToProps = {
+        loadItems: loadIndexItems
+      };
+      const mapStateToProps = (state) => ({
+        indexProduct: state.app.indexProduct,
+      });
+      
+      
+      export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
+
+      const useStyleIndexPage = makeStyles(theme => ({
+        root: {
+            flexGrow: 1,
+            width: `95%`,
+            margin: `auto`
+        },
+        title: {
+            fontWeight: 900,
+            marginBottom: 30,
+            marginTop: 30,
+            textAlign: 'center',
+            width: `100%`,
+            textTransform: `uppercase`,
+            fontSize: 34,
+            [theme.breakpoints.down('475')]: {
+                fontSize: 24,
+                letterSpacing: `-1px`,
+                margin: `20px 0 0 0`
+            }
         }
-    }
-}));
+      }));
 
 export const query = graphql `
 {
@@ -167,180 +158,3 @@ export const query = graphql `
   }
 }
 `
-
-// export const query = graphql `
-// {
-//   allNodeKomboRekomenduemye {
-//     edges {
-//       node {
-//         relationships {
-//           field_items {
-//             id
-//             field_is_edit_kombo
-//             field_price_product
-//             field_name
-//             field_description_product
-//             field_slug
-//             field_slug_item
-//             relationships {
-//               field_image_product {
-//                 localFile {
-//                   childrenImageSharp {
-//                     gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-//   allNodePopulyarnyeBlyudaNovinki {
-//     edges {
-//       node {
-//         title
-//         relationships {
-//           field_recommended_product {
-//             field_name
-//             field_is_wok
-//             field_is_pizza
-//             field_price_lanch_time
-//             field_slug
-//             field_weight
-//             id
-//             field_description_product
-//             field_price_product
-//             field_slug_item
-//             field_variant
-//             relationships {
-//               field_image_product {
-//                 localFile {
-//                   childrenImageSharp {
-//                     gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// `
-// // export const query = graphql `
-// // {  
-// //     allContentfulContentIndex {
-// //         edges {
-// //         node {
-// //           combos {
-// //           id
-// //           description
-// //           name
-// //           __typename
-// //           price
-// //           slug
-// //           image {
-// //             gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //           }
-// //         }
-// //         new {
-// //           __typename
-// //           ... on Node {
-// //             ... on ContentfulProduct {
-// //               id
-// //               name
-// //               price
-// //               slug
-// //               description
-// //               image {
-// //                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //               }
-// //             }
-// //             ... on ContentfulProductPizza {
-// //               id
-// //               name
-// //               __typename
-// //               price
-// //               pricePizzaLarge
-// //               slug
-// //               description
-// //               image {
-// //                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //               }
-// //             }
-// //             ... on ContentfulProductSlognyeRolly {
-// //               id
-// //               name
-// //               description
-// //               __typename
-// //               price
-// //               image {
-// //                gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //               }
-// //             }
-// //             ... on ContentfulProductHotRolly {
-// //               id
-// //               name
-// //               __typename
-// //               description
-// //               price
-// //               image {
-// //                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //               }
-// //             }
-// //             ... on ContentfulProductKombo {
-// //               id
-// //               name
-// //               __typename
-// //               count
-// //               description
-// //               price
-// //               image {
-// //                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //               }
-// //             }
-// //           ... on ContentfulProductSalat {
-// //             id
-// //             name
-// //             __typename
-// //             price
-// //             description
-// //             weight
-// //             __typename
-// //             image {
-// //                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //             }
-// //           }
-// //           ... on ContentfulProductZakuski {
-// //             id
-// //             name
-// //             __typename
-// //             price
-// //             description
-// //             weight
-// //             __typename
-// //             image {
-// //                  gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //             }
-// //           }
-// //         }
-// //       }
-// //     }
-// //   }
-// // }
-// // allContentfulCarouselSiteImage {
-// //     edges {
-// //         node {
-// //             id
-// //             slug
-// //             nameAkcii
-// //             imgCarouselPc {
-// //               gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-// //             }
-// //         }
-// //       }
-// //     }
-// // }
-// // `

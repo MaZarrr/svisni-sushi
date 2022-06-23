@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import loadable from "@loadable/component";
-import Spinner from "../components/spinner/spinner-new"
+import ClipLoader from "react-spinners/ClipLoader";
 
 const KomboItem = loadable(() => import('../components/KomboItem'), {
-    fallback: <Spinner/>});
+    fallback: <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div>});
 
 const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
     const { id: ids,

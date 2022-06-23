@@ -26,10 +26,10 @@ import PayDialog from "../../components/PayDialog"
 import makeStyles from '@mui/styles/makeStyles';
 import loadable from "@loadable/component";
 import HeadSection from "../../components/HeadSection"
-import SpinnerNew from "../../components/spinner/spinner-new";
 import { isBrowser } from "../../components/common/constants";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const inputLabel = React.forwardRef(null)
 
@@ -730,7 +730,7 @@ Cум: ${infoSuccess.totalPrice}
                       </Snackbar>
                     </Grid> : <EmptyBasket/> }
               </Container>
-              : <SpinnerNew />}
+              : <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div> }
         </div>
       </section>
   )

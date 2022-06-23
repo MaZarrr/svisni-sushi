@@ -18,8 +18,8 @@ const styles = {
     maxWidth: 200
   },
   slideContainer: {
-    padding: '15px 0 30px 0',
-    margin: '0 0 90px 0'
+    padding: '15px 0 25px 0',
+    margin: '0 0 15px 0'
   },
 };
 
