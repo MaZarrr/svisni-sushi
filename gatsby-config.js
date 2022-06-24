@@ -39,18 +39,20 @@ module.exports = {
       icon: `src/images/logosvisni.png`,
     },
   },
-    {
-      resolve: `gatsby-plugin-react-redux`,
-      options: {
-        pathToCreateStoreModule: './src/state/createStore',
-        serialize: {
-          space: 0,
-          isJSON: true,
-          unsafe: false,
-          ignoreFunction: true,
-        },
-        cleanupOnClient: true
+  `gatsby-plugin-material-ui`,
+  `gatsby-plugin-emotion`,
+  {
+    resolve: `gatsby-plugin-react-redux`,
+    options: {
+      pathToCreateStoreModule: './src/state/createStore',
+      serialize: {
+        space: 0,
+        isJSON: true,
+        unsafe: false,
+        ignoreFunction: true,
       },
+      cleanupOnClient: true
+    },
     },
     {
       resolve: "gatsby-plugin-web-font-loader",
