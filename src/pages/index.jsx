@@ -46,7 +46,7 @@ import ClipLoader from "react-spinners/ClipLoader";
             </Hidden>
             {/* <Carousel dataCarousel={allContentfulCarouselSiteImage}/> */}
 
-              <Grid container className={classes.root}>
+              <Grid container style={{ minWidth: '100%' }} className={classes.root}>
 
                 <Hidden smDown>
                   <Typography className={classes.title}
@@ -90,7 +90,7 @@ import ClipLoader from "react-spinners/ClipLoader";
       const useStyleIndexPage = makeStyles(theme => ({
         root: {
             flexGrow: 1,
-            width: `95%`,
+            width: `100% !important`, 
             margin: `auto`
         },
         title: {
