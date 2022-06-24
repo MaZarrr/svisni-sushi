@@ -67,13 +67,13 @@ export const onServiceWorkerUpdateReady = () => {
   window.location.reload()
 }
 
-// export const replaceHydrateFunction = () => {
-//   return (element, container, callback) => {
-//     console.log("rendering!");
-//     ReactDOM.render(element, container, callback);
-//     // ReactDOM.hydrate(element, container, callback);
-//   };
-// };
+export const replaceHydrateFunction = () => {
+  return (element, container, callback) => {
+    console.log("rendering!");
+    ReactDOM.render(element, container, callback);
+    // ReactDOM.hydrate(element, container, callback);
+  };
+};
 
 // export const onServiceWorkerUpdateReady = () => {
 //   const answer = window.confirm(
