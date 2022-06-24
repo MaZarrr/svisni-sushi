@@ -27,8 +27,6 @@ import ClipLoader from "react-spinners/ClipLoader";
         }) => {
         
         const classes = useStyleIndexPage();
-        console.log(combo);
-        console.log(recomendedProduct);
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended})
         }, [])

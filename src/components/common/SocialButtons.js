@@ -1,6 +1,5 @@
 import vk from '../../images/vk-social-logotype.svg'
 import ok from '../../images/ok.svg'
-import insta from '../../images/instagram.svg'
 import React from 'react'
 import IconButton from "@mui/material/IconButton";
 import makeStyles from '@mui/styles/makeStyles';
@@ -8,9 +7,10 @@ import makeStyles from '@mui/styles/makeStyles';
 const useStyles = makeStyles(({
 
     socialContent: {
-        padding: `0 0 0 10px`,
+        display: 'flex',
+        justifyContent: 'center',
         width: `95%`,
-        margin: `10px auto 0 auto`
+        marginTop: `10px`
     },
     imageStyle: {
         maxWidth: 40, 

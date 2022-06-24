@@ -38,6 +38,13 @@ query MyQuery($slug: String!) {
     fieldSlug
     fieldTitle
     fieldSeoDescrittion
+    image {
+      gatsbyImageData(
+        placeholder: BLURRED, 
+        formats: [WEBP, AUTO]
+        sizes:"(max-width: 250px) 250px, 100vw)"
+      )
+     }
   }
   allContentfulProducts(filter: {fieldSlug:{eq: $slug}}) {
     edges {

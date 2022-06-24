@@ -74,13 +74,12 @@ const MenuList = memo(({
     titleCategory, 
     slugCategogy, 
     visibleItems, // изменил вместо product в addedToCart и вок работает
-    // image,
+    imageTypeCategory,
     product, 
     switchSizePizza,
     dispatch, 
     timePrice, 
     isSale }) => {
-
     const classes = useStylesCart();
     return <>
         { visibleItems.map((products) => {
@@ -99,6 +98,7 @@ const MenuList = memo(({
                     <CardStyle>
                         <CardHeader
                             // avatar={slugCategogy !== "/wok" ? <GatsbyImage image={image.gatsbyImageData} style={{width: 40}} alt={name} /> : ''}
+                            avatar={<GatsbyImage image={imageTypeCategory.gatsbyImageData} style={{width: 40}} alt={name} />}
                             title={variant ? variant : titleCategory}
                             subheader={<span itemProp="name">
                                 <Typography variant={"subtitle1"}>{name}</Typography></span>}/>

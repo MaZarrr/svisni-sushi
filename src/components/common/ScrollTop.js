@@ -52,7 +52,7 @@ export default function BackToTop(props) {
           top: 0,
         }} id="back-to-top-anchor" />
         <ScrollTop windows={props.windows}>
-          <Fab sx={{width: '50px', height: '50px'}} color="secondary" aria-label="scroll back to top">
+          <Fab sx={{width: '50px', height: '50px', backgroundColor: 'goldenrod'}} aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>

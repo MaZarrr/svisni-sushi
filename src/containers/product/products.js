@@ -97,8 +97,9 @@ useEffect(() => {
                     product={product} 
                     timePrice={{ hours, minutes, seconds }}
                     isSale={priceIsSale} 
-                    switchSizePizza={switchSizePizza} />
-                    {/* image={pageData.relationships.field_avatar.localFile.childImageSharp} */}
+                    switchSizePizza={switchSizePizza} 
+                    imageTypeCategory={pageData.image}/>
+                    
         </>
             :   <Spinner count={4} /> }
         </Grid>
