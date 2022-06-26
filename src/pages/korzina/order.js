@@ -225,7 +225,8 @@ Cум: ${infoSuccess.totalPrice}
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
-          url: process.env.GATSBY_NODE_SERVE
+          url: 'http://sv-platform.space/send-order'
+          // url: process.env.GATSBY_NODE_SERVE
         })
             .then(res =>  console.log(res))
             .catch(err => console.log(err))
