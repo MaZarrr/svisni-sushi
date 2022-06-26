@@ -225,8 +225,9 @@ Cум: ${infoSuccess.totalPrice}
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
-          url: 'http://sv-platform.space/send-order'
-          // url: process.env.GATSBY_NODE_SERVE
+          // url: 'https://svisni-express.onrender.com'
+          // url: 'https://test-platform-nest.onrender.com/svisni/send-order'
+          url: process.env.GATSBY_NODE_SERVE_ORDER
         })
             .then(res =>  console.log(res))
             .catch(err => console.log(err))
@@ -335,6 +336,8 @@ Cум: ${infoSuccess.totalPrice}
                     <Grid container className={classes.gridContainer}>
                       <form
                           onSubmit={handleSubmit}
+                          // action="https://formspree.io/xbjdqevk"
+                          // method="POST"
                           name="svisniData"
                           style={{width: '100%'}}>
 

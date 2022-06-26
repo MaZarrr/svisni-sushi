@@ -332,8 +332,8 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
                     <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
                   </Paper>
                   <Button
-                    // component={Link}
-                    // to={`${pathname}order`}
+                    component={Link}
+                    to={`${pathname}order`}
                     sx={{
                       position: "fixed",
                       bottom: 55,
@@ -344,8 +344,7 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
                       opacity: `95%`
                     }}>
                       <Typography color="white" variant="subtitle1">
-                          {/* Перейти к оформлению */}
-                          Сайт на обслуживании позвоните по нашему телефону +7 (904) 094-92-22
+                          Перейти к оформлению
                       </Typography>
                   </Button>
                 </div>
@@ -378,14 +377,13 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
 
                     <Typography variant="h6" style={{fontSize: 24}}>Итого </Typography>
                     <Typography variant="body1">Сумма заказа <b>{total} ₽</b></Typography>
-                    
                     <Button
-                      // component={Link}
+                      component={Link}
                       to={`${pathname}order`}
                       size={'large'}
                       variant="contained" >
                       <Typography color="white" variant="subtitle1">
-                          Сайт на обслуживании позвоните по нашему телефону +7 (904) 094-92-22
+                          Продолжить
                       </Typography>
                     </Button>
                   </Paper>
