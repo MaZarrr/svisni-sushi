@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -22,7 +23,7 @@ function createData(name, count, price) {
     return { name, count, price};
 }
 
-const OrderProcessed = ({ location: { state: { infoSuccess = null } = null } }) => {
+const OrderProcessed = ({ location: { state } }) => {
     const [data, setData] = React.useState([]);
     const [delivery, setDelivery] = React.useState("");
     const [phone, setPhone] = React.useState("");
@@ -32,33 +33,32 @@ const OrderProcessed = ({ location: { state: { infoSuccess = null } = null } }) 
     const classes = useStyles();
 
     React.useEffect(() => {
-        if(infoSuccess === null) {
+        if(state === null) {
             return
         }
         if(isBrowser) {
-            setData(infoSuccess.products.map(el => {
+            setData(state.products.map(el => {
                 return createData(el.product, el.count, el.total)
             }));
-            setPriceTotal(infoSuccess.totalPrice);
-            setPhone(infoSuccess.phone);
-            setDelivery(infoSuccess.delivery)
+            setPriceTotal(state.totalPrice);
+            setPhone(state.phone);
+            setDelivery(state.delivery)
             setTimeout(() => {
                 setIsLoading(false)
-            }, 1000)
+            }, [])
         }
     }, []);
 
     return (
         <Grid container style={{marginTop: `25px`}}>
-            { infoSuccess !== null && !isLoading ? <>
+            { state !== null && !isLoading ? <>
                 <Grid item xs={12}>
                     <Typography style={{textAlign: `center`}} variant={'h4'}>Ваш заказ успешно оформлен<span role="img" aria-label="accessible-emoji">🎉</span>
                         <span role="img" aria-label="accessible-emoji" >🎉</span><span role="img" aria-label="accessible-emoji">🎉</span>
                     </Typography>
                     <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>заказ оформлен и принят в обработку</Typography>
                 </Grid>
-                <Grid item xs={11} 
-                sm={10} style={{margin: `15px auto 50px auto`}}>
+                <Grid item xs={11} sm={10} style={{margin: `15px auto 50px auto`}}>
                     <Grid item xs={12}>
                         <Typography variant={'h5'}>Детали заказа:</Typography>
                     </Grid>
@@ -137,14 +137,15 @@ const OrderProcessed = ({ location: { state: { infoSuccess = null } = null } }) 
                 justifyContent: 'center', alignItems: 'center', 
                 display: 'flex' }}><ClipLoader size={150}/></div> 
          }
-         { !infoSuccess && isLoading &&
+         {/* { !state && isLoading &&
          <Grid item xs={12}>
             <Typography style={{textAlign: `center`}} variant={'h4'}>Ваша корзина пуста.</Typography>
             <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>Добавьте товары в корзину</Typography>
             </Grid>
-         }
+         } */}
         </Grid>
     )
 }
 
 export default OrderProcessed
+

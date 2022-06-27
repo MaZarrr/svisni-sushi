@@ -231,7 +231,7 @@ Cум: ${infoSuccess.totalPrice}
         isBrowser && sessionStorage.setItem('checkOrder', 'true');
         isBrowser && localStorage.removeItem('basketProduct');
           navigate('/korzina/order/order-processed', {
-            state: {infoSuccess}, 
+            state: infoSuccess, 
             replace: true 
             // state: {infoSuccess, isLoading: false}, 
           })

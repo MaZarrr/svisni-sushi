@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect} from "react"
 import Grid from '@mui/material/Grid';
 import makeStyles from '@mui/styles/makeStyles';
 import { graphql } from "gatsby";
