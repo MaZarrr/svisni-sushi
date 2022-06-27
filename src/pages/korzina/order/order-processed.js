@@ -6,6 +6,7 @@ import { Link } from 'gatsby';
 import makeStyles from '@mui/styles/makeStyles';
 import { Divider } from "@mui/material";
 import { isBrowser } from '../../../components/common/constants';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -21,38 +22,43 @@ function createData(name, count, price) {
     return { name, count, price};
 }
 
-const OrderProcessed = ({ location: { state } }) => {
+const OrderProcessed = ({ location: { state: { infoSuccess = null } = null } }) => {
     const [data, setData] = React.useState([]);
     const [delivery, setDelivery] = React.useState("");
     const [phone, setPhone] = React.useState("");
     const [priceTotal, setPriceTotal] = React.useState("");
+    const [isLoading, setIsLoading] = React.useState(true)
 
     const classes = useStyles();
 
     React.useEffect(() => {
-        if(state === null) {
+        if(infoSuccess === null) {
             return
         }
         if(isBrowser) {
-            setData(state.products.map(el => {
+            setData(infoSuccess.products.map(el => {
                 return createData(el.product, el.count, el.total)
             }));
-            setPriceTotal(state.totalPrice);
-            setPhone(state.phone);
-            setDelivery(state.delivery)
+            setPriceTotal(infoSuccess.totalPrice);
+            setPhone(infoSuccess.phone);
+            setDelivery(infoSuccess.delivery)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
     }, []);
 
     return (
-        <Grid container style={{marginTop: `75px`}}>
-            { state !== null ? <>
+        <Grid container style={{marginTop: `25px`}}>
+            { infoSuccess !== null && !isLoading ? <>
                 <Grid item xs={12}>
                     <Typography style={{textAlign: `center`}} variant={'h4'}>Ваш заказ успешно оформлен<span role="img" aria-label="accessible-emoji">🎉</span>
                         <span role="img" aria-label="accessible-emoji" >🎉</span><span role="img" aria-label="accessible-emoji">🎉</span>
                     </Typography>
                     <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>заказ оформлен и принят в обработку</Typography>
                 </Grid>
-                <Grid item xs={11} sm={10} style={{margin: `15px auto 50px auto`}}>
+                <Grid item xs={11} 
+                sm={10} style={{margin: `15px auto 50px auto`}}>
                     <Grid item xs={12}>
                         <Typography variant={'h5'}>Детали заказа:</Typography>
                     </Grid>
@@ -74,7 +80,7 @@ const OrderProcessed = ({ location: { state } }) => {
                         ))}
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography style={{textAlign: `right`, paddingRight: 20}} variant={'h6'}>Общая цена к оплате <strong>{priceTotal} руб</strong></Typography>
+                        <Typography style={{textAlign: `right`}} variant={"body1"}>Общая цена к оплате <strong>{priceTotal} руб</strong></Typography>
                     </Grid>
                     <Divider/>
                     <Grid item xs={12}>
@@ -92,20 +98,21 @@ const OrderProcessed = ({ location: { state } }) => {
                         </>}
                         </div>
                         <div style={{padding: `8px 0`}}>
-                            <Typography style={{textAlign: `left`}} variant={"body1"}>Заказ оформленный ко времени будет готов/доставлен к указанному времени.</Typography>
+                            <Typography variant='subtitle2' style={{textAlign: `left`}}>Заказ оформленный ко времени будет готов/доставлен к указанному времени.</Typography>
                         </div>
 
                         <div style={{padding: `8px 0`}}>
-                            <Typography style={{textAlign: `left`}} variant={"body1"}>Оператор с вами свяжется для подтверждения заказа.</Typography>
+                            <Typography variant='subtitle2' style={{textAlign: `left`}}>Оператор с вами свяжется для подтверждения заказа.</Typography>
                         </div>
                         <div style={{padding: `8px 0`}}>
-                            <Typography style={{textAlign: `left`}} variant={"body1"}>График работы с 10:00 до 22:00 без перерывов и выходных.</Typography>
+                            <Typography style={{textAlign: `left`}} variant='subtitle2'>График работы с 10:00 до 22:00 без перерывов и выходных.</Typography>
                         </div>
 
                     </Grid>
                     <Divider/>
                     <Grid item xs={12}>
-                        <Typography style={{textAlign: `left`, padding: `8px 0`}} variant={"body1"}>Спасибо что выбираете Свисни Суши!</Typography>
+                        <Typography style={{textAlign: `left`, padding: `8px 0`}} 
+                        variant={"body1"}>Спасибо что выбираете Свисни Суши!</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Button component={Link}
@@ -126,10 +133,15 @@ const OrderProcessed = ({ location: { state } }) => {
                         </Button>
                     </Grid>
                 </Grid>
-            </>: <Grid item xs={12}>
-                <Typography style={{textAlign: `center`}} variant={'h4'}>Ваша корзина пуста.</Typography>
-                 <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>Добавьте товары в корзину</Typography>
-       </Grid>
+            </> : <div style={{ width: "100%", minHeight: '380px', 
+                justifyContent: 'center', alignItems: 'center', 
+                display: 'flex' }}><ClipLoader size={150}/></div> 
+         }
+         { !infoSuccess && isLoading &&
+         <Grid item xs={12}>
+            <Typography style={{textAlign: `center`}} variant={'h4'}>Ваша корзина пуста.</Typography>
+            <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>Добавьте товары в корзину</Typography>
+            </Grid>
          }
         </Grid>
     )

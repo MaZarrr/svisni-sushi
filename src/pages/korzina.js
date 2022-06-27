@@ -123,7 +123,6 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
       image: node.image.gatsbyImageData,
       count: 1
     }
-    console.log("saleRoll___", saleRoll);
     if(findJaranDish() > 889 && !disabled()) {
       return (
         <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>

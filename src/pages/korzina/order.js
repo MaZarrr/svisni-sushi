@@ -14,9 +14,8 @@ import Select from '@mui/material/Select';
 import axios from 'axios';
 import {
   setAdresUser, setCityUser,
-  setDateDeliveryUser, setDoorUser,
-  setEnhanceUser, setHomeUser,
-  setLavelUser, setNameUser,
+  setDateDeliveryUser,
+  setEnhanceUser, setHomeUser, setNameUser,
   setPhoneUser, setTimeDeliveryUser,
   userCommentsFunc, userApartment
 } from "../../reducers/contacts-info";
@@ -94,7 +93,7 @@ const city = {
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
                  entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, userApartment,
-                 setLevel, setDoor, setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
+                 setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
 
   const [open, setOpen] = useState(false);
   const [load, setLoad] = React.useState(true);
@@ -156,8 +155,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         home: ev.target.home.value,
         apartment: ev.target.apartment.value,
         podezd: ev.target.podezd.value,
-        etag: ev.target.etag.value,
-        kodDveri: ev.target.kodDveri.value
+        // etag: ev.target.etag.value,
+        // kodDveri: ev.target.kodDveri.value
       };
       const deliveryTimeOrder = state !== "deliveryTime" ? "Сразу" : {
         dateDelivery: ev.target.date.value,
@@ -225,15 +224,17 @@ Cум: ${infoSuccess.totalPrice}
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
-          // url: 'https://svisni-express.onrender.com'
-          // url: 'https://test-platform-nest.onrender.com/svisni/send-order'
-          url: process.env.GATSBY_NODE_SERVE_ORDER
+          url: process.env.GATSBY_SEND_URL
         })
-            .then(res =>  console.log(res))
-            .catch(err => console.log(err))
+        .then(() =>  {})
+        .catch(err => console.log(err))
         isBrowser && sessionStorage.setItem('checkOrder', 'true');
         isBrowser && localStorage.removeItem('basketProduct');
-        navigate('/korzina/order/order-processed',{state: infoSuccess, replace: true })
+          navigate('/korzina/order/order-processed', {
+            state: {infoSuccess}, 
+            replace: true 
+            // state: {infoSuccess, isLoading: false}, 
+          })
       }
 
       // if(variantPay === "bank" && navigator.onLine) {
@@ -571,42 +572,6 @@ Cум: ${infoSuccess.totalPrice}
                                            value={entranceNumber}
                                            helperText="Номер подъезда"/>
                               </Grid>
-                              <Grid item xs={6}>
-                                <TextField id="validation-outlined-input"
-                                           label="Этаж"
-                                           variant="filled"
-                                           margin="normal"
-                                           fullWidth
-                                           size="small"
-                                           style={{ margin: `8px auto`}}
-                                           type="number"
-                                           inputProps={{
-                                             maxLength: 2,
-                                           }}
-                                           name="etag"
-                                           onChange={(e) => {
-                                             setLevel(e.target.value);
-                                           }}
-                                           value={levelNumber}
-                                           helperText="Введите ваш этаж."/>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <TextField id="validation-outlined-input"
-                                           label="Код двери"
-                                           variant="filled"
-                                           margin="normal"
-                                           fullWidth
-                                           size="small"
-                                           type="number"
-                                           style={{ margin: `8px auto`}}
-                                           inputProps={{maxLength: 6}}
-                                           name="kodDveri"
-                                           onChange={(e) => {
-                                             setDoor(e.target.value);
-                                           }}
-                                           value={doorPassword}
-                                           helperText="Код двери"/>
-                              </Grid>
                             </>}
 
                             <Grid item xs={12}>
@@ -702,7 +667,8 @@ Cум: ${infoSuccess.totalPrice}
                                 type="submit"
                                 disabled={buttonDisabled()}
                                 variant="contained">
-                                { variantPay === "cash" ? "Сделать заказ" : "Сделать заказ"}
+                                Сделать заказ
+                                {/* { variantPay === "cash" ? "Сделать заказ" : "Сделать заказ"} */}
                             </Button>
                           </span>
 
@@ -756,8 +722,6 @@ const mapDispatchToProps = {
   setAdress: setAdresUser,
   setHome: setHomeUser,
   setEntrance: setEnhanceUser,
-  setLevel: setLavelUser,
-  setDoor: setDoorUser,
   setDate: setDateDeliveryUser,
   setTime: setTimeDeliveryUser,
   userApartment,
