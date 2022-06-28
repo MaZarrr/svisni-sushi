@@ -17,7 +17,7 @@ export const wrapRootElement = ({ element }) => {
    <ThemeProvider theme={theme}>
     <CssBaseline/>
         {element}
-  </ThemeProvider>
+    </ThemeProvider>
    </StyledEngineProvider>
  );
 };

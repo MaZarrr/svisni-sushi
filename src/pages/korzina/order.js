@@ -21,7 +21,6 @@ import {
 } from "../../reducers/contacts-info";
 import { Container, Paper } from "@mui/material";
 import FormHelperText from "@mui/material/FormHelperText";
-import PayDialog from "../../components/PayDialog"
 import makeStyles from '@mui/styles/makeStyles';
 import loadable from "@loadable/component";
 import HeadSection from "../../components/HeadSection"
@@ -29,6 +28,8 @@ import { isBrowser } from "../../components/common/constants";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import ClipLoader from "react-spinners/ClipLoader";
+import useCheckedInternet from "../../utils/useCheckedInternet";
+// import PayDialog from "../../components/PayDialog"
 
 const inputLabel = React.forwardRef(null)
 
@@ -50,7 +51,6 @@ function TextMaskCustom(props) {
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
-
 
 const city = {
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
@@ -92,18 +92,15 @@ const city = {
 };
 
 const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
-                 entranceNumber, levelNumber, doorPassword, setName, setPhone, setSity, setAdress, setHome, setEntrance, userApartment,
+                 entranceNumber, setName, setPhone, setSity, setAdress, setHome, setEntrance, userApartment,
                  setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
 
   const [open, setOpen] = useState(false);
   const [load, setLoad] = React.useState(true);
   const [age, setAge] = useState('');
   const [delivery, setDelivery] = useState('');
-  // const [checkPushOrder, setCheckPushOrder] = useState(false);
-  const [openPay, setOpenPay] = useState(false)
   const [openAlert, setOpenAlert] = React.useState(false);
   const [state, setState] = React.useState("promptly");
-  const [socketT, setSocketT] = useState({})
   const [textAlert, setTextAlert] = React.useState("");
   const [variantPay, setVariantPay] = React.useState("cash");
   const [stateDeliveryPrice, setStateDeliveryPrice] = React.useState({});
@@ -111,24 +108,21 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     vertical: 'bottom',
     horizontal: 'center',
   });
+  
+  // const [socketT, setSocketT] = useState({})
+  // const [checkPushOrder, setCheckPushOrder] = useState(false);
+  // const [openPay, setOpenPay] = useState(false)
 
   const classes = useStyleOrder();
+  const [isOnline, checkedIsOnline, removeCheckedEventIsOnline] = useCheckedInternet()
+
 
   React.useEffect(() => {
-    const msg = {
-      version: 1,
-      user_name:"tbezhenova@yandex.ru",
-      api_key: process.env.GATSBY_API_MOIZVONKI,
-      action:"auth.login",
-      app_name: "svisni-sushi"
-    }
-    const socket = new WebSocket("wss://tanak.moizvonki.ru/wsapi/");
-    socket.onopen = function (event) {
-      socket.send(JSON.stringify(msg));
-    };
-    setSocketT(socket)
     setLoad(false)
+    checkedIsOnline()
+    return () => removeCheckedEventIsOnline()
   }, []);
+
   const handleChangee = name => event => setState(name);
   const onSwitchPay = (pay) => () => setVariantPay(pay);
   const handleSubmit = (ev) => {
@@ -189,37 +183,15 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         comments: ev.target.comments.value,
       };
 
-      if(!navigator.onLine) {
+      console.log("isOnline____", isOnline);
+
+      if(!isOnline) {
+      // if(!navigator.onLine ) {
         setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
         handleClickAlert()
       }
 
-// const comment = infoSuccess.comments === "" || infoSuccess.comments === undefined ? "" : infoSuccess.comments
-      const adress = delivery === "Самовывоз" ? "Сами" : `Адрс: ${deliveru.adress} ${deliveru.street} ${deliveru.home}`
-      const text = `
-    Новый заказ
-    ${infoSuccess.name}
-    ☎: ${infoSuccess.phone}
-    Т-ры: ${items.map((elem) => {
-        const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
-            ? "" : `Доп: ${elem.descriptionIngrideents}`;
-        const productSize = elem.productSize === "" || elem.productSize === undefined ? ""
-            : `${elem.productSize}`;
-        const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined || !elem.isWok ? ""
-            : `${elem.descriptionWok}`;
-        return `
-    Наз: ${elem.name} ${productSize} ${descriptionWok} ${elem.edit === true ? elem.description : ""} ${descriptionIngrideents}
-    Кол-во: ${elem.count}
-    ₽: ${elem.total}
-    `
-      })}
-    ${adress}
-Дата: ${state !== "deliveryTime" ? "Сразу" : `${ev.target.date.value} ${ev.target.time.value}`}
-Cум: ${infoSuccess.totalPrice}
-`
-      if(variantPay === "cash" || variantPay === "bank" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true' && navigator.onLine) {
-        const msg = {action: "calls.send_sms", to: "89040949222", text}
-        socketT.send(JSON.stringify(msg))
+      if((variantPay === "cash" || variantPay === "bank" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true') && isOnline) {
         axios({
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -230,26 +202,12 @@ Cум: ${infoSuccess.totalPrice}
         .catch(err => console.log(err))
         isBrowser && sessionStorage.setItem('checkOrder', 'true');
         isBrowser && localStorage.removeItem('basketProduct');
-          navigate('/korzina/order/order-processed', {
-            state: infoSuccess, 
-            replace: true 
-            // state: {infoSuccess, isLoading: false}, 
+        navigate('/korzina/order/order-processed', {
+          state: infoSuccess, 
+          replace: true 
+          // state: {infoSuccess, isLoading: false}, 
           })
-      }
-
-      // if(variantPay === "bank" && navigator.onLine) {
-      //   const msg = {action: "calls.send_sms", to: "89040949222", text}
-      //   socketT.send(JSON.stringify(msg))
-      //   axios({
-      //     method: 'POST',
-      //     headers: { 'Content-Type': 'application/json' },
-      //     data: infoSuccess,
-      //     url: process.env.GATSBY_NODE_SERVE
-      //   })
-      //       .then(res =>  console.log(res))
-      //       .catch(err => console.log(err))
-      //     setOpenPay(true)
-      // }
+        }
 
     }
 
@@ -267,9 +225,9 @@ Cум: ${infoSuccess.totalPrice}
     setSity(`${city[event.target.value].name}`);
     setStateDeliveryPrice(city[event.target.value]);
   };
-  const handleClosePay = () => {
-    setOpenPay(false);
-  };
+  // const handleClosePay = () => {
+  //   setOpenPay(false);
+  // };
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const handleClickAlert = () => {

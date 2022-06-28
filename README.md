@@ -227,3 +227,67 @@ body2 - описание текста
     //     // skipFileDownloads: true,
     //   },
     // },
+
+
+    /// SOCKET =====================================
+    
+
+
+// const msg = {
+//   version: 1,
+//   user_name:"tbezhenova@yandex.ru",
+//   api_key: process.env.GATSBY_API_MOIZVONKI,
+//   action:"auth.login",
+//   app_name: "svisni-sushi"
+// }
+// const socket = new WebSocket("wss://tanak.moizvonki.ru/wsapi/");
+// socket.onopen = function (event) {
+//   socket.send(JSON.stringify(msg));
+// };
+// setSocketT(socket)
+
+
+      // const comment = infoSuccess.comments === "" || infoSuccess.comments === undefined ? "" : infoSuccess.comments
+      // const adress = delivery === "Самовывоз" ? "Сами" : `Адрс: ${deliveru.adress} ${deliveru.street} ${deliveru.home}`
+      // const text = `
+      // Новый заказ
+      // ${infoSuccess.name}
+      // ☎: ${infoSuccess.phone}
+      // Т-ры: ${items.map((elem) => {
+      //     const descriptionIngrideents = elem.descriptionIngrideents === "" || elem.descriptionIngrideents === undefined
+      //         ? "" : `Доп: ${elem.descriptionIngrideents}`;
+      //     const productSize = elem.productSize === "" || elem.productSize === undefined ? ""
+      //         : `${elem.productSize}`;
+      //     const descriptionWok = elem.descriptionWok === "" || elem.descriptionWok === undefined || !elem.isWok ? ""
+      //         : `${elem.descriptionWok}`;
+      //   return `
+      //   Наз: ${elem.name} ${productSize} ${descriptionWok} ${elem.edit === true ? elem.description : ""} ${descriptionIngrideents}
+      //   Кол-во: ${elem.count}
+      //   ₽: ${elem.total}
+      //   `
+      // })}
+      // ${adress}
+      //   Дата: ${state !== "deliveryTime" ? "Сразу" : `${ev.target.date.value} ${ev.target.time.value}`}
+      //   Cум: ${infoSuccess.totalPrice}
+      // ` 
+
+
+
+        // const msg = {action: "calls.send_sms", to: "89040949222", text}
+        // socketT.send(JSON.stringify(msg))
+
+
+        
+      // if(variantPay === "bank" && navigator.onLine) {
+      //   const msg = {action: "calls.send_sms", to: "89040949222", text}
+      //   socketT.send(JSON.stringify(msg))
+      //   axios({
+      //     method: 'POST',
+      //     headers: { 'Content-Type': 'application/json' },
+      //     data: infoSuccess,
+      //     url: process.env.GATSBY_NODE_SERVE
+      //   })
+      //       .then(res =>  console.log(res))
+      //       .catch(err => console.log(err))
+      //     setOpenPay(true)
+      // }

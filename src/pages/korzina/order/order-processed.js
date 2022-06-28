@@ -45,7 +45,7 @@ const OrderProcessed = ({ location: { state } }) => {
             setDelivery(state.delivery)
             setTimeout(() => {
                 setIsLoading(false)
-            }, [])
+            }, 1000)
         }
     }, []);
 

@@ -1,34 +1,34 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
+// import Card from '@mui/material/Card';
+// import CardHeader from '@mui/material/CardHeader';
+// import CardContent from '@mui/material/CardContent';
+// import CardActions from '@mui/material/CardActions';
+// import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Button from '@mui/material/Button';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+// import Button from '@mui/material/Button';
 
-import { graphql } from "gatsby"
+// import { graphql } from "gatsby"
 import Seo from "../components/seo";
-import TextField from "@mui/material/TextField";
+// import TextField from "@mui/material/TextField";
 import HeadSection from "../components/HeadSection"
-import { StaticImage } from "gatsby-plugin-image";
+// import { StaticImage } from "gatsby-plugin-image";
 import styled from '@emotion/styled'
 
-const SectionInfo = styled.section `
-    padding: 10px 0 50px 0;
-    .items-container {
-        display: flex;
-        justify-content: space-around;
-        //max-width: 40%;
-        @media (max-width: 500px) {
-            flex-direction: column;
-        }
-    }
-    .item-content {
-        margin: auto 0;
-    }
-`
+// const SectionInfo = styled.section `
+//     padding: 10px 0 50px 0;
+//     .items-container {
+//         display: flex;
+//         justify-content: space-around;
+//         //max-width: 40%;
+//         @media (max-width: 500px) {
+//             flex-direction: column;
+//         }
+//     }
+//     .item-content {
+//         margin: auto 0;
+//     }
+// `
 
 const Container = styled.div`
     padding-left: 30px;

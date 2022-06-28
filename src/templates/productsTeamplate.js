@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {addedCart} from "../reducers/shopping-cart";
-import * as R from 'ramda'
 import { graphql } from 'gatsby'
 import ProductList from '../containers/product/products';
+// import * as R from 'ramda'
 // import ProductItem from '../components/SetyItem'
 
 

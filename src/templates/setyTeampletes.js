@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import {addedCart} from "../reducers/shopping-cart";
-import * as R from 'ramda'
-import { graphql } from 'gatsby'
-import ProductItem from '../components/SetyItem'
+import { addedCart } from "../reducers/shopping-cart";
+import { graphql } from 'gatsby';
+import ProductItem from '../components/SetyItem';
+// import * as R from 'ramda';
 
 // const ProductTeamplate = ({ data: { contentfulProduct,
 //     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
@@ -11,7 +11,7 @@ import ProductItem from '../components/SetyItem'
 //     allContentfulProductGunkan: {edges: gunkan},
 // }, addedToCart, isSale }) => {
 
-    const SetyTeamplate = ({ data: {contentfulProducts}, addedToCart, isSale }) => {
+    const SetyTeamplate = ({ data: { contentfulProducts }, addedToCart, isSale }) => {
 
         const product = {
             id: contentfulProducts.id,
@@ -34,13 +34,13 @@ import ProductItem from '../components/SetyItem'
     <ProductItem
         name={product.name}
         price={product.price}
-        // price={isSale && contentfulProduct.lanch ? contentfulProduct.lanchprice : contentfulProduct.price}
         description={product.description}
-        // createdAt={contentfulProduct.createdAt}
         weight={product.weight}
         count={product.count}
         back={"/sety/"}
         image={product.image}
+        // createdAt={contentfulProduct.createdAt}
+        // price={isSale && contentfulProduct.lanch ? contentfulProduct.lanchprice : contentfulProduct.price}
         // kitProduct={kitProduct}
         added={() => addedToCart({id: product.id, price: null,
             product: [{
