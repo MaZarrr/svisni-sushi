@@ -196,10 +196,20 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
+          url: `${process.env.GATSBY_SEND_URL}/sending`
+        })
+        .then(() =>  {})
+        .catch(err => console.log(err))
+
+        axios({
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          data: infoSuccess,
           url: process.env.GATSBY_SEND_URL
         })
         .then(() =>  {})
         .catch(err => console.log(err))
+
         isBrowser && sessionStorage.setItem('checkOrder', 'true');
         isBrowser && localStorage.removeItem('basketProduct');
         navigate('/korzina/order/order-processed', {

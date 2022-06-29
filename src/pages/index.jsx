@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import makeStyles from '@mui/styles/makeStyles';
 import { graphql } from "gatsby";
 import { Hidden, Typography } from "@mui/material";
-
 // import Carousel from '../components/common/CarouselSvisni';
 import Kombo from '../components/indexContent/combo/index'
 import MenuCategory from "../components/indexContent/MenuCategory";
@@ -52,6 +51,7 @@ import ClipLoader from "react-spinners/ClipLoader";
                               component={"h1"}>
                     Свисни Суши в Уразово</Typography>
                 </Hidden>
+
                 { combo.length && recomendedProduct.length > 0 ? <>
                 {/* Комбо */}
                 <Kombo title={optionPage.titleCombo} product={combo}/>

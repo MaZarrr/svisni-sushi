@@ -6,7 +6,6 @@ const useCheckedInternet = () => {
     
     const checkedIsOnline = () => {
         if(isBrowser) {
-            console.log("isBrowserisBrowser", isBrowser);
             window.addEventListener('online', function(e){
                 console.log("online");
                 setOnline(true)
@@ -33,20 +32,3 @@ const useCheckedInternet = () => {
 }
 
 export default useCheckedInternet;
-
-    // const checkedIsOnline = () => {
-    //     fetch('http://example.com/', {
-    //     method: 'GET',   
-    //     mode: 'no-cors'})
-    //     .then((responce) => {
-    //         if(responce.ok) {
-    //             console.log("responce___ 123", responce);
-    //             setOnline(true)
-    //         }
-    //     })
-    //     .catch(error => {
-    //         setOnline(false)
-    //         // The resource could not be reached
-    //         console.log("No Internet connection", error);
-    //         });
-    // } 
