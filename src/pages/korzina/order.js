@@ -196,7 +196,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           data: infoSuccess,
-          url: `${process.env.GATSBY_SEND_URL}/sending`
+          url: "https://nest-test-svsh.onrender.com/sending"
         })
         .then(() =>  {})
         .catch(err => console.log(err))
