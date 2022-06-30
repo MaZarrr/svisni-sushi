@@ -141,7 +141,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       }
     }
 
-    const async pushOrder = () => {
+    const pushOrder = async () => {
       const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
         formDelivery: ev.target.delivery.value,
         adress: stateDeliveryPrice.name,
