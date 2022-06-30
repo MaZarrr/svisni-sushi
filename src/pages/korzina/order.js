@@ -145,6 +145,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     }
 
     const pushOrder = async () => {
+      setIsLoading(true)
+
       const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
         formDelivery: ev.target.delivery.value,
         adress: stateDeliveryPrice.name,
@@ -186,34 +188,43 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         comments: ev.target.comments.value,
       };
 
-      if(!isOnline) {
-      // if(!navigator.onLine ) {
-        setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
-        handleClickAlert()
+      if(isBrowser) {
+        if(sessionStorage.getItem('checkOrder') !== 'true' && (variantPay === "cash" || variantPay === "bank")) {
+          const sendSocial = await axios({
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            data: infoSuccess,
+            url: "https://nest-test-svsh.onrender.com/sending"
+          });
+  
+          const sendMail = await axios({
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            data: infoSuccess,
+            url: process.env.GATSBY_SEND_URL
+          });
+  
+          Promise.all([sendSocial, sendMail])
+          .then((data) => {
+            // const checkedAllStatus = data.every((item) => item.status >= 300)
+            // if(checkedAllStatus) {
+              setIsLoading(false)
+            // } else {
+            //   setTextAlert("Усп! Непредвиденная ошибка. Попробуйте еще раз или свяжите с нами по телефону +7(904) 094-92-22")
+            //   handleClickAlert()
+            //   console.log(data);
+            // }
+          })
+          .catch((error) => {
+            setTextAlert("Усп! Непредвиденная ошибка. Попробуйте еще раз или свяжите с нами по телефону +7(904) 094-92-22")
+            handleClickAlert()
+            console.log(error)
+            }
+          )
+          
+        }
       }
-
-      if((variantPay === "cash" || variantPay === "bank" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true') && isOnline) {
-        setIsLoading(true)
-        const sendSocial = await axios({
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json;charset=utf-8' },
-          data: infoSuccess,
-          url: "https://nest-test-svsh.onrender.com/sending"
-        })
-
-      const sendMail = await axios({
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json;charset=utf-8' },
-          data: infoSuccess,
-          url: process.env.GATSBY_SEND_URL
-        })
-        Promise.all([sendSocial, sendMail])
-        .then((data) => {
-          console.log("data____", data);
-          setIsLoading(false)
-        })
-        .catch((error) => console.log(error))
-
+      if(!isLoading) {
         isBrowser && sessionStorage.setItem('checkOrder', 'true');
         isBrowser && localStorage.removeItem('basketProduct');
         navigate('/korzina/order/order-processed', {
@@ -222,16 +233,20 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
           // state: {infoSuccess, isLoading: false}, 
           })
         }
-
     }
 
     if(isBrowser && sessionStorage.getItem('checkOrder') === 'true') {
-      setTextAlert("Ваш заказ уже оформлен и отправлен. Вам позвонят и уточнят детали заказа.")
+      setTextAlert("Ваш заказ уже оформлен и отправлен! Ожидайте звонка оператора Свисни Суши.")
+      handleClickAlert()
+    } else if(!isOnline) {      
+      // if(!navigator.onLine ) {
+      setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
       handleClickAlert()
     } else {
       pushOrder()
     }
   };
+
 
   const handleChange = event => setAge(event.target.value);
   const handleChangeDelivery = event => setDelivery(event.target.value);
@@ -306,13 +321,15 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
           {/* { !isLoading ? <> */}
                     
                     { isLoading && 
-                    <div style={{ width: "100%", flexDirection: 'column', minHeight: '280px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
-                          <div>
-                            <ClipLoader size={150}/>
-                          </div>
-                          <div>
-                            Подождите, идет отправка заказа...
-                          </div>
+                    <div style={{ height: '100vh', 
+                          width: "100%", 
+                          flexDirection: 'column', 
+                          minHeight: '280px', 
+                          justifyContent: 'center', 
+                          alignItems: 'center', 
+                          display: 'flex' }}>
+                            <div><ClipLoader size={150}/></div>
+                            <div>Подождите, идет отправка заказа...</div>
                           </div> 
                     }
 
