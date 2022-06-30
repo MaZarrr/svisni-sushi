@@ -194,7 +194,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       if((variantPay === "cash" || variantPay === "bank" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true') && isOnline) {
         axios({
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json;charset=utf-8' },
           data: infoSuccess,
           url: "https://nest-test-svsh.onrender.com/sending"
         })
@@ -203,7 +203,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
         axios({
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json;charset=utf-8' },
           data: infoSuccess,
           url: process.env.GATSBY_SEND_URL
         })
