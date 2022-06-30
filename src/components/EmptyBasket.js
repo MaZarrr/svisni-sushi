@@ -3,8 +3,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 import { Typography } from "@mui/material";
 
 const EmptyBasket = () => (
-        <div className="container">
-        <div style={{margin: '0 auto'}}>
+        <div style={{ width: '100%' }}>
+        <div style={{margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Typography style={{textAlign: `center`}} variant={"body1"}>
                 Вероятней всего, вы не добавили товары в корзину.<br />
                 Для того, чтобы заказать суши и пиццу, перейди в меню.

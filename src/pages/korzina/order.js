@@ -97,6 +97,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
   const [open, setOpen] = useState(false);
   const [load, setLoad] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
+  
   const [age, setAge] = useState('');
   const [delivery, setDelivery] = useState('');
   const [openAlert, setOpenAlert] = React.useState(false);
@@ -119,6 +121,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
 
   React.useEffect(() => {
     setLoad(false)
+    setIsLoading(false)
     checkedIsOnline()
     return () => removeCheckedEventIsOnline()
   }, []);
@@ -190,23 +193,26 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       }
 
       if((variantPay === "cash" || variantPay === "bank" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true') && isOnline) {
-       await axios({
+        setIsLoading(true)
+        const sendSocial = await axios({
           method: 'POST',
           headers: { 'Content-Type': 'application/json;charset=utf-8' },
           data: infoSuccess,
           url: "https://nest-test-svsh.onrender.com/sending"
         })
-        .then(() =>  {})
-        .catch(err => console.log(err))
 
-      await axios({
+      const sendMail = await axios({
           method: 'POST',
           headers: { 'Content-Type': 'application/json;charset=utf-8' },
           data: infoSuccess,
           url: process.env.GATSBY_SEND_URL
         })
-        .then(() =>  {})
-        .catch(err => console.log(err))
+        Promise.all([sendSocial, sendMail])
+        .then((data) => {
+          console.log("data____", data);
+          setIsLoading(false)
+        })
+        .catch((error) => console.log(error))
 
         isBrowser && sessionStorage.setItem('checkOrder', 'true');
         isBrowser && localStorage.removeItem('basketProduct');
@@ -297,376 +303,389 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
              noindex={true}/>
         <div className={classes.root}>
           <HeadSection titleTXT={"Оформление заказа"} />
-          {load === false ?
-              <Container maxWidth={"xl"}>
-                { !isEmpty(items) ?
-                    <Grid container className={classes.gridContainer}>
-                      <form
-                          onSubmit={handleSubmit}
-                          // action="https://formspree.io/xbjdqevk"
-                          // method="POST"
-                          name="svisniData"
-                          style={{width: '100%'}}>
+          {/* { !isLoading ? <> */}
+                    
+                    { isLoading && 
+                    <div style={{ width: "100%", flexDirection: 'column', minHeight: '280px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+                          <div>
+                            <ClipLoader size={150}/>
+                          </div>
+                          <div>
+                            Подождите, идет отправка заказа...
+                          </div>
+                          </div> 
+                    }
 
-                        <div className={classes.root}>
-                          <Grid container spacing={2}>
-                            {/*Имя и Телефон*/}
-                            <Grid item xs={12} style={{paddingBottom: 0, marginTop: 14}}>
-                              <Typography variant="body1">
-                                Укажите данные для связи </Typography>
-                            </Grid>
-                            <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
-                              <TextField id="standard-full-width"
-                                         label="Ваше имя"
-                                         error={!validateUserName() && nameUser.length > 2}
-                                         fullWidth
-                                         variant="filled"
-                                         placeholder="Введите ваше имя"
-                                         required
-                                         inputProps={{maxLength: 20, minLength: 2}}
-                                         name="name"
-                                         onChange={(e) => {setName(e.target.value)}}
-                                         value={nameUser}
-                                         helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
-                            </Grid>
-                            <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
-                              <TextField id="standard-full-width"
-                                         helperText={validatePhone() === false ? "Введите телефон с 7 или 8" : "Ваш телефон" }
-                                         fullWidth
-                                         variant="filled"
-                                         type="tel"
-                                         required
-                                         inputProps={{minLength: 14}}
-                                         InputProps={{inputComponent: TextMaskCustom, minLength: 14}}
-                                         name="phone"
-                                         onChange={(e) => {setPhone(e.target.value)}}
-                                         value={phoneUser}/>
-                            </Grid>
-                            <Grid item xs={12}>
-                              <Typography variant="body1">
-                                Выберите форму оплаты
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Button fullWidth style={{fontSize: 17}} variant={variantPay === "cash" ? "contained" : "outlined"} color="primary"
-                                      onClick={onSwitchPay("cash")}>
-                                Оплата наличными
-                              </Button>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Button fullWidth style={{fontSize: 17}} variant={variantPay === "bank" ? "contained" : "outlined"} color="primary"
-                                      onClick={onSwitchPay("bank")}>
-                                Онлайн перевод
-                              </Button>
-                            </Grid>
-                            <Grid item xs={12}>
-                              <Grid item xs={12}>
-                                <Typography variant="body1">
-                                  Как вы хотите получить заказ?
-                                </Typography>
-                              </Grid>
-                              <FormControl required variant="outlined" className={classes.formControl}>
-                                <Select native value={delivery} onChange={handleChangeDelivery} inputProps={{
-                                  name: 'delivery',
-                                  id: 'outlined-age-native-simple'}}>
-                                  <option value="">Не выбрано</option>
-                                  <option value="Самовывоз">Самовынос</option>
-                                  <option value="Доставка курьером">Оформить доставку</option>
-                                </Select>
-                                <FormHelperText id="my-helper-text">Способ получения заказа</FormHelperText>
-                              </FormControl>
-                            </Grid>
-                            {delivery !== '' && <>
-                              {/*Предзаказ или сразу время и дата*/}
-                              <Grid item xs={12}>
-                                <Typography  variant="body1">
-                                  { delivery !== "Самовывоз" ? "Дата и время доставки заказа"
-                                      : "Дата и время готовки заказа"}
-                                </Typography>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Button fullWidth style={{fontSize: 17}} variant={state === "promptly" ? "contained" : "outlined"} color="primary"
-                                        onClick={handleChangee("promptly")}>
-                                  {delivery === "Самовывоз" ? "Приготовить сразу" : "Доставить сразу"}
-                                </Button>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Button fullWidth style={{fontSize: 17}} variant={state === "deliveryTime" ? "contained" : "outlined"} color="primary"
-                                        onClick={handleChangee("deliveryTime")}>
-                                  {delivery === "Самовывоз" ? "Приготовить ко времени" : "Доставить ко времени"}
-                                </Button>
-                              </Grid>
-                            </>}
-
-                            {delivery !== "" && state === "deliveryTime" && <>
-                              <Grid item xs={12} sm={6}>
-                                <TextField id="standard-full-width"
-                                           variant="filled"
-                                           fullWidth
-                                           type="date"
-                                           required
-                                           name="date"
-                                           onChange={(e) => {setDate(e.target.value);
-                                           }}
-                                           value={dateDelivery}
-                                           helperText="Дата доставки/готовки"/>
-                              </Grid>
-
-                              <Grid item xs={12} sm={6}>
-                                <TextField id="standard-full-width"
-                                           variant="filled"
-                                           fullWidth
-                                           type="time"
-                                           required
-                                           name="time"
-                                           onChange={(e) => {
-                                             setTime(e.target.value);
-                                           }}
-                                           value={timeDelivery}
-                                           helperText="К какому времени доставить/приготовить"/>
-                              </Grid>
-                            </>}
-                            {delivery === "Доставка курьером" && <>
-                              <Grid item xs={12} sm={4}>
-                                <FormControl required variant="filled" className={classes.formControl}>
-                                  <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-                                    Населённый пункт
-                                  </InputLabel>
-                                  <Select native value={deliverySity.city}
-                                          onChange={handleChangeCity(city)}
-                                          inputProps={{ name: 'city',
+                    { !isLoading  &&
+                        <Container maxWidth={"xl"}>
+                          { !isEmpty(items) ?
+                              <Grid container className={classes.gridContainer}>
+                                <form
+                                    onSubmit={handleSubmit}
+                                    // action="https://formspree.io/xbjdqevk"
+                                    // method="POST"
+                                    name="svisniData"
+                                    style={{width: '100%'}}>
+            
+                                  <div className={classes.root}>
+                                    <Grid container spacing={2}>
+                                      {/*Имя и Телефон*/}
+                                      <Grid item xs={12} style={{paddingBottom: 0, marginTop: 14}}>
+                                        <Typography variant="body1">
+                                          Укажите данные для связи </Typography>
+                                      </Grid>
+                                      <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
+                                        <TextField id="standard-full-width"
+                                                  label="Ваше имя"
+                                                  error={!validateUserName() && nameUser.length > 2}
+                                                  fullWidth
+                                                  variant="filled"
+                                                  placeholder="Введите ваше имя"
+                                                  required
+                                                  inputProps={{maxLength: 20, minLength: 2}}
+                                                  name="name"
+                                                  onChange={(e) => {setName(e.target.value)}}
+                                                  value={nameUser}
+                                                  helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
+                                      </Grid>
+                                      <Grid item xs={12} sm={6} style={{paddingTop: 0}}>
+                                        <TextField id="standard-full-width"
+                                                  helperText={validatePhone() === false ? "Введите телефон с 7 или 8" : "Ваш телефон" }
+                                                  fullWidth
+                                                  variant="filled"
+                                                  type="tel"
+                                                  required
+                                                  inputProps={{minLength: 14}}
+                                                  InputProps={{inputComponent: TextMaskCustom, minLength: 14}}
+                                                  name="phone"
+                                                  onChange={(e) => {setPhone(e.target.value)}}
+                                                  value={phoneUser}/>
+                                      </Grid>
+                                      <Grid item xs={12}>
+                                        <Typography variant="body1">
+                                          Выберите форму оплаты
+                                        </Typography>
+                                      </Grid>
+                                      <Grid item xs={6}>
+                                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "cash" ? "contained" : "outlined"} color="primary"
+                                                onClick={onSwitchPay("cash")}>
+                                          Оплата наличными
+                                        </Button>
+                                      </Grid>
+                                      <Grid item xs={6}>
+                                        <Button fullWidth style={{fontSize: 17}} variant={variantPay === "bank" ? "contained" : "outlined"} color="primary"
+                                                onClick={onSwitchPay("bank")}>
+                                          Онлайн перевод
+                                        </Button>
+                                      </Grid>
+                                      <Grid item xs={12}>
+                                        <Grid item xs={12}>
+                                          <Typography variant="body1">
+                                            Как вы хотите получить заказ?
+                                          </Typography>
+                                        </Grid>
+                                        <FormControl required variant="outlined" className={classes.formControl}>
+                                          <Select native value={delivery} onChange={handleChangeDelivery} inputProps={{
+                                            name: 'delivery',
                                             id: 'outlined-age-native-simple'}}>
-                                    <option value="net">Не выбрано</option>
-                                    <option value="yraz">Уразово</option>
-                                    <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
-                                    <option value="valsoshgor">Валуйки(соц.городок)</option>
-                                    <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
-                                    <option value="valsim">Валуйки(нов.симоновка)</option>
-                                    <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
-                                    <option value="valkordon">Валуйки(байрацкий.корд)</option>
-                                    <option style={{background: `#f0ecec`}} value="dvyl">Двулучное</option>
-                                    <option value="shel">Шелаево</option>
-                                    <option style={{background: `#f0ecec`}} value="sobo">Соболевка</option>
-                                    <option value="kol">Колыхалино</option>
-                                    <option style={{background: `#f0ecec`}} value="sved">Шведуновка</option>
-                                    <option value="togobi">Тогобиевка</option>
-                                    <option style={{background: `#f0ecec`}} value="novopetr">Новопетровка</option>
-                                    <option value="babki">Бабки</option>
-                                    <option style={{background: `#f0ecec`}} value="syxarevo">Сухарево</option>
-                                    <option value="zerdevk">Жердевка</option>
-                                    <option style={{background: `#f0ecec`}} value="tatarievka">Татариевка</option>
-                                    <option value="pricten">Пристень</option>
-                                    <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
-                                    <option value="soloti">Солоти</option>
-                                    <option style={{background: `#f0ecec`}} value="borki">Борки</option>
-                                    <option value="znamenk">Знаменка</option>
-                                    <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
-                                    <option value="kazink">Казинка</option>
-                                    <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
-                                    <option value="kyky">Кукуевка</option>
-                                    <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
-                                    <option value="hrapovo">Храпово</option>
-                                    <option style={{background: `#f0ecec`}} value="nasonovo">Насоново</option>
-                                    <option value="yablonovo">Яблоново</option>
-                                    <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
-                                    <option value="yraevo">Ураево</option>
-                                    <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
-                                    <option value="hohlovo">Хохлово</option>
-                                  </Select>
-
-                                  <FormHelperText id="my-helper-text">Выберите населенный пункт</FormHelperText>
-                                </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={4}>
-                                <TextField id="validation-outlined-input"
-                                           label="Улица"
-                                           variant="filled"
-                                           fullWidth
-                                           required
-                                           inputProps={{maxLength: 40, minLength: 4}}
-                                           name="street"
-                                           onChange={(e) => {
-                                             setAdress(e.target.value);
-                                           }}
-                                           value={deliveryAdress}
-                                           helperText="Ваша улица"/>
-                              </Grid>
-                              <Grid item xs={12} sm={4}>
-                                <TextField id="validation-outlined-input"
-                                           label="Дом"
-                                           variant="filled"
-                                           fullWidth
-                                           type="text"
-                                           required
-                                           inputProps={{maxLength: 5}}
-                                           name="home"
-                                           onChange={(e) => {
-                                             setHome(e.target.value);
-                                           }}
-                                           value={homeNumber}
-                                           helperText="Ваш номер дома"/>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <TextField id="validation-outlined-input"
-                                           label="Квартира"
-                                           variant="filled"
-                                           margin="normal"
-                                           fullWidth
-                                           size="small"
-                                           type="text"
-                                           style={{ margin: `8px auto` }}
-                                           inputProps={{ maxLength: 5 }}
-                                           name="apartment"
-                                           onChange={(e) => userApartment(e.target.value)}
-                                           value={apartment}
-                                           helperText="Номер квартиры"/>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <TextField id="validation-outlined-input"
-                                           label="Подъезд"
-                                           variant="filled"
-                                           margin="normal"
-                                           fullWidth
-                                           style={{ margin: `8px auto`}}
-                                           type="number"
-                                           size="small"
-                                           inputProps={{maxLength: 2}}
-                                           name="podezd"
-                                           onChange={(e) => {
-                                             setEntrance(e.target.value);
-                                           }}
-                                           value={entranceNumber}
-                                           helperText="Номер подъезда"/>
-                              </Grid>
-                            </>}
-
-                            <Grid item xs={12}>
-                              <TextField
-                                  id="outlined-multiline-static"
-                                  label="Комментарий к заказу"
-                                  multiline
-                                  value={comments}
-                                  onChange={(e) => userCommentsFunc(e.target.value)}
-                                  rows="3"
-                                  error={!validateTextAria() && comments.length > 2}
-                                  inputProps={{minLength: 3, maxLength: 255}}
-                                  name="comments"
-                                  variant="filled"
-                                  margin="normal"
-                                  fullWidth
-                                  style={{ margin: `8px auto`}}
-                                  helperText={!validateTextAria() && comments.length > 2 ? "Удалите лишние знаки и символы" : ""}
-                              />
-                            </Grid>
-                          </Grid>
-                        </div>
-
-                        {/*Кнопка заказать*/}
-                        <Grid container>
-                          {/*Если онлайн оплата не показывать сдачу*/}
-                          {variantPay === 'cash' &&
-                          <Grid item xs={12}>
-
-                            <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
-                            <Select
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                open={open}
-                                onClose={handleClose}
-                                onOpen={handleOpen}
-                                value={age}
-                                name="sdacha"
-                                label="Без сдачи"
-                                onChange={handleChange}>
-                              <MenuItem value="Без сдачи">
-                                <em>Без сдачи</em>
-                              </MenuItem>
-                              <MenuItem value={700}>С 700 руб</MenuItem>
-                              <MenuItem value={1000}>С 1000 руб</MenuItem>
-                              <MenuItem value={1500}>С 1500 руб</MenuItem>
-                              <MenuItem value={2000}>С 2000 руб</MenuItem>
-                              <MenuItem value={3000}>С 3000 руб</MenuItem>
-                              <MenuItem value={5000}>С 5000 руб</MenuItem>
-                            </Select>
-                          </Grid>
-                          }
-                          <Grid item xs={12} style={{ margin: `20px auto 50px auto`}}>
-                            <Paper elevation={3} className={classes.paperEndOrder}>
-                              { delivery !== "Самовывоз" && !isEmpty(stateDeliveryPrice) &&
-                              <>
-                                <div>
-                                  { !itemCartPizza &&
-                                  <Typography variant={"h5"} style={{fontSize: 18}}>{total < stateDeliveryPrice.deliverySalePrice ? <>
-                                    Доставка: + <strong>{stateDeliveryPrice.priceDel} ₽</strong></> : <strong>Доставка бесплатно</strong>}</Typography>
-                                  }
-                                  { !itemCartPizza &&
-                                  <Typography variant={"body2"}>{total < stateDeliveryPrice.deliverySalePrice ? <>
-                                        Для бесплатной доставки в {stateDeliveryPrice.name} сделайте заказ еще минимум
-                                        на <strong> + {stateDeliveryPrice.deliverySalePrice - total} ₽</strong></>
-                                      : ""}</Typography>
-                                  }
-                                  { itemCartPizza &&
-                                  <Typography variant={"subtitle2"} style={{fontSize: 16}}>Доставка с бесплатной пиццей Ветчина-Грибы-Бекон + <strong>{stateDeliveryPrice.priceDel} ₽</strong></Typography>
-                                  }
-                                </div>
-                                <div style={{marginTop: 15, marginBottom: 15}}>
-                                  { itemCartPizza &&
-                                  <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{` ${total + stateDeliveryPrice.priceDel} ₽`}</b> </Typography>
-                                  }
-                                  { !itemCartPizza &&
-                                  <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{total >= stateDeliveryPrice.deliverySalePrice ?
-                                      `${total} ₽` : `${total + stateDeliveryPrice.priceDel} ₽`}</b></Typography>
-                                  }
-                                </div>
-                              </>
-                              }
-
-                              { isEmpty(stateDeliveryPrice) || delivery === "Самовывоз" ?
-                                  <div>
-                                    <Typography variant={"h6"} style={{fontSize: 16}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
-                                  </div> : ''
-                              }
-                              {/*/!*если онлай оплата показывать другую кнопку*!/*/}
-                              {/*   {variantPay === 'cash' &&*/}
-                              <span style={{ position: `relative`}}>
-                            <Button
-                                type="submit"
-                                disabled={buttonDisabled()}
-                                variant="contained">
-                                Сделать заказ
-                                {/* { variantPay === "cash" ? "Сделать заказ" : "Сделать заказ"} */}
-                            </Button>
-                          </span>
-
-                              { buttonDisabled() === true &&
-                              <>
-                                <hr></hr>
-                                <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
-                                <ul>
-                                  { !validateUserName() && <li>Введите имя из букв</li>}
-                                  { !validatePhone() && <li>Введите корректный телефон</li>}
-                                  { !validateDelivery() && delivery === "Доставка курьером" && <li>Выберите населенный пункт</li>}
-                                </ul>
-                              </>
-                              }
-                            </Paper>
-                          </Grid>
-                        </Grid>
-
-                      </form>
-                      {/* <PayDialog open={openPay} handleClose={() => handleClosePay()} name={nameUser} phone={phoneUser}
-                                 total={delivery === "Самовывоз" ? total : total < stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total}/> */}
-
-                      <Snackbar open={openAlert} autoHideDuration={5000} style={{bottom: 90}} onClose={handleCloseAlert}
-                                anchorOrigin={{ vertical, horizontal }}
-                                key={vertical + horizontal}>
-                        <Alert onClose={handleCloseAlert} severity="info">
-                          {textAlert}
-                        </Alert>
-                      </Snackbar>
-                    </Grid> : <EmptyBasket/> }
-              </Container>
-              : <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div> }
+                                            <option value="">Не выбрано</option>
+                                            <option value="Самовывоз">Самовынос</option>
+                                            <option value="Доставка курьером">Оформить доставку</option>
+                                          </Select>
+                                          <FormHelperText id="my-helper-text">Способ получения заказа</FormHelperText>
+                                        </FormControl>
+                                      </Grid>
+                                      {delivery !== '' && <>
+                                        {/*Предзаказ или сразу время и дата*/}
+                                        <Grid item xs={12}>
+                                          <Typography  variant="body1">
+                                            { delivery !== "Самовывоз" ? "Дата и время доставки заказа"
+                                                : "Дата и время готовки заказа"}
+                                          </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                          <Button fullWidth style={{fontSize: 17}} variant={state === "promptly" ? "contained" : "outlined"} color="primary"
+                                                  onClick={handleChangee("promptly")}>
+                                            {delivery === "Самовывоз" ? "Приготовить сразу" : "Доставить сразу"}
+                                          </Button>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                          <Button fullWidth style={{fontSize: 17}} variant={state === "deliveryTime" ? "contained" : "outlined"} color="primary"
+                                                  onClick={handleChangee("deliveryTime")}>
+                                            {delivery === "Самовывоз" ? "Приготовить ко времени" : "Доставить ко времени"}
+                                          </Button>
+                                        </Grid>
+                                      </>}
+            
+                                      {delivery !== "" && state === "deliveryTime" && <>
+                                        <Grid item xs={12} sm={6}>
+                                          <TextField id="standard-full-width"
+                                                    variant="filled"
+                                                    fullWidth
+                                                    type="date"
+                                                    required
+                                                    name="date"
+                                                    onChange={(e) => {setDate(e.target.value);
+                                                    }}
+                                                    value={dateDelivery}
+                                                    helperText="Дата доставки/готовки"/>
+                                        </Grid>
+            
+                                        <Grid item xs={12} sm={6}>
+                                          <TextField id="standard-full-width"
+                                                    variant="filled"
+                                                    fullWidth
+                                                    type="time"
+                                                    required
+                                                    name="time"
+                                                    onChange={(e) => {
+                                                      setTime(e.target.value);
+                                                    }}
+                                                    value={timeDelivery}
+                                                    helperText="К какому времени доставить/приготовить"/>
+                                        </Grid>
+                                      </>}
+                                      {delivery === "Доставка курьером" && <>
+                                        <Grid item xs={12} sm={4}>
+                                          <FormControl required variant="filled" className={classes.formControl}>
+                                            <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                                              Населённый пункт
+                                            </InputLabel>
+                                            <Select native value={deliverySity.city}
+                                                    onChange={handleChangeCity(city)}
+                                                    inputProps={{ name: 'city',
+                                                      id: 'outlined-age-native-simple'}}>
+                                              <option value="net">Не выбрано</option>
+                                              <option value="yraz">Уразово</option>
+                                              <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
+                                              <option value="valsoshgor">Валуйки(соц.городок)</option>
+                                              <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
+                                              <option value="valsim">Валуйки(нов.симоновка)</option>
+                                              <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
+                                              <option value="valkordon">Валуйки(байрацкий.корд)</option>
+                                              <option style={{background: `#f0ecec`}} value="dvyl">Двулучное</option>
+                                              <option value="shel">Шелаево</option>
+                                              <option style={{background: `#f0ecec`}} value="sobo">Соболевка</option>
+                                              <option value="kol">Колыхалино</option>
+                                              <option style={{background: `#f0ecec`}} value="sved">Шведуновка</option>
+                                              <option value="togobi">Тогобиевка</option>
+                                              <option style={{background: `#f0ecec`}} value="novopetr">Новопетровка</option>
+                                              <option value="babki">Бабки</option>
+                                              <option style={{background: `#f0ecec`}} value="syxarevo">Сухарево</option>
+                                              <option value="zerdevk">Жердевка</option>
+                                              <option style={{background: `#f0ecec`}} value="tatarievka">Татариевка</option>
+                                              <option value="pricten">Пристень</option>
+                                              <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
+                                              <option value="soloti">Солоти</option>
+                                              <option style={{background: `#f0ecec`}} value="borki">Борки</option>
+                                              <option value="znamenk">Знаменка</option>
+                                              <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
+                                              <option value="kazink">Казинка</option>
+                                              <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
+                                              <option value="kyky">Кукуевка</option>
+                                              <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
+                                              <option value="hrapovo">Храпово</option>
+                                              <option style={{background: `#f0ecec`}} value="nasonovo">Насоново</option>
+                                              <option value="yablonovo">Яблоново</option>
+                                              <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
+                                              <option value="yraevo">Ураево</option>
+                                              <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
+                                              <option value="hohlovo">Хохлово</option>
+                                            </Select>
+            
+                                            <FormHelperText id="my-helper-text">Выберите населенный пункт</FormHelperText>
+                                          </FormControl>
+                                        </Grid>
+                                        <Grid item xs={12} sm={4}>
+                                          <TextField id="validation-outlined-input"
+                                                    label="Улица"
+                                                    variant="filled"
+                                                    fullWidth
+                                                    required
+                                                    inputProps={{maxLength: 40, minLength: 4}}
+                                                    name="street"
+                                                    onChange={(e) => {
+                                                      setAdress(e.target.value);
+                                                    }}
+                                                    value={deliveryAdress}
+                                                    helperText="Ваша улица"/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={4}>
+                                          <TextField id="validation-outlined-input"
+                                                    label="Дом"
+                                                    variant="filled"
+                                                    fullWidth
+                                                    type="text"
+                                                    required
+                                                    inputProps={{maxLength: 5}}
+                                                    name="home"
+                                                    onChange={(e) => {
+                                                      setHome(e.target.value);
+                                                    }}
+                                                    value={homeNumber}
+                                                    helperText="Ваш номер дома"/>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                          <TextField id="validation-outlined-input"
+                                                    label="Квартира"
+                                                    variant="filled"
+                                                    margin="normal"
+                                                    fullWidth
+                                                    size="small"
+                                                    type="text"
+                                                    style={{ margin: `8px auto` }}
+                                                    inputProps={{ maxLength: 5 }}
+                                                    name="apartment"
+                                                    onChange={(e) => userApartment(e.target.value)}
+                                                    value={apartment}
+                                                    helperText="Номер квартиры"/>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                          <TextField id="validation-outlined-input"
+                                                    label="Подъезд"
+                                                    variant="filled"
+                                                    margin="normal"
+                                                    fullWidth
+                                                    style={{ margin: `8px auto`}}
+                                                    type="number"
+                                                    size="small"
+                                                    inputProps={{maxLength: 2}}
+                                                    name="podezd"
+                                                    onChange={(e) => {
+                                                      setEntrance(e.target.value);
+                                                    }}
+                                                    value={entranceNumber}
+                                                    helperText="Номер подъезда"/>
+                                        </Grid>
+                                      </>}
+            
+                                      <Grid item xs={12}>
+                                        <TextField
+                                            id="outlined-multiline-static"
+                                            label="Комментарий к заказу"
+                                            multiline
+                                            value={comments}
+                                            onChange={(e) => userCommentsFunc(e.target.value)}
+                                            rows="3"
+                                            error={!validateTextAria() && comments.length > 2}
+                                            inputProps={{minLength: 3, maxLength: 255}}
+                                            name="comments"
+                                            variant="filled"
+                                            margin="normal"
+                                            fullWidth
+                                            style={{ margin: `8px auto`}}
+                                            helperText={!validateTextAria() && comments.length > 2 ? "Удалите лишние знаки и символы" : ""}
+                                        />
+                                      </Grid>
+                                    </Grid>
+                                  </div>
+            
+                                  {/*Кнопка заказать*/}
+                                  <Grid container>
+                                    {/*Если онлайн оплата не показывать сдачу*/}
+                                    {variantPay === 'cash' &&
+                                    <Grid item xs={12}>
+            
+                                      <InputLabel id="demo-controlled-open-select-label">Сдача</InputLabel>
+                                      <Select
+                                          labelId="demo-controlled-open-select-label"
+                                          id="demo-controlled-open-select"
+                                          open={open}
+                                          onClose={handleClose}
+                                          onOpen={handleOpen}
+                                          value={age}
+                                          name="sdacha"
+                                          label="Без сдачи"
+                                          onChange={handleChange}>
+                                        <MenuItem value="Без сдачи">
+                                          <em>Без сдачи</em>
+                                        </MenuItem>
+                                        <MenuItem value={700}>С 700 руб</MenuItem>
+                                        <MenuItem value={1000}>С 1000 руб</MenuItem>
+                                        <MenuItem value={1500}>С 1500 руб</MenuItem>
+                                        <MenuItem value={2000}>С 2000 руб</MenuItem>
+                                        <MenuItem value={3000}>С 3000 руб</MenuItem>
+                                        <MenuItem value={5000}>С 5000 руб</MenuItem>
+                                      </Select>
+                                    </Grid>
+                                    }
+                                    <Grid item xs={12} style={{ margin: `20px auto 50px auto`}}>
+                                      <Paper elevation={3} className={classes.paperEndOrder}>
+                                        { delivery !== "Самовывоз" && !isEmpty(stateDeliveryPrice) &&
+                                        <>
+                                          <div>
+                                            { !itemCartPizza &&
+                                            <Typography variant={"h5"} style={{fontSize: 18}}>{total < stateDeliveryPrice.deliverySalePrice ? <>
+                                              Доставка: + <strong>{stateDeliveryPrice.priceDel} ₽</strong></> : <strong>Доставка бесплатно</strong>}</Typography>
+                                            }
+                                            { !itemCartPizza &&
+                                            <Typography variant={"body2"}>{total < stateDeliveryPrice.deliverySalePrice ? <>
+                                                  Для бесплатной доставки в {stateDeliveryPrice.name} сделайте заказ еще минимум
+                                                  на <strong> + {stateDeliveryPrice.deliverySalePrice - total} ₽</strong></>
+                                                : ""}</Typography>
+                                            }
+                                            { itemCartPizza &&
+                                            <Typography variant={"subtitle2"} style={{fontSize: 16}}>Доставка с бесплатной пиццей Ветчина-Грибы-Бекон + <strong>{stateDeliveryPrice.priceDel} ₽</strong></Typography>
+                                            }
+                                          </div>
+                                          <div style={{marginTop: 15, marginBottom: 15}}>
+                                            { itemCartPizza &&
+                                            <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{` ${total + stateDeliveryPrice.priceDel} ₽`}</b> </Typography>
+                                            }
+                                            { !itemCartPizza &&
+                                            <Typography variant={"h5"} style={{fontSize: 22}}>Итого к оплате: <b>{total >= stateDeliveryPrice.deliverySalePrice ?
+                                                `${total} ₽` : `${total + stateDeliveryPrice.priceDel} ₽`}</b></Typography>
+                                            }
+                                          </div>
+                                        </>
+                                        }
+            
+                                        { isEmpty(stateDeliveryPrice) || delivery === "Самовывоз" ?
+                                            <div>
+                                              <Typography variant={"h6"} style={{fontSize: 16}}>Итого к оплате: <strong>{total} ₽</strong></Typography>
+                                            </div> : ''
+                                        }
+                                        {/*/!*если онлай оплата показывать другую кнопку*!/*/}
+                                        {/*   {variantPay === 'cash' &&*/}
+                                        <span style={{ position: `relative`}}>
+                                      <Button
+                                          type="submit"
+                                          disabled={buttonDisabled()}
+                                          variant="contained">
+                                          Сделать заказ
+                                          {/* { variantPay === "cash" ? "Сделать заказ" : "Сделать заказ"} */}
+                                      </Button>
+                                    </span>
+            
+                                        { buttonDisabled() === true &&
+                                        <>
+                                          <hr></hr>
+                                          <Typography style={{marginTop: 10}}>* Обязательно:</Typography>
+                                          <ul>
+                                            { !validateUserName() && <li>Введите имя из букв</li>}
+                                            { !validatePhone() && <li>Введите корректный телефон</li>}
+                                            { !validateDelivery() && delivery === "Доставка курьером" && <li>Выберите населенный пункт</li>}
+                                          </ul>
+                                        </>
+                                        }
+                                      </Paper>
+                                    </Grid>
+                                  </Grid>
+            
+                                </form>
+                                {/* <PayDialog open={openPay} handleClose={() => handleClosePay()} name={nameUser} phone={phoneUser}
+                                          total={delivery === "Самовывоз" ? total : total < stateDeliveryPrice.deliverySalePrice ? total + stateDeliveryPrice.priceDel : total}/> */}
+            
+                                <Snackbar open={openAlert} autoHideDuration={5000} style={{bottom: 90}} onClose={handleCloseAlert}
+                                          anchorOrigin={{ vertical, horizontal }}
+                                          key={vertical + horizontal}>
+                                  <Alert onClose={handleCloseAlert} severity="info">
+                                    {textAlert}
+                                  </Alert>
+                                </Snackbar>
+                              </Grid> : <EmptyBasket/> }
+                        </Container>
+                    }
         </div>
       </section>
   )

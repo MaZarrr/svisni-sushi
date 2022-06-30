@@ -7,7 +7,7 @@ import { Link } from 'gatsby';
 import makeStyles from '@mui/styles/makeStyles';
 import { Divider } from "@mui/material";
 import { isBrowser } from '../../../components/common/constants';
-import ClipLoader from "react-spinners/ClipLoader";
+import EmptyBasket from '../../../components/EmptyBasket';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -28,7 +28,6 @@ const OrderProcessed = ({ location: { state } }) => {
     const [delivery, setDelivery] = React.useState("");
     const [phone, setPhone] = React.useState("");
     const [priceTotal, setPriceTotal] = React.useState("");
-    const [isLoading, setIsLoading] = React.useState(true)
 
     const classes = useStyles();
 
@@ -43,15 +42,16 @@ const OrderProcessed = ({ location: { state } }) => {
             setPriceTotal(state.totalPrice);
             setPhone(state.phone);
             setDelivery(state.delivery)
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 1000)
+            // setTimeout(() => {
+            //     setIsLoading(false)
+            // }, 1000)
         }
     }, []);
 
     return (
         <Grid container style={{marginTop: `25px`}}>
-            { state !== null && !isLoading ? <>
+            { state !== null ? <>
+            {/* { state !== null && !isLoading ? <> */}
                 <Grid item xs={12}>
                     <Typography style={{textAlign: `center`}} variant={'h4'}>Ваш заказ успешно оформлен<span role="img" aria-label="accessible-emoji">🎉</span>
                         <span role="img" aria-label="accessible-emoji" >🎉</span><span role="img" aria-label="accessible-emoji">🎉</span>
@@ -133,16 +133,8 @@ const OrderProcessed = ({ location: { state } }) => {
                         </Button>
                     </Grid>
                 </Grid>
-            </> : <div style={{ width: "100%", minHeight: '380px', 
-                justifyContent: 'center', alignItems: 'center', 
-                display: 'flex' }}><ClipLoader size={150}/></div> 
-         }
-         {/* { !state && isLoading &&
-         <Grid item xs={12}>
-            <Typography style={{textAlign: `center`}} variant={'h4'}>Ваша корзина пуста.</Typography>
-            <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>Добавьте товары в корзину</Typography>
-            </Grid>
-         } */}
+            </> : <EmptyBasket />
+            }
         </Grid>
     )
 }
