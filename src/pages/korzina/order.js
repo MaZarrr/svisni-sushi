@@ -141,7 +141,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       }
     }
 
-    const pushOrder = () => {
+    const async pushOrder = () => {
       const deliveru = delivery === "Самовывоз" ? ev.target.delivery.value : {
         formDelivery: ev.target.delivery.value,
         adress: stateDeliveryPrice.name,
@@ -183,8 +183,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         comments: ev.target.comments.value,
       };
 
-      console.log("isOnline____", isOnline);
-
       if(!isOnline) {
       // if(!navigator.onLine ) {
         setTextAlert("Проверьте подключение к интернету и попробуйте заново.")
@@ -192,7 +190,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
       }
 
       if((variantPay === "cash" || variantPay === "bank" && isBrowser && sessionStorage.getItem('checkOrder') !== 'true') && isOnline) {
-        axios({
+       await axios({
           method: 'POST',
           headers: { 'Content-Type': 'application/json;charset=utf-8' },
           data: infoSuccess,
@@ -201,7 +199,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
         .then(() =>  {})
         .catch(err => console.log(err))
 
-        axios({
+      await axios({
           method: 'POST',
           headers: { 'Content-Type': 'application/json;charset=utf-8' },
           data: infoSuccess,
