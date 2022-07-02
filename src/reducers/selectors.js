@@ -1,4 +1,4 @@
-import { defaultTo } from 'ramda';
+import { defaultTo, isEmpty } from 'ramda';
 import { createSelector } from 'reselect'
 
 const loadingStatus = (state) => state.app.loading;
@@ -16,9 +16,19 @@ export const productList = createSelector(
     isSaleLanch,
     ownProps,
     (category, product, productWok, productPizza, isLanch, ownProps ) => {
+        const slug = ownProps.pageData.contentfulPages.fieldSlug;
         if(category){
-            return product.filter(({filter = category}) => {
-                return filter.toLowerCase().split(", ").includes(category.toLowerCase())})
+            const products = slug !== 'pizza' ? product : productPizza;
+            const empty = isEmpty(products);
+            if(empty) {
+                return
+            }
+            return products.filter(({variantCategories, filter = category}) => {
+                if(variantCategories) {
+                    return variantCategories.trim().toLowerCase().split(", ").includes(category.toLowerCase())
+                }
+                return true
+            })
         }
 
         if(isLanch) {

@@ -28,8 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsTeamplate)
 
 
-
-
 export const query = graphql ` 
 query MyQuery($slug: String!) {
   contentfulPages(fieldSlug: {eq: $slug}) {
@@ -37,6 +35,7 @@ query MyQuery($slug: String!) {
     fieldSeoTitle
     fieldSlug
     fieldTitle
+    fieldCaterories
     fieldSeoDescrittion
     image {
       gatsbyImageData(
@@ -53,6 +52,7 @@ query MyQuery($slug: String!) {
         fieldSlugItem
         fieldVariant
         fieldWeight
+        fariantCategories
         fieldWeightLarge
         fieldWeightSmall
         id

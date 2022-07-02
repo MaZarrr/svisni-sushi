@@ -3,14 +3,13 @@ import {createReducer, createAction} from "redux-act";
 export const productLoaded = createAction('PRODUCT_LOADED');
 export const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA');
 export const spinnerLoading = createAction('PRODUCT_SPINNER');
-// export const indexProducLoadi = createAction('PRODUCT_SPINNER');
 const productLoadedIndex = createAction('PRODUCT_LOADED_INDEX');
 
 export const loadIndexItems = (data) => (dispatch) => dispatch(productLoadedIndex(data));
+export const loadingSpinner = (status) => (dispatch) => dispatch(spinnerLoading(status));
 export const getProduct = (product) => async (dispatch) => {
     await dispatch(productLoaded(product))
 };
-// export const loadingSpinner = (status) => (dispatch) => dispatch(spinnerLoad(status));
 
 const initialState = {
     indexProduct: {
@@ -21,7 +20,7 @@ const initialState = {
     product: [],
     productPizza: [],
     indexMenu: [],
-    loading: true,
+    loading: false,
     error: false
 };
 
@@ -207,6 +206,7 @@ export default createReducer({
         return {...state, productPizza}
     },
     [spinnerLoading]: (state, status) => {
+        console.log("sssss", status);
         return {...state, loading: status}
     }
 }, initialState)

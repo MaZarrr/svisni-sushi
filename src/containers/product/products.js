@@ -33,6 +33,7 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
                 weightPizzaSmall: node.fieldWeightSmall, 
                 weightPizzaLarge: node.fieldWeightLarge, 
                 pricePizzaLarge: node.fieldPriceLarge, 
+                variantCategories: node.fariantCategories,
                 variant: node.fieldVariant,
                 weight: node.fieldWeight,
                 count: node.fieldCount,
@@ -47,7 +48,6 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
             }
         }
     })
-        // gatsbyImageData
     
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter);
     const priceIsSale = useMemo(() => isSale, [isSale]);
@@ -55,7 +55,7 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
     // const isPizzas = transformData.some((node) => node.isPizza === true);
     // const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
 
-    const bindActions = ({transformData}) => {
+    const bindActions = ({ transformData }) => {
         const checkedPizza = transformData.some(({node: {isPizza}}) => isPizza === true)
         if(checkedPizza) {
             dispatch(productPizzaLoaded(transformData))
@@ -63,17 +63,16 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
             dispatch(productLoaded(transformData))
         }
     }
-
-    // const categoryList = () => {
-    //     console.log("pageData.field_caterories", pageData.field_caterories);
-    //     const arrayList = pageData.field_caterories !== null ?
-    //     pageData.field_caterories.split(", ") : [];
-    //     console.log("pageData.field_caterories arrayList", arrayList);
-    //     return arrayList
-    // }
+    
+    const categoryList = () => {
+        let categories = pageData.fieldCaterories;
+        const arrayList = categories !== null ?
+        categories.split(", ") : [];
+        return arrayList
+    }
 
 useEffect(() => {
-    bindActions({transformData})
+    bindActions({ transformData })
     // doStart({endTime: 15, startTime: 10, startDayNumber: 1, firstDayNumber: 5});
     dispatch(checkSaleLanch(priceIsSale));
     dispatch(defFilters());
@@ -87,7 +86,7 @@ useEffect(() => {
             pathname="/"
         />
         <HeadSection titleTXT={pageData.fieldTitle} path={pageData.fieldSlug} isFilter={true} 
-        // categoryNames={categoryList()} 
+        categoryNames={categoryList()} 
         /> 
         <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
             { visibleItems && visibleItems.length > 0 ? <>
