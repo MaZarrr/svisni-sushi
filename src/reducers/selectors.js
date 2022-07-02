@@ -19,10 +19,6 @@ export const productList = createSelector(
         const slug = ownProps.pageData.contentfulPages.fieldSlug;
         if(category){
             const products = slug !== 'pizza' ? product : productPizza;
-            const empty = isEmpty(products);
-            if(empty) {
-                return
-            }
             return products.filter(({variantCategories, filter = category}) => {
                 if(variantCategories) {
                     return variantCategories.trim().toLowerCase().split(", ").includes(category.toLowerCase())
