@@ -20,7 +20,10 @@ import { CardStyle } from './common/styles-components'
 const Paper = loadable(() => import('@mui/material/Paper'))
 const ToggleButton = loadable(() => import("./common/ToogleButton"));
 
-const PizzaSizeBlock = ({ classes, slug, size, id, priceDef, isPizza, mass, drupal_id, weightPizzaSmall, weightPizzaLarge, pricePizzaLarge, switchSizePizza, product }) => {
+const PizzaSizeBlock = ({ classes, slug, size, 
+    id, priceDef, isPizza, mass, 
+    drupal_id, weightPizzaSmall, 
+    weightPizzaLarge, pricePizzaLarge, switchSizePizza, product }) => {
     return <>           
     { isPizza &&  <div style={{marginTop: '10px'}}>
         {/*проверка цены на 1 для того что бы убарать или показать выбор размеров пиццы*/}
@@ -33,15 +36,16 @@ const PizzaSizeBlock = ({ classes, slug, size, id, priceDef, isPizza, mass, drup
                                 total: priceDef,
                                 priceDef,
                                 size: slug,
-                                mass: weightPizzaSmall})}
-                                    className={clsx(classes.buttonD, {
-                                        [classes.buttonT]: size[slug]})}>
+                                mass: weightPizzaSmall
+                            })}
+                                className={clsx(classes.buttonD, {
+                                [classes.buttonT]: size[slug]})}>
                             <Typography  style={{margin: 'auto'}} variant={"subtitle2"}>Средняя</Typography></button>
                             <Typography style={{textAlign: `center`}}
                                         variant={"subtitle2"}>28см</Typography>
                         </Grid>
                         <Grid item xs={2}>
-                        <p style={{margin: `10px auto 0 auto`, fontWeight: 'bold', fontSize: 14, textAlign: 'center'}}>{`${mass}`}</p>
+                            <p style={{margin: `10px auto 0 auto`, fontWeight: 'bold', fontSize: 14, textAlign: 'center'}}>{`${mass}`}</p>
                         </Grid>
                         <Grid item xs={5} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             <button style={{paddingLeft: `auto`}} 
@@ -51,16 +55,17 @@ const PizzaSizeBlock = ({ classes, slug, size, id, priceDef, isPizza, mass, drup
                                 total: pricePizzaLarge,
                                 priceDef,
                                 size: drupal_id,
-                                mass: weightPizzaLarge})}
+                                mass: weightPizzaLarge
+                            })}
                                 className={clsx(classes.buttonD, {
-                                        [classes.buttonT]: size[drupal_id]})}>
-                                        {/* [classes.buttonT]: size[pricePizzaLarge]})}> */}
+                                [classes.buttonT]: size[drupal_id]})}>
+                                {/* [classes.buttonT]: size[pricePizzaLarge]})}> */}
                                 <Typography
                                     style={{margin: 'auto'}}
-                                variant={"subtitle2"}>Большая</Typography></button>
-                            <Typography 
-                            style={{textAlign: `center`}} 
-                            variant={"subtitle2"}>36см</Typography>
+                                    variant={"subtitle2"}>Большая</Typography></button>
+                                <Typography 
+                                    style={{textAlign: `center`}} 
+                                    variant={"subtitle2"}>36см</Typography>
                         </Grid>
                     </Grid>
                     }

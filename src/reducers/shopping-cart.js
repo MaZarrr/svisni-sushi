@@ -9,6 +9,7 @@ const allRemoveFromCart = createAction('ALL_SET_REMOVE_FROM_CART');
 
 const pizzaSize = createAction('PRODUCT_RAZMER');
 export const pizzaCart = createAction('SIZE_CART');
+export const loadSwitchPizzas = createAction('LOAD_SWITCH_PIZZAS');
 
 export const addedIngrideents = createAction('ADDED_TO_INGRIREENT');
 export const ingrideentPlus = createAction('INGRIDEENT_PLUS');
@@ -71,7 +72,7 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
 
     // добавление пиццы
     if (setу.pricePizzaLarge > 0) {
-        const descriptionIngrideents = R.pluck('nameI', setу.sostav).join(", ");
+        // const descriptionIngrideents = R.pluck('nameI', setу.sostav).join(", ");
         return {
             id,
             name,
@@ -82,7 +83,7 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
             price: priceRadio,
             description: setу.description,
             productSize: R.isNil(setу.size) ? "Маленькая" : Object.keys(setу.size).toString() === setу.slug ? "Маленькая" : "Большая",
-            descriptionIngrideents,
+            // descriptionIngrideents,
             drupal_id: setу.drupal_id,
             size: sizePizza,
             slug: setу.slug,
@@ -95,7 +96,6 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
     // добавление вока // setу.private - это sety.wok только в CMS в каждом товаре.
     // нужно для def вока. Проверка, действительно добавлен вок или нет
     if (setу.private === false || setу.isWok === true) {
-        // console.log("if (setу.wok)", sety);
         const isWok = R.isNil(setу.wok) ? true : setу.wok;
         const descriptionWok = R.isNil(setу.descriptionWok) ? "Удон" : setу.descriptionWok;
         return {
@@ -131,11 +131,10 @@ const updateCartItem = (setу, item = {}, quantity, priceRadio = setу.price) =>
 };
 
 const updateOder = (state, setId, quantity, priceRadioPizza, products) => {
-    const {cartItems} = state;
+    const { cartItems } = state;
     const product = products.find((productCategory) => productCategory.id === setId);
     const itemIndex = cartItems.findIndex(({id}) => id === setId);
     const item = cartItems[itemIndex];
-    
     const totalPrice = R.compose(
         R.sum,
         R.pluck('total')
@@ -201,7 +200,6 @@ const initialState = {
 
 export default createReducer({
     [addedToCart]: (state, {id, price, product}) => {
-
         const res = updateOder(state, id, 1, price, product);
         if (isBrowser) {
             localStorage.setItem('basketProduct', JSON.stringify(res));
@@ -251,7 +249,23 @@ export default createReducer({
             cartItems: updateItemPizza
         }
     },
-
+    [loadSwitchPizzas]: (state, data) => {
+        const dataUpdate = data.map(({node}) => {
+            return {
+                ...node,
+                price: node.price,
+                priceDef: node.price,
+                size: {[node.slug]: true},
+                slug: node.slug,
+                mass: node.weight,
+                drupal_id: node.drupal_id
+            }
+        })
+        return {
+            ...state,
+            newPizza: dataUpdate
+        }
+    },
     [pizzaCart]: (state, {id, productPizza, total, priceDef, size, mass}) => {
         if(id === undefined) {
             const pizza = productPizza.map(({node: el}) => {
@@ -402,7 +416,6 @@ export default createReducer({
         const pizzaProduct = R.defaultTo(productPizza, state.newPizza);
         const pizza = pizzaProduct.find((pizzaId) => pizzaId.id === id);
         const itemIndexPizza = pizzaProduct.findIndex((data) => data.id === id);
-
         const updateItemPizza = R.update(itemIndexPizza, {
             ...pizza,
             price: total,

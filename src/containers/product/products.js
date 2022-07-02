@@ -9,7 +9,7 @@ import { productList } from "../../reducers/selectors"
 import { productLoaded, productPizzaLoaded } from "../../reducers/app"
 import { checkSaleLanch, defFilters } from "../../reducers/filters";
 import filtersProducts from "../../utils/filtersProducts"
-import { pizzaCart } from "../../reducers/shopping-cart";
+import { loadSwitchPizzas, pizzaCart } from "../../reducers/shopping-cart";
 import Spinner from "../../components/spinner/spinner";
 
 // const categoryNames = ['Малые', 'Средние', 'Большие', '⏱️Ланч-тайм'];
@@ -51,7 +51,9 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
     
     const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter);
     const priceIsSale = useMemo(() => isSale, [isSale]);
-    const switchSizePizza = data => dispatch(pizzaCart(data));
+    const switchSizePizza = (data) => {
+        dispatch(pizzaCart(data))
+    };
     // const isPizzas = transformData.some((node) => node.isPizza === true);
     // const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
 
@@ -59,6 +61,7 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
         const checkedPizza = transformData.some(({node: {isPizza}}) => isPizza === true)
         if(checkedPizza) {
             dispatch(productPizzaLoaded(transformData))
+            dispatch(loadSwitchPizzas(transformData))
         } else {
             dispatch(productLoaded(transformData))
         }
@@ -70,7 +73,6 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
         categories.split(", ") : [];
         return arrayList
     }
-
 useEffect(() => {
     bindActions({ transformData })
     // doStart({endTime: 15, startTime: 10, startDayNumber: 1, firstDayNumber: 5});

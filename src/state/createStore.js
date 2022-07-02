@@ -1,5 +1,6 @@
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import createRootReducer from '../reducers'
 
 const middlewares = [thunk];
@@ -7,7 +8,7 @@ const middlewares = [thunk];
 const preloadedState = () => {
   return createStore(
     createRootReducer,
-    applyMiddleware(...middlewares)
+    composeWithDevTools(applyMiddleware(...middlewares))
   );
 };
 

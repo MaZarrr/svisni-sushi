@@ -1,4 +1,4 @@
-import { defaultTo, isEmpty } from 'ramda';
+import { defaultTo } from 'ramda';
 import { createSelector } from 'reselect'
 
 const loadingStatus = (state) => state.app.loading;
@@ -16,33 +16,22 @@ export const productList = createSelector(
     isSaleLanch,
     ownProps,
     (category, product, productWok, productPizza, isLanch, ownProps ) => {
-        const slug = ownProps.pageData.contentfulPages.fieldSlug;
-        if(category){
-            const products = slug !== 'pizza' ? product : productPizza;
-            return products.filter(({variantCategories, filter = category}) => {
-                if(variantCategories) {
-                    return variantCategories.trim().toLowerCase().split(", ").includes(category.toLowerCase())
-                }
-                return true
-            })
-        }
 
-        if(isLanch) {
-            const productLanch = product.filter((el) => el.lanch === true);
-            const productNotLanch = product.filter((el) => !el.lanch);
-            const updateProdLanch = productLanch.map(el => {
-               return {
-                   ...el,
-                   price: el.lanchprice
-               }
-            });
-    
-            const updateItemsProduct = updateProdLanch.concat(productNotLanch);
-    
-            return updateItemsProduct
-        }
+    if(isLanch) {
+        const productLanch = product.filter((el) => el.lanch === true);
+        const productNotLanch = product.filter((el) => !el.lanch);
+        const updateProdLanch = productLanch.map(el => {
+            return {
+                ...el,
+                price: el.lanchprice
+            }
+        });
 
-    
+        const updateItemsProduct = updateProdLanch.concat(productNotLanch);
+
+        return updateItemsProduct
+    }
+
     const currentSlug = ownProps.pageData.contentfulPages.fieldSlug;
     // const productCheckAll = product.some((item) => item.isWok === false && item.isPizza === false);
     const productCheckTypeWok = product.some((item) => item.isWok === true && currentSlug === 'wok');
@@ -51,15 +40,31 @@ export const productList = createSelector(
     if(productCheckTypeWok) {
         return defaultTo(product, productWok)
     } else if (productCheckTypePizza){
-        // const dd = productCheckAll ? product : productPizza
-        return defaultTo(product, productPizza)
+        const pizza = productPizza.filter(({ variantCategories }) => {
+            if(variantCategories && category) {
+                return variantCategories.trim().toLowerCase().split(", ").includes(category.toLowerCase())
+            }
+            return true
+        })
+        return pizza
     } else {
+        if(category && currentSlug === 'sety'){
+            const allProducts = product.filter(({ variantCategories }) => {
+                if(variantCategories) {
+                    return variantCategories.trim().toLowerCase().split(", ").includes(category.toLowerCase())
+                }
+                return true
+            })
+            return allProducts.map((item) => {
+                return { ...item, isWok: false, wok: false, isPizza: false }
+            })
+        }
         return product.map((item) => {
             return { ...item, isWok: false, wok: false, isPizza: false }
         })
     }
 });
-//
+
 export const checkedLoading = createSelector(
   loadingStatus,
   loading => loading

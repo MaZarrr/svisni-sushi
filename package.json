@@ -52,6 +52,7 @@
     "react-yandex-maps": "^4.6.0",
     "redux": "^4.1.1",
     "redux-act": "^1.8.0",
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "rimraf": "^3.0.2",
