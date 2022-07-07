@@ -273,7 +273,7 @@ body2 - описание текста
 
 
 
-        // const msg = {action: "calls.send_sms", to: "89040949222", text}
+        // const msg = {action: "calls.send_sms", to: "849222", text}
         // socketT.send(JSON.stringify(msg))
 
 
