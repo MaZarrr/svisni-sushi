@@ -192,7 +192,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             data: infoSuccess,
-            url: "https://nest-test-svsh.onrender.com/sending"
+            url: `${process.env.GATSBY_SEND_URL}sending`
           });
   
           const sendMail = await axios({
