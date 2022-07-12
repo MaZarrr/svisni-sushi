@@ -1,26 +1,25 @@
 import { Grid } from "@mui/material";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useCallback} from "react";
 import { connect } from "react-redux";
 import MenuList from "../../components/MenuList";
 import HeadSection from "../../components/HeadSection"
 import Seo from "../../components/seo"
-import useTimer from "../../utils/useTimer"
 import { productList } from "../../reducers/selectors"
 import { productLoaded, productPizzaLoaded } from "../../reducers/app"
 import { checkSaleLanch, defFilters } from "../../reducers/filters";
 import filtersProducts from "../../utils/filtersProducts"
 import { loadSwitchPizzas, pizzaCart } from "../../reducers/shopping-cart";
 import Spinner from "../../components/spinner/spinner";
-
+// import useTimer from "../../utils/useTimer"
 // const categoryNames = ['Малые', 'Средние', 'Большие', '⏱️Ланч-тайм'];
 
 const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProducts: { edges } }, context,
-    product, searchText, priceFilter, checkboxFilter, location, dispatch  }) => {
-    const [load, setLoad] = React.useState(true);
-    const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
+    product, searchText, priceFilter, checkboxFilter, dispatch, location: { pathname }  }) => {
+    // const [{ hours, seconds, minutes, isSale }, doStart] = useTimer();
+    // const [load, setLoad] = React.useState(true);
     // const [defaultProducts, setDefaultProducts] = React.useState([]);
 
-    const transformData = edges.map(({ node }) => {
+    const transformData = useMemo(() => edges.map(({ node }) => {
         return {
             node: {
                 id: node.id,
@@ -47,13 +46,13 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
                 private: node.fieldPrivate,
             }
         }
-    })
+    }), [edges])
     
-    const visibleItems = filtersProducts(product, searchText, priceFilter, checkboxFilter);
-    const priceIsSale = useMemo(() => isSale, [isSale]);
-    const switchSizePizza = (data) => {
+    const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, searchText, priceFilter, checkboxFilter]);
+    const switchSizePizza = useCallback((data) => {
         dispatch(pizzaCart(data))
-    };
+    });
+    // const priceIsSale = useMemo(() => isSale, [isSale]);
     // const isPizzas = transformData.some((node) => node.isPizza === true);
     // const visibleItems = useMemo(() => filtersProducts(product, searchText, priceFilter, checkboxFilter), [product, checkboxFilter, priceFilter, searchText]);
 
@@ -67,25 +66,26 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
         }
     }
     
-    const categoryList = () => {
+    const categoryList = useCallback(() => {
         let categories = pageData.fieldCaterories;
         const arrayList = categories !== null ?
         categories.split(", ") : [];
         return arrayList
-    }
-useEffect(() => {
-    bindActions({ transformData })
-    // doStart({endTime: 15, startTime: 10, startDayNumber: 1, firstDayNumber: 5});
-    dispatch(checkSaleLanch(priceIsSale));
-    dispatch(defFilters());
-    setLoad(false)
-}, [dispatch, doStart, priceIsSale]);
+    }, [pageData]);
+
+    useEffect(() => {
+        bindActions({ transformData })
+        // doStart({endTime: 15, startTime: 10, startDayNumber: 1, firstDayNumber: 5});
+        // dispatch(checkSaleLanch(priceIsSale));
+        dispatch(defFilters());
+        // setLoad(false)
+    }, [dispatch]);
 
     return (
         <>
         <Seo title={pageData.fieldSeoTitle} 
             description={pageData.fieldSeoDescrittion}
-            pathname="/"
+            pathname={pathname}
         />
         <HeadSection titleTXT={pageData.fieldTitle} path={pageData.fieldSlug} isFilter={true} 
         categoryNames={categoryList()} 
@@ -96,8 +96,8 @@ useEffect(() => {
                     slugCategogy={`/${pageData.fieldSlug}`} 
                     visibleItems={visibleItems}
                     product={product} 
-                    timePrice={{ hours, minutes, seconds }}
-                    isSale={priceIsSale} 
+                    // timePrice={{ hours, minutes, seconds }}
+                    // isSale={priceIsSale} 
                     switchSizePizza={switchSizePizza} 
                     imageTypeCategory={pageData.image}/>
                     

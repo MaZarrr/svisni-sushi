@@ -7,12 +7,10 @@ import ProductList from '../containers/product/products';
 // import ProductItem from '../components/SetyItem'
 
 
-const ProductsTeamplate = (props) => {
-    const { data } = props
-
+const ProductsTeamplate = ({ data, location}) => {
  return  (
      <>
-        <ProductList pageData={data} />
+        <ProductList pageData={data} location={location} />
     </>
     )
 };

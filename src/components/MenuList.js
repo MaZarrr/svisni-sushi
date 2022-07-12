@@ -83,8 +83,8 @@ const MenuList = memo(({
     product, 
     switchSizePizza,
     dispatch, 
-    timePrice, 
-    isSale }) => {
+    timePrice = '', 
+    isSale = false }) => {
     const classes = useStylesCart();
     return <>
         { visibleItems.map((products) => {
