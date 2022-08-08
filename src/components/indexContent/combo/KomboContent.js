@@ -25,9 +25,16 @@ const KomboContent = ({ product }) => {
           }}  raised={true}>
           <CardMedia
             title={homeProduct.name}>
+            <Button
+                style={{padding: 0, margin: 0}}
+                component={Link}
+                to={`/kombo/${homeProduct.slugItem}`}
+              >
             <GatsbyImage
               image={homeProduct.image.gatsbyImageData}
               alt={homeProduct.name} />
+            </Button>
+
           </CardMedia>
           <CardContent>
             <Typography variant={"h3"}>{homeProduct.name}</Typography>

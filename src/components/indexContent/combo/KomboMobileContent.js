@@ -39,10 +39,17 @@ const KomboMobileContent = ({ product }) => {
             height: '380px'
           }} raised={true}>
             <CardMedia title={homeProduct.name}>
-              <GatsbyImage
+              <Button
+                style={{padding: 0, margin: 0}}
+                component={Link}
+                to={`/kombo/${homeProduct.slugItem}`}
+              >
+                <GatsbyImage
                 image={homeProduct.image.gatsbyImageData}
                 style={styles.img}
                 alt={homeProduct.name} />
+              </Button>
+
             </CardMedia>
             <CardContent sx={{padding: '10px 0 10px 10px'}}>
               <Typography variant={"h3"}>{homeProduct.name}</Typography>
