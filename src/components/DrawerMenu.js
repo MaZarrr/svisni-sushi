@@ -12,7 +12,7 @@ import {Link} from "gatsby";
 import RoomIcon from "@mui/icons-material/Room";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import Divider from '@mui/material/Divider';
-import WorkIcon from '@mui/icons-material/Work';
+// import WorkIcon from '@mui/icons-material/Work';
 import { SwipeableDrawer, Typography } from "@mui/material"
 import { StaticImage } from "gatsby-plugin-image";
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
@@ -48,13 +48,13 @@ const drawerMenuProps = [
         componentIcon: PersonOutlineTwoToneIcon,
         isAuth: false
     },
-    // {
-    //     id: 3,
-    //     slug: "/sale",
-    //     nameCategory: "Акции",
-    //     componentIcon: CardGiftcardTwoToneIcon,
-    //     isAuth: true
-    // },
+    {
+        id: 3,
+        slug: "/sale",
+        nameCategory: "Акции",
+        componentIcon: CardGiftcardTwoToneIcon,
+        isAuth: true
+    },
     {
         id: 4,
         slug: "/adres-i-kontakty",
