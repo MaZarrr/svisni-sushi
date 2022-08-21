@@ -21,8 +21,7 @@ const ImageItem = styled(GatsbyImage)`
 `
 const ContainerContentProducts = styled.div`
     max-height: 440px;
-    overflow: scroll;
-    border-radius: 5px;
+    overflow: auto;
     margin-top: 4px;
     padding: 5px;
     position: relative;
@@ -67,28 +66,28 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
                   <div style={{padding: 3, borderRadius: 5, width: `95%`}}>
                       <Typography variant={"h3"}>Состав:</Typography>
                   </div>
-              {/* <ContainerContentProducts>
+              <ContainerContentProducts>
               { kitProduct.map(({node: product}) => (
                   <Grid container key={product.id}
-                        sx={{ margin: `5px 0`, padding: `2px 0 2px 0`, border: `1px solid lightgrey`, width: `95%`}}
+                        sx={{ margin: `5px 0`, padding: `2px 0 2px 0`, border: `1px solid lightgrey`, borderRadius: '5px', width: `95%`}}
                         direction={"row"}>
                       <Grid item xs={2}>
                           <GatsbyImage
                               image={product.image.gatsbyImageData}
                               style={{maxWidth: 70}}
-                              alt={product.name} />
+                              alt={product.fieldName} />
                       </Grid>
                   <Grid item xs={8} style={{paddingLeft: 8, margin: `auto 0`}}>
-                      <Typography variant={"body1"}>{product.name}</Typography>
-                      <Typography variant={"body2"} style={{letterSpacing: '-0.5px', lineHeight: '15px'}}>{product.description}</Typography>
+                      <Typography variant={"body1"}>{product.fieldName}</Typography>
+                      <Typography variant={"body2"} style={{letterSpacing: '-0.5px', lineHeight: '15px'}}>{product.fieldDescriptionProduct}</Typography>
                   </Grid>
 
                   <Grid item xs={2} style={{margin: `auto auto`, textAlign: `center`}}>
-                      <Typography variant={"caption"} >{product.count}шт</Typography>
+                      <Typography variant={"caption"} >{product.fieldCount}шт</Typography>
                   </Grid>
                   </Grid>
           ))}
-          </ContainerContentProducts> */}
+          </ContainerContentProducts>
 
           <CheckoutContainer>
                   <div style={{width: `95%`, borderRadius: 3}}>

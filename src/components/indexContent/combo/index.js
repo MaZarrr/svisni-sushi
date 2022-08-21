@@ -13,7 +13,7 @@ const ComboProduct = ({ title, product }) => {
       }} variant={'h2'}>{title}</Typography>
     {/*Комбо компьютер*/}
     <Hidden smDown>
-      <Grid container justifyContent={"space-between"} style={{ width: `100%`, marginBottom: 50 }}>
+      <Grid container justifyContent={"space-between"} style={{ width: `100%`, marginBottom: '50px' }}>
         <KomboContent product={product} />
       </Grid>
     </Hidden>

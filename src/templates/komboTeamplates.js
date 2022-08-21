@@ -7,6 +7,7 @@ const KomboItem = loadable(() => import('../components/KomboItem'), {
     fallback: <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div>});
 
 const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
+  console.log("contentfulProductKombo__", contentfulProductKombo);
     const { id: ids,
       fieldIsEditCombo,
       fieldLargePizza,
@@ -22,6 +23,7 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
       fieldPizzakombo,
       fieldHotroll,
       fieldFirmenieroll,
+      wok,
       fieldNapitki,
       fieldZakuski
     } = contentfulProductKombo
@@ -67,6 +69,7 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
     const products = {
         'branded-rolls': fieldFirmenieroll,
         'hot-rolls': fieldHotroll,
+        wok,
         napitki: fieldNapitki,
         pizza: updatePizzas(),
         sostavDefault: updateSostavDefault(),
@@ -129,6 +132,23 @@ query QueryKomboItem($slug: String!) {
           }
         }
         fieldZakuski {
+          id
+          fieldName
+          fieldCount
+          fieldDescriptionProduct
+          fieldPriceProduct
+          fieldSlug
+          fieldWeight
+          fieldSlugItem
+          image {
+            gatsbyImageData(
+              placeholder: BLURRED, 
+              formats: [WEBP, AUTO]
+              sizes:"(max-width: 360px) 360px, 100vw)"
+            )
+          }
+        }
+        wok {
           id
           fieldName
           fieldCount

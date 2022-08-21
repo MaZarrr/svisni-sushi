@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addedCart } from "../reducers/shopping-cart";
 import { graphql } from 'gatsby';
 import ProductItem from '../components/SetyItem';
-// import * as R from 'ramda';
+import * as R from 'ramda';
 
 // const ProductTeamplate = ({ data: { contentfulProduct,
 //     allContentfulProductHotRolly: {edges: hotRolls}, allContentfulProductSlognyeRolly: {edges: brandedRolls},
@@ -11,8 +11,7 @@ import ProductItem from '../components/SetyItem';
 //     allContentfulProductGunkan: {edges: gunkan},
 // }, addedToCart, isSale }) => {
 
-    const SetyTeamplate = ({ data: { contentfulProducts }, addedToCart, isSale }) => {
-
+        const SetyTeamplate = ({ data: { allContentfulProducts, contentfulProducts }, addedToCart, isSale }) => {
         const product = {
             id: contentfulProducts.id,
             name: contentfulProducts.fieldName,
@@ -23,12 +22,12 @@ import ProductItem from '../components/SetyItem';
             image: contentfulProducts.image
         }
         
-        //     const product = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan);
-        //     const nameProduct = contentfulProduct.description.toLowerCase().split(', ');
-        //     const kitProduct = product.filter(({node: item}) => {
-        //       return R.contains(item.name.toLowerCase(), nameProduct)
-        //     });
-
+            // const products = hotRolls.concat(brandedRolls, smallRoll, sushi, gunkan);
+            const nameProduct = product.description.toLowerCase().split(', ');
+            const kitProduct = allContentfulProducts.edges.filter(({ node: item }) => {
+              return R.contains(item.fieldName.toLowerCase(), nameProduct)
+            });
+            console.log("kitProduct__", kitProduct);
  return  (
      <>
     <ProductItem
@@ -39,9 +38,9 @@ import ProductItem from '../components/SetyItem';
         count={product.count}
         back={"/sety/"}
         image={product.image}
+        kitProduct={kitProduct}
         // createdAt={contentfulProduct.createdAt}
         // price={isSale && contentfulProduct.lanch ? contentfulProduct.lanchprice : contentfulProduct.price}
-        // kitProduct={kitProduct}
         added={() => addedToCart({id: product.id, price: null,
             product: [{
                     id: product.id,
@@ -73,27 +72,35 @@ export default connect(mapStateToProps, mapDispatchToProps)(SetyTeamplate)
 //     query ($slug: String!) {
 //        contentfulProduct
 export const query = graphql ` 
-query QuerySetyItem($slug: String!) {
-  contentfulProducts(fieldSlugItem: {eq: $slug}) {
+    query QuerySetyItem($slug: String!) {
+    allContentfulProducts(
+        filter: {fieldSlug: {in: ["hot-rolls", "branded-rolls", "small-rolls", "sushi", "gunkany"]}}
+      ) {
+        edges {
+          node {
+            id
+            fieldName
+            fieldCount
+            fieldDescriptionProduct
+            image {
+                gatsbyImageData(
+                placeholder: BLURRED, 
+                formats: [WEBP, AUTO]
+                  sizes:"(max-width: 800px) 360px, 100vw)"
+              )
+        }
+          }
+        }
+      }
+      contentfulProducts(fieldSlugItem: {eq: $slug}) {
         fieldName
         fieldSlugItem
-        fieldVariant
         fieldWeight
-        fieldWeightLarge
-        fieldWeightSmall
         id
         fieldSlug
         fieldPriceProduct
-        fieldPrivate
-        fieldPriceLarge
-        fieldIsWok
-        fieldIsPizza
-        fieldIsEditKombo
         fieldDescriptionProduct
         fieldCount
-        fieldPriceLanchTime
-        fieldPriceNotSale
-        contentful_id
         image {
         	gatsbyImageData(
             placeholder: BLURRED, 
@@ -104,96 +111,3 @@ query QuerySetyItem($slug: String!) {
   }
 }
 `
-
-
-
-// export const query = graphql ` 
-//     query ($slug: String!) {
-//        contentfulProduct(slug: {eq: $slug}) {
-//            id
-//             slug
-//             name
-//             price
-//             weight
-//             lanchprice
-//             lanch
-//             defaultPrice
-//             count
-//             description
-//              image {
-//                 gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//             }
-//         }
-//         allContentfulProductHotRolly {
-//             edges {
-//                 node {
-//                     id
-//                     name
-//                     description
-//                     count
-//                     image {
-//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//                   }
-//                 }
-//             }
-//         }
-//         allContentfulProductSlognyeRolly {
-//             edges {
-//                 node {
-//                     id
-//                     name
-//                     description
-//                     count
-//                     image {
-//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//                   }
-//                 }
-//             }
-//         }
-//         allContentfulProductSushi {
-//             edges {
-//                 node {
-//                     id
-//                     name
-//                     count
-//                     description
-//                     price
-//                     image {
-//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//                   }
-//                 }
-//             }
-//        }
-//         allContentfulProductKlassika {
-//             edges {
-//                 node {
-//                     id
-//                     name
-//                     price
-//                     description
-//                     count
-//                     image {
-//                       gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//                   }
-//                 }
-//             }
-//         }
-//         allContentfulProductGunkan {
-//             edges {
-//                 node {
-//                     id
-//                     name
-//                     count
-//                     description
-//                     price
-//                     weight
-//                     image {
-//                     gatsbyImageData(placeholder: BLURRED, formats: [WEBP, AUTO])
-//                   }
-//                 }
-//             }
-//         }
-//     }
-//  `
-
-// // "dotenv": "^8.2.0"

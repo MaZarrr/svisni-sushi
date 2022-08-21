@@ -9,7 +9,6 @@ import makeStyles from '@mui/styles/makeStyles';
 
 const Sale = (props) => {
     const classes = useStyleSalePage();
-    console.log("props", props);
     return <>
         <Seo title="Акции и скидки на пиццу, роллы и суши в Уразово"
              description="Акции на роллы суши и пиццу в Валуйках. Скидки до 40%, подарки именинникам, бесплатная пицца, роллы за 99 рублей "/>
