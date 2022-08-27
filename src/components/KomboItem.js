@@ -128,6 +128,9 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
              description={`Доставка комбо наборов в Валуйки. Комбо набор ${name}, цена ${price} рублей`} />
         <Typography
             variant="h1"
+            style={{
+                fontSize: `24px`
+            }}
             sx={{
                 fontWeight: 900,
                 textTransform: `uppercase`,
@@ -138,8 +141,9 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
 
         <div style={{width: `100%`}}>
         <div>
-            <Typography style={{marginLeft: 30, padding: `0 10px 5px 0`}}
-                        variant={"body1"}>{description}</Typography>
+            <p style={{marginLeft: 30, margin: 0, padding: `0 25px 5px 25px`}}
+                        dangerouslySetInnerHTML={{
+                            __html: description.childMarkdownRemark.html }}/>
             <Hidden smDown>
                 <div style={{marginLeft: 30}}>
                 <Typography style={{
@@ -248,12 +252,6 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
         <Hidden smUp>
             {/* active sostav product */}
             <Grid container style={{marginBottom: 50}}>
-                <div style={{marginLeft: 30}}>
-                    <Typography style={{
-                        fontWeight: 500,
-                        padding: `10px 10px 0 0`}}
-                        variant={"subtitle1"}>Состав набора:</Typography>
-                </div>
                 { productSostav.map(({
                     id,
                     fieldName: name,

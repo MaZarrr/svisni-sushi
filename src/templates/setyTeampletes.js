@@ -27,7 +27,7 @@ import * as R from 'ramda';
             const kitProduct = allContentfulProducts.edges.filter(({ node: item }) => {
               return R.contains(item.fieldName.toLowerCase(), nameProduct)
             });
-            console.log("kitProduct__", kitProduct);
+            
  return  (
      <>
     <ProductItem

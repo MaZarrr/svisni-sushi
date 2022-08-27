@@ -15,6 +15,7 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
       fieldPriceKombo,
       fieldWeightKomboItem,
       image: img,
+      description,
       fieldDescriptionKombo,
       fieldSlugkombo,
       // field_parent_kombo,
@@ -28,11 +29,11 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
       fieldZakuski
     } = contentfulProductKombo
 
-    const { id, name, price, description, weight, count, edit, isLargePizza, slug, image, sostavDefault, pricePizzaLarge } = {
+    const { id, name, price, descriptionKombo, weight, count, edit, isLargePizza, slug, image, sostavDefault, pricePizzaLarge } = {
         id: ids,
         name: fieldNameKombo,
-        price: fieldPriceKombo,   
-        description: fieldDescriptionKombo,
+        price: fieldPriceKombo, 
+        descriptionKombo:  description,
         weight: fieldWeightKomboItem,
         pricePizzaLarge: fieldLargePizzaPriceKombo,
         count: 1,
@@ -41,6 +42,7 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
         edit: fieldIsEditCombo,
         isLargePizza: fieldLargePizza,
         sostavDefault: fieldSostavDefault
+        // descriptionKombo: fieldDescriptionKombo,
     }
   const updatePizzas = () => {
       // if(!isLargePizza) return;
@@ -79,7 +81,7 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
                 id={id}
                 name={name}
                 price={price}
-                description={description}
+                description={descriptionKombo}
                 weight={weight}
                 count={count}
                 edit={edit}
@@ -102,6 +104,11 @@ query QueryKomboItem($slug: String!) {
         fieldSlugkombo
         fieldPriceKombo
         fieldNameKombo
+        description {
+          childMarkdownRemark {
+            html
+          }
+        }
         fieldLargePizzaPriceKombo
         fieldLargePizza
         fieldIsEditCombo
