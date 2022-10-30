@@ -79,7 +79,7 @@ const drawerMenuProps = [
     {
         id: 7,
         slug: "",
-        href: "tel:+74722429519",
+        href: "tel:+79040949222",
         nameCategory: "Позвоните нам",
         componentIcon: PhoneIcon,
         isAuth: true,

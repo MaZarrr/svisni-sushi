@@ -67,7 +67,7 @@ const OrderSuccess = () => {
           Перейти на главную
         </Button>
         <Button component={"a"}
-                href="tel:+74722429519"
+                href="tel:+79040949222"
                 variant={"contained"}
                 style={{marginLeft: `10px`}}
                 color={"secondary"}

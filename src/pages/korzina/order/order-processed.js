@@ -124,7 +124,7 @@ const OrderProcessed = ({ location: { state } }) => {
                             Перейти на главную
                         </Button>
                         <Button component={"a"}
-                                href="tel:+74722429519"
+                                href="tel:+79040949222"
                                 variant={"contained"}
                                 size={'small'}
                                 className={classes.button}

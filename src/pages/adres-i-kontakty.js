@@ -64,7 +64,7 @@ description="Ждем вас в гости по адресу улица Крас
             <div>
                 <Typography variant="subtitle1">Телефон</Typography>
                 <Typography variant={"subtitle2"}>
-                    <a itemProp="telephone" href="tel:+74722429519">+7(904)094-92-22</a>
+                    <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
                 </Typography>
             </div>
         </div>

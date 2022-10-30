@@ -100,7 +100,8 @@ const result = await graphql(`
       component: productTeamplate,
       context: {
         slug: node.fieldSlug
-      }
+      },
+      // defer: true; // defer аргумент отложенной статической генерации в пользу  createPagesдействия . Если установлено значение  true, он сообщает Gatsby исключить страницу из этапа сборки и вместо этого сгенерировать ее во время первого HTTP-запроса:
     })
   });
   
