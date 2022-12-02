@@ -71,6 +71,9 @@ import ClipLoader from "react-spinners/ClipLoader";
                 </Hidden>
                 </> : <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div> }      
               </Grid>
+              <a href="https://freekassa.ru" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.freekassa.ru/banners/big-dark-1.png" title="Receving payments on the site"/>
+              </a>
           </section>
         );
       }
