@@ -8,8 +8,7 @@ import { Typography } from "@mui/material";
 const RecommendedProducts = ({ title, product }) => {
   return <>
    <Typography sx={{
-     marginLeft: '25px', 
-     margin: '0 0 0 50px'
+     margin: '0 0 0 30px'
      }} variant={'h2'}>{title}</Typography>
     <Hidden smUp>
       <SelectionContentMobile product={product} />

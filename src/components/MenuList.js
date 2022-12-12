@@ -106,7 +106,7 @@ const MenuList = memo(({
                             avatar={<GatsbyImage image={imageTypeCategory.gatsbyImageData} style={{width: 40}} alt={name} />}
                             title={variant ? variant : titleCategory}
                             subheader={<span itemProp="name">
-                                <Typography variant={"subtitle1"}>{name}</Typography></span>}/>
+                                <Typography style={{fontSize: 15, letterSpacing: 0.1}} variant={"subtitle1"}>{name}</Typography></span>}/>
                         { slugCategogy === "/sety" &&
                         <CardMedia
                             className={classes.media}
@@ -432,7 +432,7 @@ export const useStylesCart = makeStyles(theme => ({
         backgroundColor: 'orange'
     },
     media: {
-        width: `99%`,
+        width: `300px`,
         margin: `0 auto`
     },
     button: {

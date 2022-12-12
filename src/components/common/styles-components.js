@@ -7,19 +7,22 @@ export const CardStyle = styled(Card)(({ theme }) => ({
     [theme.breakpoints.up('1900')]: {
         maxWidth: `400px`,
     },
-    [theme.breakpoints.down('1281')]: {
+    [theme.breakpoints.down('1500')]: {
         maxWidth: `300px`,
     },
+    [theme.breakpoints.down('1281')]: {
+        maxWidth: `250px`,
+    },
     [theme.breakpoints.down('600')]: {
-        maxWidth: `400px`,
+        maxWidth: `300px`,
     },
     [theme.breakpoints.down('475')]: {
-        maxWidth: `340px`,
+        maxWidth: `300px`,
     },
     [theme.breakpoints.down('376')]: {
-        maxWidth: `320px`,
+        maxWidth: `270px`,
     },
     [theme.breakpoints.down('340')]: {
-        maxWidth: `280px`,
+        maxWidth: `250px`,
     },
 }))

@@ -37,20 +37,28 @@ import ClipLoader from "react-spinners/ClipLoader";
                  pathname='/'
             />
             <Hidden smUp>
-            <Typography 
-            variant={"body2"}
-            style={{textAlign: 'center'}}>Доставка роллов и пиццы
-                <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Уразово и Валуйки</span></Typography>
-            </Hidden>
-            {/* <Carousel dataCarousel={allContentfulCarouselSiteImage}/> */}
+            <Typography style={{ marginLeft: '30px', textTransform: 'uppercase'}}
+                              variant={"inherit"}
+                              component={"h1"}>
+                    Свисни Суши</Typography>
+              <Typography 
+              variant={"body2"}
+              style={{textAlign: 'start', padding: '0 10px 0 30px',}}>Доставка суши, роллов, пиццы Валуйскому району с 10:00 до 22:00.
+                  {/* <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Валуйскому району</span> с 10:00 до 22:00.</Typography> */}
+                  <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Уразово и Валуйки</span></Typography>
+              </Hidden>
+              {/* <Carousel dataCarousel={allContentfulCarouselSiteImage}/> */}
 
               <Grid container style={{ minWidth: '100%' }} className={classes.root}>
 
                 <Hidden smDown>
-                  <Typography className={classes.title}
+                  <Typography style={{ marginLeft: 30 }} className={classes.title}
                               variant={"inherit"}
                               component={"h1"}>
                     Свисни Суши в Уразово</Typography>
+                    <Typography style={{marginLeft: 30}}
+                              variant='subtitle2'>
+                    Доставка суши, роллов, пиццы по <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Валуйскому району</span> с 10:00 до 22:00.</Typography>
                 </Hidden>
 
                 { combo.length && recomendedProduct.length > 0 ? <>
@@ -71,9 +79,6 @@ import ClipLoader from "react-spinners/ClipLoader";
                 </Hidden>
                 </> : <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div> }      
               </Grid>
-              <a href="https://freekassa.ru" target="_blank" rel="noopener noreferrer">
-            <img src="https://cdn.freekassa.ru/banners/big-dark-1.png" title="Receving payments on the site"/>
-              </a>
           </section>
         );
       }
@@ -99,7 +104,7 @@ import ClipLoader from "react-spinners/ClipLoader";
             fontWeight: 900,
             marginBottom: 30,
             marginTop: 30,
-            textAlign: 'center',
+            // textAlign: 'center',
             width: `100%`,
             textTransform: `uppercase`,
             fontSize: 34,
