@@ -43,7 +43,7 @@ import ClipLoader from "react-spinners/ClipLoader";
                     Свисни Суши</Typography>
               <Typography 
               variant={"body2"}
-              style={{textAlign: 'start', padding: '0 10px 0 30px',}}>Доставка суши, роллов, пиццы Валуйскому району с 10:00 до 22:00.
+              style={{textAlign: 'start', padding: '0 20px 0 30px',}}>Доставка суши, роллов, пиццы Валуйскому району с 10:00 до 22:00.
                   {/* <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Валуйскому району</span> с 10:00 до 22:00.</Typography> */}
                   <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Уразово и Валуйки</span></Typography>
               </Hidden>
