@@ -7,7 +7,8 @@ import { Hidden, Typography } from "@mui/material";
 const ComboProduct = ({ title, product }) => {
   return <div>
    <Typography sx={{
-     margin: '30px 0 30px 30px'
+     margin: '30px 0 30px 25px',
+     textAlign: 'center'
      }} variant={'h2'}>{title}</Typography>
     {/*Комбо компьютер*/}
     <Hidden smDown>

@@ -20,6 +20,7 @@ import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
 import CardGiftcardTwoToneIcon from '@mui/icons-material/CardGiftcardTwoTone';
 import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import { SocialButtons } from './common/SocialButtons';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 
 // import { useReactiveVar } from '@apollo/client';
 // import { isLoggedInVar } from '../gatsby-theme-apollo/client';
@@ -57,13 +58,20 @@ const drawerMenuProps = [
     },
     {
         id: 4,
+        slug: "/o-nas",
+        nameCategory: "Новости",
+        componentIcon: NewspaperIcon,
+        isAuth: true
+    },
+    {
+        id: 5,
         slug: "/adres-i-kontakty",
         nameCategory: "Адрес",
         componentIcon: RoomIcon,
         isAuth: true
     },
     {
-        id: 5,
+        id: 6,
         slug: "/dostavka-i-oplata",
         nameCategory: "Доставка",
         componentIcon: LocalTaxiIcon,

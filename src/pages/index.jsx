@@ -12,6 +12,8 @@ import Seo from "../components/seo";
 import { connect } from "react-redux";
 import { loadIndexItems } from "../reducers/app";
 import ClipLoader from "react-spinners/ClipLoader";
+import WallNews from "../components/WallNews";
+import { useState } from "react";
 // капрусель
 // const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges },
 //   allNodeKomboRekomenduemye: { edges: komboItems }
@@ -22,10 +24,14 @@ import ClipLoader from "react-spinners/ClipLoader";
             allContentfulIndexKombo,
           },
           loadItems,
-          indexProduct: { optionPage = {}, combo = [], recomendedProduct = [] }
+          indexProduct: { optionPage = {}, combo = [], recomendedProduct = [] },
+          serverData 
         }) => {
-        
+
         const classes = useStyleIndexPage();
+        const dataWall1 = serverData.data.data.items.slice(0, 2);
+        const dataWall2 = serverData.data.data.items.slice(2, 7);
+
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended})
         }, [])
@@ -67,18 +73,41 @@ import ClipLoader from "react-spinners/ClipLoader";
                 {/* Новинки/рекомендованые */}
                 <RecommendedProducts title={optionPage.recomendedTitle} product={recomendedProduct} />
                 {/* <Loader></Loader> */}
+                
+                {/* Посты */}
+                <div>
+                <Typography sx={{
+                  width: '100%',
+                  textAlign: 'center'
+                }} variant={'h2'}>Последние новости</Typography>
+                  { serverData.data.ok && <WallNews data={dataWall1} />}
+                </div>
+                
                 {/* Меню категории */}
                 <Hidden smUp>
                   <Grid container style={{ marginBottom: 20 }}>
                   <Typography sx={{
-                    marginLeft: '25px', 
-                    margin: '0 0 0 50px'
+                    width: '100%',
+                    textAlign: 'center',
+                    // marginLeft: '25px', 
+                    // margin: '0 0 0 50px'
                     }} variant={'h2'}>Меню</Typography>
                     <MenuCategory />
                   </Grid>
                 </Hidden>
                 </> : <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div> }      
+                            {/* Посты */}
+                            <div>
+                            <Typography sx={{
+                    // margin: '30px 0 30px 20px',
+                  width: '100%',
+                  textAlign: 'center'
+                }} variant={'h2'}>Последние новости</Typography>
+                  { serverData.data.ok && <WallNews data={dataWall2} />}
+                </div>
               </Grid>
+
+
           </section>
         );
       }
@@ -115,6 +144,53 @@ import ClipLoader from "react-spinners/ClipLoader";
             }
         }
       }));
+
+
+      export async function getServerData() {
+        try {
+          const res = await fetch(`https://svisniplatform.site/getWall`, {
+            // const res = await fetch(`http://localhost:3333/getWall`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify( {
+                count: 8
+              })
+          })
+      
+          if (!res.ok) {
+            throw new Error(`Response failed`)
+          }
+      
+          return {
+            props: await res.json(),
+          }
+        } catch (error) {
+          return {
+            status: 500,
+            headers: {},
+            props: {}
+          }
+        }
+      }
+
+  // export async function getServerData(context) {
+  //   try {
+      
+  //   } catch (error) {
+      
+  //   }
+  //   console.log("context_index", context);
+  //   const data = await axios.post('http://localhost:5000/getWall')
+  //   console.log("context_index_data", data);
+
+  //   return {
+  //     status: 200, // The HTTP status code that should be returned
+  //     props: {}, // Will be passed to the page component as "serverData" prop
+  //     headers: {}, // HTTP response headers for this page
+  //   }
+  // }
 
 export const query = graphql `
 {

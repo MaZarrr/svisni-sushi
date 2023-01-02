@@ -24,7 +24,7 @@ const SelectionContent = ({ product, addedCart }) => {
         margin: `30px 0`
       }} >
         <Card sx={{
-            height: '570px',
+            height: '450px',
             position: 'relative',
             width: '85%',
             margin: '0 auto'
@@ -36,8 +36,8 @@ const SelectionContent = ({ product, addedCart }) => {
               alt={homeProduct.name} />
           </CardMedia>
           <CardContent>
-            <Typography variant={"h3"}>{homeProduct.name}</Typography>
-            <Typography variant={"subtitle2"}>{homeProduct.description}</Typography>
+          <Typography style={{ fontSize: 17 }} variant={"h4"}>{homeProduct.name}</Typography>
+            <Typography style={{ fontSize: 13 }} variant={"subtitle2"}>{homeProduct.description}</Typography>
           </CardContent>
           <CardActions disableSpacing sx={{ position: 'absolute', bottom: '10px', width: '100%'}}>
             {homeProduct.slug === "sety" || homeProduct.slug === "pizza" ?
