@@ -29,8 +29,8 @@ import { useState } from "react";
         }) => {
 
         const classes = useStyleIndexPage();
-        const dataWall1 = serverData.data.data.items.slice(0, 2) || [];
-        const dataWall2 = serverData.data.data.items.slice(2, 7) || [];
+        const dataWall1 = serverData?.data?.data?.items.slice(0, 2) || [];
+        const dataWall2 = serverData?.data?.data?.items.slice(2, 7) || [];
 
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended})

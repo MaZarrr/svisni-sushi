@@ -6,8 +6,8 @@ import WallNews from "../components/WallNews";
 import { Typography } from "@mui/material";
 
 const onas = ({ serverData }) => {
-  const dataWall1 = serverData.data.data.items.slice(0, 2) || [];
-  const dataWall2 = serverData.data.data.items.slice(2, 6) || [];
+  const dataWall1 = serverData?.data?.data?.items.slice(0, 2) || [];
+  const dataWall2 = serverData?.data?.data?.items.slice(2, 6) || [];
 
 return (
     <>
