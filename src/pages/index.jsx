@@ -28,14 +28,19 @@ import { useState } from "react";
           serverData 
         }) => {
 
+        const [dataWall1, setDataWall1] = useState([])
+        const [dataWall2, setDataWall2] = useState([])
         const classes = useStyleIndexPage();
-        const dataWall1 = serverData?.data?.data?.items.slice(0, 2) || [];
-        const dataWall2 = serverData?.data?.data?.items.slice(2, 7) || [];
+        // const dataWall1 = serverData?.data?.data?.items.slice(0, 2) || [];
+        // const dataWall2 = serverData?.data?.data?.items.slice(2, 7) || [];
 
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended})
         }, [])
-
+        useEffect(() => {
+            setDataWall1(serverData?.data?.data?.items.slice(0, 2));
+            setDataWall2(serverData?.data?.data?.items.slice(2, 7));
+        }, [serverData])
         return (
           <section>
             <Seo title="Заказать суши, роллы c доставкой в Валуйки"
