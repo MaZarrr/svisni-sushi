@@ -80,7 +80,7 @@ import { useState } from "react";
                   width: '100%',
                   textAlign: 'center'
                 }} variant={'h2'}>Последние новости</Typography>
-                  { serverData.data.ok && <WallNews data={dataWall1} />}
+                  { serverData?.data?.ok && <WallNews data={dataWall1} />}
                 </div>
                 
                 {/* Меню категории */}
@@ -103,7 +103,7 @@ import { useState } from "react";
                   width: '100%',
                   textAlign: 'center'
                 }} variant={'h2'}>Последние новости</Typography>
-                  { serverData.data.ok && <WallNews data={dataWall2} />}
+                  { serverData?.data?.ok && <WallNews data={dataWall2} />}
                 </div>
               </Grid>
 

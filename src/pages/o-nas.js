@@ -23,7 +23,7 @@ return (
             <br></br><br></br>
             <>
                 <Typography style={{fontSize: 18, textAlign: 'center'}} variant='body1'>Последние новости</Typography>
-                { serverData.data.ok && <WallNews data={dataWall1} />}
+                { serverData?.data?.ok && <WallNews data={dataWall1} />}
             </>
             Наше отличие от других доставок - безупречный сервис и внимательный персонал, а главное, незабываемый вкус в
             каждом ролле. Наши повара контролируют качество всех продуктов, которые будут доставлены нашим клиентам. 
@@ -35,7 +35,7 @@ return (
             </p>
             <>
                 <Typography style={{fontSize: 18, textAlign: 'center'}} variant='body1'>Последние новости</Typography>
-                { serverData.data.ok && <WallNews data={dataWall2} />}
+                { serverData?.data?.ok && <WallNews data={dataWall2} />}
             </>
             Доставка блюд по Валуйскому району с 10:00 до 22:00. Без перерывов и выходных.
         </div>
