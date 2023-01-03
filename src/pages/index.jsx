@@ -33,11 +33,12 @@ import { useState } from "react";
         const classes = useStyleIndexPage();
         // const dataWall1 = serverData?.data?.data?.items.slice(0, 2) || [];
         // const dataWall2 = serverData?.data?.data?.items.slice(2, 7) || [];
-
+          console.log('serverData1', serverData);
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended})
         }, [])
         useEffect(() => {
+          console.log('serverData2', serverData);
             setDataWall1(serverData?.data?.data?.items.slice(0, 2));
             setDataWall2(serverData?.data?.data?.items.slice(2, 7));
         }, [serverData])
