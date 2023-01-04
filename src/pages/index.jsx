@@ -14,6 +14,7 @@ import { loadIndexItems } from "../reducers/app";
 import ClipLoader from "react-spinners/ClipLoader";
 import WallNews from "../components/WallNews";
 import { useState } from "react";
+import { sendRequest } from "../utils";
 // капрусель
 // const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges },
 //   allNodeKomboRekomenduemye: { edges: komboItems }
@@ -27,34 +28,10 @@ import { useState } from "react";
           indexProduct: { optionPage = {}, combo = [], recomendedProduct = [] },
         }) => {
 
-        const [dataWall1, setDataWall1] = useState([])
-        const [dataWall2, setDataWall2] = useState([])
+        const [dataWall1, setDataWall1] = useState([]);
+        const [dataWall2, setDataWall2] = useState([]);
+        
         const classes = useStyleIndexPage();
-
-        const sendRequest = async () => {
-          try {
-            const res = await fetch(`https://svisniplatform.site/getWall`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
-              },
-              body: JSON.stringify( {
-                  count: 8
-                })
-            })
-            
-            if (!res.ok) {
-              throw new Error(`Response failed`)
-            }
-            return await res.json();
-          } catch (error) {
-            return {
-              status: 500,
-              headers: {},
-              props: {}
-            }
-          }
-        }
 
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended});

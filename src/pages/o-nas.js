@@ -1,13 +1,26 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Seo from "../components/seo"
 import {Link}  from 'gatsby';
 import HeadSection from "../components/HeadSection"
 import WallNews from "../components/WallNews";
 import { Typography } from "@mui/material";
+import { sendRequest } from "../utils";
 
-const onas = ({ serverData }) => {
-  const dataWall1 = serverData?.data?.data?.items.slice(0, 2) || [];
-  const dataWall2 = serverData?.data?.data?.items.slice(2, 6) || [];
+const Onas = () => {
+  
+  const [dataWall1, setDataWall1] = useState([]);
+  const [dataWall2, setDataWall2] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const res = await sendRequest();
+      const dataWall1 = res?.data?.data?.items.slice(0, 2) || [];
+      const dataWall2 = res?.data?.data?.items.slice(2, 7) || [];
+      setDataWall1(dataWall1);
+      setDataWall2(dataWall2);
+    } 
+    fetchData();
+    return () => fetchData();
+  }, [])
 
 return (
     <>
@@ -23,7 +36,7 @@ return (
             <br></br><br></br>
             <>
                 <Typography style={{fontSize: 18, textAlign: 'center'}} variant='body1'>Последние новости</Typography>
-                { serverData?.data?.ok && <WallNews data={dataWall1} />}
+                <WallNews data={dataWall1} />
             </>
             Наше отличие от других доставок - безупречный сервис и внимательный персонал, а главное, незабываемый вкус в
             каждом ролле. Наши повара контролируют качество всех продуктов, которые будут доставлены нашим клиентам. 
@@ -35,7 +48,7 @@ return (
             </p>
             <>
                 <Typography style={{fontSize: 18, textAlign: 'center'}} variant='body1'>Последние новости</Typography>
-                { serverData?.data?.ok && <WallNews data={dataWall2} />}
+                <WallNews data={dataWall2} />
             </>
             Доставка блюд по Валуйскому району с 10:00 до 22:00. Без перерывов и выходных.
         </div>
@@ -43,35 +56,6 @@ return (
     )
 }
 
-export async function getServerData() {
-    try {
-      const res = await fetch(`https://svisniplatform.site/getWall`, {
-      // const res = await fetch(`http://localhost:3333/getWall`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify( {
-            count: 5
-          })
-      })
-  
-      if (!res.ok) {
-        throw new Error(`Response failed`)
-      }
-  
-      return {
-        props: await res.json(),
-      }
-    } catch (error) {
-      return {
-        status: 500,
-        headers: {},
-        props: {}
-      }
-    }
-  }
-
-export default onas
+export default Onas
 
 
