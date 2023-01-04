@@ -5,10 +5,11 @@ import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({ 
     container: {
-        width: '100%',
+        // width: '100%',
         color: '#00000',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(315px, 45%)) !important',
+        display: 'flex',
+        flexWrap: 'wrap',
+        // gridTemplateColumns: 'repeat(auto-fit, minmax(315px, 45%)) !important',
         width: '100%',
         margin: '10px auto',
         justifyContent: 'center'
@@ -23,11 +24,17 @@ const useStyles = makeStyles((theme) => ({
         }     
       },
       newsText: {
-        fontSize: '13px',    
+        fontSize: '12px',    
         padding: '10px',
         margin: '10px',
       },
       newsContent: {
+        minWidth: '20%',
+        maxWidth: '45%',
+        [theme.breakpoints.down('500')]: {
+            maxWidth: '95%'
+        },
+        justifyContent: 'space-evenly',
         borderRadius: '20px',
         border: '1px solid rebeccapurple',
         margin: '5px',
