@@ -67,7 +67,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build & gatsby serve --log-pages",
     "develop": "gatsby develop --log-pages --verbose",
     "start": "node index.js",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",

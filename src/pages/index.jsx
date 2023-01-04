@@ -25,23 +25,50 @@ import { useState } from "react";
           },
           loadItems,
           indexProduct: { optionPage = {}, combo = [], recomendedProduct = [] },
-          serverData 
         }) => {
 
         const [dataWall1, setDataWall1] = useState([])
         const [dataWall2, setDataWall2] = useState([])
         const classes = useStyleIndexPage();
-        // const dataWall1 = serverData?.data?.data?.items.slice(0, 2) || [];
-        // const dataWall2 = serverData?.data?.data?.items.slice(2, 7) || [];
-          console.log('serverData1', serverData);
+
+        const sendRequest = async () => {
+          try {
+            const res = await fetch(`https://svisniplatform.site/getWall`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify( {
+                  count: 8
+                })
+            })
+            
+            if (!res.ok) {
+              throw new Error(`Response failed`)
+            }
+            return await res.json();
+          } catch (error) {
+            return {
+              status: 500,
+              headers: {},
+              props: {}
+            }
+          }
+        }
+
         useEffect(() => {
-          loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended})
+          loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended});
+          async function fetchData() {
+            const res = await sendRequest();
+            const dataWall1 = res?.data?.data?.items.slice(0, 2) || [];
+            const dataWall2 = res?.data?.data?.items.slice(2, 7) || [];
+            setDataWall1(dataWall1);
+            setDataWall2(dataWall2);
+          } 
+          fetchData();
+          return () => fetchData();
         }, [])
-        useEffect(() => {
-          console.log('serverData2', serverData);
-            setDataWall1(serverData?.data?.data?.items.slice(0, 2));
-            setDataWall2(serverData?.data?.data?.items.slice(2, 7));
-        }, [serverData])
+
         return (
           <section>
             <Seo title="Заказать суши, роллы c доставкой в Валуйки"
@@ -86,7 +113,7 @@ import { useState } from "react";
                   width: '100%',
                   textAlign: 'center'
                 }} variant={'h2'}>Последние новости</Typography>
-                  { serverData?.data?.ok && <WallNews data={dataWall1} />}
+                  <WallNews data={dataWall1} />
                 </div>
                 
                 {/* Меню категории */}
@@ -109,7 +136,7 @@ import { useState } from "react";
                   width: '100%',
                   textAlign: 'center'
                 }} variant={'h2'}>Последние новости</Typography>
-                  { serverData?.data?.ok && <WallNews data={dataWall2} />}
+                  <WallNews data={dataWall2} />
                 </div>
               </Grid>
 
@@ -152,51 +179,34 @@ import { useState } from "react";
       }));
 
 
-      export async function getServerData() {
-        try {
-          const res = await fetch(`https://svisniplatform.site/getWall`, {
-            // const res = await fetch(`http://localhost:3333/getWall`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify( {
-                count: 8
-              })
-          })
+      // export async function getServerData() {
+      //   try {
+      //     const res = await fetch(`https://svisniplatform.site/getWall`, {
+      //       // const res = await fetch(`http://localhost:3333/getWall`, {
+      //       method: 'POST',
+      //       headers: {
+      //           'Content-Type': 'application/json;charset=utf-8'
+      //       },
+      //       body: JSON.stringify( {
+      //           count: 8
+      //         })
+      //     })
       
-          if (!res.ok) {
-            throw new Error(`Response failed`)
-          }
+      //     if (!res.ok) {
+      //       throw new Error(`Response failed`)
+      //     }
       
-          return {
-            props: await res.json(),
-          }
-        } catch (error) {
-          return {
-            status: 500,
-            headers: {},
-            props: {}
-          }
-        }
-      }
-
-  // export async function getServerData(context) {
-  //   try {
-      
-  //   } catch (error) {
-      
-  //   }
-  //   console.log("context_index", context);
-  //   const data = await axios.post('http://localhost:5000/getWall')
-  //   console.log("context_index_data", data);
-
-  //   return {
-  //     status: 200, // The HTTP status code that should be returned
-  //     props: {}, // Will be passed to the page component as "serverData" prop
-  //     headers: {}, // HTTP response headers for this page
-  //   }
-  // }
+      //     return {
+      //       props: await res.json(),
+      //     }
+      //   } catch (error) {
+      //     return {
+      //       status: 500,
+      //       headers: {},
+      //       props: {}
+      //     }
+      //   }
+      // }
 
 export const query = graphql `
 {

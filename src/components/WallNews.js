@@ -6,7 +6,7 @@ let Container = styled.div`
   /* color: ${props => props.color}; */
   color: '#00000';
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 45%)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(315px, 45%)) !important;
   width: 100%;
   margin: 10px auto;
   justify-content: center;
@@ -36,7 +36,6 @@ const NewsContant = styled.div`
 `
 
 const WallNews = (dataItems) => {
-    console.log("dataItems__", dataItems);
     return (
         <Container>
             { dataItems && dataItems.data.map((news) =>  {
