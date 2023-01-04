@@ -4,6 +4,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 let Container = styled.div`
   /* color: ${props => props.color}; */
+  width: 100%;
   color: '#00000';
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(315px, 45%)) !important;
