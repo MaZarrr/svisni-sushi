@@ -51,9 +51,13 @@ const WallNews = (dataItems) => {
         <div className={classes.container}>
             { dataItems && dataItems.data.map((news) =>  {
                 const photoSizes = news.attachments[0].photo.sizes;
+                const type = news.attachments[0].type;
+
+                if(type === 'photo') {
                 let photo = photoSizes.find((item) => 
                             item.height < 700 && item.height > 400 &&
                             item.width < 600 && item.width > 500);
+
                     if(!photo) { photo =  photoSizes.find((item) => 
                         item.height < 900 && item.height > 500 &&
                         item.width < 1000 && item.width > 600); }
@@ -81,6 +85,7 @@ const WallNews = (dataItems) => {
                         <img className={classes.imageNews} src={photo.url}  alt={`Новость${news.id}`}/>
                     </div>
                     )
+                }
                 })
             }
         </div>
