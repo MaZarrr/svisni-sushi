@@ -50,10 +50,9 @@ const WallNews = (dataItems) => {
     return (
         <div className={classes.container}>
             { dataItems && dataItems.data.map((news) =>  {
-                const photoSizes = news.attachments[0].photo.sizes;
                 const type = news.attachments[0].type;
-
                 if(type === 'photo') {
+                const photoSizes = news.attachments[0].photo.sizes;
                 let photo = photoSizes.find((item) => 
                             item.height < 700 && item.height > 400 &&
                             item.width < 600 && item.width > 500);
