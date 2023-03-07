@@ -12,7 +12,7 @@ import Seo from "../components/seo";
 import { connect } from "react-redux";
 import { loadIndexItems } from "../reducers/app";
 import ClipLoader from "react-spinners/ClipLoader";
-import WallNews from "../components/WallNews";
+
 import { useState } from "react";
 import { sendRequest } from "../utils";
 // капрусель
@@ -84,15 +84,6 @@ import { sendRequest } from "../utils";
                 <RecommendedProducts title={optionPage.recomendedTitle} product={recomendedProduct} />
                 {/* <Loader></Loader> */}
                 
-                {/* Посты */}
-                <div>
-                <Typography sx={{
-                  width: '100%',
-                  textAlign: 'center'
-                }} variant={'h2'}>Последние новости</Typography>
-                  <WallNews data={dataWall1} />
-                </div>
-                
                 {/* Меню категории */}
                 <Hidden smUp>
                   <Grid container style={{ marginBottom: 20 }}>
@@ -112,8 +103,8 @@ import { sendRequest } from "../utils";
                     // margin: '30px 0 30px 20px',
                   width: '100%',
                   textAlign: 'center'
-                }} variant={'h2'}>Последние новости</Typography>
-                  <WallNews data={dataWall2} />
+                }} variant={'h2'}></Typography>
+                 
                 </div>
               </Grid>
 
