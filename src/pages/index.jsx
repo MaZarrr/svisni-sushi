@@ -35,15 +35,15 @@ import { sendRequest } from "../utils";
 
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended});
-          async function fetchData() {
-            const res = await sendRequest();
-            const dataWall1 = res?.data?.data?.items.slice(0, 2) || [];
-            const dataWall2 = res?.data?.data?.items.slice(2, 7) || [];
-            setDataWall1(dataWall1);
-            setDataWall2(dataWall2);
-          } 
-          fetchData();
-          return () => fetchData();
+          // async function fetchData() {
+          //   const res = await sendRequest();
+          //   const dataWall1 = res?.data?.data?.items.slice(0, 2) || [];
+          //   const dataWall2 = res?.data?.data?.items.slice(2, 7) || [];
+          //   setDataWall1(dataWall1);
+          //   setDataWall2(dataWall2);
+          // } 
+          // fetchData();
+          // return () => fetchData();
         }, [])
 
         return (
@@ -85,14 +85,14 @@ import { sendRequest } from "../utils";
                 {/* <Loader></Loader> */}
                 
                 {/* Посты */}
-                <div>
+                {/* <div>
                 <Typography sx={{
                   width: '100%',
                   textAlign: 'center'
                 }} variant={'h2'}>Последние новости</Typography>
                   <WallNews data={dataWall1} />
                 </div>
-                
+                 */}
                 {/* Меню категории */}
                 <Hidden smUp>
                   <Grid container style={{ marginBottom: 20 }}>
