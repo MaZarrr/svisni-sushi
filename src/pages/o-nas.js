@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Seo from "../components/seo"
 import {Link}  from 'gatsby';
 import HeadSection from "../components/HeadSection"
-import WallNews from "../components/WallNews";
-import { Typography } from "@mui/material";
-import { sendRequest } from "../utils";
+// import WallNews from "../components/WallNews";
+// import { Typography } from "@mui/material";
+// import { sendRequest } from "../utils";
 
 const Onas = () => {
   

@@ -12,13 +12,6 @@ import Seo from "../components/seo";
 import { connect } from "react-redux";
 import { loadIndexItems } from "../reducers/app";
 import ClipLoader from "react-spinners/ClipLoader";
-import WallNews from "../components/WallNews";
-import { useState } from "react";
-import { sendRequest } from "../utils";
-// капрусель
-// const IndexPage = ({ data: { allNodePopulyarnyeBlyudaNovinki: { edges },
-//   allNodeKomboRekomenduemye: { edges: komboItems }
-// }}) => {
 
         const IndexPage = ({data: {
             allContentfulIndexRecomended, 
@@ -28,22 +21,10 @@ import { sendRequest } from "../utils";
           indexProduct: { optionPage = {}, combo = [], recomendedProduct = [] },
         }) => {
 
-        const [dataWall1, setDataWall1] = useState([]);
-        const [dataWall2, setDataWall2] = useState([]);
-        
         const classes = useStyleIndexPage();
 
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended});
-          // async function fetchData() {
-          //   const res = await sendRequest();
-          //   const dataWall1 = res?.data?.data?.items.slice(0, 2) || [];
-          //   const dataWall2 = res?.data?.data?.items.slice(2, 7) || [];
-          //   setDataWall1(dataWall1);
-          //   setDataWall2(dataWall2);
-          // } 
-          // fetchData();
-          // return () => fetchData();
         }, [])
 
         return (
@@ -84,15 +65,6 @@ import { sendRequest } from "../utils";
                 <RecommendedProducts title={optionPage.recomendedTitle} product={recomendedProduct} />
                 {/* <Loader></Loader> */}
                 
-                {/* Посты */}
-                {/* <div>
-                <Typography sx={{
-                  width: '100%',
-                  textAlign: 'center'
-                }} variant={'h2'}>Последние новости</Typography>
-                  <WallNews data={dataWall1} />
-                </div>
-                 */}
                 {/* Меню категории */}
                 <Hidden smUp>
                   <Grid container style={{ marginBottom: 20 }}>
@@ -112,8 +84,8 @@ import { sendRequest } from "../utils";
                     // margin: '30px 0 30px 20px',
                   width: '100%',
                   textAlign: 'center'
-                }} variant={'h2'}>Последние новости</Typography>
-                  <WallNews data={dataWall2} />
+                }} variant={'h2'}></Typography>
+                 
                 </div>
               </Grid>
 
@@ -143,7 +115,6 @@ import { sendRequest } from "../utils";
             fontWeight: 900,
             marginBottom: 30,
             marginTop: 30,
-            // textAlign: 'center',
             width: `100%`,
             textTransform: `uppercase`,
             fontSize: 34,
@@ -154,36 +125,6 @@ import { sendRequest } from "../utils";
             }
         }
       }));
-
-
-      // export async function getServerData() {
-      //   try {
-      //     const res = await fetch(`https://svisniplatform.site/getWall`, {
-      //       // const res = await fetch(`http://localhost:3333/getWall`, {
-      //       method: 'POST',
-      //       headers: {
-      //           'Content-Type': 'application/json;charset=utf-8'
-      //       },
-      //       body: JSON.stringify( {
-      //           count: 8
-      //         })
-      //     })
-      
-      //     if (!res.ok) {
-      //       throw new Error(`Response failed`)
-      //     }
-      
-      //     return {
-      //       props: await res.json(),
-      //     }
-      //   } catch (error) {
-      //     return {
-      //       status: 500,
-      //       headers: {},
-      //       props: {}
-      //     }
-      //   }
-      // }
 
 export const query = graphql `
 {
