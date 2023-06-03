@@ -1,3 +1,7 @@
+    // "redux-act": "^1.8.0",
+    "gatsby-plugin-robots-txt": "^1.7.0",
+    "@reach/router": "^1.3.4",
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">

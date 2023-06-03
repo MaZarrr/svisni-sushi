@@ -63,7 +63,7 @@ const OrderSuccess = () => {
                 to="/"
                 size={'small'}
                 variant="contained"
-                color="info">
+                color="success">
           Перейти на главную
         </Button>
         <Button component={"a"}

@@ -112,10 +112,6 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     horizontal: 'center',
   });
   
-  // const [socketT, setSocketT] = useState({})
-  // const [checkPushOrder, setCheckPushOrder] = useState(false);
-  // const [openPay, setOpenPay] = useState(false)
-
   const classes = useStyleOrder();
   const [isOnline, checkedIsOnline, removeCheckedEventIsOnline] = useCheckedInternet()
 
@@ -123,6 +119,12 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   React.useEffect(() => {
     setIsLoading(false)
     checkedIsOnline()
+    const userData = JSON.parse(localStorage.getItem('localUserData'));
+    console.log('userData__', userData);
+    if(userData) {
+      setName(userData.userName);
+      setPhone(userData.userPhone)
+    }
     return () => removeCheckedEventIsOnline()
   }, []);
 
@@ -245,6 +247,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     } else {
       pushOrder()
     }
+    localStorage.setItem('localUserData', JSON.stringify({ userName: nameUser, userPhone: phoneUser }))
+
   };
 
 

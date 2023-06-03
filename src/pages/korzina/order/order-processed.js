@@ -118,7 +118,7 @@ const OrderProcessed = ({ location: { state } }) => {
                         <Button component={Link}
                                 to="/"
                                 variant="contained"
-                                color="info"
+                                color="success"
                                 size={'small'}
                                 className={classes.button}>
                             Перейти на главную
