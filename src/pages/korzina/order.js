@@ -196,14 +196,14 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             data: infoSuccess,
-            url: `${process.env.GATSBY_SEND_URL}/sending`
+            url: "https://platformsvisni.ru/sending"
           });
   
           const sendMail = await axios({
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             data: infoSuccess,
-            url: process.env.GATSBY_SEND_URL
+            url: "https://platformsvisni.ru"
           });
   
           Promise.all([sendSocial, sendMail])
