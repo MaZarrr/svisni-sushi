@@ -59,7 +59,7 @@ const city = {
   val: {id: 3, priceDel: 400, deliverySalePrice: 1700, name: "Валуйки(центр)"},
   yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},
   shel: {id: 5, priceDel: 200, deliverySalePrice: 1399, name: "Шелаево"},
-  gera: {id: 6, priceDel: 350, deliverySalePrice: 1700, name: "Герасимовка"},
+  gera: {id: 6, priceDel: 550, deliverySalePrice: 2200, name: "Герасимовка"},
   sobo: {id: 7, priceDel: 150, deliverySalePrice: 900, name: "Соболёвка"},
   sved: {id: 8, priceDel: 250, deliverySalePrice: 1300, name: "Шведуновка"},
   borki: {id: 9, priceDel: 350, deliverySalePrice: 1600, name: "Борки"},
