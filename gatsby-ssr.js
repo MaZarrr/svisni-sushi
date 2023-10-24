@@ -24,6 +24,7 @@ export const wrapRootElement = ({ element }) => {
 
 export const onRenderBody = ({ setHeadComponents }) => {
       setHeadComponents([
+        <meta key="verify-yandex" name="yandex-verification" content="03d6b3314a4738ee" />,
         <script
             key="vk-retargeting"
             type="text/javascript"
