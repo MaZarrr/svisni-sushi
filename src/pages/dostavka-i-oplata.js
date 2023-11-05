@@ -99,10 +99,10 @@ const delivery = [
     {
         id: 16,
         adress: 'Герасимовка',
-        do: 1799,
-        posle: 1800,
+        do: 2199,
+        posle: 2200,
         color: '#11161b',
-        price: 350,
+        price: 550,
     },
     {
         id: 17,

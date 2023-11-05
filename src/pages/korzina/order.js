@@ -197,6 +197,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             data: infoSuccess,
             url: `https://platformsvisni.ru/sending`
+
           });
   
           const sendMail = await axios({
