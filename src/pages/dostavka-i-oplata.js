@@ -44,7 +44,7 @@ const delivery = [
         do: 999,
         posle: 1000,
         color: '#dc9484',
-        price: 150,
+        price: 200,
     },
     {
         id: 8,
@@ -167,7 +167,7 @@ const delivery = [
         do: 999,
         posle: 1000,
         color: '#5c3c35',
-        price: 150,
+        price: 200,
     },
     {
         id: 26,
@@ -199,7 +199,7 @@ const delivery = [
         do: 1799,
         posle: 1800,
         color: '#416cdc',
-        price: 350,
+        price: 450,
     },
     {
         id: 30,
@@ -215,7 +215,7 @@ const delivery = [
         do: 1099,
         posle: 1100,
         color: '#d2dc54',
-        price: 100,
+        price: 200,
     },
     {
         id: 32,
