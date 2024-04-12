@@ -59,7 +59,7 @@ const OrderSuccess = () => {
         <Typography style={{textAlign: `left`, padding: `8px 0`}} variant={"body2"}>Спасибо что выбираете Свисни Sushi!</Typography>
       </Grid>
       <Grid item xs={12} style={{ marginBottom: 60, display: `flex`}}>
-        <Button component={Link}
+        <Button style={{ color: 'white', fontWeight: 600 }} component={Link}
                 to="/"
                 size={'small'}
                 variant="contained"
@@ -69,7 +69,7 @@ const OrderSuccess = () => {
         <Button component={"a"}
                 href="tel:+79040949222"
                 variant={"contained"}
-                style={{marginLeft: `10px`}}
+                style={{marginLeft: `10px`, color: '#ffffff', fontWeight: 600}}
                 color={"secondary"}
                 size={'small'}
                 >
