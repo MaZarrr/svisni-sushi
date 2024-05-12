@@ -54,8 +54,8 @@ const OrderProcessed = ({ location: { state }, adressDelivery, isOpenDelivery })
             { state !== null ? <>
             {/* { state !== null && !isLoading ? <> */}
                 <Grid item xs={12}>
-                    <Typography style={{textAlign: `center`}} variant={'h4'}>Ваш заказ успешно оформлен<span role="img" aria-label="accessible-emoji">🎉</span>
-                        <span role="img" aria-label="accessible-emoji" >🎉</span><span role="img" aria-label="accessible-emoji">🎉</span>
+                    <Typography style={{textAlign: `center`,}} variant={'h4'}><span role="img" aria-label="accessible-emoji" >🎉</span>Ваш заказ успешно оформлен
+                    <span role="img" aria-label="accessible-emoji">🎉</span>
                     </Typography>
                     <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>заказ оформлен и принят в обработку</Typography>
                 </Grid>
@@ -81,20 +81,20 @@ const OrderProcessed = ({ location: { state }, adressDelivery, isOpenDelivery })
                         ))}
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography style={{textAlign: `right`}} variant={"body1"}>Общая цена к оплате <strong>{priceTotal} руб</strong></Typography>
+                        <Typography variant={"body1"}>Общая цена к оплате <strong>{priceTotal} руб</strong></Typography>
                     </Grid>
                     <Divider/>
                     <Grid item xs={12}>
                         <div style={{background: `lightgrey`}}>
                         {delivery === "Самовывоз" && (
-                          <Typography style={{textAlign: `right`}} variant={"body1"}>Время готовки заказа: <strong>25 - 45
+                          <Typography variant={"body1"}>Время готовки заказа: <strong>25 - 45
                               мин</strong></Typography>
                         )}
                         { delivery !== "Самовывоз" && <>
-                            <Typography style={{textAlign: `right`, paddingRight: 10}} variant={"body1"}>Время доставки
-                                заказа(вместе с готовкой)<strong> 1ч - 1ч 30 мин</strong></Typography>
-                            <Typography style={{textAlign: `right`, paddingRight: 10}} variant={"body1"}>В часы пик, и праздничные дни время доставки может увеличиться<strong> на 30 минут</strong></Typography>
-                            <Typography style={{textAlign: `right`, paddingRight: 10, marginTop: 5}} variant={"subtitle2"}> оформляйте заказы заранее к определенному времени *</Typography>
+                            <Typography style={{ paddingRight: 10, marginBottom: '5px'}} variant={'subtitle2'}>Время доставки
+                                заказа от <strong> 1ч - 1ч 30 мин</strong></Typography>
+                            <Typography style={{ paddingRight: 10, marginBottom: '6px'}} variant={"subtitle2"}>В часы пик, и праздничные дни время доставки может увеличиться<strong> на 30 минут</strong></Typography>
+                            <Typography style={{ paddingRight: 10, marginTop: 5}} variant={"caption"}> * оформляйте заказы заранее к определенному времени </Typography>
 
                         </>}
                         </div>
@@ -102,7 +102,7 @@ const OrderProcessed = ({ location: { state }, adressDelivery, isOpenDelivery })
                             <Typography variant='subtitle2' style={{textAlign: `left`}}>Заказ оформленный ко времени будет готов/доставлен к указанному времени.</Typography>
                         </div> */}
 
-                        <div style={{padding: `8px 0`}}>
+                        <div style={{padding: `8px 0` }}>
                             <Typography variant='subtitle2' style={{textAlign: `left`}}>Оператор с вами свяжется для подтверждения заказа.</Typography>
                         </div>
                         <div style={{padding: `8px 0`}}>
