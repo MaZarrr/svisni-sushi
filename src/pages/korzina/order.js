@@ -29,6 +29,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import ClipLoader from "react-spinners/ClipLoader";
 import useCheckedInternet from "../../utils/useCheckedInternet";
+import { setOpenModalDelivery } from "../../reducers/app";
 // import PayDialog from "../../components/PayDialog"
 
 const inputLabel = React.forwardRef(null)
@@ -125,7 +126,7 @@ const cityVLK = {
 
 const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
                  entranceNumber, setName, setPhone, setSity, setAdress, setHome, setEntrance, userApartment,
-                 setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
+                 setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment, setModalDelivery }) => {
 
   const [open, setOpen] = useState(false);
   const [cityCompany, setCityCompany] = useState(null); // зависит от выбранного адреса доставки, сохранено local storage
@@ -223,7 +224,7 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
             descriptionWok
           }
         }),
-        delivery: deliveru === "Самовывоз" ? deliveru + userDeliveryAdressSetting : {...deliveru, adress: deliveru.adress + " Доставка " + userDeliveryAdressSetting},
+        delivery: deliveru === "Самовывоз" ? deliveru + userDeliveryAdressSetting : {...deliveru, adress: deliveru.adress + " (доставка " + userDeliveryAdressSetting+")"},
         deliveryTime: deliveryTimeOrder,
         totalPrice: `${totalPriceOrder()} ${variantPay === "cash" ? "Нал" : "Он-й"}`,
         sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
@@ -431,13 +432,13 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
                                       </Typography>
                                     </Grid>
                                     <Grid item xs={6}>
-                                      <Button fullWidth style={{fontSize: 17}} variant={variantPay === "cash" ? "contained" : "outlined"} color="primary"
+                                      <Button fullWidth style={{fontSize: 16}} variant={variantPay === "cash" ? "contained" : "outlined"} color="primary"
                                               onClick={onSwitchPay("cash")}>
                                         Оплата наличными
                                       </Button>
                                     </Grid>
                                     <Grid item xs={6}>
-                                      <Button fullWidth style={{fontSize: 17}} variant={variantPay === "bank" ? "contained" : "outlined"} color="primary"
+                                      <Button fullWidth style={{fontSize: 16}} variant={variantPay === "bank" ? "contained" : "outlined"} color="primary"
                                               onClick={onSwitchPay("bank")}>
                                         Онлайн перевод
                                       </Button>
@@ -459,6 +460,13 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
                                         <FormHelperText id="my-helper-text">Способ получения заказа</FormHelperText>
                                       </FormControl>
                                     </Grid>
+                                    <Grid item xs={12} sx={{ paddingTop: '5px' }}>
+                                      <Typography sx={{ textAlign: 'center',  border: '1px solid lightgrey', borderRadius: '2px' }} variant='subtitle2'>{adressDelivery === "Валуйки" ? "Валуйки, ул.Толстого 16/2 " : "Уразово, ул.Красная Площадь 30А "}</Typography>
+                                      <Button fullWidth style={{fontSize: 16}} variant={variantPay === "cash" ? "contained" : "outlined"} color="primary"
+                                              onClick={() => setModalDelivery(true)}>
+                                        Сменить пункт заказа
+                                      </Button>
+                                    </Grid>
                                     {delivery !== '' && <>
                                       {/*Предзаказ или сразу время и дата*/}
                                       <Grid item xs={12}>
@@ -468,13 +476,13 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
                                         </Typography>
                                       </Grid>
                                       <Grid item xs={6}>
-                                        <Button fullWidth style={{fontSize: 17}} variant={state === "promptly" ? "contained" : "outlined"} color="primary"
+                                        <Button fullWidth style={{fontSize: 16}} variant={state === "promptly" ? "contained" : "outlined"} color="primary"
                                                 onClick={handleChangee("promptly")}>
                                           {delivery === "Самовывоз" ? "Приготовить сразу" : "Доставить сразу"}
                                         </Button>
                                       </Grid>
                                       <Grid item xs={6}>
-                                        <Button fullWidth style={{fontSize: 17}} variant={state === "deliveryTime" ? "contained" : "outlined"} color="primary"
+                                        <Button fullWidth style={{fontSize: 16}} variant={state === "deliveryTime" ? "contained" : "outlined"} color="primary"
                                                 onClick={handleChangee("deliveryTime")}>
                                           {delivery === "Самовывоз" ? "Приготовить ко времени" : "Доставить ко времени"}
                                         </Button>
@@ -814,6 +822,7 @@ const mapStateToProps = ({ app: { loading, userSettings }, shoppingCart: {cartIt
 });
 
 const mapDispatchToProps = {
+  setModalDelivery: setOpenModalDelivery,
   setName: setNameUser,
   setPhone: setPhoneUser,
   setSity: setCityUser,
