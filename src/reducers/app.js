@@ -4,9 +4,13 @@ export const productLoaded = createAction('PRODUCT_LOADED');
 export const productPizzaLoaded = createAction('PRODUCT_LOADED_PIZZA');
 export const spinnerLoading = createAction('PRODUCT_SPINNER');
 const productLoadedIndex = createAction('PRODUCT_LOADED_INDEX');
+const userSettings = createAction('SET_USER_SETTINGS');
+const openModalDelivery = createAction('OPEN_MODAL_USERDELIVERY');
 
 export const loadIndexItems = (data) => (dispatch) => dispatch(productLoadedIndex(data));
 export const loadingSpinner = (status) => (dispatch) => dispatch(spinnerLoading(status));
+export const setUserData = (data) => (dispatch) => dispatch(userSettings(data));
+export const setOpenModalDelivery = (isOpen) => (dispatch) => dispatch(openModalDelivery(isOpen));
 export const getProduct = (product) => async (dispatch) => {
     await dispatch(productLoaded(product))
 };
@@ -21,7 +25,8 @@ const initialState = {
     productPizza: [],
     indexMenu: [],
     loading: false,
-    error: false
+    error: false,
+    userSettings: { isOpenDelivery: true, adressDelivery: null },
 };
 
 export default createReducer({
@@ -207,5 +212,16 @@ export default createReducer({
     },
     [spinnerLoading]: (state, status) => {
         return {...state, loading: status}
+    },
+    [userSettings]: (state, data) => {
+        console.log("openModauserSettings_data", data);
+        console.log("openModauserSettings_data1", { ...state.userSettings, adressDelivery: data.adressDelivery});
+        return {...state, userSettings: { ...state.userSettings, adressDelivery: data.adressDelivery}}
+    },
+    [openModalDelivery]: (state, isOpen) => {
+        console.log("openModalDelivery_isOpen", isOpen);
+        console.log("state.userSettings_isOpen", state.userSettings);
+
+        return {...state, userSettings: { ...state.userSettings, isOpenDelivery: isOpen }}
     }
 }, initialState)
