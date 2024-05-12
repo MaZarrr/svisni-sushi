@@ -203,6 +203,7 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
         dateDelivery: ev.target.date.value,
         timeDelivery: ev.target.time.value
       };
+      const userDeliveryAdressSetting = adressDelivery === "Валуйки" ? " из Валуйки, ул.Толстого 16/2 " : " из Уразово, ул.Красная Площадь 30А "
       const infoSuccess = {
         name: ev.target.name.value,
         phone: ev.target.phone.value,
@@ -222,7 +223,7 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
             descriptionWok
           }
         }),
-        delivery: deliveru,
+        delivery: deliveru === "Самовывоз" ? deliveru + userDeliveryAdressSetting : {...deliveru, adress: deliveru.adress + " Доставка " + userDeliveryAdressSetting},
         deliveryTime: deliveryTimeOrder,
         totalPrice: `${totalPriceOrder()} ${variantPay === "cash" ? "Нал" : "Он-й"}`,
         sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
@@ -297,8 +298,6 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
   const handleChange = event => setAge(event.target.value);
   const handleChangeDelivery = event => setDelivery(event.target.value);
   const handleChangeCity = city => event => {
-    console.log("handleChangeCity__city", city);
-    console.log("handleChangeCity__city2", city[event.target.value].name);
     setSity(`${city[event.target.value].name}`);
     setStateDeliveryPrice(city[event.target.value]);
   };
