@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
 import { isBrowser } from "../components/common/constants"
 
-const useLocalStorage = (key, initialValue = '') => {
-    const [value, setValue] = useState(() => {
-        return isBrowser && (localStorage.getItem(key) || initialValue)
+const useLocalStorage = (key, initialValue = null) => {
+    const [valueStorage, setValue] = useState(() => {
+        return isBrowser && (JSON.parse(localStorage.getItem(key)) || initialValue)
     })
 
     useEffect(() => {
-        localStorage.setItem(key, value)
-    }, [value, key])
+        localStorage.setItem(key, JSON.stringify(valueStorage))
+    }, [valueStorage, key])
 
-    return [value, setValue]
+    return [valueStorage, setValue]
 
 }
 
