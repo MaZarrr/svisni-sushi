@@ -68,13 +68,13 @@ const Layout = (
                     aria-describedby="simple-modal-description">
               <Box sx={{ ...style, outline: 'none' }}>
               {/* <Box sx={{ ...style, width: 200 }}> */}
-                <h2 style={{ color: 'black' }} id="child-modal-title">Выберите адрес для заказа:</h2>
+                <h4 style={{ color: 'black', textAlign: 'center' }} id="child-modal-title">Выберите адрес для заказа:</h4>
                 {/* <p style={{ color: 'black' }} id="child-modal-description">
                     Выберите адрес заказа:
                 </p> */}
-                <Button  sx={{ backgroundColor: 'antiquewhite', width: '100%', padding: '15px', fontWeight: 600}}  onClick={() => handleClose({adressDelivery: 'Валуйки', isOpenDelivery: false})}>Валуйки, ул.Толстого 16/2</Button>
+                <Button  sx={{ backgroundColor: 'antiquewhite', fontSize: '13px', width: '100%', padding: '15px', fontWeight: 600}}  onClick={() => handleClose({adressDelivery: 'Валуйки', isOpenDelivery: false})}>Валуйки, <br /> ул.Толстого 16/2</Button>
                 <div style={{ height: 20 }}></div>
-                <Button sx={{ backgroundColor: 'antiquewhite', width: '100%', padding: '15px', fontWeight: 600}} onClick={() => handleClose({adressDelivery: 'Уразово', isOpenDelivery: false})}>Уразово, ул.Красная Площадь 30А</Button>
+                <Button sx={{ backgroundColor: 'antiquewhite', width: '100%', fontSize: '13px', padding: '15px', fontWeight: 600}} onClick={() => handleClose({adressDelivery: 'Уразово', isOpenDelivery: false})}>Уразово, <br /> ул.Красная Площадь 30А</Button>
               </Box>
               </Modal>
 
