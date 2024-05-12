@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import Seo from "../../components/seo"
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby'
@@ -66,11 +66,7 @@ const city = {
   znamenk: {id: 10, priceDel: 200, deliverySalePrice: 1000, name: "Знаменка"},
   loga: {id: 11, priceDel: 400, deliverySalePrice: 2000, name: "Логачевка"},
   kyky: {id: 12, priceDel: 300, deliverySalePrice: 1800, name: "Кукуевка"},
-  kolos: {id: 13, priceDel: 650, deliverySalePrice: 4000, name: "Колосково"},
   kazink: {id: 14, priceDel: 600, deliverySalePrice: 3300, name: "Казинка"},
-  soloti: {id: 15, priceDel: 650, deliverySalePrice: 4000, name: "Солоти"},
-  rogdestv: {id: 16, priceDel: 600, deliverySalePrice: 4000, name: "Рождественно"},
-  samar: {id: 17, priceDel: 850, deliverySalePrice: 5000, name: "Самарино"},
   valsoshgor: {id: 18, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(соц.городок)"},
   valrazdol: {id: 19, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(раздолье)"},
   togobi: {id: 20, priceDel: 200, deliverySalePrice: 1000, name: "Тогобиевка"},
@@ -80,26 +76,60 @@ const city = {
   tatarievka: {id: 24, priceDel: 200, deliverySalePrice: 1100, name: "Татариевка"},
   pricten: {id: 25, priceDel: 300, deliverySalePrice: 1600, name: "Пристень"},
   lobkovka: {id: 26, priceDel: 250, deliverySalePrice: 1300, name: "Лобковка"},
-  nasonovo: {id: 27, priceDel: 650, deliverySalePrice: 4500 , name: "Насоново"},
   yablonovo: {id: 28, priceDel: 600, deliverySalePrice: 2900 , name: "Яблоново"},
   valsim: {id: 29, priceDel: 400, deliverySalePrice: 2000, name: "Валуйки(Нов.Симоновка)"},
   valsovhoz: {id: 30, priceDel: 500, deliverySalePrice: 2000, name: "Валуйки(совхоз)"},
-  valkordon: {id: 31, priceDel: 500, deliverySalePrice: 2000, name: "Валуйки(байрацкий.корд)"},
   hrapovo: {id: 32, priceDel: 350, deliverySalePrice: 2000, name: "Храпово"},
   zerdevk: {id: 33, priceDel: 200, deliverySalePrice: 1000, name: "Жердевка"},
   yraevo: {id: 34, priceDel: 400, deliverySalePrice: 2400, name: "Ураево"},
-  hohlovo: {id: 35, priceDel: 700, deliverySalePrice: 5000, name: "Хохлово"},
   romashowka: {id: 36, priceDel: 350, deliverySalePrice: 1900, name: "Ромашовка"},
   dolgoe: {id: 37, priceDel: 350, deliverySalePrice: 2000, name: "Долгое"},
 };
 
-const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
+const cityVLK = {
+  net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
+  val: {id: 3, priceDel: 130, deliverySalePrice: 1100, name: "Валуйки(центр)"},
+  valsim: {id: 29, priceDel: 200, deliverySalePrice: 1300, name: "Валуйки(Нов.Симоновка)"},
+  valsovhoz: {id: 30, priceDel: 130, deliverySalePrice: 1100, name: "Валуйки(совхоз)"},
+  valsoshgor: {id: 18, priceDel: 200, deliverySalePrice: 1500, name: "Валуйки(соц.городок)"},
+  valrazdol: {id: 19, priceDel: 200, deliverySalePrice: 1500, name: "Валуйки(раздолье)"},
+  kol: {id: 1, priceDel: 300, deliverySalePrice: 2000, name: "Колыхалино"},
+  shel: {id: 5, priceDel: 250, deliverySalePrice: 1600, name: "Шелаево"},
+  novorfz: {id: 40, priceDel: 180, deliverySalePrice: 1200, name: "Новоказацкое"},
+  gera: {id: 6, priceDel: 350, deliverySalePrice: 1800, name: "Герасимовка"},
+  sved: {id: 8, priceDel: 250, deliverySalePrice: 1500, name: "Шведуновка"},
+  borki: {id: 9, priceDel: 350, deliverySalePrice: 1800, name: "Борки"},
+  kyky: {id: 12, priceDel: 300, deliverySalePrice: 1800, name: "Кукуевка"},
+  kolos: {id: 13, priceDel: 350, deliverySalePrice: 1800, name: "Колосково"},
+  kazink: {id: 14, priceDel: 600, deliverySalePrice: 3300, name: "Казинка"},
+  soloti: {id: 15, priceDel: 300, deliverySalePrice: 2000, name: "Солоти"},
+  lavy: {id: 41, priceDel: 350, deliverySalePrice: 2000, name: "Лавы"},
+  lychka: {id: 42, priceDel: 180, deliverySalePrice: 1200, name: "Лучка"},
+  rogdestv: {id: 16, priceDel: 250, deliverySalePrice: 1800, name: "Рождественно"},
+  samar: {id: 17, priceDel: 850, deliverySalePrice: 5000, name: "Самарино"},
+  togobi: {id: 20, priceDel: 200, deliverySalePrice: 1000, name: "Тогобиевка"},
+  babki: {id: 22, priceDel: 450, deliverySalePrice: 2000, name: "Бабки"},
+  syxarevo: {id: 23, priceDel: 250, deliverySalePrice: 1500, name: "Сухарево"},
+  pricten: {id: 25, priceDel: 350, deliverySalePrice: 1800, name: "Пристень"},
+  lobkovka: {id: 26, priceDel: 250, deliverySalePrice: 1300, name: "Лобковка"},
+  nasonovo: {id: 27, priceDel: 350, deliverySalePrice: 2000 , name: "Насоново"},
+  yablonovo: {id: 28, priceDel: 600, deliverySalePrice: 2900 , name: "Яблоново"},
+  hrapovo: {id: 32, priceDel: 350, deliverySalePrice: 2000, name: "Храпово"},
+  yraevo: {id: 34, priceDel: 400, deliverySalePrice: 2400, name: "Ураево"},
+  hohlovo: {id: 35, priceDel: 350, deliverySalePrice: 2400, name: "Хохлово"},
+  romashowka: {id: 36, priceDel: 350, deliverySalePrice: 1900, name: "Ромашовка"},
+  dolgoe: {id: 37, priceDel: 350, deliverySalePrice: 2000, name: "Долгое"},
+  drugba: {id: 39, priceDel: 250, deliverySalePrice: 1700, name: "Дружба"},
+};
+
+
+const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deliverySity, deliveryAdress, homeNumber,
                  entranceNumber, setName, setPhone, setSity, setAdress, setHome, setEntrance, userApartment,
                  setTime, setDate, total, dateDelivery, timeDelivery, userCommentsFunc, comments, apartment }) => {
 
   const [open, setOpen] = useState(false);
+  const [cityCompany, setCityCompany] = useState(null); // зависит от выбранного адреса доставки, сохранено local storage
   const [isLoading, setIsLoading] = React.useState(false);
-  
   const [age, setAge] = useState('');
   const [delivery, setDelivery] = useState('');
   const [openAlert, setOpenAlert] = React.useState(false);
@@ -120,13 +150,23 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
     setIsLoading(false)
     checkedIsOnline()
     const userData = JSON.parse(localStorage.getItem('localUserData'));
-    console.log('userData__', userData);
     if(userData) {
       setName(userData.userName);
       setPhone(userData.userPhone)
     }
+
     return () => removeCheckedEventIsOnline()
   }, []);
+
+  React.useEffect(() => {
+    if(adressDelivery === 'Уразово') {
+      setCityCompany(city)
+    } else {
+      setCityCompany(cityVLK)
+    }
+    setSity("Не выбрано");
+    setStateDeliveryPrice({});
+  }, [adressDelivery]);
 
   const handleChangee = name => event => setState(name);
   const onSwitchPay = (pay) => () => setVariantPay(pay);
@@ -257,6 +297,8 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   const handleChange = event => setAge(event.target.value);
   const handleChangeDelivery = event => setDelivery(event.target.value);
   const handleChangeCity = city => event => {
+    console.log("handleChangeCity__city", city);
+    console.log("handleChangeCity__city2", city[event.target.value].name);
     setSity(`${city[event.target.value].name}`);
     setStateDeliveryPrice(city[event.target.value]);
   };
@@ -474,50 +516,7 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
                                           <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                                             Населённый пункт
                                           </InputLabel>
-                                          <Select native value={deliverySity.city}
-                                                  onChange={handleChangeCity(city)}
-                                                  inputProps={{ name: 'city',
-                                                    id: 'outlined-age-native-simple'}}>
-                                            <option value="net">Не выбрано</option>
-                                            <option value="yraz">Уразово</option>
-                                            <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
-                                            <option value="valsoshgor">Валуйки(соц.городок)</option>
-                                            <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
-                                            <option value="valsim">Валуйки(нов.симоновка)</option>
-                                            <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
-                                            <option value="valkordon">Валуйки(байрацкий.корд)</option>
-                                            <option style={{background: `#f0ecec`}} value="dvyl">Двулучное</option>
-                                            <option value="shel">Шелаево</option>
-                                            <option style={{background: `#f0ecec`}} value="sobo">Соболевка</option>
-                                            <option value="kol">Колыхалино</option>
-                                            <option style={{background: `#f0ecec`}} value="sved">Шведуновка</option>
-                                            <option value="togobi">Тогобиевка</option>
-                                            <option style={{background: `#f0ecec`}} value="novopetr">Новопетровка</option>
-                                            <option value="babki">Бабки</option>
-                                            <option style={{background: `#f0ecec`}} value="syxarevo">Сухарево</option>
-                                            <option value="zerdevk">Жердевка</option>
-                                            <option style={{background: `#f0ecec`}} value="tatarievka">Татариевка</option>
-                                            <option value="pricten">Пристень</option>
-                                            <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
-                                            <option value="romashowka">Ромашовка</option>
-                                            <option style={{background: `#f0ecec`}} value="dolgoe">Долгое</option>
-                                            <option value="soloti">Солоти</option>
-                                            <option style={{background: `#f0ecec`}} value="borki">Борки</option>
-                                            <option value="znamenk">Знаменка</option>
-                                            <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
-                                            <option value="kazink">Казинка</option>
-                                            <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
-                                            <option value="kyky">Кукуевка</option>
-                                            <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
-                                            <option value="hrapovo">Храпово</option>
-                                            <option style={{background: `#f0ecec`}} value="nasonovo">Насоново</option>
-                                            <option value="yablonovo">Яблоново</option>
-                                            <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
-                                            <option value="yraevo">Ураево</option>
-                                            <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
-                                            <option value="hohlovo">Хохлово</option>
-                                          </Select>
-          
+                                            <SelectDelivery adress={adressDelivery} deliverySity={deliverySity} handleChangeCity={handleChangeCity} cityCompany={cityCompany}  />
                                           <FormHelperText id="my-helper-text">Выберите населенный пункт</FormHelperText>
                                         </FormControl>
                                       </Grid>
@@ -716,9 +715,98 @@ const Order = ({items, palochkiTotal, nameUser, phoneUser, deliverySity, deliver
   )
 };
 
-const mapStateToProps = ({ app: { loading }, shoppingCart: {cartItems, orderTotal, palochkiTotal}, contactsUser: {
+const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany }) => {
+  const selectRef = useRef();
+  useEffect(() => {
+    if(selectRef.current) {
+      selectRef.current.querySelector('select').selectedIndex = 0;
+    }
+  }, [adress])
+  return (
+    <>
+    { adress === "Уразово" ? <Select ref={selectRef} native value={deliverySity.city}
+                                                  onChange={handleChangeCity(cityCompany)}
+                                                  inputProps={{ name: 'city',
+                                                    id: 'outlined-age-native-simple'}}>
+                                            <option value="net">Не выбрано</option>
+                                            <option value="yraz">Уразово</option>
+                                            <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
+                                            <option value="valsoshgor">Валуйки(соц.городок)</option>
+                                            <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
+                                            <option value="valsim">Валуйки(нов.симоновка)</option>
+                                            <option style={{background: `#f0ecec`}} value="valsovhoz">Валуйки(совхоз)</option>
+                                            <option value="borki">Борки</option>
+                                            <option style={{background: `#f0ecec`}} value="dvyl">Двулучное</option>
+                                            <option value="shel">Шелаево</option>
+                                            <option style={{background: `#f0ecec`}} value="sobo">Соболевка</option>
+                                            <option value="kol">Колыхалино</option>
+                                            <option style={{background: `#f0ecec`}} value="sved">Шведуновка</option>
+                                            <option value="togobi">Тогобиевка</option>
+                                            <option style={{background: `#f0ecec`}} value="novopetr">Новопетровка</option>
+                                            <option value="babki">Бабки</option>
+                                            <option style={{background: `#f0ecec`}} value="syxarevo">Сухарево</option>
+                                            <option value="zerdevk">Жердевка</option>
+                                            <option style={{background: `#f0ecec`}} value="tatarievka">Татариевка</option>
+                                            <option value="pricten">Пристень</option>
+                                            <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
+                                            <option value="romashowka">Ромашовка</option>
+                                            <option style={{background: `#f0ecec`}} value="dolgoe">Долгое</option>
+                                            <option value="znamenk">Знаменка</option>
+                                            <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
+                                            <option value="kazink">Казинка</option>
+                                            <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
+                                            <option value="kyky">Кукуевка</option>
+                                            <option value="hrapovo">Храпово</option>
+                                            <option value="yablonovo">Яблоново</option>
+                                            <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
+                                            <option value="yraevo">Ураево</option>
+                                        </Select> : <Select ref={selectRef} native value={deliverySity.city}
+                                                  onChange={handleChangeCity(cityCompany)}
+                                                  inputProps={{ name: 'city',
+                                                    id: 'outlined-age-native-simple'}}>
+                                            <option value="net">Не выбрано</option>
+                                            <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
+                                            <option value="valsoshgor">Валуйки(соц.городок)</option>
+                                            <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
+                                            <option value="valsim">Валуйки(нов.симоновка)</option>
+                                            <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
+                                            <option value="soloti">Солоти</option>
+                                            <option style={{background: `#f0ecec`}} value="novorfz">Новокозацкое</option>
+                                            <option value="shel">Шелаево</option>
+                                            <option style={{background: `#f0ecec`}} value="lychka">Лучка</option>
+                                            <option value="drugba">Дружба</option>
+                                            <option style={{background: `#f0ecec`}} value="lavy">Лавы</option>
+                                            <option value="kol">Колыхалино</option>
+                                            <option style={{background: `#f0ecec`}} value="sved">Шведуновка</option>
+                                            <option value="togobi">Тогобиевка</option>
+                                            <option style={{background: `#f0ecec`}} value="kazink">Казинка</option>
+                                            <option value="babki">Бабки</option>
+                                            <option style={{background: `#f0ecec`}} value="syxarevo">Сухарево</option>
+                                            <option value="pricten">Пристень</option>
+                                            <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
+                                            <option value="romashowka">Ромашовка</option>
+                                            <option style={{background: `#f0ecec`}} value="dolgoe">Долгое</option>
+                                            <option value="borki">Борки</option>
+                                            <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
+                                            <option value="kyky">Кукуевка</option>
+                                            <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
+                                            <option value="hrapovo">Храпово</option>
+                                            <option style={{background: `#f0ecec`}} value="nasonovo">Насоново</option>
+                                            <option value="yablonovo">Яблоново</option>
+                                            <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
+                                            <option value="yraevo">Ураево</option>
+                                            <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
+                                            <option value="hohlovo">Хохлово</option>
+                                          </Select> }
+                      
+    </>
+  )
+}
+
+const mapStateToProps = ({ app: { loading, userSettings }, shoppingCart: {cartItems, orderTotal, palochkiTotal}, contactsUser: {
   nameUser, phoneUser, deliverySity, deliveryAdress, comments, homeNumber, entranceNumber, levelNumber, doorPassword, apartment}}) => ({
   items: cartItems,
+  adressDelivery: userSettings?.adressDelivery,
   total: orderTotal,
   isLoadingOrder: loading,
   comments, apartment,

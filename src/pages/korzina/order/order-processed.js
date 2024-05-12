@@ -8,6 +8,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import { Divider } from "@mui/material";
 import { isBrowser } from '../../../components/common/constants';
 import EmptyBasket from '../../../components/EmptyBasket';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -23,7 +24,7 @@ function createData(name, count, price) {
     return { name, count, price};
 }
 
-const OrderProcessed = ({ location: { state } }) => {
+const OrderProcessed = ({ location: { state }, adressDelivery, isOpenDelivery }) => {
     const [data, setData] = React.useState([]);
     const [delivery, setDelivery] = React.useState("");
     const [phone, setPhone] = React.useState("");
@@ -67,7 +68,7 @@ const OrderProcessed = ({ location: { state } }) => {
                         <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}>Ваш телефон: <strong>{phone}</strong></Typography>
                     </Grid>
                     <Grid item xs={12} style={{borderRadius: 10, border: `1px lightgrey solid`, margin: `10px auto`}}>
-                        {data.map((row) => (
+                        {data && data.map((row) => (
                           <div key={row.name} style={{marginTop: 8 }}>
                               <Typography style={{textAlign: `left`, paddingLeft: 20}} variant={"body1"}><strong>Блюдо: </strong>
                                   {row.name}</Typography>
@@ -97,22 +98,23 @@ const OrderProcessed = ({ location: { state } }) => {
 
                         </>}
                         </div>
-                        <div style={{padding: `8px 0`}}>
+                        {/* <div style={{padding: `8px 0`}}>
                             <Typography variant='subtitle2' style={{textAlign: `left`}}>Заказ оформленный ко времени будет готов/доставлен к указанному времени.</Typography>
-                        </div>
+                        </div> */}
 
                         <div style={{padding: `8px 0`}}>
                             <Typography variant='subtitle2' style={{textAlign: `left`}}>Оператор с вами свяжется для подтверждения заказа.</Typography>
                         </div>
                         <div style={{padding: `8px 0`}}>
-                            <Typography style={{textAlign: `left`}} variant='subtitle2'>График работы с 10:00 до 22:00 без перерывов и выходных.</Typography>
+                            <Typography style={{textAlign: `left`}} variant='subtitle2'>
+                                {adressDelivery === "Валуйки" ? "г.Валуйки, ул.Толстого 16/2. График работы с 11:00 до 22:00 без перерывов и выходных." : "п.Уразово, ул.Красная Площадь 30А. График работы с 10:00 до 22:00 без перерывов и выходных."}</Typography>
                         </div>
 
                     </Grid>
                     <Divider/>
                     <Grid item xs={12}>
                         <Typography style={{textAlign: `left`, padding: `8px 0`}} 
-                        variant={"body1"}>Спасибо что выбираете Свисни Суши!</Typography>
+                        variant={"body2"}>Спасибо что выбираете Свисни Суши!</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Button component={Link}
@@ -120,15 +122,18 @@ const OrderProcessed = ({ location: { state } }) => {
                                 variant="contained"
                                 color="success"
                                 size={'small'}
+                                style={{background: 'white', color: '#00000', marginRight: '5px'}}
                                 className={classes.button}>
                             Перейти на главную
                         </Button>
                         <Button component={"a"}
-                                href="tel:+79040949222"
+                                href={adressDelivery === "Валуйки" ? "tel:+79524225422" : "tel:+79040949222"}
                                 variant={"contained"}
                                 size={'small'}
+                                style={{background: 'white', color: '#00000'}}
                                 className={classes.button}
-                                color={"secondary"}>
+                                // color={"secondary"}
+                                >
                             Позвонить
                         </Button>
                     </Grid>
@@ -139,5 +144,10 @@ const OrderProcessed = ({ location: { state } }) => {
     )
 }
 
-export default OrderProcessed
+const mapStateToProps = (state) => ({
+    adressDelivery: state.app.userSettings?.adressDelivery,
+    isOpenDelivery: state.app.userSettings?.isOpenDelivery,
+  });
+
+export default connect(mapStateToProps, null)(OrderProcessed)
 

@@ -51,8 +51,9 @@ description="Ждем вас в гости по адресу улица Крас
                 </IconButton>
             </div>
             <div>
-                <Typography variant="subtitle1">Режим работы</Typography>
-                <Typography variant={"subtitle2"}>С 10:00 до 22:00</Typography>
+                <Typography variant="subtitle1">Режим работы:</Typography>
+                <Typography variant={"subtitle2"}>п.Уразово с 10:00 до 22:00</Typography>
+                <Typography variant={"subtitle2"}>г.Валуйки с 11:00 до 22:00</Typography>
             </div>
         </div>
             <div className="item-info">
@@ -64,7 +65,10 @@ description="Ждем вас в гости по адресу улица Крас
             <div>
                 <Typography variant="subtitle1">Телефон</Typography>
                 <Typography variant={"subtitle2"}>
-                    <a itemProp="telephone" href="tel:+79040949222">+7(904)094-92-22</a>
+                    <a itemProp="telephone" href="tel:+79040949222">п.Уразово <span style={{color: 'blue' }}>+7 904 094-92-22</span></a>
+                </Typography>
+                <Typography variant={"subtitle2"}>
+                    <a itemProp="telephone" href="tel:+79524225422">г.Валуйки <span style={{color: 'blue' }}>+7 952 422-54-22</span></a>
                 </Typography>
             </div>
         </div>
@@ -75,8 +79,9 @@ description="Ждем вас в гости по адресу улица Крас
                 </IconButton>
             </div>
             <div>
-                <Typography variant="subtitle1">Адрес</Typography>
-                <Typography variant={"subtitle2"}><span itemProp="streetAddress">ул.Красная Площадь 30А</span><span itemProp="addressLocality"> Уразово, Валуйский район</span></Typography>
+                <Typography variant="subtitle1">Адреса:</Typography>
+                <Typography variant={"subtitle2"}><span itemProp="streetAddress">п.Уразово, ул.Красная Площадь 30А</span><span itemProp="addressLocality"></span></Typography>
+                <Typography variant={"subtitle2"}><span itemProp="streetAddress">г.Валуйки, ул.Толстого 16/2</span><span itemProp="addressLocality"></span></Typography>
             </div>
         </div>
         </Container>
