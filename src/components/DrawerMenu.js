@@ -18,9 +18,13 @@ import { StaticImage } from "gatsby-plugin-image";
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
 import CardGiftcardTwoToneIcon from '@mui/icons-material/CardGiftcardTwoTone';
-import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+// import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import { SocialButtons } from './common/SocialButtons';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
+import useLocalStorage from '../utils/useLocalStorage';
+import { connect } from 'react-redux';
+import { setOpenModalDelivery } from '../reducers/app';
 
 // import { useReactiveVar } from '@apollo/client';
 // import { isLoggedInVar } from '../gatsby-theme-apollo/client';
@@ -96,20 +100,28 @@ const drawerMenuProps = [
     {
         id: 8,
         slug: "",
-        nameCategory: "Выход",
-        componentIcon: ExitToAppTwoToneIcon,
-        logout: true,
-        isAuth: false
-    }
+        nameCategory: "Сменить пункт заказа",
+        componentIcon: LocationOnOutlinedIcon,
+        isAuth: true,
+    },
+    // {
+    //     id: 8,
+    //     slug: "",
+    //     nameCategory: "Выход",
+    //     componentIcon: ExitToAppTwoToneIcon,
+    //     logout: true,
+    //     isAuth: false
+    // }
     
 ]
 
-export default function TemporaryDrawer() {
+function TemporaryDrawer({ adressDelivery, setModalDelivery }) {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
+    const [] = useLocalStorage()
     // const isLoggedIn = useReactiveVar(isLoggedInVar)p
 
-
+    console.log("setModalDeliverysetModalDelivery_-setModalDelivery", setModalDelivery);
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -133,12 +145,12 @@ export default function TemporaryDrawer() {
                         alt={"Свистни суши в Уразово"}/>
                 </div>
             <Typography 
-            style={{color: `white`, textAlign: `center`, marginTop: 20}} 
-            variant={'subtitle1'}>Уразово</Typography>
+                style={{color: `white`, textAlign: `center`, marginTop: 20}} 
+                variant={'subtitle2'}>{adressDelivery === "Валуйки" ? "Валуйки, ул.Толстого 16/2": "Уразово, ул.Красная Площадь 30А"}</Typography>
             </div>
 
-            <NavigationButtons />
-            <SocialButtons />
+            <NavigationButtons setModalDelivery={setModalDelivery} />
+            <SocialButtons  />
 
         </div>
     );
@@ -168,19 +180,29 @@ export default function TemporaryDrawer() {
     );
 }
 
+const mapStateToProps = (state) => ({
+    adressDelivery: state.app.userSettings?.adressDelivery,
+  });
 
+  
+const mapDispatchToProps = {
+    setModalDelivery: setOpenModalDelivery
+  };
+  
 
-const NavigationButtons = () => (
+export default connect(mapStateToProps, mapDispatchToProps)(TemporaryDrawer)
+
+const NavigationButtons = ({ setModalDelivery }) => (
         <List>
         {
             drawerMenuProps.map(item => {
                 const TheIcon = item.componentIcon
                 return item.isAuth && (
-                <div key={item.slug}>
+                <div key={item.id}>
                 <ListItem
-                    button 
-                    component={item.slug !== "" ? Link: "a"}
                     {...(item.callPhone && { href: item.href })}
+                    {...(item.nameCategory === "Сменить пункт заказа" && { onClick: () => setModalDelivery(true) })}
+                    component={item.slug !== "" ? Link: "a"}
                     to={item.slug} 
                     activeStyle={{ color: "#000", backgroundColor: `#f0ecec`}}>
                 <ListItemIcon>
