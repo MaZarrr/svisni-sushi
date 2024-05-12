@@ -11,7 +11,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import { setUserData, setOpenModalDelivery } from "../reducers/app";
 import { connect } from 'react-redux';
-const ScrollTop = loadable(() => import('./common/ScrollTop'));
+// const ScrollTop = loadable(() => import('./common/ScrollTop'));
 const Footer = loadable(() => import('./footer'));
 
 const style = {
@@ -102,12 +102,12 @@ const Layout = (
     <main>
       {children}
     </main>
-    { pathname !== "/korzina/" &&
+    {/* { pathname !== "/korzina/" &&
           pathname !== "/korzina/order" &&
           pathname !== "/korzina/order/order-processed" &&
           pathname !== "/korzina/order/order-success" &&
           <ScrollTop />
-        }
+        } */}
     </div>
   <div>
   </div>
