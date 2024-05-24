@@ -55,72 +55,77 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const city = {
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
-  kol: {id: 1, priceDel: 250, deliverySalePrice: 1700, name: "Колыхалино"},
-  dvyl: {id: 2, priceDel: 250, deliverySalePrice: 1600, name: "Двулучное"},
-  val: {id: 3, priceDel: 400, deliverySalePrice: 1800, name: "Валуйки(центр)"},
-  yraz: {id: 4, priceDel: 100, deliverySalePrice: 500, name: "Уразово"},
-  shel: {id: 5, priceDel: 250, deliverySalePrice: 1600, name: "Шелаево"},
-  gera: {id: 6, priceDel: 350, deliverySalePrice: 1800, name: "Герасимовка"},
-  sobo: {id: 7, priceDel: 200, deliverySalePrice: 1000, name: "Соболёвка"},
-  sved: {id: 8, priceDel: 250, deliverySalePrice: 1500, name: "Шведуновка"},
-  borki: {id: 9, priceDel: 350, deliverySalePrice: 1800, name: "Борки"},
-  znamenk: {id: 10, priceDel: 200, deliverySalePrice: 1000, name: "Знаменка"},
-  loga: {id: 11, priceDel: 400, deliverySalePrice: 2000, name: "Логачевка"},
-  kyky: {id: 12, priceDel: 300, deliverySalePrice: 1800, name: "Кукуевка"},
-  kazink: {id: 14, priceDel: 600, deliverySalePrice: 3300, name: "Казинка"},
-  valsoshgor: {id: 18, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(соц.городок)"},
-  valrazdol: {id: 19, priceDel: 350, deliverySalePrice: 1800, name: "Валуйки(раздолье)"},
+  kol: {id: 1, priceDel: 350, deliverySalePrice: 2000, name: "Колыхалино"},
+  dvyl: {id: 2, priceDel: 250, deliverySalePrice: 1700, name: "Двулучное"},
+  val: {id: 3, priceDel: 500, deliverySalePrice: 2000, name: "Валуйки(центр)"},
+  yraz: {id: 4, priceDel: 150, deliverySalePrice: 800, name: "Уразово"},
+  shel: {id: 5, priceDel: 250, deliverySalePrice: 1700, name: "Шелаево"},
+  gera: {id: 6, priceDel: 450, deliverySalePrice: 2400, name: "Герасимовка"},
+  sobo: {id: 7, priceDel: 200, deliverySalePrice: 1200, name: "Соболёвка"},
+  sved: {id: 8, priceDel: 250, deliverySalePrice: 1700, name: "Шведуновка"},
+  borki: {id: 9, priceDel: 350, deliverySalePrice: 2000, name: "Борки"},
+  znamenk: {id: 10, priceDel: 200, deliverySalePrice: 1200, name: "Знаменка"},
+  loga: {id: 11, priceDel: 400, deliverySalePrice: 2100, name: "Логачевка"},
+  kyky: {id: 12, priceDel: 350, deliverySalePrice: 2000, name: "Кукуевка"},
+  kazink: {id: 14, priceDel: 800, deliverySalePrice: 5100, name: "Казинка"},
+  valsoshgor: {id: 18, priceDel: 450, deliverySalePrice: 2000, name: "Валуйки(соц.городок)"},
+  valrazdol: {id: 19, priceDel: 450, deliverySalePrice: 2000, name: "Валуйки(раздолье)"},
   togobi: {id: 20, priceDel: 200, deliverySalePrice: 1000, name: "Тогобиевка"},
-  novopetr: {id: 21, priceDel: 550, deliverySalePrice: 4000, name: "Новопетровка"},
-  babki: {id: 22, priceDel: 450, deliverySalePrice: 2000, name: "Бабки"},
-  syxarevo: {id: 23, priceDel: 250, deliverySalePrice: 1500, name: "Сухарево"},
+  novopetr: {id: 21, priceDel: 700, deliverySalePrice: 4900, name: "Новопетровка"},
+  babki: {id: 22, priceDel: 600, deliverySalePrice: 4500, name: "Бабки"},
+  syxarevo: {id: 23, priceDel: 250, deliverySalePrice: 1900, name: "Сухарево"},
   tatarievka: {id: 24, priceDel: 200, deliverySalePrice: 1100, name: "Татариевка"},
-  pricten: {id: 25, priceDel: 300, deliverySalePrice: 1600, name: "Пристень"},
-  lobkovka: {id: 26, priceDel: 250, deliverySalePrice: 1300, name: "Лобковка"},
-  yablonovo: {id: 28, priceDel: 600, deliverySalePrice: 2900 , name: "Яблоново"},
-  valsim: {id: 29, priceDel: 400, deliverySalePrice: 2000, name: "Валуйки(Нов.Симоновка)"},
-  valsovhoz: {id: 30, priceDel: 500, deliverySalePrice: 2000, name: "Валуйки(совхоз)"},
-  hrapovo: {id: 32, priceDel: 350, deliverySalePrice: 2000, name: "Храпово"},
+  pricten: {id: 25, priceDel: 400, deliverySalePrice: 2000, name: "Пристень"},
+  lobkovka: {id: 26, priceDel: 250, deliverySalePrice: 1600, name: "Лобковка"},
+  yablonovo: {id: 28, priceDel: 600, deliverySalePrice: 3800 , name: "Яблоново"},
+  valsim: {id: 29, priceDel: 600, deliverySalePrice: 2200, name: "Валуйки(Новая симоновка)"},
+  valsovhoz: {id: 30, priceDel: 600, deliverySalePrice: 2200, name: "Валуйки(совхоз)"},
+  hrapovo: {id: 32, priceDel: 350, deliverySalePrice: 2100, name: "Храпово"},
   zerdevk: {id: 33, priceDel: 200, deliverySalePrice: 1000, name: "Жердевка"},
-  yraevo: {id: 34, priceDel: 400, deliverySalePrice: 2400, name: "Ураево"},
-  romashowka: {id: 36, priceDel: 350, deliverySalePrice: 1900, name: "Ромашовка"},
-  dolgoe: {id: 37, priceDel: 350, deliverySalePrice: 2000, name: "Долгое"},
+  yraevo: {id: 34, priceDel: 550, deliverySalePrice: 2700, name: "Ураево"},
+  romashowka: {id: 36, priceDel: 350, deliverySalePrice: 2000, name: "Ромашовка"},
+  dolgoe: {id: 37, priceDel: 400, deliverySalePrice: 2100, name: "Долгое"},
 };
 
 const cityVLK = {
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
-  val: {id: 3, priceDel: 130, deliverySalePrice: 1100, name: "Валуйки(центр)"},
-  valsim: {id: 29, priceDel: 200, deliverySalePrice: 1300, name: "Валуйки(Нов.Симоновка)"},
-  valsovhoz: {id: 30, priceDel: 130, deliverySalePrice: 1100, name: "Валуйки(совхоз)"},
-  valsoshgor: {id: 18, priceDel: 200, deliverySalePrice: 1500, name: "Валуйки(соц.городок)"},
-  valrazdol: {id: 19, priceDel: 200, deliverySalePrice: 1500, name: "Валуйки(раздолье)"},
-  kol: {id: 1, priceDel: 300, deliverySalePrice: 2000, name: "Колыхалино"},
-  shel: {id: 5, priceDel: 250, deliverySalePrice: 1600, name: "Шелаево"},
-  novorfz: {id: 40, priceDel: 180, deliverySalePrice: 1200, name: "Новоказацкое"},
-  gera: {id: 6, priceDel: 350, deliverySalePrice: 1800, name: "Герасимовка"},
-  sved: {id: 8, priceDel: 250, deliverySalePrice: 1500, name: "Шведуновка"},
-  borki: {id: 9, priceDel: 350, deliverySalePrice: 1800, name: "Борки"},
-  kyky: {id: 12, priceDel: 300, deliverySalePrice: 1800, name: "Кукуевка"},
-  kolos: {id: 13, priceDel: 350, deliverySalePrice: 1800, name: "Колосково"},
-  kazink: {id: 14, priceDel: 600, deliverySalePrice: 3300, name: "Казинка"},
-  soloti: {id: 15, priceDel: 300, deliverySalePrice: 2000, name: "Солоти"},
+  val: {id: 3, priceDel: 150, deliverySalePrice: 1200, name: "Валуйки(центр)"},
+  valsim: {id: 29, priceDel: 150, deliverySalePrice: 1300, name: "Валуйки(новая симоновка)"},
+  valsovhoz: {id: 30, priceDel: 150, deliverySalePrice: 1200, name: "Валуйки(совхоз)"},
+  valsoshgor: {id: 18, priceDel: 250, deliverySalePrice: 1600, name: "Валуйки(соц город)"},
+  valrazdol: {id: 19, priceDel: 200, deliverySalePrice: 1300, name: "Валуйки(раздолье)"},
+  kol: {id: 1, priceDel: 400, deliverySalePrice: 2200, name: "Колыхалино"},
+  shel: {id: 5, priceDel: 400, deliverySalePrice: 2200, name: "Тимоново"},
+  novorfz: {id: 40, priceDel: 200, deliverySalePrice: 1200, name: "Новоказацкое"},
+  gera: {id: 6, priceDel: 200, deliverySalePrice: 1200, name: "Лучка"},
+  sved: {id: 8, priceDel: 850, deliverySalePrice: 5500, name: "Вейделевка"},
+  borki: {id: 9, priceDel: 350, deliverySalePrice: 1600, name: "Кузнецовка"},
+  kyky: {id: 12, priceDel: 350, deliverySalePrice: 2100, name: "Храпово"},
+  kolos: {id: 13, priceDel: 350, deliverySalePrice: 1900, name: "Колосково"},
+  kazink: {id: 14, priceDel: 650, deliverySalePrice: 4300, name: "Казинка"},
+  soloti: {id: 15, priceDel: 350, deliverySalePrice: 2000, name: "Солоти"},
   lavy: {id: 41, priceDel: 350, deliverySalePrice: 2000, name: "Лавы"},
   lychka: {id: 42, priceDel: 180, deliverySalePrice: 1200, name: "Лучка"},
-  rogdestv: {id: 16, priceDel: 250, deliverySalePrice: 1800, name: "Рождественно"},
+  rogdestv: {id: 16, priceDel: 350, deliverySalePrice: 2000, name: "Рождественно"},
   samar: {id: 17, priceDel: 850, deliverySalePrice: 5000, name: "Самарино"},
-  togobi: {id: 20, priceDel: 200, deliverySalePrice: 1000, name: "Тогобиевка"},
-  babki: {id: 22, priceDel: 450, deliverySalePrice: 2000, name: "Бабки"},
+  togobi: {id: 20, priceDel: 500, deliverySalePrice: 2700, name: "Орехово"},
+  babki: {id: 22, priceDel: 500, deliverySalePrice: 2400, name: "Зенино"},
   syxarevo: {id: 23, priceDel: 250, deliverySalePrice: 1500, name: "Сухарево"},
-  pricten: {id: 25, priceDel: 350, deliverySalePrice: 1800, name: "Пристень"},
-  lobkovka: {id: 26, priceDel: 250, deliverySalePrice: 1300, name: "Лобковка"},
-  nasonovo: {id: 27, priceDel: 350, deliverySalePrice: 2000 , name: "Насоново"},
-  yablonovo: {id: 28, priceDel: 600, deliverySalePrice: 2900 , name: "Яблоново"},
+  pricten: {id: 25, priceDel: 400, deliverySalePrice: 2000, name: "Пристень"},
+  lobkovka: {id: 26, priceDel: 450, deliverySalePrice: 2200, name: "Ровное"},
+  nasonovo: {id: 27, priceDel: 400, deliverySalePrice: 2200 , name: "Насоново"},
+  yablonovo: {id: 28, priceDel: 400, deliverySalePrice: 2000 , name: "Яблоново"},
   hrapovo: {id: 32, priceDel: 350, deliverySalePrice: 2000, name: "Храпово"},
-  yraevo: {id: 34, priceDel: 400, deliverySalePrice: 2400, name: "Ураево"},
-  hohlovo: {id: 35, priceDel: 350, deliverySalePrice: 2400, name: "Хохлово"},
-  romashowka: {id: 36, priceDel: 350, deliverySalePrice: 1900, name: "Ромашовка"},
-  dolgoe: {id: 37, priceDel: 350, deliverySalePrice: 2000, name: "Долгое"},
+  yraevo: {id: 34, priceDel: 450, deliverySalePrice: 2400, name: "Тулянка"},
+  hohlovo: {id: 35, priceDel: 400, deliverySalePrice: 2200, name: "Хохлово"},
+  romashowka: {id: 36, priceDel: 400, deliverySalePrice: 2200, name: "Безгодовка"},
+  dolgoe: {id: 37, priceDel: 550, deliverySalePrice: 3700, name: "Ватутино"},
   drugba: {id: 39, priceDel: 250, deliverySalePrice: 1700, name: "Дружба"},
+  posoh: {id: 41, priceDel: 500, deliverySalePrice: 2700, name: "Посохово"},
+  shihka: {id: 42, priceDel: 250, deliverySalePrice: 1600, name: "Шишкин лес"},
+  mandrov: {id: 43, priceDel: 550, deliverySalePrice: 3700, name: "Мандрово"},
+  mandrov: {id: 44, priceDel: 650, deliverySalePrice: 4500, name: "Подгорное"},
+  seliv: {id: 45, priceDel: 550, deliverySalePrice: 3700, name: "Селиваново"},
 };
 
 
@@ -738,7 +743,7 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option value="net">Не выбрано</option>
                                             <option value="yraz">Уразово</option>
                                             <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
-                                            <option value="valsoshgor">Валуйки(соц.городок)</option>
+                                            <option value="valsoshgor">Валуйки(соц.город)</option>
                                             <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
                                             <option value="valsim">Валуйки(нов.симоновка)</option>
                                             <option style={{background: `#f0ecec`}} value="valsovhoz">Валуйки(совхоз)</option>
@@ -779,31 +784,36 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
                                             <option value="soloti">Солоти</option>
                                             <option style={{background: `#f0ecec`}} value="novorfz">Новокозацкое</option>
-                                            <option value="shel">Шелаево</option>
+                                            <option value="shel">Тимоново</option>
                                             <option style={{background: `#f0ecec`}} value="lychka">Лучка</option>
                                             <option value="drugba">Дружба</option>
                                             <option style={{background: `#f0ecec`}} value="lavy">Лавы</option>
                                             <option value="kol">Колыхалино</option>
-                                            <option style={{background: `#f0ecec`}} value="sved">Шведуновка</option>
-                                            <option value="togobi">Тогобиевка</option>
+                                            <option style={{background: `#f0ecec`}} value="sved">Вейделевка</option>
+                                            <option value="togobi">Орехово</option>
                                             <option style={{background: `#f0ecec`}} value="kazink">Казинка</option>
-                                            <option value="babki">Бабки</option>
+                                            <option value="babki">Зенино</option>
                                             <option style={{background: `#f0ecec`}} value="syxarevo">Сухарево</option>
-                                            <option value="pricten">Пристень</option>
-                                            <option style={{background: `#f0ecec`}} value="lobkovka">Лобковка</option>
-                                            <option value="romashowka">Ромашовка</option>
-                                            <option style={{background: `#f0ecec`}} value="dolgoe">Долгое</option>
-                                            <option value="borki">Борки</option>
-                                            <option style={{background: `#f0ecec`}} value="gera">Герасимовка</option>
-                                            <option value="kyky">Кукуевка</option>
+                                            <option value="shihka">Шишкин лес</option>
+                                            <option style={{background: `#f0ecec`}} value="lobkovka">Ровное</option>
+                                            <option value="romashowka">Безгодовка</option>
+                                            <option style={{background: `#f0ecec`}} value="dolgoe">Ватутино</option>
+                                            <option value="borki">Кузнецовка</option>
+                                            <option style={{background: `#f0ecec`}} value="gera">Лучка</option>
+                                            {/* <option value="kyky">Кукуевка</option> */}
                                             <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
                                             <option value="hrapovo">Храпово</option>
                                             <option style={{background: `#f0ecec`}} value="nasonovo">Насоново</option>
                                             <option value="yablonovo">Яблоново</option>
                                             <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
-                                            <option value="yraevo">Ураево</option>
+                                            <option value="yraevo">Тулянка</option>
                                             <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
                                             <option value="hohlovo">Хохлово</option>
+                                            <option style={{background: `#f0ecec`}} value="posoh">Посохово</option>
+                                            <option value="pricten">Пристень</option>
+                                            <option style={{background: `#f0ecec`}} value="porgor">Подгорное</option>
+                                            <option value="pricten">Пристень</option>
+                                            <option style={{background: `#f0ecec`}} value="seliv">Селиваново</option>
                                           </Select> }
                       
     </>

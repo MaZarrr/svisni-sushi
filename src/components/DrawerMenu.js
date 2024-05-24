@@ -121,7 +121,6 @@ function TemporaryDrawer({ adressDelivery, setModalDelivery }) {
     const [] = useLocalStorage()
     // const isLoggedIn = useReactiveVar(isLoggedInVar)p
 
-    console.log("setModalDeliverysetModalDelivery_-setModalDelivery", setModalDelivery);
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
