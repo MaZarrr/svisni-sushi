@@ -90,6 +90,7 @@ const city = {
 const cityVLK = {
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
   val: {id: 3, priceDel: 150, deliverySalePrice: 1200, name: "Валуйки(центр)"},
+  vokzal: {id: 46, priceDel: 150, deliverySalePrice: 1200, name: "Валуйки(вокзал)"},
   valsim: {id: 29, priceDel: 150, deliverySalePrice: 1300, name: "Валуйки(новая симоновка)"},
   valsovhoz: {id: 30, priceDel: 150, deliverySalePrice: 1200, name: "Валуйки(совхоз)"},
   valsoshgor: {id: 18, priceDel: 250, deliverySalePrice: 1600, name: "Валуйки(соц город)"},
@@ -778,7 +779,8 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                                     id: 'outlined-age-native-simple'}}>
                                             <option value="net">Не выбрано</option>
                                             <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
-                                            <option value="valsoshgor">Валуйки(соц.городок)</option>
+                                            <option value="valsoshgor">Валуйки(соц.город)</option>
+                                            <option style={{background: `#f0ecec`}} value="vokzal">Валуйки(вокзал)</option>
                                             <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
                                             <option value="valsim">Валуйки(нов.симоновка)</option>
                                             <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
