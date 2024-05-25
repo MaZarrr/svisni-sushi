@@ -421,8 +421,8 @@ const deliveryVLK = [
     {
         id: 25,
         adress: 'Тулянка',
-        do: 2399,
-        posle: 2400,
+        do: 2899,
+        posle: 2900,
         color: '#5c3c35',
         price: 450,
     },
@@ -461,10 +461,10 @@ const deliveryVLK = [
     {
         id: 30,
         adress: 'Сухарево',
-        do: 1799,
-        posle: 1800,
+        do: 2699,
+        posle: 2700,
         color: '#dc745f',
-        price: 250,
+        price: 500,
     },
     {
         id: 31,
@@ -493,8 +493,8 @@ const deliveryVLK = [
     {
         id: 34,
         adress: 'Посохово',
-        do: 2699,
-        posle: 2700,
+        do: 3199,
+        posle: 3200,
         color: '#5c3c35',
         price: 500,
     },
