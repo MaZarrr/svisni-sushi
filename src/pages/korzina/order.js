@@ -97,6 +97,7 @@ const cityVLK = {
   valrazdol: {id: 19, priceDel: 200, deliverySalePrice: 1300, name: "Валуйки(раздолье)"},
   kol: {id: 1, priceDel: 400, deliverySalePrice: 2200, name: "Колыхалино"},
   shel: {id: 5, priceDel: 400, deliverySalePrice: 2200, name: "Тимоново"},
+  princh: {id: 47, priceDel: 500, deliverySalePrice: 3000, name: "Принцевка"},
   novorfz: {id: 40, priceDel: 200, deliverySalePrice: 1200, name: "Новоказацкое"},
   gera: {id: 6, priceDel: 200, deliverySalePrice: 1200, name: "Лучка"},
   sved: {id: 8, priceDel: 850, deliverySalePrice: 5500, name: "Вейделевка"},
@@ -781,8 +782,9 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
                                             <option value="valsoshgor">Валуйки(соц.город)</option>
                                             <option style={{background: `#f0ecec`}} value="vokzal">Валуйки(вокзал)</option>
-                                            <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
                                             <option value="valsim">Валуйки(нов.симоновка)</option>
+                                            <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
+                                            <option value="valsovhoz">Валуйки(совхоз)</option>
                                             <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
                                             <option value="soloti">Солоти</option>
                                             <option style={{background: `#f0ecec`}} value="novorfz">Новокозацкое</option>
@@ -809,6 +811,7 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option value="yablonovo">Яблоново</option>
                                             <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
                                             <option value="yraevo">Тулянка</option>
+                                            <option value="princh">Принцевка</option>
                                             <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
                                             <option value="hohlovo">Хохлово</option>
                                             <option style={{background: `#f0ecec`}} value="posoh">Посохово</option>

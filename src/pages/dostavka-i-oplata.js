@@ -450,14 +450,14 @@ const deliveryVLK = [
         color: '#04dcd6',
         price: 400,
     },
-    // {
-    //     id: 29,
-    //     adress: 'Бабки',
-    //     do: 1999,
-    //     posle: 2000,
-    //     color: '#416cdc',
-    //     price: 450,
-    // },
+    {
+        id: 29,
+        adress: 'Принцевка',
+        do: 2999,
+        posle: 3000,
+        color: '#416cdc',
+        price: 500,
+    },
     {
         id: 30,
         adress: 'Сухарево',
