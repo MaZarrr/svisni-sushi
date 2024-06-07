@@ -126,7 +126,7 @@ const cityVLK = {
   posoh: {id: 41, priceDel: 500, deliverySalePrice: 3200, name: "Посохово"},
   shihka: {id: 42, priceDel: 250, deliverySalePrice: 1600, name: "Шишкин лес"},
   mandrov: {id: 43, priceDel: 550, deliverySalePrice: 3700, name: "Мандрово"},
-  mandrov: {id: 44, priceDel: 650, deliverySalePrice: 4500, name: "Подгорное"},
+  podgor: {id: 44, priceDel: 650, deliverySalePrice: 4500, name: "Подгорное"},
   seliv: {id: 45, priceDel: 550, deliverySalePrice: 3700, name: "Селиваново"},
 };
 
@@ -811,12 +811,13 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option value="yablonovo">Яблоново</option>
                                             <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
                                             <option value="yraevo">Тулянка</option>
+                                            <option style={{background: `#f0ecec`}} value="mandrov">Мандрово</option>
                                             <option value="princh">Принцевка</option>
                                             <option style={{background: `#f0ecec`}} value="samar">Самарино</option>
                                             <option value="hohlovo">Хохлово</option>
                                             <option style={{background: `#f0ecec`}} value="posoh">Посохово</option>
                                             <option value="pricten">Пристень</option>
-                                            <option style={{background: `#f0ecec`}} value="porgor">Подгорное</option>
+                                            <option style={{background: `#f0ecec`}} value="podgor">Подгорное</option>
                                             <option value="pricten">Пристень</option>
                                             <option style={{background: `#f0ecec`}} value="seliv">Селиваново</option>
                                           </Select> }

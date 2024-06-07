@@ -214,14 +214,9 @@ export default createReducer({
         return {...state, loading: status}
     },
     [userSettings]: (state, data) => {
-        console.log("openModauserSettings_data", data);
-        console.log("openModauserSettings_data1", { ...state.userSettings, adressDelivery: data.adressDelivery});
         return {...state, userSettings: { ...state.userSettings, adressDelivery: data.adressDelivery}}
     },
     [openModalDelivery]: (state, isOpen) => {
-        console.log("openModalDelivery_isOpen", isOpen);
-        console.log("state.userSettings_isOpen", state.userSettings);
-
         return {...state, userSettings: { ...state.userSettings, isOpenDelivery: isOpen }}
     }
 }, initialState)

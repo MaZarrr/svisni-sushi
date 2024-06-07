@@ -22,7 +22,6 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 // import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import { SocialButtons } from './common/SocialButtons';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import useLocalStorage from '../utils/useLocalStorage';
 import { connect } from 'react-redux';
 import { setOpenModalDelivery } from '../reducers/app';
 
@@ -118,8 +117,7 @@ const drawerMenuProps = [
 function TemporaryDrawer({ adressDelivery, setModalDelivery }) {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
-    const [] = useLocalStorage()
-    // const isLoggedIn = useReactiveVar(isLoggedInVar)p
+    // const isLoggedIn = useReactiveVar(isLoggedInVar)
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -148,7 +146,7 @@ function TemporaryDrawer({ adressDelivery, setModalDelivery }) {
                 variant={'subtitle2'}>{adressDelivery === "Валуйки" ? "Валуйки, ул.Толстого 16/2": "Уразово, ул.Красная Площадь 30А"}</Typography>
             </div>
 
-            <NavigationButtons setModalDelivery={setModalDelivery} />
+            <NavigationButtons setModalDelivery={setModalDelivery} adressDelivery={adressDelivery} />
             <SocialButtons  />
 
         </div>
@@ -191,19 +189,19 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(TemporaryDrawer)
 
-const NavigationButtons = ({ setModalDelivery }) => (
+const NavigationButtons = ({ setModalDelivery, adressDelivery }) => (
         <List>
         {
             drawerMenuProps.map(item => {
                 const TheIcon = item.componentIcon
+                const itemThone = adressDelivery === "Валуйки" ? "tel:+79511498899" : item.href
                 return item.isAuth && (
                 <div key={item.id}>
                 <ListItem
-                    {...(item.callPhone && { href: item.href })}
+                    {...(item.callPhone && { href: itemThone })}
                     {...(item.nameCategory === "Сменить пункт заказа" && { onClick: () => setModalDelivery(true) })}
                     component={item.slug !== "" ? Link: "a"}
-                    to={item.slug} 
-                    activeStyle={{ color: "#000", backgroundColor: `#f0ecec`}}>
+                    to={item.slug}>
                 <ListItemIcon>
                     <TheIcon color={"primary"} />
                 </ListItemIcon>
