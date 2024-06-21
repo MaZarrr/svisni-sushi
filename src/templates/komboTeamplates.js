@@ -25,8 +25,8 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
       fieldHotroll,
       fieldFirmenieroll,
       wok,
-      fieldNapitki,
-      fieldZakuski
+      // fieldNapitki,
+      // fieldZakuski
     } = contentfulProductKombo
 
     const { id, name, price, descriptionKombo, weight, count, edit, isLargePizza, slug, image, sostavDefault, pricePizzaLarge } = {
@@ -72,10 +72,10 @@ const KomboTeamplate = ({data: { contentfulProductKombo }}) => {
         'branded-rolls': fieldFirmenieroll,
         'hot-rolls': fieldHotroll,
         wok,
-        napitki: fieldNapitki,
+        // napitki: fieldNapitki,
         pizza: updatePizzas(),
         sostavDefault: updateSostavDefault(),
-        zakyski: fieldZakuski,
+        // zakyski: fieldZakuski,
     }
     return  <KomboItem
                 id={id}
@@ -126,23 +126,6 @@ query QueryKomboItem($slug: String!) {
           fieldDescriptionProduct
           fieldIsEditKombo
           fieldPriceLarge
-          fieldPriceProduct
-          fieldSlug
-          fieldWeight
-          fieldSlugItem
-          image {
-            gatsbyImageData(
-              placeholder: BLURRED, 
-              formats: [WEBP, AUTO]
-              sizes:"(max-width: 360px) 360px, 100vw)"
-            )
-          }
-        }
-        fieldZakuski {
-          id
-          fieldName
-          fieldCount
-          fieldDescriptionProduct
           fieldPriceProduct
           fieldSlug
           fieldWeight
@@ -206,23 +189,6 @@ query QueryKomboItem($slug: String!) {
             )
           }
         }
-        fieldNapitki {
-          id
-          fieldName
-          fieldCount
-          fieldDescriptionProduct
-          fieldPriceProduct
-          fieldSlug
-          fieldWeight
-          fieldSlugItem
-          image {
-            gatsbyImageData(
-              placeholder: BLURRED, 
-              formats: [WEBP, AUTO]
-              sizes:"(max-width: 360px) 360px, 100vw)"
-            )
-          }
-        }
         fieldPizzakombo {
           id
           fieldName
@@ -244,3 +210,41 @@ query QueryKomboItem($slug: String!) {
       }
   }
 `
+
+
+// это относилось к Комбо N1
+// fieldNapitki {
+//   id
+//   fieldName
+//   fieldCount
+//   fieldDescriptionProduct
+//   fieldPriceProduct
+//   fieldSlug
+//   fieldWeight
+//   fieldSlugItem
+//   image {
+//     gatsbyImageData(
+//       placeholder: BLURRED, 
+//       formats: [WEBP, AUTO]
+//       sizes:"(max-width: 360px) 360px, 100vw)"
+//     )
+//   }
+// }
+
+// было строка 141 fieldZakuski {
+//   id
+//   fieldName
+//   fieldCount
+//   fieldDescriptionProduct
+//   fieldPriceProduct
+//   fieldSlug
+//   fieldWeight
+//   fieldSlugItem
+//   image {
+//     gatsbyImageData(
+//       placeholder: BLURRED, 
+//       formats: [WEBP, AUTO]
+//       sizes:"(max-width: 360px) 360px, 100vw)"
+//     )
+//   }
+// }
