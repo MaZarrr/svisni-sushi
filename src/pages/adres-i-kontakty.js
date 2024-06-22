@@ -68,7 +68,7 @@ description="Ждем вас в гости по адресу улица Крас
                     <a itemProp="telephone" href="tel:+79040949222">п.Уразово <span style={{color: 'blue' }}>+7 904 094-92-22</span></a>
                 </Typography>
                 <Typography variant={"subtitle2"}>
-                    <a itemProp="telephone" href="tel:+79511498899">г.Валуйки <span style={{color: 'blue' }}>+7 951 149-88-99</span></a>
+                    <a itemProp="telephone" href="tel:+79524225422">г.Валуйки <span style={{color: 'blue' }}>+7(952)422-54-22</span></a>
                 </Typography>
             </div>
         </div>

@@ -127,7 +127,7 @@ const OrderProcessed = ({ location: { state }, adressDelivery, isOpenDelivery })
                             Перейти на главную
                         </Button>
                         <Button component={"a"}
-                                href={adressDelivery === "Валуйки" ? "tel:+79511498899" : "tel:+79040949222"}
+                                href={adressDelivery === "Валуйки" ? "tel:+79524225422" : "tel:+79040949222"}
                                 variant={"contained"}
                                 size={'small'}
                                 style={{background: 'white', color: '#00000'}}
