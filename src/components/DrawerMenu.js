@@ -194,7 +194,7 @@ const NavigationButtons = ({ setModalDelivery, adressDelivery }) => (
         {
             drawerMenuProps.map(item => {
                 const TheIcon = item.componentIcon
-                const itemThone = adressDelivery === "Валуйки" ? "tel:+79524225422" : item.href
+                const itemThone = adressDelivery === "Валуйки" ? "tel:+79517601736" : item.href
                 return item.isAuth && (
                 <div key={item.id}>
                 <ListItem

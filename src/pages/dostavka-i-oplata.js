@@ -632,7 +632,7 @@ return <>
         график работы: с 10:00 до 22:00, +7(904)094-92-22</strong></Typography>
       <Divider variant='fullWidth' style={{ height: 5, backgroundColor: 'white' }} />
       <Typography variant="body2"><strong>г.Валуйки, ул.Толстого 16/2, 
-        график работы: с 11:00 до 22:00, +7(952)422-54-22</strong></Typography>
+        график работы: с 11:00 до 22:00, +7(951)760-17-36</strong></Typography>
     </Grid>
     <Grid item xs={6} style={{backgroundColor: `#000`, padding: `15px`, color: `white`}}>
       <Typography variant="body1"><strong>Доставка от 60 до 120 мин</strong></Typography>
@@ -652,7 +652,7 @@ return <>
         <li>нажмите кнопку «Сделать заказ»</li>
     </ul>
 <p>Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени<strong>. После оформления заказа вам поступит звонок с подтверждением</strong>. Если у вас нет возможности совершить заказ
-через интернет, звоните нам по телефону <a itemProp="telephone" href="tel:+79040949222"><span style={{color: 'blue' }}>+7(904)094-92-22</span></a> или <a itemProp="telephone" href="tel:+79524225422"><span style={{color: 'blue' }}>+7(952)422-54-22</span></a></p>
+через интернет, звоните нам по телефону <a itemProp="telephone" href="tel:+79040949222"><span style={{color: 'blue' }}>+7(904)094-92-22</span></a> или <a itemProp="telephone" href="tel:+79517601736"><span style={{color: 'blue' }}>+7(951)760-17-36</span></a></p>
 </div>
 </Grid>
 </>;
