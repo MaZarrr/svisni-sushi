@@ -51,9 +51,10 @@ import { loadIndexItems } from "../reducers/app";
                   <Typography textAlign={'center'} className={classes.title}
                               variant={"inherit"}
                               component={"h1"}>
-                    Свисни Суши {adressDelivery === "Валуйки" ? "Валуйки"  : "Уразово"}</Typography>
+                    Свисни Суши</Typography>
                     <Typography textAlign={'center'} width={'100%'} variant='subtitle2'>
                     Доставка суши, роллов, пиццы по <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Валуйскому району</span> с {adressDelivery === "Валуйки" ? "11:00 до 22:00"  : "10:00 до 22:00"}.</Typography>
+                    <span style={{color: '#ff6b1a', textAlign: 'center', width: '100%', textDecoration: "underline"}}> {adressDelivery === "Валуйки" ? " Ваш пункт заказа: Валуйки, ул.Толстого 16/2."  : " Ваш пункт заказа: Уразово, ул.Красная Площадь 30А."}</span>
                 </Hidden>
 
                   {/* Меню категории */}
