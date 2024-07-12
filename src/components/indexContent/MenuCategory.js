@@ -6,12 +6,12 @@ import { StaticImage } from "gatsby-plugin-image";
 import makeStyles from '@mui/styles/makeStyles';
 import IconButton from '@mui/material/IconButton';
 import { hardPink, hardGrey} from "../../theme";
+import Box from '@mui/material/Box';
 import { styled } from "@mui/system";
 
 const TypographyStyle = styled(Typography)(({ theme }) => ({
-    fontWeight: 500,
-    textAlign: `center`,
-    fontSize: `3vmin`
+    fontWeight: 600,
+    fontSize: `4vmin`
 }))
 
 const MenuCategory = () => {
@@ -20,80 +20,78 @@ const MenuCategory = () => {
   return (
     <div className={classes.root}>
       
-      <Grid item xs={6} sm={4} className={classes.itemMenu}>
-          <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
-            <Link style={{ textDecoration: `none`, color: "grey" }} to="/sety/">
-              <div className={classes.cartTitle}>
-                <TypographyStyle className={classes.menuTitle}>Сеты</TypographyStyle>
-              </div>
-              <div style={{ margin: `0 auto` }}>
-                <StaticImage
-                className={classes.image}
-                  loading={"eager"}
-                  placeholder="blurred"
-                  src="../../images/setyMG.jpg"
-                  alt="Наборы, суши сеты" />
-              </div>
-            </Link>
-          </IconButton>
-        </Grid>
+      <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={1} className={classes.root}>
 
-      <Grid item xs={6} sm={4} className={classes.itemMenu}>
+        <Box gridColumn="span 2">
         <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/pizza/">
             <div className={classes.cartTitle}>
               <TypographyStyle className={classes.menuTitle}>Пицца</TypographyStyle>
             </div>
-            <div style={{ margin: `0 auto` }}>
+            <div>
               <StaticImage
                 className={classes.image}
                 loading={"eager"}
                 placeholder="blurred"
-                src="../../images/pizzaG.jpg"
+                src="../../images/pizzaG.png"
                 alt="Пицца" />
             </div>
           </Link>
         </IconButton>
-      </Grid>
-
-      <Grid item xs={6} sm={4} className={classes.itemMenu}>
+        </Box>
+        <Box gridColumn="span 2">
+        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
+            <Link style={{ textDecoration: `none`, color: "grey" }} to="/sety/">
+              <div className={classes.cartTitle}>
+                <TypographyStyle className={classes.menuTitle}>Сеты</TypographyStyle>
+              </div>
+              <div>
+                <StaticImage
+                className={classes.image}
+                  loading={"eager"}
+                  placeholder="blurred"
+                  src="../../images/setyMG.png"
+                  alt="Наборы, суши сеты" />
+              </div>
+            </Link>
+          </IconButton>
+        </Box>
+        <Box gridColumn="span 4">
         <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/kombo/">
             <div className={classes.cartTitle}>
               <TypographyStyle className={classes.menuTitle}>Комбо</TypographyStyle>
             </div>
-            <div style={{ margin: `0 auto` }}>
+            <div>
               <StaticImage
                 className={classes.image}
                 loading={"eager"}
                 placeholder="blurred"
-                src="../../images/komboG.jpg"
+                src="../../images/komboG.png"
                 alt="Комбо наборы" />
             </div>
           </Link>
         </IconButton>
-      </Grid>
-
-      <Grid item xs={6} sm={4} className={classes.itemMenu}>
+        </Box>
+        <Box gridColumn="span 2">
         <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/hot-rolls/">
             <div className={classes.cartTitle}>
               <TypographyStyle className={classes.menuTitle}>Горячие роллы</TypographyStyle>
             </div>
-            <div style={{ margin: `0 auto` }}>
+            <div>
               <StaticImage
                 className={classes.image}
                 loading={"eager"}
                 placeholder="blurred"
-                src="../../images/hotRG.jpg"
+                src="../../images/hotRG.png"
                 alt="Горячие роллы" />
             </div>
           </Link>
         </IconButton>
-      </Grid>
-
-      <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
+        </Box>
+        <Box gridColumn="span 2">
+    <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/branded-rolls/">
             <div className={classes.cartTitle}>
               <TypographyStyle className={classes.menuTitle}>Сложные роллы</TypographyStyle>
@@ -102,15 +100,15 @@ const MenuCategory = () => {
               <StaticImage
                 className={classes.image}
                 placeholder="blurred"
-                src="../../images/slogRG.jpg"
+                src="../../images/slogRG.png"
                 alt="Сложные роллы" />
             </div>
           </Link>
         </IconButton>
-      </Grid>
+    </Box>
 
-      <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
+    <Box gridColumn="span 2">
+    <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/wok/">
             <div className={classes.cartTitle}>
               <TypographyStyle className={classes.menuTitle}>Wok лапша</TypographyStyle>
@@ -119,15 +117,32 @@ const MenuCategory = () => {
               <StaticImage
                 className={classes.image}
                 placeholder="blurred"
-                src="../../images/wokG.jpg"
+                src="../../images/wokG.png"
                 alt="Лапша wok" />
             </div>
           </Link>
         </IconButton>
-      </Grid> 
+    </Box>
 
-      <Grid item xs={6} sm={4} className={classes.itemMenu}>
-        <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
+    <Box gridColumn="span 2">
+    <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
+          <Link style={{ textDecoration: `none`, color: "grey" }} to="/small-rolls/">
+            <div className={classes.cartTitle}>
+              <TypographyStyle className={classes.menuTitle}>Маки роллы</TypographyStyle>
+            </div>
+            <div style={{ margin: `0 auto` }}>
+              <StaticImage
+                className={classes.image}
+                placeholder="blurred"
+                src="../../images/maki.png"
+                alt="Классические, маки роллы" />
+            </div>
+          </Link>
+        </IconButton>
+    </Box>
+
+    <Box gridColumn="span 4">
+    <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
           <Link style={{ textDecoration: `none`, color: "grey" }} to="/zakyski/">
             <div className={classes.cartTitle}>
               <TypographyStyle className={classes.menuTitle}>Закуски</TypographyStyle>
@@ -136,12 +151,52 @@ const MenuCategory = () => {
               <StaticImage
                 className={classes.image}
                 placeholder="blurred"
-                src="../../images/zakuskiS.jpg"
+                src="../../images/zakuskiS.png"
                 alt="Закуски, бургер, мидии, палочки" />
             </div>
           </Link>
         </IconButton>
-      </Grid>
+    </Box>
+
+
+    <Box gridColumn="span 2">
+    <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
+          <Link style={{ textDecoration: `none`, color: "grey" }} to="/salaty/">
+            <div className={classes.cartTitle}>
+              <TypographyStyle className={classes.menuTitle}>Салаты</TypographyStyle>
+            </div>
+            <div style={{ margin: `0 auto` }}>
+              <StaticImage
+                className={classes.image}
+                placeholder="blurred"
+                src="../../images/salat.png"
+                alt="Салаты" />
+            </div>
+          </Link>
+        </IconButton>
+
+    </Box>
+
+    <Box gridColumn="span 2">
+    <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
+          <Link style={{ textDecoration: `none`, color: "grey" }} to="/sushi/">
+            <div className={classes.cartTitle}>
+              <TypographyStyle className={classes.menuTitle}>Суши</TypographyStyle>
+            </div>
+            <div style={{ margin: `0 auto` }}>
+              <StaticImage
+                className={classes.image}
+                placeholder="blurred"
+                src="../../images/sushi.png"
+                alt="Суши" />
+            </div>
+          </Link>
+        </IconButton>
+        </Box>
+    </Box>
+
+
+ 
 
       {/* <Grid item xs={6} sm={4} className={classes.itemMenu}>
         <IconButton style={{ padding: `10px 0 10px 0` }} size="large">
@@ -159,42 +214,45 @@ const MenuCategory = () => {
             </div>
           </Link>
         </IconButton>
-      </Grid> */}
+      // </Grid> */}
 
     </div>
   );
 }
 export default MenuCategory
 
-const useStyleMenu = makeStyles({
+
+const useStyleMenu = makeStyles((theme) => ({
   root: {
-    margin: `0 auto`,
-    display: `flex`,
-    flexWrap: "wrap",
-    alignItems: "baseline",
-    borderRadius: `3px`
+    justifyItems: 'center',
+    padding: '5px',
+    width: '100%',
+    [theme.breakpoints.up('600')]: {
+      gridTemplateColumns: 'repeat(8, 1fr) !important',
+      alignItems: 'center'
+    }
   },
   image: {
     boxShadow: '-3px 6px 8px 0px rgba(34, 60, 80, 0.2)',
-    borderRadius: '50% 20% / 10% 40%',
-    border: `1px solid ${hardGrey}`,
+    borderRadius: '5px',
+    // border: `1px solid ${hardGrey}`,
   },
   itemMenu: {
-    padding: `15px 25px 0 25px`
+    padding: `5px 20px`,
   },
   cartTitle: {
     position: `absolute`,
-    bottom: `4vmin`,
-    color: `#000`,
-    borderRadius: '100px 100px 100px 100px',
-    backgroundColor: "white",
-    border: `1px solid ${hardPink}`,
+    top: `25px`,
+    left: `15px`,
+    color: `white`,
+    borderRadius: '100px',
     fontWeight: "bold",
-    width: "100%",
     zIndex: 1000,
+    // backgroundColor: "white",
+    // border: `1px solid ${hardPink}`,
+    // width: "100%",
   },
-
-});
+}));
 
 // const itemsMenu = [
 //   {

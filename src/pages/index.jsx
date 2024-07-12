@@ -4,25 +4,25 @@ import makeStyles from '@mui/styles/makeStyles';
 import { graphql } from "gatsby";
 import { Hidden, Typography } from "@mui/material";
 // import Carousel from '../components/common/CarouselSvisni';
-import Kombo from '../components/indexContent/combo/index'
+// import Kombo from '../components/indexContent/combo/index'
 import MenuCategory from "../components/indexContent/MenuCategory";
 import RecommendedProducts from "../components/indexContent/recommended-products";
 
 import Seo from "../components/seo";
 import { connect } from "react-redux";
 import { loadIndexItems } from "../reducers/app";
-import ClipLoader from "react-spinners/ClipLoader";
+// import ClipLoader from "react-spinners/ClipLoader";
 
         const IndexPage = ({data: {
             allContentfulIndexRecomended, 
             allContentfulIndexKombo,
           },
-          loadItems,
+          loadItems, adressDelivery = "",
           indexProduct: { optionPage = {}, combo = [], recomendedProduct = [] },
         }) => {
 
         const classes = useStyleIndexPage();
-
+          console.log("adressDelivery2", adressDelivery);
         useEffect(() => {
           loadItems({combo: allContentfulIndexKombo, recomendedProduct: allContentfulIndexRecomended});
         }, [])
@@ -34,72 +34,77 @@ import ClipLoader from "react-spinners/ClipLoader";
                  pathname='/'
             />
             <Hidden smUp>
-            <Typography style={{ marginLeft: '30px', textTransform: 'uppercase'}}
+            <Typography style={{ textAlign: 'center', textTransform: 'uppercase'}}
                               variant={"inherit"}
-                              component={"h1"}>
+                              component={"h1"} >
                     Свисни Суши</Typography>
               <Typography 
               variant={"body2"}
-              style={{textAlign: 'start', padding: '0 20px 0 30px',}}>Доставка суши, роллов, пиццы Валуйскому району с 10:00 до 22:00.
+              style={{textAlign: 'center', padding: '0 6px 0 6px'}}>Доставка суши, роллов, пиццы <br></br> по Валуйскому району с {adressDelivery === "Валуйки" ? "11:00 до 22:00"  : "10:00 до 22:00"}. <br></br>
                   {/* <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Валуйскому району</span> с 10:00 до 22:00.</Typography> */}
-                  <span style={{color: '#ff6b1a', textDecoration: "underline"}}> Уразово и Валуйки</span></Typography>
+                  <span style={{color: '#ff6b1a', textDecoration: "underline"}}> {adressDelivery === "Валуйки" ? " Ваш пункт заказа: Валуйки, ул.Толстого 16/2."  : " Ваш пункт заказа: Уразово, ул.Красная Площадь 30А."}</span></Typography>
               </Hidden>
               {/* <Carousel dataCarousel={allContentfulCarouselSiteImage}/> */}
 
               <Grid container style={{ minWidth: '100%' }} className={classes.root}>
-
                 <Hidden smDown>
-                  <Typography style={{ marginLeft: 30 }} className={classes.title}
+                  <Typography textAlign={'center'} className={classes.title}
                               variant={"inherit"}
                               component={"h1"}>
-                    Свисни Суши в Уразово</Typography>
-                    <Typography style={{marginLeft: 30}}
-                              variant='subtitle2'>
-                    Доставка суши, роллов, пиццы по <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Валуйскому району</span> с 10:00 до 22:00.</Typography>
+                    Свисни Суши {adressDelivery === "Валуйки" ? "Валуйки"  : "Уразово"}</Typography>
+                    <Typography textAlign={'center'} width={'100%'} variant='subtitle2'>
+                    Доставка суши, роллов, пиццы по <span style={{color: '#ff6b1a', textDecoration: "underline"}}>Валуйскому району</span> с {adressDelivery === "Валуйки" ? "11:00 до 22:00"  : "10:00 до 22:00"}.</Typography>
                 </Hidden>
 
-                { combo.length && recomendedProduct.length > 0 ? <>
+                  {/* Меню категории */}
+                  {/* <Hidden smUp> */}
+                  <Grid container style={{ marginBottom: 20 }}>
+                    <MenuCategory />
+                  </Grid>
+                {/* </Hidden> */}
+                {/* { combo.length && recomendedProduct.length > 0 ? <> */}
                 {/* Комбо */}
-                <Kombo title={optionPage.titleCombo} product={combo}/>
+                {/* <Kombo title={optionPage.titleCombo} product={combo}/> */}
                 {/* Новинки/рекомендованые */}
                 <RecommendedProducts title={optionPage.recomendedTitle} product={recomendedProduct} />
                 {/* <Loader></Loader> */}
                 
-                {/* Меню категории */}
-                <Hidden smUp>
-                  <Grid container style={{ marginBottom: 20 }}>
-                  <Typography sx={{
-                    width: '100%',
-                    textAlign: 'center',
-                    // marginLeft: '25px', 
-                    // margin: '0 0 0 50px'
-                    }} variant={'h2'}>Меню</Typography>
-                    <MenuCategory />
-                  </Grid>
-                </Hidden>
-                </> : <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div> }      
+                {/* </> : <div style={{ width: "100%", minHeight: '380px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}><ClipLoader size={150}/></div> }       */}
                             {/* Посты */}
-                            <div>
-                            <Typography sx={{
-                    // margin: '30px 0 30px 20px',
-                  width: '100%',
-                  textAlign: 'center'
-                }} variant={'h2'}></Typography>
+                            {/* <div> */}
+                            {/* <Typography sx={{ */}
+                    {/* // margin: '30px 0 30px 20px', */}
+                  {/* width: '100%', */}
+                  {/* textAlign: 'center' */}
+                {/* }} variant={'h2'}></Typography> */}
                  
-                </div>
+                {/* </div> */}
               </Grid>
 
+              <Typography padding={2} variant={'h3'}>Заказать суши в Валуйках</Typography>
+              <Typography padding={2} variant={'subtitle2'}>
+                Ресторан “Свисни Суши” предлагает своим клиентам самые вкусные суши с доставкой на дом, приготовленные по классическим и адаптированным к европейской аудитории рецептам, а также собственным наработкам наших поваров. Мы ценим время наших клиентов, поэтому вы можете заказать суши с доставкой на дом или в офис.
+                <ul>
+                  В нашем меню более 20 видов суши:
+                  <li>Классические с сырым лососем, тунцом, окунем.</li>
+                  <li>Экзотические с тигровой креветкой, мидиями.</li>
+                  <li> Пикантные с копченым лососем, угрем.</li>
+                </ul>
 
+                В меню также представлены гунканы: с начинкой из красной икры и тобико, а также феликсы, где японский майонез сочетается с рыбой, морепродуктами, угрем. Любители острых блюд могут купить суши с соусом спайси. Популярные начинки — копченая курица, снежный краб, креветки, тунец, мидии, лосось и окунь.
+
+              </Typography>
           </section>
         );
       }
 
 
       const mapDispatchToProps = {
-        loadItems: loadIndexItems
+        loadItems: loadIndexItems,
       };
       const mapStateToProps = (state) => ({
         indexProduct: state.app.indexProduct,
+        adressDelivery: state.app.userSettings?.adressDelivery,
       });
       
       
