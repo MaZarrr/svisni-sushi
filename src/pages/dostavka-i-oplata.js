@@ -249,15 +249,7 @@ const delivery = [
         posle: 2000,
         color: '#82dc4e',
         price: 350,
-    },
-    {
-        id: 36,
-        adress: 'Самарино',
-        do: 6999,
-        posle: 7000,
-        color: '#DA282A',
-        price: 1150,
-    },
+    }
 ];
 
 const deliveryVLK = [
@@ -521,6 +513,14 @@ const deliveryVLK = [
         posle: 5000,
         color: '#DA282A',
         price: 850,
+    },
+    {
+        id: 40,
+        adress: 'Никитовка',
+        do: 5199,
+        posle: 5200,
+        color: '#DA282A',
+        price: 900,
     },
     {
         id: 38,

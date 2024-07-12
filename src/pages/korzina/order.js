@@ -111,6 +111,7 @@ const cityVLK = {
   rogdestv: {id: 16, priceDel: 350, deliverySalePrice: 2000, name: "Рождественно"},
   samar: {id: 17, priceDel: 850, deliverySalePrice: 5000, name: "Самарино"},
   togobi: {id: 20, priceDel: 500, deliverySalePrice: 2700, name: "Орехово"},
+  nikitovka: {id: 48, priceDel: 900, deliverySalePrice: 5200, name: "Никитовка"},
   babki: {id: 22, priceDel: 500, deliverySalePrice: 2400, name: "Зенино"},
   syxarevo: {id: 23, priceDel: 500, deliverySalePrice: 2700, name: "Сухарево"},
   pricten: {id: 25, priceDel: 400, deliverySalePrice: 2000, name: "Пристень"},
@@ -744,11 +745,6 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                                     id: 'outlined-age-native-simple'}}>
                                             <option value="net">Не выбрано</option>
                                             <option value="yraz">Уразово</option>
-                                            <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
-                                            <option value="valsoshgor">Валуйки(соц.город)</option>
-                                            <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
-                                            <option value="valsim">Валуйки(нов.симоновка)</option>
-                                            <option style={{background: `#f0ecec`}} value="valsovhoz">Валуйки(совхоз)</option>
                                             <option value="borki">Борки</option>
                                             <option style={{background: `#f0ecec`}} value="dvyl">Двулучное</option>
                                             <option value="shel">Шелаево</option>
@@ -771,9 +767,14 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option style={{background: `#f0ecec`}} value="loga">Логачевка</option>
                                             <option value="kyky">Кукуевка</option>
                                             <option value="hrapovo">Храпово</option>
+                                            <option value="yraevo">Ураево</option>
+                                            <option style={{background: `#f0ecec`}} value="val">Валуйки(центр)</option>
+                                            <option value="valsoshgor">Валуйки(соц.город)</option>
+                                            <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
+                                            <option value="valsim">Валуйки(нов.симоновка)</option>
+                                            <option style={{background: `#f0ecec`}} value="valsovhoz">Валуйки(совхоз)</option>
                                             <option value="yablonovo">Яблоново</option>
                                             <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
-                                            <option value="yraevo">Ураево</option>
                                         </Select> : <Select ref={selectRef} native value={deliverySity.city}
                                                   onChange={handleChangeCity(cityCompany)}
                                                   inputProps={{ name: 'city',
@@ -804,7 +805,7 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option style={{background: `#f0ecec`}} value="dolgoe">Ватутино</option>
                                             <option value="borki">Кузнецовка</option>
                                             <option style={{background: `#f0ecec`}} value="gera">Лучка</option>
-                                            {/* <option value="kyky">Кукуевка</option> */}
+                                            <option value="nikitovka">Никитовка</option>
                                             <option style={{background: `#f0ecec`}} value="kolos">Колосково</option>
                                             <option value="hrapovo">Храпово</option>
                                             <option style={{background: `#f0ecec`}} value="nasonovo">Насоново</option>
