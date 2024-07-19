@@ -55,7 +55,6 @@ const OrderProcessed = ({ location: { state }, adressDelivery, isOpenDelivery })
             {/* { state !== null && !isLoading ? <> */}
                 <Grid item xs={12}>
                     <Typography style={{textAlign: `center`,}} variant={'h4'}><span role="img" aria-label="accessible-emoji" >🎉</span>Ваш заказ успешно оформлен
-                    <span role="img" aria-label="accessible-emoji">🎉</span>
                     </Typography>
                     <Typography variant={"h6"} style={{textAlign: `center`, padding: 7, fontSize: 13}}>заказ оформлен и принят в обработку</Typography>
                 </Grid>
@@ -103,11 +102,11 @@ const OrderProcessed = ({ location: { state }, adressDelivery, isOpenDelivery })
                         </div> */}
 
                         <div style={{padding: `8px 0` }}>
-                            <Typography variant='subtitle2' style={{textAlign: `left`}}>Оператор с вами свяжется для подтверждения заказа.</Typography>
+                            <Typography variant='subtitle2' style={{textAlign: `left`, fontWeight: 'bold'}}>Оператор с вами свяжется для подтверждения заказа в течении 5 - 30 мин.</Typography>
                         </div>
                         <div style={{padding: `8px 0`}}>
                             <Typography style={{textAlign: `left`}} variant='subtitle2'>
-                                {adressDelivery === "Валуйки" ? "г.Валуйки, ул.Толстого 16/2. График работы с 11:00 до 22:00 без перерывов и выходных." : "п.Уразово, ул.Красная Площадь 30А. График работы с 10:00 до 22:00 без перерывов и выходных."}</Typography>
+                              Ваш пункт заказа: {adressDelivery === "Валуйки" ? " г.Валуйки, ул.Толстого 16/2. График работы с 11:00 до 22:00 без перерывов и выходных." : " п.Уразово, ул.Красная Площадь 30А. График работы с 10:00 до 22:00 без перерывов и выходных."}</Typography>
                         </div>
 
                     </Grid>
