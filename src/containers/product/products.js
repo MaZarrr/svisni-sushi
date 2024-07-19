@@ -90,7 +90,11 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
         <HeadSection titleTXT={pageData.fieldTitle} path={pageData.fieldSlug} isFilter={true} 
         categoryNames={categoryList()} 
         /> 
-        <Grid container justifyContent="center" itemScope itemType="http://schema.org/ItemList">
+        <Grid sx={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: 1
+        }}  itemScope itemType="http://schema.org/ItemList">
             { visibleItems && visibleItems.length > 0 ? <>
             <MenuList titleCategory="" 
                     slugCategogy={`/${pageData.fieldSlug}`} 
