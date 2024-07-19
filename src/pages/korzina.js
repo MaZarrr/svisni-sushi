@@ -118,12 +118,14 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
     const saleRoll = {
       id: uniqid(),
       name: node.fieldName,
-      price: 99,
-      total: 99,
+      price: 199,
+      total: 199,
+      description: 'АКЦИЯ "Филадельфия one" за 199₽',
       image: node.image.gatsbyImageData,
       count: 1
     }
-    if(findJaranDish() > 889 && !disabled()) {
+    if(findJaranDish() >= 990 && !disabled()) {
+      console.log("node fila", node);
       return (
         <Grid item xs={12} sm={7} style={{padding: `10px 0 5px 0`}}>
             <div style={{display: `flex`, borderBottom: `1px solid lightgrey`, paddingBottom: 10}}>
@@ -131,14 +133,14 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
                 <GatsbyImage style={{maxWidth: 158}} image={saleRoll.image} alt={saleRoll.name}/>
               </div>
               <div style={{padding: `8px 0 8px 14px`, width: `100%`}}>
-                <Typography variant="subtitle1" style={{fontSize: 16}}>
-                  Акция {saleRoll.name}
+                <Typography variant="subtitle1" style={{fontSize: 14}}>
+                  <span style={{ background: 'red', display: 'block', color: 'white', padding: 3}}>Акция</span><span style={{fontSize: 16}}>{saleRoll.name}</span>
                 </Typography>
-                <Typography variant="subtitle1">
-                  за 99₽
+                <Typography variant="body1">
+                  за 199₽  <Typography sx={{ textDecoration: 'line-through', display: 'inline' }} variant='body1'>{node.fieldPriceProduct}</Typography>₽
                 </Typography>
-
-                <Button variant={"contained"} color={"secondary"}
+                <Typography variant="caption"></Typography>
+                <Button variant={"contained"} color='info'
                         size={"small"}
                         disabled={false}
                         onClick={() => addedSaleRoll(saleRoll)}>
@@ -149,7 +151,7 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
         </Grid>
 
       )
-    } else if (findJaranDish() < 890 && disabled()) {
+    } else if (findJaranDish() < 990 && disabled()) {
       deleteFilaSale(node.id)
     }
   };
@@ -197,7 +199,7 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
                                 </Typography>
 
                                 <div>
-                                  {price !== 99 && priceDef !== 0 ?
+                                  {price !== 199 && priceDef !== 0 ?
                                     <>
                                       <IconButton
                                         aria-label="plus"
@@ -216,16 +218,16 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
                                       </IconButton>
                                     </> : <Typography variant="subtitle2">{textPizza}</Typography> }
 
-                                  { price > 98 &&
+                                  { price > 198 &&
                                   <IconButton
                                     aria-label="remove"
                                     component="span"
                                     sx={{
                                       '@media screen and (max-width: 330px)': {
-                                        display: price === 99  ? 'block' : 'none',
+                                        display: price === 199  ? 'block' : 'none',
                                       }
                                     }}
-                                    onClick={price !== 99 ? ()=> onDelete( { id, price, product: items } )
+                                    onClick={price !== 199 ? ()=> onDelete( { id, price, product: items } )
                                       : () => deleteFilaSale(id)}
                                     size="large">
                                     <DeleteOutlineOutlinedIcon/>
@@ -248,7 +250,7 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
                                   }
                                 </div>
                                 <Typography style={{fontSize: 14, fontWeight: 600, position: `absolute`, top: 15, right: 10}}
-                                            variant="subtitle2">{price === 99 ? null : `${total}₽`}</Typography>
+                                            variant="subtitle2">{price === 199 ? null : `${total}₽`}</Typography>
                               </div>
                             </div>
 

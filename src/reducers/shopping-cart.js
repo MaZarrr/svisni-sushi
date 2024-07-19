@@ -472,7 +472,7 @@ export default createReducer({
         const rollSaleIndex = state.cartItems.findIndex((el) => el.id === id)
         return {
             ...state,
-            orderTotal: state.orderTotal - 99,
+            orderTotal: state.orderTotal - 199,
             cartItems: R.remove(rollSaleIndex, 1, state.cartItems)
         }
     },
