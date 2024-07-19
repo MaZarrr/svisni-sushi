@@ -11,7 +11,7 @@ export const CardStyle = styled(Card)(({ theme }) => ({
         maxWidth: `300px`,
     },
     [theme.breakpoints.down('1281')]: {
-        maxWidth: `250px`,
+        maxWidth: `300px`,
     },
     [theme.breakpoints.down('600')]: {
         maxWidth: `300px`,
@@ -23,6 +23,6 @@ export const CardStyle = styled(Card)(({ theme }) => ({
         maxWidth: `270px`,
     },
     [theme.breakpoints.down('340')]: {
-        maxWidth: `250px`,
+        maxWidth: `300px`,
     },
 }))
