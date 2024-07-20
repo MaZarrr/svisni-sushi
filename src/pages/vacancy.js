@@ -77,7 +77,6 @@ const opyt_value = {
 
 const Vacancy = () => {
     const [expanded, setExpanded] = React.useState({nameCart: false});
-    const [state, setState] = React.useState({status: ""});
     const [nameUser, setNameUser] = React.useState("");
     const [open, setOpen] = React.useState(false);
     const [valueStorage, setValue] = useLocalStorage('vacancyTimer');
@@ -116,6 +115,14 @@ const Vacancy = () => {
         }
       }, [])
 
+    const checkPushWork = () => {
+        if(valueStorage && new Date().getTime() < valueStorage.expires) {
+            setSeverityText('Вы уже отправляли отклик на вакансию. Попробуйте позже.');
+            setSeverityType('warning');
+            handleClick();
+        }
+    }
+
     const submitForm = async (ev) => {
         ev.preventDefault();
         try {
@@ -140,18 +147,24 @@ const Vacancy = () => {
                 handleClick();
                 return
             }
-          
-            setState('SUCCESS');
             
-            // если срок 14 дней истек, можно еще отпрвить заявку
-            let date = new Date().setMinutes(new Date().getMinutes() + 1);
-            // setValue({ expires: date, isSend: true })
+            // let date2 = new Date().setMinutes(new Date().getMinutes() + 1);
+            // Получение текущей даты
+            // // если срок 10 дней истек, можно еще отпрвить заявку
+            let currentDate = new Date();
+            // Добавление 10 дней к текущей дате
+            let futureDate = new Date(currentDate.getTime() + 10 * 24 * 60 * 60 * 1000);
+            // Получение времени в миллисекундах
+            let millisecondsSinceEpoch = futureDate.getTime();
+
+            setValue({ expires: millisecondsSinceEpoch, isSend: true, status: 'SUCCESS' })
                         
             axios({
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json;charset=utf-8' },
                 data: { 
-                    name, phone, 
+                    name, 
+                    phone: 'Телефон: ' + '+7'+ phone.slice(1), 
                     vacancy: vacancy_value[radioButtonsVacancy], 
                     adress: adress_value[radioButtonsAdress], 
                     med: med_value[radioButtonsMed], 
@@ -229,7 +242,7 @@ const Vacancy = () => {
                                             Описание вакансии
                                         </Typography> */}
                                     </CardContent>
-                                    <CardActions>
+                                    <CardActions onClick={checkPushWork}>
                                         <a href='#form'>
                                             <Button size="large" variant='contained'>Откликнуться</Button>
                                         </a>
@@ -285,7 +298,7 @@ const Vacancy = () => {
                                             <li>г.Валуйки, ул.Толстого 16/2</li>
                                         </ul>
                                     </CardContent>
-                                    <CardActions>
+                                    <CardActions onClick={checkPushWork}>
                                     <a href='#form'>
                                             <Button size="large" variant='contained'>Откликнуться</Button>
                                         </a>
@@ -337,7 +350,7 @@ const Vacancy = () => {
                                             <li>г.Валуйки, ул.Толстого 16/2</li>
                                         </ul>
                                     </CardContent>
-                                    <CardActions>
+                                    <CardActions onClick={checkPushWork}>
                                     <a href='#form'>
                                             <Button size="large" variant='contained'>Откликнуться</Button>
                                         </a>
@@ -391,7 +404,7 @@ const Vacancy = () => {
                                             <li>г.Валуйки, ул.Толстого 16/2</li>
                                         </ul>
                                     </CardContent>
-                                    <CardActions>
+                                    <CardActions onClick={checkPushWork}>
                                     <a href='#form'>
                                             <Button size="large" variant='contained'>Откликнуться</Button>
                                     </a>
@@ -401,111 +414,117 @@ const Vacancy = () => {
 
                             {/* =============== */}
                             {/* =============== */}
-
-                            <form id='form' onSubmit={submitForm}>
-                                            <Typography variant="h2" sx={{ marginBottom: 2, marginTop: 2 }}>
-                                                Отклик на вакансию:
-                                            </Typography>
-                                            
-                                            <TextField
-                                                id="filled-name"
-                                                error={!validateUserName() && nameUser.length > 2}
-                                                label="Ваше имя"
-                                                required
-                                                fullWidth
-                                                inputProps={{ maxLength: 30, minLength: 3 }}
-                                                variant="filled"
-                                                onChange={(e) => {setNameUser(e.target.value)}}
-                                                color="primary"
-                                                name="name" 
-                                                helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
-                                            <TextField
-                                                id="filled-phone"
-                                                label="Телефон"
-                                                required
-                                                fullWidth
-                                                inputProps={{minLength: 15}}
-                                                InputProps={{inputComponent: TextMaskCustom, minLength: 15}}
-                                                variant="filled"
-                                                color="primary"
-                                                name="phone"
-                                                onChange={(e) => {setPhone(e.target.value)}}
-                                                style={{ marginTop: 10 }} 
-                                                value={phone}
-                                                />
-                                            <FormControl sx={{ marginTop: 3 }}>
-                                                <FormLabel id="vacancy-radio-group">Какая вакансия интересует?</FormLabel>
-                                                <RadioGroup
-                                                    aria-labelledby="vacancy-radio-group"
-                                                    defaultValue="other"
-                                                    name="radio-buttons-vacancy"
-                                                >
-                                                    <FormControlLabel value="delivery" control={<Radio />} label="Курьер" />
-                                                    <FormControlLabel value="operator" control={<Radio />} label="Оператор" />
-                                                    <FormControlLabel value="cook" control={<Radio />} label="Повар" />
-                                                    <FormControlLabel value="cookhelp" control={<Radio />} label="Помощник повара" />
-                                                    <FormControlLabel value="other" control={<Radio />} label="Любая" />
-                                                </RadioGroup>
-                                                </FormControl>
-
-                                                <FormControl sx={{ marginTop: 3 }}>
-                                                <FormLabel id="opyt-radio-group">Имеется ли у вас опыт работы?</FormLabel>
-                                                <RadioGroup
-                                                    aria-labelledby="opyt-radio-group"
-                                                    defaultValue="da"
-                                                    name="radio-buttons-opyt"
-                                                >
-                                                    <FormControlLabel value="da" control={<Radio />} label="Да" />
-                                                    <FormControlLabel value="net" control={<Radio />} label="Нет" />
-                                                </RadioGroup>
-                                                </FormControl>
+                            <span id='form'></span>
+                            {valueStorage && valueStorage.status === "SUCCESS" ?
+                                            <h4 style={{ paddingTop: 15 }}>Благодарим вас за отклик на нашу вакансию.<br></br>
+                                            <br></br>
+                                            Ваш отклик будет сохранен, и мы свяжемся с вами, если есть свободная вакансия или если появится подходящая вакансия в будущем.<br></br>
+                                            <br></br>
+                                            Спасибо за проявленный интерес к нашей компании.<br></br> 
+                                            С уважением, Свисни Суши.</h4> : <>
+                                                <form onSubmit={submitForm}>
+                                                <Typography variant="h2" sx={{ marginBottom: 2, marginTop: 2 }}>
+                                                    Отклик на вакансию:
+                                                </Typography>
                                                 
+                                                <TextField
+                                                    id="filled-name"
+                                                    error={!validateUserName() && nameUser.length > 2}
+                                                    label="Ваше имя"
+                                                    required
+                                                    fullWidth
+                                                    inputProps={{ maxLength: 30, minLength: 3 }}
+                                                    variant="filled"
+                                                    onChange={(e) => {setNameUser(e.target.value)}}
+                                                    color="primary"
+                                                    name="name" 
+                                                    helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
+                                                <TextField
+                                                    id="filled-phone"
+                                                    label="Телефон"
+                                                    required
+                                                    fullWidth
+                                                    inputProps={{minLength: 15}}
+                                                    InputProps={{inputComponent: TextMaskCustom, minLength: 15}}
+                                                    variant="filled"
+                                                    color="primary"
+                                                    name="phone"
+                                                    onChange={(e) => {setPhone(e.target.value)}}
+                                                    style={{ marginTop: 10 }} 
+                                                    value={phone}
+                                                    />
                                                 <FormControl sx={{ marginTop: 3 }}>
-                                                <FormLabel id="adress-radio-group">Где вы хотели бы работать?</FormLabel>
-                                                <RadioGroup
-                                                    aria-labelledby="adress-radio-group"
-                                                    defaultValue="valuiki"
-                                                    name="radio-buttons-adress"
-                                                >
-                                                    <FormControlLabel value="valuiki" control={<Radio />} label="В Валуйках" />
-                                                    <FormControlLabel value="urazovo" control={<Radio />} label="В Уразово" />
-                                                </RadioGroup>
-                                                </FormControl>
-                                                <FormControl sx={{ marginTop: 3 }}>
-                                                <FormLabel id="med-radio-group">Имеется ли у вас действующая медкнижка?</FormLabel>
-                                                <RadioGroup
-                                                    aria-labelledby="med-radio-group"
-                                                    defaultValue="da"
-                                                    name="radio-buttons-med"
-                                                >
-                                                    <FormControlLabel value="da" control={<Radio />} label="Да" />
-                                                    <FormControlLabel value="net" control={<Radio />} label="Нет" />
-                                                </RadioGroup>
-                                                </FormControl>
-                                                <FormControl sx={{ marginTop: 3 }}>
-                                                <FormLabel id="week-radio-group">Сколько вам лет?</FormLabel>
-                                                <RadioGroup
-                                                    aria-labelledby="week-radio-group"
-                                                    defaultValue="18-25"
-                                                    name="radio-buttons-week"
-                                                >
-                                                    <FormControlLabel value="18-25" control={<Radio />} label="18-25" />
-                                                    <FormControlLabel value="26-35" control={<Radio />} label="26-35" />
-                                                    <FormControlLabel value="36-45" control={<Radio />} label="36-45" />
-                                                    <FormControlLabel value="46-65" control={<Radio />} label="46-65" />
-                                                </RadioGroup>
-                                                </FormControl>
-                                            {state.status === "SUCCESS" ?
-                                            <h3 style={{ paddingTop: 15 }}>Спасибо! В ближайшее время с вами
-                                                свяжутся.</h3> : <Button
-                                                 sx={{ marginTop: 3, marginBottom: 3, display: 'block' }}
-                                                variant="contained"
-                                                color="info"
-                                                type="submit">
-                                                Откликнуться
-                                            </Button>}
-                                            {state.status === "ERROR" && <h3>Ooops! Произошла ошибка.</h3>}
-                                        </form>
+                                                    <FormLabel id="vacancy-radio-group">Какая вакансия интересует?</FormLabel>
+                                                    <RadioGroup
+                                                        aria-labelledby="vacancy-radio-group"
+                                                        defaultValue="other"
+                                                        name="radio-buttons-vacancy"
+                                                    >
+                                                        <FormControlLabel value="delivery" control={<Radio />} label="Курьер" />
+                                                        <FormControlLabel value="operator" control={<Radio />} label="Оператор" />
+                                                        <FormControlLabel value="cook" control={<Radio />} label="Повар" />
+                                                        <FormControlLabel value="cookhelp" control={<Radio />} label="Помощник повара" />
+                                                        <FormControlLabel value="other" control={<Radio />} label="Любая" />
+                                                    </RadioGroup>
+                                                    </FormControl>
+    
+                                                    <FormControl sx={{ marginTop: 3 }}>
+                                                    <FormLabel id="opyt-radio-group">Имеется ли у вас опыт работы?</FormLabel>
+                                                    <RadioGroup
+                                                        aria-labelledby="opyt-radio-group"
+                                                        defaultValue="da"
+                                                        name="radio-buttons-opyt"
+                                                    >
+                                                        <FormControlLabel value="da" control={<Radio />} label="Да" />
+                                                        <FormControlLabel value="net" control={<Radio />} label="Нет" />
+                                                    </RadioGroup>
+                                                    </FormControl>
+                                                    
+                                                    <FormControl sx={{ marginTop: 3 }}>
+                                                    <FormLabel id="adress-radio-group">Где вы хотели бы работать?</FormLabel>
+                                                    <RadioGroup
+                                                        aria-labelledby="adress-radio-group"
+                                                        defaultValue="valuiki"
+                                                        name="radio-buttons-adress"
+                                                    >
+                                                        <FormControlLabel value="valuiki" control={<Radio />} label="В Валуйках" />
+                                                        <FormControlLabel value="urazovo" control={<Radio />} label="В Уразово" />
+                                                    </RadioGroup>
+                                                    </FormControl>
+                                                    <FormControl sx={{ marginTop: 3 }}>
+                                                    <FormLabel id="med-radio-group">Имеется ли у вас действующая медкнижка?</FormLabel>
+                                                    <RadioGroup
+                                                        aria-labelledby="med-radio-group"
+                                                        defaultValue="da"
+                                                        name="radio-buttons-med"
+                                                    >
+                                                        <FormControlLabel value="da" control={<Radio />} label="Да" />
+                                                        <FormControlLabel value="net" control={<Radio />} label="Нет" />
+                                                    </RadioGroup>
+                                                    </FormControl>
+                                                    <FormControl sx={{ marginTop: 3 }}>
+                                                    <FormLabel id="week-radio-group">Сколько вам лет?</FormLabel>
+                                                    <RadioGroup
+                                                        aria-labelledby="week-radio-group"
+                                                        defaultValue="18-25"
+                                                        name="radio-buttons-week"
+                                                    >
+                                                        <FormControlLabel value="18-25" control={<Radio />} label="18-25" />
+                                                        <FormControlLabel value="26-35" control={<Radio />} label="26-35" />
+                                                        <FormControlLabel value="36-45" control={<Radio />} label="36-45" />
+                                                        <FormControlLabel value="46-65" control={<Radio />} label="46-65" />
+                                                    </RadioGroup>
+                                                    </FormControl>
+                                                    <Button
+                                                        sx={{ marginTop: 3, marginBottom: 3, display: 'block' }}
+                                                                variant="contained"
+                                                                color="info"
+                                                                type="submit">
+                                                    Откликнуться
+                                                </Button>
+                                                </form>
+                                            </>}
+                                            {/* {valueStorage && valueStorage.status === "ERROR" && <h3>Ooops! Произошла ошибка.</h3>} */}
 
                                 {/* <SectionInfo>
                                 <Typography 
