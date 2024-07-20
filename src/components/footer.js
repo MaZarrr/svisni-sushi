@@ -118,7 +118,7 @@ return (
         {/* <Link to="/sale"><Typography variant={"body1"} style={{color: "white"}}>Акции</Typography></Link> */}
         <Link to="/dostavka-i-oplata"><Typography variant={"body1"} style={{color: "white"}}>Доставка и оплата</Typography></Link>
         <Link to="/adres-i-kontakty"><Typography variant={"body1"} style={{color: "white"}}>Адрес и контакты</Typography></Link>
-        {/* <Link to="/vacancy"><Typography variant={"body1"} style={{color: "white"}}>Вакансии</Typography></Link> */}
+        <Link to="/vacancy"><Typography variant={"body1"} style={{color: "white"}}>Вакансии</Typography></Link>
     </li>
   </div>
   
