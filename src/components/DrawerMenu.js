@@ -61,13 +61,6 @@ const drawerMenuProps = [
         isAuth: true
     },
     {
-        id: 4,
-        slug: "/o-nas",
-        nameCategory: "Новости",
-        componentIcon: NewspaperIcon,
-        isAuth: true
-    },
-    {
         id: 9,
         slug: "/",
         nameCategory: "Меню",
@@ -93,6 +86,13 @@ const drawerMenuProps = [
         slug: "/vacancy",
         nameCategory: "Вакансии",
         componentIcon: WorkIcon,
+        isAuth: true
+    },
+    {
+        id: 4,
+        slug: "/o-nas",
+        nameCategory: "Новости",
+        componentIcon: NewspaperIcon,
         isAuth: true
     },
     {
