@@ -53,7 +53,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const city = {
+const city = {  
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
   kol: {id: 1, priceDel: 350, deliverySalePrice: 2000, name: "Колыхалино"},
   dvyl: {id: 2, priceDel: 250, deliverySalePrice: 1700, name: "Двулучное"},
@@ -232,7 +232,9 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
             descriptionWok
           }
         }),
-        delivery: deliveru === "Самовывоз" ? deliveru + userDeliveryAdressSetting : {...deliveru, adress: deliveru.adress + " (доставка " + userDeliveryAdressSetting+")"},
+        delivery: deliveru === "Самовывоз" ? deliveru + userDeliveryAdressSetting : {...deliveru, adress: deliveru.adress},
+        // delivery: deliveru === "Самовывоз" ? deliveru + userDeliveryAdressSetting : {...deliveru, adress: deliveru.adress + " (доставка " + userDeliveryAdressSetting+")"},
+        orderPoint: adressDelivery,
         deliveryTime: deliveryTimeOrder,
         totalPrice: `${totalPriceOrder()} ${variantPay === "cash" ? "Нал" : "Он-й"}`,
         sdacha: variantPay === "cash" ? ev.target.sdacha.value === "" ? "Без сдачи" : `Сдача с ${ev.target.sdacha.value} руб` : "Онлайн оплата",
@@ -639,12 +641,12 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
                                       <MenuItem value="Без сдачи">
                                         <em>Без сдачи</em>
                                       </MenuItem>
-                                      <MenuItem value={700}>С 700 руб</MenuItem>
                                       <MenuItem value={1000}>С 1000 руб</MenuItem>
                                       <MenuItem value={1500}>С 1500 руб</MenuItem>
                                       <MenuItem value={2000}>С 2000 руб</MenuItem>
                                       <MenuItem value={3000}>С 3000 руб</MenuItem>
                                       <MenuItem value={5000}>С 5000 руб</MenuItem>
+                                      <MenuItem value={10000}>С 10000 руб</MenuItem>
                                     </Select>
                                   </Grid>
                                   }
