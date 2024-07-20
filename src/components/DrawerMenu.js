@@ -12,13 +12,14 @@ import {Link} from "gatsby";
 import RoomIcon from "@mui/icons-material/Room";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import Divider from '@mui/material/Divider';
-// import WorkIcon from '@mui/icons-material/Work';
+import WorkIcon from '@mui/icons-material/Work';
 import { SwipeableDrawer, Typography } from "@mui/material"
 import { StaticImage } from "gatsby-plugin-image";
 import EventNoteTwoToneIcon from '@mui/icons-material/EventNoteTwoTone';
 import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
 import CardGiftcardTwoToneIcon from '@mui/icons-material/CardGiftcardTwoTone';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 // import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import { SocialButtons } from './common/SocialButtons';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
@@ -67,6 +68,13 @@ const drawerMenuProps = [
         isAuth: true
     },
     {
+        id: 9,
+        slug: "/",
+        nameCategory: "Меню",
+        componentIcon: MenuBookOutlinedIcon,
+        isAuth: true,
+    },
+    {
         id: 5,
         slug: "/adres-i-kontakty",
         nameCategory: "Адрес",
@@ -80,13 +88,13 @@ const drawerMenuProps = [
         componentIcon: LocalTaxiIcon,
         isAuth: true
     },
-    // {
-    //     id: 6,
-    //     slug: "/vacancy",
-    //     nameCategory: "Вакансии",
-    //     componentIcon: WorkIcon,
-    //     isAuth: true
-    // },
+    {
+        id: 10,
+        slug: "/vacancy",
+        nameCategory: "Вакансии",
+        componentIcon: WorkIcon,
+        isAuth: true
+    },
     {
         id: 7,
         slug: "",
