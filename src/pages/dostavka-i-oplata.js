@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import Seo from "../components/seo"
 import Avatar from '@mui/material/Avatar';
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";
 import InputBase from '@mui/material/InputBase';
@@ -10,6 +10,8 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
 import HeadSection from "../components/HeadSection"
 import { connect } from 'react-redux';
+import useLocalStorage from '../utils/useLocalStorage'
+import { setOpenModalDelivery } from "../reducers/app";
 
 const delivery = [
     {
@@ -541,20 +543,27 @@ const deliveryVLK = [
 ];
 
 
-const Dostavkaioplata = ({ adressDelivery = 'Валуйки' }) => {
-    const [value, setValue] = React.useState("");
+const Dostavkaioplata = ({ adressDelivery = 'Валуйки', setModalDelivery }) => {
+    const [value, setDeliveryValue] = React.useState(""); // handleChange input
     const [deliveryState, setDeliveryState] = React.useState([]);
+    const [valueStorage, setValue] = useLocalStorage('userSettings')
+
+    const switchAdress = () => {
+        setModalDelivery(true);
+        setValue({...valueStorage, isOpenDelivery: true });
+        setDeliveryValue('');
+    }
     
     const handleChange = (e) => {
         const sity = deliveryState.filter(el => {
             return el.adress.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
             });
-            if(e.target.value === "" || e.target.value.length <=1) {
+            if(e.target.value === "" || e.target.value.length <=2) {
                 setDeliveryState(adressDelivery === "Уразово" ? delivery : deliveryVLK)
             } else {
                 setDeliveryState(sity)
             }
-            setValue(e.target.value);
+            setDeliveryValue(e.target.value);
     };
 
     useEffect(() => {
@@ -576,7 +585,7 @@ return <>
 <Divider/>
 <Grid container>
 <Grid item xs={12} sm={6}>
-    <Paper style={{padding: '6px 0', paddingLeft: 10, margin: `5px 0`, display: 'flex'}}>
+    <Paper style={{padding: '6px 0', paddingLeft: 10, margin: `5px`, display: 'flex'}}>
     <IconButton style={{padding: `5px 10px 5px 8px`}} aria-label="menu" size="large">
         <SearchIcon />
     </IconButton>
@@ -589,7 +598,13 @@ return <>
         onChange={handleChange}
     />
     </Paper>
-    <div style={{overflowY: `scroll`, paddingLeft: 20, height: `450px`}}>
+    <div style={{overflowY: `scroll`, padding: '0 15px', height: `450px`}}>
+    
+    {deliveryState.length === 0 ? (<>
+        <Typography variant="body1" textAlign={"center"}>Нечего не найдено. Попробуйте сменить пункт заказа.</Typography>
+        <Button sx={{ width: '100%', marginTop: 1 }} variant="contained" color="info" onClick={switchAdress}>Сменить</Button>
+    </>
+    ) : ( <>
     {deliveryState.map((el) => (
     <div key={el.id}>
         <Avatar style={{backgroundColor: `${el.color}`}}>{el.id}</Avatar> 
@@ -597,26 +612,32 @@ return <>
             Доставка {el.adress}
         </Typography>
         <Grid container >
-        <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-        <Typography variant="subtitle2">до {el.do} ₽</Typography>
-        </Grid>
-        <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-        <Typography variant="subtitle2">{el.price} ₽</Typography>
-        </Grid>
+            <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
+                <Typography variant="subtitle2">до {el.do} ₽</Typography>
+            </Grid>
+            <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
+                <Typography variant="subtitle2">{el.price} ₽</Typography>
+            </Grid>
 
-        <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-        <Typography variant="subtitle2">от {el.posle} ₽</Typography>
-        </Grid>
-        <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
-        <Typography variant="subtitle2">Бесплатно</Typography>
-        </Grid>
+            <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
+                <Typography variant="subtitle2">от {el.posle} ₽</Typography>
+            </Grid>
+            <Grid item xs={6} style={{padding: `4px 4px 4px 0`}}>
+                <Typography variant="subtitle2">Бесплатно</Typography>
+            </Grid>
         </Grid>
         <hr></hr>
     </div>
-))}
+    ))}
+    </>
+    )
+    }
+
+
 </div>
     <Divider/>
  </Grid>
+
     <Grid item xs={12} sm={5} style={{margin: `14px auto 0 auto`, borderRadius: 15}}>
 
     <div style={{borderRadius: 15}}>
@@ -658,11 +679,15 @@ return <>
 </>;
 };
 
+const mapDispatchToProps = {
+    setModalDelivery: setOpenModalDelivery,
+}
+
 const mapStateToProps = (state) => ({
     adressDelivery: state.app.userSettings?.adressDelivery,
   });
   
-  export default connect(mapStateToProps, null)(Dostavkaioplata)
+  export default connect(mapStateToProps, mapDispatchToProps)(Dostavkaioplata)
 
       
 
