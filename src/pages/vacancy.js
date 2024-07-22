@@ -47,6 +47,8 @@ const Container = styled.div`
     }
     .item-section-vacancy {
         display: flex;
+        padding: 0 10px;
+        background: gainsboro;
         width: 96%;
         flex-direction: column;
         margin-bottom: 30px;
@@ -207,7 +209,7 @@ const Vacancy = () => {
                                             color="secondary"
                                             startIcon={<ExpandMoreIcon />}
                                             id={1}
-                                            style={{ width: `50%` }}
+                                            style={{ width: `65%` }}
                                             onClick={() => handleExpandClick(1)}
                                             aria-expanded={expanded["one"]}
                                             aria-label="show more">
@@ -234,7 +236,7 @@ const Vacancy = () => {
                                             <li>График 5/2, с 10:00 до 22:30</li>
                                             <li>Частота выплат: каждый день, 3000-5000 рублей смена</li>
                                        </ul>
-                                       <Typography variant='body1'>Если интересует вакансия курьера оставьте заявку, мы свяжемся с вами в ближайшее время если есть свободная вакансия, или сразу как только появится и ответим на все интересующие вас вопросы.</Typography>
+                                       {/* <Typography variant='body1'>Если интересует вакансия курьера оставьте заявку, мы свяжемся с вами в ближайшее время если есть свободная вакансия, или сразу как только появится и ответим на все интересующие вас вопросы.</Typography> */}
                                         {/* <Typography gutterBottom variant="h5" component="div">
                                         Водитель-курьер с личным автомобилем
                                         </Typography>
@@ -262,7 +264,7 @@ const Vacancy = () => {
                                             color="secondary"
                                             startIcon={<ExpandMoreIcon />}
                                             id={2}
-                                            style={{ width: `50%` }}
+                                            style={{ width: `65%` }}
                                             onClick={() => handleExpandClick(2)}
                                             aria-expanded={expanded["two"]}
                                             aria-label="show more">
@@ -318,7 +320,7 @@ const Vacancy = () => {
                                             color="secondary"
                                             startIcon={<ExpandMoreIcon />}
                                             id={3}
-                                            style={{ width: `50%` }}
+                                            style={{ width: `65%` }}
                                             onClick={() => handleExpandClick(3)}
                                             aria-expanded={expanded["tree"]}
                                             aria-label="show more">
@@ -371,7 +373,7 @@ const Vacancy = () => {
                                             color="secondary"
                                             startIcon={<ExpandMoreIcon />}
                                             id={4}
-                                            style={{ width: `50%` }}
+                                            style={{ width: `65%` }}
                                             onClick={() => handleExpandClick(4)}
                                             aria-expanded={expanded["fo"]}
                                             aria-label="show more">
@@ -395,7 +397,7 @@ const Vacancy = () => {
                                        </ul>
                                        <Typography variant='h4'>Условия</Typography>
                                        <ul>
-                                            <li>Заработная плата от 1 5000 рублей смена</li>
+                                            <li>Заработная плата от 1 500 рублей смена</li>
                                             <li>Частота выплат: Раз в неделю</li>
                                             <li>Бесплатные обеды</li>
                                             <li>Официальное оформление</li>
@@ -424,11 +426,11 @@ const Vacancy = () => {
                                             <br></br>
                                             Спасибо за проявленный интерес к нашей компании.<br></br> 
                                             С уважением, Свисни Суши.</h4> : <>
-                                                <form onSubmit={submitForm}>
+                                        <form onSubmit={submitForm} style={{   background: 'white',  padding: '0 10px', margin: '0 0 10px 0',  borderRadius: '5px', }}>
                                                 <Typography variant="h2" sx={{ marginBottom: 2, marginTop: 2 }}>
                                                     Отклик на вакансию:
                                                 </Typography>
-                                                
+                                                <div style={{ display: 'flex', flexDirection: 'column' }}>
                                                 <TextField
                                                     id="filled-name"
                                                     error={!validateUserName() && nameUser.length > 2}
@@ -443,6 +445,7 @@ const Vacancy = () => {
                                                     helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
                                                 <TextField
                                                     id="filled-phone"
+                                                    helperText={"Начните вводить телефон с 7 или 8" }
                                                     label="Телефон"
                                                     required
                                                     fullWidth
@@ -517,6 +520,7 @@ const Vacancy = () => {
                                                         <FormControlLabel value="46-65" control={<Radio />} label="46-65" />
                                                     </RadioGroup>
                                                     </FormControl>
+                                                    </div>
                                                     <Button
                                                         sx={{ marginTop: 3, marginBottom: 3, display: 'block' }}
                                                                 variant="contained"
