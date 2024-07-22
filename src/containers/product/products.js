@@ -92,7 +92,7 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
         /> 
         <Grid sx={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
                 gap: 1
         }}  itemScope itemType="http://schema.org/ItemList">
             { visibleItems && visibleItems.length > 0 ? <>
