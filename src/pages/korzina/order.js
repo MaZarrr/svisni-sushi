@@ -476,6 +476,7 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
                                               onClick={() => setModalDelivery(true)}>
                                         Сменить пункт заказа
                                       </Button>
+                                      <Typography variant="caption" style={{ color: 'red', textAlign: 'center', display: 'block' }}>обратите внимание! если вы не нашли в списке ваш населенный пункт, попробуйте сменить пункт заказа</Typography>
                                     </Grid>
                                     {delivery !== '' && <>
                                       {/*Предзаказ или сразу время и дата*/}
@@ -774,7 +775,6 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option value="valsoshgor">Валуйки(соц.город)</option>
                                             <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
                                             <option value="valsim">Валуйки(нов.симоновка)</option>
-                                            <option style={{background: `#f0ecec`}} value="valsovhoz">Валуйки(совхоз)</option>
                                             <option value="yablonovo">Яблоново</option>
                                             <option style={{background: `#f0ecec`}} value="rogdestv">Рождественно</option>
                                         </Select> : <Select ref={selectRef} native value={deliverySity.city}
@@ -788,7 +788,7 @@ const SelectDelivery = ({ adress, deliverySity, handleChangeCity, cityCompany })
                                             <option value="valsim">Валуйки(нов.симоновка)</option>
                                             <option style={{background: `#f0ecec`}} value="valrazdol">Валуйки(раздолье)</option>
                                             <option value="valsovhoz">Валуйки(совхоз)</option>
-                                            <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option>
+                                            {/* <option style={{background: `#f0ecec`}}  value="valsovhoz">Валуйки(совхоз)</option> */}
                                             <option value="soloti">Солоти</option>
                                             <option style={{background: `#f0ecec`}} value="novorfz">Новокозацкое</option>
                                             <option value="shel">Тимоново</option>
