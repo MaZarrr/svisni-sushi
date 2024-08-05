@@ -8,22 +8,37 @@ import styled from "@emotion/styled";
 
 const ContentHead = styled.div `
   margin-bottom: 5px;
-  padding: 0 20px;
+  max-width: 1536px;
+  margin: 0 auto;
 `
 
 const HeadSection = memo(({ isFilter = false, categoryNames, category, path, titleTXT, dispatch }) => {
   const onSelectCategory = useCallback((index) => {
     dispatch(setCategory(index));
   },[dispatch]);
-
+console.log('path', isFilter);
   return (
       <ContentHead>
-        <Typography variant="h1"
-                    sx={{
-                      marginBottom: 0,
-                      textTransform: `uppercase`,
-                      letterSpacing: `-1px`
-                    }}>{titleTXT}</Typography>
+        { !isFilter ? (
+
+<Typography variant="h1"
+sx={{
+  paddingLeft: '20px',
+  marginBottom: 2,
+  textTransform: `uppercase`,
+  letterSpacing: `-1px`
+}}>{titleTXT}</Typography>
+        ) : (
+
+          <Typography variant="h1"
+          sx={{
+            marginBottom: 0,
+            textTransform: `uppercase`,
+            letterSpacing: `-1px`
+          }}>{titleTXT}</Typography>
+        )
+        }
+
         { isFilter && <>
           <CustomizedInputSearch location={path}/>
         { (path === 'sety' || path === 'pizza') && <> 

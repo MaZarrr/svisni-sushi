@@ -24,7 +24,7 @@ const CustomizedInputSearch = React.memo(({serchProduct, location}) => {
       padding: '2px 4px',
       marginTop: '5px',
       display: 'flex',
-      width: `95%`,
+      // width: `95%`,
       height: '60px',
       '@media screen and (max-width: 500px) ': {
         padding: 0,

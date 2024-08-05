@@ -106,7 +106,7 @@ const MenuList = memo(({
                             avatar={<GatsbyImage image={imageTypeCategory.gatsbyImageData} style={{width: 40}} alt={name} />}
                             title={variant ? variant : titleCategory}
                             subheader={<span itemProp="name">
-                                <Typography style={{fontSize: 15, letterSpacing: 0.1}} variant={"subtitle1"}>{name}</Typography></span>}/>
+                                <Typography style={{fontSize: 13, letterSpacing: 0.1}} variant={"subtitle1"}>{name}</Typography></span>}/>
                         { slugCategogy === "/sety" &&
                         <CardMedia
                             className={classes.media}
@@ -116,19 +116,21 @@ const MenuList = memo(({
                                 <Link to={slug ? `${slugCategogy}/${slug}` : `${slugCategogy}/`}>
                                     <GatsbyImage 
                                     image={gatsbyImageData} 
+                                    objectFit="contain"
                                     itemProp="image" 
                                     alt={name} 
-                                    style={{maxWidth: `100%`}} />
+                                   />
                                 </Link>
                             }
 
                             {komboSale &&
                             <Link to={`/${slug}`}>
                                 <GatsbyImage 
+                                 objectFit="contain"
                                 image={gatsbyImageData} 
                                 itemProp="image" 
                                 alt={name} 
-                                style={{maxWidth: `100%`}} />
+                                 />
                             </Link>
                             }
 
@@ -143,18 +145,20 @@ const MenuList = memo(({
                             {edit &&
                             <Link to={`${slugCategogy}/${slug}`}>
                                 <GatsbyImage 
+                                 objectFit="contain"
                                 image={gatsbyImageData} 
                                 itemProp="image" 
                                 alt={name} 
-                                style={{maxWidth: `100%`}} />
+                                 />
                             </Link>
                             }
                             {!edit &&
                             <GatsbyImage 
                                 image={gatsbyImageData} 
+                                objectFit="contain"
                                 itemProp="image" 
                                 alt={name} 
-                                style={{maxWidth: `100%`}} />
+                                 />
                             }
                         </CardMedia>
                         }
@@ -167,9 +171,10 @@ const MenuList = memo(({
                             <div style={{position: `relative`}}>
                                 <GatsbyImage
                                     image={gatsbyImageData}
+                                    objectFit="contain"
                                     itemProp="image"
                                     alt={name}
-                                    style={{maxWidth: `100%`, margin: 0}} />
+                                   />
                                 {/* {slugCategogy === "/wok" &&
                                 <div style={{position: `absolute`, width: 50, height: 50, zIndex: 100}}>
                                     <GatsbyImage

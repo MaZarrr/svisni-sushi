@@ -10,19 +10,19 @@ export const CardStyle = styled(Card)(({ theme }) => ({
     [theme.breakpoints.down('1500')]: {
         maxWidth: `300px`,
     },
-    [theme.breakpoints.down('1281')]: {
-        maxWidth: `300px`,
-    },
-    [theme.breakpoints.down('600')]: {
-        maxWidth: `300px`,
-    },
-    [theme.breakpoints.down('475')]: {
-        maxWidth: `300px`,
-    },
-    [theme.breakpoints.down('376')]: {
-        maxWidth: `270px`,
-    },
-    [theme.breakpoints.down('340')]: {
-        maxWidth: `300px`,
-    },
+    // [theme.breakpoints.down('1281')]: {
+    //     maxWidth: `300px`,
+    // },
+    // [theme.breakpoints.down('600')]: {
+    //     maxWidth: `300px`,
+    // },
+    // [theme.breakpoints.down('475')]: {
+    //     maxWidth: `300px`,
+    // },
+    // [theme.breakpoints.down('376')]: {
+    //     maxWidth: `270px`,
+    // },
+    // [theme.breakpoints.down('340')]: {
+    //     maxWidth: `300px`,
+    // },
 }))

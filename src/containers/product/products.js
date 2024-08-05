@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import React, { useEffect, useMemo, useCallback} from "react";
 import { connect } from "react-redux";
 import MenuList from "../../components/MenuList";
@@ -87,19 +87,33 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
             description={pageData.fieldSeoDescrittion}
             pathname={pathname}
         />
+        <Box sx={(theme) => ({
+            margin: '0 30px',
+            [theme.breakpoints.down('sm')]: {
+                margin: '0 15px'
+            }
+        })}>
         <HeadSection titleTXT={pageData.fieldTitle} path={pageData.fieldSlug} isFilter={true} 
         categoryNames={categoryList()} 
-        /> 
-        <Grid sx={{
+        />
+        <Grid maxWidth={'xl'} sx={(theme) => ({
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                gap: 1
-        }}  itemScope itemType="http://schema.org/ItemList">
+                margin: '0 auto',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(275px, 1fr))',
+                gap: 4,
+                [theme.breakpoints.down('sm')]: {
+                    gridTemplateColumns: '100%',
+                    gap: 1
+                }
+        })} 
+        
+        itemScope itemType="http://schema.org/ItemList">
             { visibleItems && visibleItems.length > 0 ? <>
             <MenuList titleCategory="" 
                     slugCategogy={`/${pageData.fieldSlug}`} 
                     visibleItems={visibleItems}
                     product={product} 
+                    style={{ margin: '0 100px' }}
                     // timePrice={{ hours, minutes, seconds }}
                     // isSale={priceIsSale} 
                     switchSizePizza={switchSizePizza} 
@@ -108,6 +122,7 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
         </>
             :   <Spinner count={4} /> }
         </Grid>
+        </Box>
         </>
     )
 };
