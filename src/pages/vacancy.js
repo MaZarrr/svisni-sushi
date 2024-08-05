@@ -1,5 +1,6 @@
 import React from 'react';
-import Card from '@mui/material/Card';
+import Card from '@mui/material/Card'
+import Box from '@mui/material/Box';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -7,9 +8,8 @@ import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
-import MaskedInput from 'react-text-mask';
 // import { graphql } from "gatsby"
-// import { StaticImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
 import Seo from "../components/seo";
 import TextField from "@mui/material/TextField";
 import HeadSection from "../components/HeadSection"
@@ -38,11 +38,12 @@ const Container = styled.div`
     }
     .item-section {
         width: 99%;
-        display: flex;
+        display: grid;
+        grid-template-columns: 40% 60%;
         margin-top: 10px;
-        @media (max-width: 500px) {
+        @media (max-width: 800px) {
             width: 99%;
-            flex-wrap: wrap;
+            grid-template-columns: auto;
         }
     }
     .item-section-vacancy {
@@ -85,6 +86,7 @@ const Vacancy = () => {
     const [severityText, setSeverityText] =  React.useState('');
     const [severityType, setSeverityType] =  React.useState('');
     const [phone, setPhone] =  React.useState('');
+    const [error, setError] = React.useState('');
 
     const handleClick = () => {
         setOpen(true);
@@ -96,18 +98,25 @@ const Vacancy = () => {
         return nameValidate.test(String(name).toLowerCase())
       };
 
-      function TextMaskCustom(props) {
-        const { inputRef, ...other } = props;
-      
-        return (
-            <MaskedInput
-                {...other}
-                mask={[/[7, 8]/, '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                placeholderChar={'\u2000'}
-                guide={false}
-            />
-        );
-      }
+    const validatePhone = (value) => {
+        // Регулярное выражение для проверки номера телефона
+        const phoneRegex = /^[78]\d{10}$/;
+        // Убираем все нецифровые символы
+        const digits = value.replace(/\D/g, '');
+        if (digits === '') {
+            setError('Телефон обязателен для ввода');
+        } else if (!phoneRegex.test(digits)) {
+            setError('Телефон должен начинаться с 7 или 8 и содержать 11 цифр');
+        } else {
+            setError(false); // Валидация успешна false означает что ошибок нет
+        }
+    };
+
+      const handlePhone = (e) => {
+        const value = e.target.value;
+        setPhone(value);
+        validatePhone(value);
+      };
 
       React.useEffect(() => {
         if(!valueStorage) return;
@@ -127,6 +136,12 @@ const Vacancy = () => {
 
     const submitForm = async (ev) => {
         ev.preventDefault();
+        if(error !== false) {
+            setSeverityText('Введите корректный телефон.');
+            setSeverityType('error');
+            handleClick();
+            return
+        }
         try {
             const form = ev.target;
             const data = new FormData(form);
@@ -191,384 +206,406 @@ const Vacancy = () => {
                 <HeadSection titleTXT={"Вакансии Свисни Суши"} />
                 <Container>
                     <div className="item-section">
+                    <Box sx={{ padding: '0 0 30px 0' }}>
                     <Typography variant="subtitle2" style={{padding: `10px 50px 10px 0`, width: `98%`}}>
                         Бренд Свисни Суши — был основан в 2018 году, когда открылся первый ресторан японской кухни формата «возьми с собой» в
                         Уразово. С 2018 года мы начали активное развитие и сейчас мы хотим, чтобы каждый имел возможность наслаждаться вкусом
                         лучших блюд японской, итальянской и европейской кухни.
                         И нам требуются ответственные и трудолюбивые сотрудники на постоянную работу.
                     </Typography>
-                            <div className="item-section item-section-vacancy">
+                    <Box sx={(theme) => ({
+                        [theme.breakpoints.down('md')]: {
+                            display: 'flex'
+                        }
+                    })}>
+                    <StaticImage 
+                        src="../images/vacancy11.jpg"
+                        objectFit='cover'
+                        style={{ marginRight: 20, marginTop: 8 }}
+                        formats={["auto", "webp", "avif"]}
+                        alt="Возможность влиять на доход" />
+                    <StaticImage 
+                        src="../images/vacancy22.jpg"
+                        objectFit='cover'
+                        style={{ marginRight: 30, marginTop: 8 }}
+                        formats={["auto", "webp", "avif"]}
+                        alt="Возможность влиять на доход" />
+                    </Box>
+                    </Box>
+                    <div className="item-section item-section-vacancy">
 
-                            <Card key={1} raised style={{ margin: `8px 0` }}>
-                                      <CardHeader
-                                        title={"Курьер"}
-                                        subheader={'Водитель-курьер с личным автомобилем'} />
-                                      <CardActions disableSpacing>
-                                          <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            startIcon={<ExpandMoreIcon />}
-                                            id={1}
-                                            style={{ width: `65%` }}
-                                            onClick={() => handleExpandClick(1)}
-                                            aria-expanded={expanded["one"]}
-                                            aria-label="show more">
-                                              Подробнее
-                                          </Button>
-                                      </CardActions>
+                    <Card key={1} raised style={{ margin: `8px 0` }}>
+                                <CardHeader
+                                title={"Курьер"}
+                                subheader={'Водитель-курьер с личным автомобилем'} />
+                                <CardActions disableSpacing>
+                                    <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    startIcon={<ExpandMoreIcon />}
+                                    id={1}
+                                    style={{ width: `65%` }}
+                                    onClick={() => handleExpandClick(1)}
+                                    aria-expanded={expanded["one"]}
+                                    aria-label="show more">
+                                        Подробнее
+                                    </Button>
+                                </CardActions>
 
-                                      <Collapse in={expanded[1]} timeout="auto" unmountOnExit>
-                                      <CardContent>
-                                        <Typography variant='h4'>Требования</Typography>
-                                       <ul>
-                                            <li>Личный автомобиль</li>
-                                            <li>Желание работать</li>
-                                       </ul>
-                                       <Typography variant='h4'>Обязанности</Typography>
-                                       <ul>
-                                            <li>Доставка заказов (пицца, суши, вок) по адресам Клиентов</li>
-                                       </ul>
-                                       <Typography variant='h4'>Условия</Typography>
-                                       <ul>
-                                            <li>Компенсация питания</li>
-                                            <li>Заказов множество. Все они уже собраны</li>
-                                            <li>Выход на смену возможен уже в день стажировки</li>
-                                            <li>График 5/2, с 10:00 до 22:30</li>
-                                            <li>Частота выплат: каждый день, 3000-5000 рублей смена</li>
-                                       </ul>
-                                       {/* <Typography variant='body1'>Если интересует вакансия курьера оставьте заявку, мы свяжемся с вами в ближайшее время если есть свободная вакансия, или сразу как только появится и ответим на все интересующие вас вопросы.</Typography> */}
-                                        {/* <Typography gutterBottom variant="h5" component="div">
-                                        Водитель-курьер с личным автомобилем
+                                <Collapse in={expanded[1]} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                <Typography variant='h4'>Требования</Typography>
+                                <ul>
+                                    <li>Личный автомобиль</li>
+                                    <li>Желание работать</li>
+                                </ul>
+                                <Typography variant='h4'>Обязанности</Typography>
+                                <ul>
+                                    <li>Доставка заказов (пицца, суши, вок) по адресам Клиентов</li>
+                                </ul>
+                                <Typography variant='h4'>Условия</Typography>
+                                <ul>
+                                    <li>Компенсация питания</li>
+                                    <li>Заказов множество. Все они уже собраны</li>
+                                    <li>Выход на смену возможен уже в день стажировки</li>
+                                    <li>График 5/2, с 10:00 до 22:30</li>
+                                    <li>Частота выплат: каждый день, 3000-5000 рублей смена</li>
+                                </ul>
+                                {/* <Typography variant='body1'>Если интересует вакансия курьера оставьте заявку, мы свяжемся с вами в ближайшее время если есть свободная вакансия, или сразу как только появится и ответим на все интересующие вас вопросы.</Typography> */}
+                                {/* <Typography gutterBottom variant="h5" component="div">
+                                Водитель-курьер с личным автомобилем
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Описание вакансии
+                                </Typography> */}
+                            </CardContent>
+                            <CardActions onClick={checkPushWork}>
+                                <a href='#form'>
+                                    <Button size="large" variant='contained'>Откликнуться</Button>
+                                </a>
+                            </CardActions>
+                                </Collapse>
+                    </Card>
+                    {/* =============== */}
+
+                    <Card key={2} raised style={{ margin: `8px 0` }}>
+                                <CardHeader
+                                title={"Оператор"}
+                                subheader={'Можно без опыта'} />
+
+                                <CardActions disableSpacing>
+                                    <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    startIcon={<ExpandMoreIcon />}
+                                    id={2}
+                                    style={{ width: `65%` }}
+                                    onClick={() => handleExpandClick(2)}
+                                    aria-expanded={expanded["two"]}
+                                    aria-label="show more">
+                                        Подробнее
+                                    </Button>
+                                </CardActions>
+
+                                <Collapse in={expanded[2]} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                <Typography variant='h4'>Требования</Typography>
+                                <ul>
+                                    <li>Опыт работы оператором будет являться преимуществом</li>
+                                    <li>Грамотная устная и письменная речь</li>
+                                    <li>Внимательность, стрессоустойчивость</li>
+                                    <li>Желание работать</li>
+                                </ul>
+                                <Typography variant='h4'>Обязанности</Typography>
+                                <ul>
+                                    <li>Прием и обработка входящих звонков и интернет-заказов на доставку</li>
+                                    <li>Консультация клиентов по меню</li>
+                                    <li>Оформление заказов</li>
+                                </ul>
+                                <Typography variant='h4'>Условия</Typography>
+                                <ul>
+                                    <li>Бесплатное питание</li>
+                                    <li>Частота выплат: Раз в неделю</li>
+                                    <li>Оплата 1500-2000 рублей выход</li>
+                                    <li>График 2/2, 5/2, плавающие выходные</li>
+                                </ul>
+                                <Typography variant='h4'>Место работы</Typography>
+                                <ul>
+                                    <li>п.Уразово, ул.Красная Площадь 30А</li>
+                                    <li>г.Валуйки, ул.Толстого 16/2</li>
+                                </ul>
+                            </CardContent>
+                            <CardActions onClick={checkPushWork}>
+                            <a href='#form'>
+                                    <Button size="large" variant='contained'>Откликнуться</Button>
+                                </a>
+                            </CardActions>
+                            </Collapse>
+                    </Card>
+                    {/* =============== */}
+
+                    <Card key={3} raised style={{ margin: `8px 0` }}>
+                                <CardHeader
+                                title={"Повар"}
+                                subheader={'Сушист, Пиццмейкер, Универсал'} />
+
+                                <CardActions disableSpacing>
+                                    <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    startIcon={<ExpandMoreIcon />}
+                                    id={3}
+                                    style={{ width: `65%` }}
+                                    onClick={() => handleExpandClick(3)}
+                                    aria-expanded={expanded["tree"]}
+                                    aria-label="show more">
+                                        Подробнее
+                                    </Button>
+                                </CardActions>
+
+                                <Collapse in={expanded[3]} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                <Typography variant='h4'>Требования</Typography>
+                                <ul>
+                                    <li>Рассмотрим кандидатов без опыта работы</li>
+                                    <li>Наличие действующей мед.книжки ( или готовность её оформить )</li>
+                                </ul>
+                                <Typography variant='h4'>Обязанности</Typography>
+                                <ul>
+                                    <li>Приготовление блюд согласно стандартам компании</li>
+                                </ul>
+                                <Typography variant='h4'>Условия</Typography>
+                                <ul>
+                                    <li>Заработная плата от 35 000-60 000 рублей</li>
+                                    <li>Частота выплат: Раз в неделю</li>
+                                    <li>График работы обсуждается на собеседовании</li>
+                                    <li>Бесплатное питание</li>
+                                    <li>Официальное оформление</li>
+                                </ul>
+                                <Typography variant='h4'>Место работы</Typography>
+                                <ul>
+                                    <li>п.Уразово, ул.Красная Площадь 30А</li>
+                                    <li>г.Валуйки, ул.Толстого 16/2</li>
+                                </ul>
+                            </CardContent>
+                            <CardActions onClick={checkPushWork}>
+                            <a href='#form'>
+                                    <Button size="large" variant='contained'>Откликнуться</Button>
+                                </a>
+                            </CardActions>
+                            </Collapse>
+                    </Card>
+                    {/* =============== */}
+
+                    <Card key={4} raised style={{ margin: `8px 0` }}>
+                                <CardHeader
+                                title={"Помощник-повара"}
+                                subheader={'Рассмотрим без опыта'} />
+
+                                <CardActions disableSpacing>
+                                    <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    startIcon={<ExpandMoreIcon />}
+                                    id={4}
+                                    style={{ width: `65%` }}
+                                    onClick={() => handleExpandClick(4)}
+                                    aria-expanded={expanded["fo"]}
+                                    aria-label="show more">
+                                        Подробнее
+                                    </Button>
+                                </CardActions>
+
+                                <Collapse in={expanded[4]} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                <Typography variant='h4'>Требования</Typography>
+                                <ul>
+                                    <li>Высокая работоспособность</li>
+                                    <li>Наличие действующей мед.книжки ( или готовность её оформить )</li>
+                                    <li>Чистоплотнoсть</li>
+                                </ul>
+                                <Typography variant='h4'>Обязанности</Typography>
+                                <ul>
+                                    <li>Заготовки</li>
+                                    <li>Рaбота на кухне</li>
+                                    <li>Помoщь пoвару</li>
+                                </ul>
+                                <Typography variant='h4'>Условия</Typography>
+                                <ul>
+                                    <li>Заработная плата от 1 500 рублей смена</li>
+                                    <li>Частота выплат: Раз в неделю</li>
+                                    <li>Бесплатные обеды</li>
+                                    <li>Официальное оформление</li>
+                                </ul>
+                                <Typography variant='h4'>Место работы</Typography>
+                                <ul>
+                                    <li>п.Уразово, ул.Красная Площадь 30А</li>
+                                    <li>г.Валуйки, ул.Толстого 16/2</li>
+                                </ul>
+                            </CardContent>
+                            <CardActions onClick={checkPushWork}>
+                            <a href='#form'>
+                                    <Button size="large" variant='contained'>Откликнуться</Button>
+                            </a>
+                            </CardActions>
+                            </Collapse>
+                    </Card>
+
+                    {/* =============== */}
+                    {/* =============== */}
+                    <span id='form'></span>
+                    {valueStorage && valueStorage.status === "SUCCESS" ?
+                                    <h4 style={{ paddingTop: 15 }}>Благодарим вас за отклик на нашу вакансию.<br></br>
+                                    <br></br>
+                                    Ваш отклик будет сохранен, и мы свяжемся с вами, если есть свободная вакансия или если появится подходящая вакансия в будущем.<br></br>
+                                    <br></br>
+                                    Спасибо за проявленный интерес к нашей компании.<br></br> 
+                                    С уважением, Свисни Суши.</h4> : <>
+                                <form onSubmit={submitForm} style={{   background: 'white',  padding: '0 10px', margin: '0 0 10px 0',  borderRadius: '5px', }}>
+                                        <Typography variant="h2" sx={{ marginBottom: 2, marginTop: 2 }}>
+                                            Отклик на вакансию:
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Описание вакансии
-                                        </Typography> */}
-                                    </CardContent>
-                                    <CardActions onClick={checkPushWork}>
-                                        <a href='#form'>
-                                            <Button size="large" variant='contained'>Откликнуться</Button>
-                                        </a>
-                                    </CardActions>
-                                      </Collapse>
-                            </Card>
-                            {/* =============== */}
+                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                        <TextField
+                                            id="filled-name"
+                                            error={!validateUserName() && nameUser.length > 2}
+                                            label="Ваше имя"
+                                            required
+                                            fullWidth
+                                            inputProps={{ maxLength: 30, minLength: 3 }}
+                                            variant="filled"
+                                            onChange={(e) => {setNameUser(e.target.value)}}
+                                            color="primary"
+                                            name="name" 
+                                            helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
+                                            
+                                            <TextField
+                                                id="filled-phone"
+                                                helperText={error || ""}
+                                                label="Телефон"
+                                                required
+                                                fullWidth
+                                                variant="filled"
+                                                inputProps={{ maxLength: 11, minLength: 11 }}
+                                                color="primary"
+                                                name="phone"
+                                                onChange={handlePhone}
+                                                style={{ marginTop: 10 }}
+                                                value={phone}
+                                                error={!!error} // Показывать ошибку, если она есть
+                                        />
+                                        <FormControl sx={{ marginTop: 3 }}>
+                                            <FormLabel id="vacancy-radio-group">Какая вакансия интересует?</FormLabel>
+                                            <RadioGroup
+                                                aria-labelledby="vacancy-radio-group"
+                                                defaultValue="other"
+                                                name="radio-buttons-vacancy"
+                                            >
+                                                <FormControlLabel value="delivery" control={<Radio />} label="Курьер" />
+                                                <FormControlLabel value="operator" control={<Radio />} label="Оператор" />
+                                                <FormControlLabel value="cook" control={<Radio />} label="Повар" />
+                                                <FormControlLabel value="cookhelp" control={<Radio />} label="Помощник повара" />
+                                                <FormControlLabel value="other" control={<Radio />} label="Любая" />
+                                            </RadioGroup>
+                                            </FormControl>
 
-                            <Card key={2} raised style={{ margin: `8px 0` }}>
-                                      <CardHeader
-                                        title={"Оператор"}
-                                        subheader={'Можно без опыта'} />
-
-                                      <CardActions disableSpacing>
-                                          <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            startIcon={<ExpandMoreIcon />}
-                                            id={2}
-                                            style={{ width: `65%` }}
-                                            onClick={() => handleExpandClick(2)}
-                                            aria-expanded={expanded["two"]}
-                                            aria-label="show more">
-                                              Подробнее
-                                          </Button>
-                                      </CardActions>
-
-                                      <Collapse in={expanded[2]} timeout="auto" unmountOnExit>
-                                      <CardContent>
-                                        <Typography variant='h4'>Требования</Typography>
-                                       <ul>
-                                            <li>Опыт работы оператором будет являться преимуществом</li>
-                                            <li>Грамотная устная и письменная речь</li>
-                                            <li>Внимательность, стрессоустойчивость</li>
-                                            <li>Желание работать</li>
-                                       </ul>
-                                       <Typography variant='h4'>Обязанности</Typography>
-                                       <ul>
-                                            <li>Прием и обработка входящих звонков и интернет-заказов на доставку</li>
-                                            <li>Консультация клиентов по меню</li>
-                                            <li>Оформление заказов</li>
-                                       </ul>
-                                       <Typography variant='h4'>Условия</Typography>
-                                       <ul>
-                                            <li>Бесплатное питание</li>
-                                            <li>Частота выплат: Раз в неделю</li>
-                                            <li>Оплата 1500-2000 рублей выход</li>
-                                            <li>График 2/2, 5/2, плавающие выходные</li>
-                                       </ul>
-                                       <Typography variant='h4'>Место работы</Typography>
-                                       <ul>
-                                            <li>п.Уразово, ул.Красная Площадь 30А</li>
-                                            <li>г.Валуйки, ул.Толстого 16/2</li>
-                                        </ul>
-                                    </CardContent>
-                                    <CardActions onClick={checkPushWork}>
-                                    <a href='#form'>
-                                            <Button size="large" variant='contained'>Откликнуться</Button>
-                                        </a>
-                                    </CardActions>
-                                    </Collapse>
-                            </Card>
-                            {/* =============== */}
-
-                            <Card key={3} raised style={{ margin: `8px 0` }}>
-                                      <CardHeader
-                                        title={"Повар"}
-                                        subheader={'Сушист, Пиццмейкер, Универсал'} />
-
-                                      <CardActions disableSpacing>
-                                          <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            startIcon={<ExpandMoreIcon />}
-                                            id={3}
-                                            style={{ width: `65%` }}
-                                            onClick={() => handleExpandClick(3)}
-                                            aria-expanded={expanded["tree"]}
-                                            aria-label="show more">
-                                              Подробнее
-                                          </Button>
-                                      </CardActions>
-
-                                      <Collapse in={expanded[3]} timeout="auto" unmountOnExit>
-                                      <CardContent>
-                                        <Typography variant='h4'>Требования</Typography>
-                                       <ul>
-                                            <li>Рассмотрим кандидатов без опыта работы</li>
-                                            <li>Наличие действующей мед.книжки ( или готовность её оформить )</li>
-                                       </ul>
-                                       <Typography variant='h4'>Обязанности</Typography>
-                                       <ul>
-                                            <li>Приготовление блюд согласно стандартам компании</li>
-                                       </ul>
-                                       <Typography variant='h4'>Условия</Typography>
-                                       <ul>
-                                            <li>Заработная плата от 35 000-60 000 рублей</li>
-                                            <li>Частота выплат: Раз в неделю</li>
-                                            <li>График работы обсуждается на собеседовании</li>
-                                            <li>Бесплатное питание</li>
-                                            <li>Официальное оформление</li>
-                                       </ul>
-                                       <Typography variant='h4'>Место работы</Typography>
-                                       <ul>
-                                            <li>п.Уразово, ул.Красная Площадь 30А</li>
-                                            <li>г.Валуйки, ул.Толстого 16/2</li>
-                                        </ul>
-                                    </CardContent>
-                                    <CardActions onClick={checkPushWork}>
-                                    <a href='#form'>
-                                            <Button size="large" variant='contained'>Откликнуться</Button>
-                                        </a>
-                                    </CardActions>
-                                    </Collapse>
-                            </Card>
-                            {/* =============== */}
-
-                            <Card key={4} raised style={{ margin: `8px 0` }}>
-                                      <CardHeader
-                                        title={"Помощник-повара"}
-                                        subheader={'Рассмотрим без опыта'} />
-
-                                      <CardActions disableSpacing>
-                                          <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            startIcon={<ExpandMoreIcon />}
-                                            id={4}
-                                            style={{ width: `65%` }}
-                                            onClick={() => handleExpandClick(4)}
-                                            aria-expanded={expanded["fo"]}
-                                            aria-label="show more">
-                                              Подробнее
-                                          </Button>
-                                      </CardActions>
-
-                                      <Collapse in={expanded[4]} timeout="auto" unmountOnExit>
-                                      <CardContent>
-                                        <Typography variant='h4'>Требования</Typography>
-                                       <ul>
-                                            <li>Высокая работоспособность</li>
-                                            <li>Наличие действующей мед.книжки ( или готовность её оформить )</li>
-                                            <li>Чистоплотнoсть</li>
-                                       </ul>
-                                       <Typography variant='h4'>Обязанности</Typography>
-                                       <ul>
-                                            <li>Заготовки</li>
-                                            <li>Рaбота на кухне</li>
-                                            <li>Помoщь пoвару</li>
-                                       </ul>
-                                       <Typography variant='h4'>Условия</Typography>
-                                       <ul>
-                                            <li>Заработная плата от 1 500 рублей смена</li>
-                                            <li>Частота выплат: Раз в неделю</li>
-                                            <li>Бесплатные обеды</li>
-                                            <li>Официальное оформление</li>
-                                       </ul>
-                                       <Typography variant='h4'>Место работы</Typography>
-                                       <ul>
-                                            <li>п.Уразово, ул.Красная Площадь 30А</li>
-                                            <li>г.Валуйки, ул.Толстого 16/2</li>
-                                        </ul>
-                                    </CardContent>
-                                    <CardActions onClick={checkPushWork}>
-                                    <a href='#form'>
-                                            <Button size="large" variant='contained'>Откликнуться</Button>
-                                    </a>
-                                    </CardActions>
-                                    </Collapse>
-                            </Card>
-
-                            {/* =============== */}
-                            {/* =============== */}
-                            <span id='form'></span>
-                            {valueStorage && valueStorage.status === "SUCCESS" ?
-                                            <h4 style={{ paddingTop: 15 }}>Благодарим вас за отклик на нашу вакансию.<br></br>
-                                            <br></br>
-                                            Ваш отклик будет сохранен, и мы свяжемся с вами, если есть свободная вакансия или если появится подходящая вакансия в будущем.<br></br>
-                                            <br></br>
-                                            Спасибо за проявленный интерес к нашей компании.<br></br> 
-                                            С уважением, Свисни Суши.</h4> : <>
-                                        <form onSubmit={submitForm} style={{   background: 'white',  padding: '0 10px', margin: '0 0 10px 0',  borderRadius: '5px', }}>
-                                                <Typography variant="h2" sx={{ marginBottom: 2, marginTop: 2 }}>
-                                                    Отклик на вакансию:
-                                                </Typography>
-                                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                <TextField
-                                                    id="filled-name"
-                                                    error={!validateUserName() && nameUser.length > 2}
-                                                    label="Ваше имя"
-                                                    required
-                                                    fullWidth
-                                                    inputProps={{ maxLength: 30, minLength: 3 }}
-                                                    variant="filled"
-                                                    onChange={(e) => {setNameUser(e.target.value)}}
-                                                    color="primary"
-                                                    name="name" 
-                                                    helperText={validateUserName() === false && nameUser.length !== 0 ? "Введите корректное имя" : "Введите ваше имя" } />
-                                                <TextField
-                                                    id="filled-phone"
-                                                    helperText={"Начните вводить телефон с 7 или 8" }
-                                                    label="Телефон"
-                                                    required
-                                                    fullWidth
-                                                    inputProps={{minLength: 15}}
-                                                    InputProps={{inputComponent: TextMaskCustom, minLength: 15}}
-                                                    variant="filled"
-                                                    color="primary"
-                                                    name="phone"
-                                                    onChange={(e) => {setPhone(e.target.value)}}
-                                                    style={{ marginTop: 10 }} 
-                                                    value={phone}
-                                                    />
-                                                <FormControl sx={{ marginTop: 3 }}>
-                                                    <FormLabel id="vacancy-radio-group">Какая вакансия интересует?</FormLabel>
-                                                    <RadioGroup
-                                                        aria-labelledby="vacancy-radio-group"
-                                                        defaultValue="other"
-                                                        name="radio-buttons-vacancy"
-                                                    >
-                                                        <FormControlLabel value="delivery" control={<Radio />} label="Курьер" />
-                                                        <FormControlLabel value="operator" control={<Radio />} label="Оператор" />
-                                                        <FormControlLabel value="cook" control={<Radio />} label="Повар" />
-                                                        <FormControlLabel value="cookhelp" control={<Radio />} label="Помощник повара" />
-                                                        <FormControlLabel value="other" control={<Radio />} label="Любая" />
-                                                    </RadioGroup>
-                                                    </FormControl>
-    
-                                                    <FormControl sx={{ marginTop: 3 }}>
-                                                    <FormLabel id="opyt-radio-group">Имеется ли у вас опыт работы?</FormLabel>
-                                                    <RadioGroup
-                                                        aria-labelledby="opyt-radio-group"
-                                                        defaultValue="da"
-                                                        name="radio-buttons-opyt"
-                                                    >
-                                                        <FormControlLabel value="da" control={<Radio />} label="Да" />
-                                                        <FormControlLabel value="net" control={<Radio />} label="Нет" />
-                                                    </RadioGroup>
-                                                    </FormControl>
-                                                    
-                                                    <FormControl sx={{ marginTop: 3 }}>
-                                                    <FormLabel id="adress-radio-group">Где вы хотели бы работать?</FormLabel>
-                                                    <RadioGroup
-                                                        aria-labelledby="adress-radio-group"
-                                                        defaultValue="valuiki"
-                                                        name="radio-buttons-adress"
-                                                    >
-                                                        <FormControlLabel value="valuiki" control={<Radio />} label="В Валуйках" />
-                                                        <FormControlLabel value="urazovo" control={<Radio />} label="В Уразово" />
-                                                    </RadioGroup>
-                                                    </FormControl>
-                                                    <FormControl sx={{ marginTop: 3 }}>
-                                                    <FormLabel id="med-radio-group">Имеется ли у вас действующая медкнижка?</FormLabel>
-                                                    <RadioGroup
-                                                        aria-labelledby="med-radio-group"
-                                                        defaultValue="da"
-                                                        name="radio-buttons-med"
-                                                    >
-                                                        <FormControlLabel value="da" control={<Radio />} label="Да" />
-                                                        <FormControlLabel value="net" control={<Radio />} label="Нет" />
-                                                    </RadioGroup>
-                                                    </FormControl>
-                                                    <FormControl sx={{ marginTop: 3 }}>
-                                                    <FormLabel id="week-radio-group">Сколько вам лет?</FormLabel>
-                                                    <RadioGroup
-                                                        aria-labelledby="week-radio-group"
-                                                        defaultValue="18-25"
-                                                        name="radio-buttons-week"
-                                                    >
-                                                        <FormControlLabel value="18-25" control={<Radio />} label="18-25" />
-                                                        <FormControlLabel value="26-35" control={<Radio />} label="26-35" />
-                                                        <FormControlLabel value="36-45" control={<Radio />} label="36-45" />
-                                                        <FormControlLabel value="46-65" control={<Radio />} label="46-65" />
-                                                    </RadioGroup>
-                                                    </FormControl>
-                                                    </div>
-                                                    <Button
-                                                        sx={{ marginTop: 3, marginBottom: 3, display: 'block' }}
-                                                                variant="contained"
-                                                                color="info"
-                                                                type="submit">
-                                                    Откликнуться
-                                                </Button>
-                                                </form>
-                                            </>}
-                                            {/* {valueStorage && valueStorage.status === "ERROR" && <h3>Ooops! Произошла ошибка.</h3>} */}
-
-                                {/* <SectionInfo>
-                                <Typography 
-                                variant="h2">Плюсы работы в Свисни Суши</Typography>
-
-                                    <div className="items-container">
-                                        <div>
-                                            <div>
-                                                <StaticImage src="../images/money.png"
-                                                             alt="Возможность влиять на доход" />
+                                            <FormControl sx={{ marginTop: 3 }}>
+                                            <FormLabel id="opyt-radio-group">Имеется ли у вас опыт работы?</FormLabel>
+                                            <RadioGroup
+                                                aria-labelledby="opyt-radio-group"
+                                                defaultValue="da"
+                                                name="radio-buttons-opyt"
+                                            >
+                                                <FormControlLabel value="da" control={<Radio />} label="Да" />
+                                                <FormControlLabel value="net" control={<Radio />} label="Нет" />
+                                            </RadioGroup>
+                                            </FormControl>
+                                            
+                                            <FormControl sx={{ marginTop: 3 }}>
+                                            <FormLabel id="adress-radio-group">Где вы хотели бы работать?</FormLabel>
+                                            <RadioGroup
+                                                aria-labelledby="adress-radio-group"
+                                                defaultValue="valuiki"
+                                                name="radio-buttons-adress"
+                                            >
+                                                <FormControlLabel value="valuiki" control={<Radio />} label="В Валуйках" />
+                                                <FormControlLabel value="urazovo" control={<Radio />} label="В Уразово" />
+                                            </RadioGroup>
+                                            </FormControl>
+                                            <FormControl sx={{ marginTop: 3 }}>
+                                            <FormLabel id="med-radio-group">Имеется ли у вас действующая медкнижка?</FormLabel>
+                                            <RadioGroup
+                                                aria-labelledby="med-radio-group"
+                                                defaultValue="da"
+                                                name="radio-buttons-med"
+                                            >
+                                                <FormControlLabel value="da" control={<Radio />} label="Да" />
+                                                <FormControlLabel value="net" control={<Radio />} label="Нет" />
+                                            </RadioGroup>
+                                            </FormControl>
+                                            <FormControl sx={{ marginTop: 3 }}>
+                                            <FormLabel id="week-radio-group">Сколько вам лет?</FormLabel>
+                                            <RadioGroup
+                                                aria-labelledby="week-radio-group"
+                                                defaultValue="18-25"
+                                                name="radio-buttons-week"
+                                            >
+                                                <FormControlLabel value="18-25" control={<Radio />} label="18-25" />
+                                                <FormControlLabel value="26-35" control={<Radio />} label="26-35" />
+                                                <FormControlLabel value="36-45" control={<Radio />} label="36-45" />
+                                                <FormControlLabel value="46-65" control={<Radio />} label="46-65" />
+                                            </RadioGroup>
+                                            </FormControl>
                                             </div>
-                                            <div className="item-content">
-                                                <p>Возможность влиять на доход</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <StaticImage src="../images/icEducation.png" alt="Обучение у наставника" />
-                                            <div className="item-content">
-                                                <p>Обучение у наставника</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <StaticImage src="../images/growth.png"
-                                                         alt="Возможность карьерного роста" />
-                                            <div className="item-content">
-                                                <p>Возможность карьерного роста</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <StaticImage src="../images/home.png" alt="Выбор графика работы" />
-                                            <div className="item-content">
-                                                <p>Выбор графика работы</p>
-                                            </div>
-                                        </div>
+                                            <Button
+                                                sx={{ marginTop: 3, marginBottom: 3, display: 'block' }}
+                                                        variant="contained"
+                                                        color="info"
+                                                        type="submit">
+                                            Откликнуться
+                                        </Button>
+                                        </form>
+                                    </>}
+                                    {/* {valueStorage && valueStorage.status === "ERROR" && <h3>Ooops! Произошла ошибка.</h3>} */}
 
+                        {/* <SectionInfo>
+                        <Typography 
+                        variant="h2">Плюсы работы в Свисни Суши</Typography>
+
+                            <div className="items-container">
+                                <div>
+                                    <div>
+                                        <StaticImage src="../images/money.png"
+                                                        alt="Возможность влиять на доход" />
                                     </div>
-                                </SectionInfo> */}
+                                    <div className="item-content">
+                                        <p>Возможность влиять на доход</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <StaticImage src="../images/icEducation.png" alt="Обучение у наставника" />
+                                    <div className="item-content">
+                                        <p>Обучение у наставника</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <StaticImage src="../images/growth.png"
+                                                    alt="Возможность карьерного роста" />
+                                    <div className="item-content">
+                                        <p>Возможность карьерного роста</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <StaticImage src="../images/home.png" alt="Выбор графика работы" />
+                                    <div className="item-content">
+                                        <p>Выбор графика работы</p>
+                                    </div>
+                                </div>
+
                             </div>
+                        </SectionInfo> */}
+                    </div>
+
                     </div>
                 </Container>
                 <MuiSnackbar severityText={severityText} severityType={severityType} setOpen={setOpen} open={open} />                
