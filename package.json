@@ -86,6 +86,9 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
+  "engines": {
+    "node": "16.20.0",
+  },
   "resolutions": {
     "react-transition-group": "4.3.0",
     "graphql": "^14.1.0"
