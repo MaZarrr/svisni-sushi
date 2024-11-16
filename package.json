@@ -87,9 +87,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "engines": {
-    "node": "14.15.0",
-    "npm": "6.4.1",
-    "yarn": "1.22.10"
+    "node": "14.15.0"
   },
   "resolutions": {
     "react-transition-group": "4.3.0",
