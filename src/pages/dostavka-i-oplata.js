@@ -535,10 +535,10 @@ const deliveryVLK = [
     {
         id: 39,
         adress: 'Селиваново',
-        do: 3699,
-        posle: 3700,
+        do: 4199,
+        posle: 4200,
         color: '#DA282A',
-        price: 550,
+        price: 600,
     },
 ];
 

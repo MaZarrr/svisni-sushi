@@ -128,7 +128,7 @@ const cityVLK = {
   shihka: {id: 42, priceDel: 250, deliverySalePrice: 1600, name: "Шишкин лес"},
   mandrov: {id: 43, priceDel: 550, deliverySalePrice: 3700, name: "Мандрово"},
   podgor: {id: 44, priceDel: 650, deliverySalePrice: 4500, name: "Подгорное"},
-  seliv: {id: 45, priceDel: 550, deliverySalePrice: 3700, name: "Селиваново"},
+  seliv: {id: 45, priceDel: 600, deliverySalePrice: 4200, name: "Селиваново"},
 };
 
 
