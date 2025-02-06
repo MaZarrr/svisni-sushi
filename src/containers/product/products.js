@@ -10,6 +10,7 @@ import { checkSaleLanch, defFilters } from "../../reducers/filters";
 import filtersProducts from "../../utils/filtersProducts"
 import { loadSwitchPizzas, pizzaCart } from "../../reducers/shopping-cart";
 import Spinner from "../../components/spinner/spinner";
+import LayoutLontainer from "../layout-container";
 // import useTimer from "../../utils/useTimer"
 // const categoryNames = ['Малые', 'Средние', 'Большие', '⏱️Ланч-тайм'];
 
@@ -87,11 +88,12 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
             description={pageData.fieldSeoDescrittion}
             pathname={pathname}
         />
+        <LayoutLontainer>
         <Box sx={(theme) => ({
-            margin: '0 30px',
-            [theme.breakpoints.down('sm')]: {
-                margin: '0 15px'
-            }
+            // margin: '0 30px 0 0',
+            // [theme.breakpoints.down('sm')]: {
+            //     margin: '0 15px'
+            // }
         })}>
         <HeadSection titleTXT={pageData.fieldTitle} path={pageData.fieldSlug} isFilter={true} 
         categoryNames={categoryList()} 
@@ -123,6 +125,7 @@ const ProductList = ({ pageData: { contentfulPages: pageData, allContentfulProdu
             :   <Spinner count={4} /> }
         </Grid>
         </Box>
+        </LayoutLontainer>
         </>
     )
 };
