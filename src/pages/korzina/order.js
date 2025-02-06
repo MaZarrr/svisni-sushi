@@ -474,7 +474,10 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
                                     </Grid>
                                     <Grid item xs={12} sx={{ paddingTop: '5px' }}>
                                       <Typography sx={{ textAlign: 'center',  border: '1px solid lightgrey', borderRadius: '2px' }} variant='subtitle2'>{adressDelivery === "Валуйки" ? "Валуйки, ул.Толстого 16/2 " : "Уразово, ул.Красная Площадь 30А "}</Typography>
-                                      <Button fullWidth style={{fontSize: 16}} variant={variantPay === "cash" ? "contained" : "outlined"} color="primary"
+                                      <Button fullWidth style={{fontSize: 16}} 
+                                      variant="contained"
+                                      // variant={variantPay === "cash" ? "contained" : "outlined"} 
+                                      color="primary"
                                               onClick={() => setModalDelivery(true)}>
                                         Сменить пункт заказа
                                       </Button>
