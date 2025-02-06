@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Map, Placemark, RoutePanel } from '@pbe/react-yandex-maps';
+import { Map, Placemark, RouteButton } from '@pbe/react-yandex-maps';
 import styled from '@emotion/styled'
 
 const MapContainer = styled("div")(({ theme }) => ({
@@ -35,6 +35,9 @@ const MapContent = ({ value }) => {
       zoom: 16.5,
       controls: ["zoomControl", "fullscreenControl"],
       behaviors: ["drag", "dblClickZoom", "multiTouch"],
+      properties: {
+        balloonContentBody: 'Суши бар Свисни Суши в Валуйках',
+      }
     });
 
     const [placemarkCoords, setPlacemarkCoords] = useState([50.081738, 38.025075]); // Начальные координаты
@@ -73,19 +76,17 @@ const MapContent = ({ value }) => {
         //   behaviors: ['drag', 'dblClickZoom', 'multiTouch'] }}
         modules={['control.ZoomControl', 'control.FullscreenControl']}
         className="mapStyle"
-        properties={{
-          balloonContentBody:
-            'Суши бар Свисни Суши в Уразово',
-        }}>
+>
         <Placemark
           // defaultGeometry={[coords.lat, coords.son]}
           geometry={placemarkCoords}
           modules={["geoObject.addon.balloon"]}
           properties={{
             balloonContentHeader: "Свисни Суши",
-            balloonContent: 'ул.Красная Площадь 30А, Уразово'
+            balloonContent: 'г.Валуйки, ул.Толстого 16/2'
           }}
         />
+        <RouteButton options={{ float: "right" }} />
           {/* <RoutePanel options={{ float: "right" }} /> */}
       </Map>
     </MapContainer>
