@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function LayoutLontainer({ children }) {
   return (
-    <Container className='222222222222222222' sx={(theme) => ({ 
+    <Container sx={(theme) => ({ 
         // height: theme.spacing(10),
         [theme.breakpoints.down('sm')]: {
             maxWidth: '100%',
