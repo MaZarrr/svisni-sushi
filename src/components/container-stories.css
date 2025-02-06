@@ -1,0 +1,22 @@
+.container_Stories::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .container_Stories::-webkit-scrollbar-track {
+    background: #e0e0e0;
+  }
+  
+  .container_Stories::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 4px;
+  }
+  
+  .container_Stories::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+  }
+
+  .indicator {
+    width: 500px;
+    height: 50px;
+    background-color: red;
+  }
