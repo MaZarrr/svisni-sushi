@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import Header from "./header"
 import loadable from '@loadable/component'
-import { Hidden } from "@mui/material";
+import { Container, Hidden } from "@mui/material";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import Vk, { CommunityMessages } from "react-vk";
 import useLocalStorage from '../utils/useLocalStorage'
@@ -60,18 +60,21 @@ const Layout = (
   return (
     <ErrorBoundary>    
             <Modal
-                    open={isOpenDelivery}
-                    sx={{
-                        color: '#fff',
-                    }}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description">
-              <Box sx={{ ...style, outline: 'none' }}>
-              {/* <Box sx={{ ...style, width: 200 }}> */}
+              open={isOpenDelivery}
+              sx={{
+                  color: '#fff',
+              }}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description">
+              <Box sx={ (theme) => ({
+                ...style,
+                width: '60%',
+                [theme.breakpoints.down('sm')]: {
+                  width: 305
+                }
+              })}>
                 <h4 style={{ color: 'black', textAlign: 'center' }} id="child-modal-title">Выберите адрес для заказа:</h4>
-                {/* <p style={{ color: 'black' }} id="child-modal-description">
-                    Выберите адрес заказа:
-                </p> */}
+                  {/* {children} */}
                 <Button  sx={{ backgroundColor: 'antiquewhite', fontSize: '13px', width: '100%', padding: '15px', fontWeight: 600}}  onClick={() => handleClose({adressDelivery: 'Валуйки', isOpenDelivery: false})}>Валуйки, <br /> ул.Толстого 16/2</Button>
                 <div style={{ height: 20 }}></div>
                 <Button sx={{ backgroundColor: 'antiquewhite', width: '100%', fontSize: '13px', padding: '15px', fontWeight: 600}} onClick={() => handleClose({adressDelivery: 'Уразово', isOpenDelivery: false})}>Уразово, <br /> ул.Красная Площадь 30А</Button>
