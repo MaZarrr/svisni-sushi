@@ -1,5 +1,6 @@
 import React from "react"
 import Seo from "../components/seo"
+import LayoutLontainer from "../containers/layout-container"
 
 const cookie = () => {
 
@@ -8,6 +9,7 @@ return (
     <Seo title="Политика обработки файлов Cookie" 
     description="Политика обработки файлов Cookie на сайте"
     noindex={true} />
+    <LayoutLontainer>
     <div className="container">
     <article>
         <header>
@@ -220,6 +222,7 @@ return (
 
     </article>
     </div>
+    </LayoutLontainer>
     </>
     )
 }

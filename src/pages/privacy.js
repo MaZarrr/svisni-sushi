@@ -1,5 +1,6 @@
 import React from "react"
 import Seo from "../components/seo"
+import LayoutLontainer from "../containers/layout-container";
 
 const privacy = () => {
 
@@ -8,6 +9,7 @@ return (
     <Seo title="Условия обработки персональных данных" 
     description="Условия обработки персональных данных"
     noindex={true} />
+    <LayoutLontainer>
     <div className="container">
     <article>
         <header>
@@ -72,6 +74,7 @@ return (
         </div>
     </article>
     </div>
+    </LayoutLontainer>
     </>
     
     )

@@ -1,5 +1,6 @@
 import React from "react"
 import Seo from "../components/seo"
+import LayoutLontainer from "../containers/layout-container";
 
 const cookie = () => {
 
@@ -9,11 +10,12 @@ return (
     description="Политика обработки файлов Cookie"
     noindex={true}/>
     <section>
-    <div className="container">
-    <article>
+    <LayoutLontainer>
         <header>
             <h1>Политика обработки файлов Cookie</h1>
         </header>
+    <div className="container">
+    <article>
         <div>
         <p>Посещая сайт SVISNI-SUSHI.RU, принадлежащий ИП БЕЖЕНОВА ТАТЬЯНА ВИКТОРОВНА, ОГРН 318312300012678,
         далее «СВИСНИ СУШИ« в сети «Интернет», вы соглашаетесь с настоящей политикой, в том числе с тем, что 
@@ -64,6 +66,7 @@ return (
         </div>
     </article>
     </div>
+    </LayoutLontainer>
     </section>
     </>
     
