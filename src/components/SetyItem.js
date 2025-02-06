@@ -8,6 +8,7 @@ import loadable from "@loadable/component";
 import Typography from "@mui/material/Typography";
 import styled from '@emotion/styled'
 import LayoutItem from './layoutItem';
+import LayoutLontainer from "../containers/layout-container";
 
 // my components
 const ButtonBackSet = loadable(() => import('./common/ButtonBackSet'));
@@ -54,7 +55,8 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
   <Seo title={`Сет роллов ${name}`}
        description={`Набор роллов, суши сет ${name}, количество ${count} с общим весом ${weight}`}
        pathname="/sety/"/>
-      <LayoutItem name={name}>
+       <LayoutLontainer>
+        <LayoutItem name={name}>
           <ButtonBackSet back={back} />
           <Grid container>
               <ImageWrapped item xs={12} sm={5}>
@@ -106,6 +108,7 @@ const SetyItem = ({ name, image, count, weight, price, added, kitProduct, back }
       </Grid>
   </Grid>
   </LayoutItem>
+  </LayoutLontainer>
   </>;
 };
 
