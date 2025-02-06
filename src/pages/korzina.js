@@ -23,6 +23,7 @@ import Hidden from "@mui/material/Hidden";
 import makeStyles from '@mui/styles/makeStyles';
 import loadable from "@loadable/component";
 import HeadSection from "../components/HeadSection";
+import LayoutLontainer from "../containers/layout-container";
 
 const EmptyBasket = loadable(() => import('../components/EmptyBasket'))
 
@@ -162,6 +163,7 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
          description="Корзина товаров"
          noindex={true}/>
     <section>
+      <LayoutLontainer>
       <div className={classes.root}>
         <div style={{
           margin: '0 0 20px 0'
@@ -395,6 +397,7 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
         }
 
         </div>
+        </LayoutLontainer>
     </section>
   </>;
 };

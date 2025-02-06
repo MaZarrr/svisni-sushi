@@ -12,6 +12,7 @@ import HeadSection from "../components/HeadSection"
 import { connect } from 'react-redux';
 import useLocalStorage from '../utils/useLocalStorage'
 import { setOpenModalDelivery } from "../reducers/app";
+import LayoutLontainer from "../containers/layout-container";
 
 const delivery = [
     {
@@ -60,10 +61,10 @@ const delivery = [
     {
         id: 9,
         adress: 'Двулучное',
-        do: 1699,
-        posle: 1700,
+        do: 2499,
+        posle: 2500,
         color: '#3099f0',
-        price: 250,
+        price: 450,
     },
     {
         id: 10,
@@ -118,10 +119,10 @@ const delivery = [
     {
         id: 18,
         adress: 'Кукуевка',
-        do: 1999,
-        posle: 2000,
+        do: 2699,
+        posle: 2700,
         color: '#A6CCDE',
-        price: 350,
+        price: 450,
     },
     {
         id: 19,
@@ -581,6 +582,7 @@ return <>
    description="Доставка осуществляется по Уразово и Валуйскому району с 10:00 до 22:00. Присутствует бесплатная доставка"
    pathname="/dostavka-i-oplata/"
 />
+<LayoutLontainer>
 <HeadSection titleTXT={"Стоимость доставки"} />
 <Divider/>
 <Grid container>
@@ -676,7 +678,8 @@ return <>
 через интернет, звоните нам по телефону <a itemProp="telephone" href="tel:+79040949222"><span style={{color: 'blue' }}>+7(904)094-92-22</span></a> или <a itemProp="telephone" href="tel:+79517601736"><span style={{color: 'blue' }}>+7(951)760-17-36</span></a></p>
 </div>
 </Grid>
-</>;
+</LayoutLontainer>
+</>
 };
 
 const mapDispatchToProps = {

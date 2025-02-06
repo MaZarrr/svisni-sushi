@@ -23,7 +23,6 @@ console.log('path', isFilter);
 
 <Typography variant="h1"
 sx={{
-  paddingLeft: '20px',
   marginBottom: 2,
   textTransform: `uppercase`,
   letterSpacing: `-1px`

@@ -30,6 +30,7 @@ import MuiAlert from '@mui/material/Alert';
 import ClipLoader from "react-spinners/ClipLoader";
 import useCheckedInternet from "../../utils/useCheckedInternet";
 import { setOpenModalDelivery } from "../../reducers/app";
+import LayoutLontainer from "../../containers/layout-container";
 // import PayDialog from "../../components/PayDialog"
 
 const inputLabel = React.forwardRef(null)
@@ -56,7 +57,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const city = {  
   net: {id: 0, priceDel: 0, deliverySalePrice: 0, name: "Не выбрано"},
   kol: {id: 1, priceDel: 350, deliverySalePrice: 2000, name: "Колыхалино"},
-  dvyl: {id: 2, priceDel: 250, deliverySalePrice: 1700, name: "Двулучное"},
+  dvyl: {id: 2, priceDel: 450, deliverySalePrice: 2500, name: "Двулучное"},
   val: {id: 3, priceDel: 500, deliverySalePrice: 2000, name: "Валуйки(центр)"},
   yraz: {id: 4, priceDel: 150, deliverySalePrice: 800, name: "Уразово"},
   shel: {id: 5, priceDel: 250, deliverySalePrice: 1700, name: "Шелаево"},
@@ -66,7 +67,7 @@ const city = {
   borki: {id: 9, priceDel: 350, deliverySalePrice: 2000, name: "Борки"},
   znamenk: {id: 10, priceDel: 200, deliverySalePrice: 1200, name: "Знаменка"},
   loga: {id: 11, priceDel: 400, deliverySalePrice: 2100, name: "Логачевка"},
-  kyky: {id: 12, priceDel: 350, deliverySalePrice: 2000, name: "Кукуевка"},
+  kyky: {id: 12, priceDel: 450, deliverySalePrice: 2700, name: "Кукуевка"},
   kazink: {id: 14, priceDel: 800, deliverySalePrice: 5100, name: "Казинка"},
   valsoshgor: {id: 18, priceDel: 450, deliverySalePrice: 2000, name: "Валуйки(соц.городок)"},
   valrazdol: {id: 19, priceDel: 450, deliverySalePrice: 2000, name: "Валуйки(раздолье)"},
@@ -374,6 +375,7 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
       <section>
         <Seo title="Оформление заказа"
              noindex={true}/>
+          <LayoutLontainer>
           <div className={classes.root}>
           <HeadSection titleTXT={"Оформление заказа"} />
           {/* { !isLoading ? <> */}
@@ -392,7 +394,7 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
                     }
 
                     { !isLoading  &&
-                      <Container maxWidth={"xl"}>
+                      <Container maxWidth={"xl"} sx={{ p: '0 !important' }}>
                         { !isEmpty(items) ?
                             <Grid container className={classes.gridContainer}>
                               <form
@@ -729,6 +731,7 @@ const Order = ( {items, adressDelivery, palochkiTotal, nameUser, phoneUser, deli
                       </Container>
                     }
         </div>
+        </LayoutLontainer>
       </section>
   )
 };

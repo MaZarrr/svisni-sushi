@@ -24,16 +24,15 @@ import Alert from '@mui/material/Alert';
 import useLocalStorage from '../utils/useLocalStorage'
 import axios from 'axios'
 import { getFormattedDate } from '../utils';
+import LayoutLontainer from '../containers/layout-container';
 
 const Container = styled.div`
-    padding-left: 30px;
     display: flex;
     flex-wrap: wrap;
     h2 {
         padding-top: 20px;
     }
     @media (max-width: 500px) {
-        padding-left: 20px;
         flex-direction: column;
     }
     .item-section {
@@ -203,11 +202,12 @@ const Vacancy = () => {
         <section>
             <Seo title="Вакансии в Уразово и Валуйках"
                  description="Работа в Свисни Суши. Повар сушист, пиццмейкер, курьер, оператор-бармен." />
+                <LayoutLontainer>
                 <HeadSection titleTXT={"Вакансии Свисни Суши"} />
                 <Container>
                     <div className="item-section">
                     <Box sx={{ padding: '0 0 30px 0' }}>
-                    <Typography variant="subtitle2" style={{padding: `10px 50px 10px 0`, width: `98%`}}>
+                    <Typography variant="subtitle2" style={{padding: `0 0 15px 0`, width: `98%`}}>
                         Бренд Свисни Суши — был основан в 2018 году, когда открылся первый ресторан японской кухни формата «возьми с собой» в
                         Уразово. С 2018 года мы начали активное развитие и сейчас мы хотим, чтобы каждый имел возможность наслаждаться вкусом
                         лучших блюд японской, итальянской и европейской кухни.
@@ -608,7 +608,8 @@ const Vacancy = () => {
 
                     </div>
                 </Container>
-                <MuiSnackbar severityText={severityText} severityType={severityType} setOpen={setOpen} open={open} />                
+                <MuiSnackbar severityText={severityText} severityType={severityType} setOpen={setOpen} open={open} />   
+                </LayoutLontainer>             
         </section>
     );
 }

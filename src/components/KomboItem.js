@@ -18,6 +18,7 @@ import SwipeableViews from 'react-swipeable-views';
 import Modal from "@mui/material/Modal";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import LayoutLontainer from "../containers/layout-container";
 
 const styles = {
     root: {
@@ -126,11 +127,9 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
     return <>
         <Seo title={`Комбо набор ${name}`}
              description={`Доставка комбо наборов в Валуйки. Комбо набор ${name}, цена ${price} рублей`} />
+        <LayoutLontainer>
         <Typography
             variant="h1"
-            style={{
-                fontSize: `24px`
-            }}
             sx={{
                 fontWeight: 900,
                 textTransform: `uppercase`,
@@ -419,6 +418,7 @@ const KomboItem = React.memo(( { id, name, description, image, addedCart, price,
                 </Alert>
         </Snackbar>
         </div>
+        </LayoutLontainer>
     </>;
 });
 

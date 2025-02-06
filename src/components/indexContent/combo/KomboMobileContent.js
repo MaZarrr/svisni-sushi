@@ -22,9 +22,9 @@ const styles = {
 
 export const useStyleKombo = makeStyles(theme => ({
   cardCombo: {
-      padding: '0 20% 0 15%',
+      // padding: '0 20% 0 15%',
       [theme.breakpoints.down('330')]: {
-        padding: '0 10% 0 15%'
+        // padding: '0 10% 0 15%'
   }}
 }));
 

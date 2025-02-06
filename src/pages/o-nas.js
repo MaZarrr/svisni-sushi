@@ -2,6 +2,7 @@ import React from "react"
 import Seo from "../components/seo"
 import {Link}  from 'gatsby';
 import HeadSection from "../components/HeadSection"
+import LayoutLontainer from "../containers/layout-container";
 // import WallNews from "../components/WallNews";
 // import { Typography } from "@mui/material";
 // import { sendRequest } from "../utils";
@@ -27,8 +28,9 @@ return (
     <Seo title="Узнай больше о компании"
     description="Мы готовим роллы, суши, пиццу для наших клиентов. Узнай подробнее о Свисни Суши на сайте"
     />
+    <LayoutLontainer>
     <HeadSection titleTXT={"О нас"} />
-		<div style={{padding: `5px 30px 10px 30px`, fontSize: 14}}>
+		<div>
             <p style={{ fontSize: 14 }}>
             Свисни Суши — первый ресторан японской кухни в Уразово. Присутствует служба доставки блюд японской, итальянской и европейской кухни по Валуйскому району.
             Мы предлагаем своим покупателям превосходные суши, роллы, готовим вкусные салаты и <Link to="/pizza"><b>пиццу</b></Link>, а также предоставляем напитки от 
@@ -52,6 +54,7 @@ return (
             </> */}
             Доставка блюд по Валуйскому району с 10:00 до 22:00. Без перерывов и выходных.
         </div>
+        </LayoutLontainer>
 </>
     )
 }
