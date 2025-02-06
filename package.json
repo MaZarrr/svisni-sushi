@@ -74,7 +74,7 @@
     "start": "node index.js",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "apollo:codegen": "rimraf src/__generated__ && apollo client:codegen src/__generated__ --target=typescript --outputFlat",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve --host 0.0.0.0",
     "clean": "gatsby clean",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js",
