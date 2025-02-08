@@ -16,27 +16,28 @@ const HeadSection = memo(({ isFilter = false, categoryNames, category, path, tit
   const onSelectCategory = useCallback((index) => {
     dispatch(setCategory(index));
   },[dispatch]);
-console.log('path', isFilter);
   return (
       <ContentHead>
         { !isFilter ? (
 
-<Typography variant="h1"
-sx={{
-  marginBottom: 2,
-  textTransform: `uppercase`,
-  letterSpacing: `-1px`
-}}>{titleTXT}</Typography>
+      <Typography variant="h1"
+      sx={{
+        // ".MuiTypography-h1": {  fontSize: '1.5rem' },
+        marginBottom: 2,
+        textTransform: `uppercase`,
+        letterSpacing: `-1px`,
+      }}>{titleTXT}</Typography>
         ) : (
+        <Typography variant="h1"
+        sx={{
+          // ".MuiTypography-h1": {  fontSize: '1.5rem' },
 
-          <Typography variant="h1"
-          sx={{
-            marginBottom: 0,
-            textTransform: `uppercase`,
-            letterSpacing: `-1px`
-          }}>{titleTXT}</Typography>
-        )
-        }
+          marginBottom: 0,
+          textTransform: `uppercase`,
+          letterSpacing: `-1px`,
+        }}>{titleTXT}</Typography>
+      )
+      }
 
         { isFilter && <>
           <CustomizedInputSearch location={path}/>
