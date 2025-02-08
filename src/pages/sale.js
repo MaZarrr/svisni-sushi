@@ -12,8 +12,8 @@ import { createStyles, makeStyles } from '@mui/styles';
 const Sale = (props) => {
     const classes = useStyleSalePage();
     return <>
-        <Seo title="Акции и скидки на пиццу, роллы и суши в Уразово"
-             description="Акции на роллы суши и пиццу в Валуйках. Скидки до 40%, подарки именинникам, бесплатная пицца, роллы за 99 рублей "/>
+        <Seo title="Акции и скидки на пиццу, роллы и суши в Валуйках"
+             description="Акции на роллы суши и пиццу в Валуйках. Скидки до 40%, подарки именинникам, бесплатная пицца, роллы за 199 рублей "/>
        <LayoutLontainer>
         <HeadSection titleTXT={"Акции"} />
         <Grid container sx={(theme) => ({
