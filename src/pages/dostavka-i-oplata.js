@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import Seo from "../components/seo"
 import Avatar from '@mui/material/Avatar';
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Hidden } from "@mui/material";
 import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";
 import InputBase from '@mui/material/InputBase';
@@ -13,7 +13,13 @@ import { connect } from 'react-redux';
 import useLocalStorage from '../utils/useLocalStorage'
 import { setOpenModalDelivery } from "../reducers/app";
 import LayoutLontainer from "../containers/layout-container";
-
+import styled  from "@emotion/styled";
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
 const delivery = [
     {
         id: 1,
@@ -543,11 +549,75 @@ const deliveryVLK = [
     },
 ];
 
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+    '& .MuiDialogContent-root': {
+      padding: theme.spacing(2),
+    },
+    '& .MuiDialogActions-root': {
+      padding: theme.spacing(1),
+    },
+  }));
+
+
+  function CustomizedDialogs({ children, value }) {
+    const [open, setOpen] = React.useState(value);
+  
+    useEffect(() => {
+        setOpen(value);
+    }, [value])
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+    return (
+      <React.Fragment>
+        {/* <Button variant="outlined" >
+          Open dialog
+        </Button> */}
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          <h2>
+            Как заказать:
+            </h2>
+          </DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={(theme) => ({
+              position: 'absolute',
+              right: 8,
+              top: 8,
+              color: theme.palette.grey[500],
+            })}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogContent sx={{
+            fontSize: '12px'
+          }} dividers>
+            {children}
+          </DialogContent>
+          {/* <DialogActions>
+            <Button autoFocus onClick={handleClose}>
+              Save changes
+            </Button>
+        </DialogActions> */}
+        </BootstrapDialog>
+      </React.Fragment>
+    );
+  }
+
 
 const Dostavkaioplata = ({ adressDelivery = 'Валуйки', setModalDelivery }) => {
     const [value, setDeliveryValue] = React.useState(""); // handleChange input
     const [deliveryState, setDeliveryState] = React.useState([]);
     const [valueStorage, setValue] = useLocalStorage('userSettings')
+    const [openDialog, setOpenDialog] = React.useState(false);
 
     const switchAdress = () => {
         setModalDelivery(true);
@@ -557,8 +627,7 @@ const Dostavkaioplata = ({ adressDelivery = 'Валуйки', setModalDelivery }
     
     const handleChange = (e) => {
         const sity = deliveryState.filter(el => {
-            return el.adress.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
-            });
+            return el.adress.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1});
             if(e.target.value === "" || e.target.value.length <=2) {
                 setDeliveryState(adressDelivery === "Уразово" ? delivery : deliveryVLK)
             } else {
@@ -566,6 +635,8 @@ const Dostavkaioplata = ({ adressDelivery = 'Валуйки', setModalDelivery }
             }
             setDeliveryValue(e.target.value);
     };
+
+    // const handleChangeDialog = () =>
 
     useEffect(() => {
         if(adressDelivery === "Уразово") {
@@ -584,8 +655,8 @@ return <>
 />
 <LayoutLontainer>
 <HeadSection titleTXT={"Стоимость доставки"} />
-<Divider/>
-<Grid container>
+{/* <Divider/> */}
+<Grid container >
 <Grid item xs={12} sm={6}>
     <Paper style={{padding: '6px 0', paddingLeft: 10, margin: `5px`, display: 'flex'}}>
     <IconButton style={{padding: `5px 10px 5px 8px`}} aria-label="menu" size="large">
@@ -596,11 +667,16 @@ return <>
         value={value}
         name="search"
         placeholder={"Введите населённый пункт"}
-        inputProps={{ 'aria-label': 'search google maps' }}
+        inputProps={{ 'aria-label': 'search yandex maps' }}
         onChange={handleChange}
     />
+    <Hidden smUp>
+    <IconButton onClick={() => setOpenDialog((value) => !value )} aria-label="menu" size="large">
+        <InfoIcon />
+    </IconButton>
+    </Hidden>
     </Paper>
-    <div style={{overflowY: `scroll`, padding: '0 15px', height: `450px`}}>
+    <div style={{overflowY: `scroll`, padding: '0 15px', maxHeight: '99vh', borderRight: '1px solid lightgrey'}}>
     
     {deliveryState.length === 0 ? (<>
         <Typography variant="body1" textAlign={"center"}>Нечего не найдено. Попробуйте сменить пункт заказа.</Typography>
@@ -640,43 +716,71 @@ return <>
     <Divider/>
  </Grid>
 
-    <Grid item xs={12} sm={5} style={{margin: `14px auto 0 auto`, borderRadius: 15}}>
+    <Hidden smDown>
+    <Grid item xs={12} sm={5} style={{margin: `0 auto `,  borderRadius: 15}}>
+    <div style={{padding: `0 20px 40px 10px`}}>
+        <h2>
+        Как заказать
+        </h2>
+        <p>Заказывайте доставку роллов удобным Вам способом: по телефону или через сайт.</p>
+        <p>Чтобы сделать заказ через сайт:</p>
+            <ul>
+                <li>добавьте товар в корзину (иконка Корзина)</li>
+                <li>перейдите в корзину (вверху справа)</li>
+                <li>нажмите кнопку «Продолжить»</li>
+                <li>введите Ваши данные и способ получения заказа</li>
+                <li>нажмите кнопку «Сделать заказ»</li>
+            </ul>
+        <p>Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени.
+            <br></br><strong> После оформления заказа вам поступит звонок с подтверждением. Если у вас нет возможности совершить заказ
+        через интернет, звоните нам по телефону:</strong></p>
+        <ul>
+            <li>
+                 <a itemProp="telephone" href="tel:+79517601736"><span style={{color: 'blue' }}>+7(951)760-17-36</span></a> - Адрес: г.Валуйки, ул.Толстого 16/2
+                <p>Режим работы: с 11:00 до 22:00
+                </p>
+            </li>
+            <li>
+                <a itemProp="telephone" href="tel:+79040949222"><span style={{color: 'blue' }}>+7(904)094-92-22</span></a> - Адрес: п.Уразово, ул.Красная Площадь 30А
+                <p>Режим работы:с 10:00 до 22:00
+                </p>
+            </li>
+        </ul>
+        <Typography variant="body1"><strong>Доставка от 60 до 110 мин</strong></Typography>
+        </div>
+    </Grid>
+    </Hidden>
 
-    <div style={{borderRadius: 15}}>
-         <img src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A6c9654ff4500960caa168410dc7e08e8c8364690cf5a89b544e20cd237dc3970&amp;width=592&amp;height=422&amp;lang=ru_RU"
-              alt="Районы доставки" style={{borderRadius: `10px`,
-                border: `1px solid lightgrey`,
-                width: `100%`,
-                height: `420px`}} className="mapDelivery" />
-    </div>
-    </Grid>
-    <Grid item xs={6} style={{backgroundColor: `tomato`, padding: `15px`, color: `white`}}>
-      <Typography variant="body2"><strong>п.Уразово, ул.Красная Площадь 30А, 
-        график работы: с 10:00 до 22:00, +7(904)094-92-22</strong></Typography>
-      <Divider variant='fullWidth' style={{ height: 5, backgroundColor: 'white' }} />
-      <Typography variant="body2"><strong>г.Валуйки, ул.Толстого 16/2, 
-        график работы: с 11:00 до 22:00, +7(951)760-17-36</strong></Typography>
-    </Grid>
-    <Grid item xs={6} style={{backgroundColor: `#000`, padding: `15px`, color: `white`}}>
-      <Typography variant="body1"><strong>Доставка от 60 до 120 мин</strong></Typography>
-    </Grid>
 
-<div style={{padding: `30px`}}>
-<h2>
-Как заказать
-</h2>
-<p>Заказывайте доставку роллов удобным Вам способом: по телефону или через сайт.</p>
-<p>Чтобы сделать заказ через сайт:</p>
-    <ul>
-        <li>добавьте товар в корзину (иконка Корзина)</li>
-        <li>перейдите в корзину (в правом верхнем углу)</li>
-        <li>нажмите кнопку «Продолжить»</li>
-        <li>введите Ваши данные и способ получения заказа</li>
-        <li>нажмите кнопку «Сделать заказ»</li>
-    </ul>
-<p>Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени<strong>. После оформления заказа вам поступит звонок с подтверждением</strong>. Если у вас нет возможности совершить заказ
-через интернет, звоните нам по телефону <a itemProp="telephone" href="tel:+79040949222"><span style={{color: 'blue' }}>+7(904)094-92-22</span></a> или <a itemProp="telephone" href="tel:+79517601736"><span style={{color: 'blue' }}>+7(951)760-17-36</span></a></p>
-</div>
+    <CustomizedDialogs style={{ fontSize: '10' }} value={openDialog}>
+    <div style={{ fontSize: '10' }}>
+       
+        <p>Заказывайте доставку роллов удобным Вам способом: по телефону или через сайт.</p>
+        <p>Чтобы сделать заказ через сайт:</p>
+            <ul>
+                <li>добавьте товар в корзину (иконка Корзина)</li>
+                <li>перейдите в корзину (вверху справа)</li>
+                <li>нажмите кнопку «Продолжить»</li>
+                <li>введите Ваши данные и способ получения заказа</li>
+                <li>нажмите кнопку «Сделать заказ»</li>
+            </ul>
+        <p>Вы можете забрать заказ сами либо выбрать доставку курьером к определенному времени.
+            <br></br><strong> После оформления заказа вам поступит звонок с подтверждением. Если у вас нет возможности совершить заказ
+        через интернет, звоните нам по телефону:</strong></p>
+        <ul>
+            <li>
+                 <a itemProp="telephone" href="tel:+79517601736"><span style={{color: 'blue' }}>+7(951)760-17-36</span></a> - Адрес: г.Валуйки, ул.Толстого 16/2
+                <br></br><strong>Режим работы: с 11:00 до 22:00</strong>
+                
+            </li>
+            <li>
+                <a itemProp="telephone" href="tel:+79040949222"><span style={{color: 'blue' }}>+7(904)094-92-22</span></a> - Адрес: п.Уразово, ул.Красная Площадь 30А
+                <br></br><strong>Режим работы:с 10:00 до 22:00</strong>
+            </li>
+        </ul>
+        <Typography variant="body1"><strong>Доставка от 60 до 110 мин</strong></Typography>
+        </div>
+    </CustomizedDialogs>
 </Grid>
 </LayoutLontainer>
 </>

@@ -160,7 +160,6 @@ const ShoppingCartTable = ({data: { allContentfulProducts }, items = [], total =
   const addPanelPribors = R.contains(true, R.map(({pricePizzaLarge}) => pricePizzaLarge === undefined, items));
   return <>
     <Seo title="Корзина"
-         description="Корзина товаров"
          noindex={true}/>
     <section>
       <LayoutLontainer>

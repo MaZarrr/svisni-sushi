@@ -7,7 +7,6 @@ const privacy = () => {
 return (
     <>
     <Seo title="Условия обработки персональных данных" 
-    description="Условия обработки персональных данных"
     noindex={true} />
     <LayoutLontainer>
     <div className="container">
