@@ -7,6 +7,12 @@ import Hidden from "@mui/material/Hidden";
 import loadable from "@loadable/component";
 import { Grid, Typography } from "@mui/material";
 import makeStyles from '@mui/styles/makeStyles';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import CardGiftcardTwoToneIcon from '@mui/icons-material/CardGiftcardTwoTone';
+import { Info } from "@mui/icons-material"; 
+import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 
 import DrawerMenu from './DrawerMenu'
 import AppBars from './AppBars'
@@ -36,6 +42,14 @@ const links = [
     link: '/adres-i-kontakty'
   },
 ];
+
+const iconMap = {
+  "Акции": <CardGiftcardTwoToneIcon />,
+  "О нас": <Info />,
+  "Доставка и оплата": <LocalTaxiIcon />,
+  "Адрес и контакты": <FmdGoodIcon />,
+};
+
 
 const Header = () => {
     const classes = useStyleHeader();
@@ -77,28 +91,24 @@ const Header = () => {
               xs={9} 
               component={`ul`} 
               style={{margin: `auto 0`, display: `flex`, justifyContent: `space-around`}}>
-                {
-                links.map(({name, link, id}) => (
-                    <li key={id} 
-                    style={{ 
-                      textDecoration: `none`,
-                      listStyle: `none`, 
-                      textAlign: `center`
-                      }}>
-                        <Typography> 
-                      <Link to={link} activeStyle={{
-                        border: `solid 1px #FC5185`,
-                        borderBottomWidth: `3px`,
-                        borderRadius: `8px`,
-                        padding: 8,
-                        color: 'red'
-                        }} >
-                        {name}
-                      </Link>
-                      </Typography> 
-                    </li>
-                ))
-              }
+              <Tabs centered variant="fullWidth" sx={{ display: 'flex', justifyContent: 'flex-end' }} aria-label="icon position tabs example">
+                {links.map(({ name, link, id }) => (
+                  <Link to={link} key={id} style={{ textDecoration: "none" }} activeStyle={{
+                    border:' solid 1px #FC5185',
+                    borderBottomWidth: '3px',
+                    color: 'red'
+                }} >
+                    <Tab
+                      sx={{
+                        "&.Mui-selected": { color: "white" },
+                        transition: "0.3s",
+                      }}
+                      icon={iconMap[name] || <Info />} 
+                      label={name}
+                    />
+                  </Link>
+                ))}
+              </Tabs>;
               </Grid>
               </Hidden>
 
